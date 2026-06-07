@@ -1153,6 +1153,7 @@ function toggleSec(id, hdr) {
 }
 
 function showLesson(n) {
+  window.scrollTo({top: 0, behavior: 'instant'});
   [1,2,3].forEach(i => {
     const el = document.getElementById('lesson-'+i);
     if(el) el.style.display = (i===n)?'block':'none';
