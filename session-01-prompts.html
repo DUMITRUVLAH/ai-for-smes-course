@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sesiunea 1 — Biblioteca de prompturi (AI for SMEs)</title>
+<title>Sesiunea 1 — Prompt Engineering: frameworks & exemple reale</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,50 +24,40 @@
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body {
-    font-family: 'Onest', system-ui, sans-serif;
-    color: var(--foreground);
-    background: #E7EBF1;
-    -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    font-family: 'Onest', system-ui, sans-serif; color: var(--foreground);
+    background: #E7EBF1; -webkit-print-color-adjust: exact; print-color-adjust: exact;
     font-size: 11pt; line-height: 1.5;
   }
 
-  /* On-screen A4 sheet preview */
-  .sheet {
-    width: 210mm; min-height: 297mm;
-    margin: 18px auto; padding: 16mm 14mm;
-    background: #fff;
-    box-shadow: 0 10px 40px -8px rgba(15,23,42,0.22);
-  }
+  .sheet { width: 210mm; min-height: 297mm; margin: 18px auto; padding: 16mm 14mm;
+    background: #fff; box-shadow: 0 10px 40px -8px rgba(15,23,42,0.22); }
 
   /* ---------- COVER ---------- */
-  .cover {
-    background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%);
-    color: #fff; border-radius: 18px;
-    padding: 26mm 20mm; position: relative; overflow: hidden;
-    min-height: 252mm; display: flex; flex-direction: column;
-  }
+  .cover { background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%);
+    color: #fff; border-radius: 18px; padding: 26mm 20mm; position: relative; overflow: hidden;
+    min-height: 252mm; display: flex; flex-direction: column; }
   .cover::after { content:''; position:absolute; top:-150px; right:-120px; width:520px; height:520px; border-radius:50%;
     background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
   .cover::before { content:''; position:absolute; bottom:-120px; left:-90px; width:380px; height:380px; border-radius:50%;
     background: radial-gradient(circle, rgba(124,58,237,0.32) 0%, transparent 70%); }
-  .cover-inner { position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; flex: 1; }
+  .cover-inner { position: relative; z-index: 2; display: flex; flex-direction: column; flex: 1; }
   .cover-kicker { display:inline-flex; align-items:center; gap:9px; background:rgba(255,255,255,0.1);
     border:1px solid rgba(255,255,255,0.18); border-radius:100px; padding:7px 18px; font-size:12pt; font-weight:500;
     color:rgba(255,255,255,0.85); align-self:flex-start; }
   .cover-kicker .dot { width:7px; height:7px; border-radius:50%; background: var(--primary-light); }
-  .cover h1 { font-size: 40pt; font-weight: 800; line-height: 1.05; margin: 26px 0 16px; letter-spacing: -0.025em; max-width: 16em; }
-  .cover .sub { font-size: 16pt; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0; max-width: 24em; line-height: 1.5; }
+  .cover h1 { font-size: 38pt; font-weight: 800; line-height: 1.06; margin: 26px 0 16px; letter-spacing: -0.025em; max-width: 15em; }
+  .cover .sub { font-size: 15pt; font-weight: 400; color: rgba(255,255,255,0.74); margin: 0; max-width: 27em; line-height: 1.55; }
   .cover-meta { margin-top: auto; display: flex; flex-direction: column; gap: 22px; }
   .cover-stats { display: flex; gap: 14px; flex-wrap: wrap; }
-  .cover-stat { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 12px; padding: 14px 18px; min-width: 120px; }
-  .cover-stat .n { font-size: 24pt; font-weight: 800; line-height: 1; }
-  .cover-stat .l { font-size: 9.5pt; color: rgba(255,255,255,0.6); margin-top: 5px; letter-spacing: 0.02em; }
+  .cover-stat { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 12px; padding: 14px 18px; min-width: 130px; flex: 1; }
+  .cover-stat .n { font-size: 22pt; font-weight: 800; line-height: 1; }
+  .cover-stat .l { font-size: 9.5pt; color: rgba(255,255,255,0.62); margin-top: 6px; line-height: 1.35; }
   .cover-tools { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   .cover-tools .lbl { font-size: 10pt; color: rgba(255,255,255,0.5); }
   .cover-tools .tool { display: flex; align-items: center; gap: 8px; font-size: 11pt; font-weight: 600; color: rgba(255,255,255,0.9); }
   .cover-tools img { width: 18px; height: 18px; filter: brightness(0) invert(1); opacity: 0.9; }
   .cover-foot { margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.14);
-    font-size: 10pt; color: rgba(255,255,255,0.55); display:flex; justify-content: space-between; }
+    font-size: 10pt; color: rgba(255,255,255,0.55); }
 
   /* ---------- SECTION HEADERS ---------- */
   .sec { margin: 30px 0 14px; }
@@ -75,44 +65,67 @@
     letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; }
   .sec-tag.practice { background:#F3E8FF; color: var(--practice); }
   .sec h2 { font-size: 22pt; font-weight: 800; letter-spacing: -0.015em; margin: 9px 0 4px; line-height: 1.12; }
-  .sec .sec-sub { font-size: 11pt; color: var(--muted); margin: 0; max-width: 46em; }
+  .sec .sec-sub { font-size: 11pt; color: var(--muted); margin: 0; max-width: 48em; }
   .sec-bar { height: 4px; border-radius: 100px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); width: 64px; margin-top: 12px; }
 
-  h3.block-h { font-size: 13pt; font-weight: 800; margin: 22px 0 10px; letter-spacing: -0.01em; }
+  h3.block-h { font-size: 13.5pt; font-weight: 800; margin: 24px 0 10px; letter-spacing: -0.01em; }
+  p.lead { font-size: 11.5pt; color: #334155; line-height: 1.6; max-width: 50em; }
+  p.lead b { color: var(--foreground); }
 
-  /* ---------- PROMPT CARD ---------- */
-  .prompt { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin: 12px 0; background: #fff; break-inside: avoid; }
-  .prompt-head { display: flex; align-items: flex-start; gap: 12px; padding: 13px 16px 11px; background: var(--bg); border-bottom: 1px solid var(--border); }
-  .prompt-id { flex-shrink: 0; font-family: var(--mono); font-size: 9pt; font-weight: 700; color: #fff; background: var(--primary);
-    padding: 3px 8px; border-radius: 6px; margin-top: 1px; }
-  .prompt-titles { flex: 1; }
-  .prompt-title { font-size: 12pt; font-weight: 800; line-height: 1.25; }
-  .prompt-when { font-size: 9.5pt; color: var(--muted); margin-top: 3px; line-height: 1.4; }
-  .prompt-when b { color: var(--foreground); font-weight: 600; }
-  .prompt-tool { flex-shrink: 0; font-size: 8pt; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted);
-    background: #fff; border: 1px solid var(--border); padding: 3px 9px; border-radius: 100px; margin-top: 2px; white-space: nowrap; }
-  .code { position: relative; }
-  .code pre { margin: 0; padding: 15px 17px; font-family: var(--mono); font-size: 9.5pt; line-height: 1.6; color: #1E293B;
-    white-space: pre-wrap; word-wrap: break-word; border-left: 3px solid var(--primary-light); }
+  /* ---------- FRAMEWORK CARD ---------- */
+  .fw { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; margin: 16px 0; background: #fff;
+    box-shadow: var(--shadow); break-inside: avoid; }
+  .fw-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+  .fw-no { font-family: var(--mono); font-size: 9pt; font-weight: 700; color: #fff; background: var(--primary); padding: 3px 9px; border-radius: 6px; flex-shrink: 0; }
+  .fw-title { font-size: 15pt; font-weight: 800; line-height: 1.2; }
+  .fw-acro { font-size: 10pt; font-weight: 700; color: var(--primary); letter-spacing: 0.04em; }
+  .fw-def { font-size: 11pt; color: #334155; margin: 4px 0 0; line-height: 1.5; }
+  .fw-when { font-size: 10pt; color: var(--muted); margin: 8px 0 0; }
+  .fw-when b { color: var(--foreground); font-weight: 700; }
+
+  /* code / prompt block */
+  .code { position: relative; border-radius: var(--radius-sm); overflow: hidden; margin: 12px 0; border: 1px solid var(--border); }
+  .code-label { font-size: 8pt; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted);
+    background: var(--bg); padding: 6px 14px; border-bottom: 1px solid var(--border); }
+  .code pre { margin: 0; padding: 14px 16px; font-family: var(--mono); font-size: 9.5pt; line-height: 1.6; color: #1E293B;
+    white-space: pre-wrap; word-wrap: break-word; background: #fff; }
   .code mark { background: #FEF3C7; color: #92400E; font-weight: 600; border-radius: 3px; padding: 0 2px; }
-  .copy-btn { position: absolute; top: 10px; right: 10px; font-family: 'Onest', sans-serif; font-size: 8.5pt; font-weight: 700;
-    color: var(--primary); background: #fff; border: 1px solid var(--border); border-radius: 7px; padding: 4px 10px; cursor: pointer; }
+  .copy-btn { position: absolute; top: 6px; right: 8px; font-family: 'Onest', sans-serif; font-size: 8pt; font-weight: 700;
+    color: var(--primary); background: #fff; border: 1px solid var(--border); border-radius: 7px; padding: 3px 9px; cursor: pointer; }
   .copy-btn:hover { background: var(--primary-ultra-light); }
 
-  .prompt.purple .prompt-id { background: var(--practice); }
-  .prompt.purple .code pre { border-left-color: #A78BFA; }
+  /* attach block */
+  .attach { background: #F5F3FF; border: 1px dashed #C4B5FD; border-radius: var(--radius-sm); padding: 11px 14px; margin: 12px 0; font-size: 10pt; }
+  .attach .at-lbl { font-weight: 800; color: var(--practice); font-size: 8.5pt; letter-spacing: 0.05em; text-transform: uppercase; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; background: #fff; border: 1px solid #C4B5FD; border-radius: 100px;
+    padding: 3px 11px; font-family: var(--mono); font-size: 9pt; color: #5B21B6; margin: 5px 6px 0 0; }
 
-  /* ---------- CALLOUTS / GENERIC CARDS ---------- */
-  .note { border-radius: var(--radius); padding: 14px 18px; margin: 12px 0; font-size: 10.5pt; line-height: 1.55; break-inside: avoid; }
-  .note b { font-weight: 700; }
-  .note.tip { background: var(--primary-ultra-light); border: 1px solid #C7D2FE; }
-  .note.warn { background: #FEF2F2; border: 1px solid #FECACA; color: #7F1D1D; }
-  .note.warn b { color: #B91C1C; }
-  .note.ok { background: #F0FDF4; border: 1px solid #86EFAC; color: #14532D; }
-  .note .lbl { font-weight: 800; }
+  /* why box */
+  .why { background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius-sm); padding: 12px 15px; margin: 12px 0 0; break-inside: avoid; }
+  .why .w-lbl { font-size: 8.5pt; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 5px; }
+  .why p { margin: 0; font-size: 10pt; line-height: 1.55; color: #1E293B; }
+  .why p b { color: var(--primary); }
 
-  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  /* choices list (concrete annotations) */
+  .choices { margin: 12px 0 0; padding: 0; list-style: none; }
+  .choices li { font-size: 9.5pt; line-height: 1.5; color: #334155; padding: 4px 0 4px 22px; position: relative; }
+  .choices li::before { content: '✓'; position: absolute; left: 0; top: 3px; color: var(--success); font-weight: 800; }
+  .choices b { color: var(--foreground); }
+
+  /* compare bad/good */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; break-inside: avoid; }
+  .cmp { border-radius: var(--radius); padding: 15px; }
+  .cmp.bad { background: #FEF2F2; border: 1px solid #FECACA; }
+  .cmp.good { background: #F0FDF4; border: 1px solid #86EFAC; }
+  .cmp .cl { font-size: 9pt; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
+  .cmp.bad .cl { color: #DC2626; } .cmp.good .cl { color: #16A34A; }
+  .cmp .q { font-family: var(--mono); font-size: 9pt; line-height: 1.5; color: #1E293B; background: rgba(255,255,255,0.75); border-radius: 8px; padding: 11px 13px; }
+  .cmp .r { font-size: 9.5pt; margin-top: 8px; font-weight: 600; }
+  .cmp.bad .r { color: #B91C1C; } .cmp.good .r { color: #15803D; }
+
+  /* generic mini cards */
   .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .mini { border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; break-inside: avoid; }
   .mini.lav { background: var(--pastel-lavender); border-color:#C4B5FD; }
   .mini.sky { background: var(--pastel-sky); border-color:#BAE6FD; }
@@ -123,67 +136,38 @@
   .mini p { margin: 0; font-size: 10pt; color: #334155; line-height: 1.5; }
   .mini .ic { font-size: 15pt; }
 
-  /* anatomy */
-  .anatomy { display: grid; grid-template-columns: 130px 1fr; gap: 10px 16px; align-items: start; margin: 14px 0; }
-  .an-tag { font-size: 10pt; font-weight: 800; padding-top: 1px; }
-  .an-0 { color: var(--practice); } .an-1 { color: #0284C7; } .an-2 { color: #16A34A; } .an-3 { color: #EA580C; } .an-4 { color: #DB2777; }
-  .an-desc { font-size: 10.5pt; color: #334155; line-height: 1.45; }
-  .an-desc b { color: var(--foreground); }
+  .note { border-radius: var(--radius); padding: 14px 18px; margin: 14px 0; font-size: 10.5pt; line-height: 1.55; break-inside: avoid; }
+  .note .lbl { font-weight: 800; }
+  .note.tip { background: var(--primary-ultra-light); border: 1px solid #C7D2FE; }
+  .note.warn { background: #FEF2F2; border: 1px solid #FECACA; color: #7F1D1D; } .note.warn .lbl { color: #B91C1C; }
+  .note.ok { background: #F0FDF4; border: 1px solid #86EFAC; color: #14532D; } .note.ok .lbl { color: #15803D; }
 
-  /* compare bad/good */
-  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; break-inside: avoid; }
-  .cmp { border-radius: var(--radius); padding: 16px; }
-  .cmp.bad { background: #FEF2F2; border: 1px solid #FECACA; }
-  .cmp.good { background: #F0FDF4; border: 1px solid #86EFAC; }
-  .cmp .cl { font-size: 9pt; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
-  .cmp.bad .cl { color: #DC2626; } .cmp.good .cl { color: #16A34A; }
-  .cmp .q { font-family: var(--mono); font-size: 9pt; line-height: 1.5; color: #1E293B; background: rgba(255,255,255,0.7); border-radius: 8px; padding: 11px 13px; }
-  .cmp .r { font-size: 9.5pt; margin-top: 8px; font-weight: 600; }
-  .cmp.bad .r { color: #B91C1C; } .cmp.good .r { color: #15803D; }
+  /* scenario */
+  .scenario { border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: var(--radius); padding: 20px 22px; margin: 16px 0; background: #fff; box-shadow: var(--shadow); break-inside: avoid; }
+  .scenario h3 { margin: 0 0 4px; font-size: 14pt; font-weight: 800; }
+  .scenario .ctx { font-size: 10pt; color: var(--muted); margin: 0 0 4px; }
+  .step-lbl { font-size: 8.5pt; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--primary); margin: 14px 0 4px; }
 
-  /* security table */
-  .sectable { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 10pt; margin: 12px 0; break-inside: avoid; }
-  .sectable th { padding: 9px 14px; font-size: 9pt; font-weight: 800; letter-spacing: 0.04em; color: #fff; text-align: left; }
-  .sectable th.no { background:#DC2626; border-radius: 8px 0 0 0; } .sectable th.yes { background:#16A34A; border-radius: 0 8px 0 0; }
-  .sectable td { padding: 8px 14px; border-bottom: 1px solid rgba(0,0,0,0.06); line-height: 1.4; }
-  .sectable .nc { background:#FEF2F2; color:#7F1D1D; font-weight: 600; width: 50%; }
-  .sectable .yc { background:#F0FDF4; color:#14532D; }
-  .sectable tr:last-child td.nc { border-radius: 0 0 0 8px; } .sectable tr:last-child td.yc { border-radius: 0 0 8px 0; }
+  /* anti-pattern */
+  .anti { display: grid; grid-template-columns: 1fr; gap: 10px; }
+  .anti-row { display: grid; grid-template-columns: 1.1fr 1fr; gap: 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; break-inside: avoid; }
+  .anti-bad { background: #FEF2F2; padding: 13px 16px; }
+  .anti-good { background: #F0FDF4; padding: 13px 16px; }
+  .anti-bad .h, .anti-good .h { font-size: 8.5pt; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 5px; }
+  .anti-bad .h { color: #DC2626; } .anti-good .h { color: #16A34A; }
+  .anti-bad p, .anti-good p { margin: 0; font-size: 10pt; line-height: 1.45; color: #334155; }
 
-  /* tool pick */
-  .toolpick { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; margin: 12px 0; }
-  .tp { border-radius: var(--radius); padding: 16px; border: 1px solid var(--border); break-inside: avoid; }
-  .tp.gpt { background:#ECFDF5; border-color:#6EE7B7; } .tp.gem { background:#EFF6FF; border-color:#93C5FD; }
-  .tp.claude { background:#FFF7ED; border-color:#FDBA74; } .tp.nb { background:#F5F3FF; border-color:#C4B5FD; }
-  .tp .tph { display:flex; align-items:center; gap:9px; font-size:12.5pt; font-weight:800; margin-bottom:8px; }
-  .tp .tph img { width: 20px; height: 20px; }
-  .tp ul { margin: 0; padding-left: 18px; font-size: 10pt; line-height: 1.55; color:#334155; }
-  .tp .best { margin-top: 10px; font-size: 9.5pt; font-weight: 700; color: var(--foreground); }
+  /* cheat sheet */
+  .cheat { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .cheat-row { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; break-inside: avoid; }
+  .cheat-row .ch-name { font-size: 11pt; font-weight: 800; }
+  .cheat-row .ch-name span { color: var(--primary); font-size: 9pt; font-weight: 700; }
+  .cheat-row .ch-desc { font-size: 9.5pt; color: var(--muted); margin-top: 3px; line-height: 1.45; }
 
-  /* TOC */
-  .toc { columns: 2; column-gap: 28px; margin: 14px 0; font-size: 10.5pt; }
-  .toc .toc-row { break-inside: avoid; display: flex; justify-content: space-between; gap: 10px; padding: 4px 0; border-bottom: 1px dotted var(--border); }
-  .toc .toc-row b { font-weight: 700; }
-  .toc .toc-n { color: var(--muted); font-family: var(--mono); font-size: 9pt; }
-
-  /* checklist */
-  .kpi-box { border: 2px dashed var(--primary); border-radius: var(--radius); padding: 20px 22px; background: var(--primary-ultra-light); margin: 14px 0; break-inside: avoid; }
-  .kpi-box h3 { margin: 0 0 6px; font-size: 14pt; font-weight: 800; }
-  .checklist { list-style: none; margin: 12px 0 0; padding: 0; }
-  .checklist li { display: flex; gap: 11px; padding: 7px 0; font-size: 10.5pt; align-items: flex-start; }
-  .checklist .box { width: 17px; height: 17px; border: 2px solid var(--primary); border-radius: 5px; flex-shrink: 0; margin-top: 1px; }
-
-  .tpl-box { background: var(--bg); border: 2px dashed var(--primary); border-radius: var(--radius); padding: 18px 20px; margin: 12px 0; font-family: var(--mono); font-size: 10pt; line-height: 1.8; break-inside: avoid; }
+  .tpl-box { background: var(--bg); border: 2px dashed var(--primary); border-radius: var(--radius); padding: 18px 20px; margin: 12px 0;
+    font-family: var(--mono); font-size: 10pt; line-height: 1.85; break-inside: avoid; }
   .tpl-box mark { background: var(--primary); color: #fff; border-radius: 5px; padding: 1px 8px; font-weight: 700; }
 
-  .lead { font-size: 11.5pt; color: #334155; line-height: 1.6; max-width: 48em; }
-
-  /* page-break helpers */
-  .pb { break-before: page; }
-  .avoid { break-inside: avoid; }
-  .keep-next { break-after: avoid; }
-
-  /* running footer band on screen sheets */
   .doc-foot { margin-top: 26px; padding-top: 12px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-size: 8.5pt; color: var(--muted); }
 
   @media print {
@@ -191,1018 +175,484 @@
     .sheet { width: auto; min-height: 0; margin: 0; padding: 0; box-shadow: none; }
     .copy-btn { display: none !important; }
     .cover { min-height: calc(297mm - 28mm); border-radius: 0; }
+    .sec h2, h3.block-h, .fw-head { break-after: avoid; }
     @page { size: A4; margin: 14mm 13mm; }
-    .sec { break-before: auto; }
-    .sec h2 { break-after: avoid; }
-    h3.block-h { break-after: avoid; }
   }
 </style>
 </head>
 <body>
 
-<!-- ============================================================= -->
-<!-- COVER -->
-<!-- ============================================================= -->
+<!-- ============================== COVER ============================== -->
 <div class="sheet">
   <div class="cover">
     <div class="cover-inner">
-      <span class="cover-kicker"><span class="dot"></span> AI for SMEs · Material de curs</span>
-      <h1>Biblioteca de prompturi</h1>
-      <p class="sub">Sesiunea 1 — Fundamente AI &amp; Prompt Engineering. Peste 80 de prompturi gata de folosit pentru afacerea ta. Copiezi, înlocuiești câmpurile, folosești.</p>
+      <span class="cover-kicker"><span class="dot"></span> AI for SMEs · Material de curs · Sesiunea 1</span>
+      <h1>Prompt engineering<br>care chiar funcționează</h1>
+      <p class="sub">Nu o listă de șabloane de copiat. Un mod de a gândi: 8 frameworks, exemple reale explicate pas cu pas, și mutarea care schimbă totul — <b style="color:#fff">arată-i AI-ului, nu îi descrie</b>.</p>
 
       <div class="cover-meta">
         <div class="cover-stats">
-          <div class="cover-stat"><div class="n">80+</div><div class="l">prompturi gata de folosit</div></div>
-          <div class="cover-stat"><div class="n">9</div><div class="l">domenii de afaceri</div></div>
-          <div class="cover-stat"><div class="n">1</div><div class="l">formulă: Rol·Context·Sarcină·Format·Restricții</div></div>
+          <div class="cover-stat"><div class="n">8</div><div class="l">frameworks pe care le refolosești la orice task</div></div>
+          <div class="cover-stat"><div class="n">4</div><div class="l">scenarii reale, de la artefact la rezultat</div></div>
+          <div class="cover-stat"><div class="n">„de ce"</div><div class="l">fiecare exemplu vine cu rațiunea din spate</div></div>
         </div>
         <div class="cover-tools">
-          <span class="lbl">Funcționează în:</span>
+          <span class="lbl">Pentru:</span>
           <span class="tool"><img src="assets/logos/openai.svg" alt="">ChatGPT</span>
           <span class="tool"><img src="assets/logos/claude.svg" alt="">Claude</span>
           <span class="tool"><img src="assets/logos/gemini.svg" alt="">Gemini</span>
           <span class="tool"><img src="assets/logos/notebooklm.svg" alt="">NotebookLM</span>
         </div>
-        <div class="cover-foot">
-          <span>Audiență: profesioniști &amp; antreprenori din IMM-uri · non-tehnici</span>
-          <span>Convenție: <b style="color:#fff">[CÂMP]</b> = înlocuiești tu</span>
-        </div>
+        <div class="cover-foot">Pentru cine deja folosește AI și vrea rezultate de nivel profesionist — nu „magic words", ci context bine construit.</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ============================================================= -->
-<!-- PART 1 — GHID PRACTIC (de citit) -->
-<!-- ============================================================= -->
+<!-- ============================== MINDSET ============================== -->
 <div class="sheet">
 
   <div class="sec">
-    <span class="sec-tag">Ghid rapid · de citit primul</span>
-    <h2>Cum folosești această bibliotecă</h2>
-    <p class="sec-sub">5 minute de citit acum îți economisesc ore mai târziu. Apoi sari direct la secțiunea care te interesează.</p>
+    <span class="sec-tag">Punctul de plecare</span>
+    <h2>De ce „prompturile bune" nu există — dar contextul bun, da</h2>
+    <p class="sec-sub">Înainte de frameworks, o singură idee care le explică pe toate. Citește-o; restul documentului devine evident.</p>
     <div class="sec-bar"></div>
   </div>
 
+  <p class="lead">AI-ul nu „caută răspunsul corect" și nu te înțelege ca un om. <b>Prezice cel mai probabil cuvânt următor, pe baza a tot ce i-ai pus în față.</b> Asta e tot. De aici, două concluzii care schimbă felul în care lucrezi:</p>
+
+  <div class="grid2">
+    <div class="mini sky">
+      <h4><span class="ic">🧭</span> Nu căuta formula magică</h4>
+      <p>Nu există cuvinte secrete care „deblochează" AI-ul. Un prompt bun nu e o incantație — e pur și simplu <b>context suficient și clar</b> ca predicția să meargă spre rezultatul tău, nu spre unul generic.</p>
+    </div>
+    <div class="mini lav">
+      <h4><span class="ic">📎</span> Arată, nu descrie</h4>
+      <p>Cea mai mare greșeală: să <b>descrii</b> manual ceea ce ai deja într-un fișier. Ai o factură? Nu rescrie numerele — <b>atașeaz-o</b>. AI-ul citește documentul real și lucrează cu date reale, fără erori de transcriere.</p>
+    </div>
+  </div>
+
+  <div class="note warn">
+    <span class="lbl">Exemplul care spune tot.</span> „Fă-mi un contract pentru clientul X, espressor 4.500 lei, mentenanță lunară 600 lei, livrare gratuită..." — greșit. Tastezi date pe care le ai deja, faci greșeli, pierzi timp. Corect: <b>atașezi factura</b> și ceri „pe baza facturii atașate, fă contractul". Diferența dintre un amator și cineva care chiar folosește AI.
+  </div>
+
+  <h3 class="block-h">Ce poți „arăta" AI-ului azi (în loc să descrii)</h3>
   <div class="grid3">
-    <div class="mini lav"><h4><span class="ic">1️⃣</span> Copiază</h4><p>Ia promptul întreg din chenarul gri. E scris ca să meargă din prima.</p></div>
-    <div class="mini sky"><h4><span class="ic">2️⃣</span> Înlocuiește</h4><p>Tot ce e marcat <mark>[așa]</mark> îl schimbi cu datele tale reale (rol, produs, oraș, client).</p></div>
-    <div class="mini mint"><h4><span class="ic">3️⃣</span> Iterează</h4><p>Nu-ți place rezultatul? Nu reformula de la zero — cere o corecție: „mai scurt", „alt ton", „mai concret".</p></div>
+    <div class="mini"><h4>📄 Documente</h4><p>PDF, Word, contracte, oferte, proceduri — le atașezi direct.</p></div>
+    <div class="mini"><h4>📊 Tabele</h4><p>Excel, CSV, foi Google — AI-ul le citește și le analizează.</p></div>
+    <div class="mini"><h4>🖼️ Imagini & scanuri</h4><p>Poza unei facturi, a unui bon, un screenshot — citește textul (OCR).</p></div>
+    <div class="mini"><h4>🔗 Linkuri & surse</h4><p>Lipești recenzii, un articol, pagina unui competitor.</p></div>
+    <div class="mini"><h4>✍️ Exemple</h4><p>2-3 mostre de „așa vreau să sune" — îți imită stilul.</p></div>
+    <div class="mini"><h4>🗂️ Context persistent</h4><p>Un Project cu fișierele tale — nu mai reexplici de fiecare dată.</p></div>
   </div>
 
   <div class="note tip">
-    <span class="lbl">💡 Regula de bază a întregului curs:</span> calitatea promptului = calitatea rezultatului. AI-ul nu „caută răspunsul corect" — <b>prezice cel mai probabil cuvânt următor pe baza contextului pe care i-l dai</b>. Mai mult context bun → rezultat mai bun. De aceea aproape fiecare prompt de aici începe cu un <b>rol</b> și un <b>context</b>.
+    <span class="lbl">Regula de aur (rămâne valabilă):</span> dacă atașezi documente reale, ai grijă ce conțin. Anonimizează datele personale (CNP, date bancare, nume de pacienți). Întrebarea-test: „aș posta asta public?"
   </div>
 
-  <!-- ANATOMY -->
+  <div class="doc-foot"><span>Prompt Engineering · Sesiunea 1</span><span>Punctul de plecare</span></div>
+</div>
+
+<!-- ============================== FRAMEWORKS INTRO ============================== -->
+<div class="sheet">
   <div class="sec">
-    <span class="sec-tag">Formula</span>
-    <h2>Anatomia unui prompt bun — R·C·S·F·R</h2>
-    <p class="sec-sub">Cele 5 piese care transformă un rezultat generic într-unul utilizabil din prima. Nu ai nevoie de toate de fiecare dată, dar cu cât pui mai multe, cu atât e mai bun.</p>
+    <span class="sec-tag">Partea 1 · Frameworks</span>
+    <h2>8 frameworks pe care le refolosești la orice</h2>
+    <p class="sec-sub">Nu memorezi prompturi — înveți 8 mișcări. Le combini după nevoie. Fiecare vine cu un exemplu real și cu „de ce funcționează".</p>
     <div class="sec-bar"></div>
   </div>
 
-  <div class="anatomy">
-    <div class="an-tag an-0">ROL</div>
-    <div class="an-desc"><b>Cine să fie AI-ul.</b> „Ești copywriter senior", „Ești contabil", „Ești asistentul meu de vânzări". Setează nivelul și limbajul.</div>
-    <div class="an-tag an-1">CONTEXT</div>
-    <div class="an-desc"><b>Situația ta.</b> Compania, publicul, ce s-a întâmplat, ce ai deja. Aici se câștigă sau se pierde rezultatul.</div>
-    <div class="an-tag an-2">SARCINĂ</div>
-    <div class="an-desc"><b>Ce vrei concret.</b> Un verb clar: „scrie", „rezumă", „compară", „generează 10 variante".</div>
-    <div class="an-tag an-3">FORMAT</div>
-    <div class="an-desc"><b>Cum să arate.</b> Tabel, listă, email de 150 de cuvinte, 3 variante, fișier Word. Cere-l explicit.</div>
-    <div class="an-tag an-4">RESTRICȚII</div>
-    <div class="an-desc"><b>Ce să evite.</b> „Fără jargon", „fără promisiuni medicale", „maxim 100 de cuvinte", „ton non-corporate".</div>
-  </div>
+  <!-- FW1 -->
+  <div class="fw">
+    <div class="fw-head"><span class="fw-no">01</span><span class="fw-title">Fundamentul — Rol · Sarcină · Context · Format</span></div>
+    <span class="fw-acro">RSCF · scheletul oricărui prompt serios</span>
+    <p class="fw-def">Patru piese care transformă un rezultat generic într-unul utilizabil. Nu ai nevoie de toate de fiecare dată, dar fiecare piesă în plus restrânge predicția spre ce vrei tu.</p>
+    <p class="fw-when"><b>Când:</b> mereu — e baza peste care pui celelalte 7.</p>
 
-  <div class="compare">
-    <div class="cmp bad">
-      <div class="cl">✗ Prompt slab</div>
-      <div class="q">Scrie-mi un email.</div>
-      <div class="r">→ Generic, impersonal, inutilizabil fără rescriere.</div>
+    <div class="compare">
+      <div class="cmp bad">
+        <div class="cl">✗ Generic</div>
+        <div class="q">Scrie o descriere de produs pentru o cremă.</div>
+        <div class="r">→ AI-ul ghicește un public, un ton, o lungime. Nimerește generic.</div>
+      </div>
+      <div class="cmp good">
+        <div class="cl">✓ Cu RSCF</div>
+        <div class="q">Ești copywriter pentru un magazin de cosmetice naturale din Moldova. Scrie o descriere pentru o cremă de față cu cătină, pentru femei de 30–45 de ani care preferă îngrijirea naturală. Max 80 de cuvinte, ton cald și expert, un singur îndemn la final. Fără cuvinte ca „vindecă" sau „tratează".</div>
+        <div class="r">→ Draft on-brand, de lungimea cerută, fără claim-uri riscante.</div>
+      </div>
     </div>
-    <div class="cmp good">
-      <div class="cl">✓ Prompt bun</div>
-      <div class="q">Ești asistentul meu de vânzări. Scrie un email de follow-up de 150 de cuvinte, ton profesional dar cald, către un director de achiziții dintr-un supermarket regional. Ne-am întâlnit acum 3 zile, am discutat produsul X la prețul Y. Scop: confirmarea pașilor următori.</div>
-      <div class="r">→ Draft trimisibil din prima.</div>
+
+    <ul class="choices">
+      <li><b>Rolul</b> („copywriter pentru cosmetice naturale") fixează vocabularul și nivelul.</li>
+      <li><b>Contextul</b> (publicul, Moldova, naturală) îl scoate din zona generică.</li>
+      <li><b>Formatul</b> (80 de cuvinte, un îndemn) îți dă ceva direct utilizabil.</li>
+      <li><b>Restricția</b> („fără vindecă/tratează") blochează exact greșeala tipică în nișa asta.</li>
+    </ul>
+
+    <div class="why"><span class="w-lbl">💡 De ce funcționează</span><p>Fiecare detaliu e un filtru pe predicție. Fără ele, AI-ul „completează golurile" cu cea mai banală variantă din tot ce a citit. Cu ele, predicția curge spre <b>situația ta</b>.</p></div>
+  </div>
+
+  <!-- FW2 -->
+  <div class="fw">
+    <div class="fw-head"><span class="fw-no">02</span><span class="fw-title">Arată, nu descrie</span></div>
+    <span class="fw-acro">CONTEXT ENGINEERING · cea mai mare diferență de calitate</span>
+    <p class="fw-def">Dacă informația există deja undeva (factură, PDF, tabel, poză), nu o tasta — dă-i fișierul. AI-ul citește sursa reală și lucrează pe date reale.</p>
+    <p class="fw-when"><b>Când:</b> ori de câte ori te-ai trezi copiind date dintr-un document în prompt.</p>
+
+    <div class="attach">
+      <span class="at-lbl">📎 Ce ai dat AI-ului</span><br>
+      <span class="pill">📄 factura_2024_087.pdf</span>
+      <span class="pill">📄 ghid-voce-brand.pdf</span>
+    </div>
+    <div class="code">
+      <div class="code-label">Promptul</div>
+      <pre>Pe baza facturii atașate, scrie o ofertă de prelungire a contractului de mentenanță
+pentru același client, păstrând exact produsele și prețurile din factură.
+Scrie în vocea brandului din „ghid-voce-brand.pdf".
+Structură: problema clientului → ce includem → preț pe lună → următorul pas.
+Generează rezultatul ca document Word.</pre>
+    </div>
+
+    <ul class="choices">
+      <li><b>Zero transcriere:</b> produsele și prețurile vin din factura reală, nu din memoria ta → fără greșeli.</li>
+      <li><b>Două surse atașate:</b> datele (factura) + stilul (ghidul de voce). AI-ul le combină.</li>
+      <li><b>Output ca fișier:</b> ceri direct .docx, nu text de copiat manual.</li>
+    </ul>
+
+    <div class="why"><span class="w-lbl">💡 De ce funcționează</span><p>Un document atașat e context bogat și exact. „Descrierea" ta din memorie e săracă și plină de scăpări. <b>Mai mult context corect = predicție mai precisă.</b> Plus: eviți erorile de tastare pe care nici nu le observi.</p></div>
+  </div>
+
+  <div class="doc-foot"><span>Partea 1 — Frameworks</span><span>01–02</span></div>
+</div>
+
+<!-- ============================== FW 3-4 ============================== -->
+<div class="sheet">
+
+  <!-- FW3 -->
+  <div class="fw">
+    <div class="fw-head"><span class="fw-no">03</span><span class="fw-title">Învață-l prin exemple</span></div>
+    <span class="fw-acro">FEW-SHOT · 3 exemple bat o pagină de instrucțiuni</span>
+    <p class="fw-def">În loc să descrii stilul cu adjective vagi („cald, jucăuș, dar profesionist"), arată-i 2–3 mostre reale. AI-ul prinde tiparul mult mai bine decât din descriere.</p>
+    <p class="fw-when"><b>Când:</b> vrei consecvență de ton/stil, sau un format greu de explicat în cuvinte.</p>
+
+    <div class="code">
+      <div class="code-label">Promptul</div>
+      <pre>Mai jos sunt 3 titluri scrise exact în stilul brandului nostru:
+1. „Cafeaua de la birou nu trebuie să fie o pedeapsă."
+2. „Espressorul tău merită mai mult decât apă fiartă."
+3. „Luni dimineața, salvată de un shot bun."
+
+Scrie 5 titluri noi pentru o campanie de abonament de cafea la birou,
+în EXACT același ton și ritm. Nu copia ideile, doar stilul.</pre>
+    </div>
+
+    <ul class="choices">
+      <li><b>Exemple concrete</b>, nu adjective: „așa sună noi" e mai clar decât „ton jucăuș".</li>
+      <li><b>Instrucțiune explicită:</b> „doar stilul, nu ideile" — altfel îți repetă exemplele.</li>
+    </ul>
+
+    <div class="why"><span class="w-lbl">💡 De ce funcționează</span><p>Modelul e o mașină de recunoscut tipare. Trei exemple definesc un tipar precis; trei adjective definesc o ceață. <b>Îi dai ținta exactă, nu o descriere a țintei.</b></p></div>
+  </div>
+
+  <!-- FW4 -->
+  <div class="fw">
+    <div class="fw-head"><span class="fw-no">04</span><span class="fw-title">Pune-l să gândească înainte să răspundă</span></div>
+    <span class="fw-acro">CHAIN-OF-THOUGHT · pentru analiză și decizii</span>
+    <p class="fw-def">La sarcini de raționament, cere-i explicit să analizeze pas cu pas <em>înainte</em> de a da concluzia. Nu lăsa concluzia să fie o ghicire de reflex.</p>
+    <p class="fw-when"><b>Când:</b> prețuri, decizii, analize, comparații — orice are nevoie de raționament, nu de scris.</p>
+
+    <div class="code">
+      <div class="code-label">Promptul</div>
+      <pre>Înainte să-mi recomanzi un preț, analizează pas cu pas:
+1) prețurile concurenței din tabelul atașat,
+2) poziționarea noastră premium (livrare + mentenanță inclusă),
+3) marja noastră minimă acceptabilă: 35%.
+Abia după ce parcurgi cei 3 pași, propune-mi 3 variante de preț,
+fiecare cu un argument scurt și cu cui i se potrivește.</pre>
+    </div>
+
+    <ul class="choices">
+      <li><b>„Înainte să răspunzi, analizează":</b> forțezi raționamentul să vină primul, concluzia după.</li>
+      <li><b>Pașii numerotați</b> îi dau o structură de gândire — nu sare direct la un număr.</li>
+      <li><b>Constrângerea reală</b> (marjă 35%) ține propunerile în realitatea afacerii.</li>
+    </ul>
+
+    <div class="why"><span class="w-lbl">💡 De ce funcționează</span><p>Dacă ceri direct răspunsul, modelul „prezice" un număr plauzibil și-l justifică ulterior. Dacă-l pui să gândească întâi, concluzia <b>decurge din analiză</b> — exact ca la un om care socotește înainte să spună un preț.</p></div>
+  </div>
+
+  <div class="doc-foot"><span>Partea 1 — Frameworks</span><span>03–04</span></div>
+</div>
+
+<!-- ============================== FW 5-6 ============================== -->
+<div class="sheet">
+
+  <!-- FW5 -->
+  <div class="fw">
+    <div class="fw-head"><span class="fw-no">05</span><span class="fw-title">Pune-l să te intervieveze</span></div>
+    <span class="fw-acro">CLARIFY-FIRST · înainte de o sarcină importantă</span>
+    <p class="fw-def">În loc să torni tot contextul din prima (și să uiți jumătate), cere-i AI-ului să-ți pună întrebările de care are nevoie. El știe ce-i lipsește mai bine decât tine.</p>
+    <p class="fw-when"><b>Când:</b> sarcini mari sau ambigue — strategie, un plan, un document complex.</p>
+
+    <div class="code">
+      <div class="code-label">Promptul</div>
+      <pre>Vreau o strategie de conținut pentru lansarea unei linii noi de îngrijire naturală.
+Înainte să scrii ceva, pune-mi 5 întrebări de care ai nevoie ca să faci treaba
+ca pentru un client important. Întreabă pe rând, apoi așteaptă răspunsurile mele.</pre>
+    </div>
+
+    <ul class="choices">
+      <li><b>„Înainte să scrii":</b> îl oprești să producă un răspuns generic pe presupuneri.</li>
+      <li><b>„ca pentru un client important":</b> ridici ștacheta întrebărilor pe care le pune.</li>
+      <li><b>„pe rând":</b> conversație reală, nu un formular de 5 întrebări odată.</li>
+    </ul>
+
+    <div class="why"><span class="w-lbl">💡 De ce funcționează</span><p>Golurile de context sunt umplute automat cu <b>media a tot ce a citit</b> (= generic). Punându-l să întrebe, scoți la suprafață exact ce știi doar tu — și exact acolo se naște un rezultat care nu sună „a AI".</p></div>
+  </div>
+
+  <!-- FW6 -->
+  <div class="fw">
+    <div class="fw-head"><span class="fw-no">06</span><span class="fw-title">Iterează — nu reformula de la zero</span></div>
+    <span class="fw-acro">CONVERSAȚIA · cizelezi, nu o iei de la capăt</span>
+    <p class="fw-def">Rezultatul nu e perfect din prima? Normal. Nu rescrie un mega-prompt nou — corectează în conversație, pas cu pas. AI-ul ține minte tot firul.</p>
+    <p class="fw-when"><b>Când:</b> aproape mereu, după primul rezultat. 80% din calitate vine din pașii 2–4.</p>
+
+    <div class="code">
+      <div class="code-label">Conversația, pas cu pas</div>
+      <pre>Tu:  Dă-mi 3 variante de slogan pentru abonamentul de cafea la birou.
+AI:  (3 variante)
+Tu:  Varianta 2 e direcția bună. Fă-o mai scurtă și scoate cuvântul „premium".
+AI:  (variantă rafinată)
+Tu:  Perfect. Acum dă-mi încă 3 variații pe aceeași idee, una mai jucăușă.</pre>
+    </div>
+
+    <ul class="choices">
+      <li><b>Feedback concret:</b> „mai scurtă", „scoate «premium»" — nu „nu-mi place, mai încearcă".</li>
+      <li><b>Construiești pe ce merge:</b> alegi varianta 2 și o dezvolți, nu repornești.</li>
+    </ul>
+
+    <div class="why"><span class="w-lbl">💡 De ce funcționează</span><p>Toată conversația e context. Fiecare corecție se adaugă la ce a înțeles deja, deci ținta se rafinează. Un prompt nou de la zero <b>aruncă</b> tot contextul construit și o ia generic de la capăt.</p></div>
+  </div>
+
+  <div class="doc-foot"><span>Partea 1 — Frameworks</span><span>05–06</span></div>
+</div>
+
+<!-- ============================== FW 7-8 ============================== -->
+<div class="sheet">
+
+  <!-- FW7 -->
+  <div class="fw">
+    <div class="fw-head"><span class="fw-no">07</span><span class="fw-title">Pune AI-ul să-și scrie singur promptul</span></div>
+    <span class="fw-acro">META-PROMPTING · când nu știi cum să ceri</span>
+    <p class="fw-def">Nu ești sigur cum să formulezi? Cere-i să construiască el promptul ideal — apoi să-l execute. Modelul „știe" ce conține un prompt bun.</p>
+    <p class="fw-when"><b>Când:</b> un task nou, complex, unde nu ai un tipar gata.</p>
+
+    <div class="code">
+      <div class="code-label">Promptul</div>
+      <pre>Ești expert în prompt engineering. Vreau să obțin de la tine un plan de relansare
+pe Instagram pentru un cabinet stomatologic din Chișinău.
+Pasul 1: pune-mi 4 întrebări scurte care îți lipsesc.
+Pasul 2: scrie promptul perfect (rol, context, sarcină, format, restricții).
+Pasul 3: execută-l.</pre>
+    </div>
+
+    <ul class="choices">
+      <li><b>Îl pui în rol de expert:</b> activează „ce ar întreba un specialist".</li>
+      <li><b>Trei pași clari:</b> întreabă → construiește promptul → execută. Tu doar răspunzi.</li>
+    </ul>
+
+    <div class="why"><span class="w-lbl">💡 De ce funcționează</span><p>Modelul a „citit" milioane de exemple de prompturi bune. Îi e mai ușor să recunoască structura unui prompt excelent decât ție să o compui de la zero. <b>Folosești cunoștințele lui ca să-l ghidezi pe el.</b></p></div>
+  </div>
+
+  <!-- FW8 -->
+  <div class="fw">
+    <div class="fw-head"><span class="fw-no">08</span><span class="fw-title">Rol + Audiență + Restricții (gardurile)</span></div>
+    <span class="fw-acro">CONSTRÂNGERILE · controlezi tonul și eviți capcanele</span>
+    <p class="fw-def">Același conținut, două audiențe → două rezultate. Iar restricțiile negative („fără...") sunt garduri care opresc exact greșelile tipice ale domeniului tău.</p>
+    <p class="fw-when"><b>Când:</b> conținut cu miză — comunicare oficială, domenii reglementate, branding.</p>
+
+    <div class="compare">
+      <div class="cmp good" style="background:#EFF6FF;border-color:#93C5FD;">
+        <div class="cl" style="color:#1D4ED8;">Audiență A — pacienți</div>
+        <div class="q">Explică „detartrajul" unui pacient speriat de dentist. Ton calm, fără termeni medicali, max 60 de cuvinte.</div>
+      </div>
+      <div class="cmp good" style="background:#FFF7ED;border-color:#FDBA74;">
+        <div class="cl" style="color:#C2410C;">Audiență B — medici</div>
+        <div class="q">Rezumă protocolul de detartraj pentru un coleg stomatolog. Tehnic, concis, în puncte.</div>
+      </div>
+    </div>
+
+    <ul class="choices">
+      <li><b>Audiența schimbă totul:</b> vocabular, lungime, ton — deși „subiectul" e același.</li>
+      <li><b>Restricțiile negative</b> („fără termeni medicali", „fără promisiuni") sunt cele mai ignorate și cele mai utile.</li>
+    </ul>
+
+    <div class="why"><span class="w-lbl">💡 De ce funcționează</span><p>„Pentru cine scrii" e cel mai puternic filtru de predicție după rol. Iar un „fără X" explicit oprește modelul exact de la varianta spre care ar aluneca implicit (claim-uri, jargon, lungime).</p></div>
+  </div>
+
+  <div class="doc-foot"><span>Partea 1 — Frameworks</span><span>07–08</span></div>
+</div>
+
+<!-- ============================== PART 2: SCENARII ============================== -->
+<div class="sheet">
+  <div class="sec">
+    <span class="sec-tag">Partea 2 · Scenarii reale</span>
+    <h2>Frameworks-urile, combinate pe cazuri reale</h2>
+    <p class="sec-sub">Așa arată în practică: pleci de la un artefact (un fișier, niște recenzii), nu de la o pagină albă. Fiecare scenariu îți arată ce dai, ce ceri și de ce.</p>
+    <div class="sec-bar"></div>
+  </div>
+
+  <!-- S1 -->
+  <div class="scenario">
+    <h3>1. Din factură → ofertă personalizată</h3>
+    <p class="ctx">Ești un business de cafea pentru birouri. Un client cu abonament expiră luna asta.</p>
+    <div class="attach"><span class="at-lbl">📎 Ce dai</span><br><span class="pill">📄 factura_client_curent.pdf</span><span class="pill">📄 ghid-voce-brand.pdf</span></div>
+    <div class="step-lbl">Ce ceri</div>
+    <div class="code"><pre>Pe baza facturii atașate, scrie o ofertă de reînnoire pentru același client.
+Păstrează produsele și prețurile din factură. Scrie în vocea din „ghid-voce-brand.pdf".
+Adaugă un beneficiu de fidelitate (o lună de boabe premium gratis).
+Structură: mulțumire → ce a avut → ce propunem → preț → următorul pas. Output: Word.</pre></div>
+    <div class="why"><span class="w-lbl">Frameworks folosite</span><p><b>02 Arată, nu descrie</b> (factura) + <b>01 RSCF</b> (rol, structură, format Word) + <b>08 Restricții</b> (vocea de brand). Zero date tastate manual.</p></div>
+  </div>
+
+  <!-- S2 -->
+  <div class="scenario">
+    <h3>2. Din recenzii → poziționare (USP)</h3>
+    <p class="ctx">Un cabinet stomatologic vrea să afle ce-l face de fapt diferit, în cuvintele clienților.</p>
+    <div class="attach"><span class="at-lbl">📎 Ce dai</span><br><span class="pill">📋 30 de recenzii Google (lipite)</span><span class="pill">📋 recenziile a 2 concurenți</span></div>
+    <div class="step-lbl">Ce ceri</div>
+    <div class="code"><pre>Mai jos sunt recenziile mele și ale a 2 concurenți. Înainte de concluzie, analizează pas cu pas:
+ce laudă clienții mei cel mai des, ce reclamă la concurenți, ce cuvinte repetă.
+Apoi propune 5 variante de USP — specific, adevărat, greu de copiat, max 12 cuvinte.
+Evită „calitate" și „prețuri bune". La final, recomandă-l pe cel mai puternic și de ce.</pre></div>
+    <div class="why"><span class="w-lbl">Frameworks folosite</span><p><b>02 Arată</b> (recenzii reale, nu „clienții ne laudă") + <b>04 Gândește pas cu pas</b> + <b>08 Restricții</b> (fără cuvintele-clișeu). USP-ul iese din date, nu din imaginație.</p></div>
+  </div>
+
+  <div class="doc-foot"><span>Partea 2 — Scenarii reale</span><span>1–2</span></div>
+</div>
+
+<div class="sheet">
+  <!-- S3 -->
+  <div class="scenario">
+    <h3>3. Dintr-un contract PDF → rezumat de riscuri</h3>
+    <p class="ctx">Ai primit un contract de 14 pagini și trebuie să-l înțelegi azi.</p>
+    <div class="attach"><span class="at-lbl">📎 Ce dai</span><br><span class="pill">📄 contract_furnizor.pdf (anonimizat)</span></div>
+    <div class="step-lbl">Ce ceri</div>
+    <div class="code"><pre>Rezumă contractul atașat pe înțelesul meu: obligațiile mele, obligațiile lor, termene, penalități.
+Semnalează 5 clauze riscante sau dezechilibrate și ce aș putea negocia la fiecare.
+Nu da verdict legal definitiv — marchează clar ce trebuie confirmat cu un avocat.
+Nu inventa articole de lege; dacă ceva nu e în document, spune „nu apare".</pre></div>
+    <div class="why"><span class="w-lbl">Frameworks folosite</span><p><b>02 Arată</b> (PDF-ul real) + <b>01 Format</b> (rezumat structurat) + <b>08 Restricții anti-halucinație</b> („nu inventa", „nu apare"). Pentru documente lungi, Claude e cel mai puternic.</p></div>
+  </div>
+
+  <!-- S4 -->
+  <div class="scenario">
+    <h3>4. Cu un Project → conținut mereu on-brand</h3>
+    <p class="ctx">Vrei ca AI-ul să scrie mereu în vocea brandului, fără să reîncarci totul de fiecare dată.</p>
+    <div class="attach"><span class="at-lbl">📎 Ce pui o dată în Project</span><br><span class="pill">📄 ghid-voce.pdf</span><span class="pill">📄 produse.pdf</span><span class="pill">📄 reguli-restricții.pdf</span></div>
+    <div class="step-lbl">Instrucțiunile Project-ului (le scrii o dată)</div>
+    <div class="code"><pre>Ești copywriter-ul brandului. Scrie ÎNTOTDEAUNA în vocea din „ghid-voce.pdf".
+Folosește beneficiile din „produse.pdf" și respectă „reguli-restricții.pdf".
+Înainte să livrezi, verifică: tonul e al brandului? există un CTA? respect restricțiile?
+Dacă-mi lipsește un detaliu esențial, întreabă o singură întrebare scurtă.</pre></div>
+    <div class="step-lbl">Apoi, orice cerere e scurtă</div>
+    <div class="code"><pre>Scrie 3 postări despre crema cu cătină, fiecare cu alt unghi (beneficiu / poveste / ofertă).</pre></div>
+    <div class="why"><span class="w-lbl">Frameworks folosite</span><p><b>02 Arată</b> (fișierele de brand) + <b>05 Clarify-first</b> (întreabă dacă lipsește ceva) + <b>06 Iterație</b>. Contextul trăiește în Project → rezolvi problema memoriei limitate.</p></div>
+  </div>
+
+  <div class="doc-foot"><span>Partea 2 — Scenarii reale</span><span>3–4</span></div>
+</div>
+
+<!-- ============================== ANTI-PATTERNS ============================== -->
+<div class="sheet">
+  <div class="sec">
+    <span class="sec-tag">Partea 3 · Greșeli</span>
+    <h2>Ce te trage în jos (chiar dacă folosești AI de mult)</h2>
+    <p class="sec-sub">Cele 6 obiceiuri care produc rezultate „a AI". Fiecare are corecția lui.</p>
+    <div class="sec-bar"></div>
+  </div>
+
+  <div class="anti">
+    <div class="anti-row">
+      <div class="anti-bad"><div class="h">✗ Greșeală</div><p>Tastezi manual date pe care le ai într-un fișier (factură, tabel, contract).</p></div>
+      <div class="anti-good"><div class="h">✓ Corecție</div><p>Atașează fișierul. AI-ul citește sursa reală, fără erori de transcriere. <b>(FW 02)</b></p></div>
+    </div>
+    <div class="anti-row">
+      <div class="anti-bad"><div class="h">✗ Greșeală</div><p>Cauți „promptul magic" sau formule de pe internet care „deblochează" AI-ul.</p></div>
+      <div class="anti-good"><div class="h">✓ Corecție</div><p>Nu există magie. Dă rol, context și format clar. Calitatea = context, nu cuvinte secrete. <b>(FW 01)</b></p></div>
+    </div>
+    <div class="anti-row">
+      <div class="anti-bad"><div class="h">✗ Greșeală</div><p>Nu-ți place rezultatul → scrii un prompt nou, complet de la zero.</p></div>
+      <div class="anti-good"><div class="h">✓ Corecție</div><p>Corectează în conversație: „mai scurt", „scoate X". Construiește pe ce merge. <b>(FW 06)</b></p></div>
+    </div>
+    <div class="anti-row">
+      <div class="anti-bad"><div class="h">✗ Greșeală</div><p>Descrii stilul cu adjective: „vreau ceva cald, dar profesionist, dar prietenos".</p></div>
+      <div class="anti-good"><div class="h">✓ Corecție</div><p>Lipește 2–3 exemple reale de „așa vreau să sune". <b>(FW 03)</b></p></div>
+    </div>
+    <div class="anti-row">
+      <div class="anti-bad"><div class="h">✗ Greșeală</div><p>Ceri direct concluzia la o decizie complexă și o iei ca atare.</p></div>
+      <div class="anti-good"><div class="h">✓ Corecție</div><p>Pune-l să analizeze pas cu pas înainte de concluzie. <b>(FW 04)</b></p></div>
+    </div>
+    <div class="anti-row">
+      <div class="anti-bad"><div class="h">✗ Greșeală</div><p>Te încrezi orbește în cifre, citate sau articole de lege „livrate" de AI.</p></div>
+      <div class="anti-good"><div class="h">✓ Corecție</div><p>AI-ul poate inventa convingător (halucinații). Cere surse, „nu inventa", și verifică. <b>(FW 08)</b></p></div>
     </div>
   </div>
 
-  <!-- 7 reflexe -->
-  <h3 class="block-h">7 reflexe care îți dublează rezultatele</h3>
-  <div class="grid2">
-    <div class="mini"><h4>🎯 Dă rol &amp; context</h4><p>Spune-i cine e și pentru cine lucrează. Niciodată „scrie X" sec.</p></div>
-    <div class="mini"><h4>🧩 Dă exemple (few-shot)</h4><p>Lipește 2-3 exemple de „așa vreau să sune". AI-ul imită tiparul.</p></div>
-    <div class="mini"><h4>❓ Cere-i să întrebe</h4><p>„Dacă-ți lipsește un detaliu esențial, întreabă-mă înainte să scrii."</p></div>
-    <div class="mini"><h4>🪜 Cere pas cu pas</h4><p>Pentru sarcini complexe: „gândește pe pași, apoi dă rezultatul final."</p></div>
-    <div class="mini"><h4>🔁 Iterează, nu reformula</h4><p>„Bun, dar fă-l mai scurt și mai direct" bate rescrierea de la zero.</p></div>
-    <div class="mini"><h4>🔎 Cere-i să se verifice</h4><p>„Verifică cifrele și marchează ce nu ești sigur." Reduce halucinațiile.</p></div>
-  </div>
+  <div class="note tip"><span class="lbl">Reține:</span> diferența dintre cineva care „a încercat ChatGPT" și cineva care chiar lucrează cu AI nu stă în prompturi mai lungi — ci în <b>cât de bine hrănește modelul cu context real</b> și cât de bine iterează.</div>
 
-  <div class="doc-foot"><span>AI for SMEs — Biblioteca de prompturi · Sesiunea 1</span><span>Ghid practic</span></div>
+  <div class="doc-foot"><span>Partea 3 — Greșeli frecvente</span><span>Anti-patterns</span></div>
 </div>
 
-<!-- ============================================================= -->
-<!-- SECURITY + TOOL PICK + TOC -->
-<!-- ============================================================= -->
-<div class="sheet">
-
-  <div class="sec">
-    <span class="sec-tag">Securitate</span>
-    <h2>Regula de aur: „Aș posta asta public pe internet?"</h2>
-    <p class="sec-sub">Dacă răspunsul e NU, nu o pui în AI. Înlocuiește datele sensibile cu versiuni neutre — rezultatul rămâne la fel de bun.</p>
-    <div class="sec-bar"></div>
-  </div>
-
-  <table class="sectable">
-    <thead><tr><th class="no">❌ NU introduce</th><th class="yes">✅ Alternativa sigură</th></tr></thead>
-    <tbody>
-      <tr><td class="nc">Parole și credențiale</td><td class="yc">Descrie ce vrei să faci, fără ele</td></tr>
-      <tr><td class="nc">Date bancare (IBAN, CVC)</td><td class="yc">Sume fictive / „contul X"</td></tr>
-      <tr><td class="nc">CNP-uri / date personale clienți</td><td class="yc">„Clientul X", inițiale sau roluri</td></tr>
-      <tr><td class="nc">Date personale angajați</td><td class="yc">Funcția: „un manager", „un agent"</td></tr>
-      <tr><td class="nc">Contracte confidențiale integrale</td><td class="yc">Doar structura / clauza relevantă, anonimizată</td></tr>
-      <tr><td class="nc">Date financiare reale ale firmei</td><td class="yc">Procente, indici, valori rotunjite fictive</td></tr>
-      <tr><td class="nc">Secrete comerciale / rețete</td><td class="yc">Categoria generală a problemei</td></tr>
-    </tbody>
-  </table>
-
-  <div class="note warn"><b>S-a întâmplat deja:</b> Samsung (2023) — cod confidențial urcat în ChatGPT, ieșit din companie. Un avocat din SUA — sancționat pentru că a citat cazuri inventate de AI. Verifică mereu și nu lipi ce nu ai posta public.</div>
-
-  <!-- TOOL PICK -->
-  <div class="sec">
-    <span class="sec-tag">Ce tool, pentru ce</span>
-    <h2>Nu „care e cel mai bun" — ci „ce-ți dă fiecare"</h2>
-    <p class="sec-sub">Toate trei scriu, analizează și generează imagini azi. Diferența reală e ecosistemul. Obiceiul bun: ai conturi la 2-3 și alegi după sarcină.</p>
-    <div class="sec-bar"></div>
-  </div>
-
-  <div class="toolpick">
-    <div class="tp gpt">
-      <div class="tph"><img src="assets/logos/openai.svg" alt=""> ChatGPT</div>
-      <ul>
-        <li>Cel mai larg ecosistem de extensii (Canva, Gmail, Trello…)</li>
-        <li>Cel mai puternic la <b>imagini</b> și text pe imagine</li>
-        <li>Bun la documente scanate / OCR</li>
-      </ul>
-      <div class="best">Alege-l pentru: integrări externe + imagini</div>
-    </div>
-    <div class="tp gem">
-      <div class="tph"><img src="assets/logos/gemini.svg" alt=""> Gemini</div>
-      <ul>
-        <li>Nativ în <b>Gmail, Docs, Sheets, Drive</b></li>
-        <li>Video (Veo) + imagini (Nano Banana)</li>
-        <li>Cel mai bun la analiză audio/video și research live</li>
-      </ul>
-      <div class="best">Alege-l pentru: lucrezi deja în Google</div>
-    </div>
-    <div class="tp claude">
-      <div class="tph"><img src="assets/logos/claude.svg" alt=""> Claude</div>
-      <ul>
-        <li>Cel mai bun pe <b>documente lungi și dense</b></li>
-        <li>Add-in nativ în Excel, Word, PowerPoint, Outlook</li>
-        <li>Se conectează la surse externe prin MCP</li>
-      </ul>
-      <div class="best">Alege-l pentru: lucrezi în Office / documente</div>
-    </div>
-    <div class="tp nb">
-      <div class="tph"><img src="assets/logos/notebooklm.svg" alt=""> NotebookLM</div>
-      <ul>
-        <li>Răspunde <b>doar din documentele tale</b>, cu citate</li>
-        <li>Audio Overview („podcast") în română</li>
-        <li>Ideal ca bază de cunoștințe internă</li>
-      </ul>
-      <div class="best">Alege-l pentru: întrebări pe documentele tale</div>
-    </div>
-  </div>
-
-  <!-- TOC -->
-  <div class="sec">
-    <span class="sec-tag">Cuprins</span>
-    <h2>Ce găsești în bibliotecă</h2>
-    <div class="sec-bar"></div>
-  </div>
-  <div class="toc">
-    <div class="toc-row"><b>A · Fundamentale &amp; meta-prompts</b><span class="toc-n">A1–A7</span></div>
-    <div class="toc-row"><b>B · Email &amp; comunicare</b><span class="toc-n">B1–B10</span></div>
-    <div class="toc-row"><b>C · Marketing &amp; conținut</b><span class="toc-n">C1–C12</span></div>
-    <div class="toc-row"><b>D · Vânzări &amp; oferte</b><span class="toc-n">D1–D7</span></div>
-    <div class="toc-row"><b>E · Research &amp; analiză</b><span class="toc-n">E1–E7</span></div>
-    <div class="toc-row"><b>F · Documente, Excel &amp; administrativ</b><span class="toc-n">F1–F7</span></div>
-    <div class="toc-row"><b>G · Productivitate personală</b><span class="toc-n">G1–G6</span></div>
-    <div class="toc-row"><b>H · Pe industrie (9 domenii)</b><span class="toc-n">H1–H20</span></div>
-    <div class="toc-row"><b>I · Setup: personalizează-ți tool-urile</b><span class="toc-n">I1–I4</span></div>
-    <div class="toc-row"><b>★ Exercițiul KPI: 10 prompturi</b><span class="toc-n">final</span></div>
-  </div>
-
-  <div class="doc-foot"><span>AI for SMEs — Biblioteca de prompturi · Sesiunea 1</span><span>Securitate · Tool-uri · Cuprins</span></div>
-</div>
-
-<!-- ============================================================= -->
-<!-- SECTION A — FUNDAMENTALE & META -->
-<!-- ============================================================= -->
+<!-- ============================== CHEAT SHEET ============================== -->
 <div class="sheet">
   <div class="sec">
-    <span class="sec-tag">Secțiunea A</span>
-    <h2>Fundamentale &amp; meta-prompturi</h2>
-    <p class="sec-sub">Prompturile care fac celelalte prompturi mai bune. Începe de aici dacă ești la primii pași.</p>
+    <span class="sec-tag practice">Cheat sheet</span>
+    <h2>Cele 8 mișcări, pe o pagină</h2>
+    <p class="sec-sub">Decupeaz-o mental și ține-o la îndemână. Când un rezultat e slab, treci prin listă: ce mișcare îmi lipsește?</p>
     <div class="sec-bar"></div>
   </div>
 
-  <div class="prompt purple">
-    <div class="prompt-head"><span class="prompt-id">A1</span><div class="prompt-titles"><div class="prompt-title">Îmbunătățește-mi promptul</div><div class="prompt-when"><b>Când:</b> ai o idee vagă și vrei un prompt profesionist.</div></div></div>
-    <div class="code"><pre>Ești expert în prompt engineering. Vreau să obțin de la tine [REZULTATUL DORIT, ex: o descriere de produs].
-Pune-mi 3-5 întrebări scurte care îți lipsesc pentru a face treaba excelent.
-După ce răspund, scrie promptul perfect (rol, context, sarcină, format, restricții) și apoi execută-l.</pre></div>
-  </div>
-
-  <div class="prompt purple">
-    <div class="prompt-head"><span class="prompt-id">A2</span><div class="prompt-titles"><div class="prompt-title">Întreabă-mă înainte să scrii</div><div class="prompt-when"><b>Când:</b> vrei rezultat pe situația ta exactă, nu unul generic.</div></div></div>
-    <div class="code"><pre>Înainte să-mi dai răspunsul, pune-mi întrebările de care ai nevoie ca să faci treaba
-ca pentru un client important. Nu presupune nimic esențial. Întreabă pe rând, maxim 5 întrebări.</pre></div>
-  </div>
-
-  <div class="prompt purple">
-    <div class="prompt-head"><span class="prompt-id">A3</span><div class="prompt-titles"><div class="prompt-title">Explică-mi simplu</div><div class="prompt-when"><b>Când:</b> nu înțelegi un termen, un document sau o ofertă.</div></div></div>
-    <div class="code"><pre>Explică-mi [SUBIECTUL / TEXTUL DE MAI JOS] ca unui om inteligent, dar fără cunoștințe tehnice.
-Folosește o analogie din viața de zi cu zi. Apoi spune-mi în 3 puncte de ce contează pentru afacerea mea.
-[LIPEȘTI textul, dacă e cazul]</pre></div>
-  </div>
-
-  <div class="prompt purple">
-    <div class="prompt-head"><span class="prompt-id">A4</span><div class="prompt-titles"><div class="prompt-title">Rezumă orice (text lung → esențial)</div><div class="prompt-when"><b>Când:</b> ai un articol, contract sau raport lung.</div></div></div>
-    <div class="code"><pre>Rezumă textul de mai jos pentru un om ocupat:
-1) 3 idei principale, 2) ce trebuie să fac eu concret, 3) ce e riscant sau de verificat.
-Maxim 150 de cuvinte, fără jargon.
-"""
-[LIPEȘTI textul]
-"""</pre></div>
-  </div>
-
-  <div class="prompt purple">
-    <div class="prompt-head"><span class="prompt-id">A5</span><div class="prompt-titles"><div class="prompt-title">Brainstorming structurat (10 idei pe 2 unghiuri)</div><div class="prompt-when"><b>Când:</b> ești blocat și vrei opțiuni, nu o singură variantă.</div></div></div>
-    <div class="code"><pre>Ești consultant pentru [TIP AFACERE]. Dă-mi 10 idei de [CE: campanie / produs / postare],
-pe 2 unghiuri diferite (A: [unghi 1] / B: [unghi 2]).
-Pentru fiecare: o frază de descriere + cui i se potrivește. Evită clișeele.</pre></div>
-  </div>
-
-  <div class="prompt purple">
-    <div class="prompt-head"><span class="prompt-id">A6</span><div class="prompt-titles"><div class="prompt-title">Few-shot: imită stilul meu</div><div class="prompt-when"><b>Când:</b> vrei ca AI-ul să sune ca tine / ca brandul tău.</div></div></div>
-    <div class="code"><pre>Mai jos sunt 3 exemple de texte scrise în stilul pe care îl vreau:
-"""
-[EXEMPLU 1]
-[EXEMPLU 2]
-[EXEMPLU 3]
-"""
-Scrie un nou [TIP TEXT] despre [SUBIECT], în EXACT același ton, ritm și vocabular. Nu copia conținutul, doar stilul.</pre></div>
-  </div>
-
-  <div class="prompt purple">
-    <div class="prompt-head"><span class="prompt-id">A7</span><div class="prompt-titles"><div class="prompt-title">Criticul: găsește slăbiciunile (roast)</div><div class="prompt-when"><b>Când:</b> înainte să trimiți/publici ceva important.</div></div></div>
-    <div class="code"><pre>Ești un manager sceptic și un avocat prudent. NU mă lăuda.
-Pentru textul de mai jos dă-mi: 5 slăbiciuni concrete, 3 riscuri (legal / ton / claim-uri nedovedibile),
-și apoi 1 variantă rescrisă, clar mai bună. Fii dur, dar util.
-"""
-[LIPEȘTI textul tău]
-"""</pre></div>
-  </div>
-
-  <div class="doc-foot"><span>Secțiunea A — Fundamentale &amp; meta</span><span>A1–A7</span></div>
-</div>
-
-<!-- ============================================================= -->
-<!-- SECTION B — EMAIL & COMUNICARE -->
-<!-- ============================================================= -->
-<div class="sheet">
-  <div class="sec">
-    <span class="sec-tag">Secțiunea B</span>
-    <h2>Email &amp; comunicare</h2>
-    <p class="sec-sub">Cele mai folosite scenarii de zi cu zi. Toate funcționează în ChatGPT, Claude sau Gemini.</p>
-    <div class="sec-bar"></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">B1</span><div class="prompt-titles"><div class="prompt-title">Email de follow-up după întâlnire</div><div class="prompt-when"><b>Când:</b> vrei să fixezi pașii următori fără să pari insistent.</div></div></div>
-    <div class="code"><pre>Ești asistentul meu de business. Scrie un email de follow-up de [120] de cuvinte către [CINE, ex: un client].
-Ne-am întâlnit acum [3] zile și am discutat [SUBIECT]. Ton: profesional, cald, direct.
-Include: mulțumire scurtă, recapitulare în 2 puncte, un pas următor clar cu o propunere de dată.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">B2</span><div class="prompt-titles"><div class="prompt-title">Reamintire de plată (ferm dar politicos)</div><div class="prompt-when"><b>Când:</b> un client întârzie cu plata și nu vrei să strici relația.</div></div></div>
-    <div class="code"><pre>Scrie un email de reamintire pentru factura [NR] din [DATA], restantă de [X] zile, către [CLIENT].
-Ton ferm dar politicos, fără a periclita relația. Oferă o cale ușoară de plată și un termen clar.
-Maxim 90 de cuvinte. Dă-mi și o variantă mai dură pentru a doua reamintire.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">B3</span><div class="prompt-titles"><div class="prompt-title">Răspuns la o reclamație / client nemulțumit</div><div class="prompt-when"><b>Când:</b> trebuie să dezamorsezi o situație tensionată.</div></div></div>
-    <div class="code"><pre>Un client e nemulțumit de [PROBLEMA]. Mai jos e mesajul lui:
-"""
-[LIPEȘTI mesajul]
-"""
-Scrie un răspuns care: recunoaște problema, își cere scuze sincer (fără să admită vină legală),
-oferă o soluție concretă și păstrează clientul. Ton: empatic, calm, profesional. Maxim 120 de cuvinte.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">B4</span><div class="prompt-titles"><div class="prompt-title">Spune NU elegant</div><div class="prompt-when"><b>Când:</b> refuzi o cerere, o reducere sau o colaborare.</div></div></div>
-    <div class="code"><pre>Scrie un mesaj care refuză politicos [CEREREA, ex: o reducere de 30%], dar păstrează ușa deschisă.
-Explică pe scurt motivul, oferă o alternativă dacă există, ton respectuos și ferm. Maxim 80 de cuvinte.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">B5</span><div class="prompt-titles"><div class="prompt-title">Rescrie un email (ton + claritate)</div><div class="prompt-when"><b>Când:</b> ai scris ceva, dar nu sună bine.</div></div></div>
-    <div class="code"><pre>Rescrie emailul de mai jos: mai clar, mai scurt, ton [profesional dar cald].
-Păstrează toate informațiile importante. Scoate clișeele și frazele de umplutură.
-"""
-[LIPEȘTI emailul tău]
-"""</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">B6</span><div class="prompt-titles"><div class="prompt-title">Traduce &amp; adaptează cultural</div><div class="prompt-when"><b>Când:</b> scrii unui client/partener străin.</div></div></div>
-    <div class="code"><pre>Tradu mesajul de mai jos în [LIMBA], adaptat pentru un context de business profesional.
-Nu traduce cuvânt cu cuvânt — adaptează tonul și formulele de politețe la cultura respectivă.
-"""
-[LIPEȘTI textul]
-"""</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">B7</span><div class="prompt-titles"><div class="prompt-title">Rezumă un thread lung de email</div><div class="prompt-when"><b>Când:</b> intri într-o discuție cu 20 de mesaje.</div></div></div>
-    <div class="code"><pre>Rezumă conversația de mai jos: cine ce a cerut, ce s-a decis, ce rămâne nerezolvat și ce trebuie să fac eu.
-Format: 4 secțiuni scurte cu bullet-uri.
-"""
-[LIPEȘTI thread-ul]
-"""</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">B8</span><div class="prompt-titles"><div class="prompt-title">Agendă &amp; minută de ședință</div><div class="prompt-when"><b>Când:</b> pregătești sau închizi o ședință.</div></div></div>
-    <div class="code"><pre>Pe baza notițelor de mai jos, scrie: 1) o minută de ședință (decizii + responsabili + termene),
-2) un email scurt de follow-up către participanți cu pașii următori.
-"""
-[LIPEȘTI notițele tale]
-"""</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">B9</span><div class="prompt-titles"><div class="prompt-title">Mesaj scurt (WhatsApp / SMS / chat)</div><div class="prompt-when"><b>Când:</b> ai nevoie de ceva scurt și uman, nu de email.</div></div></div>
-    <div class="code"><pre>Scrie 3 variante de mesaj scurt (max 40 de cuvinte) pentru [CANAL: WhatsApp] către [CINE],
-ca să [OBIECTIV, ex: confirm o programare]. Ton prietenos, natural, fără să sune robotic.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">B10</span><div class="prompt-titles"><div class="prompt-title">Cerere de recomandare / testimonial</div><div class="prompt-when"><b>Când:</b> un client e mulțumit și vrei să profiți de moment.</div></div></div>
-    <div class="code"><pre>Scrie un mesaj scurt prin care cer politicos [un testimonial / o recomandare] de la un client mulțumit cu [SERVICIUL/PRODUSUL].
-Fă-i ușor să răspundă: sugerează 2-3 întrebări la care poate răspunde în 2 minute. Ton: cald, fără să par insistent. Max 80 de cuvinte.</pre></div>
-  </div>
-
-  <div class="doc-foot"><span>Secțiunea B — Email &amp; comunicare</span><span>B1–B10</span></div>
-</div>
-
-<!-- ============================================================= -->
-<!-- SECTION C — MARKETING & CONTENT -->
-<!-- ============================================================= -->
-<div class="sheet">
-  <div class="sec">
-    <span class="sec-tag">Secțiunea C</span>
-    <h2>Marketing &amp; conținut</h2>
-    <p class="sec-sub">De la descrieri de produs la o lună de postări. Cu cât dai mai mult context despre brand, cu atât sună mai puțin „a AI".</p>
-    <div class="sec-bar"></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">C1</span><div class="prompt-titles"><div class="prompt-title">Descriere de produs (beneficii, nu caracteristici)</div><div class="prompt-when"><b>Când:</b> listezi un produs/serviciu nou.</div></div></div>
-    <div class="code"><pre>Ești copywriter în [DOMENIU]. Scrie o descriere de [80] de cuvinte pentru [PRODUS/SERVICIU].
-Public: [CINE]. Transformă caracteristicile în beneficii reale pentru client.
-Ton: [cald și expert]. Include un singur CTA. Fără clișee de tip „calitate garantată", fără promisiuni exagerate.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">C2</span><div class="prompt-titles"><div class="prompt-title">Secvență de 3 postări (3 unghiuri)</div><div class="prompt-when"><b>Când:</b> vrei conținut social fără să stai o oră la fiecare.</div></div></div>
-    <div class="code"><pre>Scrie 3 postări pentru [Instagram/Facebook/LinkedIn] despre [PRODUS/SUBIECT], fiecare cu alt unghi:
-(1) beneficiu, (2) poveste/scenariu de client, (3) ofertă.
-Fiecare: hook puternic în primul rând, corp scurt, CTA, 3-5 hashtag-uri relevante. Ton: [al brandului meu].</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">C3</span><div class="prompt-titles"><div class="prompt-title">Calendar de conținut pe o lună</div><div class="prompt-when"><b>Când:</b> vrei un plan, nu idei răzlețe.</div></div></div>
-    <div class="code"><pre>Ești social media strategist pentru [TIP AFACERE] cu publicul [CINE].
-Fă-mi un calendar de conținut pe 4 săptămâni (3 postări/săptămână) într-un tabel:
-Ziua | Pilon de conținut | Idee de postare | Format | CTA.
-Variază pilonii (educație, social proof, ofertă, behind-the-scenes). Adaptat pieței din [oraș/țară].</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">C4</span><div class="prompt-titles"><div class="prompt-title">10 titluri / hook-uri pentru A/B test</div><div class="prompt-when"><b>Când:</b> ai conținutul, dar nu știi cum să-l deschizi.</div></div></div>
-    <div class="code"><pre>Dă-mi 10 variante de titlu/hook pentru [POSTARE / ARTICOL / REEL] despre [SUBIECT], maxim 10 cuvinte fiecare.
-Mixează unghiuri: curiozitate, beneficiu direct, întrebare, cifră, contra-intuitiv.
-Pentru fiecare, notează cui i se potrivește. Evită clickbait-ul ieftin.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">C5</span><div class="prompt-titles"><div class="prompt-title">Schelet de articol de blog (SEO)</div><div class="prompt-when"><b>Când:</b> vrei să scrii pentru Google, structurat.</div></div></div>
-    <div class="code"><pre>Ești specialist SEO. Fă-mi structura unui articol despre [SUBIECT], cuvânt-cheie principal „[KEYWORD]".
-Dă-mi: titlu (H1) + 6-8 subtitluri (H2/H3), o întrebare frecventă per secțiune, și meta-descrierea (max 155 caractere).
-Public: [CINE]. Intenția de căutare: [informațională/comercială].</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">C6</span><div class="prompt-titles"><div class="prompt-title">Tone of Voice: extrage vocea unui brand</div><div class="prompt-when"><b>Când:</b> vrei ca AI-ul să scrie mereu „ca brandul tău". ⭐</div></div></div>
-    <div class="code"><pre>Ești strateg de brand. Mai jos sunt texte reale ale brandului [NUME] (site + social):
-"""
-[LIPEȘTI 10-15 texte variate: postări, descrieri, „despre noi", răspunsuri la comentarii]
-"""
-Extrage vocea: 5 adjective, vocabularul tipic, ce evită, ritmul frazelor, cum se adresează (tu/dvs.).
-La final scrie un „Ghid de voce" de o pagină pe care îl pot salva și refolosi, cu 2 exemple „așa DA / așa NU".</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">C7</span><div class="prompt-titles"><div class="prompt-title">Newsletter / email de marketing</div><div class="prompt-when"><b>Când:</b> ai ceva de anunțat clienților tăi.</div></div></div>
-    <div class="code"><pre>Scrie un email de marketing către lista mea de clienți despre [OFERTĂ/NOUTATE].
-Subiect (3 variante de testat) + preheader + corp de [150] de cuvinte + un CTA clar.
-Ton: [al brandului]. Beneficiu în primul rând, urgență reală (nu falsă). Fără limbaj de spam.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">C8</span><div class="prompt-titles"><div class="prompt-title">Script video scurt (Reel / TikTok)</div><div class="prompt-when"><b>Când:</b> vrei să filmezi ceva, dar nu știi ce să spui.</div></div></div>
-    <div class="code"><pre>Scrie un script de [30] de secunde pentru un reel despre [SUBIECT].
-Format: Hook (primele 3 sec) | 3 idei scurte | CTA final. Scrie ce spun + ce se vede pe ecran.
-Ton: natural, energic, ca un om real, nu ca o reclamă.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">C9</span><div class="prompt-titles"><div class="prompt-title">Foto produs cu AI (Nano Banana / ChatGPT)</div><div class="prompt-when"><b>Când:</b> vrei un vizual de produs fără ședință foto. <span class="prompt-tool" style="display:inline-block; margin-top:6px;">imagini</span></div></div></div>
-    <div class="code"><pre>Generează o fotografie de produs, calitate editorială: [PRODUS] pe [SUPRAFAȚĂ, ex: marmură albă],
-[LUMINĂ, ex: caldă de dimineață din stânga], fundal neutru cu bokeh, unghi 45°, stil premium.
-Format [1:1 pentru feed]. Fără text pe imagine. Fără mâini deformate, fără watermark.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">C10</span><div class="prompt-titles"><div class="prompt-title">Editare conversațională de imagine</div><div class="prompt-when"><b>Când:</b> imaginea e aproape bună — schimbă un detaliu. <span class="prompt-tool" style="display:inline-block; margin-top:6px;">imagini</span></div></div></div>
-    <div class="code"><pre>Păstrează produsul identic, dar schimbă fundalul în [lemn rustic / verde botanic].
-[apoi:] Adaugă lângă produs câteva [elemente, ex: fructe proaspete], natural, în aceeași lumină.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">C11</span><div class="prompt-titles"><div class="prompt-title">Răspunsuri la recenzii (bune și rele)</div><div class="prompt-when"><b>Când:</b> ai multe recenzii Google/Facebook de gestionat.</div></div></div>
-    <div class="code"><pre>Scrie răspunsuri la recenziile de mai jos, în vocea brandului [NUME].
-La cele pozitive: mulțumire personalizată. La cele negative: empatie, soluție, invitație la dialog privat.
-Fiecare răspuns: maxim 40 de cuvinte, fără să sune copiate.
-"""
-[LIPEȘTI recenziile]
-"""</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">C12</span><div class="prompt-titles"><div class="prompt-title">Repurpose: 1 conținut → 5 formate</div><div class="prompt-when"><b>Când:</b> ai un material bun și vrei să-l multiplici.</div></div></div>
-    <div class="code"><pre>Din materialul de mai jos, creează: 1 postare LinkedIn, 1 caption Instagram, 1 thread scurt,
-3 idei de reel și 1 secțiune de newsletter. Păstrează mesajul-cheie, adaptează tonul pe fiecare canal.
-"""
-[LIPEȘTI articolul / transcrierea / notițele]
-"""</pre></div>
-  </div>
-
-  <div class="doc-foot"><span>Secțiunea C — Marketing &amp; conținut</span><span>C1–C12</span></div>
-</div>
-
-<!-- ============================================================= -->
-<!-- SECTION D — VANZARI & OFERTE -->
-<!-- ============================================================= -->
-<div class="sheet">
-  <div class="sec">
-    <span class="sec-tag">Secțiunea D</span>
-    <h2>Vânzări &amp; oferte</h2>
-    <p class="sec-sub">De la prima abordare la oferta personalizată și tratarea obiecțiilor.</p>
-    <div class="sec-bar"></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">D1</span><div class="prompt-titles"><div class="prompt-title">Ofertă comercială personalizată</div><div class="prompt-when"><b>Când:</b> trebuie să trimiți o ofertă către un client concret.</div></div></div>
-    <div class="code"><pre>Sunt [CE VINZI, ex: furnizor de servicii X]. Generează o ofertă pentru clientul:
-- Domeniu: [ex: firmă IT] · Mărime: [25 angajați] · Nevoia principală: [...]
-Structură: problemă → soluția noastră → ce includem → preț → următorul pas.
-Personalizează beneficiile pe nevoia lui. Ton profesional. La final, generează-o ca document Word gata de trimis.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">D2</span><div class="prompt-titles"><div class="prompt-title">Mesaj de prim contact (cold outreach)</div><div class="prompt-when"><b>Când:</b> abordezi un client nou la rece.</div></div></div>
-    <div class="code"><pre>Scrie un mesaj de prim contact de max 90 de cuvinte către [TIP CLIENT].
-Sunt [CINE] și pot să-i ajut cu [REZULTAT CONCRET]. Personalizabil pe firmă.
-Un singur CTA (un apel de 15 minute). Fără limbaj de vânzător agresiv, fără superlative.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">D3</span><div class="prompt-titles"><div class="prompt-title">Tratează obiecțiile</div><div class="prompt-when"><b>Când:</b> clientul ezită („e scump", „mă mai gândesc").</div></div></div>
-    <div class="code"><pre>Clientul meu vinde [CE] și ridică obiecția: „[OBIECȚIA, ex: e prea scump]".
-Dă-mi 3 moduri de a răspunde, fiecare cu alt unghi (valoare, risc de a NU acționa, comparație corectă).
-Ton: consultativ, nu defensiv. Scurt și natural, ca într-o conversație reală.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">D4</span><div class="prompt-titles"><div class="prompt-title">USP: ce te face diferit (în 4 pași)</div><div class="prompt-when"><b>Când:</b> nu știi să explici de ce să te aleagă pe tine.</div></div></div>
-    <div class="code"><pre>Ești strateg de poziționare. Afacerea mea: [ce vinzi, pentru cine, prețuri, ce crezi că te face special].
-Competitorii: [listă]. Recenzii relevante: [lipești câteva].
-Propune-mi 5-7 variante de USP: specific, adevărat, greu de copiat, max 12 cuvinte.
-Evită „calitate" și „prețuri bune". Apoi recomandă-l pe cel mai puternic și de ce.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">D5</span><div class="prompt-titles"><div class="prompt-title">Script de discuție de vânzare (discovery)</div><div class="prompt-when"><b>Când:</b> ai o întâlnire și vrei întrebările potrivite.</div></div></div>
-    <div class="code"><pre>Pregătește-mă pentru o întâlnire de vânzare cu [TIP CLIENT] pentru [PRODUS/SERVICIU].
-Dă-mi: 8 întrebări de descoperire a nevoilor, 3 semnale de cumpărare la care să fiu atent,
-și o frază de închidere blândă. Fără manipulare — vreau o conversație onestă.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">D6</span><div class="prompt-titles"><div class="prompt-title">Follow-up după ofertă (fără răspuns)</div><div class="prompt-when"><b>Când:</b> ai trimis oferta și e liniște.</div></div></div>
-    <div class="code"><pre>Scrie 2 mesaje de follow-up pentru un client care nu a răspuns la ofertă de [7] zile.
-Mesajul 1: blând, aduce valoare (nu „ai văzut oferta?"). Mesajul 2: clar, cu o întrebare de tip da/nu.
-Max 60 de cuvinte fiecare. Ton respectuos, fără să par disperat.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">D7</span><div class="prompt-titles"><div class="prompt-title">Calculator de preț / pachete</div><div class="prompt-when"><b>Când:</b> vrei să structurezi prețurile în pachete.</div></div></div>
-    <div class="code"><pre>Ajută-mă să structurez oferta în 3 pachete (Basic / Standard / Premium) pentru [SERVICIU].
-Pentru fiecare: ce include, pentru cine e, prețul orientativ, și un motiv clar de upgrade.
-Aplică principiul „ancorării" (pachetul din mijloc să pară cea mai bună alegere).</pre></div>
-  </div>
-
-  <div class="doc-foot"><span>Secțiunea D — Vânzări &amp; oferte</span><span>D1–D7</span></div>
-</div>
-
-<!-- ============================================================= -->
-<!-- SECTION E — RESEARCH & ANALIZA -->
-<!-- ============================================================= -->
-<div class="sheet">
-  <div class="sec">
-    <span class="sec-tag">Secțiunea E</span>
-    <h2>Research &amp; analiză</h2>
-    <p class="sec-sub">Folosește AI ca asistent de cercetare — dar cere mereu surse. <b>Regula de aur:</b> orice cifră o verifici din sursă înainte de o decizie.</p>
-    <div class="sec-bar"></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">E1</span><div class="prompt-titles"><div class="prompt-title">Scanare de piață cu surse</div><div class="prompt-when"><b>Când:</b> intri într-o piață sau lansezi ceva nou. <span class="prompt-tool" style="display:inline-block; margin-top:6px;">Perplexity / Gemini</span></div></div></div>
-    <div class="code"><pre>Analizează tendințele din piața de [SECTOR] în [ZONĂ] pe ultimele 12-24 de luni.
-Vreau: 5 tendințe majore, cererea pe segmente, 5 jucători relevanți.
-Pentru FIECARE afirmație, citează sursa cu link. Marchează ce e dovedit slab. Răspunde structurat, pe secțiuni.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">E2</span><div class="prompt-titles"><div class="prompt-title">Raport despre un competitor</div><div class="prompt-when"><b>Când:</b> vrei să înțelegi un concurent în profunzime.</div></div></div>
-    <div class="code"><pre>Ești analist de competitive intelligence. Fă-mi un raport despre [COMPETITOR, site].
-Acoperă: 1) oferte/prețuri/USP, 2) ce reclame rulează (Meta Ad Library, Google Ads Transparency),
-3) ce conținut postează și ce pare să funcționeze, 4) ce laudă/reclamă clienții în recenzii.
-Livrează: tabel comparativ (eu vs. el), 5 puncte slabe ale lui, 3 oportunități pentru mine. Citează sursele.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">E3</span><div class="prompt-titles"><div class="prompt-title">SWOT pe baza datelor mele</div><div class="prompt-when"><b>Când:</b> pregătești o decizie sau un plan.</div></div></div>
-    <div class="code"><pre>Pe baza informațiilor de mai jos despre afacerea mea, fă un SWOT realist (nu de complezență).
-Pentru fiecare punct, o frază de justificare. La final: 3 acțiuni prioritare în următoarele 90 de zile.
-"""
-[DESCRII: ce vinzi, piața, resursele, ce merge/nu merge]
-"""</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">E4</span><div class="prompt-titles"><div class="prompt-title">Vocea clienților din recenzii</div><div class="prompt-when"><b>Când:</b> vrei să afli ce contează real pentru clienți.</div></div></div>
-    <div class="code"><pre>Mai jos sunt recenzii reale (ale mele și ale concurenței):
-"""
-[LIPEȘTI recenziile]
-"""
-Extrage, cu cuvintele clienților: ce laudă cel mai des, ce reclamă cel mai des, ce expresii repetă.
-Grupează pe teme. Care e „durerea" nr. 1? Ce ar trebui să schimb sau să comunic diferit?</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">E5</span><div class="prompt-titles"><div class="prompt-title">Întreabă-ți propriile documente</div><div class="prompt-when"><b>Când:</b> ai PDF-uri/contracte și vrei răspunsuri cu citate. <span class="prompt-tool" style="display:inline-block; margin-top:6px;">NotebookLM</span></div></div></div>
-    <div class="code"><pre>(După ce încarci sursele în NotebookLM)
-Pe baza DOAR a documentelor încărcate, răspunde la: [ÎNTREBAREA TA].
-Citează pasajul exact din sursă pentru fiecare afirmație. Dacă răspunsul nu e în documente, spune clar „nu apare".</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">E6</span><div class="prompt-titles"><div class="prompt-title">Pro &amp; contra pentru o decizie</div><div class="prompt-when"><b>Când:</b> ezzi între 2 opțiuni.</div></div></div>
-    <div class="code"><pre>Trebuie să decid între [OPȚIUNEA A] și [OPȚIUNEA B] pentru [CONTEXT].
-Fă-mi un tabel pro/contra echilibrat, apoi pune-mi 3 întrebări care m-ar ajuta să decid,
-și dă-mi recomandarea ta cu motivul. Spune-mi și ce risc subestimez probabil.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">E7</span><div class="prompt-titles"><div class="prompt-title">Sumar regulatoriu / legal (orientativ)</div><div class="prompt-when"><b>Când:</b> vrei să înțelegi rapid o normă (apoi verifici cu un specialist).</div></div></div>
-    <div class="code"><pre>Explică-mi pe înțeles ce înseamnă [REGLEMENTAREA / TEXTUL DE MAI JOS] pentru o firmă ca a mea ([DESCRIERE]).
-Ce trebuie să fac concret, ce termene există, ce risc dacă nu respect.
-Marchează clar unde e nevoie de confirmarea unui specialist. Nu inventa articole de lege.
-"""
-[LIPEȘTI textul, dacă îl ai]
-"""</pre></div>
-  </div>
-
-  <div class="note warn"><b>Atenție la halucinații:</b> AI-ul poate „inventa" cifre, studii sau articole de lege care sună perfect credibil. Pentru orice merge într-o decizie, ofertă sau document oficial — verifică din sursă.</div>
-
-  <div class="doc-foot"><span>Secțiunea E — Research &amp; analiză</span><span>E1–E7</span></div>
-</div>
-
-<!-- ============================================================= -->
-<!-- SECTION F — DOCUMENTE, EXCEL & ADMIN -->
-<!-- ============================================================= -->
-<div class="sheet">
-  <div class="sec">
-    <span class="sec-tag">Secțiunea F</span>
-    <h2>Documente, Excel &amp; administrativ</h2>
-    <p class="sec-sub">Munca plictisitoare care îți mănâncă timpul. Aici Claude (documente/Office) și Gemini (Google) strălucesc.</p>
-    <div class="sec-bar"></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">F1</span><div class="prompt-titles"><div class="prompt-title">Analiză de Excel / tabel</div><div class="prompt-when"><b>Când:</b> ai un fișier cu date și nu ai timp să-l sapi. <span class="prompt-tool" style="display:inline-block; margin-top:6px;">Claude / ChatGPT</span></div></div></div>
-    <div class="code"><pre>Analizează fișierul atașat și spune-mi:
-1) trendul pe ultimele [6] luni și ce crește/scade,
-2) top 3 [produse/clienți] după [valoare/marjă],
-3) orice anomalie sau eroare (#REF!, #VALUE!, valori suspecte).
-Explică concluziile în 5 puncte, pentru cineva non-tehnic. Citează celulele relevante.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">F2</span><div class="prompt-titles"><div class="prompt-title">Extrage date dintr-un text → tabel</div><div class="prompt-when"><b>Când:</b> ai informații înghesuite și vrei structură.</div></div></div>
-    <div class="code"><pre>Din textul de mai jos, extrage într-un tabel: [Nume | Preț | Cantitate | Data].
-Doar ce e prezent, fără să inventezi. Marchează rândurile incerte. Apoi exportă-l ca CSV.
-"""
-[LIPEȘTI conținutul]
-"""</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">F3</span><div class="prompt-titles"><div class="prompt-title">Formulă Excel / Google Sheets</div><div class="prompt-when"><b>Când:</b> știi ce vrei, dar nu și formula.</div></div></div>
-    <div class="code"><pre>Vreau o formulă pentru [REZULTAT, ex: să însumez vânzările doar pentru luna curentă].
-Datele sunt: [descrie coloanele, ex: A=data, B=client, C=sumă].
-Dă-mi formula exactă pentru [Excel / Google Sheets] și explică-mi pe scurt cum funcționează.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">F4</span><div class="prompt-titles"><div class="prompt-title">Document din template (contract / procedură)</div><div class="prompt-when"><b>Când:</b> scrii același tip de document des.</div></div></div>
-    <div class="code"><pre>Scrie un draft de [TIP DOCUMENT, ex: contract de prestări servicii / procedură internă] pentru [CONTEXT].
-Include secțiunile standard, lasă câmpuri [completabile] unde e nevoie de date specifice.
-Ton clar, fără jargon inutil. Marchează unde recomanzi verificarea unui jurist. Generează-l ca document Word.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">F5</span><div class="prompt-titles"><div class="prompt-title">OCR: citește o factură / un scan</div><div class="prompt-when"><b>Când:</b> ai o poză/scan și vrei datele în format digital. <span class="prompt-tool" style="display:inline-block; margin-top:6px;">imagine atașată</span></div></div></div>
-    <div class="code"><pre>Din imaginea atașată (o factură), extrage într-un tabel: furnizor, nr. factură, dată, fiecare produs cu cantitate și preț, TVA, total.
-Doar ce e vizibil în document. Dacă un câmp nu se citește clar, marchează-l „de verificat".</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">F6</span><div class="prompt-titles"><div class="prompt-title">Comenzi în limbaj natural pe fișierele tale</div><div class="prompt-when"><b>Când:</b> ai conectat Drive/Sheets. <span class="prompt-tool" style="display:inline-block; margin-top:6px;">Claude+MCP / Gemini</span></div></div></div>
-    <div class="code"><pre>(Drive) Găsește fișierul „[NUME]" din [lună] și rescrie-l pentru clientul [X], păstrând structura.
-(Sheets) Din foaia „[NUME]", scoate top 10 [clienți] după valoare și scrie un email de re-contactare pentru fiecare.
-(Sheets) Adaugă o coloană „Status" și marchează cine nu a mai comandat în ultimele [3] luni. Rezumă-mi în 5 puncte.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">F7</span><div class="prompt-titles"><div class="prompt-title">Prezentare din conținut</div><div class="prompt-when"><b>Când:</b> ai informația, dar nu și slide-urile. <span class="prompt-tool" style="display:inline-block; margin-top:6px;">Gemini Canvas</span></div></div></div>
-    <div class="code"><pre>Creează o prezentare de [6] slide-uri pentru [AUDIENȚĂ, ex: o ofertă către un client nou] despre [SUBIECT].
-Ton profesional, structură clară, un slide cu prețuri, un slide cu pașii următori.
-Pentru fiecare slide: titlu + 3 bullet-uri scurte. Apoi o pot edita.</pre></div>
-  </div>
-
-  <div class="doc-foot"><span>Secțiunea F — Documente, Excel &amp; administrativ</span><span>F1–F7</span></div>
-</div>
-
-<!-- ============================================================= -->
-<!-- SECTION G — PRODUCTIVITATE PERSONALA -->
-<!-- ============================================================= -->
-<div class="sheet">
-  <div class="sec">
-    <span class="sec-tag">Secțiunea G</span>
-    <h2>Productivitate personală</h2>
-    <p class="sec-sub">AI-ul ca asistent personal: planuri, decizii, învățare, pregătire.</p>
-    <div class="sec-bar"></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">G1</span><div class="prompt-titles"><div class="prompt-title">Planifică-mi ziua / săptămâna</div><div class="prompt-when"><b>Când:</b> ai o listă haotică de lucruri de făcut.</div></div></div>
-    <div class="code"><pre>Am de făcut lucrurile de mai jos. Organizează-mi-le pe priorități (urgent/important),
-estimează timpul pentru fiecare și propune-mi un plan realist pentru [azi / săptămâna asta].
-Marchează ce pot delega sau amâna.
-"""
-[LIPEȘTI lista ta]
-"""</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">G2</span><div class="prompt-titles"><div class="prompt-title">Pregătește-mă pentru o discuție grea</div><div class="prompt-when"><b>Când:</b> ai o negociere sau o conversație tensionată.</div></div></div>
-    <div class="code"><pre>Trebuie să port discuția: [DESCRIE situația și ce vreau să obțin].
-Pregătește-mă: 3 puncte-cheie de transmis, cum răspund la 3 reacții probabile,
-și o frază de deschidere calmă. Vreau să fiu ferm, dar să păstrez relația.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">G3</span><div class="prompt-titles"><div class="prompt-title">Învață-mă ceva repede</div><div class="prompt-when"><b>Când:</b> vrei să stăpânești un subiect nou pentru muncă.</div></div></div>
-    <div class="code"><pre>Vreau să înțeleg [SUBIECT] suficient cât să [OBIECTIV, ex: discut cu un furnizor].
-Învață-mă în 20 de minute: concepte de bază, 5 termeni esențiali, 3 greșeli frecvente,
-și 3 întrebări deștepte pe care le pot pune. Verifică-mi înțelegerea cu 2 întrebări la final.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">G4</span><div class="prompt-titles"><div class="prompt-title">Transcriere → acțiuni</div><div class="prompt-when"><b>Când:</b> ai înregistrat/notat o ședință sau un apel.</div></div></div>
-    <div class="code"><pre>Din transcrierea/notițele de mai jos, extrage: 1) deciziile luate, 2) lista de acțiuni cu responsabil și termen,
-3) întrebările rămase deschise. Format: 3 liste clare.
-"""
-[LIPEȘTI transcrierea]
-"""</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">G5</span><div class="prompt-titles"><div class="prompt-title">Verifică-mi gândirea (devil's advocate)</div><div class="prompt-when"><b>Când:</b> ai un plan și vrei să-i găsești fisurile.</div></div></div>
-    <div class="code"><pre>Iată planul meu: [DESCRIE planul].
-Fii avocatul diavolului: care sunt cele mai mari 3 riscuri, ce presupun greșit,
-ce ar spune un sceptic inteligent? Apoi cum aș putea întări planul. Fii sincer, nu de complezență.</pre></div>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">G6</span><div class="prompt-titles"><div class="prompt-title">Scrie un mesaj pe care-l amân de zile</div><div class="prompt-when"><b>Când:</b> tot amâni un mesaj greu de scris.</div></div></div>
-    <div class="code"><pre>Trebuie să-i scriu [CUI] ca să-i spun [CE, situația dificilă].
-Scrie-mi 2 variante: una mai blândă, una mai directă. Onest, respectuos, fără să evit subiectul. Max 100 de cuvinte.</pre></div>
-  </div>
-
-  <div class="doc-foot"><span>Secțiunea G — Productivitate personală</span><span>G1–G6</span></div>
-</div>
-
-<!-- ============================================================= -->
-<!-- SECTION H — PE INDUSTRIE -->
-<!-- ============================================================= -->
-<div class="sheet">
-  <div class="sec">
-    <span class="sec-tag">Secțiunea H · 9 domenii</span>
-    <h2>Prompturi pe industrie</h2>
-    <p class="sec-sub">Exemple gândite pe domeniu. Înlocuiește detaliile cu ale tale — structura rămâne. Reține: <b>nu pune date personale / medicale / financiare reale.</b></p>
-    <div class="sec-bar"></div>
-  </div>
-
-  <!-- MEDICINA -->
-  <h3 class="block-h">🩺 Medicină &amp; sănătate</h3>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H1</span><div class="prompt-titles"><div class="prompt-title">Material educativ pentru pacienți</div><div class="prompt-when"><b>Când:</b> vrei să explici o procedură pe înțelesul pacientului.</div></div></div>
-    <div class="code"><pre>Ești comunicator medical. Scrie un material de [400] de cuvinte care explică [PROCEDURA/AFECȚIUNEA]
-pentru pacienți non-medici: ce este, la ce să se aștepte, ce întrebări să pună medicului.
-Ton: empatic, clar, liniștitor. Fără diagnostic, fără sfaturi de tratament. Adaugă disclaimer „consultă medicul".</pre></div>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H2</span><div class="prompt-titles"><div class="prompt-title">Comunicare clinică (programări, reamintiri)</div><div class="prompt-when"><b>Când:</b> standardizezi mesajele cabinetului.</div></div></div>
-    <div class="code"><pre>Scrie șabloane de mesaje pentru cabinetul meu [tip]: 1) confirmare programare, 2) reamintire cu 24h înainte,
-3) follow-up post-consultație, 4) reprogramare. Ton: cald, profesional, scurt. Fără date medicale în mesaj.</pre></div>
-  </div>
-
-  <!-- EDUCATIE -->
-  <h3 class="block-h">🎓 Educație &amp; training</h3>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H3</span><div class="prompt-titles"><div class="prompt-title">Plan de lecție / curs</div><div class="prompt-when"><b>Când:</b> pregătești un modul de curs.</div></div></div>
-    <div class="code"><pre>Ești designer instrucțional. Fă-mi un plan de lecție de [90] de minute despre [SUBIECT] pentru [CINE, nivel].
-Include: obiective de învățare, structură pe blocuri cu timp, 2 exerciții practice, și cum verific că au înțeles.
-Stil: practic, hands-on, nu doar teorie.</pre></div>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H4</span><div class="prompt-titles"><div class="prompt-title">Test / quiz cu răspunsuri</div><div class="prompt-when"><b>Când:</b> vrei să evaluezi cursanții.</div></div></div>
-    <div class="code"><pre>Creează un quiz de [10] întrebări despre [SUBIECT], nivel [începător/mediu].
-Mix: 6 grilă, 2 adevărat/fals, 2 cu răspuns scurt. Dă-mi și baremul cu explicații scurte la fiecare răspuns.</pre></div>
-  </div>
-
-  <!-- HR -->
-  <h3 class="block-h">👥 HR &amp; recrutare</h3>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H5</span><div class="prompt-titles"><div class="prompt-title">Anunț de job atractiv</div><div class="prompt-when"><b>Când:</b> recrutezi și vrei candidați buni.</div></div></div>
-    <div class="code"><pre>Scrie un anunț de angajare pentru postul [TITLU] în firma [DESCRIERE scurtă].
-Structură: ce facem, ce vei face tu, ce căutăm, ce oferim. Ton: uman, onest, fără clișee corporate („mediu dinamic").
-Evidențiază 3 motive reale pentru care merită. Max 350 de cuvinte.</pre></div>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H6</span><div class="prompt-titles"><div class="prompt-title">Întrebări de interviu pe rol</div><div class="prompt-when"><b>Când:</b> intervievezi și vrei să afli ce contează.</div></div></div>
-    <div class="code"><pre>Dă-mi 10 întrebări de interviu pentru postul [TITLU]: 4 despre competențe concrete, 3 comportamentale (situații reale),
-3 despre potrivirea cu echipa. Pentru fiecare, ce răspuns bun vs. răspuns slab ar trebui să aud.</pre></div>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H7</span><div class="prompt-titles"><div class="prompt-title">Fișă de post &amp; onboarding</div><div class="prompt-when"><b>Când:</b> angajezi pe cineva nou.</div></div></div>
-    <div class="code"><pre>Scrie o fișă de post pentru [ROL] (responsabilități, KPI-uri, cui raportează)
-și un plan de onboarding pe primele [30] de zile (ce învață, pe cine cunoaște, ce produce). Clar și realist.</pre></div>
-  </div>
-
-  <div class="doc-foot"><span>Secțiunea H — Pe industrie</span><span>H1–H7</span></div>
-</div>
-
-<div class="sheet">
-  <!-- FINANTE / CONTABILITATE -->
-  <h3 class="block-h">💰 Finanțe &amp; contabilitate</h3>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H8</span><div class="prompt-titles"><div class="prompt-title">Explică un raport financiar pe înțeles</div><div class="prompt-when"><b>Când:</b> vrei să prezinți cifre unor non-financiari.</div></div></div>
-    <div class="code"><pre>Explică datele de mai jos pentru un antreprenor non-financiar: ce înseamnă, ce e bine, ce e îngrijorător,
-și 3 acțiuni concrete. Fără jargon. Folosește valori rotunjite/anonimizate.
-"""
-[LIPEȘTI cifrele — fără date reale sensibile]
-"""</pre></div>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H9</span><div class="prompt-titles"><div class="prompt-title">Comunicare contabilă către clienți</div><div class="prompt-when"><b>Când:</b> ești contabil și explici obligații clienților.</div></div></div>
-    <div class="code"><pre>Scrie un mesaj clar către clienții firmei mele de contabilitate despre [OBLIGAȚIA/TERMENUL, ex: declarația X].
-Ce trebuie să facă, până când, ce documente îmi trimit. Ton: prietenos, dar precis. Fără a-i speria.
-Marchează unde e nevoie de confirmare oficială — nu inventa articole de lege.</pre></div>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H10</span><div class="prompt-titles"><div class="prompt-title">Buget &amp; scenarii simple</div><div class="prompt-when"><b>Când:</b> planifici cheltuieli sau o investiție.</div></div></div>
-    <div class="code"><pre>Ajută-mă să construiesc un buget simplu pentru [PROIECT/LUNĂ] cu categoriile: [listă].
-Dă-mi un tabel și 3 scenarii (pesimist/realist/optimist) pe baza ipotezei [X]. Spune-mi unde sunt cele mai mari riscuri.</pre></div>
-  </div>
-
-  <!-- JURIDIC -->
-  <h3 class="block-h">⚖️ Juridic</h3>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H11</span><div class="prompt-titles"><div class="prompt-title">Rezumă un contract &amp; semnalează riscuri</div><div class="prompt-when"><b>Când:</b> ai un contract de citit înainte de semnat.</div></div></div>
-    <div class="code"><pre>Rezumă contractul de mai jos pe înțelesul meu: obligațiile mele, obligațiile celuilalt, termene, penalități.
-Semnalează 5 clauze riscante sau dezechilibrate și ce aș putea negocia. NU oferi consultanță legală definitivă —
-marchează ce trebuie confirmat cu un avocat.
-"""
-[LIPEȘTI contractul — anonimizat]
-"""</pre></div>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H12</span><div class="prompt-titles"><div class="prompt-title">Draft de clauză / document simplu</div><div class="prompt-when"><b>Când:</b> ai nevoie de un punct de plecare.</div></div></div>
-    <div class="code"><pre>Scrie un draft de [CLAUZĂ/DOCUMENT, ex: clauză de confidențialitate] pentru contextul [DESCRIERE].
-Limbaj clar, echilibrat. Lasă câmpuri [completabile]. Adaugă o notă cu ce trebuie verificat de un jurist.</pre></div>
-  </div>
-
-  <!-- IMOBILIARE -->
-  <h3 class="block-h">🏠 Imobiliare</h3>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H13</span><div class="prompt-titles"><div class="prompt-title">Anunț de proprietate care vinde</div><div class="prompt-when"><b>Când:</b> listezi o proprietate.</div></div></div>
-    <div class="code"><pre>Scrie un anunț pentru [TIP PROPRIETATE] în [ZONĂ]: [detalii — suprafață, camere, dotări, preț].
-Hook în primul rând, beneficii ale zonei și ale locuinței (nu doar caracteristici), CTA clar la final.
-Dă-mi și un titlu scurt pentru portaluri. Ton: atractiv, dar onest. Fără exagerări.</pre></div>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H14</span><div class="prompt-titles"><div class="prompt-title">Răspunsuri rapide la lead-uri</div><div class="prompt-when"><b>Când:</b> primești multe întrebări de la potențiali cumpărători.</div></div></div>
-    <div class="code"><pre>Scrie 3 șabloane de răspuns pentru lead-uri imobiliare: 1) cerere de vizionare, 2) întrebare de preț/negociere,
-3) lead „rece" de re-activat. Scurt, prietenos, cu un pas următor clar (programare). Personalizabile.</pre></div>
-  </div>
-
-  <!-- RETAIL -->
-  <h3 class="block-h">🛍️ Retail &amp; e-commerce</h3>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H15</span><div class="prompt-titles"><div class="prompt-title">Descrieri de produs în serie</div><div class="prompt-when"><b>Când:</b> ai zeci de produse de descris.</div></div></div>
-    <div class="code"><pre>Pentru fiecare produs de mai jos, scrie o descriere de [50] de cuvinte (beneficii + un detaliu concret + CTA)
-și 5 cuvinte-cheie pentru căutare. Ton: [al magazinului meu]. Format: tabel.
-"""
-[LIPEȘTI lista de produse cu specificații]
-"""</pre></div>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H16</span><div class="prompt-titles"><div class="prompt-title">Campanie de sezon / promoție</div><div class="prompt-when"><b>Când:</b> pregătești o reducere sau o sărbătoare.</div></div></div>
-    <div class="code"><pre>Plănuiește o mini-campanie pentru [OCAZIE, ex: Black Friday] la magazinul meu [TIP].
-Dă-mi: mesajul principal, 3 postări, 1 email, 1 SMS, și ideea de ofertă. Coerent ca ton, cu urgență reală.</pre></div>
-  </div>
-
-  <!-- MARKETING / AGENTII -->
-  <h3 class="block-h">📣 Marketing &amp; agenții</h3>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H17</span><div class="prompt-titles"><div class="prompt-title">Brief de campanie</div><div class="prompt-when"><b>Când:</b> pornești o campanie pentru un client.</div></div></div>
-    <div class="code"><pre>Scrie un brief de campanie pentru [CLIENT/PRODUS]: obiectiv, public țintă, mesaj-cheie, canale,
-3 unghiuri creative, KPI de urmărit, buget orientativ pe canale. Format: o pagină, clar pentru echipă.</pre></div>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H18</span><div class="prompt-titles"><div class="prompt-title">Variante de reclamă pentru A/B test</div><div class="prompt-when"><b>Când:</b> rulezi reclame și vrei ce să testezi.</div></div></div>
-    <div class="code"><pre>Dă-mi 8 variante de reclamă pentru [PRODUS] pe [Meta/Google], pe 3 unghiuri (durere / beneficiu / social proof).
-Fiecare: headline (max 6 cuvinte) + descriere (max 20 cuvinte) + CTA. Spune-mi ce să măsor la fiecare unghi.</pre></div>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H19</span><div class="prompt-titles"><div class="prompt-title">Raport de campanie pentru client</div><div class="prompt-when"><b>Când:</b> raportezi rezultate fără să pierzi o zi.</div></div></div>
-    <div class="code"><pre>Din datele de mai jos, scrie un raport scurt pentru client: ce am făcut, rezultatele (în termeni de business, nu doar metrici),
-ce am învățat, ce recomand luna viitoare. Ton: clar, încrezător, onest la ce nu a mers.
-"""
-[LIPEȘTI datele/metricii]
-"""</pre></div>
-  </div>
-  <div class="prompt">
-    <div class="prompt-head"><span class="prompt-id">H20</span><div class="prompt-titles"><div class="prompt-title">Persona de client</div><div class="prompt-when"><b>Când:</b> vrei să țintești mai precis.</div></div></div>
-    <div class="code"><pre>Pe baza descrierii afacerii [DESCRIERE], construiește 2-3 persona de client:
-nume, situație, ce vrea, ce-l frământă, unde își petrece timpul online, ce mesaj îl convinge.
-Apoi, pentru fiecare, un unghi de comunicare diferit.</pre></div>
-  </div>
-
-  <div class="doc-foot"><span>Secțiunea H — Pe industrie</span><span>H8–H20</span></div>
-</div>
-
-<!-- ============================================================= -->
-<!-- SECTION I — SETUP -->
-<!-- ============================================================= -->
-<div class="sheet">
-  <div class="sec">
-    <span class="sec-tag practice">Secțiunea I · Setup</span>
-    <h2>Personalizează-ți tool-urile o dată, folosești la nesfârșit</h2>
-    <p class="sec-sub">Aceste „prompturi de configurare" rezolvă problema reexplicării. Le pui o dată; fiecare conversație viitoare pornește deja cu contextul tău.</p>
-    <div class="sec-bar"></div>
-  </div>
-
-  <div class="prompt purple">
-    <div class="prompt-head"><span class="prompt-id">I1</span><div class="prompt-titles"><div class="prompt-title">ChatGPT — Custom Instructions</div><div class="prompt-when"><b>Unde:</b> Settings → Personalization → Custom Instructions. <b>Ce pui în cele 2 câmpuri:</b></div></div></div>
-    <div class="code"><pre>[Despre tine] Mă numesc [NUME], sunt [ROL] la [FIRMĂ], în domeniul [DOMENIU].
-Lucrez cu [TIP CLIENȚI]. Obiectivele mele tipice: [ce ceri des de la AI].
-
-[Cum să răspundă] Răspunde în română, direct și concret, fără introduceri lungi.
-Structurează în bullet-uri. Ton: profesional, dar accesibil. Dacă-ți lipsește un detaliu esențial, întreabă-mă întâi.</pre></div>
-  </div>
-
-  <div class="prompt purple">
-    <div class="prompt-head"><span class="prompt-id">I2</span><div class="prompt-titles"><div class="prompt-title">Claude / ChatGPT Project — Instrucțiuni</div><div class="prompt-when"><b>Unde:</b> creezi un Project, încarci 1-2 fișiere de context, pui asta în Instructions.</div></div></div>
-    <div class="code"><pre>Ești asistentul meu pentru [SCOP, ex: comunicarea comercială a brandului X].
-Folosește ÎNTOTDEAUNA informațiile din fișierele atașate (voce de brand, produse, reguli).
-Scrie în vocea brandului. Respectă restricțiile din documente. Înainte de a livra, verifică:
-tonul e al brandului? există un CTA? respect restricțiile? Dacă-mi lipsește un detaliu, întreabă o singură întrebare scurtă.</pre></div>
-  </div>
-
-  <div class="prompt purple">
-    <div class="prompt-head"><span class="prompt-id">I3</span><div class="prompt-titles"><div class="prompt-title">NotebookLM — întrebare-tip pe sursele tale</div><div class="prompt-when"><b>Unde:</b> încarci documentele (PDF/contracte/proceduri), apoi întrebi în Chat.</div></div></div>
-    <div class="code"><pre>Pe baza DOAR a surselor încărcate: [ÎNTREBAREA].
-Răspunde cu citate exacte din document. Dacă informația nu există în surse, spune „nu apare în surse".
-La final, generează un Audio Overview în română pentru recapitulare.</pre></div>
-  </div>
-
-  <div class="prompt purple">
-    <div class="prompt-head"><span class="prompt-id">I4</span><div class="prompt-titles"><div class="prompt-title">Demonstrația „context vs. fără context"</div><div class="prompt-when"><b>Când:</b> vrei să vezi singur cât contează contextul. Rulează ambele.</div></div></div>
-    <div class="code"><pre>[Fără context] Ajută-mă cu emailul pentru client.
-
-[Cu context] Ești asistentul meu comercial. Firma mea [DOMENIU] vinde [CE] către [CINE].
-Clientul [X] nu a plătit factura [NR] din [DATA]. Scrie un email de reamintire, ton ferm dar politicos,
-fără a periclita relația. Compară singur cele două rezultate.</pre></div>
-  </div>
-
-  <div class="note ok"><b>De ce contează:</b> fără Projects/Custom Instructions reîncarci totul de fiecare dată. Cu ele, AI-ul „te cunoaște" — exact soluția la limita de memorie (context window) de care am vorbit în sesiune.</div>
-
-  <div class="doc-foot"><span>Secțiunea I — Setup tool-uri</span><span>I1–I4</span></div>
-</div>
-
-<!-- ============================================================= -->
-<!-- FINAL — KPI EXERCISE -->
-<!-- ============================================================= -->
-<div class="sheet">
-  <div class="sec">
-    <span class="sec-tag practice">★ Exercițiul tău</span>
-    <h2>Construiește-ți biblioteca: 10 prompturi în 20 de minute</h2>
-    <p class="sec-sub">Obiectivul sesiunii 1: pleci cu minimum 10 prompturi testate, specifice activității tale. Folosește template-ul, ia 10 taskuri reale și scrie-le acum.</p>
-    <div class="sec-bar"></div>
-  </div>
-
+  <div class="cheat">
+    <div class="cheat-row"><div class="ch-name"><span>01 ·</span> RSCF</div><div class="ch-desc">Rol · Sarcină · Context · Format. Scheletul oricărui prompt.</div></div>
+    <div class="cheat-row"><div class="ch-name"><span>02 ·</span> Arată, nu descrie</div><div class="ch-desc">Atașează fișierul, nu tasta datele. Cea mai mare diferență.</div></div>
+    <div class="cheat-row"><div class="ch-name"><span>03 ·</span> Few-shot</div><div class="ch-desc">2–3 exemple reale &gt; o pagină de adjective.</div></div>
+    <div class="cheat-row"><div class="ch-name"><span>04 ·</span> Gândește pas cu pas</div><div class="ch-desc">Analiză înainte de concluzie, la decizii și calcule.</div></div>
+    <div class="cheat-row"><div class="ch-name"><span>05 ·</span> Clarify-first</div><div class="ch-desc">„Pune-mi întrebările de care ai nevoie înainte să scrii."</div></div>
+    <div class="cheat-row"><div class="ch-name"><span>06 ·</span> Iterează</div><div class="ch-desc">Cizelează în conversație. Nu reporni de la zero.</div></div>
+    <div class="cheat-row"><div class="ch-name"><span>07 ·</span> Meta-prompting</div><div class="ch-desc">„Scrie tu promptul ideal, apoi execută-l."</div></div>
+    <div class="cheat-row"><div class="ch-name"><span>08 ·</span> Audiență + restricții</div><div class="ch-desc">Spune pentru cine scrii și ce să evite („fără...").</div></div>
+  </div>
+
+  <h3 class="block-h">Template de pornire (când nu știi de unde să începi)</h3>
   <div class="tpl-box">
     Ești <mark>ROL</mark>.<br>
-    <mark>CONTEXT</mark> (compania mea, publicul, situația).<br>
-    <mark>SARCINA</mark> exactă (un verb clar: scrie / rezumă / compară…).<br>
-    Outputul trebuie să fie <mark>FORMAT</mark> (tabel / 150 cuvinte / 3 variante…).<br>
-    Evită <mark>RESTRICȚIE</mark> (jargon / promisiuni / lungime…).
-  </div>
-
-  <div class="kpi-box">
-    <h3>✅ Checklist KPI — am bibliotecă, dacă:</h3>
-    <ul class="checklist">
-      <li><span class="box"></span> Am scris 10 prompturi pentru taskuri reale din munca mea.</li>
-      <li><span class="box"></span> Fiecare are cel puțin Rol + Context + Sarcină.</li>
-      <li><span class="box"></span> Le-am testat live și am ajustat ce nu a sunat bine.</li>
-      <li><span class="box"></span> Le-am salvat undeva la îndemână (Doc, Notes, sau un Project).</li>
-      <li><span class="box"></span> Am ales 1 task repetitiv pe care îl folosesc 5 zile la rând (anti AI-fatigue).</li>
-    </ul>
-  </div>
-
-  <div class="note tip">
-    <span class="lbl">📌 Temă pentru sesiunea 2:</span> alege <b>1 task repetitiv</b> din munca ta, construiește-i un prompt cu template-ul de mai sus, testează-l de 3 ori și notează ce a mers și ce nu. Adu exemplul data viitoare.
+    Folosește <mark>📎 fișierul atașat</mark> ca sursă (nu reproduce date din memorie).<br>
+    <mark>SARCINA</mark> — un verb clar.<br>
+    Pentru <mark>AUDIENȚA</mark>. Format: <mark>FORMAT</mark>.<br>
+    Evită <mark>RESTRICȚIE</mark>. Dacă-ți lipsește un detaliu esențial, întreabă-mă întâi.
   </div>
 
   <div class="note ok">
-    <span class="lbl">➕ Continuă biblioteca:</span> de fiecare dată când scrii un prompt care îți iese bine, salvează-l. În câteva săptămâni ai propria librărie — mai valoroasă decât orice listă generică, pentru că e a <b>afacerii tale</b>.
+    <span class="lbl">Exercițiul sesiunii:</span> ia <b>un task real</b> din munca ta de săptămâna asta. Rezolvă-l aplicând conștient minimum 3 frameworks (mereu inclusiv <b>02 — Arată, nu descrie</b>). Notează ce ai atașat, ce ai cerut și ce ai corectat la iterație. Ăsta e începutul propriului tău „mod de a lucra cu AI".
   </div>
 
-  <div class="doc-foot"><span>AI for SMEs — Biblioteca de prompturi · Sesiunea 1</span><span>Mult spor! 🚀</span></div>
+  <div class="doc-foot"><span>Prompt Engineering · Sesiunea 1</span><span>Cheat sheet · Mult spor! 🚀</span></div>
 </div>
 
 <script>
-  // Evidențiază automat câmpurile [...] în toate blocurile de prompt
   (function () {
     function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
     document.querySelectorAll('.code pre').forEach(function (pre) {
       var t = esc(pre.textContent);
       pre.innerHTML = t.replace(/\[[^\]\n]+\]/g, function (m) { return '<mark>' + m + '</mark>'; });
     });
-
-    // Buton de copiere (ascuns la print)
     document.querySelectorAll('.code').forEach(function (code) {
-      var pre = code.querySelector('pre');
+      var pre = code.querySelector('pre'); if (!pre) return;
       var btn = document.createElement('button');
-      btn.className = 'copy-btn';
-      btn.textContent = 'Copiază';
+      btn.className = 'copy-btn'; btn.textContent = 'Copiază';
       btn.addEventListener('click', function () {
         navigator.clipboard.writeText(pre.textContent).then(function () {
-          btn.textContent = 'Copiat ✓';
-          setTimeout(function () { btn.textContent = 'Copiază'; }, 1500);
+          btn.textContent = 'Copiat ✓'; setTimeout(function () { btn.textContent = 'Copiază'; }, 1500);
         });
       });
       code.appendChild(btn);

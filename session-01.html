@@ -215,6 +215,42 @@
     .fs-example .ex-model { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 9px 13px; margin: 4px 0; font-size: 14px; }
     .fs-example .ex-ask { font-weight: 700; margin-top: 12px; }
 
+    /* META-PROMPTING (AI scrie promptul) */
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; align-items: stretch; }
+    .meta-pane { border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--border); }
+    .meta-pane.you { background: var(--bg); }
+    .meta-pane.ai { background: var(--pastel-lavender); border-color: #C4B5FD; }
+    .meta-step { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; }
+    .meta-step.you { color: var(--muted); } .meta-step.ai { color: var(--practice); }
+    .meta-step .pill { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; }
+    .meta-step.you .pill { background: var(--muted); } .meta-step.ai .pill { background: var(--practice); }
+    .meta-bubble { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 18px; font-size: 16px; line-height: 1.5; color: var(--foreground); }
+    .meta-bubble.dim { font-style: italic; color: var(--muted); }
+    .meta-bubble b { font-weight: 800; color: var(--primary); }
+    .meta-result { margin-top: auto; font-size: 14px; padding: 11px 15px; border-radius: var(--radius-sm); line-height: 1.4; font-weight: 600; }
+    .meta-pane.you .meta-result { background: #FEE2E2; color: #B91C1C; }
+    .meta-pane.ai .meta-result { background: #DCFCE7; color: #15803D; }
+    .meta-magic { margin-top: 14px; background: var(--foreground); color: #fff; border-radius: var(--radius-sm); padding: 14px 20px; font-size: 16px; line-height: 1.5; }
+    .meta-magic .lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary-light); display: block; margin-bottom: 6px; }
+    .meta-magic b { color: #fff; font-weight: 800; }
+
+    /* CLARIFY FIRST (interviul invers) */
+    .clarify-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; flex: 1; align-items: stretch; }
+    .chat-thread { display: flex; flex-direction: column; gap: 11px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; overflow: hidden; }
+    .chat-msg { max-width: 86%; font-size: 15px; line-height: 1.45; padding: 11px 15px; border-radius: 14px; }
+    .chat-msg.user { align-self: flex-end; background: var(--primary); color: #fff; border-bottom-right-radius: 4px; }
+    .chat-msg.ai { align-self: flex-start; background: #fff; border: 1px solid var(--border); color: var(--foreground); border-bottom-left-radius: 4px; }
+    .chat-msg.ai .who { font-size: 11px; font-weight: 700; color: var(--practice); letter-spacing: 0.04em; text-transform: uppercase; display: block; margin-bottom: 5px; }
+    .chat-msg.ai.final { background: var(--pastel-mint); border-color: #86EFAC; }
+    .chat-msg b { font-weight: 800; }
+    .clarify-side { display: flex; flex-direction: column; gap: 14px; }
+    .clarify-step { display: flex; align-items: flex-start; gap: 13px; }
+    .clarify-step .cs-num { width: 30px; height: 30px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .clarify-step .cs-text { font-size: 16px; line-height: 1.45; color: var(--foreground); padding-top: 3px; }
+    .clarify-step .cs-text b { font-weight: 700; }
+    .clarify-why { margin-top: auto; background: var(--pastel-lavender); border: 1px solid #C4B5FD; border-radius: var(--radius); padding: 16px 18px; font-size: 14px; line-height: 1.5; color: var(--foreground); }
+    .clarify-why b { color: var(--practice); }
+
     /* CARDS */
     .cards-grid { display: grid; gap: 18px; flex: 1; } .cards-3 { grid-template-columns: repeat(3, 1fr); }
     .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px; }
@@ -323,6 +359,25 @@
     /* WRAP */
     .wrapup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
     .wrapup-pane { border-radius: var(--radius); padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; }
+
+    /* Homework interactive checklist */
+    .hw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex: 1; }
+    .hw-col { border-radius: var(--radius); padding: 22px 24px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+    .hw-col.core { background: var(--primary-ultra-light); border-color: #A5B4FC; }
+    .hw-col.bonus { background: var(--pastel-mint); border-color: #86EFAC; }
+    .hw-col-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .hw-col.core .hw-col-title { color: var(--primary); }
+    .hw-col.bonus .hw-col-title { color: #16A34A; }
+    .hw-item { display: flex; align-items: flex-start; gap: 13px; cursor: pointer; user-select: none; padding: 8px 0; }
+    .hw-box { width: 24px; height: 24px; border-radius: 7px; border: 2px solid #94A3B8; background: #fff; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; color: #fff; transition: all 0.15s; margin-top: 1px; }
+    .hw-item.done .hw-box { background: var(--primary); border-color: var(--primary); }
+    .hw-item.done .hw-box::after { content: '✓'; }
+    .hw-col.bonus .hw-item.done .hw-box { background: #16A34A; border-color: #16A34A; }
+    .hw-text { font-size: 15px; color: var(--foreground); line-height: 1.4; }
+    .hw-text b { font-weight: 800; color: var(--primary); }
+    .hw-col.bonus .hw-text b { color: #16A34A; }
+    .hw-item.done .hw-text { color: var(--muted); text-decoration: line-through; }
+    .hw-item.done .hw-text b { color: var(--muted); }
     .wrapup-pane.learned { background: var(--primary-ultra-light); border-color: #A5B4FC; } .wrapup-pane.hw { background: #F0FDF4; border-color: #86EFAC; }
     .wrapup-pane-title { font-size: 15px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 14px; } .wrapup-pane.learned .wrapup-pane-title { color: var(--primary); } .wrapup-pane.hw .wrapup-pane-title { color: #16A34A; }
     .check-list { display: flex; flex-direction: column; gap: 10px; }
@@ -390,7 +445,7 @@
             <span class="logo" title="Claude"><svg width="30" height="30" viewBox="0 0 24 24"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span>
           </div>
         </div>
-        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 39</div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 42</div>
       </div>
     </section>
 
@@ -423,7 +478,7 @@
             </div>
           </div>
         </div>
-        <div class="slide-num">02 / 39</div>
+        <div class="slide-num">02 / 42</div>
       </div>
     </section>
 
@@ -447,7 +502,7 @@
           <li class="agenda-item"><span class="agenda-num">13</span><span class="agenda-label">Claude + Projects<span class="agenda-badge">PRACTICĂ</span></span></li>
           <li class="agenda-item"><span class="agenda-num">14</span><span class="agenda-label">AI Fatigue &amp; exercițiu</span></li>
         </ul>
-        <div class="slide-num">03 / 39</div>
+        <div class="slide-num">03 / 42</div>
       </div>
     </section>
 
@@ -462,7 +517,7 @@
             <div class="slido-q-item"><span class="q-dot" style="background:#16A34A"></span>Ce ai vrea să înveți legat de AI?</div>
           </div>
         </div>
-        <div class="slide-num">04 / 39</div>
+        <div class="slide-num">04 / 42</div>
       </div>
     </section>
 
@@ -476,7 +531,7 @@
           <div class="stmt-row"><div class="stmt-number">91%</div><div class="stmt-body"><div class="stmt-text">dintre companii folosesc AI în cel puțin o capacitate în 2026 (vs. 78% în 2024)</div><div class="stmt-source">State of AI in Business, 2026</div></div></div>
         </div>
         <p class="stmt-note">AI produce rezultate de business măsurabile — iar decalajul față de cine nu-l folosește crește.</p>
-        <div class="slide-num">05 / 39</div>
+        <div class="slide-num">05 / 42</div>
       </div>
     </section>
 
@@ -498,7 +553,7 @@
             <div class="vs-row"><span class="ic">•</span>1.3M joburi AI deja create (LinkedIn, ian. 2026)</div>
           </div>
         </div>
-        <div class="slide-num">06 / 39</div>
+        <div class="slide-num">06 / 42</div>
       </div>
     </section>
 
@@ -521,7 +576,7 @@
           </div>
         </div>
         <div class="vs-highlight">Îi delegăm AI-ului partea stângă, ne concentrăm pe dreapta — exact ce ne face de neînlocuit.</div>
-        <div class="slide-num">07 / 39</div>
+        <div class="slide-num">07 / 42</div>
       </div>
     </section>
 
@@ -537,31 +592,53 @@
           <div class="maturity-step maturity-step-4"><div class="maturity-num">Nivel 4</div><div class="maturity-title">Transformer</div><div class="maturity-sign">AI în decizii și KPI</div><div class="maturity-tools">Workflow-uri automate, integrări (Trello, API), ROI măsurat.</div></div>
         </div>
         <div style="margin-top:18px"><div class="quote-block"><strong>Scopul cursului:</strong> te muți cel puțin un nivel mai sus — cu pași concreti, nu teorie.</div></div>
-        <div class="slide-num">08 / 39</div>
+        <div class="slide-num">08 / 42</div>
       </div>
     </section>
 
-    <!-- 08a LLM mechanism (autocomplete) -->
+    <!-- 08a HOW AI LEARNS: reCAPTCHA -->
     <section>
       <div class="slide">
-        <div class="slide-header"><div class="slide-tag">Cum funcționează AI · 1 / 2</div><h2 class="slide-title">AI-ul nu "gândește" — ghicește următorul cuvânt</h2><p class="slide-subtitle">Cel mai simplu mod de a-l înțelege: <b>un autocomplete genial</b>, antrenat pe tot internetul</p></div>
-        <div style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:34px;flex:1;align-items:center">
+        <div class="slide-header"><div class="slide-tag">Cum funcționează AI · 1 / 2</div><h2 class="slide-title">Ai antrenat AI-ul fără să știi</h2><p class="slide-subtitle">De fiecare dată când ai rezolvat un CAPTCHA pe Google, <b>tu ai etichetat date de antrenare pentru AI — gratuit.</b></p></div>
+        <div style="display:grid;grid-template-columns:0.9fr 1.1fr;gap:28px;flex:1;align-items:stretch">
+
+          <!-- CAPTCHA image left -->
           <div style="display:flex;flex-direction:column;gap:14px">
-            <div class="mech-step"><div class="mech-num">1</div><div class="mech-text">Tu scrii un <b>început de propoziție</b> (promptul tău)</div></div>
-            <div class="mech-step"><div class="mech-num">2</div><div class="mech-text">AI se uită la <b>tot ce a "citit"</b> — miliarde de pagini, cărți, articole</div></div>
-            <div class="mech-step"><div class="mech-num">3</div><div class="mech-text">Calculează: <b>care e cel mai probabil cuvânt următor?</b></div></div>
-            <div class="mech-step"><div class="mech-num">4</div><div class="mech-text">Îl scrie → apoi <b>repetă</b> pentru fiecare cuvânt, până termină</div></div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:14px;align-items:center">
-            <div class="phone-mock" style="max-width:320px">
-              <div class="phone-bubble">Bună ziua, vă scriu legat de...</div>
-              <div class="phone-suggest"><div class="phone-chip hot">factura</div><div class="phone-chip">oferta</div><div class="phone-chip">comanda</div></div>
+            <div style="background:#f1f3f4;border-radius:12px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column;align-items:center">
+              <div style="background:#fff;width:100%;padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px">
+                <svg width="20" height="20" viewBox="0 0 64 64"><path fill="#4285F4" d="M32 0C14.3 0 0 14.3 0 32s14.3 32 32 32 32-14.3 32-32S49.7 0 32 0z"/><path fill="#fff" d="M44 22H20a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V24a2 2 0 0 0-2-2zm-22 4h20v12H22V26z"/></svg>
+                <span style="font-size:13px;font-weight:600;color:#202124">Selectați toate imaginile cu</span>
+                <span style="font-size:13px;font-weight:800;color:#1a73e8">semafoare</span>
+              </div>
+              <img src="https://upload.wikimedia.org/wikipedia/en/8/80/Images_Recaptcha.png" alt="reCAPTCHA grid cu semafoare și mașini" style="width:100%;max-width:260px;display:block;padding:8px"/>
+              <div style="font-size:11px;color:var(--muted);padding:6px 12px;text-align:center;line-height:1.4">Screenshot real reCAPTCHA v2 · Wikipedia Commons</div>
             </div>
-            <div style="font-size:14px;color:var(--muted);text-align:center;line-height:1.5">📱 Exact ca tastatura telefonului care îți sugerează următorul cuvânt</div>
+            <div style="background:var(--pastel-sky);border:1px solid #BAE6FD;border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;line-height:1.5;color:var(--foreground)">
+              💡 <b>Miliarde de oameni</b> au bifat imagini cu mașini, copaci, semafoare → AI-ul a învățat să vadă lumea reală
+            </div>
+          </div>
+
+          <!-- 3 steps right -->
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted)">Cum învață orice AI — 3 etape</div>
+
+            <div style="background:var(--pastel-mint);border:1px solid #86EFAC;border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:10px"><div class="mech-num">1</div><span style="font-size:16px;font-weight:800;color:var(--foreground)">Antrenarea — exemple masive</span></div>
+              <div style="font-size:14px;color:var(--muted);line-height:1.5;padding-left:48px">I se arată <b>milioane de exemple</b> (imagini, texte, sunete). Fiecare cu răspunsul corect: „asta e semaforul, asta nu e".</div>
+            </div>
+
+            <div style="background:var(--pastel-peach);border:1px solid #FDBA74;border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:10px"><div class="mech-num" style="background:#EA580C">2</div><span style="font-size:16px;font-weight:800;color:var(--foreground)">Corectarea — greșeală și recompensă</span></div>
+              <div style="font-size:14px;color:var(--muted);line-height:1.5;padding-left:48px">Când AI-ul greșește, inginerii îl corectează. Ajustează calculele interne → greșește din ce în ce mai puțin.</div>
+            </div>
+
+            <div style="background:var(--pastel-lavender);border:1px solid #C4B5FD;border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:10px"><div class="mech-num" style="background:#7C3AED">3</div><span style="font-size:16px;font-weight:800;color:var(--foreground)">Predicția — testul cu ceva nou</span></div>
+              <div style="font-size:14px;color:var(--muted);line-height:1.5;padding-left:48px">Vede o imagine <b>pe care nu a mai întâlnit-o niciodată</b> și o recunoaște corect. ChatGPT face același lucru — cu text.</div>
+            </div>
           </div>
         </div>
-        <div style="margin-top:14px"><div class="quote-block"><strong>De reținut:</strong> AI-ul nu caută răspunsul "corect" într-o bază de date. Doar prezice ce text sună cel mai natural în continuare.</div></div>
-        <div class="slide-num">09 / 39</div>
+        <div class="slide-num">09 / 42</div>
       </div>
     </section>
 
@@ -587,7 +664,7 @@
           </div>
         </div>
         <div style="margin-top:16px"><div class="quote-block"><strong>Vestea bună:</strong> nu trebuie să fii tehnic. Trebuie doar să-i dai context bun — exact ca atunci când explici o sarcină unui coleg nou.</div></div>
-        <div class="slide-num">10 / 39</div>
+        <div class="slide-num">10 / 42</div>
       </div>
     </section>
 
@@ -609,7 +686,7 @@
             </tbody>
           </table>
         </div>
-        <div class="slide-num">11 / 39</div>
+        <div class="slide-num">11 / 42</div>
       </div>
     </section>
 
@@ -622,7 +699,7 @@
           <div class="incident-card"><div class="incident-top"><span class="incident-icon">⚖️</span><span class="incident-company">Avocat SUA</span><span class="incident-year">2023</span></div><p class="incident-desc">Un avocat a cerut ChatGPT cazuri juridice. AI-ul a inventat 6 cazuri inexistente cu citate plauzibile. Le-a depus în instanță — și a fost sancționat de judecător.</p><div class="incident-lesson"><b>Lecția:</b> AI-ul halucinează cu încredere. Verifică faptele și sursele.</div></div>
           <div class="incident-card"><div class="incident-top"><span class="incident-icon">🎭</span><span class="incident-company">Deepfake CEO</span><span class="incident-year">2024</span></div><p class="incident-desc">Un angajat dintr-o firmă din Hong Kong a intrat într-un apel video cu "CEO-ul" și colegii. Toți erau deepfake AI. A transferat 25M USD înainte să-și dea seama.</p><div class="incident-lesson"><b>Lecția:</b> verifică pe alt canal cererile financiare neobișnuite.</div></div>
         </div>
-        <div class="slide-num">12 / 39</div>
+        <div class="slide-num">12 / 42</div>
       </div>
     </section>
 
@@ -648,7 +725,7 @@
             <div class="vocab-tip"><b>💡 În practică:</b> cine ești, pentru cine scrii, ce ton, ce detalii — toate ajută.</div>
           </div>
         </div>
-        <div class="slide-num">13 / 39</div>
+        <div class="slide-num">13 / 42</div>
       </div>
     </section>
 
@@ -674,7 +751,7 @@
             <div class="vocab-tip"><b>💡 În practică:</b> cere-i sursele și verifică-le. Nu publica nimic neverificat.</div>
           </div>
         </div>
-        <div class="slide-num">14 / 39</div>
+        <div class="slide-num">14 / 42</div>
       </div>
     </section>
 
@@ -705,7 +782,7 @@
             <div class="vocab-tip"><b>💡 În practică:</b> facturi, bonuri, contracte scanate, cărți de vizită — toate.</div>
           </div>
         </div>
-        <div class="slide-num">15 / 39</div>
+        <div class="slide-num">15 / 42</div>
       </div>
     </section>
 
@@ -734,7 +811,7 @@
           </div>
         </div>
         <div style="margin-top:16px"><div class="quote-block"><strong>Recomandarea mea pentru un IMM:</strong> nu începe cu fine-tuning. Întâi storci tot din prompturi bune și Projects. Fine-tuning-ul e pasul avansat, scump, pentru când chiar ai depășit ce pot face acelea.</div></div>
-        <div class="slide-num">16 / 39</div>
+        <div class="slide-num">16 / 42</div>
       </div>
     </section>
 
@@ -756,7 +833,7 @@
             <div class="split-result"><b>Rezultat:</b> draft utilizabil din prima.</div>
           </div>
         </div>
-        <div class="slide-num">17 / 39</div>
+        <div class="slide-num">17 / 42</div>
       </div>
     </section>
 
@@ -781,7 +858,7 @@
             <div class="ex-line ex4"><div class="ex-tag">Restricții</div><div class="ex-seg">Fără promisiuni medicale.</div></div>
           </div>
         </div>
-        <div class="slide-num">18 / 39</div>
+        <div class="slide-num">18 / 42</div>
       </div>
     </section>
 
@@ -847,7 +924,7 @@
             </div>
           </div>
         </div>
-        <div class="slide-num">19 / 39</div>
+        <div class="slide-num">19 / 42</div>
       </div>
     </section>
 
@@ -878,7 +955,51 @@
             <div class="ex-ask">Acum scrie 5 titluri pentru cursul meu de marketing digital.</div>
           </div>
         </div>
-        <div class="slide-num">20 / 39</div>
+        <div class="slide-num">20 / 42</div>
+      </div>
+    </section>
+
+    <!-- 16e META-PROMPTING: AI scrie promptul pentru tine -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Prompt Engineering</div><h2 class="slide-title">Meta-prompting — pune AI-ul să-ți scrie promptul</h2><p class="slide-subtitle">Nu știi cum să formulezi? <b>Descrie ce vrei în cuvintele tale</b> și cere-i AI-ului să construiască el promptul perfect. Apoi îl folosești.</p></div>
+        <div class="meta-grid">
+          <div class="meta-pane you">
+            <span class="meta-step you"><span class="pill">1</span>Tu — cum scrii de obicei</span>
+            <div class="meta-bubble dim">"Vreau ceva pentru clienții care nu au plătit facturile."</div>
+            <div class="meta-result">❌ Vag → AI-ul ghicește → rezultat generic pe care îl rescrii.</div>
+          </div>
+          <div class="meta-pane ai">
+            <span class="meta-step ai"><span class="pill">2</span>AI-ul — promptul pe care ți-l scrie</span>
+            <div class="meta-bubble">"Ești <b>asistent comercial</b>. Compania mea vinde <b>materiale de construcții</b>. Scrie un email de reamintire către un client cu <b>factura restantă</b>, ton <b>ferm dar politicos</b>, max <b>120 de cuvinte</b>, fără să periclitezi relația."</div>
+            <div class="meta-result">✅ Prompt complet, cu rol + context + format — gata de folosit.</div>
+          </div>
+        </div>
+        <div class="meta-magic"><span class="lbl">Fraza magică — o copiezi ca atare</span>„Vreau să obțin <b>[rezultatul tău]</b>. <b>Scrie-mi tu promptul ideal</b> pentru asta. Dacă îți lipsesc detalii, <b>întreabă-mă întâi.</b>"</div>
+        <div class="slide-num">21 / 42</div>
+      </div>
+    </section>
+
+    <!-- 16f CLARIFY FIRST: interviul invers -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Prompt Engineering</div><h2 class="slide-title">„Întreabă-mă întâi" — lasă AI-ul să te intervieveze</h2><p class="slide-subtitle">În loc să nimerești tot contextul din prima, <b>ceri AI-ului să-ți pună întrebări</b>. Răspunzi scurt → el livrează exact ce-ți trebuie.</p></div>
+        <div class="clarify-grid">
+          <div class="chat-thread">
+            <div class="chat-msg user">Ajută-mă să fac o ofertă pentru un client nou. <b>Pune-mi întâi întrebările de care ai nevoie.</b></div>
+            <div class="chat-msg ai"><span class="who">AI</span>Sigur. 1) Ce serviciu oferi? 2) Cine e clientul? 3) Ce buget / preț? 4) Ce ton — formal sau cald?</div>
+            <div class="chat-msg user">1) Curățenie birouri. 2) Clinică privată, 400 m². 3) ~6.000 lei/lună. 4) Profesional, dar prietenos.</div>
+            <div class="chat-msg ai final"><span class="who">AI</span>Perfect. Iată oferta structurată: servicii incluse, frecvență, preț, termeni — gata de trimis. ✅</div>
+          </div>
+          <div class="clarify-side">
+            <div class="clarify-step"><div class="cs-num">1</div><div class="cs-text">Spui pe scurt ce vrei + „<b>pune-mi întrebările de care ai nevoie</b>"</div></div>
+            <div class="clarify-step"><div class="cs-num">2</div><div class="cs-text">AI-ul cere exact detaliile care lipsesc — <b>nu mai ghicești ce e important</b></div></div>
+            <div class="clarify-step"><div class="cs-num">3</div><div class="cs-text">Răspunzi în <b>2 rânduri</b>, fără să compui un prompt lung</div></div>
+            <div class="clarify-step"><div class="cs-num">4</div><div class="cs-text">Primești rezultatul <b>nimerit din prima</b>, pe contextul tău real</div></div>
+            <div class="clarify-why"><b>De ce funcționează:</b> AI-ul știe ce informație îi lipsește mai bine decât tine. Îl lași să conducă întrebările → economisești 2-3 reformulări.</div>
+          </div>
+        </div>
+        <div class="slide-num">22 / 42</div>
       </div>
     </section>
 
@@ -900,7 +1021,7 @@
             <div class="split-result"><b>Rezultat:</b> email trimis direct, zero editări.</div>
           </div>
         </div>
-        <div class="slide-num">21 / 39</div>
+        <div class="slide-num">23 / 42</div>
       </div>
     </section>
 
@@ -921,7 +1042,7 @@
           </div>
           <div class="practice-shot"><img src="assets/screenshots/chatgpt-custom-instructions.jpg" alt="ChatGPT Custom Instructions panel"/></div>
         </div>
-        <div class="slide-num">22 / 39</div>
+        <div class="slide-num">24 / 42</div>
       </div>
     </section>
 
@@ -959,7 +1080,7 @@
           </div>
         </div>
         <div class="eco-foot">Lucrezi în <b>Google?</b> → Gemini · în <b>Office?</b> → Claude · vrei <b>integrări + imagini?</b> → ChatGPT. Cel mai bun obicei: ai conturi la 2-3 și alegi după sarcină.</div>
-        <div class="slide-num">23 / 39</div>
+        <div class="slide-num">25 / 42</div>
       </div>
     </section>
 
@@ -1006,7 +1127,7 @@
           </div>
         </div>
         <div class="eco-foot">💡 Nu trebuie să le folosești pe toate. Dar e bine să știi că există alternative — mai <b>ieftine</b>, <b>open-source</b> sau <b>specializate</b> — pe lângă cei 3 mari.</div>
-        <div class="slide-num">24 / 39</div>
+        <div class="slide-num">26 / 42</div>
       </div>
     </section>
 
@@ -1021,7 +1142,7 @@
           <div class="gem-card"><div class="gem-icon-wrap" style="background:#FDF4FF">💎</div><div><p class="gem-title">Gems<span class="gem-badge">PRACTICĂ</span></p><p class="gem-desc">Asistenți Gemini personalizați, refolosibili.</p></div></div>
           <div class="gem-card" style="grid-column:1 / -1;background:var(--primary-ultra-light);border-color:#C7D2FE"><div class="gem-icon-wrap" style="background:#fff">🔵</div><div><p class="gem-title">Integrare Google Workspace — diferențiatorul<span class="gem-badge">PRACTICĂ</span></p><p class="gem-desc">Nativ în Gmail, Calendar, Docs, Drive. Lucrezi unde lucrezi deja.</p></div></div>
         </div>
-        <div class="slide-num">25 / 39</div>
+        <div class="slide-num">27 / 42</div>
       </div>
     </section>
 
@@ -1045,7 +1166,7 @@
           </div>
           <div class="practice-shot"><img src="assets/screenshots/gemini-workspace-apps.png" alt="Gemini Connected Apps - Google Workspace" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📷</span>Connected Apps<span class="pth">gemini-workspace-apps.png</span></div></div>
         </div>
-        <div class="slide-num">26 / 39</div>
+        <div class="slide-num">28 / 42</div>
       </div>
     </section>
 
@@ -1065,7 +1186,7 @@
           </div>
           <div class="practice-shot"><img src="assets/screenshots/gemini-gems-manager.png" alt="Manager Gems" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📷</span>Manager Gems<span class="pth">gemini-gems-manager.png</span></div></div>
         </div>
-        <div class="slide-num">27 / 39</div>
+        <div class="slide-num">29 / 42</div>
       </div>
     </section>
 
@@ -1085,7 +1206,7 @@
           </div>
           <div class="practice-shot"><img src="assets/screenshots/gemini-gem-new.png" alt="Formular Gem nou" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📷</span>Formular „Gem nou"<span class="pth">gemini-gem-new.png</span></div></div>
         </div>
-        <div class="slide-num">28 / 39</div>
+        <div class="slide-num">30 / 42</div>
       </div>
     </section>
 
@@ -1107,7 +1228,7 @@
           </div>
           <div class="practice-shot"><img src="assets/screenshots/gemini-veo-prompt.png" alt="Gemini Veo prompt box"/></div>
         </div>
-        <div class="slide-num">29 / 39</div>
+        <div class="slide-num">31 / 42</div>
       </div>
     </section>
 
@@ -1128,7 +1249,7 @@
           </div>
           <div class="practice-shot cover"><img src="assets/screenshots/gemini-canvas-1.png" alt="Gemini Canvas generated interactive output"/></div>
         </div>
-        <div class="slide-num">30 / 39</div>
+        <div class="slide-num">32 / 42</div>
       </div>
     </section>
 
@@ -1149,7 +1270,7 @@
           </div>
           <div class="practice-shot cover"><img src="assets/screenshots/nano-banana-product.jpg" alt="Nano Banana — imagine produs generată (ambalaj cafea)"/></div>
         </div>
-        <div class="slide-num">31 / 39</div>
+        <div class="slide-num">33 / 42</div>
       </div>
     </section>
 
@@ -1170,7 +1291,7 @@
           <div class="nb-case"><div class="nb-case-title">⚖️ Research reglementări</div><div class="nb-case-desc">Ce legi și norme ți se aplică</div></div>
         </div>
         <div style="margin-top:16px"><div class="quote-block"><strong>De ce contează:</strong> ore de research manual → minute, cu surse pe care le poți verifica. Disponibil în Gemini, ChatGPT și Perplexity.</div></div>
-        <div class="slide-num">32 / 39</div>
+        <div class="slide-num">34 / 42</div>
       </div>
     </section>
 
@@ -1191,7 +1312,7 @@
           <div class="nb-case"><div class="nb-case-title">🎙️ Audio Overview</div><div class="nb-case-desc">Documentele devin un podcast de 2 voci · 80+ limbi, inclusiv română</div></div>
           <div class="nb-case"><div class="nb-case-title">🤝 Onboarding</div><div class="nb-case-desc">Încarci datele unei companii → înțelegi rapid structura ei</div></div>
         </div>
-        <div class="slide-num">33 / 39</div>
+        <div class="slide-num">35 / 42</div>
       </div>
     </section>
 
@@ -1212,7 +1333,7 @@
           </div>
           <div class="practice-shot"><img src="assets/screenshots/notebooklm-3panel.gif" alt="NotebookLM interface with sources and chat"/></div>
         </div>
-        <div class="slide-num">34 / 39</div>
+        <div class="slide-num">36 / 42</div>
       </div>
     </section>
 
@@ -1229,7 +1350,7 @@
             <p class="card-title">Integrare cu Trello</p><p class="card-body">Claude primește task-uri, actualizează board-ul, trimite notificări — automat.</p>
           </div>
         </div>
-        <div class="slide-num">35 / 39</div>
+        <div class="slide-num">37 / 42</div>
       </div>
     </section>
 
@@ -1253,7 +1374,7 @@
             <div class="practice-shot" style="flex:1"><img src="assets/screenshots/claude-projects-2.png" alt="Claude Projects list"/></div>
           </div>
         </div>
-        <div class="slide-num">36 / 39</div>
+        <div class="slide-num">38 / 42</div>
       </div>
     </section>
 
@@ -1279,7 +1400,7 @@
           </div>
         </div>
         <div style="margin-top:16px"><div class="quote-block"><strong>Mesaj cheie:</strong> schimbările mici și consecvente bat adoptarea haotică a tuturor tool-urilor deodată.</div></div>
-        <div class="slide-num">37 / 39</div>
+        <div class="slide-num">39 / 42</div>
       </div>
     </section>
 
@@ -1302,37 +1423,60 @@
             <div class="check-item"><span class="chk">✅</span>Testează-le live; trainerul circulă și oferă feedback</div>
           </div>
         </div>
-        <div class="slide-num">38 / 39</div>
+        <div class="slide-num">40 / 42</div>
       </div>
     </section>
 
-    <!-- 30 WRAP -->
+    <!-- 30 HOMEWORK checklist -->
     <section>
       <div class="slide">
-        <div class="slide-header"><div class="slide-tag">Wrap-up &amp; Homework</div><h2 class="slide-title">Ce duci acasă azi</h2></div>
+        <div class="slide-header"><div class="slide-tag">Tema de acasă</div><h2 class="slide-title">Construiește-ți setup-ul AI</h2><p class="slide-subtitle">Bifează pe măsură ce le faci · adu rezultatele la <b>Sesiunea 2</b></p></div>
+        <div class="hw-grid">
+          <div class="hw-col core">
+            <div class="hw-col-title">🎯 Obligatoriu — setup-ul tău</div>
+            <div class="hw-item" onclick="this.classList.toggle('done')"><div class="hw-box"></div><div class="hw-text"><b>Personalizează-ți AI-ul</b> — Custom Instructions în ChatGPT sau „Instrucțiunile tale pentru Gemini" (cine ești, ton, română)</div></div>
+            <div class="hw-item" onclick="this.classList.toggle('done')"><div class="hw-box"></div><div class="hw-text"><b>Conectează Google Workspace</b> la Gemini (dacă lucrezi cu Gmail/Docs/Drive)</div></div>
+            <div class="hw-item" onclick="this.classList.toggle('done')"><div class="hw-box"></div><div class="hw-text"><b>Creează un Gem</b> în Gemini — un asistent pentru o sarcină reală (ofertă, email, screening CV)</div></div>
+            <div class="hw-item" onclick="this.classList.toggle('done')"><div class="hw-box"></div><div class="hw-text"><b>Creează un Project</b> în Claude — cu instrucțiuni + 1-2 fișiere de context</div></div>
+          </div>
+          <div class="hw-col bonus">
+            <div class="hw-col-title">⭐ Bonus — du-l mai departe</div>
+            <div class="hw-item" onclick="this.classList.toggle('done')"><div class="hw-box"></div><div class="hw-text"><b>Biblioteca ta de 10 prompturi</b> — folosește-le 5 zile la rând</div></div>
+            <div class="hw-item" onclick="this.classList.toggle('done')"><div class="hw-box"></div><div class="hw-text"><b>Deep Research</b> — testează-l pe o temă de business reală</div></div>
+            <div class="hw-item" onclick="this.classList.toggle('done')"><div class="hw-box"></div><div class="hw-text"><b>NotebookLM</b> — încarcă un document propriu și pune-i 3 întrebări</div></div>
+            <div class="hw-item" onclick="this.classList.toggle('done')"><div class="hw-box"></div><div class="hw-text"><b>Alege UN task repetitiv</b> și fă-ți un workflow pentru el</div></div>
+          </div>
+        </div>
+        <div style="margin-top:16px"><div class="quote-block"><strong>Nu le face perfect — fă-le o dată.</strong> Adu un exemplu concret din fiecare la Sesiunea 2; pornim de aici.</div></div>
+        <div class="slide-num">41 / 42</div>
+      </div>
+    </section>
+
+    <!-- 31 WRAP -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Wrap-up</div><h2 class="slide-title">Ce duci acasă azi</h2></div>
         <div class="wrapup-grid">
           <div class="wrapup-pane learned">
             <div class="wrapup-pane-title">✅ Azi ai învățat și ai făcut</div>
             <div class="check-list">
               <div class="check-item"><span class="chk">✓</span>Cum prezice un LLM următorul cuvânt din context</div>
               <div class="check-item"><span class="chk">✓</span>Vocabularul esențial și de ce contează (limite, halucinații)</div>
-              <div class="check-item"><span class="chk">✓</span>Cum construiești un prompt bun (5 componente)</div>
-              <div class="check-item"><span class="chk">✓</span>Ai personalizat ChatGPT și ai creat un Project</div>
+              <div class="check-item"><span class="chk">✓</span>Cum construiești un prompt bun (5 componente + few-shot)</div>
+              <div class="check-item"><span class="chk">✓</span>Ai personalizat AI-ul, ai creat un Gem și un Project</div>
               <div class="check-item"><span class="chk">✓</span>Ai generat video/imagini/prezentări + ai vorbit cu documentele tale</div>
             </div>
           </div>
           <div class="wrapup-pane hw">
-            <div class="wrapup-pane-title">📋 Homework — sesiunea viitoare</div>
+            <div class="wrapup-pane-title">🚀 Ce urmează</div>
             <div class="check-list">
-              <div class="check-item"><span class="chk">1.</span>Alege 1 task repetitiv din munca ta</div>
-              <div class="check-item"><span class="chk">2.</span>Construiește un prompt cu template-ul de azi</div>
-              <div class="check-item"><span class="chk">3.</span>Testează-l de 3 ori — notează ce a mers și ce nu</div>
-              <div class="check-item"><span class="chk">4.</span>Adu exemplul la sesiunea 2</div>
+              <div class="check-item"><span class="chk">📋</span>Ai tema de acasă — construiește-ți setup-ul AI</div>
+              <div class="check-item"><span class="chk">💬</span>Întrebări? Scrie-mi oricând între sesiuni</div>
             </div>
             <div class="preview-row"><div class="lbl">Sesiunea 2 →</div><div class="ttl">AI pentru comunicare, marketing și conținut</div></div>
           </div>
         </div>
-        <div class="slide-num">39 / 39</div>
+        <div class="slide-num">42 / 42</div>
       </div>
     </section>
 
