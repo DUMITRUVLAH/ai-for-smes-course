@@ -6,510 +6,555 @@
 <title>AI for SMEs — Platforma cursului</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet" />
 <style>
+/* ═══════════════════════════════════════════════
+   VECTOR 365 DESIGN SYSTEM — CSS CUSTOM PROPERTIES
+   ═══════════════════════════════════════════════ */
 :root {
-  --primary: #2D52D4;
-  --primary-light: #5B7CF7;
-  --primary-ultra-light: #EEF2FF;
-  --foreground: #0F172A;
-  --muted: #64748B;
-  --border: #E2E8F0;
-  --card: #FFFFFF;
-  --bg: #F8FAFC;
-  --success: #22C55E;
-  --warning: #F59E0B;
-  --locked: #94A3B8;
-  --radius: 16px;
-  --radius-sm: 10px;
-  --shadow: 0 4px 24px -4px rgba(15,23,42,0.10);
-  --shadow-lg: 0 16px 48px -8px rgba(15,23,42,0.18);
+  /* Semantic surface */
+  --background:   hsl(220, 20%, 97%);
+  --foreground:   hsl(222, 47%, 11%);
+  --card:         hsl(0, 0%, 100%);
+  --card-fg:      hsl(222, 47%, 11%);
+  --popover:      hsl(0, 0%, 100%);
+
+  /* Brand */
+  --primary:      hsl(228, 76%, 52%);
+  --primary-fg:   hsl(0, 0%, 100%);
+  --primary-muted: hsl(228, 76%, 96%);
+
+  /* Secondary */
+  --secondary:    hsl(220, 14%, 96%);
+  --secondary-fg: hsl(222, 47%, 11%);
+
+  /* Muted */
+  --muted:        hsl(220, 14%, 96%);
+  --muted-fg:     hsl(220, 9%, 46%);
+
+  /* State */
+  --destructive:  hsl(0, 84%, 60%);
+  --destructive-fg: hsl(0, 0%, 100%);
+  --success:      hsl(142, 71%, 45%);
+  --warning:      hsl(38, 92%, 50%);
+  --info:         hsl(210, 92%, 45%);
+
+  /* Form */
+  --border:       hsl(220, 13%, 91%);
+  --input:        hsl(220, 13%, 91%);
+  --ring:         hsl(228, 76%, 52%);
+
+  /* Radius */
+  --radius:       0.875rem;
+  --radius-md:    0.75rem;
+  --radius-sm:    0.625rem;
+  --radius-full:  9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px 0 hsl(222 47% 11% / 0.03), 0 1px 2px -1px hsl(222 47% 11% / 0.02);
+  --shadow-md: 0 4px 8px -2px hsl(222 47% 11% / 0.05), 0 2px 4px -2px hsl(222 47% 11% / 0.03);
+  --shadow-lg: 0 10px 20px -4px hsl(222 47% 11% / 0.06), 0 4px 8px -4px hsl(222 47% 11% / 0.03);
+  --shadow-xl: 0 20px 30px -8px hsl(222 47% 11% / 0.08), 0 8px 12px -6px hsl(222 47% 11% / 0.04);
+
+  /* Sidebar */
+  --sidebar-bg:       hsl(0, 0%, 100%);
+  --sidebar-fg:       hsl(222, 47%, 11%);
+  --sidebar-border:   hsl(220, 13%, 93%);
+  --sidebar-accent:   hsl(228, 76%, 96%);
+  --sidebar-accent-fg: hsl(228, 76%, 52%);
+  --sidebar-muted:    hsl(220, 9%, 46%);
+
+  /* Pastels */
+  --pastel-mint:     hsl(158, 64%, 92%);
+  --pastel-lavender: hsl(250, 80%, 94%);
+  --pastel-peach:    hsl(20, 100%, 93%);
+  --pastel-sky:      hsl(200, 80%, 92%);
+  --pastel-rose:     hsl(340, 80%, 94%);
+  --pastel-lemon:    hsl(50, 90%, 92%);
+  --pastel-teal:     hsl(175, 60%, 90%);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; }
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; border-color: var(--border); }
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 body {
   font-family: 'Onest', system-ui, sans-serif;
+  font-size: 1rem; line-height: 1.625;
   color: var(--foreground);
-  background: #0F172A;
+  background: var(--background);
   min-height: 100vh;
-  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ─── LAYOUT ─── */
+/* ── Layout ── */
 .app { display: flex; min-height: 100vh; }
 
-/* ─── SIDEBAR ─── */
+/* ══════════════════════════════
+   SIDEBAR
+   ══════════════════════════════ */
 .sidebar {
-  width: 280px;
+  width: 260px;
   min-height: 100vh;
-  background: #1E293B;
-  border-right: 1px solid rgba(255,255,255,0.06);
+  background: var(--sidebar-bg);
+  border-right: 1px solid var(--sidebar-border);
   display: flex;
   flex-direction: column;
   position: fixed;
   top: 0; left: 0; bottom: 0;
   z-index: 100;
   overflow-y: auto;
-}
-.sidebar-logo {
-  padding: 28px 24px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.sidebar-logo .brand {
-  display: flex; align-items: center; gap: 10px;
-}
-.sidebar-logo .brand-icon {
-  width: 36px; height: 36px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--primary) 0%, #7C3AED 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px; font-weight: 800; color: #fff;
-  flex-shrink: 0;
-}
-.sidebar-logo .brand-name {
-  font-size: 14px; font-weight: 700; color: #F1F5F9;
-  letter-spacing: -0.01em;
-}
-.sidebar-logo .brand-sub {
-  font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 1px;
+  box-shadow: var(--shadow-sm);
 }
 
-.sidebar-section {
-  padding: 16px 16px 8px;
+/* Logo area */
+.sidebar-logo {
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid var(--sidebar-border);
 }
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-icon {
+  width: 34px; height: 34px; border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--primary) 0%, hsl(250,76%,52%) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; color: #fff; flex-shrink: 0;
+  letter-spacing: -0.02em;
+}
+.brand-name { font-size: 13.5px; font-weight: 700; color: var(--foreground); letter-spacing: -0.01em; }
+.brand-sub { font-size: 11px; color: var(--muted-fg); margin-top: 1px; }
+
+/* Nav section */
+.sidebar-section { padding: 12px 12px 8px; }
 .sidebar-section-label {
   font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
-  text-transform: uppercase; color: rgba(255,255,255,0.3);
-  padding: 0 8px 8px;
+  text-transform: uppercase; color: var(--muted-fg);
+  padding: 0 6px 8px; display: block;
 }
 
+/* Lesson nav item */
 .lesson-item {
-  border-radius: 10px;
-  margin-bottom: 4px;
+  border-radius: var(--radius-md);
+  margin-bottom: 2px;
   cursor: pointer;
   transition: background 0.15s;
-  position: relative;
 }
-.lesson-item.active { background: rgba(45,82,212,0.25); }
-.lesson-item:not(.locked):hover { background: rgba(255,255,255,0.06); }
-.lesson-item.locked { cursor: not-allowed; opacity: 0.6; }
+.lesson-item.active { background: var(--sidebar-accent); }
+.lesson-item:not(.locked):hover:not(.active) { background: var(--muted); }
+.lesson-item.locked { cursor: not-allowed; }
+.lesson-item.locked .lesson-item-inner { opacity: 0.5; }
 
 .lesson-item-inner {
-  display: flex; align-items: center; gap: 12px;
-  padding: 10px 12px;
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 10px;
 }
 .lesson-number {
-  width: 28px; height: 28px; border-radius: 8px;
+  width: 26px; height: 26px; border-radius: var(--radius-sm);
   display: flex; align-items: center; justify-content: center;
-  font-size: 12px; font-weight: 800; flex-shrink: 0;
-  transition: all 0.2s;
+  font-size: 11.5px; font-weight: 800; flex-shrink: 0;
+  transition: all 0.15s;
 }
-.lesson-item.active .lesson-number,
-.lesson-item:not(.locked) .lesson-number {
-  background: var(--primary); color: #fff;
-}
-.lesson-item.locked .lesson-number {
-  background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.3);
-}
+.lesson-item.active .lesson-number { background: var(--primary); color: var(--primary-fg); }
+.lesson-item:not(.active):not(.locked) .lesson-number { background: var(--secondary); color: var(--foreground); }
+.lesson-item.locked .lesson-number { background: var(--secondary); color: var(--muted-fg); }
+
 .lesson-info { flex: 1; min-width: 0; }
-.lesson-title {
-  font-size: 13px; font-weight: 600; color: #F1F5F9;
-  line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.lesson-item.locked .lesson-title { color: rgba(255,255,255,0.3); }
-.lesson-meta {
-  font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 2px;
-}
-.lock-icon {
-  font-size: 12px; color: rgba(255,255,255,0.25);
-}
+.lesson-title { font-size: 13px; font-weight: 600; color: var(--foreground); line-height: 1.3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lesson-item.active .lesson-title { color: var(--primary); }
+.lesson-meta { font-size: 11px; color: var(--muted-fg); margin-top: 1px; }
+.lock-icon { font-size: 11px; color: var(--muted-fg); }
 
-.lesson-sub-items {
-  padding: 0 8px 8px 52px;
-}
+/* Sub-items */
+.lesson-sub-items { padding: 2px 8px 8px 48px; }
 .sub-item {
-  display: flex; align-items: center; gap: 8px;
-  padding: 5px 8px; border-radius: 7px;
-  font-size: 12px; color: rgba(255,255,255,0.5);
-  cursor: pointer; transition: all 0.15s;
+  display: flex; align-items: center; gap: 7px;
+  padding: 5px 8px; border-radius: var(--radius-sm);
+  font-size: 12px; color: var(--muted-fg);
+  cursor: pointer; transition: all 0.12s;
+  text-decoration: none;
 }
-.sub-item:hover { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.8); }
-.sub-item.active { color: #93C5FD; background: rgba(45,82,212,0.15); }
-.sub-item .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+.sub-item:hover { background: var(--muted); color: var(--foreground); }
+.sub-item.active { color: var(--primary); background: var(--primary-muted); font-weight: 600; }
+.sub-dot { width: 4px; height: 4px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
 
+/* Sidebar footer */
 .sidebar-footer {
   margin-top: auto;
-  padding: 16px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 12px 16px 16px;
+  border-top: 1px solid var(--sidebar-border);
 }
-.progress-bar-wrap { margin-bottom: 8px; }
-.progress-label { font-size: 11px; color: rgba(255,255,255,0.35); margin-bottom: 6px; display: flex; justify-content: space-between; }
-.progress-bar { height: 4px; background: rgba(255,255,255,0.08); border-radius: 100px; overflow: hidden; }
-.progress-fill { height: 100%; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); border-radius: 100px; width: 33%; }
+.progress-label {
+  font-size: 11px; color: var(--muted-fg);
+  display: flex; justify-content: space-between;
+  margin-bottom: 6px;
+}
+.progress-track { height: 4px; background: var(--secondary); border-radius: var(--radius-full); overflow: hidden; }
+.progress-fill { height: 100%; width: 33%; background: linear-gradient(90deg, var(--primary) 0%, hsl(250,76%,52%) 100%); border-radius: var(--radius-full); }
 
-/* ─── MAIN ─── */
+/* ══════════════════════════════
+   MAIN CONTENT
+   ══════════════════════════════ */
 .main {
-  margin-left: 280px;
+  margin-left: 260px;
   flex: 1;
   min-height: 100vh;
-  background: #F8FAFC;
+  background: var(--background);
 }
 
-/* ─── TOP NAV ─── */
+/* Top nav */
 .topnav {
-  background: #fff;
+  background: var(--card);
   border-bottom: 1px solid var(--border);
-  padding: 0 40px;
-  height: 60px;
+  padding: 0 32px;
+  height: 56px;
   display: flex; align-items: center; justify-content: space-between;
   position: sticky; top: 0; z-index: 50;
+  box-shadow: var(--shadow-sm);
 }
-.topnav-breadcrumb {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 13px; color: var(--muted);
-}
-.topnav-breadcrumb .sep { color: var(--border); }
-.topnav-breadcrumb .current { color: var(--foreground); font-weight: 600; }
-.topnav-right { display: flex; align-items: center; gap: 12px; }
-.badge {
+.breadcrumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted-fg); }
+.breadcrumb-sep { color: var(--border); }
+.breadcrumb-current { color: var(--foreground); font-weight: 600; }
+
+.nav-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  background: var(--primary-ultra-light); color: var(--primary);
-  font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
-  text-transform: uppercase; padding: 4px 10px; border-radius: 100px;
+  background: var(--primary-muted); color: var(--primary);
+  font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: var(--radius-full);
 }
-.badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); }
+.nav-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success); }
 
-/* ─── CONTENT ─── */
-.content {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 48px 40px 80px;
-}
+/* Page content */
+.content { max-width: 820px; margin: 0 auto; padding: 40px 32px 80px; }
 
-/* ─── LESSON HEADER ─── */
-.lesson-header { margin-bottom: 40px; }
-.lesson-tag {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--primary-ultra-light); color: var(--primary);
+/* Page header */
+.page-header { margin-bottom: 32px; }
+.lesson-kicker {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--primary-muted); color: var(--primary);
   font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 5px 12px; border-radius: 100px; margin-bottom: 16px;
+  padding: 4px 12px; border-radius: var(--radius-full); margin-bottom: 14px;
 }
-.lesson-tag .n {
-  background: var(--primary); color: #fff;
-  width: 18px; height: 18px; border-radius: 5px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px;
+.kicker-n {
+  background: var(--primary); color: var(--primary-fg);
+  width: 17px; height: 17px; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center; font-size: 9px;
 }
-.lesson-header h1 {
-  font-size: 36px; font-weight: 800; letter-spacing: -0.025em;
-  line-height: 1.1; color: var(--foreground); margin-bottom: 12px;
+.page-header h1 {
+  font-size: 2rem; font-weight: 800; letter-spacing: -0.025em;
+  line-height: 1.1; color: var(--foreground); margin-bottom: 10px;
 }
-.lesson-header p {
-  font-size: 17px; color: var(--muted); line-height: 1.6; max-width: 600px;
-}
+.page-header p { font-size: 15px; color: var(--muted-fg); line-height: 1.6; max-width: 540px; }
 
-/* ─── SECTION CARDS ─── */
+/* ══════════════════════════════
+   SECTION CARDS
+   ══════════════════════════════ */
 .section-card {
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s;
 }
+.section-card:hover { box-shadow: var(--shadow-md); }
+
 .section-card-header {
   display: flex; align-items: center; gap: 14px;
-  padding: 20px 24px;
+  padding: 18px 20px;
   border-bottom: 1px solid var(--border);
-  background: var(--bg);
+  background: var(--card);
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.12s;
 }
-.section-card-header:hover { background: #F1F5F9; }
+.section-card-header:hover { background: var(--background); }
+
 .section-icon {
-  width: 40px; height: 40px; border-radius: 10px;
+  width: 38px; height: 38px; border-radius: var(--radius-md);
   display: flex; align-items: center; justify-content: center;
-  font-size: 18px; flex-shrink: 0;
+  font-size: 17px; flex-shrink: 0;
 }
-.section-icon.blue { background: var(--primary-ultra-light); }
-.section-icon.purple { background: #F3E8FF; }
-.section-icon.green { background: #F0FDF4; }
-.section-icon.orange { background: #FFF7ED; }
+.section-icon.lavender { background: var(--pastel-lavender); }
+.section-icon.mint     { background: var(--pastel-mint); }
+.section-icon.sky      { background: var(--pastel-sky); }
+.section-icon.peach    { background: var(--pastel-peach); }
+
+.section-card-title h2 { font-size: 14.5px; font-weight: 700; color: var(--foreground); }
+.section-card-title p  { font-size: 12.5px; color: var(--muted-fg); margin-top: 1px; }
 .section-card-title { flex: 1; }
-.section-card-title h2 { font-size: 16px; font-weight: 700; color: var(--foreground); }
-.section-card-title p { font-size: 13px; color: var(--muted); margin-top: 2px; }
+
 .section-toggle {
-  font-size: 12px; color: var(--muted);
-  background: none; border: none; cursor: pointer;
-  padding: 6px; transition: transform 0.2s;
+  font-size: 11px; color: var(--muted-fg); background: none; border: none;
+  cursor: pointer; padding: 4px; transition: transform 0.2s; display: flex;
 }
 .section-toggle.open { transform: rotate(180deg); }
 
-.section-card-body { padding: 24px; }
+.section-card-body { padding: 20px; }
 
-/* ─── PRESENTATION EMBED ─── */
-.presentation-embed {
-  background: #0F172A;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  aspect-ratio: 16/9;
-  position: relative;
-  margin-bottom: 16px;
+/* ══════════════════════════════
+   BUTTONS
+   ══════════════════════════════ */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: 'Onest', sans-serif; font-size: 13.5px; font-weight: 600;
+  padding: 9px 18px; border-radius: var(--radius-md); border: 1px solid transparent;
+  cursor: pointer; text-decoration: none; transition: all 0.15s; line-height: 1;
+  white-space: nowrap;
 }
-.presentation-embed iframe {
-  width: 100%; height: 100%; border: none;
-}
-.presentation-placeholder {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  height: 100%; color: rgba(255,255,255,0.4); gap: 12px;
-}
-.presentation-placeholder .icon { font-size: 48px; }
-.presentation-placeholder p { font-size: 14px; text-align: center; max-width: 280px; line-height: 1.5; }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--primary); color: #fff;
-  font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600;
-  padding: 10px 20px; border-radius: 10px; border: none; cursor: pointer;
-  text-decoration: none; transition: all 0.15s;
-}
-.btn-primary:hover { background: #2345BE; transform: translateY(-1px); }
-.btn-outline {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: #fff; color: var(--foreground);
-  font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 600;
-  padding: 10px 20px; border-radius: 10px; border: 1px solid var(--border); cursor: pointer;
-  text-decoration: none; transition: all 0.15s;
-}
-.btn-outline:hover { background: var(--bg); border-color: #CBD5E1; }
-.btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+.btn-primary { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+.btn-primary:hover { background: hsl(228, 76%, 44%); border-color: hsl(228, 76%, 44%); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+.btn-outline { background: var(--card); color: var(--foreground); border-color: var(--border); }
+.btn-outline:hover { background: var(--background); border-color: hsl(220,13%,80%); }
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
 
-/* ─── PROMPT CARDS ─── */
+/* Presentation placeholder */
+.pres-placeholder {
+  background: var(--secondary);
+  border-radius: var(--radius-md);
+  padding: 40px 24px;
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; gap: 10px; margin-bottom: 14px;
+  border: 1px solid var(--border);
+}
+.pres-placeholder .icon { font-size: 40px; opacity: 0.4; }
+.pres-placeholder p { font-size: 13px; color: var(--muted-fg); max-width: 260px; line-height: 1.5; }
+
+/* ══════════════════════════════
+   PROMPT FILTERING NAV
+   ══════════════════════════════ */
+.sections-nav { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 20px; }
+.section-nav-btn {
+  font-family: 'Onest', sans-serif; font-size: 12px; font-weight: 600;
+  padding: 5px 12px; border-radius: var(--radius-full);
+  border: 1px solid var(--border); background: var(--card);
+  color: var(--muted-fg); cursor: pointer; transition: all 0.12s;
+}
+.section-nav-btn:hover { border-color: var(--primary); color: var(--primary); }
+.section-nav-btn.active { background: var(--primary); color: var(--primary-fg); border-color: var(--primary); }
+
+/* ══════════════════════════════
+   PROMPT SECTION HEADERS
+   ══════════════════════════════ */
+.prompt-section-header {
+  display: flex; align-items: center; gap: 9px;
+  padding: 16px 0 10px; border-bottom: 1px solid var(--border); margin-bottom: 10px;
+}
+.prompt-section-header h3 { font-size: 13.5px; font-weight: 700; color: var(--foreground); }
+.psec-tag {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  background: var(--primary); color: var(--primary-fg);
+  padding: 3px 9px; border-radius: var(--radius-full);
+}
+.psec-tag.purple { background: hsl(250,76%,52%); }
+
+/* ══════════════════════════════
+   PROMPT CARDS
+   ══════════════════════════════ */
 .prompt-card {
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  margin-bottom: 12px;
-  background: #fff;
+  margin-bottom: 10px;
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.15s;
 }
+.prompt-card:hover { box-shadow: var(--shadow-md); }
+
 .prompt-card-header {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 12px 16px 10px; background: var(--bg);
-  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 11px 14px 9px; background: var(--background); border-bottom: 1px solid var(--border);
 }
 .prompt-id {
   flex-shrink: 0;
-  font-family: ui-monospace, monospace; font-size: 10px; font-weight: 700;
-  color: #fff; background: var(--primary);
-  padding: 3px 8px; border-radius: 6px; margin-top: 2px;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 10px; font-weight: 700;
+  color: var(--primary-fg); background: var(--primary);
+  padding: 2px 7px; border-radius: 5px; margin-top: 2px;
 }
-.prompt-id.purple { background: #7C3AED; }
-.prompt-titles { flex: 1; }
-.prompt-title { font-size: 14px; font-weight: 700; line-height: 1.3; }
-.prompt-when { font-size: 12px; color: var(--muted); margin-top: 3px; }
-.prompt-when b { color: var(--foreground); }
+.prompt-id.purple { background: hsl(250,76%,52%); }
+.prompt-title-text { font-size: 13.5px; font-weight: 700; line-height: 1.3; }
+.prompt-when { font-size: 11.5px; color: var(--muted-fg); margin-top: 2px; }
+.prompt-when b { color: var(--foreground); font-weight: 600; }
 .prompt-tool-badge {
-  flex-shrink: 0; font-size: 10px; font-weight: 700; letter-spacing: 0.04em;
-  text-transform: uppercase; color: var(--muted);
-  background: #fff; border: 1px solid var(--border);
-  padding: 3px 9px; border-radius: 100px; white-space: nowrap; margin-top: 2px;
+  flex-shrink: 0; margin-left: auto;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+  color: var(--muted-fg); background: var(--card); border: 1px solid var(--border);
+  padding: 2px 8px; border-radius: var(--radius-full); white-space: nowrap; margin-top: 2px;
 }
-.prompt-code {
-  position: relative; padding: 0;
-}
+.prompt-code { position: relative; }
 .prompt-code pre {
-  margin: 0; padding: 14px 16px;
+  margin: 0; padding: 13px 14px;
   font-family: ui-monospace, 'SF Mono', Menlo, monospace;
-  font-size: 12.5px; line-height: 1.65; color: #1E293B;
+  font-size: 12px; line-height: 1.65; color: var(--foreground);
   white-space: pre-wrap; word-wrap: break-word;
-  border-left: 3px solid var(--primary-light);
+  border-left: 3px solid var(--primary);
 }
-.prompt-card.purple .prompt-code pre { border-left-color: #A78BFA; }
+.prompt-card.purple .prompt-code pre { border-left-color: hsl(250,76%,52%); }
 .prompt-code pre mark {
-  background: #FEF3C7; color: #92400E;
-  font-weight: 600; border-radius: 3px; padding: 0 3px;
+  background: var(--pastel-lemon); color: hsl(38,92%,25%);
+  font-weight: 600; border-radius: 3px; padding: 1px 3px;
 }
 .copy-btn {
-  position: absolute; top: 10px; right: 10px;
+  position: absolute; top: 8px; right: 8px;
   font-family: 'Onest', sans-serif; font-size: 11px; font-weight: 700;
-  color: var(--primary); background: #fff;
-  border: 1px solid var(--border); border-radius: 7px;
-  padding: 4px 10px; cursor: pointer; transition: all 0.15s;
-}
-.copy-btn:hover { background: var(--primary-ultra-light); }
-.copy-btn.copied { color: #16A34A; border-color: #86EFAC; background: #F0FDF4; }
-
-/* ─── TOOLS GRID ─── */
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-bottom: 16px;
-}
-.tool-card {
+  color: var(--primary); background: var(--card);
   border: 1px solid var(--border); border-radius: var(--radius-sm);
-  padding: 16px; background: #fff; text-decoration: none; color: inherit;
-  transition: all 0.15s; display: flex; align-items: flex-start; gap: 12px;
+  padding: 3px 9px; cursor: pointer; transition: all 0.12s;
 }
-.tool-card:hover { border-color: var(--primary-light); box-shadow: 0 4px 12px rgba(45,82,212,0.08); transform: translateY(-1px); }
-.tool-logo {
-  width: 36px; height: 36px; border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; overflow: hidden; background: #fff;
-  border: 1px solid var(--border);
-}
-.tool-logo img { width: 24px; height: 24px; object-fit: contain; }
-.tool-info h4 { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
-.tool-info p { font-size: 12px; color: var(--muted); line-height: 1.4; }
-.tool-info .best { font-size: 11px; font-weight: 700; color: var(--primary); margin-top: 4px; }
-.tool-link {
-  display: inline-flex; align-items: center; gap: 4px;
-  font-size: 12px; font-weight: 600; color: var(--primary);
-  text-decoration: none; margin-top: 6px;
-  transition: gap 0.15s;
-}
-.tool-link:hover { gap: 7px; }
+.copy-btn:hover { background: var(--primary-muted); }
+.copy-btn.copied { color: var(--success); border-color: hsl(142,71%,70%); background: hsl(142,71%,96%); }
 
-/* ─── CHECKLIST ─── */
+/* ══════════════════════════════
+   TOOLS GRID
+   ══════════════════════════════ */
+.tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 14px; }
+.tool-card {
+  border: 1px solid var(--border); border-radius: var(--radius-md);
+  padding: 14px; background: var(--card);
+  text-decoration: none; color: inherit;
+  display: flex; align-items: flex-start; gap: 11px;
+  transition: all 0.15s; box-shadow: var(--shadow-sm);
+}
+.tool-card:hover {
+  border-color: var(--primary); box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+.tool-logo {
+  width: 34px; height: 34px; border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; border: 1px solid var(--border); background: var(--card);
+}
+.tool-logo img { width: 22px; height: 22px; object-fit: contain; }
+.tool-info h4 { font-size: 13.5px; font-weight: 700; margin-bottom: 2px; }
+.tool-info p  { font-size: 11.5px; color: var(--muted-fg); line-height: 1.4; }
+.tool-best    { font-size: 11px; font-weight: 700; color: var(--primary); margin-top: 4px; }
+.tool-link    { display: inline-flex; align-items: center; gap: 3px; font-size: 11.5px; font-weight: 600; color: var(--primary); text-decoration: none; margin-top: 5px; }
+.tool-link:hover { text-decoration: underline; }
+
+/* ══════════════════════════════
+   CALLOUTS
+   ══════════════════════════════ */
+.callout {
+  border-radius: var(--radius-md); padding: 14px 16px;
+  margin-bottom: 14px; font-size: 13.5px; line-height: 1.6;
+}
+.callout.tip { background: var(--primary-muted); border: 1px solid hsl(228,76%,85%); color: hsl(228,76%,30%); }
+.callout.warn { background: hsl(20,100%,96%); border: 1px solid hsl(20,100%,80%); color: hsl(20,80%,30%); }
+.callout.success { background: hsl(142,71%,94%); border: 1px solid hsl(142,71%,75%); color: hsl(142,71%,25%); }
+.callout-title { font-weight: 800; display: block; margin-bottom: 2px; }
+
+/* ══════════════════════════════
+   CHECKLIST
+   ══════════════════════════════ */
 .checklist-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 12px 0; border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 11px;
+  padding: 11px 0; border-bottom: 1px solid var(--border);
 }
 .checklist-item:last-child { border-bottom: none; }
 .check-box {
-  width: 20px; height: 20px; border: 2px solid var(--primary);
-  border-radius: 6px; flex-shrink: 0; margin-top: 1px;
-  cursor: pointer; transition: all 0.15s;
+  width: 18px; height: 18px; border: 2px solid var(--primary);
+  border-radius: 5px; flex-shrink: 0; margin-top: 2px;
+  cursor: pointer; transition: all 0.12s;
   display: flex; align-items: center; justify-content: center;
 }
 .check-box.checked { background: var(--primary); border-color: var(--primary); }
-.check-box .check { color: #fff; font-size: 12px; display: none; }
-.check-box.checked .check { display: block; }
-.checklist-item label {
-  font-size: 14px; line-height: 1.5; cursor: pointer;
-  transition: color 0.15s;
-}
-.checklist-item.done label { text-decoration: line-through; color: var(--muted); }
+.check-mark { color: #fff; font-size: 11px; display: none; font-weight: 800; }
+.check-box.checked .check-mark { display: block; }
+.checklist-item label { font-size: 13.5px; line-height: 1.5; cursor: pointer; }
+.checklist-item.done label { text-decoration: line-through; color: var(--muted-fg); }
 
-/* ─── CALLOUT BOXES ─── */
-.callout {
-  border-radius: var(--radius-sm); padding: 16px 18px;
-  margin-bottom: 16px; font-size: 14px; line-height: 1.6;
-}
-.callout.tip { background: var(--primary-ultra-light); border: 1px solid #C7D2FE; }
-.callout.warn { background: #FEF2F2; border: 1px solid #FECACA; color: #7F1D1D; }
-.callout.success { background: #F0FDF4; border: 1px solid #86EFAC; color: #14532D; }
-.callout .callout-title { font-weight: 800; margin-bottom: 4px; display: block; }
-
-/* ─── HOMEWORK ─── */
+/* ══════════════════════════════
+   HOMEWORK BOX
+   ══════════════════════════════ */
 .homework-box {
-  background: linear-gradient(135deg, var(--primary-ultra-light) 0%, #F3E8FF 100%);
-  border: 2px dashed var(--primary); border-radius: var(--radius);
-  padding: 28px 28px; margin-top: 16px;
+  background: linear-gradient(135deg, var(--primary-muted) 0%, var(--pastel-lavender) 100%);
+  border: 1.5px dashed var(--primary);
+  border-radius: var(--radius); padding: 24px; margin-top: 14px;
 }
-.homework-box h3 {
-  font-size: 18px; font-weight: 800; margin-bottom: 8px;
-  color: var(--foreground); display: flex; align-items: center; gap: 10px;
-}
-.homework-box p { font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px; }
+.homework-box h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center; gap: 9px; }
+.homework-box p  { font-size: 13.5px; color: hsl(222,47%,25%); line-height: 1.6; margin-bottom: 14px; }
 
-/* ─── TEMPLATE BOX ─── */
+/* Template box */
 .template-box {
-  background: #1E293B; border-radius: var(--radius-sm);
-  padding: 20px 22px; margin-bottom: 16px;
-  font-family: ui-monospace, monospace; font-size: 13px; line-height: 1.9;
-  color: rgba(255,255,255,0.8);
+  background: var(--foreground); border-radius: var(--radius-md);
+  padding: 18px 20px; margin-bottom: 14px;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 12.5px; line-height: 1.9; color: hsl(220,14%,75%);
 }
-.template-box .tpl-mark {
+.tpl-mark {
   background: var(--primary); color: #fff;
-  border-radius: 5px; padding: 1px 8px; font-weight: 700;
+  border-radius: 4px; padding: 1px 7px; font-weight: 700;
 }
 
-/* ─── SECTION NAV ─── */
-.sections-nav {
-  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px;
-}
-.section-nav-btn {
-  font-family: 'Onest', sans-serif; font-size: 12px; font-weight: 600;
-  padding: 6px 14px; border-radius: 100px; border: 1px solid var(--border);
-  background: #fff; color: var(--muted); cursor: pointer; transition: all 0.15s;
-}
-.section-nav-btn:hover { border-color: var(--primary-light); color: var(--primary); }
-.section-nav-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
-
-/* ─── LOCKED STATE ─── */
+/* ══════════════════════════════
+   LOCKED STATE
+   ══════════════════════════════ */
 .locked-overlay {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  min-height: 400px; text-align: center; padding: 48px;
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; min-height: 420px; text-align: center; padding: 48px;
 }
 .lock-graphic {
-  width: 80px; height: 80px; background: #F1F5F9; border-radius: 20px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 36px; margin-bottom: 20px;
-  border: 2px solid var(--border);
+  width: 72px; height: 72px; background: var(--secondary);
+  border-radius: var(--radius); display: flex; align-items: center;
+  justify-content: center; font-size: 32px; margin-bottom: 18px;
+  border: 1px solid var(--border);
 }
-.locked-overlay h2 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
-.locked-overlay p { font-size: 15px; color: var(--muted); max-width: 380px; line-height: 1.6; }
+.locked-overlay h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+.locked-overlay p  { font-size: 14px; color: var(--muted-fg); max-width: 340px; line-height: 1.6; }
 
-/* ─── MOBILE ─── */
-.mobile-nav-toggle {
-  display: none; position: fixed; top: 16px; left: 16px; z-index: 200;
-  background: var(--primary); color: #fff; border: none; border-radius: 10px;
-  width: 40px; height: 40px; font-size: 18px; cursor: pointer; align-items: center; justify-content: center;
+/* ══════════════════════════════
+   TOAST
+   ══════════════════════════════ */
+#toast {
+  position: fixed; bottom: 20px; right: 20px; z-index: 999;
+  background: var(--foreground); color: hsl(220,14%,96%);
+  padding: 11px 18px; border-radius: var(--radius-md);
+  font-family: 'Onest', sans-serif; font-size: 13.5px; font-weight: 500;
+  box-shadow: var(--shadow-xl);
+  transform: translateY(72px); opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events: none;
 }
 
+/* ══════════════════════════════
+   MOBILE TOGGLE
+   ══════════════════════════════ */
+.mobile-toggle {
+  display: none; position: fixed; top: 14px; left: 14px; z-index: 200;
+  background: var(--primary); color: #fff; border: none;
+  border-radius: var(--radius-md); width: 38px; height: 38px;
+  font-size: 17px; cursor: pointer; align-items: center; justify-content: center;
+  box-shadow: var(--shadow-md);
+}
+
+/* ══════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ══════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════ */
 @media (max-width: 768px) {
-  .sidebar {
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-  }
+  .sidebar { transform: translateX(-100%); transition: transform 0.25s ease; }
   .sidebar.open { transform: translateX(0); }
   .main { margin-left: 0; }
-  .topnav { padding: 0 20px 0 64px; }
-  .content { padding: 24px 20px 60px; }
+  .topnav { padding: 0 16px 0 60px; }
+  .content { padding: 24px 16px 60px; }
   .tools-grid { grid-template-columns: 1fr; }
-  .mobile-nav-toggle { display: flex; }
+  .mobile-toggle { display: flex; }
 }
-
-/* ─── PROMPT SECTIONS ─── */
-.prompt-section-header {
-  display: flex; align-items: center; gap: 10px;
-  padding: 16px 0 10px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 12px;
-}
-.prompt-section-header h3 {
-  font-size: 15px; font-weight: 800; color: var(--foreground);
-}
-.prompt-section-tag {
-  font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-  background: var(--primary); color: #fff;
-  padding: 3px 9px; border-radius: 100px;
-}
-.prompt-section-tag.purple { background: #7C3AED; }
-
-/* ─── TABS ─── */
-.tab-bar {
-  display: flex; border-bottom: 2px solid var(--border); margin-bottom: 24px;
-}
-.tab-btn {
-  font-family: 'Onest', sans-serif; font-size: 13px; font-weight: 600;
-  color: var(--muted); background: none; border: none;
-  padding: 12px 20px; cursor: pointer; border-bottom: 2px solid transparent;
-  margin-bottom: -2px; transition: all 0.15s;
-}
-.tab-btn:hover { color: var(--foreground); }
-.tab-btn.active { color: var(--primary); border-bottom-color: var(--primary); }
-.tab-pane { display: none; }
-.tab-pane.active { display: block; }
-
 </style>
 </head>
 <body>
 
-<button class="mobile-nav-toggle" onclick="toggleSidebar()" aria-label="Meniu">☰</button>
+<button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Deschide meniu">☰</button>
 
 <div class="app">
-  <!-- ─── SIDEBAR ─── -->
-  <aside class="sidebar" id="sidebar">
+  <!-- ══════════════════════════════
+       SIDEBAR
+       ══════════════════════════════ -->
+  <aside class="sidebar" id="sidebar" role="navigation" aria-label="Navigare curs">
     <div class="sidebar-logo">
       <div class="brand">
         <div class="brand-icon">AI</div>
@@ -521,9 +566,9 @@ body {
     </div>
 
     <div class="sidebar-section">
-      <div class="sidebar-section-label">Lecții</div>
+      <span class="sidebar-section-label">Lecții</span>
 
-      <!-- Lecția 1 -->
+      <!-- Lecția 1 — activă -->
       <div class="lesson-item active" onclick="showLesson(1)">
         <div class="lesson-item-inner">
           <div class="lesson-number">1</div>
@@ -533,10 +578,10 @@ body {
           </div>
         </div>
         <div class="lesson-sub-items" id="sub1">
-          <div class="sub-item active" onclick="scrollToSection(event,'prezentare')"><span class="dot"></span> Prezentare</div>
-          <div class="sub-item" onclick="scrollToSection(event,'prompturi')"><span class="dot"></span> Bibliotecă prompturi</div>
-          <div class="sub-item" onclick="scrollToSection(event,'tooluri')"><span class="dot"></span> Tool-uri</div>
-          <div class="sub-item" onclick="scrollToSection(event,'tema')"><span class="dot"></span> Temă &amp; checklist</div>
+          <div class="sub-item active" onclick="scrollToSection(event,'prezentare')"><span class="sub-dot"></span>Prezentare</div>
+          <div class="sub-item" onclick="scrollToSection(event,'prompturi')"><span class="sub-dot"></span>Bibliotecă prompturi</div>
+          <div class="sub-item" onclick="scrollToSection(event,'tooluri')"><span class="sub-dot"></span>Tool-uri</div>
+          <div class="sub-item" onclick="scrollToSection(event,'tema')"><span class="sub-dot"></span>Temă &amp; checklist</div>
         </div>
       </div>
 
@@ -566,84 +611,67 @@ body {
     </div>
 
     <div class="sidebar-footer">
-      <div class="progress-bar-wrap">
-        <div class="progress-label">
-          <span>Progres curs</span>
-          <span>1 / 3 lecții</span>
-        </div>
-        <div class="progress-bar">
-          <div class="progress-fill"></div>
-        </div>
-      </div>
+      <div class="progress-label"><span>Progres curs</span><span>1 / 3</span></div>
+      <div class="progress-track"><div class="progress-fill"></div></div>
     </div>
   </aside>
 
-  <!-- ─── MAIN ─── -->
-  <main class="main">
-    <nav class="topnav">
-      <div class="topnav-breadcrumb">
+  <!-- ══════════════════════════════
+       MAIN
+       ══════════════════════════════ -->
+  <main class="main" id="main-content">
+    <nav class="topnav" aria-label="Breadcrumb">
+      <div class="breadcrumb">
         <span>AI for SMEs</span>
-        <span class="sep">›</span>
-        <span class="current" id="breadcrumb-current">Lecția 1</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current" id="breadcrumb-current">Lecția 1</span>
       </div>
-      <div class="topnav-right">
-        <div class="badge"><span class="dot"></span> Sesiunea 1 activă</div>
-      </div>
+      <div class="nav-badge"><span class="nav-badge-dot"></span>Sesiunea 1 activă</div>
     </nav>
 
-    <!-- ═══════════════ LECȚIA 1 ═══════════════ -->
+    <!-- ═══ LECȚIA 1 ═══ -->
     <div class="content" id="lesson-1">
-
-      <div class="lesson-header">
-        <div class="lesson-tag">
-          <div class="n">1</div>
-          Sesiunea 1
-        </div>
+      <div class="page-header">
+        <div class="lesson-kicker"><div class="kicker-n">1</div>Sesiunea 1</div>
         <h1>Fundamente AI &amp;<br>Prompt Engineering</h1>
-        <p>Totul de care ai nevoie din prima sesiune: prezentarea, biblioteca completă de prompturi, instrumentele și tema pentru acasă.</p>
+        <p>Prezentarea, biblioteca completă de prompturi, instrumentele recomandate și tema pentru acasă — totul din prima sesiune.</p>
       </div>
 
       <!-- ── PREZENTARE ── -->
       <div class="section-card" id="prezentare">
-        <div class="section-card-header" onclick="toggleSection('prezentare-body', this)">
-          <div class="section-icon blue">📊</div>
+        <div class="section-card-header" onclick="toggleSection('prezentare-body', this)" aria-expanded="true">
+          <div class="section-icon lavender">📊</div>
           <div class="section-card-title">
             <h2>Prezentarea sesiunii</h2>
             <p>Slide-urile complete din sesiunea 1</p>
           </div>
-          <button class="section-toggle open">▼</button>
+          <button class="section-toggle open" aria-label="Restrânge secțiunea">▼</button>
         </div>
         <div class="section-card-body" id="prezentare-body">
-          <div class="presentation-embed">
-            <div class="presentation-placeholder">
-              <div class="icon">🎞️</div>
-              <p>Deschide prezentarea în tab nou pentru a o vizualiza complet</p>
-            </div>
+          <div class="pres-placeholder">
+            <div class="icon">🎞️</div>
+            <p>Deschide prezentarea în tab nou pentru a o vizualiza complet</p>
           </div>
           <div class="btn-row">
-            <a href="../session-01.html" target="_blank" class="btn-primary">
-              ↗ Deschide prezentarea
-            </a>
-            <a href="../session-01-prompts.html" target="_blank" class="btn-outline">
-              📄 Biblioteca de prompturi (PDF)
-            </a>
+            <a href="../session-01.html" target="_blank" class="btn btn-primary">↗ Deschide prezentarea</a>
+            <a href="../session-01-prompts.html" target="_blank" class="btn btn-outline">📄 Biblioteca PDF</a>
           </div>
         </div>
       </div>
 
       <!-- ── PROMPTURI ── -->
       <div class="section-card" id="prompturi">
-        <div class="section-card-header" onclick="toggleSection('prompturi-body', this)">
-          <div class="section-icon purple">⚡</div>
+        <div class="section-card-header" onclick="toggleSection('prompturi-body', this)" aria-expanded="true">
+          <div class="section-icon lavender">⚡</div>
           <div class="section-card-title">
             <h2>Biblioteca de prompturi</h2>
             <p>80+ prompturi gata de folosit, organizate pe categorii</p>
           </div>
-          <button class="section-toggle open">▼</button>
+          <button class="section-toggle open" aria-label="Restrânge secțiunea">▼</button>
         </div>
         <div class="section-card-body" id="prompturi-body">
 
-          <div class="sections-nav">
+          <div class="sections-nav" role="group" aria-label="Filtrează după categorie">
             <button class="section-nav-btn active" onclick="filterSection(this,'all')">Toate</button>
             <button class="section-nav-btn" onclick="filterSection(this,'A')">A · Fundamentale</button>
             <button class="section-nav-btn" onclick="filterSection(this,'B')">B · Email</button>
@@ -652,414 +680,198 @@ body {
             <button class="section-nav-btn" onclick="filterSection(this,'E')">E · Research</button>
             <button class="section-nav-btn" onclick="filterSection(this,'F')">F · Documente</button>
             <button class="section-nav-btn" onclick="filterSection(this,'G')">G · Productivitate</button>
-            <button class="section-nav-btn" onclick="filterSection(this,'H')">H · Pe industrie</button>
+            <button class="section-nav-btn" onclick="filterSection(this,'H')">H · Industrie</button>
             <button class="section-nav-btn" onclick="filterSection(this,'I')">I · Setup</button>
           </div>
 
           <div id="prompts-container">
 
-            <!-- ═ SECTION A ═ -->
+            <!-- ═ A ═ -->
             <div class="prompt-section" data-section="A">
               <div class="prompt-section-header">
-                <span class="prompt-section-tag purple">A</span>
+                <span class="psec-tag purple">A</span>
                 <h3>Fundamentale &amp; meta-prompturi</h3>
               </div>
-              <div class="prompt-card purple">
-                <div class="prompt-card-header">
-                  <span class="prompt-id purple">A1</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Îmbunătățește-mi promptul</div>
-                    <div class="prompt-when"><b>Când:</b> ai o idee vagă și vrei un prompt profesionist.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Ești expert în prompt engineering. Vreau să obțin de la tine [REZULTATUL DORIT, ex: o descriere de produs].
+              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">A1</span><div class="prompt-titles"><div class="prompt-title-text">Îmbunătățește-mi promptul</div><div class="prompt-when"><b>Când:</b> ai o idee vagă și vrei un prompt profesionist.</div></div></div><div class="prompt-code"><pre>Ești expert în prompt engineering. Vreau să obțin de la tine [REZULTATUL DORIT, ex: o descriere de produs].
 Pune-mi 3-5 întrebări scurte care îți lipsesc pentru a face treaba excelent.
-După ce răspund, scrie promptul perfect (rol, context, sarcină, format, restricții) și apoi execută-l.</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card purple">
-                <div class="prompt-card-header">
-                  <span class="prompt-id purple">A2</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Întreabă-mă înainte să scrii</div>
-                    <div class="prompt-when"><b>Când:</b> vrei rezultat pe situația ta exactă, nu unul generic.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Înainte să-mi dai răspunsul, pune-mi întrebările de care ai nevoie ca să faci treaba
-ca pentru un client important. Nu presupune nimic esențial. Întreabă pe rând, maxim 5 întrebări.</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card purple">
-                <div class="prompt-card-header">
-                  <span class="prompt-id purple">A3</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Explică-mi simplu</div>
-                    <div class="prompt-when"><b>Când:</b> nu înțelegi un termen, un document sau o ofertă.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Explică-mi [SUBIECTUL / TEXTUL DE MAI JOS] ca unui om inteligent, dar fără cunoștințe tehnice.
+După ce răspund, scrie promptul perfect (rol, context, sarcină, format, restricții) și apoi execută-l.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">A2</span><div class="prompt-titles"><div class="prompt-title-text">Întreabă-mă înainte să scrii</div><div class="prompt-when"><b>Când:</b> vrei rezultat pe situația ta exactă, nu unul generic.</div></div></div><div class="prompt-code"><pre>Înainte să-mi dai răspunsul, pune-mi întrebările de care ai nevoie ca să faci treaba
+ca pentru un client important. Nu presupune nimic esențial. Întreabă pe rând, maxim 5 întrebări.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">A3</span><div class="prompt-titles"><div class="prompt-title-text">Explică-mi simplu</div><div class="prompt-when"><b>Când:</b> nu înțelegi un termen, un document sau o ofertă.</div></div></div><div class="prompt-code"><pre>Explică-mi [SUBIECTUL / TEXTUL DE MAI JOS] ca unui om inteligent, dar fără cunoștințe tehnice.
 Folosește o analogie din viața de zi cu zi. Apoi spune-mi în 3 puncte de ce contează pentru afacerea mea.
-[LIPEȘTI textul, dacă e cazul]</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card purple">
-                <div class="prompt-card-header">
-                  <span class="prompt-id purple">A4</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Rezumă orice (text lung → esențial)</div>
-                    <div class="prompt-when"><b>Când:</b> ai un articol, contract sau raport lung.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Rezumă textul de mai jos pentru un om ocupat:
+[LIPEȘTI textul, dacă e cazul]</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">A4</span><div class="prompt-titles"><div class="prompt-title-text">Rezumă orice (text lung → esențial)</div><div class="prompt-when"><b>Când:</b> ai un articol, contract sau raport lung.</div></div></div><div class="prompt-code"><pre>Rezumă textul de mai jos pentru un om ocupat:
 1) 3 idei principale, 2) ce trebuie să fac eu concret, 3) ce e riscant sau de verificat.
 Maxim 150 de cuvinte, fără jargon.
 """
 [LIPEȘTI textul]
-"""</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card purple">
-                <div class="prompt-card-header">
-                  <span class="prompt-id purple">A5</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Brainstorming structurat (10 idei pe 2 unghiuri)</div>
-                    <div class="prompt-when"><b>Când:</b> ești blocat și vrei opțiuni, nu o singură variantă.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Ești consultant pentru [TIP AFACERE]. Dă-mi 10 idei de [CE: campanie / produs / postare],
+"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">A5</span><div class="prompt-titles"><div class="prompt-title-text">Brainstorming structurat (10 idei pe 2 unghiuri)</div><div class="prompt-when"><b>Când:</b> ești blocat și vrei opțiuni, nu o singură variantă.</div></div></div><div class="prompt-code"><pre>Ești consultant pentru [TIP AFACERE]. Dă-mi 10 idei de [CE: campanie / produs / postare],
 pe 2 unghiuri diferite (A: [unghi 1] / B: [unghi 2]).
-Pentru fiecare: o frază de descriere + cui i se potrivește. Evită clișeele.</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card purple">
-                <div class="prompt-card-header">
-                  <span class="prompt-id purple">A6</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Few-shot: imită stilul meu</div>
-                    <div class="prompt-when"><b>Când:</b> vrei ca AI-ul să sune ca tine / ca brandul tău.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Mai jos sunt 3 exemple de texte scrise în stilul pe care îl vreau:
+Pentru fiecare: o frază de descriere + cui i se potrivește. Evită clișeele.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">A6</span><div class="prompt-titles"><div class="prompt-title-text">Few-shot: imită stilul meu</div><div class="prompt-when"><b>Când:</b> vrei ca AI-ul să sune ca tine / ca brandul tău.</div></div></div><div class="prompt-code"><pre>Mai jos sunt 3 exemple de texte scrise în stilul pe care îl vreau:
 """
 [EXEMPLU 1]
 [EXEMPLU 2]
 [EXEMPLU 3]
 """
-Scrie un nou [TIP TEXT] despre [SUBIECT], în EXACT același ton, ritm și vocabular. Nu copia conținutul, doar stilul.</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card purple">
-                <div class="prompt-card-header">
-                  <span class="prompt-id purple">A7</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Criticul: găsește slăbiciunile (roast)</div>
-                    <div class="prompt-when"><b>Când:</b> înainte să trimiți/publici ceva important.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Ești un manager sceptic și un avocat prudent. NU mă lăuda.
+Scrie un nou [TIP TEXT] despre [SUBIECT], în EXACT același ton, ritm și vocabular. Nu copia conținutul, doar stilul.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">A7</span><div class="prompt-titles"><div class="prompt-title-text">Criticul: găsește slăbiciunile (roast)</div><div class="prompt-when"><b>Când:</b> înainte să trimiți/publici ceva important.</div></div></div><div class="prompt-code"><pre>Ești un manager sceptic și un avocat prudent. NU mă lăuda.
 Pentru textul de mai jos dă-mi: 5 slăbiciuni concrete, 3 riscuri (legal / ton / claim-uri nedovedibile),
 și apoi 1 variantă rescrisă, clar mai bună. Fii dur, dar util.
 """
 [LIPEȘTI textul tău]
-"""</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
+"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
             </div>
 
-            <!-- ═ SECTION B ═ -->
+            <!-- ═ B ═ -->
             <div class="prompt-section" data-section="B">
-              <div class="prompt-section-header">
-                <span class="prompt-section-tag">B</span>
-                <h3>Email &amp; comunicare</h3>
-              </div>
-              <div class="prompt-card">
-                <div class="prompt-card-header">
-                  <span class="prompt-id">B1</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Email de follow-up după întâlnire</div>
-                    <div class="prompt-when"><b>Când:</b> vrei să fixezi pașii următori fără să pari insistent.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Ești asistentul meu de business. Scrie un email de follow-up de [120] de cuvinte către [CINE, ex: un client].
+              <div class="prompt-section-header"><span class="psec-tag">B</span><h3>Email &amp; comunicare</h3></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">B1</span><div class="prompt-titles"><div class="prompt-title-text">Email de follow-up după întâlnire</div><div class="prompt-when"><b>Când:</b> vrei să fixezi pașii următori fără să pari insistent.</div></div></div><div class="prompt-code"><pre>Ești asistentul meu de business. Scrie un email de follow-up de [120] de cuvinte către [CINE, ex: un client].
 Ne-am întâlnit acum [3] zile și am discutat [SUBIECT]. Ton: profesional, cald, direct.
-Include: mulțumire scurtă, recapitulare în 2 puncte, un pas următor clar cu o propunere de dată.</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card">
-                <div class="prompt-card-header">
-                  <span class="prompt-id">B2</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Reamintire de plată (ferm dar politicos)</div>
-                    <div class="prompt-when"><b>Când:</b> un client întârzie cu plata și nu vrei să strici relația.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Scrie un email de reamintire pentru factura [NR] din [DATA], restantă de [X] zile, către [CLIENT].
+Include: mulțumire scurtă, recapitulare în 2 puncte, un pas următor clar cu o propunere de dată.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">B2</span><div class="prompt-titles"><div class="prompt-title-text">Reamintire de plată (ferm dar politicos)</div><div class="prompt-when"><b>Când:</b> un client întârzie cu plata și nu vrei să strici relația.</div></div></div><div class="prompt-code"><pre>Scrie un email de reamintire pentru factura [NR] din [DATA], restantă de [X] zile, către [CLIENT].
 Ton ferm dar politicos, fără a periclita relația. Oferă o cale ușoară de plată și un termen clar.
-Maxim 90 de cuvinte. Dă-mi și o variantă mai dură pentru a doua reamintire.</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card">
-                <div class="prompt-card-header">
-                  <span class="prompt-id">B3</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Răspuns la o reclamație / client nemulțumit</div>
-                    <div class="prompt-when"><b>Când:</b> trebuie să dezamorsezi o situație tensionată.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Un client e nemulțumit de [PROBLEMA]. Mai jos e mesajul lui:
+Maxim 90 de cuvinte. Dă-mi și o variantă mai dură pentru a doua reamintire.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">B3</span><div class="prompt-titles"><div class="prompt-title-text">Răspuns la reclamație / client nemulțumit</div><div class="prompt-when"><b>Când:</b> trebuie să dezamorsezi o situație tensionată.</div></div></div><div class="prompt-code"><pre>Un client e nemulțumit de [PROBLEMA]. Mai jos e mesajul lui:
 """
 [LIPEȘTI mesajul]
 """
 Scrie un răspuns care: recunoaște problema, își cere scuze sincer (fără să admită vină legală),
-oferă o soluție concretă și păstrează clientul. Ton: empatic, calm, profesional. Maxim 120 de cuvinte.</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card">
-                <div class="prompt-card-header">
-                  <span class="prompt-id">B4</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Spune NU elegant</div>
-                    <div class="prompt-when"><b>Când:</b> refuzi o cerere, o reducere sau o colaborare.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Scrie un mesaj care refuză politicos [CEREREA, ex: o reducere de 30%], dar păstrează ușa deschisă.
-Explică pe scurt motivul, oferă o alternativă dacă există, ton respectuos și ferm. Maxim 80 de cuvinte.</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card">
-                <div class="prompt-card-header">
-                  <span class="prompt-id">B5</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Rescrie un email (ton + claritate)</div>
-                    <div class="prompt-when"><b>Când:</b> ai scris ceva, dar nu sună bine.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Rescrie emailul de mai jos: mai clar, mai scurt, ton [profesional dar cald].
+oferă o soluție concretă și păstrează clientul. Ton: empatic, calm, profesional. Maxim 120 de cuvinte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">B4</span><div class="prompt-titles"><div class="prompt-title-text">Spune NU elegant</div><div class="prompt-when"><b>Când:</b> refuzi o cerere, o reducere sau o colaborare.</div></div></div><div class="prompt-code"><pre>Scrie un mesaj care refuză politicos [CEREREA, ex: o reducere de 30%], dar păstrează ușa deschisă.
+Explică pe scurt motivul, oferă o alternativă dacă există, ton respectuos și ferm. Maxim 80 de cuvinte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">B5</span><div class="prompt-titles"><div class="prompt-title-text">Rescrie un email (ton + claritate)</div><div class="prompt-when"><b>Când:</b> ai scris ceva, dar nu sună bine.</div></div></div><div class="prompt-code"><pre>Rescrie emailul de mai jos: mai clar, mai scurt, ton [profesional dar cald].
 Păstrează toate informațiile importante. Scoate clișeele și frazele de umplutură.
 """
 [LIPEȘTI emailul tău]
-"""</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card">
-                <div class="prompt-card-header">
-                  <span class="prompt-id">B6</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Traduce &amp; adaptează cultural</div>
-                    <div class="prompt-when"><b>Când:</b> scrii unui client/partener străin.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Tradu mesajul de mai jos în [LIMBA], adaptat pentru un context de business profesional.
+"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">B6</span><div class="prompt-titles"><div class="prompt-title-text">Traduce &amp; adaptează cultural</div><div class="prompt-when"><b>Când:</b> scrii unui client/partener străin.</div></div></div><div class="prompt-code"><pre>Tradu mesajul de mai jos în [LIMBA], adaptat pentru un context de business profesional.
 Nu traduce cuvânt cu cuvânt — adaptează tonul și formulele de politețe la cultura respectivă.
 """
 [LIPEȘTI textul]
-"""</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card">
-                <div class="prompt-card-header">
-                  <span class="prompt-id">B7</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Rezumă un thread lung de email</div>
-                    <div class="prompt-when"><b>Când:</b> intri într-o discuție cu 20 de mesaje.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Rezumă conversația de mai jos: cine ce a cerut, ce s-a decis, ce rămâne nerezolvat și ce trebuie să fac eu.
+"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">B7</span><div class="prompt-titles"><div class="prompt-title-text">Rezumă un thread lung de email</div><div class="prompt-when"><b>Când:</b> intri într-o discuție cu 20 de mesaje.</div></div></div><div class="prompt-code"><pre>Rezumă conversația de mai jos: cine ce a cerut, ce s-a decis, ce rămâne nerezolvat și ce trebuie să fac eu.
 Format: 4 secțiuni scurte cu bullet-uri.
 """
 [LIPEȘTI thread-ul]
-"""</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card">
-                <div class="prompt-card-header">
-                  <span class="prompt-id">B8</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Agendă &amp; minută de ședință</div>
-                    <div class="prompt-when"><b>Când:</b> pregătești sau închizi o ședință.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Pe baza notițelor de mai jos, scrie: 1) o minută de ședință (decizii + responsabili + termene),
+"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">B8</span><div class="prompt-titles"><div class="prompt-title-text">Agendă &amp; minută de ședință</div><div class="prompt-when"><b>Când:</b> pregătești sau închizi o ședință.</div></div></div><div class="prompt-code"><pre>Pe baza notițelor de mai jos, scrie: 1) o minută de ședință (decizii + responsabili + termene),
 2) un email scurt de follow-up către participanți cu pașii următori.
 """
 [LIPEȘTI notițele tale]
-"""</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card">
-                <div class="prompt-card-header">
-                  <span class="prompt-id">B9</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Mesaj scurt (WhatsApp / SMS / chat)</div>
-                    <div class="prompt-when"><b>Când:</b> ai nevoie de ceva scurt și uman, nu de email.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Scrie 3 variante de mesaj scurt (max 40 de cuvinte) pentru [CANAL: WhatsApp] către [CINE],
-ca să [OBIECTIV, ex: confirm o programare]. Ton prietenos, natural, fără să sune robotic.</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
-              <div class="prompt-card">
-                <div class="prompt-card-header">
-                  <span class="prompt-id">B10</span>
-                  <div class="prompt-titles">
-                    <div class="prompt-title">Cerere de recomandare / testimonial</div>
-                    <div class="prompt-when"><b>Când:</b> un client e mulțumit și vrei să profiți de moment.</div>
-                  </div>
-                </div>
-                <div class="prompt-code">
-                  <pre>Scrie un mesaj scurt prin care cer politicos [un testimonial / o recomandare] de la un client mulțumit cu [SERVICIUL/PRODUSUL].
-Fă-i ușor să răspundă: sugerează 2-3 întrebări la care poate răspunde în 2 minute. Ton: cald, fără să par insistent. Max 80 de cuvinte.</pre>
-                  <button class="copy-btn" onclick="copyPrompt(this)">Copiază</button>
-                </div>
-              </div>
+"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">B9</span><div class="prompt-titles"><div class="prompt-title-text">Mesaj scurt (WhatsApp / SMS / chat)</div><div class="prompt-when"><b>Când:</b> ai nevoie de ceva scurt și uman, nu de email.</div></div></div><div class="prompt-code"><pre>Scrie 3 variante de mesaj scurt (max 40 de cuvinte) pentru [CANAL: WhatsApp] către [CINE],
+ca să [OBIECTIV, ex: confirm o programare]. Ton prietenos, natural, fără să sune robotic.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">B10</span><div class="prompt-titles"><div class="prompt-title-text">Cerere de recomandare / testimonial</div><div class="prompt-when"><b>Când:</b> un client e mulțumit și vrei să profiți de moment.</div></div></div><div class="prompt-code"><pre>Scrie un mesaj scurt prin care cer politicos [un testimonial / o recomandare] de la un client mulțumit cu [SERVICIUL/PRODUSUL].
+Fă-i ușor să răspundă: sugerează 2-3 întrebări la care poate răspunde în 2 minute. Ton: cald, fără să par insistent. Max 80 de cuvinte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
             </div>
 
-            <!-- ═ SECTION C ═ -->
+            <!-- ═ C ═ -->
             <div class="prompt-section" data-section="C">
-              <div class="prompt-section-header">
-                <span class="prompt-section-tag">C</span>
-                <h3>Marketing &amp; conținut</h3>
-              </div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C1</span><div class="prompt-titles"><div class="prompt-title">Descriere de produs (beneficii, nu caracteristici)</div><div class="prompt-when"><b>Când:</b> listezi un produs/serviciu nou.</div></div></div><div class="prompt-code"><pre>Ești copywriter în [DOMENIU]. Scrie o descriere de [80] de cuvinte pentru [PRODUS/SERVICIU].
+              <div class="prompt-section-header"><span class="psec-tag">C</span><h3>Marketing &amp; conținut</h3></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C1</span><div class="prompt-titles"><div class="prompt-title-text">Descriere de produs (beneficii, nu caracteristici)</div><div class="prompt-when"><b>Când:</b> listezi un produs/serviciu nou.</div></div></div><div class="prompt-code"><pre>Ești copywriter în [DOMENIU]. Scrie o descriere de [80] de cuvinte pentru [PRODUS/SERVICIU].
 Public: [CINE]. Transformă caracteristicile în beneficii reale pentru client.
 Ton: [cald și expert]. Include un singur CTA. Fără clișee de tip „calitate garantată", fără promisiuni exagerate.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C2</span><div class="prompt-titles"><div class="prompt-title">Secvență de 3 postări (3 unghiuri)</div><div class="prompt-when"><b>Când:</b> vrei conținut social fără să stai o oră la fiecare.</div></div></div><div class="prompt-code"><pre>Scrie 3 postări pentru [Instagram/Facebook/LinkedIn] despre [PRODUS/SUBIECT], fiecare cu alt unghi:
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C2</span><div class="prompt-titles"><div class="prompt-title-text">Secvență de 3 postări (3 unghiuri)</div><div class="prompt-when"><b>Când:</b> vrei conținut social fără să stai o oră la fiecare.</div></div></div><div class="prompt-code"><pre>Scrie 3 postări pentru [Instagram/Facebook/LinkedIn] despre [PRODUS/SUBIECT], fiecare cu alt unghi:
 (1) beneficiu, (2) poveste/scenariu de client, (3) ofertă.
 Fiecare: hook puternic în primul rând, corp scurt, CTA, 3-5 hashtag-uri relevante. Ton: [al brandului meu].</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C3</span><div class="prompt-titles"><div class="prompt-title">Calendar de conținut pe o lună</div><div class="prompt-when"><b>Când:</b> vrei un plan, nu idei răzlețe.</div></div></div><div class="prompt-code"><pre>Ești social media strategist pentru [TIP AFACERE] cu publicul [CINE].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C3</span><div class="prompt-titles"><div class="prompt-title-text">Calendar de conținut pe o lună</div><div class="prompt-when"><b>Când:</b> vrei un plan, nu idei răzlețe.</div></div></div><div class="prompt-code"><pre>Ești social media strategist pentru [TIP AFACERE] cu publicul [CINE].
 Fă-mi un calendar de conținut pe 4 săptămâni (3 postări/săptămână) într-un tabel:
 Ziua | Pilon de conținut | Idee de postare | Format | CTA.
 Variază pilonii (educație, social proof, ofertă, behind-the-scenes). Adaptat pieței din [oraș/țară].</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C4</span><div class="prompt-titles"><div class="prompt-title">10 titluri / hook-uri pentru A/B test</div><div class="prompt-when"><b>Când:</b> ai conținutul, dar nu știi cum să-l deschizi.</div></div></div><div class="prompt-code"><pre>Dă-mi 10 variante de titlu/hook pentru [POSTARE / ARTICOL / REEL] despre [SUBIECT], maxim 10 cuvinte fiecare.
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C4</span><div class="prompt-titles"><div class="prompt-title-text">10 titluri / hook-uri pentru A/B test</div><div class="prompt-when"><b>Când:</b> ai conținutul, dar nu știi cum să-l deschizi.</div></div></div><div class="prompt-code"><pre>Dă-mi 10 variante de titlu/hook pentru [POSTARE / ARTICOL / REEL] despre [SUBIECT], maxim 10 cuvinte fiecare.
 Mixează unghiuri: curiozitate, beneficiu direct, întrebare, cifră, contra-intuitiv.
 Pentru fiecare, notează cui i se potrivește. Evită clickbait-ul ieftin.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C5</span><div class="prompt-titles"><div class="prompt-title">Schelet de articol de blog (SEO)</div><div class="prompt-when"><b>Când:</b> vrei să scrii pentru Google, structurat.</div></div></div><div class="prompt-code"><pre>Ești specialist SEO. Fă-mi structura unui articol despre [SUBIECT], cuvânt-cheie principal „[KEYWORD]".
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C5</span><div class="prompt-titles"><div class="prompt-title-text">Schelet de articol de blog (SEO)</div><div class="prompt-when"><b>Când:</b> vrei să scrii pentru Google, structurat.</div></div></div><div class="prompt-code"><pre>Ești specialist SEO. Fă-mi structura unui articol despre [SUBIECT], cuvânt-cheie principal „[KEYWORD]".
 Dă-mi: titlu (H1) + 6-8 subtitluri (H2/H3), o întrebare frecventă per secțiune, și meta-descrierea (max 155 caractere).
 Public: [CINE]. Intenția de căutare: [informațională/comercială].</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C6</span><div class="prompt-titles"><div class="prompt-title">Tone of Voice: extrage vocea unui brand ⭐</div><div class="prompt-when"><b>Când:</b> vrei ca AI-ul să scrie mereu „ca brandul tău".</div></div></div><div class="prompt-code"><pre>Ești strateg de brand. Mai jos sunt texte reale ale brandului [NUME] (site + social):
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C6</span><div class="prompt-titles"><div class="prompt-title-text">Tone of Voice: extrage vocea unui brand ⭐</div><div class="prompt-when"><b>Când:</b> vrei ca AI-ul să scrie mereu „ca brandul tău".</div></div></div><div class="prompt-code"><pre>Ești strateg de brand. Mai jos sunt texte reale ale brandului [NUME]:
 """
 [LIPEȘTI 10-15 texte variate: postări, descrieri, „despre noi", răspunsuri la comentarii]
 """
 Extrage vocea: 5 adjective, vocabularul tipic, ce evită, ritmul frazelor, cum se adresează (tu/dvs.).
-La final scrie un „Ghid de voce" de o pagină pe care îl pot salva și refolosi, cu 2 exemple „așa DA / așa NU".</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C7</span><div class="prompt-titles"><div class="prompt-title">Newsletter / email de marketing</div><div class="prompt-when"><b>Când:</b> ai ceva de anunțat clienților tăi.</div></div></div><div class="prompt-code"><pre>Scrie un email de marketing către lista mea de clienți despre [OFERTĂ/NOUTATE].
+La final scrie un „Ghid de voce" cu 2 exemple „așa DA / așa NU".</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C7</span><div class="prompt-titles"><div class="prompt-title-text">Newsletter / email de marketing</div><div class="prompt-when"><b>Când:</b> ai ceva de anunțat clienților tăi.</div></div></div><div class="prompt-code"><pre>Scrie un email de marketing către lista mea de clienți despre [OFERTĂ/NOUTATE].
 Subiect (3 variante de testat) + preheader + corp de [150] de cuvinte + un CTA clar.
 Ton: [al brandului]. Beneficiu în primul rând, urgență reală (nu falsă). Fără limbaj de spam.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C8</span><div class="prompt-titles"><div class="prompt-title">Script video scurt (Reel / TikTok)</div><div class="prompt-when"><b>Când:</b> vrei să filmezi ceva, dar nu știi ce să spui.</div></div></div><div class="prompt-code"><pre>Scrie un script de [30] de secunde pentru un reel despre [SUBIECT].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C8</span><div class="prompt-titles"><div class="prompt-title-text">Script video scurt (Reel / TikTok)</div><div class="prompt-when"><b>Când:</b> vrei să filmezi ceva, dar nu știi ce să spui.</div></div></div><div class="prompt-code"><pre>Scrie un script de [30] de secunde pentru un reel despre [SUBIECT].
 Format: Hook (primele 3 sec) | 3 idei scurte | CTA final. Scrie ce spun + ce se vede pe ecran.
 Ton: natural, energic, ca un om real, nu ca o reclamă.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C9</span><div class="prompt-titles"><div class="prompt-title">Foto produs cu AI</div><div class="prompt-when"><b>Când:</b> vrei un vizual de produs fără ședință foto.</div></div><span class="prompt-tool-badge">imagini</span></div><div class="prompt-code"><pre>Generează o fotografie de produs, calitate editorială: [PRODUS] pe [SUPRAFAȚĂ, ex: marmură albă],
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C9</span><div class="prompt-titles"><div class="prompt-title-text">Foto produs cu AI</div><div class="prompt-when"><b>Când:</b> vrei un vizual de produs fără ședință foto.</div></div><span class="prompt-tool-badge">imagini</span></div><div class="prompt-code"><pre>Generează o fotografie de produs, calitate editorială: [PRODUS] pe [SUPRAFAȚĂ, ex: marmură albă],
 [LUMINĂ, ex: caldă de dimineață din stânga], fundal neutru cu bokeh, unghi 45°, stil premium.
 Format [1:1 pentru feed]. Fără text pe imagine. Fără mâini deformate, fără watermark.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C10</span><div class="prompt-titles"><div class="prompt-title">Editare conversațională de imagine</div><div class="prompt-when"><b>Când:</b> imaginea e aproape bună — schimbă un detaliu.</div></div><span class="prompt-tool-badge">imagini</span></div><div class="prompt-code"><pre>Păstrează produsul identic, dar schimbă fundalul în [lemn rustic / verde botanic].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C10</span><div class="prompt-titles"><div class="prompt-title-text">Editare conversațională de imagine</div><div class="prompt-when"><b>Când:</b> imaginea e aproape bună — schimbă un detaliu.</div></div><span class="prompt-tool-badge">imagini</span></div><div class="prompt-code"><pre>Păstrează produsul identic, dar schimbă fundalul în [lemn rustic / verde botanic].
 [apoi:] Adaugă lângă produs câteva [elemente, ex: fructe proaspete], natural, în aceeași lumină.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C11</span><div class="prompt-titles"><div class="prompt-title">Răspunsuri la recenzii (bune și rele)</div><div class="prompt-when"><b>Când:</b> ai multe recenzii Google/Facebook de gestionat.</div></div></div><div class="prompt-code"><pre>Scrie răspunsuri la recenziile de mai jos, în vocea brandului [NUME].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C11</span><div class="prompt-titles"><div class="prompt-title-text">Răspunsuri la recenzii (bune și rele)</div><div class="prompt-when"><b>Când:</b> ai multe recenzii Google/Facebook de gestionat.</div></div></div><div class="prompt-code"><pre>Scrie răspunsuri la recenziile de mai jos, în vocea brandului [NUME].
 La cele pozitive: mulțumire personalizată. La cele negative: empatie, soluție, invitație la dialog privat.
 Fiecare răspuns: maxim 40 de cuvinte, fără să sune copiate.
 """
 [LIPEȘTI recenziile]
 """</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C12</span><div class="prompt-titles"><div class="prompt-title">Repurpose: 1 conținut → 5 formate</div><div class="prompt-when"><b>Când:</b> ai un material bun și vrei să-l multiplici.</div></div></div><div class="prompt-code"><pre>Din materialul de mai jos, creează: 1 postare LinkedIn, 1 caption Instagram, 1 thread scurt,
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">C12</span><div class="prompt-titles"><div class="prompt-title-text">Repurpose: 1 conținut → 5 formate</div><div class="prompt-when"><b>Când:</b> ai un material bun și vrei să-l multiplici.</div></div></div><div class="prompt-code"><pre>Din materialul de mai jos, creează: 1 postare LinkedIn, 1 caption Instagram, 1 thread scurt,
 3 idei de reel și 1 secțiune de newsletter. Păstrează mesajul-cheie, adaptează tonul pe fiecare canal.
 """
 [LIPEȘTI articolul / transcrierea / notițele]
 """</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
             </div>
 
-            <!-- ═ SECTION D ═ -->
+            <!-- ═ D ═ -->
             <div class="prompt-section" data-section="D">
-              <div class="prompt-section-header">
-                <span class="prompt-section-tag">D</span>
-                <h3>Vânzări &amp; oferte</h3>
-              </div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D1</span><div class="prompt-titles"><div class="prompt-title">Ofertă comercială personalizată</div><div class="prompt-when"><b>Când:</b> trebuie să trimiți o ofertă către un client concret.</div></div></div><div class="prompt-code"><pre>Sunt [CE VINZI, ex: furnizor de servicii X]. Generează o ofertă pentru clientul:
+              <div class="prompt-section-header"><span class="psec-tag">D</span><h3>Vânzări &amp; oferte</h3></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D1</span><div class="prompt-titles"><div class="prompt-title-text">Ofertă comercială personalizată</div><div class="prompt-when"><b>Când:</b> trebuie să trimiți o ofertă către un client concret.</div></div></div><div class="prompt-code"><pre>Sunt [CE VINZI, ex: furnizor de servicii X]. Generează o ofertă pentru clientul:
 - Domeniu: [ex: firmă IT] · Mărime: [25 angajați] · Nevoia principală: [...]
 Structură: problemă → soluția noastră → ce includem → preț → următorul pas.
 Personalizează beneficiile pe nevoia lui. Ton profesional. La final, generează-o ca document Word gata de trimis.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D2</span><div class="prompt-titles"><div class="prompt-title">Mesaj de prim contact (cold outreach)</div><div class="prompt-when"><b>Când:</b> abordezi un client nou la rece.</div></div></div><div class="prompt-code"><pre>Scrie un mesaj de prim contact de max 90 de cuvinte către [TIP CLIENT].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D2</span><div class="prompt-titles"><div class="prompt-title-text">Mesaj de prim contact (cold outreach)</div><div class="prompt-when"><b>Când:</b> abordezi un client nou la rece.</div></div></div><div class="prompt-code"><pre>Scrie un mesaj de prim contact de max 90 de cuvinte către [TIP CLIENT].
 Sunt [CINE] și pot să-i ajut cu [REZULTAT CONCRET]. Personalizabil pe firmă.
 Un singur CTA (un apel de 15 minute). Fără limbaj de vânzător agresiv, fără superlative.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D3</span><div class="prompt-titles"><div class="prompt-title">Tratează obiecțiile</div><div class="prompt-when"><b>Când:</b> clientul ezită („e scump", „mă mai gândesc").</div></div></div><div class="prompt-code"><pre>Clientul meu vinde [CE] și ridică obiecția: „[OBIECȚIA, ex: e prea scump]".
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D3</span><div class="prompt-titles"><div class="prompt-title-text">Tratează obiecțiile</div><div class="prompt-when"><b>Când:</b> clientul ezită („e scump", „mă mai gândesc").</div></div></div><div class="prompt-code"><pre>Clientul meu ridică obiecția: „[OBIECȚIA, ex: e prea scump]".
 Dă-mi 3 moduri de a răspunde, fiecare cu alt unghi (valoare, risc de a NU acționa, comparație corectă).
 Ton: consultativ, nu defensiv. Scurt și natural, ca într-o conversație reală.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D4</span><div class="prompt-titles"><div class="prompt-title">USP: ce te face diferit (în 4 pași)</div><div class="prompt-when"><b>Când:</b> nu știi să explici de ce să te aleagă pe tine.</div></div></div><div class="prompt-code"><pre>Ești strateg de poziționare. Afacerea mea: [ce vinzi, pentru cine, prețuri, ce crezi că te face special].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D4</span><div class="prompt-titles"><div class="prompt-title-text">USP: ce te face diferit</div><div class="prompt-when"><b>Când:</b> nu știi să explici de ce să te aleagă pe tine.</div></div></div><div class="prompt-code"><pre>Ești strateg de poziționare. Afacerea mea: [ce vinzi, pentru cine, prețuri, ce crezi că te face special].
 Competitorii: [listă]. Recenzii relevante: [lipești câteva].
 Propune-mi 5-7 variante de USP: specific, adevărat, greu de copiat, max 12 cuvinte.
-Evită „calitate" și „prețuri bune". Apoi recomandă-l pe cel mai puternic și de ce.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D5</span><div class="prompt-titles"><div class="prompt-title">Script de discuție de vânzare (discovery)</div><div class="prompt-when"><b>Când:</b> ai o întâlnire și vrei întrebările potrivite.</div></div></div><div class="prompt-code"><pre>Pregătește-mă pentru o întâlnire de vânzare cu [TIP CLIENT] pentru [PRODUS/SERVICIU].
+Evită „calitate" și „prețuri bune". Recomandă-l pe cel mai puternic și de ce.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D5</span><div class="prompt-titles"><div class="prompt-title-text">Script de discuție de vânzare (discovery)</div><div class="prompt-when"><b>Când:</b> ai o întâlnire și vrei întrebările potrivite.</div></div></div><div class="prompt-code"><pre>Pregătește-mă pentru o întâlnire de vânzare cu [TIP CLIENT] pentru [PRODUS/SERVICIU].
 Dă-mi: 8 întrebări de descoperire a nevoilor, 3 semnale de cumpărare la care să fiu atent,
 și o frază de închidere blândă. Fără manipulare — vreau o conversație onestă.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D6</span><div class="prompt-titles"><div class="prompt-title">Follow-up după ofertă (fără răspuns)</div><div class="prompt-when"><b>Când:</b> ai trimis oferta și e liniște.</div></div></div><div class="prompt-code"><pre>Scrie 2 mesaje de follow-up pentru un client care nu a răspuns la ofertă de [7] zile.
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D6</span><div class="prompt-titles"><div class="prompt-title-text">Follow-up după ofertă (fără răspuns)</div><div class="prompt-when"><b>Când:</b> ai trimis oferta și e liniște.</div></div></div><div class="prompt-code"><pre>Scrie 2 mesaje de follow-up pentru un client care nu a răspuns la ofertă de [7] zile.
 Mesajul 1: blând, aduce valoare (nu „ai văzut oferta?"). Mesajul 2: clar, cu o întrebare de tip da/nu.
 Max 60 de cuvinte fiecare. Ton respectuos, fără să par disperat.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D7</span><div class="prompt-titles"><div class="prompt-title">Calculator de preț / pachete</div><div class="prompt-when"><b>Când:</b> vrei să structurezi prețurile în pachete.</div></div></div><div class="prompt-code"><pre>Ajută-mă să structurez oferta în 3 pachete (Basic / Standard / Premium) pentru [SERVICIU].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">D7</span><div class="prompt-titles"><div class="prompt-title-text">Calculator de preț / pachete</div><div class="prompt-when"><b>Când:</b> vrei să structurezi prețurile în pachete.</div></div></div><div class="prompt-code"><pre>Ajută-mă să structurez oferta în 3 pachete (Basic / Standard / Premium) pentru [SERVICIU].
 Pentru fiecare: ce include, pentru cine e, prețul orientativ, și un motiv clar de upgrade.
 Aplică principiul „ancorării" (pachetul din mijloc să pară cea mai bună alegere).</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
             </div>
 
-            <!-- ═ SECTION E ═ -->
+            <!-- ═ E ═ -->
             <div class="prompt-section" data-section="E">
-              <div class="prompt-section-header">
-                <span class="prompt-section-tag">E</span>
-                <h3>Research &amp; analiză</h3>
-              </div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E1</span><div class="prompt-titles"><div class="prompt-title">Scanare de piață cu surse</div><div class="prompt-when"><b>Când:</b> intri într-o piață sau lansezi ceva nou.</div></div><span class="prompt-tool-badge">Perplexity / Gemini</span></div><div class="prompt-code"><pre>Analizează tendințele din piața de [SECTOR] în [ZONĂ] pe ultimele 12-24 de luni.
+              <div class="prompt-section-header"><span class="psec-tag">E</span><h3>Research &amp; analiză</h3></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E1</span><div class="prompt-titles"><div class="prompt-title-text">Scanare de piață cu surse</div><div class="prompt-when"><b>Când:</b> intri într-o piață sau lansezi ceva nou.</div></div><span class="prompt-tool-badge">Perplexity / Gemini</span></div><div class="prompt-code"><pre>Analizează tendințele din piața de [SECTOR] în [ZONĂ] pe ultimele 12-24 de luni.
 Vreau: 5 tendințe majore, cererea pe segmente, 5 jucători relevanți.
 Pentru FIECARE afirmație, citează sursa cu link. Marchează ce e dovedit slab. Răspunde structurat, pe secțiuni.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E2</span><div class="prompt-titles"><div class="prompt-title">Raport despre un competitor</div><div class="prompt-when"><b>Când:</b> vrei să înțelegi un concurent în profunzime.</div></div></div><div class="prompt-code"><pre>Ești analist de competitive intelligence. Fă-mi un raport despre [COMPETITOR, site].
-Acoperă: 1) oferte/prețuri/USP, 2) ce reclame rulează (Meta Ad Library, Google Ads Transparency),
-3) ce conținut postează și ce pare să funcționeze, 4) ce laudă/reclamă clienții în recenzii.
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E2</span><div class="prompt-titles"><div class="prompt-title-text">Raport despre un competitor</div><div class="prompt-when"><b>Când:</b> vrei să înțelegi un concurent în profunzime.</div></div></div><div class="prompt-code"><pre>Ești analist de competitive intelligence. Fă-mi un raport despre [COMPETITOR, site].
+Acoperă: 1) oferte/prețuri/USP, 2) ce reclame rulează, 3) ce conținut postează și ce pare să funcționeze,
+4) ce laudă/reclamă clienții în recenzii.
 Livrează: tabel comparativ (eu vs. el), 5 puncte slabe ale lui, 3 oportunități pentru mine. Citează sursele.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E3</span><div class="prompt-titles"><div class="prompt-title">SWOT pe baza datelor mele</div><div class="prompt-when"><b>Când:</b> pregătești o decizie sau un plan.</div></div></div><div class="prompt-code"><pre>Pe baza informațiilor de mai jos despre afacerea mea, fă un SWOT realist (nu de complezență).
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E3</span><div class="prompt-titles"><div class="prompt-title-text">SWOT pe baza datelor mele</div><div class="prompt-when"><b>Când:</b> pregătești o decizie sau un plan.</div></div></div><div class="prompt-code"><pre>Pe baza informațiilor de mai jos despre afacerea mea, fă un SWOT realist (nu de complezență).
 Pentru fiecare punct, o frază de justificare. La final: 3 acțiuni prioritare în următoarele 90 de zile.
 """
 [DESCRII: ce vinzi, piața, resursele, ce merge/nu merge]
 """</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E4</span><div class="prompt-titles"><div class="prompt-title">Vocea clienților din recenzii</div><div class="prompt-when"><b>Când:</b> vrei să afli ce contează real pentru clienți.</div></div></div><div class="prompt-code"><pre>Mai jos sunt recenzii reale (ale mele și ale concurenței):
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E4</span><div class="prompt-titles"><div class="prompt-title-text">Vocea clienților din recenzii</div><div class="prompt-when"><b>Când:</b> vrei să afli ce contează real pentru clienți.</div></div></div><div class="prompt-code"><pre>Mai jos sunt recenzii reale (ale mele și ale concurenței):
 """
 [LIPEȘTI recenziile]
 """
 Extrage, cu cuvintele clienților: ce laudă cel mai des, ce reclamă cel mai des, ce expresii repetă.
 Grupează pe teme. Care e „durerea" nr. 1? Ce ar trebui să schimb sau să comunic diferit?</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E5</span><div class="prompt-titles"><div class="prompt-title">Întreabă-ți propriile documente</div><div class="prompt-when"><b>Când:</b> ai PDF-uri/contracte și vrei răspunsuri cu citate.</div></div><span class="prompt-tool-badge">NotebookLM</span></div><div class="prompt-code"><pre>(După ce încarci sursele în NotebookLM)
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E5</span><div class="prompt-titles"><div class="prompt-title-text">Întreabă-ți propriile documente</div><div class="prompt-when"><b>Când:</b> ai PDF-uri/contracte și vrei răspunsuri cu citate.</div></div><span class="prompt-tool-badge">NotebookLM</span></div><div class="prompt-code"><pre>(După ce încarci sursele în NotebookLM)
 Pe baza DOAR a documentelor încărcate, răspunde la: [ÎNTREBAREA TA].
 Citează pasajul exact din sursă pentru fiecare afirmație. Dacă răspunsul nu e în documente, spune clar „nu apare".</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E6</span><div class="prompt-titles"><div class="prompt-title">Pro &amp; contra pentru o decizie</div><div class="prompt-when"><b>Când:</b> eziti între 2 opțiuni.</div></div></div><div class="prompt-code"><pre>Trebuie să decid între [OPȚIUNEA A] și [OPȚIUNEA B] pentru [CONTEXT].
-Fă-mi un tabel pro/contra echilibrat, apoi pune-mi 3 întrebări care m-ar ajuta să decid,
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E6</span><div class="prompt-titles"><div class="prompt-title-text">Pro &amp; contra pentru o decizie</div><div class="prompt-when"><b>Când:</b> eziti între 2 opțiuni.</div></div></div><div class="prompt-code"><pre>Trebuie să decid între [OPȚIUNEA A] și [OPȚIUNEA B] pentru [CONTEXT].
+Fă-mi un tabel pro/contra echilibrat, pune-mi 3 întrebări care m-ar ajuta să decid,
 și dă-mi recomandarea ta cu motivul. Spune-mi și ce risc subestimez probabil.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E7</span><div class="prompt-titles"><div class="prompt-title">Sumar regulatoriu / legal (orientativ)</div><div class="prompt-when"><b>Când:</b> vrei să înțelegi rapid o normă (apoi verifici cu un specialist).</div></div></div><div class="prompt-code"><pre>Explică-mi pe înțeles ce înseamnă [REGLEMENTAREA / TEXTUL DE MAI JOS] pentru o firmă ca a mea ([DESCRIERE]).
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">E7</span><div class="prompt-titles"><div class="prompt-title-text">Sumar regulatoriu / legal (orientativ)</div><div class="prompt-when"><b>Când:</b> vrei să înțelegi rapid o normă.</div></div></div><div class="prompt-code"><pre>Explică-mi pe înțeles ce înseamnă [REGLEMENTAREA / TEXTUL DE MAI JOS] pentru o firmă ca a mea ([DESCRIERE]).
 Ce trebuie să fac concret, ce termene există, ce risc dacă nu respect.
 Marchează clar unde e nevoie de confirmarea unui specialist. Nu inventa articole de lege.
 """
@@ -1067,227 +879,211 @@ Marchează clar unde e nevoie de confirmarea unui specialist. Nu inventa articol
 """</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
             </div>
 
-            <!-- ═ SECTION F ═ -->
+            <!-- ═ F ═ -->
             <div class="prompt-section" data-section="F">
-              <div class="prompt-section-header">
-                <span class="prompt-section-tag">F</span>
-                <h3>Documente, Excel &amp; administrativ</h3>
-              </div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F1</span><div class="prompt-titles"><div class="prompt-title">Analiză de Excel / tabel</div><div class="prompt-when"><b>Când:</b> ai un fișier cu date și nu ai timp să-l sapi.</div></div><span class="prompt-tool-badge">Claude / ChatGPT</span></div><div class="prompt-code"><pre>Analizează fișierul atașat și spune-mi:
+              <div class="prompt-section-header"><span class="psec-tag">F</span><h3>Documente, Excel &amp; administrativ</h3></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F1</span><div class="prompt-titles"><div class="prompt-title-text">Analiză de Excel / tabel</div><div class="prompt-when"><b>Când:</b> ai un fișier cu date și nu ai timp să-l sapi.</div></div><span class="prompt-tool-badge">Claude / ChatGPT</span></div><div class="prompt-code"><pre>Analizează fișierul atașat și spune-mi:
 1) trendul pe ultimele [6] luni și ce crește/scade,
 2) top 3 [produse/clienți] după [valoare/marjă],
 3) orice anomalie sau eroare (#REF!, #VALUE!, valori suspecte).
 Explică concluziile în 5 puncte, pentru cineva non-tehnic. Citează celulele relevante.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F2</span><div class="prompt-titles"><div class="prompt-title">Extrage date dintr-un text → tabel</div><div class="prompt-when"><b>Când:</b> ai informații înghesuite și vrei structură.</div></div></div><div class="prompt-code"><pre>Din textul de mai jos, extrage într-un tabel: [Nume | Preț | Cantitate | Data].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F2</span><div class="prompt-titles"><div class="prompt-title-text">Extrage date dintr-un text → tabel</div><div class="prompt-when"><b>Când:</b> ai informații înghesuite și vrei structură.</div></div></div><div class="prompt-code"><pre>Din textul de mai jos, extrage într-un tabel: [Nume | Preț | Cantitate | Data].
 Doar ce e prezent, fără să inventezi. Marchează rândurile incerte. Apoi exportă-l ca CSV.
 """
 [LIPEȘTI conținutul]
 """</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F3</span><div class="prompt-titles"><div class="prompt-title">Formulă Excel / Google Sheets</div><div class="prompt-when"><b>Când:</b> știi ce vrei, dar nu și formula.</div></div></div><div class="prompt-code"><pre>Vreau o formulă pentru [REZULTAT, ex: să însumez vânzările doar pentru luna curentă].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F3</span><div class="prompt-titles"><div class="prompt-title-text">Formulă Excel / Google Sheets</div><div class="prompt-when"><b>Când:</b> știi ce vrei, dar nu și formula.</div></div></div><div class="prompt-code"><pre>Vreau o formulă pentru [REZULTAT, ex: să însumez vânzările doar pentru luna curentă].
 Datele sunt: [descrie coloanele, ex: A=data, B=client, C=sumă].
 Dă-mi formula exactă pentru [Excel / Google Sheets] și explică-mi pe scurt cum funcționează.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F4</span><div class="prompt-titles"><div class="prompt-title">Document din template (contract / procedură)</div><div class="prompt-when"><b>Când:</b> scrii același tip de document des.</div></div></div><div class="prompt-code"><pre>Scrie un draft de [TIP DOCUMENT, ex: contract de prestări servicii / procedură internă] pentru [CONTEXT].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F4</span><div class="prompt-titles"><div class="prompt-title-text">Document din template (contract / procedură)</div><div class="prompt-when"><b>Când:</b> scrii același tip de document des.</div></div></div><div class="prompt-code"><pre>Scrie un draft de [TIP DOCUMENT, ex: contract de prestări servicii / procedură internă] pentru [CONTEXT].
 Include secțiunile standard, lasă câmpuri [completabile] unde e nevoie de date specifice.
 Ton clar, fără jargon inutil. Marchează unde recomanzi verificarea unui jurist. Generează-l ca document Word.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F5</span><div class="prompt-titles"><div class="prompt-title">OCR: citește o factură / un scan</div><div class="prompt-when"><b>Când:</b> ai o poză/scan și vrei datele în format digital.</div></div><span class="prompt-tool-badge">imagine atașată</span></div><div class="prompt-code"><pre>Din imaginea atașată (o factură), extrage într-un tabel: furnizor, nr. factură, dată, fiecare produs cu cantitate și preț, TVA, total.
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F5</span><div class="prompt-titles"><div class="prompt-title-text">OCR: citește o factură / un scan</div><div class="prompt-when"><b>Când:</b> ai o poză/scan și vrei datele în format digital.</div></div><span class="prompt-tool-badge">imagine atașată</span></div><div class="prompt-code"><pre>Din imaginea atașată (o factură), extrage într-un tabel: furnizor, nr. factură, dată, fiecare produs cu cantitate și preț, TVA, total.
 Doar ce e vizibil în document. Dacă un câmp nu se citește clar, marchează-l „de verificat".</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F6</span><div class="prompt-titles"><div class="prompt-title">Comenzi în limbaj natural pe fișierele tale</div><div class="prompt-when"><b>Când:</b> ai conectat Drive/Sheets.</div></div><span class="prompt-tool-badge">Claude+MCP / Gemini</span></div><div class="prompt-code"><pre>(Drive) Găsește fișierul „[NUME]" din [lună] și rescrie-l pentru clientul [X], păstrând structura.
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F6</span><div class="prompt-titles"><div class="prompt-title-text">Comenzi în limbaj natural pe fișierele tale</div><div class="prompt-when"><b>Când:</b> ai conectat Drive/Sheets.</div></div><span class="prompt-tool-badge">Claude+MCP / Gemini</span></div><div class="prompt-code"><pre>(Drive) Găsește fișierul „[NUME]" din [lună] și rescrie-l pentru clientul [X], păstrând structura.
 (Sheets) Din foaia „[NUME]", scoate top 10 [clienți] după valoare și scrie un email de re-contactare pentru fiecare.
 (Sheets) Adaugă o coloană „Status" și marchează cine nu a mai comandat în ultimele [3] luni. Rezumă-mi în 5 puncte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F7</span><div class="prompt-titles"><div class="prompt-title">Prezentare din conținut</div><div class="prompt-when"><b>Când:</b> ai informația, dar nu și slide-urile.</div></div><span class="prompt-tool-badge">Gemini Canvas</span></div><div class="prompt-code"><pre>Creează o prezentare de [6] slide-uri pentru [AUDIENȚĂ, ex: o ofertă către un client nou] despre [SUBIECT].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">F7</span><div class="prompt-titles"><div class="prompt-title-text">Prezentare din conținut</div><div class="prompt-when"><b>Când:</b> ai informația, dar nu și slide-urile.</div></div><span class="prompt-tool-badge">Gemini Canvas</span></div><div class="prompt-code"><pre>Creează o prezentare de [6] slide-uri pentru [AUDIENȚĂ] despre [SUBIECT].
 Ton profesional, structură clară, un slide cu prețuri, un slide cu pașii următori.
 Pentru fiecare slide: titlu + 3 bullet-uri scurte. Apoi o pot edita.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
             </div>
 
-            <!-- ═ SECTION G ═ -->
+            <!-- ═ G ═ -->
             <div class="prompt-section" data-section="G">
-              <div class="prompt-section-header">
-                <span class="prompt-section-tag">G</span>
-                <h3>Productivitate personală</h3>
-              </div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">G1</span><div class="prompt-titles"><div class="prompt-title">Planifică-mi ziua / săptămâna</div><div class="prompt-when"><b>Când:</b> ai o listă haotică de lucruri de făcut.</div></div></div><div class="prompt-code"><pre>Am de făcut lucrurile de mai jos. Organizează-mi-le pe priorități (urgent/important),
+              <div class="prompt-section-header"><span class="psec-tag">G</span><h3>Productivitate personală</h3></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">G1</span><div class="prompt-titles"><div class="prompt-title-text">Planifică-mi ziua / săptămâna</div><div class="prompt-when"><b>Când:</b> ai o listă haotică de lucruri de făcut.</div></div></div><div class="prompt-code"><pre>Am de făcut lucrurile de mai jos. Organizează-mi-le pe priorități (urgent/important),
 estimează timpul pentru fiecare și propune-mi un plan realist pentru [azi / săptămâna asta].
 Marchează ce pot delega sau amâna.
 """
 [LIPEȘTI lista ta]
 """</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">G2</span><div class="prompt-titles"><div class="prompt-title">Pregătește-mă pentru o discuție grea</div><div class="prompt-when"><b>Când:</b> ai o negociere sau o conversație tensionată.</div></div></div><div class="prompt-code"><pre>Trebuie să port discuția: [DESCRIE situația și ce vreau să obțin].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">G2</span><div class="prompt-titles"><div class="prompt-title-text">Pregătește-mă pentru o discuție grea</div><div class="prompt-when"><b>Când:</b> ai o negociere sau o conversație tensionată.</div></div></div><div class="prompt-code"><pre>Trebuie să port discuția: [DESCRIE situația și ce vreau să obțin].
 Pregătește-mă: 3 puncte-cheie de transmis, cum răspund la 3 reacții probabile,
 și o frază de deschidere calmă. Vreau să fiu ferm, dar să păstrez relația.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">G3</span><div class="prompt-titles"><div class="prompt-title">Învață-mă ceva repede</div><div class="prompt-when"><b>Când:</b> vrei să stăpânești un subiect nou pentru muncă.</div></div></div><div class="prompt-code"><pre>Vreau să înțeleg [SUBIECT] suficient cât să [OBIECTIV, ex: discut cu un furnizor].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">G3</span><div class="prompt-titles"><div class="prompt-title-text">Învață-mă ceva repede</div><div class="prompt-when"><b>Când:</b> vrei să stăpânești un subiect nou pentru muncă.</div></div></div><div class="prompt-code"><pre>Vreau să înțeleg [SUBIECT] suficient cât să [OBIECTIV, ex: discut cu un furnizor].
 Învață-mă în 20 de minute: concepte de bază, 5 termeni esențiali, 3 greșeli frecvente,
 și 3 întrebări deștepte pe care le pot pune. Verifică-mi înțelegerea cu 2 întrebări la final.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">G4</span><div class="prompt-titles"><div class="prompt-title">Transcriere → acțiuni</div><div class="prompt-when"><b>Când:</b> ai înregistrat/notat o ședință sau un apel.</div></div></div><div class="prompt-code"><pre>Din transcrierea/notițele de mai jos, extrage: 1) deciziile luate, 2) lista de acțiuni cu responsabil și termen,
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">G4</span><div class="prompt-titles"><div class="prompt-title-text">Transcriere → acțiuni</div><div class="prompt-when"><b>Când:</b> ai înregistrat/notat o ședință sau un apel.</div></div></div><div class="prompt-code"><pre>Din transcrierea/notițele de mai jos, extrage: 1) deciziile luate, 2) lista de acțiuni cu responsabil și termen,
 3) întrebările rămase deschise. Format: 3 liste clare.
 """
 [LIPEȘTI transcrierea]
 """</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">G5</span><div class="prompt-titles"><div class="prompt-title">Verifică-mi gândirea (devil's advocate)</div><div class="prompt-when"><b>Când:</b> ai un plan și vrei să-i găsești fisurile.</div></div></div><div class="prompt-code"><pre>Iată planul meu: [DESCRIE planul].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">G5</span><div class="prompt-titles"><div class="prompt-title-text">Verifică-mi gândirea (devil's advocate)</div><div class="prompt-when"><b>Când:</b> ai un plan și vrei să-i găsești fisurile.</div></div></div><div class="prompt-code"><pre>Iată planul meu: [DESCRIE planul].
 Fii avocatul diavolului: care sunt cele mai mari 3 riscuri, ce presupun greșit,
 ce ar spune un sceptic inteligent? Apoi cum aș putea întări planul. Fii sincer, nu de complezență.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">G6</span><div class="prompt-titles"><div class="prompt-title">Scrie un mesaj pe care-l amân de zile</div><div class="prompt-when"><b>Când:</b> tot amâni un mesaj greu de scris.</div></div></div><div class="prompt-code"><pre>Trebuie să-i scriu [CUI] ca să-i spun [CE, situația dificilă].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">G6</span><div class="prompt-titles"><div class="prompt-title-text">Scrie un mesaj pe care-l amân de zile</div><div class="prompt-when"><b>Când:</b> tot amâni un mesaj greu de scris.</div></div></div><div class="prompt-code"><pre>Trebuie să-i scriu [CUI] ca să-i spun [CE, situația dificilă].
 Scrie-mi 2 variante: una mai blândă, una mai directă. Onest, respectuos, fără să evit subiectul. Max 100 de cuvinte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
             </div>
 
-            <!-- ═ SECTION H ═ -->
+            <!-- ═ H ═ -->
             <div class="prompt-section" data-section="H">
-              <div class="prompt-section-header">
-                <span class="prompt-section-tag">H</span>
-                <h3>Prompturi pe industrie (9 domenii)</h3>
-              </div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H1</span><div class="prompt-titles"><div class="prompt-title">🩺 Material educativ pentru pacienți</div><div class="prompt-when"><b>Când:</b> vrei să explici o procedură pe înțelesul pacientului.</div></div></div><div class="prompt-code"><pre>Ești comunicator medical. Scrie un material de [400] de cuvinte care explică [PROCEDURA/AFECȚIUNEA]
+              <div class="prompt-section-header"><span class="psec-tag">H</span><h3>Prompturi pe industrie (9 domenii)</h3></div>
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H1</span><div class="prompt-titles"><div class="prompt-title-text">🩺 Material educativ pentru pacienți</div><div class="prompt-when"><b>Când:</b> vrei să explici o procedură pe înțelesul pacientului.</div></div></div><div class="prompt-code"><pre>Ești comunicator medical. Scrie un material de [400] de cuvinte care explică [PROCEDURA/AFECȚIUNEA]
 pentru pacienți non-medici: ce este, la ce să se aștepte, ce întrebări să pună medicului.
 Ton: empatic, clar, liniștitor. Fără diagnostic, fără sfaturi de tratament. Adaugă disclaimer „consultă medicul".</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H2</span><div class="prompt-titles"><div class="prompt-title">🩺 Comunicare clinică (programări, reamintiri)</div><div class="prompt-when"><b>Când:</b> standardizezi mesajele cabinetului.</div></div></div><div class="prompt-code"><pre>Scrie șabloane de mesaje pentru cabinetul meu [tip]: 1) confirmare programare, 2) reamintire cu 24h înainte,
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H2</span><div class="prompt-titles"><div class="prompt-title-text">🩺 Comunicare clinică (programări, reamintiri)</div><div class="prompt-when"><b>Când:</b> standardizezi mesajele cabinetului.</div></div></div><div class="prompt-code"><pre>Scrie șabloane de mesaje pentru cabinetul meu [tip]: 1) confirmare programare, 2) reamintire cu 24h înainte,
 3) follow-up post-consultație, 4) reprogramare. Ton: cald, profesional, scurt. Fără date medicale în mesaj.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H3</span><div class="prompt-titles"><div class="prompt-title">🎓 Plan de lecție / curs</div><div class="prompt-when"><b>Când:</b> pregătești un modul de curs.</div></div></div><div class="prompt-code"><pre>Ești designer instrucțional. Fă-mi un plan de lecție de [90] de minute despre [SUBIECT] pentru [CINE, nivel].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H3</span><div class="prompt-titles"><div class="prompt-title-text">🎓 Plan de lecție / curs</div><div class="prompt-when"><b>Când:</b> pregătești un modul de curs.</div></div></div><div class="prompt-code"><pre>Ești designer instrucțional. Fă-mi un plan de lecție de [90] de minute despre [SUBIECT] pentru [CINE, nivel].
 Include: obiective de învățare, structură pe blocuri cu timp, 2 exerciții practice, și cum verific că au înțeles.
 Stil: practic, hands-on, nu doar teorie.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H5</span><div class="prompt-titles"><div class="prompt-title">👥 Anunț de job atractiv</div><div class="prompt-when"><b>Când:</b> recrutezi și vrei candidați buni.</div></div></div><div class="prompt-code"><pre>Scrie un anunț de angajare pentru postul [TITLU] în firma [DESCRIERE scurtă].
-Structură: ce facem, ce vei face tu, ce căutăm, ce oferim. Ton: uman, onest, fără clișee corporate („mediu dinamic").
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H5</span><div class="prompt-titles"><div class="prompt-title-text">👥 Anunț de job atractiv</div><div class="prompt-when"><b>Când:</b> recrutezi și vrei candidați buni.</div></div></div><div class="prompt-code"><pre>Scrie un anunț de angajare pentru postul [TITLU] în firma [DESCRIERE scurtă].
+Structură: ce facem, ce vei face tu, ce căutăm, ce oferim. Ton: uman, onest, fără clișee corporate.
 Evidențiază 3 motive reale pentru care merită. Max 350 de cuvinte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H8</span><div class="prompt-titles"><div class="prompt-title">💰 Explică un raport financiar pe înțeles</div><div class="prompt-when"><b>Când:</b> vrei să prezinți cifre unor non-financiari.</div></div></div><div class="prompt-code"><pre>Explică datele de mai jos pentru un antreprenor non-financiar: ce înseamnă, ce e bine, ce e îngrijorător,
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H8</span><div class="prompt-titles"><div class="prompt-title-text">💰 Explică un raport financiar pe înțeles</div><div class="prompt-when"><b>Când:</b> vrei să prezinți cifre unor non-financiari.</div></div></div><div class="prompt-code"><pre>Explică datele de mai jos pentru un antreprenor non-financiar: ce înseamnă, ce e bine, ce e îngrijorător,
 și 3 acțiuni concrete. Fără jargon. Folosește valori rotunjite/anonimizate.
 """
 [LIPEȘTI cifrele — fără date reale sensibile]
 """</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H11</span><div class="prompt-titles"><div class="prompt-title">⚖️ Rezumă un contract &amp; semnalează riscuri</div><div class="prompt-when"><b>Când:</b> ai un contract de citit înainte de semnat.</div></div></div><div class="prompt-code"><pre>Rezumă contractul de mai jos pe înțelesul meu: obligațiile mele, obligațiile celuilalt, termene, penalități.
-Semnalează 5 clauze riscante sau dezechilibrate și ce aș putea negocia. NU oferi consultanță legală definitivă —
-marchează ce trebuie confirmat cu un avocat.
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H11</span><div class="prompt-titles"><div class="prompt-title-text">⚖️ Rezumă un contract &amp; semnalează riscuri</div><div class="prompt-when"><b>Când:</b> ai un contract de citit înainte de semnat.</div></div></div><div class="prompt-code"><pre>Rezumă contractul de mai jos pe înțelesul meu: obligațiile mele, obligațiile celuilalt, termene, penalități.
+Semnalează 5 clauze riscante sau dezechilibrate și ce aș putea negocia. NU oferi consultanță legală definitivă.
 """
 [LIPEȘTI contractul — anonimizat]
 """</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H13</span><div class="prompt-titles"><div class="prompt-title">🏠 Anunț de proprietate care vinde</div><div class="prompt-when"><b>Când:</b> listezi o proprietate.</div></div></div><div class="prompt-code"><pre>Scrie un anunț pentru [TIP PROPRIETATE] în [ZONĂ]: [detalii — suprafață, camere, dotări, preț].
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H13</span><div class="prompt-titles"><div class="prompt-title-text">🏠 Anunț de proprietate care vinde</div><div class="prompt-when"><b>Când:</b> listezi o proprietate.</div></div></div><div class="prompt-code"><pre>Scrie un anunț pentru [TIP PROPRIETATE] în [ZONĂ]: [detalii — suprafață, camere, dotări, preț].
 Hook în primul rând, beneficii ale zonei și ale locuinței (nu doar caracteristici), CTA clar la final.
 Dă-mi și un titlu scurt pentru portaluri. Ton: atractiv, dar onest. Fără exagerări.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H15</span><div class="prompt-titles"><div class="prompt-title">🛍️ Descrieri de produs în serie</div><div class="prompt-when"><b>Când:</b> ai zeci de produse de descris.</div></div></div><div class="prompt-code"><pre>Pentru fiecare produs de mai jos, scrie o descriere de [50] de cuvinte (beneficii + un detaliu concret + CTA)
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H15</span><div class="prompt-titles"><div class="prompt-title-text">🛍️ Descrieri de produs în serie</div><div class="prompt-when"><b>Când:</b> ai zeci de produse de descris.</div></div></div><div class="prompt-code"><pre>Pentru fiecare produs de mai jos, scrie o descriere de [50] de cuvinte (beneficii + un detaliu concret + CTA)
 și 5 cuvinte-cheie pentru căutare. Ton: [al magazinului meu]. Format: tabel.
 """
 [LIPEȘTI lista de produse cu specificații]
 """</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H17</span><div class="prompt-titles"><div class="prompt-title">📣 Brief de campanie</div><div class="prompt-when"><b>Când:</b> pornești o campanie pentru un client.</div></div></div><div class="prompt-code"><pre>Scrie un brief de campanie pentru [CLIENT/PRODUS]: obiectiv, public țintă, mesaj-cheie, canale,
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H17</span><div class="prompt-titles"><div class="prompt-title-text">📣 Brief de campanie</div><div class="prompt-when"><b>Când:</b> pornești o campanie pentru un client.</div></div></div><div class="prompt-code"><pre>Scrie un brief de campanie pentru [CLIENT/PRODUS]: obiectiv, public țintă, mesaj-cheie, canale,
 3 unghiuri creative, KPI de urmărit, buget orientativ pe canale. Format: o pagină, clar pentru echipă.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H20</span><div class="prompt-titles"><div class="prompt-title">📣 Persona de client</div><div class="prompt-when"><b>Când:</b> vrei să țintești mai precis.</div></div></div><div class="prompt-code"><pre>Pe baza descrierii afacerii [DESCRIERE], construiește 2-3 persona de client:
+              <div class="prompt-card"><div class="prompt-card-header"><span class="prompt-id">H20</span><div class="prompt-titles"><div class="prompt-title-text">📣 Persona de client</div><div class="prompt-when"><b>Când:</b> vrei să țintești mai precis.</div></div></div><div class="prompt-code"><pre>Pe baza descrierii afacerii [DESCRIERE], construiește 2-3 persona de client:
 nume, situație, ce vrea, ce-l frământă, unde își petrece timpul online, ce mesaj îl convinge.
 Apoi, pentru fiecare, un unghi de comunicare diferit.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
             </div>
 
-            <!-- ═ SECTION I ═ -->
+            <!-- ═ I ═ -->
             <div class="prompt-section" data-section="I">
-              <div class="prompt-section-header">
-                <span class="prompt-section-tag purple">I</span>
-                <h3>Setup tool-uri (o dată, folosești la nesfârșit)</h3>
-              </div>
-              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">I1</span><div class="prompt-titles"><div class="prompt-title">ChatGPT — Custom Instructions</div><div class="prompt-when"><b>Unde:</b> Settings → Personalization → Custom Instructions.</div></div></div><div class="prompt-code"><pre>[Despre tine] Mă numesc [NUME], sunt [ROL] la [FIRMĂ], în domeniul [DOMENIU].
+              <div class="prompt-section-header"><span class="psec-tag purple">I</span><h3>Setup tool-uri (o dată, folosești la nesfârșit)</h3></div>
+              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">I1</span><div class="prompt-titles"><div class="prompt-title-text">ChatGPT — Custom Instructions</div><div class="prompt-when"><b>Unde:</b> Settings → Personalization → Custom Instructions.</div></div></div><div class="prompt-code"><pre>[Despre tine] Mă numesc [NUME], sunt [ROL] la [FIRMĂ], în domeniul [DOMENIU].
 Lucrez cu [TIP CLIENȚI]. Obiectivele mele tipice: [ce ceri des de la AI].
 
 [Cum să răspundă] Răspunde în română, direct și concret, fără introduceri lungi.
 Structurează în bullet-uri. Ton: profesional, dar accesibil. Dacă-ți lipsește un detaliu esențial, întreabă-mă întâi.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">I2</span><div class="prompt-titles"><div class="prompt-title">Claude / ChatGPT Project — Instrucțiuni</div><div class="prompt-when"><b>Unde:</b> creezi un Project, încarci fișiere de context, pui asta în Instructions.</div></div></div><div class="prompt-code"><pre>Ești asistentul meu pentru [SCOP, ex: comunicarea comercială a brandului X].
+              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">I2</span><div class="prompt-titles"><div class="prompt-title-text">Claude / ChatGPT Project — Instrucțiuni</div><div class="prompt-when"><b>Unde:</b> creezi un Project, încarci fișiere de context, pui asta în Instructions.</div></div></div><div class="prompt-code"><pre>Ești asistentul meu pentru [SCOP, ex: comunicarea comercială a brandului X].
 Folosește ÎNTOTDEAUNA informațiile din fișierele atașate (voce de brand, produse, reguli).
 Scrie în vocea brandului. Respectă restricțiile din documente. Înainte de a livra, verifică:
 tonul e al brandului? există un CTA? respect restricțiile? Dacă-mi lipsește un detaliu, întreabă o singură întrebare scurtă.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">I3</span><div class="prompt-titles"><div class="prompt-title">NotebookLM — întrebare-tip pe sursele tale</div><div class="prompt-when"><b>Unde:</b> încarci documentele (PDF/contracte/proceduri), apoi întrebi în Chat.</div></div></div><div class="prompt-code"><pre>Pe baza DOAR a surselor încărcate: [ÎNTREBAREA].
+              <div class="prompt-card purple"><div class="prompt-card-header"><span class="prompt-id purple">I3</span><div class="prompt-titles"><div class="prompt-title-text">NotebookLM — întrebare-tip pe sursele tale</div><div class="prompt-when"><b>Unde:</b> încarci documentele (PDF/contracte/proceduri), apoi întrebi în Chat.</div></div></div><div class="prompt-code"><pre>Pe baza DOAR a surselor încărcate: [ÎNTREBAREA].
 Răspunde cu citate exacte din document. Dacă informația nu există în surse, spune „nu apare în surse".
 La final, generează un Audio Overview în română pentru recapitulare.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
             </div>
 
           </div><!-- /prompts-container -->
-        </div><!-- /section-card-body -->
-      </div><!-- /section-card -->
+        </div>
+      </div>
 
       <!-- ── TOOL-URI ── -->
       <div class="section-card" id="tooluri">
-        <div class="section-card-header" onclick="toggleSection('tooluri-body', this)">
-          <div class="section-icon green">🛠️</div>
+        <div class="section-card-header" onclick="toggleSection('tooluri-body', this)" aria-expanded="true">
+          <div class="section-icon mint">🛠️</div>
           <div class="section-card-title">
             <h2>Tool-urile cursului</h2>
             <p>Instrumentele menționate în sesiunea 1 — linkuri directe</p>
           </div>
-          <button class="section-toggle open">▼</button>
+          <button class="section-toggle open" aria-label="Restrânge secțiunea">▼</button>
         </div>
         <div class="section-card-body" id="tooluri-body">
           <div class="tools-grid">
-            <a href="https://chat.openai.com" target="_blank" class="tool-card">
-              <div class="tool-logo"><img src="../assets/logos/openai.svg" alt="ChatGPT"></div>
+            <a href="https://chat.openai.com" target="_blank" rel="noopener" class="tool-card">
+              <div class="tool-logo"><img src="../assets/logos/openai.svg" alt="OpenAI"></div>
               <div class="tool-info">
                 <h4>ChatGPT</h4>
                 <p>Imagini, integrări externe, ecosistem larg</p>
-                <div class="best">→ Alege pentru imagini + integrări</div>
+                <div class="tool-best">→ Alege pentru imagini + integrări</div>
                 <span class="tool-link">chat.openai.com ↗</span>
               </div>
             </a>
-            <a href="https://gemini.google.com" target="_blank" class="tool-card">
+            <a href="https://gemini.google.com" target="_blank" rel="noopener" class="tool-card">
               <div class="tool-logo"><img src="../assets/logos/gemini.svg" alt="Gemini"></div>
               <div class="tool-info">
                 <h4>Gemini</h4>
                 <p>Gmail, Docs, Sheets, Drive, video cu Veo</p>
-                <div class="best">→ Alege dacă lucrezi în Google</div>
+                <div class="tool-best">→ Alege dacă lucrezi în Google</div>
                 <span class="tool-link">gemini.google.com ↗</span>
               </div>
             </a>
-            <a href="https://claude.ai" target="_blank" class="tool-card">
+            <a href="https://claude.ai" target="_blank" rel="noopener" class="tool-card">
               <div class="tool-logo"><img src="../assets/logos/claude.svg" alt="Claude"></div>
               <div class="tool-info">
                 <h4>Claude</h4>
-                <p>Documente lungi, add-in Office (Excel, Word, Outlook)</p>
-                <div class="best">→ Alege pentru documente &amp; Office</div>
+                <p>Documente lungi, add-in Office nativ</p>
+                <div class="tool-best">→ Alege pentru documente &amp; Office</div>
                 <span class="tool-link">claude.ai ↗</span>
               </div>
             </a>
-            <a href="https://notebooklm.google.com" target="_blank" class="tool-card">
+            <a href="https://notebooklm.google.com" target="_blank" rel="noopener" class="tool-card">
               <div class="tool-logo"><img src="../assets/logos/notebooklm.svg" alt="NotebookLM"></div>
               <div class="tool-info">
                 <h4>NotebookLM</h4>
-                <p>Răspunsuri DOAR din documentele tale, cu citate exacte</p>
-                <div class="best">→ Alege pentru întrebări pe documente proprii</div>
+                <p>Răspunsuri DOAR din documentele tale, cu citate</p>
+                <div class="tool-best">→ Alege pentru documente proprii</div>
                 <span class="tool-link">notebooklm.google.com ↗</span>
               </div>
             </a>
-            <a href="https://www.perplexity.ai" target="_blank" class="tool-card">
+            <a href="https://www.perplexity.ai" target="_blank" rel="noopener" class="tool-card">
               <div class="tool-logo"><img src="../assets/logos/perplexity.svg" alt="Perplexity"></div>
               <div class="tool-info">
                 <h4>Perplexity</h4>
                 <p>Search AI cu surse verificate și linkuri reale</p>
-                <div class="best">→ Alege pentru research cu surse</div>
+                <div class="tool-best">→ Alege pentru research cu surse</div>
                 <span class="tool-link">perplexity.ai ↗</span>
               </div>
             </a>
-            <a href="https://drive.google.com" target="_blank" class="tool-card">
+            <a href="https://drive.google.com" target="_blank" rel="noopener" class="tool-card">
               <div class="tool-logo"><img src="../assets/logos/googledrive.svg" alt="Google Drive"></div>
               <div class="tool-info">
                 <h4>Google Drive + Gemini</h4>
-                <p>Fișiere cloud cu AI nativ pentru rezumare &amp; editare</p>
-                <div class="best">→ Alege pentru documente cloud</div>
+                <p>Fișiere cloud cu AI nativ pentru editare</p>
+                <div class="tool-best">→ Alege pentru documente cloud</div>
                 <span class="tool-link">drive.google.com ↗</span>
               </div>
             </a>
           </div>
-
           <div class="callout tip">
             <span class="callout-title">💡 Sfat practic</span>
-            Ai conturi la minimum 2 tool-uri. Nu există „cel mai bun" — există cel mai bun pentru sarcina de azi.
-            Obiceiul bun: ChatGPT sau Gemini pentru imagini, Claude pentru documente lungi, NotebookLM pentru documentele tale.
+            Ai conturi la minimum 2 tool-uri. ChatGPT sau Gemini pentru imagini, Claude pentru documente lungi, NotebookLM pentru documentele tale proprii.
           </div>
         </div>
       </div>
 
-      <!-- ── TEMA + CHECKLIST ── -->
+      <!-- ── TEMĂ + CHECKLIST ── -->
       <div class="section-card" id="tema">
-        <div class="section-card-header" onclick="toggleSection('tema-body', this)">
-          <div class="section-icon orange">✅</div>
+        <div class="section-card-header" onclick="toggleSection('tema-body', this)" aria-expanded="true">
+          <div class="section-icon peach">✅</div>
           <div class="section-card-title">
             <h2>Temă &amp; checklist de progres</h2>
             <p>Ce trebuie să faci până la sesiunea 2</p>
           </div>
-          <button class="section-toggle open">▼</button>
+          <button class="section-toggle open" aria-label="Restrânge secțiunea">▼</button>
         </div>
         <div class="section-card-body" id="tema-body">
 
           <div class="homework-box">
             <h3>📌 Tema pentru sesiunea 2</h3>
-            <p>Alege <strong>1 task repetitiv</strong> din munca ta de zi cu zi. Construiește-i un prompt complet (Rol + Context + Sarcină + Format + Restricție) folosind template-ul de mai jos, testează-l de <strong>3 ori</strong> și notează ce a mers și ce nu. Adu exemplul la sesiunea 2.</p>
-
+            <p>Alege <strong>1 task repetitiv</strong> din munca ta de zi cu zi. Construiește-i un prompt complet folosind template-ul de mai jos, testează-l de <strong>3 ori</strong> și notează ce a mers și ce nu. Adu exemplul la sesiunea 2.</p>
             <div class="template-box">
               Ești <span class="tpl-mark">ROL</span>.<br>
               <span class="tpl-mark">CONTEXT</span> (compania mea, publicul, situația).<br>
@@ -1295,106 +1091,72 @@ La final, generează un Audio Overview în română pentru recapitulare.</pre><b
               Outputul trebuie să fie <span class="tpl-mark">FORMAT</span>.<br>
               Evită <span class="tpl-mark">RESTRICȚIE</span>.
             </div>
-
             <div class="btn-row">
-              <a href="https://chat.openai.com" target="_blank" class="btn-primary">→ Deschide ChatGPT și testează</a>
-              <a href="https://claude.ai" target="_blank" class="btn-outline">→ Sau testează în Claude</a>
+              <a href="https://chat.openai.com" target="_blank" rel="noopener" class="btn btn-primary">→ Testează în ChatGPT</a>
+              <a href="https://claude.ai" target="_blank" rel="noopener" class="btn btn-outline">→ Testează în Claude</a>
             </div>
           </div>
 
-          <div style="margin-top: 28px;">
-            <div class="callout tip" style="margin-bottom: 20px;">
+          <div style="margin-top: 24px;">
+            <div class="callout tip" style="margin-bottom: 16px;">
               <span class="callout-title">✅ Checklist KPI — am bibliotecă, dacă:</span>
               Bifează pe rând ce ai terminat. Progresul se salvează în browser.
             </div>
-
             <div id="checklist">
-              <div class="checklist-item" data-id="c1">
-                <div class="check-box" onclick="toggleCheck(this)"><span class="check">✓</span></div>
-                <label onclick="toggleCheckByLabel(this)">Am scris 10 prompturi pentru taskuri reale din munca mea.</label>
-              </div>
-              <div class="checklist-item" data-id="c2">
-                <div class="check-box" onclick="toggleCheck(this)"><span class="check">✓</span></div>
-                <label onclick="toggleCheckByLabel(this)">Fiecare prompt are cel puțin Rol + Context + Sarcină.</label>
-              </div>
-              <div class="checklist-item" data-id="c3">
-                <div class="check-box" onclick="toggleCheck(this)"><span class="check">✓</span></div>
-                <label onclick="toggleCheckByLabel(this)">Le-am testat live și am ajustat ce nu a sunat bine.</label>
-              </div>
-              <div class="checklist-item" data-id="c4">
-                <div class="check-box" onclick="toggleCheck(this)"><span class="check">✓</span></div>
-                <label onclick="toggleCheckByLabel(this)">Le-am salvat undeva la îndemână (Doc, Notes, sau un Project).</label>
-              </div>
-              <div class="checklist-item" data-id="c5">
-                <div class="check-box" onclick="toggleCheck(this)"><span class="check">✓</span></div>
-                <label onclick="toggleCheckByLabel(this)">Am ales 1 task repetitiv pe care îl folosesc 5 zile la rând.</label>
-              </div>
-              <div class="checklist-item" data-id="c6">
-                <div class="check-box" onclick="toggleCheck(this)"><span class="check">✓</span></div>
-                <label onclick="toggleCheckByLabel(this)">Am configurat Custom Instructions în ChatGPT sau un Project în Claude.</label>
-              </div>
-              <div class="checklist-item" data-id="c7">
-                <div class="check-box" onclick="toggleCheck(this)"><span class="check">✓</span></div>
-                <label onclick="toggleCheckByLabel(this)">Am testat NotebookLM cu un document al meu.</label>
-              </div>
+              <div class="checklist-item" data-id="c1"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label onclick="toggleCheckByLabel(this)">Am scris 10 prompturi pentru taskuri reale din munca mea.</label></div>
+              <div class="checklist-item" data-id="c2"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label onclick="toggleCheckByLabel(this)">Fiecare prompt are cel puțin Rol + Context + Sarcină.</label></div>
+              <div class="checklist-item" data-id="c3"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label onclick="toggleCheckByLabel(this)">Le-am testat live și am ajustat ce nu a sunat bine.</label></div>
+              <div class="checklist-item" data-id="c4"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label onclick="toggleCheckByLabel(this)">Le-am salvat undeva la îndemână (Doc, Notes, sau un Project).</label></div>
+              <div class="checklist-item" data-id="c5"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label onclick="toggleCheckByLabel(this)">Am ales 1 task repetitiv pe care îl folosesc 5 zile la rând.</label></div>
+              <div class="checklist-item" data-id="c6"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label onclick="toggleCheckByLabel(this)">Am configurat Custom Instructions în ChatGPT sau un Project în Claude.</label></div>
+              <div class="checklist-item" data-id="c7"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label onclick="toggleCheckByLabel(this)">Am testat NotebookLM cu un document al meu.</label></div>
             </div>
           </div>
 
-          <div class="callout success" style="margin-top: 20px;">
+          <div class="callout success" style="margin-top: 16px;">
             <span class="callout-title">➕ Continuă biblioteca</span>
             De fiecare dată când scrii un prompt care îți iese bine, salvează-l. În câteva săptămâni ai propria librărie — mai valoroasă decât orice listă generică, pentru că e a <strong>afacerii tale</strong>.
           </div>
         </div>
       </div>
 
-    </div><!-- /content lesson-1 -->
+    </div><!-- /lesson-1 -->
 
-    <!-- ═══════════════ LECȚIA 2 (blocată) ═══════════════ -->
+    <!-- ═══ LECȚIA 2 ═══ -->
     <div class="content" id="lesson-2" style="display:none;">
       <div class="locked-overlay">
         <div class="lock-graphic">🔒</div>
         <h2>Lecția 2 — În curând</h2>
-        <p>Această lecție va fi disponibilă după sesiunea 2. Continuă să lucrezi la tema din Lecția 1 pentru a fi pregătit.</p>
+        <p>Această lecție va fi disponibilă după sesiunea 2. Lucrează la tema din Lecția 1 pentru a fi pregătit.</p>
       </div>
     </div>
 
-    <!-- ═══════════════ LECȚIA 3 (blocată) ═══════════════ -->
+    <!-- ═══ LECȚIA 3 ═══ -->
     <div class="content" id="lesson-3" style="display:none;">
       <div class="locked-overlay">
         <div class="lock-graphic">🔒</div>
         <h2>Lecția 3 — În curând</h2>
-        <p>Această lecție va fi disponibilă după sesiunea 3. Concentrează-te pe primele două sesiuni pentru moment.</p>
+        <p>Această lecție va fi disponibilă după sesiunea 3.</p>
       </div>
     </div>
 
   </main>
 </div>
 
-<!-- TOAST -->
-<div id="toast" style="
-  position: fixed; bottom: 24px; right: 24px; z-index: 999;
-  background: #1E293B; color: #F1F5F9;
-  padding: 12px 20px; border-radius: 12px;
-  font-family: 'Onest', sans-serif; font-size: 14px; font-weight: 500;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  transform: translateY(80px); opacity: 0;
-  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-  pointer-events: none;
-"></div>
+<!-- Toast -->
+<div id="toast" role="status" aria-live="polite"></div>
 
 <script>
-// ── SECTION TOGGLE ──
 function toggleSection(bodyId, header) {
   const body = document.getElementById(bodyId);
   const btn = header.querySelector('.section-toggle');
   const isOpen = body.style.display !== 'none';
   body.style.display = isOpen ? 'none' : 'block';
   btn.classList.toggle('open', !isOpen);
+  header.setAttribute('aria-expanded', String(!isOpen));
 }
 
-// ── LESSON SWITCH ──
 function showLesson(n) {
-  // only lesson 1 is accessible
   [1,2,3].forEach(i => {
     const el = document.getElementById('lesson-' + i);
     if (el) el.style.display = (i === n) ? 'block' : 'none';
@@ -1403,11 +1165,8 @@ function showLesson(n) {
     item.classList.toggle('active', idx + 1 === n);
   });
   document.getElementById('breadcrumb-current').textContent = 'Lecția ' + n;
-
-  // show/hide sub-items
   const sub1 = document.getElementById('sub1');
   if (sub1) sub1.style.display = (n === 1) ? 'block' : 'none';
-
   if (window.innerWidth <= 768) closeSidebar();
 }
 
@@ -1415,120 +1174,79 @@ function showLockedToast(n) {
   showToast('🔒 Lecția ' + n + ' se deblochează după sesiunea ' + n);
 }
 
-// ── SIDEBAR MOBILE ──
-function toggleSidebar() {
-  document.getElementById('sidebar').classList.toggle('open');
-}
-function closeSidebar() {
-  document.getElementById('sidebar').classList.remove('open');
-}
+function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+function closeSidebar()   { document.getElementById('sidebar').classList.remove('open'); }
 
-// ── SCROLL TO SECTION ──
 function scrollToSection(e, id) {
   e.stopPropagation();
   const el = document.getElementById(id);
-  if (el) {
-    const top = el.getBoundingClientRect().top + window.scrollY - 80;
-    window.scrollTo({ top, behavior: 'smooth' });
-  }
-  // update active sub-item
+  if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 70, behavior: 'smooth' });
   document.querySelectorAll('.sub-item').forEach(s => s.classList.remove('active'));
   e.currentTarget.classList.add('active');
   if (window.innerWidth <= 768) closeSidebar();
 }
 
-// ── FILTER PROMPTS ──
 function filterSection(btn, section) {
   document.querySelectorAll('.section-nav-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.prompt-section').forEach(sec => {
-    if (section === 'all' || sec.dataset.section === section) {
-      sec.style.display = 'block';
-    } else {
-      sec.style.display = 'none';
-    }
+    sec.style.display = (section === 'all' || sec.dataset.section === section) ? 'block' : 'none';
   });
 }
 
-// ── COPY PROMPT ──
 function copyPrompt(btn) {
   const pre = btn.closest('.prompt-code').querySelector('pre');
   const text = pre.textContent;
-  navigator.clipboard.writeText(text).then(() => {
+  const doIt = () => {
     btn.textContent = 'Copiat ✓';
     btn.classList.add('copied');
-    setTimeout(() => {
-      btn.textContent = 'Copiază';
-      btn.classList.remove('copied');
-    }, 1800);
-    showToast('Prompt copiat în clipboard ✓');
-  }).catch(() => {
-    // fallback
-    const ta = document.createElement('textarea');
-    ta.value = text;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    btn.textContent = 'Copiat ✓';
-    setTimeout(() => btn.textContent = 'Copiază', 1800);
-  });
+    setTimeout(() => { btn.textContent = 'Copiază'; btn.classList.remove('copied'); }, 1800);
+    showToast('Prompt copiat ✓');
+  };
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(doIt).catch(() => fallbackCopy(text, doIt));
+  } else { fallbackCopy(text, doIt); }
+}
+function fallbackCopy(text, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = text; document.body.appendChild(ta); ta.select();
+  document.execCommand('copy'); document.body.removeChild(ta); cb();
 }
 
-// ── CHECKLIST ──
 function loadChecklist() {
   document.querySelectorAll('.checklist-item').forEach(item => {
-    const id = item.dataset.id;
-    if (localStorage.getItem('check_' + id) === '1') {
+    if (localStorage.getItem('check_' + item.dataset.id) === '1') {
       item.querySelector('.check-box').classList.add('checked');
       item.classList.add('done');
     }
   });
 }
-
 function toggleCheck(box) {
   const item = box.closest('.checklist-item');
-  const id = item.dataset.id;
   const isChecked = box.classList.toggle('checked');
   item.classList.toggle('done', isChecked);
-  localStorage.setItem('check_' + id, isChecked ? '1' : '0');
+  localStorage.setItem('check_' + item.dataset.id, isChecked ? '1' : '0');
 }
-
 function toggleCheckByLabel(label) {
-  const item = label.closest('.checklist-item');
-  const box = item.querySelector('.check-box');
-  toggleCheck(box);
+  toggleCheck(label.closest('.checklist-item').querySelector('.check-box'));
 }
 
-// ── HIGHLIGHT MARKS IN PROMPTS ──
-function highlightPromptFields() {
+function highlightFields() {
   document.querySelectorAll('.prompt-code pre').forEach(pre => {
-    const text = pre.textContent
-      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-    pre.innerHTML = text.replace(/\[[^\]\n]+\]/g, m =>
-      '<mark>' + m + '</mark>'
-    );
+    const t = pre.textContent.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    pre.innerHTML = t.replace(/\[[^\]\n]+\]/g, m => '<mark>' + m + '</mark>');
   });
 }
 
-// ── TOAST ──
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
-  t.style.transform = 'translateY(0)';
-  t.style.opacity = '1';
-  clearTimeout(t._timer);
-  t._timer = setTimeout(() => {
-    t.style.transform = 'translateY(80px)';
-    t.style.opacity = '0';
-  }, 2500);
+  t.style.transform = 'translateY(0)'; t.style.opacity = '1';
+  clearTimeout(t._t);
+  t._t = setTimeout(() => { t.style.transform = 'translateY(72px)'; t.style.opacity = '0'; }, 2500);
 }
 
-// ── INIT ──
-document.addEventListener('DOMContentLoaded', () => {
-  highlightPromptFields();
-  loadChecklist();
-});
+document.addEventListener('DOMContentLoaded', () => { highlightFields(); loadChecklist(); });
 </script>
 </body>
 </html>
