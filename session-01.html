@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sesiunea 1 — Fundamente AI &amp; Prompt Engineering</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #7C3AED;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 56px 68px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #7C3AED 0%, #DB2777 100%); }
+
+    .slide-header { margin-bottom: 28px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #F3E8FF; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 920px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    .logo { display: inline-block; vertical-align: middle; } .logo svg { display: block; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 60px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 24px; font-weight: 400; color: rgba(255,255,255,0.7); margin: 0 0 50px; max-width: 620px; line-height: 1.5; }
+    .cover-logos { display: flex; align-items: center; gap: 26px; }
+    .cover-logos .lbl { font-size: 13px; color: rgba(255,255,255,0.45); margin-right: 4px; }
+    .cover-logos .logo svg { fill: rgba(255,255,255,0.85); }
+
+    /* STATEMENT (stats) */
+    .slide-statement { justify-content: center; }
+    .stmt-list { display: flex; flex-direction: column; }
+    .stmt-row { padding: 24px 0; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 28px; }
+    .stmt-row:last-child { border-bottom: none; }
+    .stmt-number { font-size: 60px; font-weight: 800; color: var(--primary); line-height: 1; letter-spacing: -0.02em; flex-shrink: 0; min-width: 200px; }
+    .stmt-body { display: flex; flex-direction: column; gap: 4px; }
+    .stmt-text { font-size: 23px; font-weight: 600; color: var(--foreground); line-height: 1.35; }
+    .stmt-source { font-size: 14px; color: var(--muted); }
+    .stmt-note { margin-top: 20px; font-size: 15px; color: var(--muted); font-style: italic; line-height: 1.5; }
+
+    /* VS-TABLE */
+    .vs-table { display: grid; grid-template-columns: 1fr 1fr; flex: 1; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .vs-col { display: flex; flex-direction: column; }
+    .vs-col.right { background: var(--bg); border-left: 1px solid var(--border); }
+    .vs-head { padding: 16px 26px; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .vs-head.neg { background: #FEF2F2; color: #B91C1C; } .vs-head.pos { background: #F0FDF4; color: #15803D; }
+    .vs-head.ai { background: var(--primary-ultra-light); color: var(--primary); } .vs-head.human { background: #FFF7ED; color: #C2410C; }
+    .vs-row { padding: 15px 26px; font-size: 18px; color: var(--foreground); border-top: 1px solid var(--border); line-height: 1.4; display: flex; align-items: center; gap: 12px; flex: 1; }
+    .vs-row .ic { font-size: 19px; flex-shrink: 0; }
+    .vs-highlight { margin-top: 16px; text-align: center; font-size: 19px; font-weight: 700; color: var(--primary); background: var(--primary-ultra-light); border-radius: var(--radius); padding: 14px; }
+
+    /* TABLE */
+    .slide-table { width: 100%; border-collapse: collapse; font-size: 15px; flex: 1; }
+    .slide-table th { padding: 13px 16px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: #fff; border: none; }
+    .slide-table th.chatgpt { background: #10A37F; } .slide-table th.gemini { background: #4285F4; } .slide-table th.claude { background: #C96442; } .slide-table th.empty { background: var(--bg); color: var(--muted); }
+    .slide-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--foreground); vertical-align: middle; line-height: 1.4; }
+    .slide-table tr:last-child td { border-bottom: none; }
+    .slide-table tr:nth-child(even) td { background: var(--bg); }
+    .slide-table .row-label { font-weight: 700; white-space: nowrap; }
+    .th-logo { display: flex; align-items: center; gap: 9px; } .th-logo .logo svg { fill: #fff; }
+
+    /* MATURITY */
+    .maturity-track { display: flex; flex: 1; gap: 0; }
+    .maturity-step { flex: 1; padding: 20px 16px; display: flex; flex-direction: column; gap: 7px; position: relative; }
+    .maturity-step::after { content: '▸'; position: absolute; right: -9px; top: 50%; transform: translateY(-50%); color: var(--border); font-size: 18px; z-index: 2; }
+    .maturity-step:last-child::after { display: none; }
+    .maturity-step-0 { background: #F1F5F9; border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+    .maturity-step-1 { background: #EEF2FF; } .maturity-step-2 { background: #E0E7FF; } .maturity-step-3 { background: var(--pastel-sky); }
+    .maturity-step-4 { background: #DBEAFE; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+    .maturity-num { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: 0.03em; }
+    .maturity-title { font-size: 16px; font-weight: 800; color: var(--foreground); }
+    .maturity-step-4 .maturity-title { color: var(--primary); }
+    .maturity-sign { font-size: 13px; color: var(--foreground); font-weight: 600; line-height: 1.35; }
+    .maturity-tools { font-size: 12px; color: var(--muted); line-height: 1.4; margin-top: auto; padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.06); }
+
+    /* LLM steps */
+    .llm-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; flex: 1; align-items: stretch; }
+    .llm-step { padding: 24px 20px; display: flex; flex-direction: column; gap: 10px; position: relative; }
+    .llm-step::after { content: '→'; position: absolute; right: -12px; top: 44px; font-size: 24px; color: var(--primary); font-weight: 700; z-index: 2; }
+    .llm-step:last-child::after { display: none; }
+    .llm-step-num { width: 38px; height: 38px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .llm-step-icon { font-size: 32px; }
+    .llm-step-title { font-size: 17px; font-weight: 700; color: var(--foreground); }
+    .llm-step-desc { font-size: 14px; color: var(--muted); line-height: 1.5; }
+    .llm-step-desc b { color: var(--foreground); }
+
+    /* Predictive text mockup (slide 08) */
+    .phone-mock { background: #1F2937; border-radius: 18px; padding: 14px; width: 100%; box-shadow: var(--shadow); }
+    .phone-bubble { background: #2563EB; color: #fff; border-radius: 16px 16px 4px 16px; padding: 10px 14px; font-size: 14px; margin-bottom: 12px; width: fit-content; margin-left: auto; }
+    .phone-suggest { display: flex; gap: 6px; }
+    .phone-chip { flex: 1; text-align: center; background: #374151; color: #fff; border-radius: 8px; padding: 8px 6px; font-size: 13px; font-weight: 600; }
+    .phone-chip.hot { background: var(--primary-light); }
+    .mech-step { display: flex; align-items: center; gap: 16px; }
+    .mech-num { width: 38px; height: 38px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .mech-text { font-size: 18px; color: var(--foreground); line-height: 1.4; } .mech-text b { font-weight: 800; color: var(--primary); }
+
+    /* SECURITY */
+    .sec-layout { display: flex; gap: 26px; flex: 1; align-items: stretch; }
+    .sec-icon-pane { width: 220px; flex-shrink: 0; border-radius: var(--radius); background: linear-gradient(160deg, #0F172A 0%, #1E3A8A 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; color: #fff; text-align: center; padding: 28px; }
+    .sec-icon-pane .shield { font-size: 76px; line-height: 1; }
+    .sec-icon-pane .sec-rule { font-size: 17px; font-weight: 700; line-height: 1.4; }
+    .sec-icon-pane .sec-rule span { color: var(--primary-light); }
+    .sec-table { flex: 1; border-collapse: separate; border-spacing: 0; font-size: 16px; }
+    .sec-table th { padding: 12px 20px; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: #fff; }
+    .sec-table th.no { background: #DC2626; border-radius: var(--radius-sm) 0 0 0; } .sec-table th.yes { background: #16A34A; border-radius: 0 var(--radius-sm) 0 0; }
+    .sec-table td { padding: 11px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .sec-table .no-cell { background: #FEF2F2; color: #7F1D1D; font-weight: 600; } .sec-table .yes-cell { background: #F0FDF4; color: #14532D; }
+    .sec-table tr:last-child td { border-bottom: none; }
+
+    /* INCIDENTS */
+    .incident-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .incident-card { border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--border); background: #fff; box-shadow: var(--shadow); }
+    .incident-top { display: flex; align-items: center; gap: 12px; }
+    .incident-icon { font-size: 30px; } .incident-company { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .incident-year { font-size: 12px; font-weight: 700; color: #DC2626; background: #FEE2E2; padding: 3px 9px; border-radius: 100px; }
+    .incident-desc { font-size: 14px; color: var(--foreground); line-height: 1.55; }
+    .incident-lesson { margin-top: auto; font-size: 13px; color: var(--muted); line-height: 1.45; padding-top: 12px; border-top: 1px solid var(--border); }
+    .incident-lesson b { color: var(--destructive); }
+
+    /* VOCAB (2 big cards) */
+    .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .vocab-card { border-radius: var(--radius); padding: 30px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; }
+    .vocab-term { font-size: 28px; font-weight: 800; color: var(--primary); }
+    .vocab-def { font-size: 18px; color: var(--foreground); font-weight: 500; line-height: 1.45; }
+    .vocab-ex { font-size: 15px; font-style: italic; color: var(--muted); line-height: 1.45; }
+    .vocab-why { font-size: 15px; color: var(--foreground); line-height: 1.45; border-top: 1px solid var(--border); padding-top: 12px; }
+    .vocab-why b { color: var(--primary); }
+    .vocab-ico { width: 54px; height: 54px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: rgba(255,255,255,0.65); }
+    .vocab-tip { font-size: 14px; color: var(--foreground); background: rgba(255,255,255,0.6); border-radius: 8px; padding: 10px 13px; line-height: 1.45; margin-top: auto; }
+    .vocab-tip b { color: var(--primary); }
+
+    /* SPLIT (prompt) */
+    .split-screen { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .split-pane { border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 14px; }
+    .split-pane.bad { background: #FEF2F2; border: 1px solid #FECACA; } .split-pane.good { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .split-label { font-size: 15px; font-weight: 700; letter-spacing: 0.04em; } .split-label.bad { color: #DC2626; } .split-label.good { color: #16A34A; }
+    .split-prompt { font-size: 18px; font-style: italic; color: var(--foreground); background: rgba(255,255,255,0.75); border-radius: var(--radius-sm); padding: 18px 20px; line-height: 1.55; border-left: 4px solid; flex: 1; }
+    .split-prompt.big { font-size: 26px; font-weight: 600; font-style: normal; display: flex; align-items: center; }
+    .split-pane.bad .split-prompt { border-color: #FCA5A5; } .split-pane.good .split-prompt { border-color: #86EFAC; }
+    .split-prompt b { font-style: normal; font-weight: 800; color: var(--primary); }
+    .split-result { font-size: 15px; font-weight: 600; padding: 11px 16px; border-radius: var(--radius-sm); line-height: 1.4; }
+    .split-pane.bad .split-result { background: #FEE2E2; color: #B91C1C; } .split-pane.good .split-result { background: #DCFCE7; color: #15803D; }
+    .qbar { display: flex; align-items: center; gap: 10px; } .qbar-track { flex: 1; height: 8px; border-radius: 100px; background: rgba(0,0,0,0.07); overflow: hidden; } .qbar-fill { height: 100%; border-radius: 100px; } .qbar-label { font-size: 13px; font-weight: 700; }
+
+    /* PROMPT anatomy */
+    .prompt-anatomy { display: flex; gap: 22px; flex: 1; align-items: stretch; }
+    .anatomy-blocks { display: flex; flex-direction: column; gap: 10px; width: 260px; flex-shrink: 0; }
+    .anatomy-block { border-radius: var(--radius-sm); padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+    .anatomy-block .num { width: 26px; height: 26px; border-radius: 50%; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; }
+    .anatomy-block .anatomy-label { font-size: 16px; font-weight: 700; color: var(--foreground); }
+    .ab0 { background: #EDE9FE; } .ab0 .num { background: #7C3AED; } .ab1 { background: var(--pastel-sky); } .ab1 .num { background: #0284C7; }
+    .ab2 { background: var(--pastel-mint); } .ab2 .num { background: #16A34A; } .ab3 { background: var(--pastel-peach); } .ab3 .num { background: #EA580C; }
+    .ab4 { background: var(--pastel-rose); } .ab4 .num { background: #DB2777; }
+    .anatomy-example { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; }
+    .anatomy-ex-title { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .ex-line { display: flex; align-items: flex-start; gap: 14px; padding: 8px 0; }
+    .ex-line .ex-tag { width: 96px; flex-shrink: 0; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; padding-top: 3px; }
+    .ex-line .ex-seg { font-size: 17px; line-height: 1.45; color: var(--foreground); }
+    .ex0 .ex-tag { color: #7C3AED; } .ex1 .ex-tag { color: #0284C7; } .ex2 .ex-tag { color: #16A34A; } .ex3 .ex-tag { color: #EA580C; } .ex4 .ex-tag { color: #DB2777; }
+
+    /* Prompt components 5-col reference */
+    .pc-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; flex: 1; }
+    .pc-col { border-radius: var(--radius); padding: 16px 14px; display: flex; flex-direction: column; gap: 11px; }
+    .pc-head { display: flex; align-items: center; gap: 8px; }
+    .pc-num { width: 24px; height: 24px; border-radius: 50%; color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pc-name { font-size: 15px; font-weight: 800; color: var(--foreground); }
+    .pc-sub { font-size: 11px; color: var(--muted); margin-top: -7px; }
+    .pc-items { display: flex; flex-direction: column; gap: 6px; }
+    .pc-chip { font-size: 12.5px; color: var(--foreground); background: rgba(255,255,255,0.7); border-radius: 6px; padding: 5px 9px; line-height: 1.25; }
+    .pcc0 { background: #EDE9FE; } .pcc0 .pc-num { background: #7C3AED; }
+    .pcc1 { background: var(--pastel-sky); } .pcc1 .pc-num { background: #0284C7; }
+    .pcc2 { background: var(--pastel-mint); } .pcc2 .pc-num { background: #16A34A; }
+    .pcc3 { background: var(--pastel-peach); } .pcc3 .pc-num { background: #EA580C; }
+    .pcc4 { background: var(--pastel-rose); } .pcc4 .pc-num { background: #DB2777; }
+
+    /* Few-shot */
+    .fs-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 26px; flex: 1; align-items: stretch; }
+    .fs-left { display: flex; flex-direction: column; gap: 12px; }
+    .fs-card { border-radius: var(--radius); padding: 18px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+    .fs-card-title { font-size: 16px; font-weight: 800; color: var(--foreground); }
+    .fs-card-desc { font-size: 14px; color: var(--muted); line-height: 1.45; }
+    .fs-example { background: var(--bg); border-left: 4px solid var(--primary); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 22px; font-size: 16px; color: var(--foreground); line-height: 1.55; display: flex; flex-direction: column; justify-content: center; }
+    .fs-example .lbl { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary); display: block; margin-bottom: 12px; }
+    .fs-example .ex-model { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 9px 13px; margin: 4px 0; font-size: 14px; }
+    .fs-example .ex-ask { font-weight: 700; margin-top: 12px; }
+
+    /* CARDS */
+    .cards-grid { display: grid; gap: 18px; flex: 1; } .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px; }
+    .card.mint { background: var(--pastel-mint); border-color: #86EFAC; } .card.lavender { background: var(--pastel-lavender); border-color: #C4B5FD; } .card.sky { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .card-icon { font-size: 32px; } .card-title { font-size: 18px; font-weight: 800; color: var(--foreground); margin: 0; } .card-body { font-size: 15px; color: var(--muted); line-height: 1.55; margin: 0; }
+
+    /* ECOSYSTEM (3 cols) */
+    .eco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .eco-col { border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--border); }
+    .eco-col.chatgpt { background: #ECFDF5; border-color: #6EE7B7; } .eco-col.gemini { background: #EFF6FF; border-color: #93C5FD; } .eco-col.claude { background: #FFF7ED; border-color: #FDBA74; }
+    .eco-head { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 800; color: var(--foreground); }
+    .eco-list { display: flex; flex-direction: column; gap: 9px; }
+    .eco-item { font-size: 14px; color: var(--foreground); line-height: 1.4; display: flex; gap: 8px; }
+    .eco-item .b { font-weight: 700; }
+    .eco-item .dot { flex-shrink: 0; }
+    .eco-foot { margin-top: 16px; font-size: 16px; font-weight: 600; color: var(--foreground); background: var(--primary-ultra-light); border-radius: var(--radius); padding: 14px 18px; line-height: 1.5; }
+    .eco-foot b { color: var(--primary); }
+
+    /* Other models grid */
+    .om-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; flex: 1; }
+    .om-card { border-radius: var(--radius); padding: 16px 18px; border: 1px solid var(--border); background: #fff; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 2px 8px rgba(15,23,42,0.05); }
+    .om-head { display: flex; align-items: center; gap: 11px; }
+    .om-name { font-size: 16px; font-weight: 800; color: var(--foreground); }
+    .om-desc { font-size: 13px; color: var(--muted); line-height: 1.4; }
+    .om-logo { width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .om-chip { width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #fff; flex-shrink: 0; }
+
+    /* GEMINI grid */
+    .gem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; }
+    .gem-card { border-radius: var(--radius); padding: 20px; display: flex; align-items: flex-start; gap: 14px; background: #fff; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(15,23,42,0.05); }
+    .gem-icon-wrap { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+    .gem-title { font-size: 16px; font-weight: 800; color: var(--foreground); margin: 0 0 4px; } .gem-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
+    .gem-badge { display: inline-block; font-size: 10px; font-weight: 700; color: var(--practice); background: #F3E8FF; padding: 2px 7px; border-radius: 100px; margin-left: 6px; vertical-align: middle; }
+
+    /* PRACTICE slide layout (steps + screenshot) */
+    .practice-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 28px; flex: 1; }
+    .practice-steps { display: flex; flex-direction: column; gap: 12px; }
+    .pstep { display: flex; align-items: flex-start; gap: 14px; }
+    .pstep-num { width: 30px; height: 30px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pstep-text { font-size: 16px; color: var(--foreground); line-height: 1.45; padding-top: 3px; }
+    .pstep-text b { font-weight: 700; }
+    .practice-shot { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); background: var(--bg); display: flex; align-items: center; justify-content: center; }
+    .practice-shot img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .practice-shot.cover img { object-fit: cover; }
+    .practice-prompt { background: var(--bg); border-left: 4px solid var(--practice); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 16px; font-size: 15px; font-style: italic; color: var(--foreground); line-height: 1.5; margin-top: 4px; }
+    .practice-prompt .lbl { font-style: normal; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--practice); display: block; margin-bottom: 5px; }
+    .practice-app { margin-top: auto; font-size: 13px; color: var(--muted); font-style: italic; }
+    .practice-app b { color: var(--foreground); font-style: normal; }
+    .shot-caption { font-size: 11px; color: var(--muted); text-align: center; padding: 6px; background: var(--bg); }
+    .shot-fallback { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; color: #94A3B8; font-size: 14px; font-weight: 600; text-align: center; padding: 24px; }
+    .shot-fallback .pth { font-family: monospace; font-size: 12px; background: #E2E8F0; color: #475569; padding: 4px 10px; border-radius: 6px; }
+    .shot-fallback .ic { font-size: 40px; }
+
+    /* Google Workspace connected-apps chips */
+    .gw-apps { display: flex; flex-wrap: wrap; gap: 8px; }
+    .gw-chip { display: flex; align-items: center; gap: 7px; background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 6px 13px 6px 9px; font-size: 14px; font-weight: 600; color: var(--foreground); }
+    .gw-chip .gw-dot { width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; }
+    .gems-examples { display: flex; flex-direction: column; gap: 8px; }
+    .gem-ex { display: flex; align-items: center; gap: 11px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 13px; }
+    .gem-ex .av { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .gem-ex .gx-name { font-size: 14px; font-weight: 700; color: var(--foreground); }
+    .gem-ex .gx-desc { font-size: 12px; color: var(--muted); }
+
+    /* NotebookLM */
+    .nb-cases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+    .nb-case { border-radius: var(--radius-sm); padding: 14px; background: var(--bg); border: 1px solid var(--border); }
+    .nb-case-title { font-size: 13px; font-weight: 700; color: var(--foreground); margin-bottom: 4px; } .nb-case-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .nb-flow { display: flex; align-items: stretch; gap: 0; }
+    .nb-node { flex: 1; border-radius: var(--radius); padding: 22px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+    .nb-node::after { content: '→'; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); font-size: 24px; color: var(--primary); font-weight: 700; z-index: 2; }
+    .nb-node:last-child::after { display: none; }
+    .nb-node.in { background: var(--pastel-sky); border: 1px solid #BAE6FD; }
+    .nb-node.proc { background: var(--primary-ultra-light); border: 1px solid #C7D2FE; }
+    .nb-node.out { background: var(--pastel-mint); border: 1px solid #86EFAC; }
+    .nb-node-icon { font-size: 32px; }
+    .nb-node-title { font-size: 16px; font-weight: 800; color: var(--foreground); }
+    .nb-node-desc { font-size: 13px; color: var(--muted); line-height: 1.4; }
+
+    /* PROJECTS */
+    .proj-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .proj-pane { border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 10px; }
+    .proj-pane.without { background: #FEF2F2; border: 1px solid #FECACA; } .proj-pane.with { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .proj-pane-label { font-size: 15px; font-weight: 700; } .proj-pane.without .proj-pane-label { color: #DC2626; } .proj-pane.with .proj-pane-label { color: #16A34A; }
+    .proj-pane-text { font-size: 16px; color: var(--foreground); line-height: 1.5; } .proj-pane-text b { font-weight: 700; }
+
+    /* FATIGUE */
+    .fatigue-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 1; }
+    .fatigue-pane { border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .fatigue-pane.chaos { background: #FEF2F2; border: 1px solid #FECACA; } .fatigue-pane.focus { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .fatigue-pane-label { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; } .fatigue-pane.chaos .fatigue-pane-label { color: #DC2626; } .fatigue-pane.focus .fatigue-pane-label { color: #16A34A; }
+    .fatigue-icons { display: flex; flex-wrap: wrap; gap: 9px; flex: 1; align-content: center; }
+    .fatigue-chip { background: rgba(220,38,38,0.1); border-radius: var(--radius-sm); padding: 7px 12px; font-size: 14px; font-weight: 500; color: #7F1D1D; }
+    .fatigue-quote { font-size: 14px; color: #7F1D1D; font-style: italic; line-height: 1.5; }
+    .fatigue-steps { display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: center; }
+    .fatigue-step { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border-radius: var(--radius-sm); background: rgba(22,163,74,0.1); }
+    .fatigue-step-num { width: 26px; height: 26px; border-radius: 50%; background: #16A34A; color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .fatigue-step-text { font-size: 15px; color: #14532D; font-weight: 500; line-height: 1.4; } .fatigue-step-text b { font-weight: 800; }
+
+    /* EXERCISE */
+    .exercise-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 20px; }
+    .timer-pill { display: flex; align-items: center; gap: 8px; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 100px; padding: 9px 22px; font-size: 16px; font-weight: 700; color: #92400E; }
+    .exercise-template { background: var(--bg); border: 2px dashed var(--primary); border-radius: var(--radius); padding: 30px 38px; max-width: 760px; font-size: 22px; font-style: italic; color: var(--foreground); line-height: 1.8; }
+    .exercise-template .tpl-label { font-style: normal; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 16px; }
+    .exercise-hl { display: inline-block; background: var(--primary); color: #fff; border-radius: 6px; padding: 3px 11px; font-style: normal; font-size: 18px; font-weight: 700; margin: 2px; }
+
+    /* WRAP */
+    .wrapup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .wrapup-pane { border-radius: var(--radius); padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; }
+    .wrapup-pane.learned { background: var(--primary-ultra-light); border-color: #A5B4FC; } .wrapup-pane.hw { background: #F0FDF4; border-color: #86EFAC; }
+    .wrapup-pane-title { font-size: 15px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 14px; } .wrapup-pane.learned .wrapup-pane-title { color: var(--primary); } .wrapup-pane.hw .wrapup-pane-title { color: #16A34A; }
+    .check-list { display: flex; flex-direction: column; gap: 10px; }
+    .check-item { display: flex; align-items: flex-start; gap: 11px; font-size: 15px; color: var(--foreground); line-height: 1.45; font-weight: 500; }
+    .check-item .chk { font-size: 15px; flex-shrink: 0; margin-top: 1px; font-weight: 700; }
+    .preview-row { margin-top: auto; padding-top: 14px; border-top: 1px solid #86EFAC; }
+    .preview-row .lbl { font-size: 13px; font-weight: 600; color: var(--muted); } .preview-row .ttl { font-size: 16px; font-weight: 800; color: var(--foreground); }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+
+    /* AGENDA */
+    .reveal .agenda-list { display: grid !important; grid-template-columns: 1fr 1fr; gap: 4px 40px; list-style: none; margin: 0; padding: 0; align-content: start; flex: 1; }
+    .reveal .agenda-item { display: flex; align-items: center; gap: 13px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+    .agenda-num { width: 30px; height: 30px; border-radius: 50%; background: var(--primary-ultra-light); color: var(--primary); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .agenda-label { font-size: 15px; font-weight: 500; color: var(--foreground); }
+    .agenda-badge { font-size: 9px; font-weight: 700; color: var(--practice); background: #F3E8FF; padding: 2px 7px; border-radius: 100px; margin-left: 8px; letter-spacing: 0.04em; }
+
+    /* ABOUT ME */
+    .about-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; flex: 1; align-items: center; }
+    .about-left { display: flex; flex-direction: column; gap: 22px; }
+    .about-bullets { display: flex; flex-direction: column; gap: 16px; }
+    .about-bullet { display: flex; align-items: center; gap: 16px; }
+    .about-arrow { width: 34px; height: 34px; border-radius: 50%; background: var(--primary-ultra-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; flex-shrink: 0; }
+    .about-bullet-text { font-size: 18px; color: var(--foreground); font-weight: 500; line-height: 1.35; }
+    .about-bullet-text b { font-weight: 800; color: var(--primary); }
+    .about-role-badge { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; background: var(--foreground); color: #fff; font-size: 14px; font-weight: 600; padding: 8px 18px; border-radius: 100px; margin-top: 4px; }
+    .about-role-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .about-photo-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+    .about-photo-deco1 { position: absolute; top: -18px; right: 6px; width: 130px; height: 130px; border-radius: 50%; background: #FACC15; z-index: 0; }
+    .about-photo-deco2 { position: absolute; bottom: -24px; left: -8px; width: 160px; height: 160px; border-radius: 28px; background: #7C3AED; opacity: 0.85; z-index: 0; transform: rotate(-8deg); }
+    .about-photo-card { position: relative; z-index: 1; width: 100%; max-width: 440px; aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); background: #1a1a1a; border: 1px solid var(--border); }
+    .about-photo-card img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 18%; display: block; }
+    .about-photo-slot { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: #94A3B8; text-align: center; padding: 20px; }
+    .about-photo-slot .ph-icon { font-size: 48px; }
+    .about-photo-slot .ph-path { font-size: 12px; font-family: monospace; background: #E2E8F0; color: #475569; padding: 4px 10px; border-radius: 6px; }
+    .about-signature { position: absolute; top: 40px; right: 60px; font-size: 18px; font-weight: 700; color: var(--destructive); transform: rotate(-4deg); z-index: 3; }
+
+    /* SLIDO */
+    .slido-center { flex: 1; display: flex; align-items: center; justify-content: center; gap: 56px; }
+    .slido-qr { width: 230px; height: 230px; border-radius: var(--radius); background: #fff; border: 2px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--muted); }
+    .slido-qr .qr-icon { font-size: 64px; }
+    .slido-q { display: flex; flex-direction: column; gap: 18px; max-width: 460px; }
+    .slido-q-item { display: flex; align-items: center; gap: 14px; font-size: 20px; color: var(--foreground); font-weight: 500; }
+    .slido-q-item .q-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 01 COVER -->
+    <section>
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> AI pentru IMM-uri &amp; Antreprenori</div>
+          <h1>Fundamente AI &amp;<br>Prompt Engineering</h1>
+          <p class="subtitle">Cum faci AI să lucreze pentru tine, nu invers</p>
+          <div class="cover-logos">
+            <span class="lbl">Lucrăm cu:</span>
+            <span class="logo" title="ChatGPT"><svg width="30" height="30" viewBox="0 0 24 24"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span>
+            <span class="logo" title="Gemini"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>
+            <span class="logo" title="Claude"><svg width="30" height="30" viewBox="0 0 24 24"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 39</div>
+      </div>
+    </section>
+
+    <!-- 02 ABOUT ME -->
+    <section>
+      <div class="slide">
+        <div class="about-signature">Not expert, but learning</div>
+        <div class="slide-header"><div class="slide-tag">Despre mine</div><h2 class="slide-title">Învățăm împreună</h2></div>
+        <div class="about-grid">
+          <div class="about-left">
+            <div class="about-bullets">
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text"><b>8 ani</b> experiență în Marketing</div></div>
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text">Studii economice licență &amp; master, <b>UBB Cluj-Napoca</b></div></div>
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text">Peste <b>200 de persoane</b> instruite la cursurile mele de AI &amp; Marketing</div></div>
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text">Peste <b>5 ani</b> în proiecte de educație</div></div>
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text">Predau la <b>ASEM</b></div></div>
+            </div>
+            <div class="about-role-badge"><span class="dot"></span>Founder · Marketing &amp; AI</div>
+          </div>
+          <div class="about-photo-wrap">
+            <div class="about-photo-deco1"></div>
+            <div class="about-photo-deco2"></div>
+            <div class="about-photo-card">
+              <img src="assets/screenshots/dima-summit.jpg" alt="Dima — speaker la Moldova Digital Summit" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="about-photo-slot" style="display:none">
+                <span class="ph-icon">📷</span>
+                <span>Salvează poza ta aici</span>
+                <span class="ph-path">assets/screenshots/dima-summit.jpg</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">02 / 39</div>
+      </div>
+    </section>
+
+    <!-- 03 AGENDA -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Agenda</div><h2 class="slide-title">Ce acoperim azi</h2><p class="slide-subtitle">Mult hands-on — blocurile marcate <span style="color:var(--practice);font-weight:700">PRACTICĂ</span> le faci live</p></div>
+        <ul class="agenda-list">
+          <li class="agenda-item"><span class="agenda-num">1</span><span class="agenda-label">Cunoașterea grupului</span></li>
+          <li class="agenda-item"><span class="agenda-num">2</span><span class="agenda-label">Fapte surprinzătoare despre AI</span></li>
+          <li class="agenda-item"><span class="agenda-num">3</span><span class="agenda-label">Unde se află companiile azi (AI Maturity)</span></li>
+          <li class="agenda-item"><span class="agenda-num">4</span><span class="agenda-label">Cum gândește un LLM</span></li>
+          <li class="agenda-item"><span class="agenda-num">5</span><span class="agenda-label">Securitate</span></li>
+          <li class="agenda-item"><span class="agenda-num">6</span><span class="agenda-label">Vocabular esențial</span></li>
+          <li class="agenda-item"><span class="agenda-num">7</span><span class="agenda-label">Prompt engineering &amp; context</span></li>
+          <li class="agenda-item"><span class="agenda-num">8</span><span class="agenda-label">Personalizează-ți AI-ul<span class="agenda-badge">PRACTICĂ</span></span></li>
+          <li class="agenda-item"><span class="agenda-num">9</span><span class="agenda-label">Care tool, când (+ alte modele)</span></li>
+          <li class="agenda-item"><span class="agenda-num">10</span><span class="agenda-label">Gemini + Workspace &amp; Gems<span class="agenda-badge">PRACTICĂ</span></span></li>
+          <li class="agenda-item"><span class="agenda-num">11</span><span class="agenda-label">Gemini: Video, Prezentări, Imagini<span class="agenda-badge">PRACTICĂ</span></span></li>
+          <li class="agenda-item"><span class="agenda-num">12</span><span class="agenda-label">NotebookLM<span class="agenda-badge">PRACTICĂ</span></span></li>
+          <li class="agenda-item"><span class="agenda-num">13</span><span class="agenda-label">Claude + Projects<span class="agenda-badge">PRACTICĂ</span></span></li>
+          <li class="agenda-item"><span class="agenda-num">14</span><span class="agenda-label">AI Fatigue &amp; exercițiu</span></li>
+        </ul>
+        <div class="slide-num">03 / 39</div>
+      </div>
+    </section>
+
+    <!-- 03 SLIDO -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Interactiv · Slido</div><h2 class="slide-title">Haideți să ne cunoaștem</h2><p class="slide-subtitle">Scanează codul și răspunde — calibrăm sesiunea pe grupul real</p></div>
+        <div class="slido-center">
+          <div class="slido-qr" style="padding:0;overflow:hidden"><img src="assets/screenshots/slido-qr.png" alt="QR Slido" style="width:100%;height:100%;object-fit:contain;padding:14px;box-sizing:border-box"/></div>
+          <div class="slido-q">
+            <div class="slido-q-item"><span class="q-dot" style="background:#7C3AED"></span>Care este cel mai avansat lucru pe care l-ai făcut cu AI?</div>
+            <div class="slido-q-item"><span class="q-dot" style="background:#16A34A"></span>Ce ai vrea să înveți legat de AI?</div>
+          </div>
+        </div>
+        <div class="slide-num">04 / 39</div>
+      </div>
+    </section>
+
+    <!-- 04 STATS business -->
+    <section>
+      <div class="slide slide-statement">
+        <div class="slide-header" style="margin-bottom:18px"><div class="slide-tag">Fapte despre AI · 1 / 2</div><h2 class="slide-title">AI nu mai este experiment — este avantaj măsurabil</h2></div>
+        <div class="stmt-list">
+          <div class="stmt-row"><div class="stmt-number">5.8×</div><div class="stmt-body"><div class="stmt-text">ROI mediu la investiția în AI, în primele 14 luni de la implementare</div><div class="stmt-source">McKinsey Global AI Survey, 2025</div></div></div>
+          <div class="stmt-row"><div class="stmt-number">2.2h</div><div class="stmt-body"><div class="stmt-text">economisite pe săptămână, per angajat — timp recâștigat pentru muncă cu valoare</div><div class="stmt-source">Federal Reserve research, 2025</div></div></div>
+          <div class="stmt-row"><div class="stmt-number">91%</div><div class="stmt-body"><div class="stmt-text">dintre companii folosesc AI în cel puțin o capacitate în 2026 (vs. 78% în 2024)</div><div class="stmt-source">State of AI in Business, 2026</div></div></div>
+        </div>
+        <p class="stmt-note">AI produce rezultate de business măsurabile — iar decalajul față de cine nu-l folosește crește.</p>
+        <div class="slide-num">05 / 39</div>
+      </div>
+    </section>
+
+    <!-- 05 JOBS -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Fapte despre AI · 2 / 2</div><h2 class="slide-title">Ce se schimbă în piața muncii — cifrele reale</h2><p class="slide-subtitle">WEF Future of Jobs + LinkedIn, 2025/2026 · net pozitiv, dar competențele AI devin diferențiatorul</p></div>
+        <div class="vs-table">
+          <div class="vs-col left">
+            <div class="vs-head neg">📉 Dispar până în 2030</div>
+            <div class="vs-row"><span class="ic">•</span><b style="font-weight:800;margin-right:6px">92M</b> joburi dispărute (WEF)</div>
+            <div class="vs-row"><span class="ic">•</span>Date entry, suport L1, contabilitate de rutină</div>
+            <div class="vs-row"><span class="ic">•</span>Traduceri simple, raportare standardizată</div>
+          </div>
+          <div class="vs-col right">
+            <div class="vs-head pos">📈 Apar până în 2030</div>
+            <div class="vs-row"><span class="ic">•</span><b style="font-weight:800;margin-right:6px">170M</b> joburi noi → <b style="font-weight:800;margin:0 4px">+78M net</b></div>
+            <div class="vs-row"><span class="ic">•</span>AI/ML, big data, fintech, cybersecurity</div>
+            <div class="vs-row"><span class="ic">•</span>1.3M joburi AI deja create (LinkedIn, ian. 2026)</div>
+          </div>
+        </div>
+        <div class="slide-num">06 / 39</div>
+      </div>
+    </section>
+
+    <!-- 06 HUMAN vs AI -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Om vs. AI</div><h2 class="slide-title">🧠 Pierdem pe emisfera stângă — câștigăm pe dreapta</h2></div>
+        <div class="vs-table">
+          <div class="vs-col left">
+            <div class="vs-head ai">🧮 Emisfera stângă → AI e deja mai bun</div>
+            <div class="vs-row"><span class="ic">⚡</span>Logică, matematică, statistică</div>
+            <div class="vs-row"><span class="ic">🔁</span>Procesare secvențială la scară, fără oboseală</div>
+            <div class="vs-row"><span class="ic">📊</span>Calcul, sinteză, raționament structurat</div>
+          </div>
+          <div class="vs-col right">
+            <div class="vs-head human">💡 Emisfera dreaptă → rămâne avantajul uman</div>
+            <div class="vs-row"><span class="ic">🎨</span>Creativitate cu sens, intuiție</div>
+            <div class="vs-row"><span class="ic">💛</span>Empatie, relații umane</div>
+            <div class="vs-row"><span class="ic">⚖️</span>Judecată în ambiguitate, responsabilitate etică</div>
+          </div>
+        </div>
+        <div class="vs-highlight">Îi delegăm AI-ului partea stângă, ne concentrăm pe dreapta — exact ce ne face de neînlocuit.</div>
+        <div class="slide-num">07 / 39</div>
+      </div>
+    </section>
+
+    <!-- 07 MATURITY -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">AI Maturity</div><h2 class="slide-title">La ce nivel este compania ta — concret?</h2><p class="slide-subtitle">Nu <b>dacă</b> folosești, ci <b>cât de des și câți oameni</b></p></div>
+        <div class="maturity-track">
+          <div class="maturity-step maturity-step-0"><div class="maturity-num">Nivel 0</div><div class="maturity-title">Non-adopter</div><div class="maturity-sign">"Nu folosim AI"</div><div class="maturity-tools">Niciun tool. Eventual angajați care folosesc pe ascuns ChatGPT personal.</div></div>
+          <div class="maturity-step maturity-step-1"><div class="maturity-num">Nivel 1</div><div class="maturity-title">Explorer</div><div class="maturity-sign">1-2 persoane testează sporadic</div><div class="maturity-tools">ChatGPT/Gemini gratuit, ad-hoc. Sub 1h/săptămână.</div></div>
+          <div class="maturity-step maturity-step-2"><div class="maturity-num">Nivel 2</div><div class="maturity-title">Experimenter</div><div class="maturity-sign">Mai mulți folosesc, dar haotic</div><div class="maturity-tools">Conturi Plus individuale, câteva prompturi. Fără standard de echipă.</div></div>
+          <div class="maturity-step maturity-step-3"><div class="maturity-num">Nivel 3</div><div class="maturity-title">Adopter</div><div class="maturity-sign">AI integrat în procese clare</div><div class="maturity-tools">Projects/Gems cu context, prompturi standard, integrări Gmail/Docs.</div></div>
+          <div class="maturity-step maturity-step-4"><div class="maturity-num">Nivel 4</div><div class="maturity-title">Transformer</div><div class="maturity-sign">AI în decizii și KPI</div><div class="maturity-tools">Workflow-uri automate, integrări (Trello, API), ROI măsurat.</div></div>
+        </div>
+        <div style="margin-top:18px"><div class="quote-block"><strong>Scopul cursului:</strong> te muți cel puțin un nivel mai sus — cu pași concreti, nu teorie.</div></div>
+        <div class="slide-num">08 / 39</div>
+      </div>
+    </section>
+
+    <!-- 08a LLM mechanism (autocomplete) -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Cum funcționează AI · 1 / 2</div><h2 class="slide-title">AI-ul nu "gândește" — ghicește următorul cuvânt</h2><p class="slide-subtitle">Cel mai simplu mod de a-l înțelege: <b>un autocomplete genial</b>, antrenat pe tot internetul</p></div>
+        <div style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:34px;flex:1;align-items:center">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="mech-step"><div class="mech-num">1</div><div class="mech-text">Tu scrii un <b>început de propoziție</b> (promptul tău)</div></div>
+            <div class="mech-step"><div class="mech-num">2</div><div class="mech-text">AI se uită la <b>tot ce a "citit"</b> — miliarde de pagini, cărți, articole</div></div>
+            <div class="mech-step"><div class="mech-num">3</div><div class="mech-text">Calculează: <b>care e cel mai probabil cuvânt următor?</b></div></div>
+            <div class="mech-step"><div class="mech-num">4</div><div class="mech-text">Îl scrie → apoi <b>repetă</b> pentru fiecare cuvânt, până termină</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;align-items:center">
+            <div class="phone-mock" style="max-width:320px">
+              <div class="phone-bubble">Bună ziua, vă scriu legat de...</div>
+              <div class="phone-suggest"><div class="phone-chip hot">factura</div><div class="phone-chip">oferta</div><div class="phone-chip">comanda</div></div>
+            </div>
+            <div style="font-size:14px;color:var(--muted);text-align:center;line-height:1.5">📱 Exact ca tastatura telefonului care îți sugerează următorul cuvânt</div>
+          </div>
+        </div>
+        <div style="margin-top:14px"><div class="quote-block"><strong>De reținut:</strong> AI-ul nu caută răspunsul "corect" într-o bază de date. Doar prezice ce text sună cel mai natural în continuare.</div></div>
+        <div class="slide-num">09 / 39</div>
+      </div>
+    </section>
+
+    <!-- 08b LLM consequences -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Cum funcționează AI · 2 / 2</div><h2 class="slide-title">Și de ce contează asta pentru tine?</h2><p class="slide-subtitle">Dacă înțelegi că <b>ghicește din context</b>, înțelegi cum să-l folosești bine</p></div>
+        <div class="cards-grid cards-3">
+          <div class="card sky">
+            <span class="card-icon">🎯</span>
+            <p class="card-title">Contextul e totul</p>
+            <p class="card-body">Cu cât îi dai mai mult context, cu atât ghicește mai bine <b>pentru situația ta</b> — nu generic. De aici începe tot cursul.</p>
+          </div>
+          <div class="card" style="background:#FEF2F2;border-color:#FECACA">
+            <span class="card-icon">⚠️</span>
+            <p class="card-title">Poate inventa</p>
+            <p class="card-body">Ghicește ce <b>sună plauzibil</b>, nu neapărat ce e adevărat. De aici „halucinațiile". Verifică mereu cifrele și sursele.</p>
+          </div>
+          <div class="card lavender">
+            <span class="card-icon">💬</span>
+            <p class="card-title">Tu îl controlezi</p>
+            <p class="card-body">Singura ta pârghie e <b>promptul</b>. Instrucțiune clară = ghicit bun. Asta e abilitatea pe care o construim azi.</p>
+          </div>
+        </div>
+        <div style="margin-top:16px"><div class="quote-block"><strong>Vestea bună:</strong> nu trebuie să fii tehnic. Trebuie doar să-i dai context bun — exact ca atunci când explici o sarcină unui coleg nou.</div></div>
+        <div class="slide-num">10 / 39</div>
+      </div>
+    </section>
+
+    <!-- 09 SECURITY -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate</div><h2 class="slide-title">Ce NU introduci în AI</h2></div>
+        <div class="sec-layout">
+          <div class="sec-icon-pane"><div class="shield">🛡️</div><div class="sec-rule">Regula de aur:<br><span>"Aș posta asta public pe internet?"</span></div></div>
+          <table class="sec-table">
+            <thead><tr><th class="no">❌ NU introduce</th><th class="yes">✅ Alternativa sigură</th></tr></thead>
+            <tbody>
+              <tr><td class="no-cell">Parole și credențiale</td><td class="yes-cell">Descrie ce vrei să faci, fără parole</td></tr>
+              <tr><td class="no-cell">Date bancare (IBAN, CVC)</td><td class="yes-cell">Sume fictive: "suma X"</td></tr>
+              <tr><td class="no-cell">CNP-uri</td><td class="yes-cell">Date anonimizate: "clientul X"</td></tr>
+              <tr><td class="no-cell">Date personale angajați</td><td class="yes-cell">Inițiale sau roluri</td></tr>
+              <tr><td class="no-cell">Contracte confidențiale</td><td class="yes-cell">Doar structura, fără nume</td></tr>
+              <tr><td class="no-cell">Secrete comerciale</td><td class="yes-cell">Categoria generală</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="slide-num">11 / 39</div>
+      </div>
+    </section>
+
+    <!-- 10 BREACHES -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Cazuri reale</div><h2 class="slide-title">S-a întâmplat deja — ce învățăm</h2></div>
+        <div class="incident-cards">
+          <div class="incident-card"><div class="incident-top"><span class="incident-icon">💻</span><span class="incident-company">Samsung</span><span class="incident-year">2023</span></div><p class="incident-desc">Ingineri au lipit cod-sursă confidențial în ChatGPT ca să-l depaneze. Datele au ajuns pe serverele OpenAI, în afara controlului companiei. Samsung a interzis AI-ul generativ intern.</p><div class="incident-lesson"><b>Lecția:</b> ce introduci poate fi reținut. Nu lipi cod sau date proprietare.</div></div>
+          <div class="incident-card"><div class="incident-top"><span class="incident-icon">⚖️</span><span class="incident-company">Avocat SUA</span><span class="incident-year">2023</span></div><p class="incident-desc">Un avocat a cerut ChatGPT cazuri juridice. AI-ul a inventat 6 cazuri inexistente cu citate plauzibile. Le-a depus în instanță — și a fost sancționat de judecător.</p><div class="incident-lesson"><b>Lecția:</b> AI-ul halucinează cu încredere. Verifică faptele și sursele.</div></div>
+          <div class="incident-card"><div class="incident-top"><span class="incident-icon">🎭</span><span class="incident-company">Deepfake CEO</span><span class="incident-year">2024</span></div><p class="incident-desc">Un angajat dintr-o firmă din Hong Kong a intrat într-un apel video cu "CEO-ul" și colegii. Toți erau deepfake AI. A transferat 25M USD înainte să-și dea seama.</p><div class="incident-lesson"><b>Lecția:</b> verifică pe alt canal cererile financiare neobișnuite.</div></div>
+        </div>
+        <div class="slide-num">12 / 39</div>
+      </div>
+    </section>
+
+    <!-- 11 VOCAB 1/4 -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Vocabular AI · 1 / 3</div><h2 class="slide-title">Prompt &amp; Context</h2></div>
+        <div class="vocab-grid">
+          <div class="vocab-card" style="background:var(--pastel-lavender);border-color:#C4B5FD">
+            <div class="vocab-ico">💬</div>
+            <div class="vocab-term">Prompt</div>
+            <div class="vocab-def">Instrucțiunea pe care o dai AI-ului — ce vrei să facă.</div>
+            <div class="vocab-ex">Ex: „Scrie un email de follow-up după o întâlnire cu un client."</div>
+            <div class="vocab-why"><b>De ce contează:</b> e singura ta pârghie de control. Prompt bun = rezultat bun.</div>
+            <div class="vocab-tip"><b>💡 În practică:</b> tratează-l ca pe o sarcină dată unui coleg nou — clar și complet.</div>
+          </div>
+          <div class="vocab-card" style="background:var(--pastel-sky);border-color:#BAE6FD">
+            <div class="vocab-ico">🧩</div>
+            <div class="vocab-term">Context</div>
+            <div class="vocab-def">Informațiile pe care le adaugi ca să ghidezi răspunsul.</div>
+            <div class="vocab-ex">Ex: „Clientul e din retail, întâlnirea a durat 45 min, subiectul a fost prețul."</div>
+            <div class="vocab-why"><b>De ce contează:</b> fără context ghicește generic; cu context ghicește pentru <em>situația ta</em>.</div>
+            <div class="vocab-tip"><b>💡 În practică:</b> cine ești, pentru cine scrii, ce ton, ce detalii — toate ajută.</div>
+          </div>
+        </div>
+        <div class="slide-num">13 / 39</div>
+      </div>
+    </section>
+
+    <!-- 12 VOCAB 2/4 -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Vocabular AI · 2 / 3</div><h2 class="slide-title">Context Window &amp; Halucinații</h2></div>
+        <div class="vocab-grid">
+          <div class="vocab-card" style="background:var(--pastel-mint);border-color:#86EFAC">
+            <div class="vocab-ico">🪟</div>
+            <div class="vocab-term">Context Window</div>
+            <div class="vocab-def">Cât poate „ține minte" AI-ul într-o singură conversație.</div>
+            <div class="vocab-ex">Analogie: un bloc notes cu spațiu limitat — dacă-l umpli, „uită" ce era la început.</div>
+            <div class="vocab-why"><b>De ce contează:</b> memoria lui e limitată — de asta Projects ajută enorm.</div>
+            <div class="vocab-tip"><b>💡 În practică:</b> pentru conversații lungi, rezumă periodic sau pornește un chat nou.</div>
+          </div>
+          <div class="vocab-card" style="background:var(--pastel-rose);border-color:#F9A8D4">
+            <div class="vocab-ico">🌫️</div>
+            <div class="vocab-term">Halucinații</div>
+            <div class="vocab-def">Când AI inventează fapte plauzibile dar false, cu toată convingerea.</div>
+            <div class="vocab-ex">Ex: citează un studiu care nu există, inventează o statistică precisă dar falsă.</div>
+            <div class="vocab-why"><b>De ce contează:</b> nu te baza orbește — verifici mereu cifrele și sursele.</div>
+            <div class="vocab-tip"><b>💡 În practică:</b> cere-i sursele și verifică-le. Nu publica nimic neverificat.</div>
+          </div>
+        </div>
+        <div class="slide-num">14 / 39</div>
+      </div>
+    </section>
+
+    <!-- 13 VOCAB 3/4 Tokens & OCR -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Vocabular AI · 3 / 3</div><h2 class="slide-title">Tokens &amp; OCR</h2></div>
+        <div class="vocab-grid">
+          <div class="vocab-card" style="background:var(--pastel-peach);border-color:#FED7AA">
+            <div class="vocab-ico">🔤</div>
+            <div class="vocab-term">Tokens</div>
+            <div class="vocab-def">Unitățile în care AI procesează textul (nu cuvinte exacte).</div>
+            <div style="display:flex;gap:5px;margin:2px 0;align-items:center">
+              <span style="background:#DBEAFE;border-radius:5px;padding:4px 9px;font-size:15px">antre</span>
+              <span style="background:#FCE7F3;border-radius:5px;padding:4px 9px;font-size:15px">pre</span>
+              <span style="background:#DCFCE7;border-radius:5px;padding:4px 9px;font-size:15px">nor</span>
+              <span style="font-size:14px;color:var(--muted)">= 3 tokeni</span>
+            </div>
+            <div class="vocab-why"><b>De ce contează:</b> AI-ul NU e nelimitat. Texte foarte lungi pot fi tăiate sau „uitate".</div>
+            <div class="vocab-tip"><b>💡 În practică:</b> pe platform.openai.com/tokenizer vezi live cum se împarte textul.</div>
+          </div>
+          <div class="vocab-card" style="background:var(--pastel-sky);border-color:#BAE6FD">
+            <div class="vocab-ico">📸</div>
+            <div class="vocab-term">OCR</div>
+            <div class="vocab-def">AI citește text din imagini și scanuri.</div>
+            <div class="vocab-ex">Ex: trimiți poza unei facturi → AI extrage automat suma, data, furnizorul.</div>
+            <div class="vocab-why"><b>De ce contează:</b> digitalizezi documente pe hârtie fără să le rescrii manual.</div>
+            <div class="vocab-tip"><b>💡 În practică:</b> facturi, bonuri, contracte scanate, cărți de vizită — toate.</div>
+          </div>
+        </div>
+        <div class="slide-num">15 / 39</div>
+      </div>
+    </section>
+
+    <!-- 14 FINE-TUNING (dedicated) -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Vocabular AI · Fine-tuning</div><h2 class="slide-title">Fine-tuning — când ai nevoie (și când NU)</h2><p class="slide-subtitle">Antrenarea unui model pe <b>datele tale specifice</b>, ca să „vorbească" limbajul companiei tale</p></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;flex:1">
+          <div class="vocab-card" style="background:var(--pastel-mint);border-color:#86EFAC">
+            <div class="vocab-ico">✅</div>
+            <div class="vocab-term" style="font-size:22px">Ai nevoie când…</div>
+            <div class="check-list" style="gap:9px">
+              <div class="check-item"><span class="chk">→</span>Ai un volum mare de date proprii (mii de documente, tichete, contracte)</div>
+              <div class="check-item"><span class="chk">→</span>Vrei un ton/stil foarte specific, repetat consecvent</div>
+              <div class="check-item"><span class="chk">→</span>Ai o sarcină îngustă și repetitivă (ex: clasificare emailuri)</div>
+            </div>
+          </div>
+          <div class="vocab-card" style="background:#FEF2F2;border-color:#FECACA">
+            <div class="vocab-ico">🛑</div>
+            <div class="vocab-term" style="font-size:22px">NU-ți trebuie când…</div>
+            <div class="check-list" style="gap:9px">
+              <div class="check-item"><span class="chk">→</span>Ești la început — 99% din nevoi se rezolvă cu <b>prompt bun + context</b></div>
+              <div class="check-item"><span class="chk">→</span>Vrei doar memorie persistentă → folosește <b>Projects</b>, nu fine-tuning</div>
+              <div class="check-item"><span class="chk">→</span>Datele se schimbă des → costul de re-antrenare nu merită</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px"><div class="quote-block"><strong>Recomandarea mea pentru un IMM:</strong> nu începe cu fine-tuning. Întâi storci tot din prompturi bune și Projects. Fine-tuning-ul e pasul avansat, scump, pentru când chiar ai depășit ce pot face acelea.</div></div>
+        <div class="slide-num">16 / 39</div>
+      </div>
+    </section>
+
+    <!-- 15 WEAK vs GOOD prompt -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Prompt Engineering</div><h2 class="slide-title">Calitatea promptului = calitatea rezultatului</h2></div>
+        <div class="split-screen">
+          <div class="split-pane bad">
+            <p class="split-label bad">❌ Prompt slab</p>
+            <div class="split-prompt big">"Scrie-mi un email."</div>
+            <div class="qbar"><span class="qbar-label" style="color:#DC2626">Calitate</span><div class="qbar-track"><div class="qbar-fill" style="width:18%;background:#EF4444"></div></div></div>
+            <div class="split-result"><b>Rezultat:</b> generic, impersonal — îl rescrii oricum de la zero.</div>
+          </div>
+          <div class="split-pane good">
+            <p class="split-label good">✅ Prompt bun</p>
+            <div class="split-prompt">"Ești <b>asistentul meu de vânzări</b>. Scrie un email de follow-up de <b>150 cuvinte</b>, <b>ton profesional dar cald</b>, către un <b>director de achiziții</b> dintr-un supermarket regional. Ne-am întâlnit acum 3 zile, am discutat <b>produsul X la prețul Y</b>. Scop: <b>confirmarea pașilor următori</b>."</div>
+            <div class="qbar"><span class="qbar-label" style="color:#16A34A">Calitate</span><div class="qbar-track"><div class="qbar-fill" style="width:92%;background:#22C55E"></div></div></div>
+            <div class="split-result"><b>Rezultat:</b> draft utilizabil din prima.</div>
+          </div>
+        </div>
+        <div class="slide-num">17 / 39</div>
+      </div>
+    </section>
+
+    <!-- 16 ANATOMY -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Prompt Engineering</div><h2 class="slide-title">Anatomia unui prompt eficient</h2></div>
+        <div class="prompt-anatomy">
+          <div class="anatomy-blocks">
+            <div class="anatomy-block ab0"><div class="num">1</div><div class="anatomy-label">🎭 Rol</div></div>
+            <div class="anatomy-block ab1"><div class="num">2</div><div class="anatomy-label">🏢 Context</div></div>
+            <div class="anatomy-block ab2"><div class="num">3</div><div class="anatomy-label">📋 Sarcina</div></div>
+            <div class="anatomy-block ab3"><div class="num">4</div><div class="anatomy-label">📐 Format</div></div>
+            <div class="anatomy-block ab4"><div class="num">5</div><div class="anatomy-label">🚫 Restricții</div></div>
+          </div>
+          <div class="anatomy-example">
+            <div class="anatomy-ex-title">Exemplu integrat — fiecare componentă pe rândul ei</div>
+            <div class="ex-line ex0"><div class="ex-tag">Rol</div><div class="ex-seg">Ești consultant de marketing în retail.</div></div>
+            <div class="ex-line ex1"><div class="ex-tag">Context</div><div class="ex-seg">Compania mea are 12 angajați și vinde cosmetice online în România.</div></div>
+            <div class="ex-line ex2"><div class="ex-tag">Sarcina</div><div class="ex-seg">Scrie o descriere de produs pentru un ser anti-îmbătrânire.</div></div>
+            <div class="ex-line ex3"><div class="ex-tag">Format</div><div class="ex-seg">Max 100 de cuvinte, ton cald și expert.</div></div>
+            <div class="ex-line ex4"><div class="ex-tag">Restricții</div><div class="ex-seg">Fără promisiuni medicale.</div></div>
+          </div>
+        </div>
+        <div class="slide-num">18 / 39</div>
+      </div>
+    </section>
+
+    <!-- 16b PROMPT COMPONENTS reference -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Prompt Engineering</div><h2 class="slide-title">Ce poți pune în fiecare componentă</h2><p class="slide-subtitle">Un meniu de opțiuni — combini după nevoie. Aceleași 5 culori ca în anatomie.</p></div>
+        <div class="pc-grid">
+          <div class="pc-col pcc0">
+            <div class="pc-head"><div class="pc-num">1</div><div class="pc-name">🎭 Rol</div></div>
+            <div class="pc-sub">Cine e AI-ul</div>
+            <div class="pc-items">
+              <div class="pc-chip">consultant de marketing</div>
+              <div class="pc-chip">avocat de business</div>
+              <div class="pc-chip">copywriter</div>
+              <div class="pc-chip">analist financiar</div>
+              <div class="pc-chip">asistent comercial</div>
+              <div class="pc-chip">expert HR</div>
+            </div>
+          </div>
+          <div class="pc-col pcc1">
+            <div class="pc-head"><div class="pc-num">2</div><div class="pc-name">🏢 Context</div></div>
+            <div class="pc-sub">Situația ta</div>
+            <div class="pc-items">
+              <div class="pc-chip">ce companie / industrie</div>
+              <div class="pc-chip">pentru ce audiență</div>
+              <div class="pc-chip">ce s-a întâmplat până acum</div>
+              <div class="pc-chip">date relevante (cifre, nume)</div>
+              <div class="pc-chip">ce ai încercat deja</div>
+            </div>
+          </div>
+          <div class="pc-col pcc2">
+            <div class="pc-head"><div class="pc-num">3</div><div class="pc-name">📋 Sarcina</div></div>
+            <div class="pc-sub">Verbul — ce faci</div>
+            <div class="pc-items">
+              <div class="pc-chip">scrie · rezumă</div>
+              <div class="pc-chip">analizează · compară</div>
+              <div class="pc-chip">tradu · corectează</div>
+              <div class="pc-chip">clasifică · extrage</div>
+              <div class="pc-chip">generează idei</div>
+            </div>
+          </div>
+          <div class="pc-col pcc3">
+            <div class="pc-head"><div class="pc-num">4</div><div class="pc-name">📐 Format</div></div>
+            <div class="pc-sub">Cum arată</div>
+            <div class="pc-items">
+              <div class="pc-chip">email · tabel · listă</div>
+              <div class="pc-chip">„max 100 de cuvinte"</div>
+              <div class="pc-chip">ton formal / cald</div>
+              <div class="pc-chip">pași numerotați</div>
+              <div class="pc-chip">paragraf scurt</div>
+            </div>
+          </div>
+          <div class="pc-col pcc4">
+            <div class="pc-head"><div class="pc-num">5</div><div class="pc-name">🚫 Restricții</div></div>
+            <div class="pc-sub">Ce eviți</div>
+            <div class="pc-items">
+              <div class="pc-chip">fără jargon</div>
+              <div class="pc-chip">fără date inventate</div>
+              <div class="pc-chip">fără promisiuni medicale</div>
+              <div class="pc-chip">fără clișee</div>
+              <div class="pc-chip">fără info confidențială</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">19 / 39</div>
+      </div>
+    </section>
+
+    <!-- 16c FEW-SHOT -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Prompt Engineering</div><h2 class="slide-title">Few-shot — învață AI-ul prin exemple</h2><p class="slide-subtitle">Îi arăți <b>1-3 exemple</b> de cum vrei rezultatul → prinde tiparul instant, fără să-l descrii în cuvinte</p></div>
+        <div class="fs-grid">
+          <div class="fs-left">
+            <div class="fs-card" style="background:var(--bg)">
+              <div class="fs-card-title">📍 Zero-shot</div>
+              <div class="fs-card-desc">Ceri direct, fără exemple. OK pentru sarcini simple și clare.</div>
+            </div>
+            <div class="fs-card" style="background:var(--pastel-mint);border-color:#86EFAC">
+              <div class="fs-card-title">🎯 Few-shot</div>
+              <div class="fs-card-desc">Dai 2-3 modele → AI copiază <b>stilul și formatul exact</b>. Cel mai rapid mod să obții vocea ta.</div>
+            </div>
+            <div class="fs-card" style="background:var(--pastel-lavender);border-color:#C4B5FD">
+              <div class="fs-card-title">💡 Bonus: „gândește pas cu pas"</div>
+              <div class="fs-card-desc">Pentru sarcini de raționament (analiză, decizii), cere-i să gândească pe pași înainte de răspuns.</div>
+            </div>
+          </div>
+          <div class="fs-example">
+            <span class="lbl">Exemplu few-shot</span>
+            Iată stilul meu de titluri:
+            <div class="ex-model">• Curs AI → „De la zero la primul tău workflow AI în 3 ore"</div>
+            <div class="ex-model">• Curs Excel → „Rapoarte care se fac singure"</div>
+            <div class="ex-ask">Acum scrie 5 titluri pentru cursul meu de marketing digital.</div>
+          </div>
+        </div>
+        <div class="slide-num">20 / 39</div>
+      </div>
+    </section>
+
+    <!-- 16d CONTEXT matters (moved here, near prompt engineering) -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Prompt Engineering · Context</div><h2 class="slide-title">Contextul este totul</h2><p class="slide-subtitle">Același principiu ca la „cum funcționează AI" — prezice următorul cuvânt <b>din context</b></p></div>
+        <div class="split-screen">
+          <div class="split-pane bad">
+            <p class="split-label bad">❌ Fără context</p>
+            <div class="split-prompt big">"Ajută-mă cu emailul pentru client."</div>
+            <div class="qbar"><span class="qbar-label" style="color:#DC2626">Calitate</span><div class="qbar-track"><div class="qbar-fill" style="width:20%;background:#EF4444"></div></div></div>
+            <div class="split-result"><b>Rezultat:</b> generic, impersonal, neutilizabil fără editări majore.</div>
+          </div>
+          <div class="split-pane good">
+            <p class="split-label good">✅ Cu context</p>
+            <div class="split-prompt">"Ești <b>asistentul meu comercial</b>. Compania mea distribuie <b>materiale de construcții în Moldova</b>, clienții sunt antreprenori. Clientul <b>Ion Munteanu</b> nu a plătit <b>factura 1042 din 15 mai</b>. Scrie un email de reamintire, <b>ton ferm dar politicos</b>, fără a periclita relația."</div>
+            <div class="qbar"><span class="qbar-label" style="color:#16A34A">Calitate</span><div class="qbar-track"><div class="qbar-fill" style="width:95%;background:#22C55E"></div></div></div>
+            <div class="split-result"><b>Rezultat:</b> email trimis direct, zero editări.</div>
+          </div>
+        </div>
+        <div class="slide-num">21 / 39</div>
+      </div>
+    </section>
+
+    <!-- 17 PRACTICE: ChatGPT Custom Instructions -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică · Personalizare</div><h2 class="slide-title">Fă AI-ul să te cunoască</h2><p class="slide-subtitle">Orice tool serios te lasă să-i spui <b>o dată</b> cine ești — și pornește mereu cu contextul tău</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted)">Exemplu în ChatGPT (Custom Instructions)</div>
+            <div class="practice-steps">
+              <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Deschide setările tool-ului → secțiunea <b>Personalizare</b></div></div>
+              <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Activează instrucțiunile personale (toggle ON)</div></div>
+              <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Completează: <b>cine ești</b> (rol, companie) + <b>cum să răspundă</b> (ton, limba română)</div></div>
+              <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Salvează → testează cu o întrebare</div></div>
+            </div>
+            <div class="practice-app"><b>De ce contează:</b> economisești 2-3 minute la <b>fiecare</b> conversație. Același lucru există în <b>Gemini</b> („Instrucțiunile tale pentru Gemini") și <b>Claude</b> (Customize).</div>
+          </div>
+          <div class="practice-shot"><img src="assets/screenshots/chatgpt-custom-instructions.jpg" alt="ChatGPT Custom Instructions panel"/></div>
+        </div>
+        <div class="slide-num">22 / 39</div>
+      </div>
+    </section>
+
+    <!-- 18 ECOSYSTEMS -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Comparație ecosisteme · 2026</div><h2 class="slide-title">Nu "care e cel mai bun", ci "ce îți dă fiecare"</h2><p class="slide-subtitle">Toate trei fac aproape orice azi. Diferența reală: în ce ecosistem te conectează și unde te duc mai departe.</p></div>
+        <div class="eco-grid">
+          <div class="eco-col chatgpt">
+            <div class="eco-head"><span class="logo"><svg width="22" height="22" viewBox="0 0 24 24" style="fill:#10A37F"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span>ChatGPT</div>
+            <div class="eco-list">
+              <div class="eco-item"><span class="dot">🔌</span><span>Cel mai larg ecosistem de apps (Canva, Booking, Trello, Gmail)</span></div>
+              <div class="eco-item"><span class="dot">🎨</span><span>Cel mai puternic la <span class="b">imagini</span> (redă text corect)</span></div>
+              <div class="eco-item"><span class="dot">💻</span><span>Agent de cod propriu: <span class="b">Codex</span></span></div>
+              <div class="eco-item"><span class="dot">👥</span><span>Cel mai mare ecosistem &amp; cei mai mulți utilizatori</span></div>
+            </div>
+          </div>
+          <div class="eco-col gemini">
+            <div class="eco-head"><span class="logo"><svg width="20" height="20" viewBox="0 0 24 24" style="fill:#4285F4"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>Gemini</div>
+            <div class="eco-list">
+              <div class="eco-item"><span class="dot">🔵</span><span><span class="b">Nativ în Gmail, Docs, Sheets, Drive</span></span></div>
+              <div class="eco-item"><span class="dot">🎬</span><span>Video (<span class="b">Veo</span>) + imagini (<span class="b">Nano Banana</span>)</span></div>
+              <div class="eco-item"><span class="dot">🎧</span><span>Cel mai bun la analiză audio/video + research web</span></div>
+              <div class="eco-item"><span class="dot">🪟</span><span>Context window uriaș — <span class="b">documente foarte mari</span></span></div>
+            </div>
+          </div>
+          <div class="eco-col claude">
+            <div class="eco-head"><span class="logo"><svg width="22" height="22" viewBox="0 0 24 24" style="fill:#C96442"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span>Claude</div>
+            <div class="eco-list">
+              <div class="eco-item"><span class="dot">📚</span><span>Cel mai mare spațiu pe <span class="b">documente lungi și dense</span></span></div>
+              <div class="eco-item"><span class="dot">🟠</span><span>Add-in nativ în <span class="b">Excel, Word, PowerPoint, Outlook</span></span></div>
+              <div class="eco-item"><span class="dot">💻</span><span>Agent de cod: <span class="b">Claude Code</span> (production-ready)</span></div>
+              <div class="eco-item"><span class="dot">✍️</span><span>Cel mai bun la <span class="b">scriere în vocea ta</span>, puține halucinații</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="eco-foot">Lucrezi în <b>Google?</b> → Gemini · în <b>Office?</b> → Claude · vrei <b>integrări + imagini?</b> → ChatGPT. Cel mai bun obicei: ai conturi la 2-3 și alegi după sarcină.</div>
+        <div class="slide-num">23 / 39</div>
+      </div>
+    </section>
+
+    <!-- 18b OTHER MODELS -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Peisajul AI 2026</div><h2 class="slide-title">Nu doar cei 3 mari — alte modele care merită știute</h2><p class="slide-subtitle">Pentru sarcini specifice, buget mic sau open-source, uneori un model „de nișă" e alegerea mai bună</p></div>
+        <div class="om-grid">
+          <div class="om-card">
+            <div class="om-head"><span class="om-logo"><svg width="24" height="24" viewBox="0 0 24 24" style="fill:#000"><path d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/></svg></span><span class="om-name">Grok <span style="font-weight:500;color:var(--muted);font-size:13px">· xAI</span></span></div>
+            <div class="om-desc">Timp real pe <b>X/Twitter</b>, actualitate la zi, ton mai direct și mai puțin filtrat.</div>
+          </div>
+          <div class="om-card">
+            <div class="om-head"><span class="om-logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#4D6BFE"><path d="M23.748 4.651c-.254-.124-.364.113-.512.233-.051.04-.094.09-.137.137-.372.397-.806.657-1.373.626-.829-.046-1.537.214-2.163.848-.133-.782-.575-1.248-1.247-1.548-.352-.155-.708-.311-.955-.65-.172-.24-.219-.509-.305-.774-.055-.16-.11-.323-.293-.35-.2-.031-.278.136-.356.276-.313.572-.434 1.202-.422 1.84.027 1.436.633 2.58 1.838 3.393.137.094.172.187.129.323-.082.28-.18.553-.266.833-.055.179-.137.218-.328.14a5.5 5.5 0 0 1-1.737-1.179c-.857-.828-1.631-1.743-2.597-2.46a12 12 0 0 0-.689-.47c-.985-.957.13-1.743.387-1.836.27-.098.094-.433-.778-.428-.872.003-1.67.295-2.687.685a3 3 0 0 1-.465.136 9.6 9.6 0 0 0-2.883-.101c-1.885.21-3.39 1.1-4.497 2.622C.082 8.776-.231 10.854.152 13.02c.403 2.284 1.568 4.175 3.36 5.653 1.857 1.533 3.997 2.284 6.438 2.14 1.482-.085 3.132-.284 4.994-1.86.47.234.962.328 1.78.398.629.058 1.235-.031 1.705-.129.735-.155.684-.836.418-.961-2.155-1.004-1.682-.595-2.112-.926 1.095-1.295 2.768-3.598 3.284-6.733.05-.346.115-.834.108-1.114-.004-.171.035-.238.23-.257a4.2 4.2 0 0 0 1.545-.475c1.397-.763 1.96-2.016 2.093-3.517.02-.23-.004-.467-.247-.588M11.58 18.168c-2.088-1.642-3.101-2.183-3.52-2.16-.39.024-.32.472-.234.763.09.288.207.487.371.74.114.167.192.416-.113.603-.673.416-1.842-.14-1.897-.168-1.361-.801-2.5-1.86-3.301-3.306-.775-1.393-1.225-2.888-1.299-4.482-.02-.385.094-.522.477-.592a4.7 4.7 0 0 1 1.53-.038c2.131.311 3.946 1.264 5.467 2.774.868.86 1.525 1.887 2.202 2.89.72 1.066 1.494 2.082 2.48 2.915.348.291.626.513.892.677-.802.09-2.14.109-3.055-.615zm1.001-6.44a.306.306 0 0 1 .415-.287.3.3 0 0 1 .113.074.3.3 0 0 1 .086.214c0 .17-.136.307-.308.307a.303.303 0 0 1-.306-.307m3.11 1.596c-.2.081-.4.151-.591.16a1.25 1.25 0 0 1-.798-.254c-.274-.23-.47-.358-.551-.758a1.7 1.7 0 0 1 .015-.588c.07-.327-.007-.537-.238-.727-.188-.156-.426-.199-.689-.199a.6.6 0 0 1-.254-.078.253.253 0 0 1-.114-.358 1 1 0 0 1 .192-.21c.356-.202.767-.136 1.146.016.352.144.618.408 1.001.782.392.451.462.576.685.915.176.264.336.536.446.848.066.194-.02.353-.25.45"/></svg></span><span class="om-name">DeepSeek</span></div>
+            <div class="om-desc"><b>Open-source</b> și foarte ieftin. Raționament puternic — popular pentru buget mic.</div>
+          </div>
+          <div class="om-card">
+            <div class="om-head"><span class="om-logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#20808D"><path d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"/></svg></span><span class="om-name">Perplexity</span></div>
+            <div class="om-desc">Motor de <b>căutare AI</b> — răspunsuri cu surse citate. Cel mai bun pentru research rapid.</div>
+          </div>
+          <div class="om-card">
+            <div class="om-head"><span class="om-logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#615CED"><path d="M23.919 14.545 20.817 9.17l1.47-2.544a.56.56 0 0 0 0-.566l-1.633-2.83a.57.57 0 0 0-.49-.283h-6.207L12.487.402a.57.57 0 0 0-.49-.284H8.732a.56.56 0 0 0-.49.284L5.139 5.775h-2.94a.56.56 0 0 0-.49.284L.077 8.887a.56.56 0 0 0 0 .567L3.18 14.83l-1.47 2.545a.56.56 0 0 0 0 .566l1.634 2.83a.57.57 0 0 0 .49.283h6.205l1.47 2.545a.57.57 0 0 0 .49.284h3.266a.57.57 0 0 0 .49-.284l3.104-5.375h2.94a.57.57 0 0 0 .49-.283l1.634-2.828a.55.55 0 0 0-.004-.568M8.733.686l1.634 2.828-1.634 2.828H21.8L20.164 9.17H7.425L5.63 6.06Zm1.306 19.801-6.205-.002 1.634-2.83h3.265L2.201 6.344h3.267q3.182 5.517 6.367 11.032zm10.124-5.66L18.53 12l-6.532 11.315-1.634-2.83c2.129-3.673 4.25-7.351 6.373-11.028h3.592l3.102 5.374z"/></svg></span><span class="om-name">Qwen <span style="font-weight:500;color:var(--muted);font-size:13px">· Alibaba</span></span></div>
+            <div class="om-desc"><b>Open-source</b>, multilingv și puternic. Larg folosit în Asia, gratuit de rulat.</div>
+          </div>
+          <div class="om-card">
+            <div class="om-head"><span class="om-logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#FA520F"><path d="M17.143 3.429v3.428h-3.429v3.429h-3.428V6.857H6.857V3.43H3.43v13.714H0v3.428h10.286v-3.428H6.857v-3.429h3.429v3.429h3.429v-3.429h3.428v3.429h-3.428v3.428H24v-3.428h-3.43V3.429z"/></svg></span><span class="om-name">Mistral <span style="font-weight:500;color:var(--muted);font-size:13px">· 🇫🇷</span></span></div>
+            <div class="om-desc"><b>European</b>, open-source, prietenos cu confidențialitatea. Alternativă pentru date sensibile.</div>
+          </div>
+          <div class="om-card">
+            <div class="om-head"><span class="om-logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#0467DF"><path d="M6.915 4.03c-1.968 0-3.683 1.28-4.871 3.113C.704 9.208 0 11.883 0 14.449c0 .706.07 1.369.21 1.973a6.624 6.624 0 0 0 .265.86 5.297 5.297 0 0 0 .371.761c.696 1.159 1.818 1.927 3.593 1.927 1.497 0 2.633-.671 3.965-2.444.76-1.012 1.144-1.626 2.663-4.32l.756-1.339.186-.325c.061.1.121.196.183.3l2.152 3.595c.724 1.21 1.665 2.556 2.47 3.314 1.046.987 1.992 1.22 3.06 1.22 1.075 0 1.876-.355 2.455-.843a3.743 3.743 0 0 0 .81-.973c.542-.939.861-2.127.861-3.745 0-2.72-.681-5.357-2.084-7.45-1.282-1.912-2.957-2.93-4.716-2.93-1.047 0-2.088.467-3.053 1.308-.652.57-1.257 1.29-1.82 2.05-.69-.875-1.335-1.547-1.958-2.056-1.182-.966-2.315-1.303-3.454-1.303zm10.16 2.053c1.147 0 2.188.758 2.992 1.999 1.132 1.748 1.647 4.195 1.647 6.4 0 1.548-.368 2.9-1.839 2.9-.58 0-1.027-.23-1.664-1.004-.496-.601-1.343-1.878-2.832-4.358l-.617-1.028a44.908 44.908 0 0 0-1.255-1.98c.07-.109.141-.224.211-.327 1.12-1.667 2.118-2.602 3.358-2.602zm-10.201.553c1.265 0 2.058.791 2.675 1.446.307.327.737.871 1.234 1.579l-1.02 1.566c-.757 1.163-1.882 3.017-2.837 4.338-1.191 1.649-1.81 1.817-2.486 1.817-.524 0-1.038-.237-1.383-.794-.263-.426-.464-1.13-.464-2.046 0-2.221.63-4.535 1.66-6.088.454-.687.964-1.226 1.533-1.533a2.264 2.264 0 0 1 1.088-.285z"/></svg></span><span class="om-name">Llama <span style="font-weight:500;color:var(--muted);font-size:13px">· Meta</span></span></div>
+            <div class="om-desc"><b>Open-source</b>. Îl poți rula <b>local, pe serverul tău</b> — datele nu pleacă nicăieri.</div>
+          </div>
+          <div class="om-card">
+            <div class="om-head"><span class="om-chip" style="background:#1A1A2E">K</span><span class="om-name">Kimi <span style="font-weight:500;color:var(--muted);font-size:13px">· Moonshot</span></span></div>
+            <div class="om-desc">Context foarte lung și ieftin. Bun la sarcini <b>agentice</b> (mai mulți pași).</div>
+          </div>
+          <div class="om-card">
+            <div class="om-head"><span class="om-chip" style="background:#FF4D4F">M</span><span class="om-name">MiniMax</span></div>
+            <div class="om-desc"><b>Multimodal</b> și video, foarte rapid. Popular pentru conținut vizual.</div>
+          </div>
+          <div class="om-card">
+            <div class="om-head"><span class="om-chip" style="background:#3A3A3A">⚙</span><span class="om-name">Manus</span></div>
+            <div class="om-desc"><b>Agent autonom</b> — navighează singur, face research și livrează rapoarte.</div>
+          </div>
+        </div>
+        <div class="eco-foot">💡 Nu trebuie să le folosești pe toate. Dar e bine să știi că există alternative — mai <b>ieftine</b>, <b>open-source</b> sau <b>specializate</b> — pe lângă cei 3 mari.</div>
+        <div class="slide-num">24 / 39</div>
+      </div>
+    </section>
+
+    <!-- 21 GEMINI possibilities -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Gemini</div><h2 class="slide-title" style="display:flex;align-items:center;gap:14px"><span class="logo"><svg width="32" height="32" viewBox="0 0 24 24" style="fill:#4285F4"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>Un ecosistem, nu doar un chat</h2></div>
+        <div class="gem-grid">
+          <div class="gem-card"><div class="gem-icon-wrap" style="background:#EBF5FF">🎬</div><div><p class="gem-title">Video cu Veo<span class="gem-badge">PRACTICĂ</span></p><p class="gem-desc">Generezi clipuri video realiste din text.</p></div></div>
+          <div class="gem-card"><div class="gem-icon-wrap" style="background:#F0FDF4">📊</div><div><p class="gem-title">Prezentări (Canvas)<span class="gem-badge">PRACTICĂ</span></p><p class="gem-desc">Generezi prezentări complete dintr-un prompt.</p></div></div>
+          <div class="gem-card"><div class="gem-icon-wrap" style="background:#FEF3C7">🍌</div><div><p class="gem-title">Imagini (Nano Banana)<span class="gem-badge">PRACTICĂ</span></p><p class="gem-desc">Creezi și editezi imagini conversațional.</p></div></div>
+          <div class="gem-card"><div class="gem-icon-wrap" style="background:#FDF4FF">💎</div><div><p class="gem-title">Gems<span class="gem-badge">PRACTICĂ</span></p><p class="gem-desc">Asistenți Gemini personalizați, refolosibili.</p></div></div>
+          <div class="gem-card" style="grid-column:1 / -1;background:var(--primary-ultra-light);border-color:#C7D2FE"><div class="gem-icon-wrap" style="background:#fff">🔵</div><div><p class="gem-title">Integrare Google Workspace — diferențiatorul<span class="gem-badge">PRACTICĂ</span></p><p class="gem-desc">Nativ în Gmail, Calendar, Docs, Drive. Lucrezi unde lucrezi deja.</p></div></div>
+        </div>
+        <div class="slide-num">25 / 39</div>
+      </div>
+    </section>
+
+    <!-- 21b GEMINI + WORKSPACE -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică · Gemini</div><h2 class="slide-title" style="display:flex;align-items:center;gap:11px"><span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#4285F4"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>Gemini + Google Workspace</h2><p class="slide-subtitle">Conectezi conturile Google — chiar și pe gratuit — și Gemini nu doar <b>citește</b>, ci <b>acționează</b></p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted)">Conectezi (gemini.google.com → Connected Apps)</div>
+            <div class="gw-apps">
+              <div class="gw-chip"><span class="gw-dot" style="background:#EA4335"></span>Gmail</div>
+              <div class="gw-chip"><span class="gw-dot" style="background:#4285F4"></span>Calendar</div>
+              <div class="gw-chip"><span class="gw-dot" style="background:#4285F4"></span>Docs</div>
+              <div class="gw-chip"><span class="gw-dot" style="background:#0F9D58"></span>Drive</div>
+              <div class="gw-chip"><span class="gw-dot" style="background:#FBBC04"></span>Keep</div>
+              <div class="gw-chip"><span class="gw-dot" style="background:#4285F4"></span>Tasks</div>
+            </div>
+            <div class="practice-prompt"><span class="lbl">Exemple de comenzi</span>„Rezumă-mi emailurile de azi" · „Ce am în calendar săptămâna asta?" · „Adaugă un event mâine la 9:00"</div>
+            <div class="practice-app"><b>De ce contează:</b> lucrezi direct în ecosistemul Google, fără copy-paste. Gemini vede contextul tău real și execută sarcini.</div>
+          </div>
+          <div class="practice-shot"><img src="assets/screenshots/gemini-workspace-apps.png" alt="Gemini Connected Apps - Google Workspace" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📷</span>Connected Apps<span class="pth">gemini-workspace-apps.png</span></div></div>
+        </div>
+        <div class="slide-num">26 / 39</div>
+      </div>
+    </section>
+
+    <!-- 21c GEMS explained -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Gemini · Gems</div><h2 class="slide-title" style="display:flex;align-items:center;gap:11px"><span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#4285F4"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>Gems — asistenți Gemini personalizați</h2><p class="slide-subtitle">Mini-aplicații AI pe care le creezi <b>o dată</b> și le refolosești (echivalentul GPTs)</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted)">Exemple de Gems proprii</div>
+            <div class="gems-examples">
+              <div class="gem-ex"><span class="av" style="background:#0D9488">A</span><div><div class="gx-name">Asistent Email</div><div class="gx-desc">Transformă orice text în comunicare business curată</div></div></div>
+              <div class="gem-ex"><span class="av" style="background:#BE185D">D</span><div><div class="gx-name">Date din buletin</div><div class="gx-desc">Extrage datele dintr-un act de identitate</div></div></div>
+              <div class="gem-ex"><span class="av" style="background:#2563EB">C</span><div><div class="gx-name">CV Recruiting</div><div class="gx-desc">Screening rapid de CV-uri după criterii</div></div></div>
+            </div>
+            <div class="practice-app"><b>De ce contează:</b> construiești un specialist o dată — cu rolul, tonul și fișierele tale — și-l folosești la nesfârșit, fără să rescrii promptul. Google oferă și Gems gata făcute (Storybook, Ghid carieră, Partener de programare).</div>
+          </div>
+          <div class="practice-shot"><img src="assets/screenshots/gemini-gems-manager.png" alt="Manager Gems" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📷</span>Manager Gems<span class="pth">gemini-gems-manager.png</span></div></div>
+        </div>
+        <div class="slide-num">27 / 39</div>
+      </div>
+    </section>
+
+    <!-- 21d GEMS practice -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică · Gemini</div><h2 class="slide-title" style="display:flex;align-items:center;gap:11px"><span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#4285F4"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>Creează-ți primul Gem</h2><p class="slide-subtitle">Gemini → Manager Gems → <b>Gem nou</b></p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:13px">
+            <div class="practice-steps">
+              <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text"><b>Nume</b> + scurtă descriere</div></div>
+              <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text"><b>Instrucțiuni</b>: rol clar + context (cine ești, pentru cine) + reguli de comportament</div></div>
+              <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text"><b>Cunoștințe</b>: atașează fișiere de referință (template-uri, proceduri)</div></div>
+              <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Testează în <b>previzualizare</b> → ajustează → Salvează</div></div>
+            </div>
+            <div class="practice-prompt"><span class="lbl">Exemplu — Gem „Asistent ofertă"</span>„Ești asistentul comercial al firmei mele de [X]. Scrii oferte în tonul brandului. Întrebi detaliile lipsă înainte de a genera." + atașezi un template de ofertă.</div>
+          </div>
+          <div class="practice-shot"><img src="assets/screenshots/gemini-gem-new.png" alt="Formular Gem nou" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📷</span>Formular „Gem nou"<span class="pth">gemini-gem-new.png</span></div></div>
+        </div>
+        <div class="slide-num">28 / 39</div>
+      </div>
+    </section>
+
+    <!-- 22 PRACTICE: Veo video -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică · Gemini</div><h2 class="slide-title" style="display:flex;align-items:center;gap:11px"><span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#4285F4"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>Generează un clip video din text</h2><p class="slide-subtitle">Veo — descrii scena, Gemini o produce</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="practice-steps">
+              <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Gemini → selectează generare video (<b>Veo</b>)</div></div>
+              <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Scrie un prompt descriptiv (scenă, stil, mișcare, durată)</div></div>
+              <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Generează → așteaptă rezultatul</div></div>
+              <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Iterează promptul pentru alt rezultat</div></div>
+            </div>
+            <div class="practice-prompt"><span class="lbl">Prompt — ce vrei</span>"Un cadru cinematic cu un produs cosmetic pe o masă de marmură, lumină caldă de dimineață, cameră care se apropie lent, 8 secunde."</div>
+            <div class="practice-prompt" style="border-color:#EF4444;background:#FEF2F2"><span class="lbl" style="color:#DC2626">Prompt negativ — ce să EVITE</span>"fără text pe ecran, fără mâini umane, fără tranziții bruște, fără watermark, fără fundal aglomerat."</div>
+            <div class="practice-app"><b>De ce contează:</b> promptul negativ elimină exact ce strică clipul — e cea mai rapidă cale să cureți rezultatul fără să regenerezi de 10 ori.</div>
+          </div>
+          <div class="practice-shot"><img src="assets/screenshots/gemini-veo-prompt.png" alt="Gemini Veo prompt box"/></div>
+        </div>
+        <div class="slide-num">29 / 39</div>
+      </div>
+    </section>
+
+    <!-- 23 PRACTICE: Gemini Canvas presentations -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică · Gemini</div><h2 class="slide-title" style="display:flex;align-items:center;gap:11px"><span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#4285F4"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>Construiește o prezentare cu AI</h2><p class="slide-subtitle">Gemini Canvas — o prezentare întreagă pornește dintr-un prompt bun</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="practice-steps">
+              <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Gemini → <b>Canvas</b></div></div>
+              <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Scrie promptul: <b>subiect + audiență + nr. slide-uri + ton</b></div></div>
+              <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Gemini generează structura + conținutul</div></div>
+              <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Editezi/rafinezi live în Canvas</div></div>
+            </div>
+            <div class="practice-prompt"><span class="lbl">Exemplu prompt</span>"Creează o prezentare de 6 slide-uri pentru o ofertă către un client nou, despre serviciile firmei mele de consultanță contabilă. Ton profesional, un slide cu prețuri."</div>
+            <div class="practice-app"><b>Business:</b> oferte, pitch-uri, prezentări interne — în minute.</div>
+          </div>
+          <div class="practice-shot cover"><img src="assets/screenshots/gemini-canvas-1.png" alt="Gemini Canvas generated interactive output"/></div>
+        </div>
+        <div class="slide-num">30 / 39</div>
+      </div>
+    </section>
+
+    <!-- 24 PRACTICE: Nano Banana -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică · Gemini</div><h2 class="slide-title" style="display:flex;align-items:center;gap:11px"><span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#4285F4"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>Creează și editează imagini cu Nano Banana</h2><p class="slide-subtitle">Puterea editării <b>conversaționale</b>, nu doar generare one-shot</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="practice-steps">
+              <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Gemini → tools → <b>Create images</b> 🍌</div></div>
+              <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Scrie promptul pentru imagine</div></div>
+              <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Cere o <b>editare conversațională</b> (fundal/obiect/element)</div></div>
+              <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Descarcă imaginea (are watermark SynthID)</div></div>
+            </div>
+            <div class="practice-prompt"><span class="lbl">Exemplu</span>"Generează o imagine cu un ambalaj de cafea premium pe fundal de lemn rustic" → apoi "schimbă fundalul în marmură albă"</div>
+            <div class="practice-app"><b>Business:</b> vizualuri produse, postări social, mockup-uri rapide.</div>
+          </div>
+          <div class="practice-shot cover"><img src="assets/screenshots/nano-banana-product.jpg" alt="Nano Banana — imagine produs generată (ambalaj cafea)"/></div>
+        </div>
+        <div class="slide-num">31 / 39</div>
+      </div>
+    </section>
+
+    <!-- 24b DEEP RESEARCH -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Gemini · Deep Research</div><h2 class="slide-title" style="display:flex;align-items:center;gap:11px"><span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#4285F4"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>Deep Research — un analist care lucrează pentru tine</h2><p class="slide-subtitle">Îi dai o temă → AI-ul caută pe <b>zeci-sute de surse</b>, citește și-ți livrează un raport complet cu citări</p></div>
+        <div class="nb-flow">
+          <div class="nb-node in"><span class="nb-node-icon">📝</span><span class="nb-node-title">Tema ta</span><span class="nb-node-desc">„Analizează piața X în Moldova"</span></div>
+          <div class="nb-node proc"><span class="nb-node-icon">🔎</span><span class="nb-node-title">AI caută &amp; citește</span><span class="nb-node-desc">Face un plan + parcurge zeci/sute de surse web</span></div>
+          <div class="nb-node out"><span class="nb-node-icon">📑</span><span class="nb-node-title">Raport cu surse</span><span class="nb-node-desc">Structurat, cu citări verificabile</span></div>
+        </div>
+        <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);margin-top:16px;margin-bottom:10px">La ce te ajută</div>
+        <div class="nb-cases">
+          <div class="nb-case"><div class="nb-case-title">📊 Analiză de piață</div><div class="nb-case-desc">Dimensiune, trenduri, jucători principali</div></div>
+          <div class="nb-case"><div class="nb-case-title">🔭 Monitorizare concurență</div><div class="nb-case-desc">Ce fac, prețuri, poziționare</div></div>
+          <div class="nb-case"><div class="nb-case-title">🤝 Due diligence</div><div class="nb-case-desc">Verifici un furnizor / client / partener</div></div>
+          <div class="nb-case"><div class="nb-case-title">⚖️ Research reglementări</div><div class="nb-case-desc">Ce legi și norme ți se aplică</div></div>
+        </div>
+        <div style="margin-top:16px"><div class="quote-block"><strong>De ce contează:</strong> ore de research manual → minute, cu surse pe care le poți verifica. Disponibil în Gemini, ChatGPT și Perplexity.</div></div>
+        <div class="slide-num">32 / 39</div>
+      </div>
+    </section>
+
+    <!-- 25 NotebookLM explained -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">NotebookLM</div><h2 class="slide-title" style="display:flex;align-items:center;gap:12px"><span class="logo"><svg width="30" height="30" viewBox="0 0 500 500"><circle cx="246.93" cy="249.67" r="240"/><path fill="#fff" d="M246.94,117.25c-83.4,0-151,67.04-151,149.77v71.7h27.83v-7.15c0-33.55,27.41-60.75,61.23-60.75s61.23,27.21,61.23,60.75v7.15h27.83v-7.15c0-48.8-39.89-88.33-89.07-88.33-19.15,0-36.89,5.99-51.42,16.21,15.2-29.97,46.51-50.53,82.65-50.53,51.06,0,92.46,41.07,92.46,91.71v38.1h27.84v-38.1c0-65.89-53.86-119.32-120.3-119.32-29.87,0-57.2,10.8-78.24,28.69,20.66-38.73,61.68-65.13,108.95-65.13,68.03,0,123.17,54.69,123.17,122.16v71.7h27.83v-71.7c0-82.72-67.6-149.77-151-149.77Z"/></svg></span>Biblioteca ta de documente, devenită inteligentă</h2><p class="slide-subtitle">Răspunde <b>doar din sursele tale</b>, cu citate verificabile — zero halucinații pe date externe</p></div>
+        <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:24px;flex:1">
+          <div class="practice-shot"><img src="assets/screenshots/notebooklm-3panel.gif" alt="NotebookLM 3-panel interface"/></div>
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:14px">
+            <div style="font-size:15px;color:var(--foreground);line-height:1.5"><b>3 panouri:</b> Sources (sursele tale) · Chat (întrebări cu citate) · Studio (rezumate, Audio Overview)</div>
+            <div class="quote-block" style="font-size:15px"><strong>Diferența cheie:</strong> răspunde doar din sursele tale, cu <strong>citate verificabile</strong> care trimit la pasajul exact.</div>
+          </div>
+        </div>
+        <div class="nb-cases">
+          <div class="nb-case"><div class="nb-case-title">📋 Bază de cunoștințe</div><div class="nb-case-desc">"Care e procedura de concediu?" → răspuns instant, citat din politici</div></div>
+          <div class="nb-case"><div class="nb-case-title">📊 Analiză documente</div><div class="nb-case-desc">Rapoarte financiare → trenduri fără să sapi în spreadsheet-uri</div></div>
+          <div class="nb-case"><div class="nb-case-title">🎙️ Audio Overview</div><div class="nb-case-desc">Documentele devin un podcast de 2 voci · 80+ limbi, inclusiv română</div></div>
+          <div class="nb-case"><div class="nb-case-title">🤝 Onboarding</div><div class="nb-case-desc">Încarci datele unei companii → înțelegi rapid structura ei</div></div>
+        </div>
+        <div class="slide-num">33 / 39</div>
+      </div>
+    </section>
+
+    <!-- 26 PRACTICE: NotebookLM -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică · NotebookLM</div><h2 class="slide-title" style="display:flex;align-items:center;gap:12px"><span class="logo"><svg width="28" height="28" viewBox="0 0 500 500"><circle cx="246.93" cy="249.67" r="240"/><path fill="#fff" d="M246.94,117.25c-83.4,0-151,67.04-151,149.77v71.7h27.83v-7.15c0-33.55,27.41-60.75,61.23-60.75s61.23,27.21,61.23,60.75v7.15h27.83v-7.15c0-48.8-39.89-88.33-89.07-88.33-19.15,0-36.89,5.99-51.42,16.21,15.2-29.97,46.51-50.53,82.65-50.53,51.06,0,92.46,41.07,92.46,91.71v38.1h27.84v-38.1c0-65.89-53.86-119.32-120.3-119.32-29.87,0-57.2,10.8-78.24,28.69,20.66-38.73,61.68-65.13,108.95-65.13,68.03,0,123.17,54.69,123.17,122.16v71.7h27.83v-71.7c0-82.72-67.6-149.77-151-149.77Z"/></svg></span>Întreabă-ți propriile documente</h2><p class="slide-subtitle">Acuratețe cu citate pe propriile date + Audio Overview în română</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="practice-steps">
+              <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">notebooklm.google.com → <b>New Notebook</b></div></div>
+              <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Adaugă o sursă (PDF: ofertă, raport, procedură, contract)</div></div>
+              <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Pune 2-3 întrebări → observă <b>citatele</b> care trimit la pasajul exact</div></div>
+              <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Generează un <b>Audio Overview</b> în română → ascultă rezumatul</div></div>
+              <div class="pstep"><div class="pstep-num">5</div><div class="pstep-text">(Opțional) Generează un Briefing Doc sau Study Guide</div></div>
+            </div>
+            <div class="practice-app"><b>Business:</b> sintetizezi rapid contracte, rapoarte, documente lungi — cu acuratețe verificabilă.</div>
+          </div>
+          <div class="practice-shot"><img src="assets/screenshots/notebooklm-3panel.gif" alt="NotebookLM interface with sources and chat"/></div>
+        </div>
+        <div class="slide-num">34 / 39</div>
+      </div>
+    </section>
+
+
+    <!-- 19 CLAUDE in practice -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Claude în practică</div><h2 class="slide-title">Cum folosesc eu Claude zilnic</h2><p class="slide-subtitle">Exemple reale din activitatea trainerului</p></div>
+        <div class="cards-grid cards-3">
+          <div class="card lavender"><span class="card-icon">💻</span><p class="card-title">Dezvoltare aplicații</p><p class="card-body">Generez cod, planific arhitectura, depanez — fără să fiu programator expert.</p></div>
+          <div class="card mint"><span class="card-icon">📄</span><p class="card-title">Generare documente</p><p class="card-body">Propuneri, contracte-șablon, rapoarte, proceduri — în minute, nu ore.</p></div>
+          <div class="card sky">
+            <div style="display:flex;align-items:center;gap:10px"><span class="card-icon" style="margin:0">🔗</span><span class="logo" title="Trello"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#0052CC"><path d="M21.147 0H2.853A2.86 2.86 0 000 2.853v18.294A2.86 2.86 0 002.853 24h18.294A2.86 2.86 0 0024 21.147V2.853A2.86 2.86 0 0021.147 0zM10.34 17.287a.953.953 0 01-.953.953h-4a.954.954 0 01-.954-.953V5.38a.953.953 0 01.954-.953h4a.954.954 0 01.953.953zm9.233-5.467a.944.944 0 01-.953.947h-4a.947.947 0 01-.953-.947V5.38a.953.953 0 01.953-.953h4a.954.954 0 01.953.953z"/></svg></span></div>
+            <p class="card-title">Integrare cu Trello</p><p class="card-body">Claude primește task-uri, actualizează board-ul, trimite notificări — automat.</p>
+          </div>
+        </div>
+        <div class="slide-num">35 / 39</div>
+      </div>
+    </section>
+
+    <!-- 20 PRACTICE: Claude Projects -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică</div><h2 class="slide-title">Creează-ți primul Project</h2><p class="slide-subtitle">Setezi o dată — instrucțiuni + fișiere + context → AI-ul caută automat în tot ce ai pus acolo</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div class="practice-steps">
+              <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">În Claude → Projects → <b>Create Project</b></div></div>
+              <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Dă-i un nume (ex: "Asistent comercial")</div></div>
+              <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Adaugă <b>instrucțiuni</b> (cine ești, ton, reguli)</div></div>
+              <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Încarcă <b>1-2 fișiere</b> de context (ofertă, profil companie)</div></div>
+              <div class="pstep"><div class="pstep-num">5</div><div class="pstep-text">Pune o întrebare — observă că deja știe contextul</div></div>
+            </div>
+            <div class="practice-app"><b>Exemplu:</b> Project "Aplicare Grant ODA" → încarci o dată cerința + profilul companiei → Claude redactează și verifică eligibilitatea cu context complet.</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div class="practice-shot" style="flex:1"><img src="assets/screenshots/claude-projects-1.png" alt="Claude Projects card"/></div>
+            <div class="practice-shot" style="flex:1"><img src="assets/screenshots/claude-projects-2.png" alt="Claude Projects list"/></div>
+          </div>
+        </div>
+        <div class="slide-num">36 / 39</div>
+      </div>
+    </section>
+
+    <!-- 28 AI FATIGUE -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">AI Fatigue</div><h2 class="slide-title">Când încerci tot și nu implementezi nimic</h2></div>
+        <div class="fatigue-vs">
+          <div class="fatigue-pane chaos">
+            <p class="fatigue-pane-label">😵 Haos — AI Fatigue</p>
+            <div class="fatigue-icons">
+              <span class="fatigue-chip">ChatGPT</span><span class="fatigue-chip">Gemini</span><span class="fatigue-chip">Perplexity</span><span class="fatigue-chip">Midjourney</span><span class="fatigue-chip">Notion AI</span><span class="fatigue-chip">Otter.ai</span><span class="fatigue-chip">Claude</span><span class="fatigue-chip">HeyGen</span><span class="fatigue-chip">Copy.ai</span><span class="fatigue-chip">+ 10 altele</span>
+            </div>
+            <p class="fatigue-quote">"Am încercat, nu mi-a dat rezultate" / "E prea complicat" / "Nu știu de unde să încep"</p>
+          </div>
+          <div class="fatigue-pane focus">
+            <p class="fatigue-pane-label">🎯 Focus — Soluția în 3 pași</p>
+            <div class="fatigue-steps">
+              <div class="fatigue-step"><div class="fatigue-step-num">1</div><div class="fatigue-step-text">Alege <b>UN singur task</b> săptămânal care-ți ia cel mai mult timp</div></div>
+              <div class="fatigue-step"><div class="fatigue-step-num">2</div><div class="fatigue-step-text">Construiește un <b>prompt bun</b> pentru el</div></div>
+              <div class="fatigue-step"><div class="fatigue-step-num">3</div><div class="fatigue-step-text">Folosește-l <b>5 zile</b>, evaluează, ajustează — abia apoi al doilea</div></div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px"><div class="quote-block"><strong>Mesaj cheie:</strong> schimbările mici și consecvente bat adoptarea haotică a tuturor tool-urilor deodată.</div></div>
+        <div class="slide-num">37 / 39</div>
+      </div>
+    </section>
+
+    <!-- 29 EXERCISE -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Exercițiu Live · Session KPI</div><h2 class="slide-title">Acum e rândul tău</h2><p class="slide-subtitle">10 prompturi pentru taskuri reale din activitatea ta — în 20 de minute</p></div>
+        <div class="exercise-center">
+          <div class="timer-pill">⏱️ 20 minute</div>
+          <div class="exercise-template">
+            <span class="tpl-label">Template — copiază și completează</span>
+            "Ești <span class="exercise-hl">[ROL]</span>. <span class="exercise-hl">[CONTEXT COMPANIE / SITUAȚIE]</span>.
+            <span class="exercise-hl">[SARCINA EXACTĂ]</span>.
+            Outputul trebuie să fie <span class="exercise-hl">[FORMAT]</span>.
+            Evită <span class="exercise-hl">[RESTRICȚIE]</span>."
+          </div>
+          <div class="check-list" style="max-width:520px">
+            <div class="check-item"><span class="chk">✅</span>Gândește-te la taskurile care îți iau cel mai mult timp săptămânal</div>
+            <div class="check-item"><span class="chk">✅</span>Scrie minimum 10 prompturi — câte unul per task real</div>
+            <div class="check-item"><span class="chk">✅</span>Testează-le live; trainerul circulă și oferă feedback</div>
+          </div>
+        </div>
+        <div class="slide-num">38 / 39</div>
+      </div>
+    </section>
+
+    <!-- 30 WRAP -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Wrap-up &amp; Homework</div><h2 class="slide-title">Ce duci acasă azi</h2></div>
+        <div class="wrapup-grid">
+          <div class="wrapup-pane learned">
+            <div class="wrapup-pane-title">✅ Azi ai învățat și ai făcut</div>
+            <div class="check-list">
+              <div class="check-item"><span class="chk">✓</span>Cum prezice un LLM următorul cuvânt din context</div>
+              <div class="check-item"><span class="chk">✓</span>Vocabularul esențial și de ce contează (limite, halucinații)</div>
+              <div class="check-item"><span class="chk">✓</span>Cum construiești un prompt bun (5 componente)</div>
+              <div class="check-item"><span class="chk">✓</span>Ai personalizat ChatGPT și ai creat un Project</div>
+              <div class="check-item"><span class="chk">✓</span>Ai generat video/imagini/prezentări + ai vorbit cu documentele tale</div>
+            </div>
+          </div>
+          <div class="wrapup-pane hw">
+            <div class="wrapup-pane-title">📋 Homework — sesiunea viitoare</div>
+            <div class="check-list">
+              <div class="check-item"><span class="chk">1.</span>Alege 1 task repetitiv din munca ta</div>
+              <div class="check-item"><span class="chk">2.</span>Construiește un prompt cu template-ul de azi</div>
+              <div class="check-item"><span class="chk">3.</span>Testează-l de 3 ori — notează ce a mers și ce nu</div>
+              <div class="check-item"><span class="chk">4.</span>Adu exemplul la sesiunea 2</div>
+            </div>
+            <div class="preview-row"><div class="lbl">Sesiunea 2 →</div><div class="ttl">AI pentru comunicare, marketing și conținut</div></div>
+          </div>
+        </div>
+        <div class="slide-num">39 / 39</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

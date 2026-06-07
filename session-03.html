@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sesiunea 3 — AI pentru Research, Analiză Competitivă &amp; Decizii</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary:#2D52D4;--primary-light:#5B7CF7;--primary-ultra-light:#EEF2FF;
+      --foreground:#0F172A;--muted:#64748B;--border:#E2E8F0;--card:#FFFFFF;--bg:#F8FAFC;
+      --success:#22C55E;--destructive:#EF4444;--warning:#F59E0B;
+      --pastel-mint:#DCFCE7;--pastel-lavender:#EDE9FE;--pastel-peach:#FFEDD5;
+      --pastel-sky:#E0F2FE;--pastel-rose:#FCE7F3;
+      --radius:14px;--radius-sm:8px;--shadow:0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice:#7C3AED;--perplexity:#20808D;
+    }
+    .reveal{font-family:'Onest',system-ui,sans-serif!important;font-size:28px;color:var(--foreground);}
+    .reveal .slides{text-align:left;}
+    .reveal section{padding:0;height:100%;box-sizing:border-box;}
+    .reveal h1,.reveal h2,.reveal h3{font-family:'Onest',system-ui,sans-serif;text-transform:none;text-shadow:none;}
+    .reveal .progress{color:var(--primary);height:3px;}
+    .reveal .controls{color:var(--primary);}
+    .slide{width:100%;height:100%;padding:52px 66px;box-sizing:border-box;display:flex;flex-direction:column;background:#fff;position:relative;overflow:hidden;}
+    .slide::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary) 0%,#7C3AED 100%);}
+    .slide.practice::before{background:linear-gradient(90deg,#7C3AED 0%,#DB2777 100%);}
+    .slide-header{margin-bottom:24px;}
+    .slide-tag{display:inline-block;background:var(--primary-ultra-light);color:var(--primary);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;margin-bottom:10px;}
+    .slide-tag.practice-tag{background:#F3E8FF;color:var(--practice);}
+    .slide-title{font-size:36px!important;font-weight:800!important;line-height:1.14!important;color:var(--foreground)!important;margin:0 0 6px!important;letter-spacing:-.015em;}
+    .slide-subtitle{font-size:16px;color:var(--muted);font-weight:400;margin:0;line-height:1.5;max-width:920px;}
+    .slide-subtitle b{color:var(--foreground);font-weight:600;}
+    .slide-num{position:absolute;bottom:18px;right:32px;font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.04em;}
+    .logo{display:inline-block;vertical-align:middle;}.logo svg{display:block;}
+
+    /* COVER */
+    .slide-cover{background:var(--foreground);color:#fff;justify-content:center;}
+    .slide-cover::before{display:none;}
+    .cover-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0B1120 0%,#1E3A8A 58%,#3B2F8F 100%);}
+    .cover-accent{position:absolute;top:-140px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(93,112,247,.40) 0%,transparent 70%);}
+    .cover-accent2{position:absolute;bottom:-100px;left:-90px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.30) 0%,transparent 70%);}
+    .cover-content{position:relative;z-index:2;}
+    .cover-kicker{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:7px 18px;font-size:14px;font-weight:500;color:rgba(255,255,255,.82);margin-bottom:32px;}
+    .cover-kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--primary-light);}
+    .slide-cover h1{font-size:56px;font-weight:800;line-height:1.06;color:#fff;margin:0 0 20px;letter-spacing:-.025em;}
+    .slide-cover .subtitle{font-size:22px;font-weight:400;color:rgba(255,255,255,.7);margin:0 0 46px;max-width:640px;line-height:1.5;}
+    .cover-logos{display:flex;align-items:center;gap:22px;flex-wrap:wrap;}
+    .cover-logos .lbl{font-size:13px;color:rgba(255,255,255,.45);margin-right:4px;}
+    .cover-logos .logo svg{fill:rgba(255,255,255,.85);}
+
+    /* VS TABLE */
+    .vs-table{display:grid;grid-template-columns:1fr 1fr;flex:1;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);}
+    .vs-col{display:flex;flex-direction:column;}
+    .vs-col.right{background:var(--bg);border-left:1px solid var(--border);}
+    .vs-head{padding:14px 24px;font-size:17px;font-weight:700;display:flex;align-items:center;gap:10px;}
+    .vs-head.classic{background:#F8FAFC;color:var(--muted);}
+    .vs-head.growth{background:var(--primary-ultra-light);color:var(--primary);}
+    .vs-head.neg{background:#FEF2F2;color:#B91C1C;}
+    .vs-head.pos{background:#F0FDF4;color:#15803D;}
+    .vs-row{padding:13px 24px;font-size:17px;color:var(--foreground);border-top:1px solid var(--border);line-height:1.4;display:flex;align-items:center;gap:12px;flex:1;}
+    .vs-row .ic{font-size:18px;flex-shrink:0;}
+    .vs-highlight{margin-top:14px;text-align:center;font-size:18px;font-weight:700;color:var(--primary);background:var(--primary-ultra-light);border-radius:var(--radius);padding:13px;}
+
+    /* TABLE */
+    .slide-table{width:100%;border-collapse:collapse;font-size:15px;}
+    .slide-table th{padding:12px 16px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.04em;color:#fff;border:none;}
+    .slide-table th.col-a{background:var(--primary);}
+    .slide-table th.col-b{background:#475569;}
+    .slide-table th.col-c{background:#334155;}
+    .slide-table th.col-ppx{background:var(--perplexity);}
+    .slide-table th.col-cgpt{background:#10A37F;}
+    .slide-table th.col-google{background:#5F6368;}
+    .slide-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--foreground);vertical-align:middle;line-height:1.4;}
+    .slide-table tr:last-child td{border-bottom:none;}
+    .slide-table tr:nth-child(even) td{background:var(--bg);}
+    .slide-table td.hl{background:#ECFEFF!important;font-weight:600;}
+    .slide-table .crit{font-weight:700;color:var(--muted);font-size:13px;}
+
+    /* LLM STEPS */
+    .llm-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;flex:1;align-items:stretch;}
+    .llm-steps.s5{grid-template-columns:repeat(5,1fr);}
+    .llm-step{padding:22px 16px;display:flex;flex-direction:column;gap:9px;position:relative;}
+    .llm-step::after{content:'→';position:absolute;right:-11px;top:42px;font-size:22px;color:var(--primary);font-weight:700;z-index:2;}
+    .llm-step:last-child::after{display:none;}
+    .llm-step-num{width:34px;height:34px;border-radius:50%;background:var(--primary);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+    .llm-step-icon{font-size:28px;}
+    .llm-step-title{font-size:16px;font-weight:700;color:var(--foreground);}
+    .llm-step-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+    .llm-step-desc b{color:var(--foreground);}
+
+    /* SPLIT SCREEN */
+    .split-screen{display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;}
+    .split-pane{border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px;}
+    .split-pane.bad{background:#FEF2F2;border:1px solid #FECACA;}
+    .split-pane.good{background:#F0FDF4;border:1px solid #86EFAC;}
+    .split-pane.neutral{background:var(--bg);border:1px solid var(--border);}
+    .split-pane.solutions{background:#EEF2FF;border:1px solid #A5B4FC;}
+    .split-label{font-size:14px;font-weight:700;letter-spacing:.04em;}
+    .split-label.bad{color:#DC2626;}
+    .split-label.good{color:#16A34A;}
+    .split-label.upper{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);}
+    .split-label.upper.indigo{color:var(--primary);}
+    .split-label.upper.teal{color:var(--perplexity);}
+    .solution-list{display:flex;flex-direction:column;gap:9px;flex:1;}
+    .solution-item{display:flex;align-items:flex-start;gap:10px;padding:10px 13px;border-radius:var(--radius-sm);background:rgba(255,255,255,.75);}
+    .solution-num{width:24px;height:24px;border-radius:50%;background:var(--primary);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .solution-text{font-size:14px;color:var(--foreground);font-weight:500;line-height:1.4;}
+    .solution-text b{font-weight:800;color:var(--primary);}
+
+    /* CARDS */
+    .cards-grid{display:grid;gap:16px;flex:1;}
+    .cards-3{grid-template-columns:repeat(3,1fr);}
+    .cards-2{grid-template-columns:repeat(2,1fr);}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:9px;}
+    .card.mint{background:var(--pastel-mint);border-color:#86EFAC;}
+    .card.lavender{background:var(--pastel-lavender);border-color:#C4B5FD;}
+    .card.sky{background:var(--pastel-sky);border-color:#BAE6FD;}
+    .card.peach{background:var(--pastel-peach);border-color:#FED7AA;}
+    .card.rose{background:var(--pastel-rose);border-color:#FBCFE8;}
+    .card.primary-light{background:var(--primary-ultra-light);border-color:#A5B4FC;}
+    .card-icon{font-size:30px;}
+    .card-title{font-size:17px;font-weight:800;color:var(--foreground);margin:0;}
+    .card-body{font-size:14px;color:var(--muted);line-height:1.55;margin:0;}
+    .card-body b{color:var(--foreground);}
+
+    /* PRACTICE */
+    .practice-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:26px;flex:1;}
+    .practice-steps{display:flex;flex-direction:column;gap:11px;}
+    .pstep{display:flex;align-items:flex-start;gap:13px;}
+    .pstep-num{width:28px;height:28px;border-radius:50%;background:var(--practice);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .pstep-text{font-size:15px;color:var(--foreground);line-height:1.45;padding-top:3px;}
+    .pstep-text b{font-weight:700;}
+    .practice-shot{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow);background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+    .practice-shot img{width:100%;height:100%;object-fit:contain;display:block;}
+    .practice-prompt{background:var(--bg);border-left:4px solid var(--practice);border-radius:0 var(--radius-sm) var(--radius-sm) 0;padding:13px 15px;font-size:14px;font-style:italic;color:var(--foreground);line-height:1.5;margin-top:4px;}
+    .practice-prompt .lbl{font-style:normal;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--practice);display:block;margin-bottom:4px;}
+    .practice-app{margin-top:auto;font-size:13px;color:var(--muted);font-style:italic;}
+    .practice-app b{color:var(--foreground);font-style:normal;}
+
+    /* EXERCISE */
+    .exercise-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:18px;}
+    .timer-pill{display:flex;align-items:center;gap:8px;background:#FEF3C7;border:1px solid #FDE68A;border-radius:100px;padding:8px 20px;font-size:15px;font-weight:700;color:#92400E;}
+    .exercise-template{background:var(--bg);border:2px dashed var(--primary);border-radius:var(--radius);padding:24px 34px;max-width:780px;font-size:16px;color:var(--foreground);line-height:1.7;}
+    .exercise-template .tpl-label{font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--primary);display:block;margin-bottom:12px;}
+    .exercise-hl{display:inline-block;background:var(--primary);color:#fff;border-radius:6px;padding:2px 10px;font-size:14px;font-weight:700;margin:2px;}
+    .check-list{display:flex;flex-direction:column;gap:9px;}
+    .check-item{display:flex;align-items:flex-start;gap:10px;font-size:15px;color:var(--foreground);line-height:1.45;font-weight:500;}
+    .check-item .chk{font-size:15px;flex-shrink:0;margin-top:1px;font-weight:700;}
+
+    /* WRAP */
+    .wrapup-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;}
+    .wrapup-pane{border-radius:var(--radius);padding:24px;border:1px solid var(--border);display:flex;flex-direction:column;}
+    .wrapup-pane.learned{background:var(--primary-ultra-light);border-color:#A5B4FC;}
+    .wrapup-pane.hw{background:#F0FDF4;border-color:#86EFAC;}
+    .wrapup-pane-title{font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:13px;}
+    .wrapup-pane.learned .wrapup-pane-title{color:var(--primary);}
+    .wrapup-pane.hw .wrapup-pane-title{color:#16A34A;}
+    .preview-row{margin-top:auto;padding-top:13px;border-top:1px solid #86EFAC;}
+    .preview-row .lbl{font-size:12px;font-weight:600;color:var(--muted);}
+    .preview-row .ttl{font-size:15px;font-weight:800;color:var(--foreground);}
+
+    /* QUOTE */
+    .quote-block{border-left:4px solid var(--primary);padding:14px 18px;background:var(--primary-ultra-light);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:16px;font-style:italic;color:var(--foreground);line-height:1.55;}
+    .quote-block strong{font-style:normal;color:var(--primary);}
+    .quote-block.warning{border-left-color:var(--warning);background:#FFFBEB;}
+    .quote-block.warning strong{color:#92400E;font-style:normal;}
+    .quote-block.teal{border-left-color:var(--perplexity);background:#ECFEFF;}
+    .quote-block.teal strong{color:var(--perplexity);font-style:normal;}
+
+    /* AGENDA */
+    .agenda-list{display:grid;grid-template-columns:1fr 1fr;gap:5px 38px;list-style:none;margin:0;padding:0;}
+    .agenda-item{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);}
+    .agenda-num{width:28px;height:28px;border-radius:50%;background:var(--primary-ultra-light);color:var(--primary);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .agenda-label{font-size:14px;font-weight:500;color:var(--foreground);}
+    .agenda-badge{font-size:9px;font-weight:700;color:var(--practice);background:#F3E8FF;padding:2px 7px;border-radius:100px;margin-left:7px;letter-spacing:.04em;}
+
+    /* SECURITY / LIMITS */
+    .sec-icon-pane{width:230px;flex-shrink:0;border-radius:var(--radius);background:linear-gradient(160deg,#0F172A 0%,#1E3A8A 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#fff;text-align:center;padding:28px;}
+    .sec-icon-pane .shield{font-size:72px;line-height:1;}
+    .sec-icon-pane .sec-rule{font-size:17px;font-weight:700;line-height:1.4;}
+    .sec-icon-pane .sec-rule span{color:var(--primary-light);}
+    .limit-table{flex:1;border-collapse:separate;border-spacing:0;font-size:16px;}
+    .limit-table th{padding:11px 18px;font-size:13px;font-weight:700;letter-spacing:.04em;color:#fff;text-align:left;}
+    .limit-table th.no{background:#DC2626;border-radius:var(--radius-sm) 0 0 0;}
+    .limit-table th.why{background:#475569;border-radius:0 var(--radius-sm) 0 0;}
+    .limit-table td{padding:11px 18px;border-bottom:1px solid rgba(0,0,0,.06);line-height:1.4;}
+    .limit-table td.no-cell{background:#FEF2F2;color:#7F1D1D;font-weight:600;width:42%;}
+    .limit-table td.why-cell{background:#F8FAFC;color:var(--foreground);}
+    .limit-table tr:last-child td{border-bottom:none;}
+
+    /* PROMPT ANATOMY */
+    .prompt-anatomy{display:flex;gap:22px;flex:1;align-items:stretch;}
+    .anatomy-blocks{display:flex;flex-direction:column;gap:12px;width:280px;flex-shrink:0;justify-content:center;}
+    .anatomy-block{border-radius:var(--radius-sm);padding:15px 16px;display:flex;align-items:center;gap:12px;}
+    .anatomy-block .num{width:30px;height:30px;border-radius:50%;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff;}
+    .anatomy-block .anatomy-label{font-size:17px;font-weight:700;color:var(--foreground);}
+    .ab0{background:#EDE9FE;}.ab0 .num{background:#7C3AED;}
+    .ab1{background:var(--pastel-sky);}.ab1 .num{background:#0284C7;}
+    .ab2{background:var(--pastel-mint);}.ab2 .num{background:#16A34A;}
+    .ab3{background:var(--pastel-peach);}.ab3 .num{background:#EA580C;}
+    .anatomy-example{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;justify-content:center;}
+    .anatomy-ex-title{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+    .ex-line{display:flex;align-items:flex-start;gap:14px;padding:9px 0;}
+    .ex-line .ex-tag{width:104px;flex-shrink:0;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding-top:3px;}
+    .ex-line .ex-seg{font-size:16px;line-height:1.45;color:var(--foreground);}
+    .ex0 .ex-tag{color:#7C3AED;}.ex1 .ex-tag{color:#0284C7;}.ex2 .ex-tag{color:#16A34A;}.ex3 .ex-tag{color:#EA580C;}
+
+    /* MISC BANDS */
+    .brand-chip{display:inline-flex;align-items:center;gap:5px;border-radius:100px;padding:3px 11px;font-size:13px;font-weight:700;vertical-align:middle;}
+    .brand-chip.viorica{background:#FFF0F9;color:#9D174D;border:1px solid #FBCFE8;}
+    .brand-chip.farmec{background:#E8F5E9;color:#2E7D32;border:1px solid #A5D6A7;}
+    .brand-chip.gerovital{background:#FCE4EC;color:#AD1457;border:1px solid #F8BBD0;}
+    .brand-chip.loccitane{background:#F4F1E0;color:#6B5B14;border:1px solid #DAD49A;}
+    .brand-chip.ev{background:#E0F2FE;color:#075985;border:1px solid #BAE6FD;}
+    .brand-chip.google{background:#F1F3F4;color:#3C4043;border:1px solid #DADCE0;}
+    .info-band{background:var(--primary-ultra-light);border:1px solid #A5B4FC;border-radius:var(--radius);padding:16px 20px;display:flex;gap:16px;align-items:center;}
+    .info-band .ib-icon{font-size:30px;flex-shrink:0;}
+    .info-band .ib-text{font-size:15px;color:var(--foreground);line-height:1.5;}
+    .info-band .ib-text b{font-weight:700;}
+    .example-band{background:var(--pastel-lavender);border:1px solid #C4B5FD;border-radius:var(--radius);padding:16px 20px;}
+    .example-band .eb-title{font-size:13px;font-weight:700;color:var(--primary);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+    .example-band .eb-body{font-size:15px;color:var(--foreground);line-height:1.55;}
+    .analyze-band{display:flex;gap:10px;}
+    .analyze-badge{display:flex;align-items:center;gap:8px;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);padding:9px 14px;font-size:14px;font-weight:600;flex:1;color:var(--foreground);justify-content:center;}
+    .shot-slot{border-radius:var(--radius);border:2px dashed #CBD5E1;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;color:var(--muted);text-align:center;padding:18px;}
+    .shot-slot .sl-icon{font-size:34px;}
+    .shot-slot .sl-label{font-size:12px;font-weight:600;color:var(--muted);line-height:1.4;}
+    .stat-card{border-radius:var(--radius);padding:16px 18px;display:flex;flex-direction:column;justify-content:center;}
+    .stat-num{font-size:34px;font-weight:800;line-height:1;}
+    .stat-desc{font-size:14px;color:var(--foreground);line-height:1.4;margin-top:6px;}
+    .gmark{width:20px;height:20px;border-radius:50%;background:#5F6368;color:#fff;font-size:13px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;}
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- 01 COVER -->
+<section>
+<div class="slide slide-cover">
+  <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+  <div class="cover-content">
+    <div class="cover-kicker"><span class="dot"></span>Sesiunea 3 · AI pentru IMM-uri &amp; Antreprenori</div>
+    <h1>AI pentru Research,<br>Analiză Competitivă &amp; Decizii</h1>
+    <p class="subtitle">De la 10 tab-uri deschise → la un brief de piață gata de prezentat</p>
+    <div class="cover-logos">
+      <span class="lbl">Lucrăm cu:</span>
+      <span class="logo" title="Perplexity"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"/></svg></span>
+      <span class="logo" title="ChatGPT"><svg width="28" height="28" viewBox="0 0 24 24"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span>
+      <span class="logo" title="Gemini"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>
+      <span class="logo" title="NotebookLM"><svg width="26" height="26" viewBox="0 0 500 500"><circle cx="246.93" cy="249.67" r="240" fill="rgba(255,255,255,.9)"/><path d="M246.94,117.25c-83.4,0-151,67.04-151,149.77v71.7h27.83v-7.15c0-33.55,27.41-60.75,61.23-60.75s61.23,27.21,61.23,60.75v7.15h27.83v-7.15c0-48.8-39.89-88.33-89.07-88.33-19.15,0-36.89,5.99-51.42,16.21,15.2-29.97,46.51-50.53,82.65-50.53,51.06,0,92.46,41.07,92.46,91.71v38.1h27.84v-38.1c0-65.89-53.86-119.32-120.3-119.32-29.87,0-57.2,10.8-78.24,28.69,20.66-38.73,61.68-65.13,108.95-65.13,68.03,0,123.17,54.69,123.17,122.16v71.7h27.83v-71.7c0-82.72-67.6-149.77-151-149.77Z" fill="#0B1120"/></svg></span>
+    </div>
+  </div>
+  <div class="slide-num" style="color:rgba(255,255,255,.35)">01 / 24</div>
+</div>
+</section>
+
+<!-- 02 RECAP S2 -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Recap</div><h2 class="slide-title">Din sesiunea 2 — și de unde pornim azi</h2><p class="slide-subtitle">3 lucruri pe care le punem direct la treabă. Azi le folosim ca să luăm o <b>decizie</b>.</p></div>
+  <div class="cards-grid cards-3" style="flex:none;margin-bottom:18px;">
+    <div class="card primary-light">
+      <span class="card-icon">📚</span>
+      <p class="card-title">Brand Knowledge Base</p>
+      <p class="card-body">Ai documentele de brand (voce, public, produse).<br><span style="color:var(--muted)">Azi adăugăm peste ele <b>inteligență de piață</b>.</span></p>
+    </div>
+    <div class="card mint">
+      <span class="card-icon">🤖</span>
+      <p class="card-title">Agenți de research</p>
+      <p class="card-body">Ai văzut agenți care strâng date despre competiție.<br><span style="color:var(--muted)">Azi le dăm un <b>proces</b> clar.</span></p>
+    </div>
+    <div class="card lavender">
+      <span class="card-icon">⚖️</span>
+      <p class="card-title">AI accelerează, omul decide</p>
+      <p class="card-body">Regula din S1–S2 rămâne valabilă: <b>tu ești filtrul final</b> pe orice cifră.</p>
+    </div>
+  </div>
+  <div class="info-band">
+    <div class="ib-icon">🎯</div>
+    <div style="flex:1;">
+      <div style="font-size:13px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;">Unde mergem azi</div>
+      <div class="ib-text"><b>Check homework:</b> ai adus o întrebare de piață? Perfect — azi o transformăm într-un <b>brief de market-intelligence</b>: tendințe + competitori + risc + recomandare. Folosim 3 unelte: Perplexity, ChatGPT și NotebookLM.</div>
+    </div>
+  </div>
+  <div class="slide-num">02 / 24</div>
+</div>
+</section>
+
+<!-- 03 AGENDA -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Agenda</div><h2 class="slide-title">Ce acoperim azi</h2><p class="slide-subtitle">Blocurile marcate <b style="color:var(--practice)">PRACTICĂ</b> le faci live, pe sectorul tău</p></div>
+  <ul class="agenda-list">
+    <li class="agenda-item"><span class="agenda-num">1</span><span class="agenda-label">Cum schimbă AI cercetarea — și unde rămâne omul</span></li>
+    <li class="agenda-item"><span class="agenda-num">2</span><span class="agenda-label">Ce poate / ce NU faci fără validare umană</span></li>
+    <li class="agenda-item"><span class="agenda-num">3</span><span class="agenda-label">Perplexity — cercetare de piață cu surse</span></li>
+    <li class="agenda-item"><span class="agenda-num">4</span><span class="agenda-label">Scanare de piață <span class="agenda-badge">PRACTICĂ</span></span></li>
+    <li class="agenda-item"><span class="agenda-num">5</span><span class="agenda-label">ChatGPT — anatomia promptului de research (RCFC)</span></li>
+    <li class="agenda-item"><span class="agenda-num">6</span><span class="agenda-label">Analiză competitivă + SWOT specific <span class="agenda-badge">PRACTICĂ</span></span></li>
+    <li class="agenda-item"><span class="agenda-num">7</span><span class="agenda-label">Deep Research + fluxul query → brief în 30 min</span></li>
+    <li class="agenda-item"><span class="agenda-num">8</span><span class="agenda-label">NotebookLM + cercetare regulatorie <span class="agenda-badge">PRACTICĂ</span></span></li>
+    <li class="agenda-item"><span class="agenda-num">9</span><span class="agenda-label">De la research la decizie (go / no-go)</span></li>
+    <li class="agenda-item"><span class="agenda-num">10</span><span class="agenda-label">Brief de market-intelligence <span class="agenda-badge">KPI</span></span></li>
+  </ul>
+  <div class="slide-num">03 / 24</div>
+</div>
+</section>
+
+<!-- 04 CERCETAREA AZI -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Mindset</div><h2 class="slide-title">Cercetarea azi: de la 10 tab-uri → la 1 răspuns cu surse</h2></div>
+  <div class="vs-table" style="flex:none;margin-bottom:16px;">
+    <div class="vs-col left">
+      <div class="vs-head classic">🗂️ Research clasic</div>
+      <div class="vs-row"><span class="ic">•</span>10+ tab-uri, Google, copy-paste, ore pierdute</div>
+      <div class="vs-row"><span class="ic">•</span>Tu sintetizezi manual, te pierzi în zgomot</div>
+      <div class="vs-row"><span class="ic">•</span>Greu de actualizat — refaci de la zero</div>
+    </div>
+    <div class="vs-col right">
+      <div class="vs-head growth">⚡ Research cu AI</div>
+      <div class="vs-row"><span class="ic">•</span>O întrebare → răspuns sintetizat, cu surse citate</div>
+      <div class="vs-row"><span class="ic">•</span>Follow-up în același fir, până ai ce-ți trebuie</div>
+      <div class="vs-row"><span class="ic">•</span>De la „informație" → la tabel, SWOT, brief</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;min-height:0;">
+    <div class="stat-card" style="background:var(--pastel-sky);border:1px solid #BAE6FD;">
+      <div class="stat-num" style="color:#0369A1;">~30 min</div>
+      <div class="stat-desc">de la o întrebare de piață → la un <b>brief executiv</b> gata de prezentat (vs. 1–2 zile)</div>
+    </div>
+    <div class="stat-card" style="background:var(--pastel-mint);border:1px solid #86EFAC;">
+      <div class="stat-num" style="color:#15803D;">surse ✓</div>
+      <div class="stat-desc">fiecare afirmație vine cu <b>link verificabil</b> — nu „a zis AI-ul"</div>
+    </div>
+  </div>
+  <div class="quote-block" style="margin-top:14px;font-size:15px;"><strong>De ce contează pentru tine:</strong> viteza cu care afli = viteza cu care decizi. AI nu-ți ia decizia — îți dă <strong>materialul</strong> ca s-o iei rapid și informat.</div>
+  <div class="slide-num">04 / 24</div>
+</div>
+</section>
+
+<!-- 05 CE POATE AI -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Cadru</div><h2 class="slide-title">Ce poate face AI în cercetare — 6 lucruri concrete</h2></div>
+  <div class="cards-grid cards-3">
+    <div class="card sky">
+      <span class="card-icon">📝</span>
+      <p class="card-title">Sintetizează</p>
+      <p class="card-body">Rezumă volume mari de date rapid: rapoarte, articole, recenzii → într-un singur răspuns.</p>
+    </div>
+    <div class="card lavender">
+      <span class="card-icon">🔍</span>
+      <p class="card-title">Analiză competitivă</p>
+      <p class="card-body">Compară competitori, identifică poziționări și goluri libere pe piață.</p>
+    </div>
+    <div class="card mint">
+      <span class="card-icon">📡</span>
+      <p class="card-title">Monitorizare piață</p>
+      <p class="card-body">Urmărește semnale și tendințe emergente — ce se mișcă în sectorul tău.</p>
+    </div>
+    <div class="card peach">
+      <span class="card-icon">⚖️</span>
+      <p class="card-title">Cercetare regulatorie</p>
+      <p class="card-body">Te ajută să identifici cerințe legale și de conformitate (cu validare umană).</p>
+    </div>
+    <div class="card primary-light">
+      <span class="card-icon">🧭</span>
+      <p class="card-title">SWOT &amp; Business Case</p>
+      <p class="card-body">Pregătește analize SWOT și schițe de business case pe datele extrase.</p>
+    </div>
+    <div class="card rose">
+      <span class="card-icon">⚡</span>
+      <p class="card-title">Riscuri &amp; oportunități</p>
+      <p class="card-body">Scoate la suprafață riscuri potențiale și oportunități de creștere.</p>
+    </div>
+  </div>
+  <div class="slide-num">05 / 24</div>
+</div>
+</section>
+
+<!-- 06 CE NU FACI FARA OM -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Cadru</div><h2 class="slide-title">Ce NU lași pe seama AI fără un om care confirmă</h2><p class="slide-subtitle">AI accelerează cercetarea — dar deciziile cu miză rămân umane</p></div>
+  <div style="display:flex;gap:22px;flex:1;">
+    <div class="sec-icon-pane">
+      <div class="shield">🛡️</div>
+      <div class="sec-rule">AI propune.<br><span>Omul decide.</span></div>
+    </div>
+    <table class="limit-table">
+      <thead><tr><th class="no">Nu lăsa doar pe AI</th><th class="why">De ce cere un om</th></tr></thead>
+      <tbody>
+        <tr><td class="no-cell">Interpretare juridică finală</td><td class="why-cell">Concluziile legale → validate de un specialist în drept</td></tr>
+        <tr><td class="no-cell">Decizii finale de investiții</td><td class="why-cell">AI nu înlocuiește due diligence-ul financiar profesional</td></tr>
+        <tr><td class="no-cell">Strategie confidențială</td><td class="why-cell">Deciziile sensibile → revizuire umană obligatorie</td></tr>
+        <tr><td class="no-cell">Afirmații de piață nevalidate</td><td class="why-cell">Datele AI → verificate din surse credibile externe</td></tr>
+        <tr><td class="no-cell">Concluzii regulatorii neverificate</td><td class="why-cell">Interpretările normative → confirmate de experți în conformitate</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="slide-num">06 / 24</div>
+</div>
+</section>
+
+<!-- 07 PERPLEXITY CE E -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Unealta 1 · Perplexity</div><h2 class="slide-title"><span class="logo" style="vertical-align:-6px;margin-right:6px;"><svg width="30" height="30" viewBox="0 0 24 24" style="fill:var(--perplexity);"><path d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"/></svg></span>Perplexity — motorul de răspunsuri, nu de linkuri</h2><p class="slide-subtitle">Google îți dă 10 linkuri și te lasă să cauți. Perplexity îți dă <b>răspunsul</b> — cu sursele atașate.</p></div>
+  <div class="cards-grid cards-3">
+    <div class="card primary-light">
+      <span class="card-icon">🧩</span>
+      <p class="card-title">Răspuns sintetizat</p>
+      <p class="card-body">Citește zeci de pagini și-ți dă <b>concluzia</b>, nu o listă de linkuri de parcurs.</p>
+    </div>
+    <div class="card mint">
+      <span class="card-icon">🔗</span>
+      <p class="card-title">Surse citate, verificabile</p>
+      <p class="card-body">Fiecare afirmație are <b>nota de subsol</b> cu linkul. Dai click și verifici.</p>
+    </div>
+    <div class="card sky">
+      <span class="card-icon">🌐</span>
+      <p class="card-title">Web în timp real</p>
+      <p class="card-body">Nu e blocat la o dată de cutoff — vede ce e <b>online acum</b>.</p>
+    </div>
+  </div>
+  <div class="quote-block teal" style="margin-top:16px;"><strong>De ce contează:</strong> pentru cercetare de piață, „cu surse" e diferența dintre o părere și un argument pe care poți construi o decizie.</div>
+  <div class="slide-num">07 / 24</div>
+</div>
+</section>
+
+<!-- 08 PERPLEXITY VS GOOGLE VS CHATGPT -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Unealta 1 · Perplexity</div><h2 class="slide-title">De ce Perplexity pentru research — comparativ</h2></div>
+  <table class="slide-table" style="flex:1;font-size:16px;">
+    <thead>
+      <tr>
+        <th style="background:transparent;"></th>
+        <th class="col-google"><span class="gmark" style="background:#fff;color:#5F6368;margin-right:6px;">G</span>Google</th>
+        <th class="col-cgpt"><svg width="16" height="16" viewBox="0 0 24 24" style="fill:#fff;vertical-align:-2px;margin-right:6px;"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>ChatGPT</th>
+        <th class="col-ppx"><svg width="15" height="15" viewBox="0 0 24 24" style="fill:#fff;vertical-align:-2px;margin-right:6px;"><path d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"/></svg>Perplexity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="crit">Ce primești</td><td>Linkuri, nu răspunsuri</td><td>Text generat</td><td class="hl">Răspuns sintetizat, live</td></tr>
+      <tr><td class="crit">Surse</td><td>Tu le deschizi</td><td>Poate inventa surse</td><td class="hl">Citate &amp; verificabile</td></tr>
+      <tr><td class="crit">Web</td><td>SEO-optimizat</td><td>Cutoff, fără web live*</td><td class="hl">În timp real</td></tr>
+      <tr><td class="crit">Sinteza</td><td>Tu, manual (10+ tab-uri)</td><td>Bun pentru scriere</td><td class="hl">Follow-up în același fir</td></tr>
+    </tbody>
+  </table>
+  <div class="quote-block teal" style="margin-top:14px;font-size:14px;"><strong>* Notă:</strong> și ChatGPT caută pe web când îi ceri (Search/Deep Research). Perplexity e construit <em>din start</em> în jurul căutării cu surse — de aceea e prima alegere pentru research.</div>
+  <div class="slide-num">08 / 24</div>
+</div>
+</section>
+
+<!-- 09 PERPLEXITY 5 PASI -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Unealta 1 · Perplexity</div><h2 class="slide-title">Cercetare de piață în 5 pași</h2><p class="slide-subtitle">Nu „caut ceva pe net" — un proces care scoate un scenariu de piață <em>[PROMPT P01]</em></p></div>
+  <div class="llm-steps s5" style="flex:none;margin-bottom:16px;">
+    <div class="llm-step" style="background:#F8FAFC;border-radius:var(--radius-sm) 0 0 var(--radius-sm);">
+      <div class="llm-step-num">1</div>
+      <div class="llm-step-title">Întrebare focalizată</div>
+      <div class="llm-step-desc">Sector + zonă + perioadă. Nu „cosmetice", ci <b>„cosmetice naturale, RO &amp; Europa de Est, 2024–2025"</b>.</div>
+    </div>
+    <div class="llm-step" style="background:#EEF2FF;">
+      <div class="llm-step-num">2</div>
+      <div class="llm-step-title">Cere surse &amp; linkuri</div>
+      <div class="llm-step-desc">„Citează fiecare afirmație cu link." Marchezi surse primare vs. secundare.</div>
+    </div>
+    <div class="llm-step" style="background:#EDE9FE;">
+      <div class="llm-step-num">3</div>
+      <div class="llm-step-title">Follow-up</div>
+      <div class="llm-step-desc">Sapi în același fir: „mai detaliat pe segmentul X", „și concurența locală?".</div>
+    </div>
+    <div class="llm-step" style="background:#F3E8FF;">
+      <div class="llm-step-num">4</div>
+      <div class="llm-step-title">Extrage tendințe</div>
+      <div class="llm-step-desc">Scoți <b>tendințe + jucători relevanți</b> într-un tabel folosibil.</div>
+    </div>
+    <div class="llm-step" style="background:#FCE7F3;border-radius:0 var(--radius-sm) var(--radius-sm) 0;">
+      <div class="llm-step-num">5</div>
+      <div class="llm-step-title">Verifică sursele</div>
+      <div class="llm-step-desc">Deschizi 2–3 linkuri cheie. <b>Credibil?</b> Recent? Abia apoi îl pui în brief.</div>
+    </div>
+  </div>
+  <div class="example-band">
+    <div class="eb-title">💄 Exemplu fir-roșu — <span class="brand-chip viorica">Viorica</span> vrea o linie nouă de îngrijire naturală</div>
+    <div class="eb-body">Întrebare: <b>„Ce tendințe sunt în cosmetica naturală din România &amp; Europa de Est, ce caută clienții, cine sunt jucătorii?"</b> → Perplexity livrează tendințe (ingrediente clean, ambalaj sustenabil), segmente și o listă de competitori, cu surse.</div>
+  </div>
+  <div class="slide-num">09 / 24</div>
+</div>
+</section>
+
+<!-- 10 PRACTICA SCANARE PIATA -->
+<section>
+<div class="slide practice">
+  <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică</div><h2 class="slide-title">Practică: Scanare de piață pe sectorul tău</h2><p class="slide-subtitle">Pe sectorul tău real — tendințe, riscuri, oportunități, cu surse <em>[PROMPT P01]</em></p></div>
+  <div class="practice-layout">
+    <div style="display:flex;flex-direction:column;gap:13px;">
+      <div class="practice-steps">
+        <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Deschizi <b>perplexity.ai</b> → întrebare focalizată (sector + zonă + perioadă)</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Ceri: <b>3 tendințe · cererea pe segmente · 5 jucători</b> — cu surse</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Follow-up: aprofundezi ce e relevant pentru tine</div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Verifici 2–3 surse → rezumi într-un <b>scenariu de piață de 8 rânduri</b></div></div>
+      </div>
+      <div class="practice-prompt"><span class="lbl">Prompt de pornire</span>„Analizează tendințele din piața de [SECTORUL MEU] în [ZONĂ], ultimele 12 luni. Dă-mi 3 tendințe, cererea pe segmente și 5 jucători relevanți. Citează fiecare afirmație cu link."</div>
+      <div class="practice-app"><b>⏱️ 12 minute.</b> Output: un mini-brief de piață pe care construim restul sesiunii.</div>
+    </div>
+    <div class="practice-shot">
+      <div class="shot-slot" style="width:100%;height:100%;border:none;border-radius:0;">
+        <div class="sl-icon">📸</div>
+        <div class="sl-label">Perplexity — răspuns de scanare de piață<br>cu surse citate (demo live al trainerului)</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">10 / 24</div>
+</div>
+</section>
+
+<!-- 11 RCFC ANATOMY -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Unealta 2 · ChatGPT</div><h2 class="slide-title">Anatomia unui prompt de research — RCFC</h2><p class="slide-subtitle">4 componente. Le pui pe toate → primești un răspuns de analist, nu o părere generică.</p></div>
+  <div class="prompt-anatomy">
+    <div class="anatomy-blocks">
+      <div class="anatomy-block ab0"><div class="num">R</div><div class="anatomy-label">Rol AI</div></div>
+      <div class="anatomy-block ab1"><div class="num">C</div><div class="anatomy-label">Context</div></div>
+      <div class="anatomy-block ab2"><div class="num">F</div><div class="anatomy-label">Format dorit</div></div>
+      <div class="anatomy-block ab3"><div class="num">C</div><div class="anatomy-label">Calitatea surselor</div></div>
+    </div>
+    <div class="anatomy-example">
+      <div class="anatomy-ex-title">Exemplu — analiză de competiție pentru o linie de cosmetice naturale</div>
+      <div class="ex-line ex0"><span class="ex-tag">Rol</span><span class="ex-seg">„Ești analist de piață cu experiență în cosmetice, piața România."</span></div>
+      <div class="ex-line ex1"><span class="ex-tag">Context</span><span class="ex-seg">„Pregătim lansarea unei linii naturale; vrem să știm pe cine concurăm."</span></div>
+      <div class="ex-line ex2"><span class="ex-tag">Format</span><span class="ex-seg">„Răspunde cu un tabel comparativ + 5 concluzii + 1 recomandare, max 1 pagină."</span></div>
+      <div class="ex-line ex3"><span class="ex-tag">Calitate</span><span class="ex-seg">„Doar surse verificabile, cu link. Nu inventa cifre — scrie «date indisponibile»."</span></div>
+    </div>
+  </div>
+  <div class="quote-block" style="margin-top:14px;font-size:15px;"><strong>De ce contează:</strong> ultimul „C" (calitatea surselor) e cel mai des uitat — și e exact cel care te scapă de cifre inventate într-un brief.</div>
+  <div class="slide-num">11 / 24</div>
+</div>
+</section>
+
+<!-- 12 ANALIZA COMPETITIVA + TABEL -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Unealta 2 · ChatGPT</div><h2 class="slide-title">Analiză competitivă: 4 pași → un tabel</h2><p class="slide-subtitle">Criterii → tabel → forte/slabe → rezumat executiv <em>[PROMPT P03]</em></p></div>
+  <div class="analyze-band" style="margin-bottom:16px;">
+    <div class="analyze-badge"><span>1️⃣</span><span>Definești criteriile</span></div>
+    <div class="analyze-badge"><span>2️⃣</span><span>Structurezi în tabel</span></div>
+    <div class="analyze-badge"><span>3️⃣</span><span>Forte / slabe</span></div>
+    <div class="analyze-badge"><span>4️⃣</span><span>Rezumat executiv</span></div>
+  </div>
+  <table class="slide-table" style="flex:1;font-size:15px;">
+    <thead>
+      <tr>
+        <th style="background:transparent;"></th>
+        <th class="col-a"><span class="brand-chip viorica" style="background:rgba(255,255,255,.18);color:#fff;border-color:rgba(255,255,255,.3);">Viorica</span></th>
+        <th class="col-b">Farmec / Gerovital</th>
+        <th class="col-c">L'Occitane</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="crit">Public țintă</td><td>Local, preț accesibil</td><td>Mass-market RO, tradiție</td><td>Premium, urban</td></tr>
+      <tr><td class="crit">Nivel de preț</td><td>€–€€</td><td>€</td><td>€€€</td></tr>
+      <tr><td class="crit">Canale</td><td>Retail + online MD/RO</td><td>Retail larg + online</td><td>Boutique + e-com</td></tr>
+      <tr><td class="crit">Poziționare</td><td>Naturalețe accesibilă</td><td>Dermato-cosmetică clasică</td><td>Naturalețe de lux (Provence)</td></tr>
+      <tr><td class="crit">Golul liber</td><td colspan="3" class="hl">Cosmetică naturală <b>premium-accesibilă</b>, ingrediente locale, poveste autentică MD</td></tr>
+    </tbody>
+  </table>
+  <div class="slide-num">12 / 24</div>
+</div>
+</section>
+
+<!-- 13 SWOT GENERIC VS SPECIFIC -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">⭐ Unealta 2 · ChatGPT</div><h2 class="slide-title">SWOT generic ❌ vs. SWOT specific ✅</h2><p class="slide-subtitle">Valoarea nu vine din „fă-mi un SWOT" — ci din SWOT construit pe datele din firul tău <em>[PROMPT P04]</em></p></div>
+  <div class="split-screen">
+    <div class="split-pane bad">
+      <p class="split-label bad">❌ Generic — sună a manual, nu te ajută</p>
+      <div class="check-list" style="flex:1;justify-content:center;gap:13px;">
+        <div class="check-item"><span class="chk" style="color:#DC2626;">S</span><span style="font-size:16px;">„Produse de calitate, echipă bună"</span></div>
+        <div class="check-item"><span class="chk" style="color:#DC2626;">W</span><span style="font-size:16px;">„Buget de marketing limitat"</span></div>
+        <div class="check-item"><span class="chk" style="color:#DC2626;">O</span><span style="font-size:16px;">„Piața crește"</span></div>
+        <div class="check-item"><span class="chk" style="color:#DC2626;">T</span><span style="font-size:16px;">„Concurență mare"</span></div>
+      </div>
+    </div>
+    <div class="split-pane good">
+      <p class="split-label good">✅ Specific — cuantificat + acțiune</p>
+      <div class="check-list" style="flex:1;justify-content:center;gap:13px;">
+        <div class="check-item"><span class="chk" style="color:#16A34A;">S</span><span style="font-size:15px;">Ingrediente locale + preț cu ~30% sub L'Occitane</span></div>
+        <div class="check-item"><span class="chk" style="color:#16A34A;">W</span><span style="font-size:15px;">Notorietate scăzută în RO → <b>acțiune:</b> PR + micro-influenceri</span></div>
+        <div class="check-item"><span class="chk" style="color:#16A34A;">O</span><span style="font-size:15px;">Cererea „clean beauty" în creștere (sursă) → linie dedicată</span></div>
+        <div class="check-item"><span class="chk" style="color:#16A34A;">T</span><span style="font-size:15px;">Reglementare UE etichetare → <b>acțiune:</b> conformitate din start</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="quote-block" style="margin-top:14px;font-size:15px;"><strong>Diferența:</strong> SWOT-ul generic îl putea scrie oricine fără să-ți cunoască afacerea. Cel specific iese din <strong>datele extrase la pașii anteriori</strong> — de aceea îl construiești în același fir.</div>
+  <div class="slide-num">13 / 24</div>
+</div>
+</section>
+
+<!-- 14 PRACTICA MONITORIZARE COMPETITORI -->
+<section>
+<div class="slide practice">
+  <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică</div><h2 class="slide-title">Practică: Monitorizare competitori</h2><p class="slide-subtitle">2–3 competitori → tabel pe criterii → 5 concluzii pentru management <em>[PROMPT P03]</em></p></div>
+  <div class="practice-layout">
+    <div style="display:flex;flex-direction:column;gap:13px;">
+      <div class="practice-steps">
+        <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Alegi <b>2–3 competitori</b> din sectorul tău (nume + site)</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Ceri ChatGPT (browse activ) un <b>tabel pe criterii</b>: public, preț, canale, USP</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Pentru fiecare: <b>2 forte + 2 vulnerabilități</b> exploatabile</div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Închei cu <b>5 concluzii</b> pentru management: unde e golul tău</div></div>
+      </div>
+      <div class="practice-prompt"><span class="lbl">Cheia</span>Cere mereu sursa pe fiecare rând. Dacă AI „știe" un preț fără sursă → tratează-l ca ipoteză, nu ca fapt.</div>
+      <div class="practice-app"><b>⏱️ 15 minute.</b> Output: tabel competitiv + 5 concluzii.</div>
+    </div>
+    <div class="practice-shot">
+      <div class="shot-slot" style="width:100%;height:100%;border:none;border-radius:0;">
+        <div class="sl-icon">📸</div>
+        <div class="sl-label">ChatGPT — tabel comparativ competitori<br>+ 5 concluzii (demo live)</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">14 / 24</div>
+</div>
+</section>
+
+<!-- 15 DEEP RESEARCH -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Adâncime</div><h2 class="slide-title">Deep Research — când vrei un raport, nu un răspuns</h2><p class="slide-subtitle">Un agent care lucrează 5–15 min, citește zeci de surse și livrează un raport cu citate <em>[PROMPT P05]</em></p></div>
+  <div class="cards-grid cards-2" style="flex:none;margin-bottom:16px;">
+    <div class="card" style="background:#F0FDF4;border-color:#86EFAC;">
+      <div style="display:flex;align-items:center;gap:9px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" style="fill:#10A37F;"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>
+        <p class="card-title" style="margin:0;">ChatGPT / Gemini Deep Research</p>
+      </div>
+      <p class="card-body">Îi dai o temă largă → planifică, caută în zeci de surse, sintetizează un <b>raport structurat cu citate</b>, secțiuni de riscuri și oportunități.</p>
+    </div>
+    <div class="card primary-light">
+      <span class="card-icon">🧭</span>
+      <p class="card-title">Perplexity vs. Deep Research — când?</p>
+      <p class="card-body"><b>Perplexity:</b> răspuns rapid, întrebări punctuale, verifici pe loc.<br><b>Deep Research:</b> raport amplu, ai 10 minute de așteptat, vrei profunzime.</p>
+    </div>
+  </div>
+  <div class="quote-block teal"><strong>De ce contează:</strong> pentru un brief care ajunge la conducere, Deep Research îți dă <strong>baza documentată</strong>. Tu rămâi editorul: marchezi ce e estimare vs. confirmat.</div>
+  <div class="slide-num">15 / 24</div>
+</div>
+</section>
+
+<!-- 16 QUERY -> BRIEF 30 MIN (HERO) -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">⭐ Fluxul integrat</div><h2 class="slide-title">De la o întrebare → la un brief executiv, în 30 de minute</h2><p class="slide-subtitle">Un singur fir de conversație. Fiecare pas folosește datele din pasul anterior. <em>[PROMPT P06]</em></p></div>
+  <div class="llm-steps s5" style="flex:none;margin-bottom:18px;">
+    <div class="llm-step" style="background:#EEF2FF;border-radius:var(--radius-sm) 0 0 var(--radius-sm);">
+      <div class="llm-step-num">1</div><div class="llm-step-icon">🔎</div>
+      <div class="llm-step-title">Search</div>
+      <div class="llm-step-desc">Web live, cu surse citate</div>
+    </div>
+    <div class="llm-step" style="background:#E0E7FF;">
+      <div class="llm-step-num">2</div><div class="llm-step-icon">📊</div>
+      <div class="llm-step-title">Tabel comparativ</div>
+      <div class="llm-step-desc">3 competitori × 6 criterii</div>
+    </div>
+    <div class="llm-step" style="background:#EDE9FE;">
+      <div class="llm-step-num">3</div><div class="llm-step-icon">🧭</div>
+      <div class="llm-step-title">SWOT specific</div>
+      <div class="llm-step-desc">4 cadrane, pe date reale</div>
+    </div>
+    <div class="llm-step" style="background:#F3E8FF;">
+      <div class="llm-step-num">4</div><div class="llm-step-icon">📁</div>
+      <div class="llm-step-title">Business Case</div>
+      <div class="llm-step-desc">6 secțiuni structurate</div>
+    </div>
+    <div class="llm-step" style="background:#FCE7F3;border-radius:0 var(--radius-sm) var(--radius-sm) 0;">
+      <div class="llm-step-num">5</div><div class="llm-step-icon">📄</div>
+      <div class="llm-step-title">Brief executiv</div>
+      <div class="llm-step-desc">10 rânduri pentru management</div>
+    </div>
+  </div>
+  <div class="info-band">
+    <div class="ib-icon">🧵</div>
+    <div class="ib-text"><b>Un singur fir · browse activ verificat · iterare continuă.</b> Nu reîncepi de fiecare dată — construiești în straturi. Produsul final: un brief gata de trimis, cu surse și o recomandare. <b>La final ceri AI-ului „ce trebuie verificat de un om?".</b></div>
+  </div>
+  <div class="slide-num">16 / 24</div>
+</div>
+</section>
+
+<!-- 17 NOTEBOOKLM CONCEPT -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Unealta 3 · NotebookLM</div><h2 class="slide-title">NotebookLM — pentru documentele TALE, nu pentru web</h2><p class="slide-subtitle">Perplexity caută afară. NotebookLM răspunde <b>doar din ce-i dai tu</b> — cu citate la pagină.</p></div>
+  <div class="split-screen">
+    <div class="split-pane neutral">
+      <p class="split-label upper teal">🌐 Perplexity / ChatGPT</p>
+      <div class="check-list" style="flex:1;justify-content:center;gap:14px;">
+        <div class="check-item"><span class="chk">🔎</span><span style="font-size:16px;">Caută pe tot internetul</span></div>
+        <div class="check-item"><span class="chk">📰</span><span style="font-size:16px;">Bun pentru <b>piață, tendințe, competiție</b></span></div>
+        <div class="check-item"><span class="chk">❓</span><span style="font-size:16px;">Răspunsul poate amesteca surse necunoscute</span></div>
+      </div>
+    </div>
+    <div class="split-pane solutions">
+      <p class="split-label upper indigo">📚 NotebookLM</p>
+      <div class="check-list" style="flex:1;justify-content:center;gap:14px;">
+        <div class="check-item"><span class="chk">📄</span><span style="font-size:16px;">Încarci <b>sursele tale</b>: PDF, rapoarte, contracte</span></div>
+        <div class="check-item"><span class="chk">🎯</span><span style="font-size:16px;">Răspunde <b>doar din ele</b> — nu inventează</span></div>
+        <div class="check-item"><span class="chk">🔖</span><span style="font-size:16px;">Fiecare răspuns are <b>citate la pagină</b></span></div>
+      </div>
+    </div>
+  </div>
+  <div class="quote-block" style="margin-top:14px;font-size:15px;"><strong>Regula simplă:</strong> vrei să afli ce e <em>pe piață</em> → Perplexity. Vrei să înțelegi <em>documentele tale lungi</em> → NotebookLM.</div>
+  <div class="slide-num">17 / 24</div>
+</div>
+</section>
+
+<!-- 18 CE FACE NOTEBOOKLM -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Unealta 3 · NotebookLM</div><h2 class="slide-title">Ce faci concret cu NotebookLM</h2><p class="slide-subtitle">Încarci sursele o dată → le interoghezi, le sintetizezi, le asculți <em>[PROMPT P07]</em></p></div>
+  <div class="cards-grid cards-3">
+    <div class="card primary-light">
+      <span class="card-icon">🧩</span>
+      <p class="card-title">Sinteză cu citate</p>
+      <p class="card-body">„Rezumă în 10 puncte ce spun aceste rapoarte" → răspuns <b>cu trimitere la sursă</b>.</p>
+    </div>
+    <div class="card sky">
+      <span class="card-icon">🎧</span>
+      <p class="card-title">Audio Overview</p>
+      <p class="card-body">Transformă documentele într-un <b>podcast</b> de 10 min — îl asculți în mașină.</p>
+    </div>
+    <div class="card mint">
+      <span class="card-icon">🗺️</span>
+      <p class="card-title">Mind map · FAQ · briefing</p>
+      <p class="card-body">Hartă a ideilor, întrebări frecvente, document de briefing — generate din surse.</p>
+    </div>
+  </div>
+  <div class="example-band" style="margin-top:16px;">
+    <div class="eb-title">💄 Exemplu — <span class="brand-chip viorica">Viorica</span></div>
+    <div class="eb-body">Încarci: studiul de piață (Deep Research) + raportul intern de vânzări + Regulamentul UE. NotebookLM îți dă o sinteză unică: <b>„ce sprijină lansarea liniei naturale și ce ne frânează"</b> — cu citate la fiecare document.</div>
+  </div>
+  <div class="slide-num">18 / 24</div>
+</div>
+</section>
+
+<!-- 19 CERCETARE REGULATORIE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Conformitate</div><h2 class="slide-title">Cercetare regulatorie cu AI</h2><p class="slide-subtitle">Identifici cerințele legale → un sumar de conformitate, ca punct de plecare <em>[PROMPT P08]</em></p></div>
+  <table class="slide-table" style="flex:1;font-size:15px;">
+    <thead>
+      <tr><th class="col-a">Cerință (ex: cosmetice UE 1223/2009)</th><th class="col-b">Ce înseamnă pentru noi</th><th class="col-c">Risc dacă lipsește → acțiune</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Listă INCI pe etichetă</td><td>Ingredientele, în nomenclatura standard</td><td>Produs neconform → retras. <b>Acțiune:</b> etichetă verificată</td></tr>
+      <tr><td>Claim-uri permise</td><td>„Natural / hidratant" — da; „vindecă" — nu</td><td>Amendă / reclamă interzisă. <b>Acțiune:</b> listă de claim-uri OK</td></tr>
+      <tr><td>Persoană responsabilă (UE)</td><td>O entitate responsabilă în UE</td><td>Nu poți vinde legal. <b>Acțiune:</b> desemnezi responsabilul</td></tr>
+    </tbody>
+  </table>
+  <div class="quote-block warning" style="margin-top:14px;font-size:15px;"><strong>⚠️ Validare umană obligatorie:</strong> AI îți dă harta și întrebările potrivite — dar <strong>concluzia de conformitate o confirmă un specialist</strong>. (Vezi slide 06.)</div>
+  <div class="slide-num">19 / 24</div>
+</div>
+</section>
+
+<!-- 20 PRACTICA REGULATORIE -->
+<section>
+<div class="slide practice">
+  <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică</div><h2 class="slide-title">Practică: Cercetare regulatorie pe sectorul tău</h2><p class="slide-subtitle">Reglementări relevante → tabel „risc → acțiune" <em>[PROMPT P08]</em></p></div>
+  <div class="practice-layout">
+    <div style="display:flex;flex-direction:column;gap:13px;">
+      <div class="practice-steps">
+        <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Numești <b>activitatea + zona</b> (ex: „vând suplimente online în RO")</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Ceri principalele <b>cerințe legale</b> aplicabile, cu articole</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Format: tabel <b>„Cerință → Ce înseamnă → Risc → Acțiune"</b></div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Notezi ce <b>trebuie confirmat de un specialist</b></div></div>
+      </div>
+      <div class="practice-prompt"><span class="lbl">Atenție</span>Promptul cere explicit „NU consultanță juridică finală". AI = punct de plecare documentat, nu avizul legal.</div>
+      <div class="practice-app"><b>⏱️ 10 minute.</b> Output: tabel de riscuri + acțiuni recomandate.</div>
+    </div>
+    <div class="practice-shot">
+      <div class="shot-slot" style="width:100%;height:100%;border:none;border-radius:0;">
+        <div class="sl-icon">📸</div>
+        <div class="sl-label">Tabel de conformitate generat<br>(Perplexity / NotebookLM — demo)</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">20 / 24</div>
+</div>
+</section>
+
+<!-- 21 RESEARCH -> DECIZIE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Decizie</div><h2 class="slide-title">De la research → la o decizie (go / no-go / pivot)</h2><p class="slide-subtitle">Research-ul nu e scopul. AI pune argumentele pe masă — <b>tu</b> iei decizia <em>[PROMPT P09]</em></p></div>
+  <div class="info-band" style="margin-bottom:16px;">
+    <div class="ib-icon">🤝</div>
+    <div class="ib-text"><b>Ce face AI:</b> sintetizează „ce știm / ce risc / ce ar trebui să fie adevărat ca să mergem mai departe", cu argumente legate de cifre din fir. <b>Ce faci tu:</b> confirmi ipotezele, completezi ce lipsește, decizi.</div>
+  </div>
+  <div class="cards-grid cards-3">
+    <div class="card mint">
+      <span class="card-icon">✅</span>
+      <p class="card-title">GO</p>
+      <p class="card-body">Datele susțin oportunitatea, riscurile sunt gestionabile → <b>mergem</b>, cu plan și KPI.</p>
+    </div>
+    <div class="card peach">
+      <span class="card-icon">🔄</span>
+      <p class="card-title">PIVOT</p>
+      <p class="card-body">Direcția e bună, dar o ipoteză cheie nu se confirmă → <b>ajustăm</b> (segment, preț, canal).</p>
+    </div>
+    <div class="card rose">
+      <span class="card-icon">⛔</span>
+      <p class="card-title">NO-GO</p>
+      <p class="card-body">Riscurile depășesc oportunitatea sau lipsesc date critice → <b>amânăm / renunțăm</b>.</p>
+    </div>
+  </div>
+  <div class="slide-num">21 / 24</div>
+</div>
+</section>
+
+<!-- 22 RECAP 3 UNELTE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Recap</div><h2 class="slide-title">3 instrumente, 3 scopuri</h2><p class="slide-subtitle">Nu „care e cel mai bun" — ci <b>care, pentru ce</b></p></div>
+  <table class="slide-table" style="flex:1;font-size:16px;">
+    <thead>
+      <tr><th class="col-a">Unealtă</th><th class="col-b">Pentru ce</th><th class="col-c">Exemplu din azi</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="logo" style="vertical-align:-4px;margin-right:7px;"><svg width="18" height="18" viewBox="0 0 24 24" style="fill:var(--perplexity);"><path d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"/></svg></span><b>Perplexity</b></td>
+        <td>Cercetare web rapidă, cu surse citate</td><td>Scanare de piață (tendințe, jucători)</td>
+      </tr>
+      <tr>
+        <td><span class="logo" style="vertical-align:-4px;margin-right:7px;"><svg width="18" height="18" viewBox="0 0 24 24" style="fill:#10A37F;"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span><b>ChatGPT</b></td>
+        <td>Analiză, structurare, execuție — în același fir</td><td>Tabel competitori → SWOT → brief</td>
+      </tr>
+      <tr>
+        <td><span class="logo" style="vertical-align:-4px;margin-right:7px;"><svg width="18" height="18" viewBox="0 0 500 500"><circle cx="246.93" cy="249.67" r="240" fill="#1A73E8"/><path d="M246.94,117.25c-83.4,0-151,67.04-151,149.77v71.7h27.83v-7.15c0-33.55,27.41-60.75,61.23-60.75s61.23,27.21,61.23,60.75v7.15h27.83v-7.15c0-48.8-39.89-88.33-89.07-88.33-19.15,0-36.89,5.99-51.42,16.21,15.2-29.97,46.51-50.53,82.65-50.53,51.06,0,92.46,41.07,92.46,91.71v38.1h27.84v-38.1c0-65.89-53.86-119.32-120.3-119.32-29.87,0-57.2,10.8-78.24,28.69,20.66-38.73,61.68-65.13,108.95-65.13,68.03,0,123.17,54.69,123.17,122.16v71.7h27.83v-71.7c0-82.72-67.6-149.77-151-149.77Z" fill="#fff"/></svg></span><b>NotebookLM</b></td>
+        <td>Documentele tale, lungi — sinteză cu citate</td><td>Rapoarte interne + Regulament UE</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="quote-block teal" style="margin-top:14px;font-size:15px;"><strong>Fluxul complet:</strong> Perplexity (afli) → ChatGPT (structurezi &amp; decizi) → NotebookLM (verifici peste documentele tale). Trei pași, un singur brief.</div>
+  <div class="slide-num">22 / 24</div>
+</div>
+</section>
+
+<!-- 23 KPI EXERCISE -->
+<section>
+<div class="slide practice">
+  <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Exercițiu live · Session KPI</div><h2 class="slide-title">Brief-ul tău de market-intelligence</h2><p class="slide-subtitle">Legi totul: produci <b>un brief de o pagină</b> pe sectorul tău — și-l prezinți colegilor <em>[PROMPT P10]</em></p></div>
+  <div class="exercise-center">
+    <div class="timer-pill">⏱️ 25 minute + prezentare</div>
+    <div class="exercise-template">
+      <span class="tpl-label">Ce conține brief-ul (1 pagină)</span>
+      <span class="exercise-hl">3 tendințe de piață</span> cu surse (Perplexity)<br>
+      <span class="exercise-hl">Tabel: 2–3 competitori</span> × criterii cheie (ChatGPT)<br>
+      <span class="exercise-hl">SWOT specific</span> + <span class="exercise-hl">1 risc regulatoriu</span> cu acțiune<br>
+      <span class="exercise-hl">O recomandare</span> pentru management: go / no-go / pas următor
+    </div>
+    <div class="check-list" style="max-width:600px;text-align:left;">
+      <div class="check-item"><span class="chk">✅</span>Tot ce e cifră → <b>cu sursă</b> (regula de aur)</div>
+      <div class="check-item"><span class="chk">✅</span>SWOT-ul e <b>specific</b>, nu generic — pe datele tale</div>
+      <div class="check-item"><span class="chk">✅</span>Recomandarea e clară și <b>asumată de tine</b>, nu de AI</div>
+      <div class="check-item"><span class="chk">✅</span>2 minute de prezentat colegilor — ca unui board</div>
+    </div>
+  </div>
+  <div class="slide-num">23 / 24</div>
+</div>
+</section>
+
+<!-- 24 WRAP-UP -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Wrap-up &amp; Homework</div><h2 class="slide-title">Ce duci acasă azi</h2></div>
+  <div class="wrapup-grid">
+    <div class="wrapup-pane learned">
+      <div class="wrapup-pane-title">✅ Azi ai învățat și ai făcut</div>
+      <div class="check-list">
+        <div class="check-item"><span class="chk">✓</span>Ce poate / ce <b>NU</b> faci fără validare umană în cercetare</div>
+        <div class="check-item"><span class="chk">✓</span><b>Perplexity</b>: scanare de piață în 5 pași, cu surse</div>
+        <div class="check-item"><span class="chk">✓</span><b>ChatGPT</b>: prompt RCFC, analiză competitivă, SWOT specific</div>
+        <div class="check-item"><span class="chk">✓</span>Fluxul <b>query → brief executiv în 30 min</b></div>
+        <div class="check-item"><span class="chk">✓</span><b>NotebookLM</b> + cercetare regulatorie pe documentele tale</div>
+        <div class="check-item"><span class="chk">✓</span>De la research → la o <b>decizie</b> (go / no-go / pivot)</div>
+      </div>
+    </div>
+    <div class="wrapup-pane hw">
+      <div class="wrapup-pane-title">📋 Homework — aplici în business</div>
+      <div class="check-list">
+        <div class="check-item"><span class="chk">1.</span>Rulează <b>fluxul complet</b> pe o decizie reală din firma ta</div>
+        <div class="check-item"><span class="chk">2.</span>Verifică sursele cheie — taie orice cifră fără sursă</div>
+        <div class="check-item"><span class="chk">3.</span>Pune documentele tale în <b>NotebookLM</b> și interoghează-le</div>
+        <div class="check-item"><span class="chk">4.</span><b>Prezintă brief-ul</b> echipei tale — și ia decizia</div>
+      </div>
+      <div class="preview-row">
+        <div class="lbl">Ai acum →</div>
+        <div class="ttl">Un proces repetabil de la întrebare la decizie<br><span style="font-weight:400;font-size:14px;color:var(--muted);">Perplexity · ChatGPT · NotebookLM — research care se termină într-o acțiune</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">24 / 24</div>
+</div>
+</section>
+
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>
