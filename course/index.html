@@ -678,8 +678,8 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
         <div class="section-head" onclick="toggleSec('b-prompturi',this)">
           <div class="section-icon lavender">⚡</div>
           <div class="section-text">
-            <h3>Biblioteca de prompturi</h3>
-            <p>80+ prompturi gata de folosit, pe 9 categorii</p>
+            <h3>Prompt Engineering — 8 frameworks</h3>
+            <p>Nu prompturi de copiat — 8 mișcări pe care le refolosești la orice task</p>
           </div>
           <span class="section-time">~40 min</span>
           <span class="section-chevron open">▼</span>
@@ -687,360 +687,185 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
         <div class="section-body" id="b-prompturi">
           <div class="filter-nav">
             <button class="filter-btn active" onclick="filterSec(this,'all')">Toate</button>
-            <button class="filter-btn" onclick="filterSec(this,'A')">A · Fundamentale</button>
-            <button class="filter-btn" onclick="filterSec(this,'B')">B · Email</button>
-            <button class="filter-btn" onclick="filterSec(this,'C')">C · Marketing</button>
-            <button class="filter-btn" onclick="filterSec(this,'D')">D · Vânzări</button>
-            <button class="filter-btn" onclick="filterSec(this,'E')">E · Research</button>
-            <button class="filter-btn" onclick="filterSec(this,'F')">F · Documente</button>
-            <button class="filter-btn" onclick="filterSec(this,'G')">G · Productivitate</button>
-            <button class="filter-btn" onclick="filterSec(this,'H')">H · Industrie</button>
-            <button class="filter-btn" onclick="filterSec(this,'I')">I · Setup</button>
+            <button class="filter-btn" onclick="filterSec(this,'FW')">Frameworks</button>
+            <button class="filter-btn" onclick="filterSec(this,'SC')">Scenarii reale</button>
+            <button class="filter-btn" onclick="filterSec(this,'AP')">Greșeli frecvente</button>
+            <button class="filter-btn" onclick="filterSec(this,'CS')">Cheat sheet</button>
           </div>
 
           <div id="prompts-wrap">
 
-            <!-- A -->
-            <div class="prompt-section" data-sec="A">
-              <div class="psec-head"><span class="psec-tag purple">A</span><h4>Fundamentale &amp; meta-prompturi</h4></div>
 
-              <div class="prompt-card purple">
-                <div class="prompt-card-head"><span class="pid purple">A1</span><div><div class="ptitle">Îmbunătățește-mi promptul</div><div class="pwhen"><b>Când:</b> ai o idee vagă și vrei un prompt profesionist.</div></div></div>
-                <div class="prompt-code"><pre>Ești expert în prompt engineering. Vreau să obțin de la tine [REZULTATUL DORIT, ex: o descriere de produs].
-Pune-mi 3-5 întrebări scurte care îți lipsesc pentru a face treaba excelent.
-După ce răspund, scrie promptul perfect (rol, context, sarcină, format, restricții) și apoi execută-l.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+            <!-- FW -->
+            <div class="prompt-section" data-sec="FW">
+              <div class="psec-head"><span class="psec-tag purple">Mindset</span><h4>De ce „prompturile bune" nu există — dar contextul bun, da</h4></div>
+              <div class="callout tip" style="margin-bottom:16px"><span class="callout-title">💡 Ideea centrală</span> AI-ul prezice cel mai probabil cuvânt următor, pe baza a tot ce i-ai pus în față. Nu există magie — există context suficient și clar. Și cea mai mare diferență: <strong>arată, nu descrie</strong>. Ai o factură? Atașeaz-o. Nu o retasta.</div>
+
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid">01</span><div><div class="ptitle">Fundamentul — Rol · Sarcină · Context · Format (RSCF)</div><div class="pwhen"><b>Când:</b> mereu — e baza peste care pui celelalte 7 frameworks.</div></div></div>
+                <div class="prompt-code"><pre>Ești copywriter pentru un magazin de cosmetice naturale din Moldova.
+Scrie o descriere pentru o cremă de față cu cătină, pentru femei de 30–45 de ani care preferă îngrijirea naturală.
+Max 80 de cuvinte, ton cald și expert, un singur îndemn la final.
+Fără cuvinte ca „vindecă" sau „tratează".</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
               </div>
 
-              <div class="prompt-card purple">
-                <div class="prompt-card-head"><span class="pid purple">A2</span><div><div class="ptitle">Întreabă-mă înainte să scrii</div><div class="pwhen"><b>Când:</b> vrei rezultat pe situația ta exactă, nu unul generic.</div></div></div>
-                <div class="prompt-code"><pre>Înainte să-mi dai răspunsul, pune-mi întrebările de care ai nevoie ca să faci treaba
-ca pentru un client important. Nu presupune nimic esențial. Întreabă pe rând, maxim 5 întrebări.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid">02</span><div><div class="ptitle">Arată, nu descrie — atașează fișierul, nu tasta datele</div><div class="pwhen"><b>Când:</b> ori de câte ori te-ai trezi copiind date dintr-un document în prompt.</div></div></div>
+                <div class="prompt-code"><pre>Pe baza facturii atașate, scrie o ofertă de prelungire a contractului de mentenanță
+pentru același client, păstrând exact produsele și prețurile din factură.
+Scrie în vocea brandului din „ghid-voce-brand.pdf".
+Structură: problema clientului → ce includem → preț pe lună → următorul pas.
+Generează rezultatul ca document Word.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
               </div>
 
-              <div class="prompt-card purple">
-                <div class="prompt-card-head"><span class="pid purple">A3</span><div><div class="ptitle">Explică-mi simplu</div><div class="pwhen"><b>Când:</b> nu înțelegi un termen, un document sau o ofertă.</div></div></div>
-                <div class="prompt-code"><pre>Explică-mi [SUBIECTUL / TEXTUL DE MAI JOS] ca unui om inteligent, dar fără cunoștințe tehnice.
-Folosește o analogie din viața de zi cu zi. Apoi spune-mi în 3 puncte de ce contează pentru afacerea mea.
-[LIPEȘTI textul, dacă e cazul]</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid">03</span><div><div class="ptitle">Învață-l prin exemple (Few-shot) — 3 exemple bat o pagină de instrucțiuni</div><div class="pwhen"><b>Când:</b> vrei consecvență de ton/stil, sau un format greu de explicat în cuvinte.</div></div></div>
+                <div class="prompt-code"><pre>Mai jos sunt 3 titluri scrise exact în stilul brandului nostru:
+1. „Cafeaua de la birou nu trebuie să fie o pedeapsă."
+2. „Espressorul tău merită mai mult decât apă fiartă."
+3. „Luni dimineața, salvată de un shot bun."
+
+Scrie 5 titluri noi pentru o campanie de abonament de cafea la birou,
+în EXACT același ton și ritm. Nu copia ideile, doar stilul.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
               </div>
 
-              <div class="prompt-card purple">
-                <div class="prompt-card-head"><span class="pid purple">A4</span><div><div class="ptitle">Rezumă orice (text lung → esențial)</div><div class="pwhen"><b>Când:</b> ai un articol, contract sau raport lung.</div></div></div>
-                <div class="prompt-code"><pre>Rezumă textul de mai jos pentru un om ocupat:
-1) 3 idei principale, 2) ce trebuie să fac eu concret, 3) ce e riscant sau de verificat.
-Maxim 150 de cuvinte, fără jargon.
-"""
-[LIPEȘTI textul]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid">04</span><div><div class="ptitle">Pune-l să gândească înainte să răspundă (Chain-of-thought)</div><div class="pwhen"><b>Când:</b> prețuri, decizii, analize, comparații — orice are nevoie de raționament, nu de scris.</div></div></div>
+                <div class="prompt-code"><pre>Înainte să-mi recomanzi un preț, analizează pas cu pas:
+1) prețurile concurenței din tabelul atașat,
+2) poziționarea noastră premium (livrare + mentenanță inclusă),
+3) marja noastră minimă acceptabilă: 35%.
+Abia după ce parcurgi cei 3 pași, propune-mi 3 variante de preț,
+fiecare cu un argument scurt și cu cui i se potrivește.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
               </div>
 
-              <div class="prompt-card purple">
-                <div class="prompt-card-head"><span class="pid purple">A5</span><div><div class="ptitle">Brainstorming structurat (10 idei pe 2 unghiuri)</div><div class="pwhen"><b>Când:</b> ești blocat și vrei opțiuni, nu o singură variantă.</div></div></div>
-                <div class="prompt-code"><pre>Ești consultant pentru [TIP AFACERE]. Dă-mi 10 idei de [CE: campanie / produs / postare],
-pe 2 unghiuri diferite (A: [unghi 1] / B: [unghi 2]).
-Pentru fiecare: o frază de descriere + cui i se potrivește. Evită clișeele.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid">05</span><div><div class="ptitle">Pune-l să te intervieveze (Clarify-first)</div><div class="pwhen"><b>Când:</b> sarcini mari sau ambigue — strategie, un plan, un document complex.</div></div></div>
+                <div class="prompt-code"><pre>Vreau o strategie de conținut pentru lansarea unei linii noi de îngrijire naturală.
+Înainte să scrii ceva, pune-mi 5 întrebări de care ai nevoie ca să faci treaba
+ca pentru un client important. Întreabă pe rând, apoi așteaptă răspunsurile mele.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
               </div>
 
-              <div class="prompt-card purple">
-                <div class="prompt-card-head"><span class="pid purple">A6</span><div><div class="ptitle">Few-shot: imită stilul meu</div><div class="pwhen"><b>Când:</b> vrei ca AI-ul să sune ca tine / ca brandul tău.</div></div></div>
-                <div class="prompt-code"><pre>Mai jos sunt 3 exemple de texte scrise în stilul pe care îl vreau:
-"""
-[EXEMPLU 1]
-[EXEMPLU 2]
-[EXEMPLU 3]
-"""
-Scrie un nou [TIP TEXT] despre [SUBIECT], în EXACT același ton, ritm și vocabular. Nu copia conținutul, doar stilul.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid">06</span><div><div class="ptitle">Iterează — nu reformula de la zero</div><div class="pwhen"><b>Când:</b> aproape mereu, după primul rezultat. 80% din calitate vine din pașii 2–4.</div></div></div>
+                <div class="prompt-code"><pre>Tu:  Dă-mi 3 variante de slogan pentru abonamentul de cafea la birou.
+AI:  (3 variante)
+Tu:  Varianta 2 e direcția bună. Fă-o mai scurtă și scoate cuvântul „premium".
+AI:  (variantă rafinată)
+Tu:  Perfect. Acum dă-mi încă 3 variații pe aceeași idee, una mai jucăușă.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
               </div>
 
-              <div class="prompt-card purple">
-                <div class="prompt-card-head"><span class="pid purple">A7</span><div><div class="ptitle">Criticul: găsește slăbiciunile (roast)</div><div class="pwhen"><b>Când:</b> înainte să trimiți/publici ceva important.</div></div></div>
-                <div class="prompt-code"><pre>Ești un manager sceptic și un avocat prudent. NU mă lăuda.
-Pentru textul de mai jos dă-mi: 5 slăbiciuni concrete, 3 riscuri (legal / ton / claim-uri nedovedibile),
-și apoi 1 variantă rescrisă, clar mai bună. Fii dur, dar util.
-"""
-[LIPEȘTI textul tău]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid">07</span><div><div class="ptitle">Pune AI-ul să-și scrie singur promptul (Meta-prompting)</div><div class="pwhen"><b>Când:</b> un task nou, complex, unde nu ai un tipar gata.</div></div></div>
+                <div class="prompt-code"><pre>Ești expert în prompt engineering. Vreau să obțin de la tine un plan de relansare
+pe Instagram pentru un cabinet stomatologic din Chișinău.
+Pasul 1: pune-mi 4 întrebări scurte care îți lipsesc.
+Pasul 2: scrie promptul perfect (rol, context, sarcină, format, restricții).
+Pasul 3: execută-l.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+              </div>
+
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid">08</span><div><div class="ptitle">Rol + Audiență + Restricții (gardurile)</div><div class="pwhen"><b>Când:</b> conținut cu miză — comunicare oficială, domenii reglementate, branding.</div></div></div>
+                <div class="prompt-code"><pre>— Audiență pacienți:
+Explică „detartrajul" unui pacient speriat de dentist. Ton calm, fără termeni medicali, max 60 de cuvinte.
+
+— Audiență medici:
+Rezumă protocolul de detartraj pentru un coleg stomatolog. Tehnic, concis, în puncte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
               </div>
             </div>
 
-            <!-- B -->
-            <div class="prompt-section" data-sec="B">
-              <div class="psec-head"><span class="psec-tag">B</span><h4>Email &amp; comunicare</h4></div>
+            <!-- SC -->
+            <div class="prompt-section" data-sec="SC" style="display:none">
+              <div class="psec-head"><span class="psec-tag">Scenarii</span><h4>Frameworks-urile, combinate pe cazuri reale</h4></div>
+              <div class="callout tip" style="margin-bottom:16px"><span class="callout-title">💡 Regula</span> Pleci de la un artefact (un fișier, niște recenzii), nu de la o pagină albă. Fiecare scenariu îți arată ce dai, ce ceri și de ce.</div>
 
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">B1</span><div><div class="ptitle">Email de follow-up după întâlnire</div><div class="pwhen"><b>Când:</b> vrei să fixezi pașii următori fără să pari insistent.</div></div></div><div class="prompt-code"><pre>Ești asistentul meu de business. Scrie un email de follow-up de [120] de cuvinte către [CINE, ex: un client].
-Ne-am întâlnit acum [3] zile și am discutat [SUBIECT]. Ton: profesional, cald, direct.
-Include: mulțumire scurtă, recapitulare în 2 puncte, un pas următor clar cu o propunere de dată.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid">S1</span><div><div class="ptitle">Din factură → ofertă personalizată</div><div class="pwhen"><b>Context:</b> business de cafea pentru birouri, client cu abonament care expiră.</div></div></div>
+                <div class="prompt-code"><pre>Pe baza facturii atașate, scrie o ofertă de reînnoire pentru același client.
+Păstrează produsele și prețurile din factură. Scrie în vocea din „ghid-voce-brand.pdf".
+Adaugă un beneficiu de fidelitate (o lună de boabe premium gratis).
+Structură: mulțumire → ce a avut → ce propunem → preț → următorul pas. Output: Word.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+              </div>
 
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">B2</span><div><div class="ptitle">Reamintire de plată (ferm dar politicos)</div><div class="pwhen"><b>Când:</b> un client întârzie cu plata.</div></div></div><div class="prompt-code"><pre>Scrie un email de reamintire pentru factura [NR] din [DATA], restantă de [X] zile, către [CLIENT].
-Ton ferm dar politicos, fără a periclita relația. Oferă o cale ușoară de plată și un termen clar.
-Maxim 90 de cuvinte. Dă-mi și o variantă mai dură pentru a doua reamintire.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid">S2</span><div><div class="ptitle">Din recenzii → poziționare (USP)</div><div class="pwhen"><b>Context:</b> cabinet stomatologic vrea să afle ce-l face diferit, în cuvintele clienților.</div></div></div>
+                <div class="prompt-code"><pre>Mai jos sunt recenziile mele și ale a 2 concurenți. Înainte de concluzie, analizează pas cu pas:
+ce laudă clienții mei cel mai des, ce reclamă la concurenți, ce cuvinte repetă.
+Apoi propune 5 variante de USP — specific, adevărat, greu de copiat, max 12 cuvinte.
+Evită „calitate" și „prețuri bune". La final, recomandă-l pe cel mai puternic și de ce.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+              </div>
 
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">B3</span><div><div class="ptitle">Răspuns la reclamație / client nemulțumit</div><div class="pwhen"><b>Când:</b> trebuie să dezamorsezi o situație tensionată.</div></div></div><div class="prompt-code"><pre>Un client e nemulțumit de [PROBLEMA]. Mai jos e mesajul lui:
-"""
-[LIPEȘTI mesajul]
-"""
-Scrie un răspuns care: recunoaște problema, își cere scuze sincer (fără să admită vină legală),
-oferă o soluție concretă și păstrează clientul. Ton: empatic, calm, profesional. Maxim 120 de cuvinte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid">S3</span><div><div class="ptitle">Din contract PDF → rezumat de riscuri</div><div class="pwhen"><b>Context:</b> ai primit un contract de 14 pagini și trebuie să-l înțelegi azi.</div></div></div>
+                <div class="prompt-code"><pre>Rezumă contractul atașat pe înțelesul meu: obligațiile mele, obligațiile lor, termene, penalități.
+Semnalează 5 clauze riscante sau dezechilibrate și ce aș putea negocia la fiecare.
+Nu da verdict legal definitiv — marchează clar ce trebuie confirmat cu un avocat.
+Nu inventa articole de lege; dacă ceva nu e în document, spune „nu apare".</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+              </div>
 
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">B4</span><div><div class="ptitle">Spune NU elegant</div><div class="pwhen"><b>Când:</b> refuzi o cerere, o reducere sau o colaborare.</div></div></div><div class="prompt-code"><pre>Scrie un mesaj care refuză politicos [CEREREA, ex: o reducere de 30%], dar păstrează ușa deschisă.
-Explică pe scurt motivul, oferă o alternativă dacă există, ton respectuos și ferm. Maxim 80 de cuvinte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid">S4</span><div><div class="ptitle">Cu un Project → conținut mereu on-brand</div><div class="pwhen"><b>Context:</b> vrei ca AI-ul să scrie mereu în vocea brandului, fără să reîncarci totul.</div></div></div>
+                <div class="prompt-code"><pre>— Instrucțiunile Project-ului (le scrii o dată):
+Ești copywriter-ul brandului. Scrie ÎNTOTDEAUNA în vocea din „ghid-voce.pdf".
+Folosește beneficiile din „produse.pdf" și respectă „reguli-restricții.pdf".
+Înainte să livrezi, verifică: tonul e al brandului? există un CTA? respect restricțiile?
+Dacă-mi lipsește un detaliu esențial, întreabă o singură întrebare scurtă.
 
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">B5</span><div><div class="ptitle">Rescrie un email (ton + claritate)</div><div class="pwhen"><b>Când:</b> ai scris ceva, dar nu sună bine.</div></div></div><div class="prompt-code"><pre>Rescrie emailul de mai jos: mai clar, mai scurt, ton [profesional dar cald].
-Păstrează toate informațiile importante. Scoate clișeele și frazele de umplutură.
-"""
-[LIPEȘTI emailul tău]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">B6</span><div><div class="ptitle">Traduce &amp; adaptează cultural</div><div class="pwhen"><b>Când:</b> scrii unui client/partener străin.</div></div></div><div class="prompt-code"><pre>Tradu mesajul de mai jos în [LIMBA], adaptat pentru un context de business profesional.
-Nu traduce cuvânt cu cuvânt — adaptează tonul și formulele de politețe la cultura respectivă.
-"""
-[LIPEȘTI textul]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">B7</span><div><div class="ptitle">Rezumă un thread lung de email</div><div class="pwhen"><b>Când:</b> intri într-o discuție cu 20 de mesaje.</div></div></div><div class="prompt-code"><pre>Rezumă conversația de mai jos: cine ce a cerut, ce s-a decis, ce rămâne nerezolvat și ce trebuie să fac eu.
-Format: 4 secțiuni scurte cu bullet-uri.
-"""
-[LIPEȘTI thread-ul]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">B8</span><div><div class="ptitle">Agendă &amp; minută de ședință</div><div class="pwhen"><b>Când:</b> pregătești sau închizi o ședință.</div></div></div><div class="prompt-code"><pre>Pe baza notițelor de mai jos, scrie: 1) o minută de ședință (decizii + responsabili + termene),
-2) un email scurt de follow-up către participanți cu pașii următori.
-"""
-[LIPEȘTI notițele tale]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">B9</span><div><div class="ptitle">Mesaj scurt (WhatsApp / SMS)</div><div class="pwhen"><b>Când:</b> ai nevoie de ceva scurt și uman.</div></div></div><div class="prompt-code"><pre>Scrie 3 variante de mesaj scurt (max 40 de cuvinte) pentru [CANAL: WhatsApp] către [CINE],
-ca să [OBIECTIV, ex: confirm o programare]. Ton prietenos, natural, fără să sune robotic.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">B10</span><div><div class="ptitle">Cerere de recomandare / testimonial</div><div class="pwhen"><b>Când:</b> un client e mulțumit și vrei să profiți de moment.</div></div></div><div class="prompt-code"><pre>Scrie un mesaj scurt prin care cer politicos [un testimonial / o recomandare] de la un client mulțumit cu [SERVICIUL].
-Fă-i ușor să răspundă: sugerează 2-3 întrebări la care poate răspunde în 2 minute. Ton: cald, fără să par insistent. Max 80 de cuvinte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+— Apoi orice cerere e scurtă:
+Scrie 3 postări despre crema cu cătină, fiecare cu alt unghi (beneficiu / poveste / ofertă).</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+              </div>
             </div>
 
-            <!-- C -->
-            <div class="prompt-section" data-sec="C">
-              <div class="psec-head"><span class="psec-tag">C</span><h4>Marketing &amp; conținut</h4></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">C1</span><div><div class="ptitle">Descriere de produs (beneficii, nu caracteristici)</div><div class="pwhen"><b>Când:</b> listezi un produs/serviciu nou.</div></div></div><div class="prompt-code"><pre>Ești copywriter în [DOMENIU]. Scrie o descriere de [80] de cuvinte pentru [PRODUS/SERVICIU].
-Public: [CINE]. Transformă caracteristicile în beneficii reale pentru client.
-Ton: [cald și expert]. Include un singur CTA. Fără clișee de tip „calitate garantată".</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">C2</span><div><div class="ptitle">Secvență de 3 postări (3 unghiuri)</div><div class="pwhen"><b>Când:</b> vrei conținut social fără să stai o oră la fiecare.</div></div></div><div class="prompt-code"><pre>Scrie 3 postări pentru [Instagram/Facebook/LinkedIn] despre [PRODUS/SUBIECT], fiecare cu alt unghi:
-(1) beneficiu, (2) poveste/scenariu de client, (3) ofertă.
-Fiecare: hook puternic în primul rând, corp scurt, CTA, 3-5 hashtag-uri relevante. Ton: [al brandului meu].</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">C3</span><div><div class="ptitle">Calendar de conținut pe o lună</div><div class="pwhen"><b>Când:</b> vrei un plan, nu idei răzlețe.</div></div></div><div class="prompt-code"><pre>Ești social media strategist pentru [TIP AFACERE] cu publicul [CINE].
-Fă-mi un calendar de conținut pe 4 săptămâni (3 postări/săptămână) într-un tabel:
-Ziua | Pilon de conținut | Idee de postare | Format | CTA.
-Variază pilonii (educație, social proof, ofertă, behind-the-scenes).</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">C4</span><div><div class="ptitle">10 titluri / hook-uri pentru A/B test</div><div class="pwhen"><b>Când:</b> ai conținutul, dar nu știi cum să-l deschizi.</div></div></div><div class="prompt-code"><pre>Dă-mi 10 variante de titlu/hook pentru [POSTARE / ARTICOL] despre [SUBIECT], maxim 10 cuvinte fiecare.
-Mixează unghiuri: curiozitate, beneficiu direct, întrebare, cifră, contra-intuitiv.
-Pentru fiecare, notează cui i se potrivește. Evită clickbait-ul ieftin.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">C5</span><div><div class="ptitle">Schelet de articol de blog (SEO)</div><div class="pwhen"><b>Când:</b> vrei să scrii pentru Google, structurat.</div></div></div><div class="prompt-code"><pre>Ești specialist SEO. Fă-mi structura unui articol despre [SUBIECT], cuvânt-cheie „[KEYWORD]".
-Dă-mi: titlu (H1) + 6-8 subtitluri (H2/H3), o întrebare frecventă per secțiune, meta-descrierea (max 155 caractere).
-Public: [CINE]. Intenția de căutare: [informațională/comercială].</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">C6</span><div><div class="ptitle">Tone of Voice: extrage vocea unui brand ⭐</div><div class="pwhen"><b>Când:</b> vrei ca AI-ul să scrie mereu „ca brandul tău".</div></div></div><div class="prompt-code"><pre>Ești strateg de brand. Mai jos sunt texte reale ale brandului [NUME]:
-"""
-[LIPEȘTI 10-15 texte: postări, descrieri, „despre noi", răspunsuri la comentarii]
-"""
-Extrage vocea: 5 adjective, vocabularul tipic, ce evită, ritmul frazelor, cum se adresează (tu/dvs.).
-La final scrie un „Ghid de voce" cu 2 exemple „așa DA / așa NU".</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">C7</span><div><div class="ptitle">Newsletter / email de marketing</div><div class="pwhen"><b>Când:</b> ai ceva de anunțat clienților tăi.</div></div></div><div class="prompt-code"><pre>Scrie un email de marketing despre [OFERTĂ/NOUTATE].
-Subiect (3 variante) + preheader + corp de [150] de cuvinte + CTA clar.
-Ton: [al brandului]. Beneficiu în primul rând, urgență reală. Fără limbaj de spam.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">C8</span><div><div class="ptitle">Script video scurt (Reel / TikTok)</div><div class="pwhen"><b>Când:</b> vrei să filmezi ceva, dar nu știi ce să spui.</div></div></div><div class="prompt-code"><pre>Scrie un script de [30] de secunde pentru un reel despre [SUBIECT].
-Format: Hook (primele 3 sec) | 3 idei scurte | CTA final. Scrie ce spun + ce se vede pe ecran.
-Ton: natural, energic, ca un om real, nu ca o reclamă.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">C9</span><div><div class="ptitle">Foto produs cu AI</div><div class="pwhen"><b>Când:</b> vrei un vizual de produs fără ședință foto.</div></div></div><div class="prompt-code"><pre>Generează o fotografie de produs, calitate editorială: [PRODUS] pe [SUPRAFAȚĂ, ex: marmură albă],
-[LUMINĂ, ex: caldă de dimineață din stânga], fundal neutru cu bokeh, unghi 45°, stil premium.
-Format [1:1 pentru feed]. Fără text pe imagine.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">C10</span><div><div class="ptitle">Editare conversațională de imagine</div><div class="pwhen"><b>Când:</b> imaginea e aproape bună — schimbă un detaliu.</div></div></div><div class="prompt-code"><pre>Păstrează produsul identic, dar schimbă fundalul în [lemn rustic / verde botanic].
-[apoi:] Adaugă lângă produs câteva [fructe proaspete], natural, în aceeași lumină.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">C11</span><div><div class="ptitle">Răspunsuri la recenzii (bune și rele)</div><div class="pwhen"><b>Când:</b> ai multe recenzii Google/Facebook de gestionat.</div></div></div><div class="prompt-code"><pre>Scrie răspunsuri la recenziile de mai jos, în vocea brandului [NUME].
-La cele pozitive: mulțumire personalizată. La cele negative: empatie, soluție, invitație la dialog privat.
-Fiecare: maxim 40 de cuvinte, fără să sune copiate.
-"""
-[LIPEȘTI recenziile]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">C12</span><div><div class="ptitle">Repurpose: 1 conținut → 5 formate</div><div class="pwhen"><b>Când:</b> ai un material bun și vrei să-l multiplici.</div></div></div><div class="prompt-code"><pre>Din materialul de mai jos, creează: 1 postare LinkedIn, 1 caption Instagram, 1 thread scurt,
-3 idei de reel și 1 secțiune de newsletter. Păstrează mesajul-cheie, adaptează tonul pe fiecare canal.
-"""
-[LIPEȘTI articolul / transcrierea / notițele]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+            <!-- AP -->
+            <div class="prompt-section" data-sec="AP" style="display:none">
+              <div class="psec-head"><span class="psec-tag">Greșeli</span><h4>Ce te trage în jos (chiar dacă folosești AI de mult)</h4></div>
+
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid" style="background:hsl(0,70%,55%)">✗</span><div><div class="ptitle">Tastezi manual date pe care le ai într-un fișier</div><div class="pwhen"><b>Fix:</b> atașează fișierul — AI-ul citește sursa reală, fără erori de transcriere. (FW 02)</div></div></div>
+              </div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid" style="background:hsl(0,70%,55%)">✗</span><div><div class="ptitle">Cauți „promptul magic" sau formule de pe internet</div><div class="pwhen"><b>Fix:</b> nu există magie. Dă rol, context și format clar. Calitatea = context, nu cuvinte secrete. (FW 01)</div></div></div>
+              </div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid" style="background:hsl(0,70%,55%)">✗</span><div><div class="ptitle">Nu-ți place rezultatul → scrii un prompt nou de la zero</div><div class="pwhen"><b>Fix:</b> corectează în conversație: „mai scurt", „scoate X". Construiești pe ce merge. (FW 06)</div></div></div>
+              </div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid" style="background:hsl(0,70%,55%)">✗</span><div><div class="ptitle">Descrii stilul cu adjective: „cald, dar profesionist, dar prietenos"</div><div class="pwhen"><b>Fix:</b> lipește 2–3 exemple reale de „așa vreau să sune". (FW 03)</div></div></div>
+              </div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid" style="background:hsl(0,70%,55%)">✗</span><div><div class="ptitle">Ceri direct concluzia la o decizie complexă și o iei ca atare</div><div class="pwhen"><b>Fix:</b> pune-l să analizeze pas cu pas înainte de concluzie. (FW 04)</div></div></div>
+              </div>
+              <div class="prompt-card">
+                <div class="prompt-card-head"><span class="pid" style="background:hsl(0,70%,55%)">✗</span><div><div class="ptitle">Te încrezi orbește în cifre sau citate „livrate" de AI</div><div class="pwhen"><b>Fix:</b> AI-ul poate inventa convingător. Cere surse, „nu inventa", și verifică. (FW 08)</div></div></div>
+              </div>
             </div>
 
-            <!-- D -->
-            <div class="prompt-section" data-sec="D">
-              <div class="psec-head"><span class="psec-tag">D</span><h4>Vânzări &amp; oferte</h4></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">D1</span><div><div class="ptitle">Ofertă comercială personalizată</div><div class="pwhen"><b>Când:</b> trimiți o ofertă unui client concret.</div></div></div><div class="prompt-code"><pre>Sunt [CE VINZI]. Generează o ofertă pentru clientul:
-- Domeniu: [ex: firmă IT] · Mărime: [25 angajați] · Nevoia principală: [...]
-Structură: problemă → soluție → ce includem → preț → pasul următor.
-Personalizează beneficiile pe nevoia lui. Ton profesional.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">D2</span><div><div class="ptitle">Mesaj de prim contact (cold outreach)</div><div class="pwhen"><b>Când:</b> abordezi un client nou la rece.</div></div></div><div class="prompt-code"><pre>Scrie un mesaj de prim contact de max 90 de cuvinte către [TIP CLIENT].
-Sunt [CINE] și pot să-i ajut cu [REZULTAT CONCRET]. Un singur CTA (un apel de 15 minute).
-Fără limbaj de vânzător agresiv, fără superlative.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">D3</span><div><div class="ptitle">Tratează obiecțiile</div><div class="pwhen"><b>Când:</b> clientul ezită („e scump", „mă mai gândesc").</div></div></div><div class="prompt-code"><pre>Clientul meu ridică obiecția: „[OBIECȚIA, ex: e prea scump]".
-Dă-mi 3 moduri de a răspunde, fiecare cu alt unghi (valoare, risc de a NU acționa, comparație corectă).
-Ton: consultativ, nu defensiv. Scurt și natural, ca într-o conversație reală.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">D4</span><div><div class="ptitle">USP: ce te face diferit</div><div class="pwhen"><b>Când:</b> nu știi să explici de ce să te aleagă pe tine.</div></div></div><div class="prompt-code"><pre>Ești strateg de poziționare. Afacerea mea: [ce vinzi, pentru cine, prețuri, ce crezi că te face special].
-Competitorii: [listă]. Propune-mi 5-7 variante de USP: specific, adevărat, greu de copiat, max 12 cuvinte.
-Evită „calitate" și „prețuri bune". Recomandă-l pe cel mai puternic și de ce.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">D5</span><div><div class="ptitle">Script de discuție de vânzare (discovery)</div><div class="pwhen"><b>Când:</b> ai o întâlnire și vrei întrebările potrivite.</div></div></div><div class="prompt-code"><pre>Pregătește-mă pentru o întâlnire de vânzare cu [TIP CLIENT] pentru [PRODUS/SERVICIU].
-Dă-mi: 8 întrebări de descoperire a nevoilor, 3 semnale de cumpărare la care să fiu atent,
-și o frază de închidere blândă. Fără manipulare — vreau o conversație onestă.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">D6</span><div><div class="ptitle">Follow-up după ofertă (fără răspuns)</div><div class="pwhen"><b>Când:</b> ai trimis oferta și e liniște.</div></div></div><div class="prompt-code"><pre>Scrie 2 mesaje de follow-up pentru un client care nu a răspuns la ofertă de [7] zile.
-Mesajul 1: blând, aduce valoare. Mesajul 2: clar, cu o întrebare de tip da/nu.
-Max 60 de cuvinte fiecare. Ton respectuos, fără să par disperat.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">D7</span><div><div class="ptitle">Calculator de preț / pachete</div><div class="pwhen"><b>Când:</b> vrei să structurezi prețurile în pachete.</div></div></div><div class="prompt-code"><pre>Ajută-mă să structurez oferta în 3 pachete (Basic / Standard / Premium) pentru [SERVICIU].
-Pentru fiecare: ce include, pentru cine e, prețul orientativ, și un motiv clar de upgrade.
-Aplică principiul „ancorării" (pachetul din mijloc să pară cea mai bună alegere).</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
+            <!-- CS -->
+            <div class="prompt-section" data-sec="CS" style="display:none">
+              <div class="psec-head"><span class="psec-tag">Cheat sheet</span><h4>Cele 8 mișcări + template de pornire</h4></div>
+
+              <div class="prompt-card purple">
+                <div class="prompt-card-head"><span class="pid purple">📋</span><div><div class="ptitle">Template de pornire — când nu știi de unde să începi</div><div class="pwhen"><b>Aplică-l</b> la orice task nou. Completează fiecare câmp.</div></div></div>
+                <div class="prompt-code"><pre>Ești [ROL].
+Folosește [📎 fișierul atașat] ca sursă (nu reproduce date din memorie).
+[SARCINA] — un verb clar.
+Pentru [AUDIENȚA]. Format: [FORMAT].
+Evită [RESTRICȚIE]. Dacă-ți lipsește un detaliu esențial, întreabă-mă întâi.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+                <div class="callout tip"><b>01 · RSCF</b><br>Rol · Sarcină · Context · Format. Scheletul oricărui prompt.</div>
+                <div class="callout tip"><b>02 · Arată, nu descrie</b><br>Atașează fișierul, nu tasta datele. Cea mai mare diferență.</div>
+                <div class="callout tip"><b>03 · Few-shot</b><br>2–3 exemple reale > o pagină de adjective.</div>
+                <div class="callout tip"><b>04 · Gândește pas cu pas</b><br>Analiză înainte de concluzie, la decizii și calcule.</div>
+                <div class="callout tip"><b>05 · Clarify-first</b><br>„Pune-mi întrebările de care ai nevoie înainte să scrii."</div>
+                <div class="callout tip"><b>06 · Iterează</b><br>Cizelează în conversație. Nu reporni de la zero.</div>
+                <div class="callout tip"><b>07 · Meta-prompting</b><br>„Scrie tu promptul ideal, apoi execută-l."</div>
+                <div class="callout tip"><b>08 · Audiență + restricții</b><br>Spune pentru cine scrii și ce să evite („fără...").</div>
+              </div>
             </div>
 
-            <!-- E -->
-            <div class="prompt-section" data-sec="E">
-              <div class="psec-head"><span class="psec-tag">E</span><h4>Research &amp; analiză</h4></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">E1</span><div><div class="ptitle">Scanare de piață cu surse</div><div class="pwhen"><b>Când:</b> intri într-o piață sau lansezi ceva nou.</div></div><span class="ptool">Perplexity</span></div><div class="prompt-code"><pre>Analizează tendințele din piața de [SECTOR] în [ZONĂ] pe ultimele 12-24 de luni.
-Vreau: 5 tendințe majore, cererea pe segmente, 5 jucători relevanți.
-Pentru FIECARE afirmație, citează sursa cu link. Marchează ce e dovedit slab.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">E2</span><div><div class="ptitle">Raport despre un competitor</div><div class="pwhen"><b>Când:</b> vrei să înțelegi un concurent în profunzime.</div></div></div><div class="prompt-code"><pre>Ești analist de competitive intelligence. Fă-mi un raport despre [COMPETITOR, site].
-Acoperă: 1) oferte/prețuri/USP, 2) ce reclame rulează, 3) ce conținut postează,
-4) ce laudă/reclamă clienții în recenzii.
-Livrează: tabel comparativ (eu vs. el), 5 puncte slabe ale lui, 3 oportunități pentru mine.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">E3</span><div><div class="ptitle">SWOT pe baza datelor mele</div><div class="pwhen"><b>Când:</b> pregătești o decizie sau un plan.</div></div></div><div class="prompt-code"><pre>Pe baza informațiilor de mai jos despre afacerea mea, fă un SWOT realist.
-Pentru fiecare punct, o frază de justificare. La final: 3 acțiuni prioritare în 90 de zile.
-"""
-[DESCRII: ce vinzi, piața, resursele, ce merge/nu merge]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">E4</span><div><div class="ptitle">Vocea clienților din recenzii</div><div class="pwhen"><b>Când:</b> vrei să afli ce contează real pentru clienți.</div></div></div><div class="prompt-code"><pre>Mai jos sunt recenzii reale (ale mele și ale concurenței):
-"""
-[LIPEȘTI recenziile]
-"""
-Extrage, cu cuvintele clienților: ce laudă cel mai des, ce reclamă, ce expresii repetă.
-Care e „durerea" nr. 1? Ce ar trebui să schimb sau să comunic diferit?</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">E5</span><div><div class="ptitle">Întreabă-ți propriile documente</div><div class="pwhen"><b>Când:</b> ai PDF-uri/contracte și vrei răspunsuri cu citate.</div></div><span class="ptool">NotebookLM</span></div><div class="prompt-code"><pre>Pe baza DOAR a documentelor încărcate, răspunde la: [ÎNTREBAREA TA].
-Citează pasajul exact din sursă pentru fiecare afirmație.
-Dacă răspunsul nu e în documente, spune clar „nu apare".</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">E6</span><div><div class="ptitle">Pro &amp; contra pentru o decizie</div><div class="pwhen"><b>Când:</b> eziti între 2 opțiuni.</div></div></div><div class="prompt-code"><pre>Trebuie să decid între [OPȚIUNEA A] și [OPȚIUNEA B] pentru [CONTEXT].
-Fă-mi un tabel pro/contra echilibrat, pune-mi 3 întrebări care m-ar ajuta să decid,
-și dă-mi recomandarea ta cu motivul. Spune-mi și ce risc subestimez probabil.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">E7</span><div><div class="ptitle">Sumar regulatoriu / legal (orientativ)</div><div class="pwhen"><b>Când:</b> vrei să înțelegi rapid o normă.</div></div></div><div class="prompt-code"><pre>Explică-mi pe înțeles ce înseamnă [REGLEMENTAREA] pentru o firmă ca a mea ([DESCRIERE]).
-Ce trebuie să fac concret, ce termene există, ce risc dacă nu respect.
-Marchează clar unde e nevoie de confirmare de la un specialist.
-"""
-[LIPEȘTI textul, dacă îl ai]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-            </div>
-
-            <!-- F -->
-            <div class="prompt-section" data-sec="F">
-              <div class="psec-head"><span class="psec-tag">F</span><h4>Documente, Excel &amp; administrativ</h4></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">F1</span><div><div class="ptitle">Analiză de Excel / tabel</div><div class="pwhen"><b>Când:</b> ai un fișier cu date și nu ai timp să-l sapi.</div></div><span class="ptool">Claude / ChatGPT</span></div><div class="prompt-code"><pre>Analizează fișierul atașat și spune-mi:
-1) trendul pe ultimele [6] luni și ce crește/scade,
-2) top 3 [produse/clienți] după [valoare/marjă],
-3) orice anomalie sau eroare (#REF!, valori suspecte).
-Explică concluziile în 5 puncte, pentru cineva non-tehnic.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">F2</span><div><div class="ptitle">Extrage date dintr-un text → tabel</div><div class="pwhen"><b>Când:</b> ai informații înghesuite și vrei structură.</div></div></div><div class="prompt-code"><pre>Din textul de mai jos, extrage într-un tabel: [Nume | Preț | Cantitate | Data].
-Doar ce e prezent, fără să inventezi. Marchează rândurile incerte. Exportă-l ca CSV.
-"""
-[LIPEȘTI conținutul]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">F3</span><div><div class="ptitle">Formulă Excel / Google Sheets</div><div class="pwhen"><b>Când:</b> știi ce vrei, dar nu și formula.</div></div></div><div class="prompt-code"><pre>Vreau o formulă pentru [REZULTAT, ex: să însumez vânzările doar pentru luna curentă].
-Datele sunt: [descrie coloanele, ex: A=data, B=client, C=sumă].
-Dă-mi formula exactă pentru [Excel / Google Sheets] și explică-mi pe scurt cum funcționează.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">F4</span><div><div class="ptitle">Document din template (contract / procedură)</div><div class="pwhen"><b>Când:</b> scrii același tip de document des.</div></div></div><div class="prompt-code"><pre>Scrie un draft de [TIP DOCUMENT, ex: contract de prestări servicii] pentru [CONTEXT].
-Include secțiunile standard, lasă câmpuri [completabile] unde e nevoie.
-Ton clar, fără jargon inutil. Marchează unde recomanzi verificarea unui jurist.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">F5</span><div><div class="ptitle">OCR: citește o factură / un scan</div><div class="pwhen"><b>Când:</b> ai o poză/scan și vrei datele în format digital.</div></div><span class="ptool">imagine atașată</span></div><div class="prompt-code"><pre>Din imaginea atașată (o factură), extrage: furnizor, nr. factură, dată, fiecare produs cu cantitate și preț, TVA, total.
-Doar ce e vizibil. Dacă un câmp nu se citește clar, marchează-l „de verificat".</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">F6</span><div><div class="ptitle">Comenzi în limbaj natural pe fișierele tale</div><div class="pwhen"><b>Când:</b> ai conectat Drive/Sheets la AI.</div></div><span class="ptool">Gemini+MCP</span></div><div class="prompt-code"><pre>(Drive) Găsește fișierul „[NUME]" din [lună] și rescrie-l pentru clientul [X], păstrând structura.
-(Sheets) Din foaia „[NUME]", scoate top 10 [clienți] după valoare și scrie email de re-contactare.
-(Sheets) Adaugă o coloană „Status" și marchează cine nu a mai comandat în ultimele [3] luni.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">F7</span><div><div class="ptitle">Prezentare din conținut</div><div class="pwhen"><b>Când:</b> ai informația, dar nu și slide-urile.</div></div><span class="ptool">Gemini Canvas</span></div><div class="prompt-code"><pre>Creează o prezentare de [6] slide-uri pentru [AUDIENȚĂ] despre [SUBIECT].
-Ton profesional, structură clară, un slide cu prețuri, un slide cu pașii următori.
-Pentru fiecare slide: titlu + 3 bullet-uri scurte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-            </div>
-
-            <!-- G -->
-            <div class="prompt-section" data-sec="G">
-              <div class="psec-head"><span class="psec-tag">G</span><h4>Productivitate personală</h4></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">G1</span><div><div class="ptitle">Planifică-mi ziua / săptămâna</div><div class="pwhen"><b>Când:</b> ai o listă haotică de lucruri de făcut.</div></div></div><div class="prompt-code"><pre>Am de făcut lucrurile de mai jos. Organizează-mi-le pe priorități (urgent/important),
-estimează timpul pentru fiecare și propune-mi un plan realist pentru [azi / săptămâna asta].
-Marchează ce pot delega sau amâna.
-"""
-[LIPEȘTI lista ta]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">G2</span><div><div class="ptitle">Pregătește-mă pentru o discuție grea</div><div class="pwhen"><b>Când:</b> ai o negociere sau o conversație tensionată.</div></div></div><div class="prompt-code"><pre>Trebuie să port discuția: [DESCRIE situația și ce vreau să obțin].
-Pregătește-mă: 3 puncte-cheie de transmis, cum răspund la 3 reacții probabile,
-și o frază de deschidere calmă. Vreau să fiu ferm, dar să păstrez relația.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">G3</span><div><div class="ptitle">Învață-mă ceva repede</div><div class="pwhen"><b>Când:</b> vrei să stăpânești un subiect nou pentru muncă.</div></div></div><div class="prompt-code"><pre>Vreau să înțeleg [SUBIECT] suficient cât să [OBIECTIV, ex: discut cu un furnizor].
-Învață-mă în 20 de minute: concepte de bază, 5 termeni esențiali, 3 greșeli frecvente,
-și 3 întrebări deștepte pe care le pot pune. Verifică-mi înțelegerea cu 2 întrebări la final.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">G4</span><div><div class="ptitle">Transcriere → acțiuni</div><div class="pwhen"><b>Când:</b> ai înregistrat/notat o ședință sau un apel.</div></div></div><div class="prompt-code"><pre>Din transcrierea de mai jos, extrage: 1) deciziile luate, 2) lista de acțiuni cu responsabil și termen,
-3) întrebările rămase deschise. Format: 3 liste clare.
-"""
-[LIPEȘTI transcrierea]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">G5</span><div><div class="ptitle">Verifică-mi gândirea (devil's advocate)</div><div class="pwhen"><b>Când:</b> ai un plan și vrei să-i găsești fisurile.</div></div></div><div class="prompt-code"><pre>Iată planul meu: [DESCRIE planul].
-Fii avocatul diavolului: care sunt cele mai mari 3 riscuri, ce presupun greșit,
-ce ar spune un sceptic inteligent? Apoi cum aș putea întări planul.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">G6</span><div><div class="ptitle">Scrie un mesaj pe care-l amân de zile</div><div class="pwhen"><b>Când:</b> tot amâni un mesaj greu de scris.</div></div></div><div class="prompt-code"><pre>Trebuie să-i scriu [CUI] ca să-i spun [CE, situația dificilă].
-Scrie-mi 2 variante: una mai blândă, una mai directă. Onest, respectuos, fără să evit subiectul. Max 100 de cuvinte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-            </div>
-
-            <!-- H -->
-            <div class="prompt-section" data-sec="H">
-              <div class="psec-head"><span class="psec-tag">H</span><h4>Prompturi pe industrie</h4></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">H1</span><div><div class="ptitle">🩺 Material educativ pentru pacienți</div><div class="pwhen"><b>Când:</b> vrei să explici o procedură pe înțelesul pacientului.</div></div></div><div class="prompt-code"><pre>Ești comunicator medical. Scrie un material de [400] de cuvinte care explică [PROCEDURA]
-pentru pacienți non-medici: ce este, la ce să se aștepte, ce întrebări să pună medicului.
-Ton: empatic, clar. Fără diagnostic, fără sfaturi de tratament. Adaugă disclaimer.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">H2</span><div><div class="ptitle">🩺 Comunicare clinică (programări, reamintiri)</div><div class="pwhen"><b>Când:</b> standardizezi mesajele cabinetului.</div></div></div><div class="prompt-code"><pre>Scrie șabloane de mesaje pentru cabinetul meu [tip]: 1) confirmare programare, 2) reamintire cu 24h înainte,
-3) follow-up post-consultație, 4) reprogramare. Ton: cald, profesional, scurt.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">H3</span><div><div class="ptitle">🎓 Plan de lecție / curs</div><div class="pwhen"><b>Când:</b> pregătești un modul de curs.</div></div></div><div class="prompt-code"><pre>Ești designer instrucțional. Fă-mi un plan de lecție de [90] de minute despre [SUBIECT] pentru [CINE].
-Include: obiective, structură pe blocuri cu timp, 2 exerciții practice, cum verific că au înțeles.
-Stil: practic, hands-on.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">H5</span><div><div class="ptitle">👥 Anunț de job atractiv</div><div class="pwhen"><b>Când:</b> recrutezi și vrei candidați buni.</div></div></div><div class="prompt-code"><pre>Scrie un anunț de angajare pentru postul [TITLU] în firma [DESCRIERE scurtă].
-Structură: ce facem, ce vei face tu, ce căutăm, ce oferim. Ton: uman, onest, fără clișee corporate.
-Evidențiază 3 motive reale pentru care merită. Max 350 de cuvinte.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">H8</span><div><div class="ptitle">💰 Explică un raport financiar pe înțeles</div><div class="pwhen"><b>Când:</b> prezinți cifre unor non-financiari.</div></div></div><div class="prompt-code"><pre>Explică datele de mai jos pentru un antreprenor non-financiar: ce înseamnă, ce e bine, ce e îngrijorător,
-și 3 acțiuni concrete. Fără jargon. Folosește valori rotunjite/anonimizate.
-"""
-[LIPEȘTI cifrele]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">H11</span><div><div class="ptitle">⚖️ Rezumă un contract &amp; semnalează riscuri</div><div class="pwhen"><b>Când:</b> ai un contract de citit înainte de semnat.</div></div></div><div class="prompt-code"><pre>Rezumă contractul de mai jos: obligațiile mele, obligațiile celuilalt, termene, penalități.
-Semnalează 5 clauze riscante și ce aș putea negocia. NU oferi consultanță legală definitivă.
-"""
-[LIPEȘTI contractul — anonimizat]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">H13</span><div><div class="ptitle">🏠 Anunț de proprietate care vinde</div><div class="pwhen"><b>Când:</b> listezi o proprietate.</div></div></div><div class="prompt-code"><pre>Scrie un anunț pentru [TIP PROPRIETATE] în [ZONĂ]: [suprafață, camere, dotări, preț].
-Hook în primul rând, beneficii ale zonei și ale locuinței, CTA clar. Fără exagerări.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">H15</span><div><div class="ptitle">🛍️ Descrieri de produs în serie</div><div class="pwhen"><b>Când:</b> ai zeci de produse de descris.</div></div></div><div class="prompt-code"><pre>Pentru fiecare produs de mai jos, scrie o descriere de [50] de cuvinte (beneficii + detaliu concret + CTA)
-și 5 cuvinte-cheie pentru căutare. Format: tabel.
-"""
-[LIPEȘTI lista de produse cu specificații]
-"""</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">H17</span><div><div class="ptitle">📣 Brief de campanie</div><div class="pwhen"><b>Când:</b> pornești o campanie pentru un client.</div></div></div><div class="prompt-code"><pre>Scrie un brief de campanie pentru [CLIENT/PRODUS]: obiectiv, public țintă, mesaj-cheie, canale,
-3 unghiuri creative, KPI de urmărit. Format: o pagină, clar pentru echipă.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card"><div class="prompt-card-head"><span class="pid">H20</span><div><div class="ptitle">📣 Persona de client</div><div class="pwhen"><b>Când:</b> vrei să țintești mai precis.</div></div></div><div class="prompt-code"><pre>Pe baza afacerii [DESCRIERE], construiește 2-3 persona de client:
-nume, situație, ce vrea, ce-l frământă, unde e online, ce mesaj îl convinge.
-Pentru fiecare, un unghi de comunicare diferit.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-            </div>
-
-            <!-- I -->
-            <div class="prompt-section" data-sec="I">
-              <div class="psec-head"><span class="psec-tag purple">I</span><h4>Setup tool-uri (o dată, folosești la nesfârșit)</h4></div>
-              <div class="prompt-card purple"><div class="prompt-card-head"><span class="pid purple">I1</span><div><div class="ptitle">ChatGPT — Custom Instructions</div><div class="pwhen"><b>Unde:</b> Settings → Personalization → Custom Instructions.</div></div></div><div class="prompt-code"><pre>[Despre tine] Mă numesc [NUME], sunt [ROL] la [FIRMĂ], în domeniul [DOMENIU].
-Lucrez cu [TIP CLIENȚI]. Obiectivele mele tipice: [ce ceri des de la AI].
-
-[Cum să răspundă] Răspunde în română, direct și concret, fără introduceri lungi.
-Structurează în bullet-uri. Ton: profesional, dar accesibil.
-Dacă-ți lipsește un detaliu esențial, întreabă-mă întâi.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card purple"><div class="prompt-card-head"><span class="pid purple">I2</span><div><div class="ptitle">Claude / ChatGPT Project — Instrucțiuni</div><div class="pwhen"><b>Unde:</b> creezi un Project, încarci fișiere de context, pui asta în Instructions.</div></div></div><div class="prompt-code"><pre>Ești asistentul meu pentru [SCOP, ex: comunicarea comercială a brandului X].
-Folosește ÎNTOTDEAUNA informațiile din fișierele atașate (voce de brand, produse, reguli).
-Înainte de a livra, verifică: tonul e al brandului? există un CTA? respect restricțiile?
-Dacă-mi lipsește un detaliu, pune o singură întrebare scurtă.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-              <div class="prompt-card purple"><div class="prompt-card-head"><span class="pid purple">I3</span><div><div class="ptitle">NotebookLM — întrebare-tip pe sursele tale</div><div class="pwhen"><b>Unde:</b> încarci documentele, apoi întrebi în Chat.</div></div></div><div class="prompt-code"><pre>Pe baza DOAR a surselor încărcate: [ÎNTREBAREA].
-Răspunde cu citate exacte din document.
-Dacă informația nu există în surse, spune „nu apare în surse".
-La final, generează un Audio Overview în română.</pre><button class="copy-btn" onclick="copyPrompt(this)">Copiază</button></div></div>
-            </div>
-
-          </div><!-- /prompts-wrap -->
+                    </div><!-- /prompts-wrap -->
         </div>
       </div>
 
@@ -1057,36 +882,33 @@ La final, generează un Audio Overview în română.</pre><button class="copy-bt
         </div>
         <div class="section-body" id="b-tema">
 
-          <div class="hw-box">
-            <h3>📌 Tema pentru sesiunea 2</h3>
-            <p>Alege <strong>1 task repetitiv</strong> din munca ta de zi cu zi. Construiește-i un prompt complet cu template-ul de mai jos, testează-l de <strong>3 ori</strong> și notează ce a mers și ce nu. Adu exemplul la sesiunea 2.</p>
-            <div class="template-code">
-              Ești <span class="tpl-mark">ROL</span>.<br>
-              <span class="tpl-mark">CONTEXT</span> (compania mea, publicul, situația).<br>
-              <span class="tpl-mark">SARCINA</span> exactă (scrie / rezumă / compară…).<br>
-              Outputul trebuie să fie <span class="tpl-mark">FORMAT</span>.<br>
-              Evită <span class="tpl-mark">RESTRICȚIE</span>.
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px">
+
+            <div style="background:hsl(228,76%,98%);border:1px solid hsl(228,76%,88%);border-radius:var(--radius);padding:20px">
+              <div style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--primary);margin-bottom:14px">🎯 Obligatoriu — setup-ul tău</div>
+              <div class="checklist" id="checklist">
+                <div class="checklist-item" data-id="c1"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)"><strong>Personalizează-ți AI-ul</strong> — Custom Instructions în ChatGPT sau „Instrucțiunile tale pentru Gemini" (cine ești, ton, română)</label></div>
+                <div class="checklist-item" data-id="c2"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)"><strong>Conectează Google Workspace</strong> la Gemini (dacă lucrezi cu Gmail/Docs/Drive)</label></div>
+                <div class="checklist-item" data-id="c3"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)"><strong>Creează un Gem</strong> în Gemini — un asistent pentru o sarcină reală (ofertă, email, screening CV)</label></div>
+                <div class="checklist-item" data-id="c4"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)"><strong>Creează un Project</strong> în Claude — cu instrucțiuni + 1-2 fișiere de context</label></div>
+              </div>
             </div>
-            <div class="btn-row">
-              <a href="https://chat.openai.com" target="_blank" rel="noopener" class="btn btn-primary">→ Testează în ChatGPT</a>
-              <a href="https://claude.ai" target="_blank" rel="noopener" class="btn btn-outline">→ Testează în Claude</a>
+
+            <div style="background:hsl(142,71%,97%);border:1px solid hsl(142,60%,82%);border-radius:var(--radius);padding:20px">
+              <div style="font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:hsl(142,60%,32%);margin-bottom:14px">⭐ Bonus — du-l mai departe</div>
+              <div class="checklist" id="checklist-bonus">
+                <div class="checklist-item" data-id="b1"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)"><strong>Biblioteca ta de 10 prompturi</strong> — folosește-le 5 zile la rând</label></div>
+                <div class="checklist-item" data-id="b2"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)"><strong>Deep Research</strong> — testează-l pe o temă de business reală</label></div>
+                <div class="checklist-item" data-id="b3"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)"><strong>NotebookLM</strong> — încarcă un document propriu și pune-i 3 întrebări</label></div>
+                <div class="checklist-item" data-id="b4"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)"><strong>Alege UN task repetitiv</strong> și fă-ți un workflow pentru el</label></div>
+              </div>
             </div>
+
           </div>
 
-          <p style="font-size:13px;font-weight:700;margin-bottom:10px;margin-top:4px">KPI — am bibliotecă, dacă:</p>
-          <div class="checklist" id="checklist">
-            <div class="checklist-item" data-id="c1"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)">Am scris 10 prompturi pentru taskuri reale din munca mea.</label></div>
-            <div class="checklist-item" data-id="c2"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)">Fiecare prompt are cel puțin Rol + Context + Sarcină.</label></div>
-            <div class="checklist-item" data-id="c3"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)">Le-am testat live și am ajustat ce nu a sunat bine.</label></div>
-            <div class="checklist-item" data-id="c4"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)">Le-am salvat undeva la îndemână (Doc, Notes, sau un Project).</label></div>
-            <div class="checklist-item" data-id="c5"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)">Am ales 1 task repetitiv pe care îl folosesc 5 zile la rând.</label></div>
-            <div class="checklist-item" data-id="c6"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)">Am configurat Custom Instructions în ChatGPT sau un Project în Claude.</label></div>
-            <div class="checklist-item" data-id="c7"><div class="check-box" onclick="toggleCheck(this)"><span class="check-mark">✓</span></div><label class="check-label" onclick="toggleCheckLabel(this)">Am testat NotebookLM cu un document al meu.</label></div>
-          </div>
-
-          <div class="callout ok" style="margin-top:12px">
-            <span class="callout-title">➕ Continuă biblioteca</span>
-            De fiecare dată când scrii un prompt care iese bine, salvează-l. În câteva săptămâni ai propria librărie — mai valoroasă decât orice listă generică, pentru că e a <strong>afacerii tale</strong>.
+          <div class="callout ok">
+            <span class="callout-title">Nu le face perfect — fă-le o dată.</span>
+            Adu un exemplu concret din fiecare la Sesiunea 2; pornim de aici.
           </div>
 
           <!-- SUBMIT TEMA -->
