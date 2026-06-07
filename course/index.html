@@ -208,13 +208,13 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
    PRESENTATION CARD
    ════════════════ */
 .pres-banner{
-  background:linear-gradient(135deg,var(--primary) 0%,hsl(250,76%,50%) 100%);
-  border-radius:var(--radius-sm);padding:28px 24px;margin-bottom:14px;
+  background:var(--muted);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:22px 24px;margin-bottom:14px;
   display:flex;align-items:center;justify-content:space-between;gap:16px;
 }
-.pres-banner-text h4{font-size:16px;font-weight:800;color:#fff;margin-bottom:4px}
-.pres-banner-text p{font-size:13px;color:hsl(228,76%,88%);line-height:1.5}
-.pres-big-icon{font-size:48px;opacity:.6;flex-shrink:0}
+.pres-banner-text h4{font-size:15px;font-weight:700;color:var(--fg);margin-bottom:4px}
+.pres-banner-text p{font-size:13px;color:var(--muted-fg);line-height:1.5}
+.pres-big-icon{font-size:42px;opacity:.35;flex-shrink:0}
 .btn-row{display:flex;gap:8px;flex-wrap:wrap}
 .btn{
   display:inline-flex;align-items:center;gap:6px;
@@ -477,8 +477,8 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
       </div>
       <div class="sub-nav" id="sub1">
         <div class="sub-item active" onclick="scrollTo2('prezentare',this)"><span class="sub-dot"></span>Prezentare</div>
-        <div class="sub-item" onclick="scrollTo2('prompturi',this)"><span class="sub-dot"></span>Prompturi</div>
         <div class="sub-item" onclick="scrollTo2('tooluri',this)"><span class="sub-dot"></span>Tool-uri</div>
+        <div class="sub-item" onclick="scrollTo2('prompturi',this)"><span class="sub-dot"></span>Prompturi</div>
         <div class="sub-item" onclick="scrollTo2('tema',this)"><span class="sub-dot"></span>Temă</div>
       </div>
 
@@ -555,6 +555,82 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
           <div class="btn-row">
             <a href="../session-01.html" target="_blank" class="btn btn-primary">↗ Deschide prezentarea</a>
             <a href="../session-01-prompts.html" target="_blank" class="btn btn-outline">📄 PDF Prompts</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TOOL-URI ── -->
+      <div class="section-block" id="tooluri">
+        <div class="section-head" onclick="toggleSec('b-tooluri',this)">
+          <div class="section-icon mint">🛠️</div>
+          <div class="section-text">
+            <h3>Tool-urile cursului</h3>
+            <p>6 instrumente cu care lucrezi în curs — ce face fiecare și când îl folosești</p>
+          </div>
+          <span class="section-time">~5 min</span>
+          <span class="section-chevron open">▼</span>
+        </div>
+        <div class="section-body" id="b-tooluri">
+          <div class="tools-grid">
+
+            <a href="https://chat.openai.com" target="_blank" rel="noopener" class="tool-card">
+              <div class="tool-card-top">
+                <div class="tool-logo"><img src="../assets/logos/openai.svg" alt="OpenAI"></div>
+                <div><div class="tool-name">ChatGPT</div><div class="tool-desc">Cel mai larg ecosistem: imagini cu DALL·E, integrări cu Canva, Gmail, Trello, plugins, GPT Store</div></div>
+                <span class="tool-tag lavender">Universal</span>
+              </div>
+              <div class="tool-best">→ Start aici dacă nu știi cu ce să începi</div>
+            </a>
+
+            <a href="https://gemini.google.com" target="_blank" rel="noopener" class="tool-card">
+              <div class="tool-card-top">
+                <div class="tool-logo"><img src="../assets/logos/gemini.svg" alt="Gemini"></div>
+                <div><div class="tool-name">Gemini</div><div class="tool-desc">Integrat nativ în Gmail, Docs, Sheets, Drive. Generează video cu Veo. Ideal dacă ești deja în ecosistemul Google</div></div>
+                <span class="tool-tag mint">Google Suite</span>
+              </div>
+              <div class="tool-best">→ Alege dacă lucrezi zilnic în Google</div>
+            </a>
+
+            <a href="https://claude.ai" target="_blank" rel="noopener" class="tool-card">
+              <div class="tool-card-top">
+                <div class="tool-logo"><img src="../assets/logos/claude.svg" alt="Claude"></div>
+                <div><div class="tool-name">Claude</div><div class="tool-desc">Cel mai bun la documente lungi și raționament complex. Add-in nativ pentru Word și Outlook. Projects cu fișiere de context</div></div>
+                <span class="tool-tag peach">Documente</span>
+              </div>
+              <div class="tool-best">→ Alege pentru contracte, rapoarte, Office</div>
+            </a>
+
+            <a href="https://notebooklm.google.com" target="_blank" rel="noopener" class="tool-card">
+              <div class="tool-card-top">
+                <div class="tool-logo"><img src="../assets/logos/notebooklm.svg" alt="NotebookLM"></div>
+                <div><div class="tool-name">NotebookLM</div><div class="tool-desc">Răspunde EXCLUSIV din documentele tale încărcate, cu citate exacte. Generează podcast audio din surse. Zero halucinații pe surse proprii</div></div>
+                <span class="tool-tag sky">Documente proprii</span>
+              </div>
+              <div class="tool-best">→ Alege când vrei să „întrebi" un document</div>
+            </a>
+
+            <a href="https://www.perplexity.ai" target="_blank" rel="noopener" class="tool-card">
+              <div class="tool-card-top">
+                <div class="tool-logo"><img src="../assets/logos/perplexity.svg" alt="Perplexity"></div>
+                <div><div class="tool-name">Perplexity</div><div class="tool-desc">AI cu acces la internet în timp real. Fiecare răspuns vine cu surse și linkuri verificabile. Ideal pentru research de piață și competitori</div></div>
+                <span class="tool-tag rose">Research</span>
+              </div>
+              <div class="tool-best">→ Alege când ai nevoie de surse actuale</div>
+            </a>
+
+            <a href="https://drive.google.com" target="_blank" rel="noopener" class="tool-card">
+              <div class="tool-card-top">
+                <div class="tool-logo"><img src="../assets/logos/googledrive.svg" alt="Drive"></div>
+                <div><div class="tool-name">Google Drive + Gemini</div><div class="tool-desc">Comandă în limbaj natural direct pe fișierele tale din cloud: caută, editează, rezumă, trimite emailuri din Sheets</div></div>
+                <span class="tool-tag lemon">Automatizare</span>
+              </div>
+              <div class="tool-best">→ Alege pentru comenzi pe fișierele tale</div>
+            </a>
+
+          </div>
+          <div class="callout tip">
+            <span class="callout-title">💡 Regula de bază</span>
+            Nu ai nevoie de toate 6 din prima zi. Alege 2: unul universal (ChatGPT sau Gemini) și unul specializat (Claude pentru documente, NotebookLM pentru fișierele proprii). Adaugi celelalte pe măsură ce apare nevoia.
           </div>
         </div>
       </div>
@@ -927,75 +1003,6 @@ La final, generează un Audio Overview în română.</pre><button class="copy-bt
             </div>
 
           </div><!-- /prompts-wrap -->
-        </div>
-      </div>
-
-      <!-- ── TOOL-URI ── -->
-      <div class="section-block" id="tooluri">
-        <div class="section-head" onclick="toggleSec('b-tooluri',this)">
-          <div class="section-icon mint">🛠️</div>
-          <div class="section-text">
-            <h3>Tool-urile cursului</h3>
-            <p>Linkuri directe la toate instrumentele din sesiunea 1</p>
-          </div>
-          <span class="section-time">~5 min</span>
-          <span class="section-chevron open">▼</span>
-        </div>
-        <div class="section-body" id="b-tooluri">
-          <div class="tools-grid">
-            <a href="https://chat.openai.com" target="_blank" rel="noopener" class="tool-card">
-              <div class="tool-card-top">
-                <div class="tool-logo"><img src="../assets/logos/openai.svg" alt="OpenAI"></div>
-                <div><div class="tool-name">ChatGPT</div><div class="tool-desc">Imagini, integrări externe, ecosistem larg</div></div>
-                <span class="tool-tag lavender">GPT-4o</span>
-              </div>
-              <div class="tool-best">→ Alege pentru imagini + integrări</div>
-            </a>
-            <a href="https://gemini.google.com" target="_blank" rel="noopener" class="tool-card">
-              <div class="tool-card-top">
-                <div class="tool-logo"><img src="../assets/logos/gemini.svg" alt="Gemini"></div>
-                <div><div class="tool-name">Gemini</div><div class="tool-desc">Gmail, Docs, Sheets, Drive, video cu Veo</div></div>
-                <span class="tool-tag mint">Google</span>
-              </div>
-              <div class="tool-best">→ Alege dacă lucrezi în Google</div>
-            </a>
-            <a href="https://claude.ai" target="_blank" rel="noopener" class="tool-card">
-              <div class="tool-card-top">
-                <div class="tool-logo"><img src="../assets/logos/claude.svg" alt="Claude"></div>
-                <div><div class="tool-name">Claude</div><div class="tool-desc">Documente lungi, add-in Office nativ</div></div>
-                <span class="tool-tag peach">Anthropic</span>
-              </div>
-              <div class="tool-best">→ Alege pentru documente &amp; Office</div>
-            </a>
-            <a href="https://notebooklm.google.com" target="_blank" rel="noopener" class="tool-card">
-              <div class="tool-card-top">
-                <div class="tool-logo"><img src="../assets/logos/notebooklm.svg" alt="NotebookLM"></div>
-                <div><div class="tool-name">NotebookLM</div><div class="tool-desc">Răspunsuri DOAR din documentele tale</div></div>
-                <span class="tool-tag sky">Google</span>
-              </div>
-              <div class="tool-best">→ Alege pentru documente proprii</div>
-            </a>
-            <a href="https://www.perplexity.ai" target="_blank" rel="noopener" class="tool-card">
-              <div class="tool-card-top">
-                <div class="tool-logo"><img src="../assets/logos/perplexity.svg" alt="Perplexity"></div>
-                <div><div class="tool-name">Perplexity</div><div class="tool-desc">Search AI cu surse verificate și linkuri</div></div>
-                <span class="tool-tag rose">Search</span>
-              </div>
-              <div class="tool-best">→ Alege pentru research cu surse</div>
-            </a>
-            <a href="https://drive.google.com" target="_blank" rel="noopener" class="tool-card">
-              <div class="tool-card-top">
-                <div class="tool-logo"><img src="../assets/logos/googledrive.svg" alt="Drive"></div>
-                <div><div class="tool-name">Google Drive + Gemini</div><div class="tool-desc">Fișiere cloud cu AI nativ pentru editare</div></div>
-                <span class="tool-tag lemon">Cloud</span>
-              </div>
-              <div class="tool-best">→ Alege pentru documente cloud</div>
-            </a>
-          </div>
-          <div class="callout tip">
-            <span class="callout-title">💡 Regula de bază</span>
-            Ai conturi la minimum 2 tool-uri. ChatGPT sau Gemini pentru imagini, Claude pentru documente lungi, NotebookLM pentru documentele tale proprii.
-          </div>
         </div>
       </div>
 
