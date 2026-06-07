@@ -447,6 +447,44 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
 @media(prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+
+/* ════════════════
+   HOMEWORK SUBMIT FORM
+   ════════════════ */
+.hw-submit-box{
+  background:var(--primary-pale);border:1px solid hsl(228,76%,88%);
+  border-radius:var(--radius);padding:22px 22px 18px;margin-top:22px;
+}
+.hw-submit-box h4{font-size:15px;font-weight:700;margin-bottom:6px;color:var(--fg)}
+.hw-submit-box p{font-size:13px;color:var(--muted-fg);margin-bottom:18px;line-height:1.6}
+
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--fg);margin-bottom:5px}
+.form-group input[type=text],
+.form-group input[type=url],
+.form-group textarea{
+  width:100%;padding:9px 12px;border-radius:var(--radius-sm);
+  border:1px solid var(--border);background:var(--card);
+  font-family:inherit;font-size:13px;color:var(--fg);
+  outline:none;transition:border .15s;resize:vertical;
+}
+.form-group input[type=text]:focus,
+.form-group input[type=url]:focus,
+.form-group textarea:focus{border-color:var(--primary)}
+
+.file-drop{
+  border:2px dashed var(--border);border-radius:var(--radius-sm);
+  padding:18px;text-align:center;cursor:pointer;
+  font-size:13px;color:var(--muted-fg);transition:all .15s;
+  background:var(--card);
+}
+.file-drop:hover,.file-drop.drag-over{border-color:var(--primary);background:var(--primary-pale)}
+.file-drop small{font-size:11px;display:block;margin-top:4px}
+.file-drop.has-file{border-color:var(--success);color:hsl(142,60%,32%);background:hsl(142,71%,97%)}
+
+.hw-msg{font-size:13px;padding:10px 14px;border-radius:var(--radius-sm);margin-bottom:10px}
+.hw-msg.err{background:hsl(0,80%,96%);color:hsl(0,65%,40%);border:1px solid hsl(0,70%,88%)}
+.hw-msg.ok{background:hsl(142,71%,96%);color:hsl(142,60%,32%);border:1px solid hsl(142,60%,82%)}
 </style>
 </head>
 <body>
@@ -1050,6 +1088,34 @@ La final, generează un Audio Overview în română.</pre><button class="copy-bt
             <span class="callout-title">➕ Continuă biblioteca</span>
             De fiecare dată când scrii un prompt care iese bine, salvează-l. În câteva săptămâni ai propria librărie — mai valoroasă decât orice listă generică, pentru că e a <strong>afacerii tale</strong>.
           </div>
+
+          <!-- SUBMIT TEMA -->
+          <div class="hw-submit-box" id="hw-submit-box">
+            <h4>📤 Trimite tema ta</h4>
+            <p>Adaugă ce ai lucrat — o captură, un fișier sau câteva rânduri. Trainerul vede toate răspunsurile înainte de sesiunea 2.</p>
+            <form id="tema-form" onsubmit="submitTema(event)">
+              <div class="form-group">
+                <label>Numele tău</label>
+                <input type="text" id="hw-name" placeholder="ex: Maria Ionescu" required maxlength="80">
+              </div>
+              <div class="form-group">
+                <label>Descrie pe scurt ce ai lucrat <span style="color:var(--muted-fg)">(opțional dacă atașezi fișier)</span></label>
+                <textarea id="hw-text" placeholder="Ex: Am construit un prompt pentru email-uri de follow-up și l-am testat de 3 ori. Prima versiune era prea generală, a treia a mers perfect." rows="4"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Captură / fișier / link <span style="color:var(--muted-fg)">(opțional)</span></label>
+                <div class="file-drop" id="file-drop" onclick="document.getElementById('hw-file').click()" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="handleDrop(event)">
+                  <span id="file-drop-label">📎 Click sau trage fișierul aici<br><small>PNG, JPG, PDF, DOCX — max 10MB</small></span>
+                  <input type="file" id="hw-file" accept=".png,.jpg,.jpeg,.pdf,.docx,.doc,.txt" style="display:none" onchange="handleFile(this.files[0])">
+                </div>
+                <input type="url" id="hw-link" placeholder="sau lipești un link (Drive, Notion, screenshot...)" style="margin-top:8px">
+              </div>
+              <div id="hw-error" class="hw-msg err" style="display:none"></div>
+              <div id="hw-success" class="hw-msg ok" style="display:none">✅ Trimis! Trainerul va vedea tema ta înainte de sesiunea 2.</div>
+              <button type="submit" class="btn btn-primary" id="hw-submit-btn" style="margin-top:4px">Trimite tema →</button>
+            </form>
+          </div>
+
         </div>
       </div>
 
@@ -1163,6 +1229,114 @@ function showToast(msg){
 }
 
 document.addEventListener('DOMContentLoaded',()=>{ highlightFields(); loadChecklist(); });
+
+/* ── HOMEWORK SUBMIT ── */
+const SUPA_URL = 'https://qtqxqwlcxsplzfjaivlx.supabase.co';
+const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0cXhxd2xjeHNwbHpmamFpdmx4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDU1NjksImV4cCI6MjA5NTYyMTU2OX0.wklVgGg5Uljvk6k9y1ETUM0ob0owDnrsHcSRqmAL0HM';
+
+let selectedFile = null;
+
+function handleFile(file) {
+  if (!file) return;
+  selectedFile = file;
+  const lbl = document.getElementById('file-drop-label');
+  const drop = document.getElementById('file-drop');
+  lbl.innerHTML = '✅ ' + file.name + '<br><small>' + (file.size/1024).toFixed(0) + ' KB</small>';
+  drop.classList.add('has-file');
+}
+
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('file-drop').classList.remove('drag-over');
+  if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+}
+
+async function uploadFile(file) {
+  const ext = file.name.split('.').pop();
+  const path = Date.now() + '_' + Math.random().toString(36).slice(2,8) + '.' + ext;
+  const res = await fetch(SUPA_URL + '/storage/v1/object/teme-files/' + path, {
+    method: 'POST',
+    headers: {
+      'apikey': SUPA_ANON,
+      'Authorization': 'Bearer ' + SUPA_ANON,
+      'Content-Type': file.type || 'application/octet-stream',
+      'x-upsert': 'true'
+    },
+    body: file
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error('Upload fișier eșuat: ' + err);
+  }
+  return SUPA_URL + '/storage/v1/object/public/teme-files/' + path;
+}
+
+async function submitTema(e) {
+  e.preventDefault();
+  const btn = document.getElementById('hw-submit-btn');
+  const errEl = document.getElementById('hw-error');
+  const okEl = document.getElementById('hw-success');
+  errEl.style.display = 'none';
+  okEl.style.display = 'none';
+
+  const name = document.getElementById('hw-name').value.trim();
+  const text = document.getElementById('hw-text').value.trim();
+  const link = document.getElementById('hw-link').value.trim();
+
+  if (!name) { errEl.textContent = 'Te rog completează numele.'; errEl.style.display = 'block'; return; }
+  if (!text && !selectedFile && !link) {
+    errEl.textContent = 'Adaugă cel puțin o descriere, un fișier sau un link.';
+    errEl.style.display = 'block'; return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Se trimite…';
+
+  try {
+    let fileUrl = null;
+    if (selectedFile) {
+      fileUrl = await uploadFile(selectedFile);
+    }
+
+    const payload = {
+      name,
+      session: 1,
+      text_body: text || null,
+      file_url: fileUrl,
+      link_url: link || null,
+      submitted_at: new Date().toISOString()
+    };
+
+    const res = await fetch(SUPA_URL + '/rest/v1/teme', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPA_ANON,
+        'Authorization': 'Bearer ' + SUPA_ANON,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error(err);
+    }
+
+    okEl.style.display = 'block';
+    btn.style.display = 'none';
+    document.getElementById('tema-form').querySelector('input[type=text]').value = '';
+    document.getElementById('hw-text').value = '';
+    document.getElementById('hw-link').value = '';
+    selectedFile = null;
+  } catch(err) {
+    console.error(err);
+    errEl.textContent = 'Eroare: ' + (err.message || 'Încearcă din nou.');
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Trimite tema →';
+  }
+}
 </script>
 </body>
 </html>

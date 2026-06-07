@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — Teme cursanți | AI for SMEs</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --bg: hsl(220,20%,97%); --fg: hsl(222,47%,11%);
+  --card: hsl(0,0%,100%); --border: hsl(220,13%,91%);
+  --muted-fg: hsl(220,9%,46%); --muted: hsl(220,14%,96%);
+  --primary: hsl(228,76%,52%); --primary-pale: hsl(228,76%,96%);
+  --success: hsl(142,71%,45%); --radius: 14px; --radius-sm: 9px;
+  --shadow-md: 0 4px 12px hsl(222 47% 11% / .07);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;-webkit-font-smoothing:antialiased}
+
+/* LOGIN */
+#login-screen{
+  display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;
+}
+.login-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:36px 32px;width:100%;max-width:360px;box-shadow:var(--shadow-md);text-align:center;
+}
+.login-card h2{font-size:20px;margin-bottom:6px}
+.login-card p{font-size:13px;color:var(--muted-fg);margin-bottom:24px}
+.login-card input{
+  width:100%;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);
+  font-family:inherit;font-size:14px;margin-bottom:12px;outline:none;
+  transition:border .15s;
+}
+.login-card input:focus{border-color:var(--primary)}
+.login-card .btn{
+  width:100%;padding:11px;border:none;border-radius:var(--radius-sm);
+  background:var(--primary);color:#fff;font-family:inherit;font-size:14px;font-weight:600;
+  cursor:pointer;transition:opacity .15s;
+}
+.login-card .btn:hover{opacity:.88}
+.login-err{font-size:13px;color:hsl(0,65%,40%);margin-top:8px}
+
+/* ADMIN PANEL */
+#admin-panel{display:none}
+.topbar{
+  background:var(--card);border-bottom:1px solid var(--border);
+  padding:14px 24px;display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:50;
+}
+.topbar-left{display:flex;align-items:center;gap:12px}
+.brand-mark{
+  width:28px;height:28px;border-radius:7px;
+  background:linear-gradient(135deg,var(--primary),hsl(250,76%,52%));
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:800;color:#fff;flex-shrink:0;
+}
+.topbar-title{font-size:15px;font-weight:700}
+.topbar-sub{font-size:12px;color:var(--muted-fg)}
+.topbar-right{display:flex;gap:10px;align-items:center}
+#refresh-btn{
+  padding:7px 14px;background:var(--primary-pale);color:var(--primary);
+  border:1px solid hsl(228,76%,88%);border-radius:var(--radius-sm);
+  font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s;
+}
+#refresh-btn:hover{opacity:.8}
+#logout-btn{
+  padding:7px 12px;background:transparent;color:var(--muted-fg);
+  border:1px solid var(--border);border-radius:var(--radius-sm);
+  font-family:inherit;font-size:13px;cursor:pointer;
+}
+
+.content{max-width:860px;margin:0 auto;padding:28px 24px 60px}
+
+.stats-row{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.stat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:14px 18px;flex:1;min-width:120px;
+}
+.stat-num{font-size:26px;font-weight:800;color:var(--primary)}
+.stat-lbl{font-size:12px;color:var(--muted-fg);margin-top:2px}
+
+.filter-row{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;align-items:center}
+.filter-row select,.filter-row input{
+  padding:7px 12px;border:1px solid var(--border);border-radius:var(--radius-sm);
+  font-family:inherit;font-size:13px;background:var(--card);color:var(--fg);outline:none;
+}
+.filter-row input{flex:1;min-width:180px}
+
+.submissions-list{display:flex;flex-direction:column;gap:12px}
+.sub-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:18px 20px;transition:box-shadow .15s;
+}
+.sub-card:hover{box-shadow:var(--shadow-md)}
+.sub-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:10px}
+.sub-name{font-size:15px;font-weight:700}
+.sub-meta{font-size:12px;color:var(--muted-fg);margin-top:2px}
+.sub-session-badge{
+  padding:3px 10px;border-radius:var(--radius-sm);font-size:11px;font-weight:700;
+  background:var(--primary-pale);color:var(--primary);white-space:nowrap;flex-shrink:0;
+}
+.sub-text{
+  font-size:13px;line-height:1.6;color:var(--fg);
+  background:var(--muted);border-radius:var(--radius-sm);
+  padding:10px 14px;margin-bottom:10px;white-space:pre-wrap;
+}
+.sub-attachments{display:flex;gap:8px;flex-wrap:wrap}
+.sub-link{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 12px;border-radius:var(--radius-sm);font-size:12px;font-weight:600;
+  border:1px solid var(--border);color:var(--primary);text-decoration:none;background:var(--card);
+  transition:background .15s;
+}
+.sub-link:hover{background:var(--primary-pale)}
+.sub-link.file{border-color:hsl(142,60%,82%);color:hsl(142,60%,32%)}
+.sub-link.file:hover{background:hsl(142,71%,96%)}
+
+#loading{text-align:center;padding:40px;color:var(--muted-fg);font-size:14px}
+#empty{text-align:center;padding:60px;color:var(--muted-fg)}
+#empty p{margin-top:12px;font-size:14px}
+
+@media(max-width:600px){
+  .content{padding:20px 14px}
+  .topbar{padding:12px 14px}
+  .sub-card{padding:14px}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="brand-mark" style="margin:0 auto 14px;width:36px;height:36px;font-size:14px">AI</div>
+    <h2>Admin — AI for SMEs</h2>
+    <p>Introduceți parola de trainer pentru a accesa temele cursanților.</p>
+    <input type="password" id="pwd-input" placeholder="Parolă" onkeydown="if(event.key==='Enter')login()">
+    <button class="btn" onclick="login()">Intră →</button>
+    <div class="login-err" id="login-err"></div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="brand-mark">AI</div>
+      <div>
+        <div class="topbar-title">Teme cursanți</div>
+        <div class="topbar-sub">AI for SMEs · Vector Academy</div>
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button id="refresh-btn" onclick="loadSubmissions()">↻ Reîncarcă</button>
+      <button id="logout-btn" onclick="logout()">Ieși</button>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-num" id="stat-total">—</div><div class="stat-lbl">Total teme</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-s1">—</div><div class="stat-lbl">Sesiunea 1</div></div>
+      <div class="stat-card"><div class="stat-num" id="stat-files">—</div><div class="stat-lbl">Cu fișiere</div></div>
+    </div>
+
+    <div class="filter-row">
+      <select id="filter-session" onchange="renderList()">
+        <option value="all">Toate sesiunile</option>
+        <option value="1">Sesiunea 1</option>
+        <option value="2">Sesiunea 2</option>
+        <option value="3">Sesiunea 3</option>
+      </select>
+      <input type="text" id="filter-search" placeholder="Caută după nume..." oninput="renderList()">
+    </div>
+
+    <div id="loading">Se încarcă temele…</div>
+    <div id="empty" style="display:none">
+      <div style="font-size:40px">📭</div>
+      <p>Nicio temă trimisă încă.</p>
+    </div>
+    <div class="submissions-list" id="submissions-list"></div>
+  </div>
+</div>
+
+<script>
+const SUPA_URL = 'https://qtqxqwlcxsplzfjaivlx.supabase.co';
+const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF0cXhxd2xjeHNwbHpmamFpdmx4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAwNDU1NjksImV4cCI6MjA5NTYyMTU2OX0.wklVgGg5Uljvk6k9y1ETUM0ob0owDnrsHcSRqmAL0HM';
+const ADMIN_PWD = 'vector2026';
+
+let allSubmissions = [];
+
+function login() {
+  const pwd = document.getElementById('pwd-input').value;
+  if (pwd === ADMIN_PWD) {
+    sessionStorage.setItem('admin_auth', '1');
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-panel').style.display = 'block';
+    loadSubmissions();
+  } else {
+    document.getElementById('login-err').textContent = 'Parolă incorectă.';
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('admin_auth');
+  location.reload();
+}
+
+if (sessionStorage.getItem('admin_auth') === '1') {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('admin-panel').style.display = 'block';
+  loadSubmissions();
+}
+
+async function loadSubmissions() {
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('submissions-list').innerHTML = '';
+  document.getElementById('empty').style.display = 'none';
+
+  try {
+    const res = await fetch(SUPA_URL + '/rest/v1/teme?order=submitted_at.desc&limit=200', {
+      headers: {
+        'apikey': SUPA_ANON,
+        'Authorization': 'Bearer ' + SUPA_ANON
+      }
+    });
+    if (!res.ok) throw new Error(await res.text());
+    allSubmissions = await res.json();
+    document.getElementById('loading').style.display = 'none';
+    updateStats();
+    renderList();
+  } catch(e) {
+    document.getElementById('loading').textContent = 'Eroare la încărcare: ' + e.message;
+  }
+}
+
+function updateStats() {
+  document.getElementById('stat-total').textContent = allSubmissions.length;
+  document.getElementById('stat-s1').textContent = allSubmissions.filter(s => s.session === 1).length;
+  document.getElementById('stat-files').textContent = allSubmissions.filter(s => s.file_url).length;
+}
+
+function renderList() {
+  const sesFilter = document.getElementById('filter-session').value;
+  const search = document.getElementById('filter-search').value.toLowerCase();
+
+  let list = allSubmissions;
+  if (sesFilter !== 'all') list = list.filter(s => String(s.session) === sesFilter);
+  if (search) list = list.filter(s => (s.name||'').toLowerCase().includes(search));
+
+  const container = document.getElementById('submissions-list');
+  container.innerHTML = '';
+
+  if (!list.length) {
+    document.getElementById('empty').style.display = 'block';
+    return;
+  }
+  document.getElementById('empty').style.display = 'none';
+
+  list.forEach(sub => {
+    const date = sub.submitted_at ? new Date(sub.submitted_at).toLocaleString('ro-RO', {day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}) : '—';
+    const card = document.createElement('div');
+    card.className = 'sub-card';
+    card.innerHTML = `
+      <div class="sub-card-head">
+        <div>
+          <div class="sub-name">${esc(sub.name || 'Anonim')}</div>
+          <div class="sub-meta">Trimis: ${date}</div>
+        </div>
+        <span class="sub-session-badge">Sesiunea ${sub.session || '?'}</span>
+      </div>
+      ${sub.text_body ? `<div class="sub-text">${esc(sub.text_body)}</div>` : ''}
+      <div class="sub-attachments">
+        ${sub.file_url ? `<a class="sub-link file" href="${esc(sub.file_url)}" target="_blank" rel="noopener">📎 Fișier atașat</a>` : ''}
+        ${sub.link_url ? `<a class="sub-link" href="${esc(sub.link_url)}" target="_blank" rel="noopener">🔗 Link</a>` : ''}
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function esc(str) {
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
