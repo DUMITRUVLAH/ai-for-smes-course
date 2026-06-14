@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sesiunea 3A — Cum îți construiești propriii agenți AI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary:#2D52D4;--primary-light:#5B7CF7;--primary-ultra-light:#EEF2FF;
+      --foreground:#0F172A;--muted:#64748B;--border:#E2E8F0;--card:#FFFFFF;--bg:#F8FAFC;
+      --success:#22C55E;--destructive:#EF4444;--warning:#F59E0B;
+      --pastel-mint:#DCFCE7;--pastel-lavender:#EDE9FE;--pastel-peach:#FFEDD5;
+      --pastel-sky:#E0F2FE;--pastel-rose:#FCE7F3;
+      --radius:14px;--radius-sm:8px;--shadow:0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice:#7C3AED;
+    }
+    .reveal{font-family:'Onest',system-ui,sans-serif!important;font-size:28px;color:var(--foreground);}
+    .reveal .slides{text-align:left;}
+    .reveal section{padding:0;height:100%;box-sizing:border-box;}
+    .reveal h1,.reveal h2,.reveal h3{font-family:'Onest',system-ui,sans-serif;text-transform:none;text-shadow:none;}
+    .reveal .progress{color:var(--primary);height:3px;}
+    .reveal .controls{color:var(--primary);}
+    .slide{width:100%;height:100%;padding:48px 62px;box-sizing:border-box;display:flex;flex-direction:column;background:#fff;position:relative;overflow:hidden;}
+    .slide::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary) 0%,#7C3AED 100%);}
+    .slide.demo::before{background:linear-gradient(90deg,#7C3AED 0%,#DB2777 100%);}
+    .slide-header{margin-bottom:20px;}
+    .slide-tag{display:inline-block;background:var(--primary-ultra-light);color:var(--primary);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;margin-bottom:10px;}
+    .slide-tag.demo-tag{background:#F3E8FF;color:var(--practice);}
+    .slide-tag.dict-tag{background:#FEF3C7;color:#92400E;}
+    .slide-title{font-size:35px!important;font-weight:800!important;line-height:1.12!important;color:var(--foreground)!important;margin:0 0 6px!important;letter-spacing:-.015em;}
+    .slide-subtitle{font-size:16px;color:var(--muted);font-weight:400;margin:0;line-height:1.5;max-width:920px;}
+    .slide-subtitle b{color:var(--foreground);font-weight:600;}
+    .slide-num{position:absolute;bottom:16px;right:30px;font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.04em;}
+    .logo{display:inline-block;vertical-align:middle;}.logo svg{display:block;}
+
+    /* COVER */
+    .slide-cover{background:var(--foreground);color:#fff;justify-content:center;}
+    .slide-cover::before{display:none;}
+    .cover-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0B1120 0%,#1E3A8A 58%,#3B2F8F 100%);}
+    .cover-accent{position:absolute;top:-140px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(93,112,247,.40) 0%,transparent 70%);}
+    .cover-accent2{position:absolute;bottom:-100px;left:-90px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.30) 0%,transparent 70%);}
+    .cover-content{position:relative;z-index:2;}
+    .cover-kicker{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:7px 18px;font-size:14px;font-weight:500;color:rgba(255,255,255,.82);margin-bottom:32px;}
+    .cover-kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--primary-light);}
+    .slide-cover h1{font-size:56px;font-weight:800;line-height:1.06;color:#fff;margin:0 0 20px;letter-spacing:-.025em;}
+    .slide-cover .subtitle{font-size:22px;font-weight:400;color:rgba(255,255,255,.7);margin:0 0 46px;max-width:660px;line-height:1.5;}
+    .cover-logos{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+    .cover-logos .lbl{font-size:13px;color:rgba(255,255,255,.45);margin-right:4px;}
+    .cover-logos .logo svg{fill:rgba(255,255,255,.85);}
+
+    /* VS TABLE */
+    .vs-table{display:grid;grid-template-columns:1fr 1fr;flex:1;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);}
+    .vs-col{display:flex;flex-direction:column;}
+    .vs-col.right{background:var(--bg);border-left:1px solid var(--border);}
+    .vs-head{padding:14px 24px;font-size:17px;font-weight:700;display:flex;align-items:center;gap:10px;}
+    .vs-head.classic{background:#F8FAFC;color:var(--muted);}
+    .vs-head.growth{background:var(--primary-ultra-light);color:var(--primary);}
+    .vs-row{padding:13px 24px;font-size:17px;color:var(--foreground);border-top:1px solid var(--border);line-height:1.4;display:flex;align-items:center;gap:12px;flex:1;}
+    .vs-row .ic{font-size:18px;flex-shrink:0;}
+
+    /* TABLE */
+    .slide-table{width:100%;border-collapse:collapse;font-size:15px;}
+    .slide-table th{padding:12px 16px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.04em;color:#fff;border:none;}
+    .slide-table th.col-b{background:#475569;}
+    .slide-table th.col-c{background:#334155;}
+    .slide-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--foreground);vertical-align:middle;line-height:1.4;}
+    .slide-table tr:last-child td{border-bottom:none;}
+    .slide-table tr:nth-child(even) td{background:var(--bg);}
+    .slide-table td.hl{background:#EEF2FF!important;font-weight:600;}
+    .slide-table .crit{font-weight:700;color:var(--muted);font-size:13px;}
+
+    /* LLM STEPS (tool-use loop) */
+    .llm-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:stretch;}
+    .llm-step{padding:22px 16px;display:flex;flex-direction:column;gap:9px;position:relative;}
+    .llm-step::after{content:'→';position:absolute;right:-11px;top:42px;font-size:22px;color:var(--primary);font-weight:700;z-index:2;}
+    .llm-step:last-child::after{display:none;}
+    .llm-step-num{width:34px;height:34px;border-radius:50%;background:var(--primary);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+    .llm-step-icon{font-size:28px;}
+    .llm-step-title{font-size:15px;font-weight:700;color:var(--foreground);line-height:1.2;}
+    .llm-step-desc{font-size:12.5px;color:var(--muted);line-height:1.45;}
+
+    /* SPLIT SCREEN */
+    .split-screen{display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;}
+    .split-pane{border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px;}
+    .split-pane.bad{background:#FEF2F2;border:1px solid #FECACA;}
+    .split-pane.good{background:#F0FDF4;border:1px solid #86EFAC;}
+    .split-pane.neutral{background:var(--bg);border:1px solid var(--border);}
+    .split-pane.indigo{background:var(--primary-ultra-light);border:1px solid #A5B4FC;}
+    .split-pane.highlight{background:#0F172A;border:2px solid var(--primary-light);color:#fff;}
+    .split-label{font-size:14px;font-weight:700;letter-spacing:.04em;}
+    .split-label.bad{color:#DC2626;}
+    .split-label.good{color:#16A34A;}
+    .split-pane-pill{display:inline-flex;align-self:flex-start;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:100px;}
+    .split-pane-pill.muted{background:#E2E8F0;color:#475569;}
+    .split-pane-pill.bright{background:var(--primary-light);color:#0B1120;}
+    .split-h{font-size:21px;font-weight:800;margin:0;}
+    .split-sub{font-size:14px;color:var(--muted);margin:0 0 4px;}
+    .split-pane.highlight .split-sub{color:rgba(255,255,255,.62);}
+    .split-list{display:flex;flex-direction:column;gap:8px;margin-top:2px;}
+    .split-li{font-size:14.5px;line-height:1.45;display:flex;gap:9px;align-items:flex-start;}
+    .split-li .b{flex-shrink:0;}
+    .flow-chips{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:6px;}
+    .flow-chip{background:#fff;border:1px solid var(--border);border-radius:8px;padding:7px 11px;font-size:13px;font-weight:600;color:var(--foreground);}
+    .flow-arrow{color:var(--primary);font-weight:800;font-size:15px;}
+
+    /* CARDS */
+    .cards-grid{display:grid;gap:16px;flex:1;}
+    .cards-3{grid-template-columns:repeat(3,1fr);}
+    .cards-2{grid-template-columns:repeat(2,1fr);}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;position:relative;}
+    .card.mint{background:var(--pastel-mint);border-color:#86EFAC;}
+    .card.lavender{background:var(--pastel-lavender);border-color:#C4B5FD;}
+    .card.sky{background:var(--pastel-sky);border-color:#BAE6FD;}
+    .card.peach{background:var(--pastel-peach);border-color:#FED7AA;}
+    .card.rose{background:var(--pastel-rose);border-color:#FBCFE8;}
+    .card.primary-light{background:var(--primary-ultra-light);border-color:#A5B4FC;}
+    .card.dark{background:#0F172A;border-color:#1E293B;}
+    .card.dark .card-title{color:#fff;}.card.dark .card-body{color:rgba(255,255,255,.72);}.card.dark .card-body b{color:#fff;}
+    .card-icon{font-size:28px;}
+    .card-num{width:30px;height:30px;border-radius:8px;background:var(--primary);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .card.mint .card-num{background:#16A34A;}.card.lavender .card-num{background:#7C3AED;}
+    .card.sky .card-num{background:#0284C7;}.card.peach .card-num{background:#EA580C;}
+    .card.rose .card-num{background:#DB2777;}
+    .card-title{font-size:17px;font-weight:800;color:var(--foreground);margin:0;}
+    .card-eyebrow{font-size:12px;font-weight:700;color:var(--muted);font-style:italic;margin:-2px 0 0;}
+    .card-body{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0;}
+    .card-body b{color:var(--foreground);}
+    .card-tag{margin-top:auto;font-size:11.5px;font-weight:600;color:var(--muted);background:rgba(255,255,255,.6);border:1px solid rgba(15,23,42,.06);border-radius:7px;padding:6px 9px;}
+    .card.dark .card-tag{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.7);}
+
+    /* ===== DICTIONARY SLIDES ===== */
+    .dict{display:grid;grid-template-columns:.92fr 1.08fr;gap:30px;flex:1;align-items:center;}
+    .dict-left{display:flex;flex-direction:column;gap:16px;}
+    .dict-word{display:flex;align-items:center;gap:14px;}
+    .dict-word .dw-logo{width:54px;height:54px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .dict-word .dw-emoji{font-size:42px;}
+    .dict-word h3{font-size:34px;font-weight:800;margin:0;letter-spacing:-.02em;}
+    .dict-word .dw-sub{font-size:14px;color:var(--muted);margin:2px 0 0;}
+    .dict-analogy{font-size:21px;line-height:1.4;color:var(--foreground);font-weight:500;}
+    .dict-analogy b{color:var(--primary);font-weight:800;}
+    .dict-why{background:var(--primary-ultra-light);border:1px solid #C7D2FE;border-radius:var(--radius);padding:14px 17px;font-size:14.5px;color:var(--foreground);line-height:1.5;}
+    .dict-why .lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--primary);margin-bottom:5px;}
+    .dict-visual{display:flex;align-items:center;justify-content:center;min-height:0;height:100%;}
+
+    /* visual: app window (VS Code 3-zone) */
+    .winframe{width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--border);box-shadow:0 10px 40px -8px rgba(15,23,42,.22);background:#fff;}
+    .win-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#E8EDF4;border-bottom:1px solid var(--border);}
+    .win-dot{width:11px;height:11px;border-radius:50%;}
+    .win-dot.r{background:#FF5F57;}.win-dot.y{background:#FEBC2E;}.win-dot.g{background:#28C840;}
+    .win-title{font-size:12px;color:var(--muted);margin-left:8px;font-weight:600;}
+    .vscode-body{display:grid;grid-template-columns:84px 1fr 150px;height:240px;}
+    .vsz{padding:12px 11px;display:flex;flex-direction:column;gap:7px;}
+    .vsz.files{background:#F1F5F9;border-right:1px solid var(--border);}
+    .vsz.editor{background:#fff;}
+    .vsz.agent{background:#0F172A;border-left:1px solid var(--border);}
+    .vsz-label{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+    .vsz.files .vsz-label{color:#94A3B8;}.vsz.agent .vsz-label{color:#5B7CF7;}.vsz.editor .vsz-label{color:#94A3B8;}
+    .vsz-line{height:8px;border-radius:4px;background:#CBD5E1;}
+    .vsz.editor .vsz-line{background:#E2E8F0;}
+    .vsz.files .vsz-file{font-size:10px;color:#475569;display:flex;gap:5px;align-items:center;}
+    .vsz.agent .vsz-msg{font-size:10px;color:#CBD5E1;line-height:1.4;background:rgba(255,255,255,.06);border-radius:6px;padding:6px 7px;}
+    .vsz.agent .vsz-msg.me{background:var(--primary);color:#fff;}
+
+    /* visual: terminal */
+    .term{width:100%;border-radius:12px;overflow:hidden;border:1px solid #1E293B;box-shadow:0 12px 40px -8px rgba(15,23,42,.3);}
+    .term-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#1E293B;}
+    .term-bar .win-title{color:#94A3B8;}
+    .term-body{background:#0B1120;padding:20px 22px;font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.85;min-height:230px;}
+    .term-body .t-prompt{color:#5B7CF7;}
+    .term-body .t-cmd{color:#fff;}
+    .term-body .t-out{color:#94A3B8;}
+    .term-body .t-ok{color:#22C55E;}
+    .term-body .t-cursor{display:inline-block;width:9px;height:16px;background:#5B7CF7;vertical-align:-2px;animation:blink 1s steps(2) infinite;}
+    @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+
+    /* visual: repo card (GitHub) */
+    .repocard{width:100%;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);background:#fff;}
+    .repocard-top{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+    .repocard-top .gh{font-size:13px;color:var(--muted);}
+    .repocard-top .rn{font-size:18px;font-weight:800;}
+    .repocard-top .rn b{color:var(--primary);}
+    .repocard-body{padding:16px 20px;display:flex;flex-direction:column;gap:12px;}
+    .repocard-body .rd{font-size:14px;color:var(--muted);line-height:1.5;}
+    .repocard-meta{display:flex;gap:18px;align-items:center;font-size:13px;color:var(--muted);}
+    .repocard-meta .m{display:flex;align-items:center;gap:5px;}
+    .repocard-meta .lang{width:11px;height:11px;border-radius:50%;background:#5B7CF7;}
+    .repocard-clone{display:flex;align-items:center;gap:8px;background:#16A34A;color:#fff;font-size:13px;font-weight:700;padding:8px 14px;border-radius:8px;align-self:flex-start;}
+
+    /* visual: markdown */
+    .mdcompare{display:grid;grid-template-columns:1fr 1fr;gap:0;width:100%;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+    .md-src,.md-prev{padding:18px;min-height:230px;}
+    .md-src{background:#0B1120;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.7;color:#CBD5E1;border-right:1px solid var(--border);}
+    .md-src .h{color:#5B7CF7;}.md-src .b{color:#fff;font-weight:700;}.md-src .li{color:#94A3B8;}
+    .md-prev{background:#fff;}
+    .md-prev h4{font-size:18px;font-weight:800;margin:0 0 10px;}
+    .md-prev p{font-size:13px;color:var(--foreground);margin:0 0 9px;line-height:1.5;}
+    .md-prev ul{margin:0;padding-left:18px;}
+    .md-prev li{font-size:13px;color:var(--foreground);line-height:1.6;}
+    .md-tablabel{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#94A3B8;margin-bottom:9px;display:block;}
+
+    /* visual: API plug diagram */
+    .apidiag{display:flex;align-items:center;justify-content:center;gap:0;width:100%;}
+    .api-box{width:150px;height:120px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;border:2px solid;text-align:center;}
+    .api-box.a{background:var(--primary-ultra-light);border-color:#A5B4FC;}
+    .api-box.b{background:var(--pastel-peach);border-color:#FED7AA;}
+    .api-box .ab-t{font-size:15px;font-weight:800;}
+    .api-box .ab-s{font-size:11px;color:var(--muted);}
+    .api-plug{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 6px;}
+    .api-plug .socket{font-size:30px;}
+    .api-plug .line{width:64px;height:3px;background:repeating-linear-gradient(90deg,var(--primary) 0 8px,transparent 8px 14px);}
+    .api-plug .lbl{font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.04em;text-transform:uppercase;}
+
+    /* visual: domain+hosting */
+    .dnsdiag{width:100%;display:flex;flex-direction:column;gap:18px;align-items:center;}
+    .browserbar{width:100%;max-width:420px;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:100px;padding:11px 18px;box-shadow:var(--shadow);}
+    .browserbar .lock{color:#16A34A;font-size:14px;}
+    .browserbar .url{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--foreground);}
+    .browserbar .url b{color:var(--primary);}
+    .dns-link{font-size:24px;color:var(--primary);}
+    .serverbox{width:100%;max-width:300px;background:#0F172A;border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:14px;color:#fff;}
+    .serverbox .sb-icon{font-size:34px;}
+    .serverbox .sb-t{font-size:16px;font-weight:800;}
+    .serverbox .sb-s{font-size:12px;color:rgba(255,255,255,.6);}
+
+    /* visual: MCP hub */
+    .mcphub{position:relative;width:380px;height:300px;display:flex;align-items:center;justify-content:center;}
+    .mcp-center{width:120px;height:120px;border-radius:24px;background:#0F172A;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;z-index:3;box-shadow:0 10px 30px -6px rgba(15,23,42,.4);}
+    .mcp-center .mc-t{font-size:15px;font-weight:800;}
+    .mcp-center .mc-s{font-size:10px;color:var(--primary-light);font-weight:700;letter-spacing:.05em;}
+    .mcp-node{position:absolute;width:78px;height:78px;border-radius:16px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;z-index:2;}
+    .mcp-node .mn-l{font-size:10px;font-weight:700;color:var(--muted);}
+    .mcp-node.n1{top:0;left:18px;}.mcp-node.n2{top:0;right:18px;}
+    .mcp-node.n3{bottom:0;left:18px;}.mcp-node.n4{bottom:0;right:18px;}
+    .mcp-spoke{position:absolute;width:3px;background:repeating-linear-gradient(180deg,#A5B4FC 0 6px,transparent 6px 11px);z-index:1;}
+
+    /* ===== PATTERN FLOW RAILS ===== */
+    .flow-rail{display:flex;align-items:stretch;gap:0;flex:none;}
+    .frnode{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px 14px;display:flex;flex-direction:column;gap:8px;position:relative;}
+    .frnode .frn-num{width:32px;height:32px;border-radius:50%;background:var(--primary);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+    .frnode .frn-ic{font-size:26px;}
+    .frnode .frn-t{font-size:15px;font-weight:800;color:var(--foreground);line-height:1.2;}
+    .frnode .frn-d{font-size:12.5px;color:var(--muted);line-height:1.45;}
+    .frarrow{display:flex;align-items:center;justify-content:center;width:42px;flex-shrink:0;font-size:28px;color:var(--primary);font-weight:800;}
+    .why-band{background:#0F172A;border-radius:var(--radius);padding:16px 22px;display:flex;gap:16px;align-items:center;}
+    .why-band .wb-icon{font-size:28px;flex-shrink:0;}
+    .why-band .wb-text{font-size:15px;color:#fff;line-height:1.5;}
+    .why-band .wb-text b{color:var(--primary-light);}
+    .why-band .wb-text .lbl{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--primary-light);margin-right:8px;}
+
+    /* routing branch */
+    .routing{display:flex;align-items:center;gap:0;flex:none;}
+    .rt-in{background:#0F172A;color:#fff;border-radius:var(--radius);padding:20px 22px;text-align:center;flex-shrink:0;width:190px;}
+    .rt-in .ri-t{font-size:16px;font-weight:800;}
+    .rt-in .ri-s{font-size:12px;color:rgba(255,255,255,.6);margin-top:4px;}
+    .rt-fan{width:54px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--primary);font-size:24px;font-weight:800;gap:34px;}
+    .rt-branches{display:flex;flex-direction:column;gap:12px;flex:1;}
+    .rt-branch{display:flex;align-items:center;gap:12px;border-radius:var(--radius);padding:13px 18px;border:1px solid;}
+    .rt-branch.a{background:#FEF2F2;border-color:#FECACA;}
+    .rt-branch.b{background:#F0FDF4;border-color:#86EFAC;}
+    .rt-branch.c{background:#EFF6FF;border-color:#BFDBFE;}
+    .rt-branch .rb-cond{font-size:15px;font-weight:800;flex:1;}
+    .rt-branch.a .rb-cond{color:#B91C1C;}.rt-branch.b .rb-cond{color:#15803D;}.rt-branch.c .rb-cond{color:#1D4ED8;}
+    .rt-branch .rb-arrow{color:var(--muted);font-weight:800;}
+    .rt-branch .rb-dest{font-size:13px;font-weight:700;color:var(--foreground);background:#fff;border-radius:7px;padding:5px 11px;}
+
+    /* fork-join (parallel) */
+    .fork{display:flex;align-items:center;gap:0;flex:none;}
+    .fk-src{width:150px;flex-shrink:0;background:var(--primary-ultra-light);border:1px solid #A5B4FC;border-radius:var(--radius);padding:18px;text-align:center;font-size:15px;font-weight:800;color:var(--primary);}
+    .fk-fan{width:44px;flex-shrink:0;text-align:center;color:var(--primary);font-size:24px;font-weight:800;}
+    .fk-workers{display:flex;flex-direction:column;gap:10px;flex:1;}
+    .fk-w{background:#fff;border:1px solid var(--border);border-top:3px solid var(--primary-light);border-radius:10px;padding:11px 16px;font-size:14px;font-weight:700;box-shadow:var(--shadow);}
+    .fk-join{width:44px;flex-shrink:0;text-align:center;color:#16A34A;font-size:24px;font-weight:800;}
+    .fk-out{width:130px;flex-shrink:0;background:var(--pastel-mint);border:1px solid #86EFAC;border-radius:var(--radius);padding:18px;text-align:center;font-size:14px;font-weight:800;color:#15803D;}
+
+    /* orchestrator */
+    .orch{display:flex;flex-direction:column;flex:none;gap:0;align-items:center;}
+    .orch-top{background:#0F172A;color:#fff;border-radius:var(--radius);padding:18px 28px;text-align:center;max-width:580px;}
+    .orch-top .ot-t{font-size:19px;font-weight:800;}
+    .orch-top .ot-s{font-size:14px;color:rgba(255,255,255,.7);margin-top:4px;}
+    .orch-connector{width:2px;height:20px;background:var(--primary);}
+    .orch-fan{font-size:13px;color:var(--muted);font-weight:700;margin-bottom:10px;letter-spacing:.04em;}
+    .orch-workers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:100%;}
+    .worker{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:15px;display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--primary-light);}
+    .worker .w-num{font-size:11px;font-weight:800;color:var(--primary);letter-spacing:.05em;}
+    .worker .w-t{font-size:15px;font-weight:800;color:var(--foreground);}
+    .worker .w-d{font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+    /* evaluator flow 1-2-3 */
+    .evflow{display:flex;align-items:stretch;gap:0;flex:none;}
+    .evstep{flex:1;border-radius:var(--radius);padding:20px 18px;display:flex;flex-direction:column;gap:8px;position:relative;}
+    .evstep.gen{background:var(--primary-ultra-light);border:1px solid #A5B4FC;}
+    .evstep.crit{background:var(--pastel-peach);border:1px solid #FED7AA;}
+    .evstep.dec{background:#F0FDF4;border:1px solid #86EFAC;}
+    .evstep-badge{width:38px;height:38px;border-radius:50%;background:var(--primary);color:#fff;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+    .evstep-ic{font-size:30px;}
+    .evstep-t{font-size:18px;font-weight:800;color:var(--foreground);}
+    .evstep-d{font-size:13.5px;color:var(--muted);line-height:1.5;}
+    .evstep-d b{color:var(--foreground);}
+    .evconn{width:46px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+    .evconn-arrow{font-size:30px;color:var(--primary);font-weight:800;}
+    .evback-rail{display:flex;align-items:center;gap:12px;background:#FFF7ED;border:1px dashed #FB923C;border-radius:var(--radius);padding:12px 18px;margin-top:14px;}
+    .evback-rail .evback-lbl{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#C2410C;flex-shrink:0;}
+    .evback-rail .evback-arrow{font-size:14px;font-weight:700;color:#9A3412;line-height:1.4;}
+
+    /* WRAP */
+    .wrapup-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;}
+    .wrapup-pane{border-radius:var(--radius);padding:24px;border:1px solid var(--border);display:flex;flex-direction:column;}
+    .wrapup-pane.learned{background:var(--primary-ultra-light);border-color:#A5B4FC;}
+    .wrapup-pane.hw{background:#F0FDF4;border-color:#86EFAC;}
+    .wrapup-pane-title{font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:13px;}
+    .wrapup-pane.learned .wrapup-pane-title{color:var(--primary);}
+    .wrapup-pane.hw .wrapup-pane-title{color:#16A34A;}
+    .preview-row{margin-top:auto;padding-top:13px;border-top:1px solid #86EFAC;}
+    .preview-row .lbl{font-size:12px;font-weight:600;color:var(--muted);}
+    .preview-row .ttl{font-size:15px;font-weight:800;color:var(--foreground);}
+    .check-list{display:flex;flex-direction:column;gap:9px;}
+    .check-item{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:var(--foreground);line-height:1.45;font-weight:500;}
+    .check-item .chk{font-size:15px;flex-shrink:0;margin-top:1px;font-weight:700;color:var(--primary);}
+    .wrapup-pane.hw .check-item .chk{color:#16A34A;}
+
+    /* QUOTE / BANDS */
+    .quote-block{border-left:4px solid var(--primary);padding:14px 18px;background:var(--primary-ultra-light);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:16px;font-style:italic;color:var(--foreground);line-height:1.55;}
+    .quote-block strong{font-style:normal;color:var(--primary);}
+    .quote-block.warning{border-left-color:var(--warning);background:#FFFBEB;}
+    .quote-block.warning strong{color:#92400E;font-style:normal;}
+    .info-band{background:var(--primary-ultra-light);border:1px solid #A5B4FC;border-radius:var(--radius);padding:15px 20px;display:flex;gap:16px;align-items:center;}
+    .info-band .ib-icon{font-size:28px;flex-shrink:0;}
+    .info-band .ib-text{font-size:14.5px;color:var(--foreground);line-height:1.5;}
+    .info-band .ib-text b{font-weight:700;}
+    .example-band{background:var(--pastel-lavender);border:1px solid #C4B5FD;border-radius:var(--radius);padding:15px 20px;}
+    .example-band .eb-title{font-size:13px;font-weight:700;color:var(--primary);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+    .example-band .eb-body{font-size:14.5px;color:var(--foreground);line-height:1.5;}
+    .stat-card{border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:center;}
+    .stat-num{font-size:28px;font-weight:800;line-height:1;}
+    .stat-desc{font-size:14px;color:var(--foreground);line-height:1.45;margin-top:6px;}
+
+    /* AGENDA */
+    .agenda-list{display:grid;grid-template-columns:1fr 1fr;gap:4px 38px;list-style:none;margin:0;padding:0;}
+    .agenda-item{display:flex;align-items:center;gap:12px;padding:7px 0;border-bottom:1px solid var(--border);}
+    .agenda-num{width:26px;height:26px;border-radius:50%;background:var(--primary-ultra-light);color:var(--primary);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .agenda-label{font-size:13.5px;font-weight:500;color:var(--foreground);}
+    .agenda-badge{font-size:9px;font-weight:700;color:var(--practice);background:#F3E8FF;padding:2px 7px;border-radius:100px;margin-left:7px;letter-spacing:.04em;}
+  </style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- 01 COVER -->
+<section>
+<div class="slide slide-cover">
+  <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+  <div class="cover-content">
+    <div class="cover-kicker"><span class="dot"></span>Sesiunea 3A · AI pentru IMM-uri &amp; Antreprenori</div>
+    <h1>Cum îți construiești<br><span style="color:var(--primary-light)">propriii agenți AI</span></h1>
+    <p class="subtitle">De la „un chat care răspunde" → la un sistem care lucrează singur pentru tine</p>
+    <div class="cover-logos">
+      <span class="lbl">Lucrăm cu:</span>
+      <span class="logo" title="Claude"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg></span>
+      <span class="logo" title="Visual Studio Code"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M23.15 2.587 18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg></span>
+      <span class="logo" title="GitHub"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span>
+      <span class="logo" title="Notion"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.748.327-.748.933zm14.337.745c.093.42 0 .84-.42.888l-.7.139v10.265c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952l1.448.327s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933z"/></svg></span>
+    </div>
+  </div>
+  <div class="slide-num" style="color:rgba(255,255,255,.35)">01 / 29</div>
+</div>
+</section>
+
+<!-- 02 CHAT -> AGENT -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Cadru</div><h2 class="slide-title">De ce trecem de la „chat" → la „agent"</h2><p class="slide-subtitle">Diferența nu e modelul. E <b>cine alege pașii</b>: tu sau el.</p></div>
+  <div class="vs-table" style="flex:none;margin-bottom:16px;">
+    <div class="vs-col left">
+      <div class="vs-head classic">💬 Un chat obișnuit</div>
+      <div class="vs-row"><span class="ic">•</span>Pui o întrebare → primești un răspuns</div>
+      <div class="vs-row"><span class="ic">•</span><b>Tu</b>&nbsp;execuți fiecare pas mai departe</div>
+      <div class="vs-row"><span class="ic">•</span>Nu poate folosi unelte, nu acționează singur</div>
+    </div>
+    <div class="vs-col right">
+      <div class="vs-head growth">🤖 Un agent</div>
+      <div class="vs-row"><span class="ic">•</span>Îi dai un <b>obiectiv</b>, nu pași</div>
+      <div class="vs-row"><span class="ic">•</span>Alege singur uneltele, le folosește, verifică</div>
+      <div class="vs-row"><span class="ic">•</span>Lucrează până sarcina e gata, apoi îți livrează</div>
+    </div>
+  </div>
+  <div class="quote-block" style="margin-top:auto;"><strong>Linia de bază:</strong> „Nu te înlocuiește AI. Te înlocuiește omul care știe să-l folosească mai bine decât tine." Azi e despre <strong>cum devii acel om</strong>.</div>
+  <div class="slide-num">02 / 29</div>
+</div>
+</section>
+
+<!-- 03 AGENDA -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Agenda</div><h2 class="slide-title">Ce acoperim azi</h2><p class="slide-subtitle">Mergem de la <b>vocabular</b> → la <b>cum se asamblează o arhitectură</b>. Blocurile <b style="color:var(--practice)">DEMO</b> le arăt live.</p></div>
+  <ul class="agenda-list">
+    <li class="agenda-item"><span class="agenda-num">1</span><span class="agenda-label">De ce „agent" și nu doar „chat"</span></li>
+    <li class="agenda-item"><span class="agenda-num">2</span><span class="agenda-label">Dicționarul — 8 cuvinte, cu exemple vizuale</span></li>
+    <li class="agenda-item"><span class="agenda-num">3</span><span class="agenda-label">Ce e un agent — tool-use loop</span></li>
+    <li class="agenda-item"><span class="agenda-num">4</span><span class="agenda-label">Mediul de lucru: VS Code + Claude <span class="agenda-badge">DEMO</span></span></li>
+    <li class="agenda-item"><span class="agenda-num">5</span><span class="agenda-label">Cele 3 căi de a construi agenți</span></li>
+    <li class="agenda-item"><span class="agenda-num">6</span><span class="agenda-label">Cele 5 cărămizi (MCP, Skills, Sub-agenți…)</span></li>
+    <li class="agenda-item"><span class="agenda-num">7</span><span class="agenda-label">Canonul Anthropic: începe simplu</span></li>
+    <li class="agenda-item"><span class="agenda-num">8</span><span class="agenda-label">Cele 5 pattern-uri — flux vizual + de ce</span></li>
+    <li class="agenda-item"><span class="agenda-num">9</span><span class="agenda-label">CLAUDE.md + igiena de context</span></li>
+    <li class="agenda-item"><span class="agenda-num">10</span><span class="agenda-label">6 medii, un singur sistem <span class="agenda-badge">DEMO</span></span></li>
+  </ul>
+  <div class="slide-num">03 / 29</div>
+</div>
+</section>
+
+<!-- 04 DICT · VS CODE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">📖 Dicționar · 1/8</div><h2 class="slide-title">VS Code — „biroul" agentului</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="dict-word">
+        <span class="dw-logo" style="background:#EFF6FF;"><svg width="34" height="34" viewBox="0 0 24 24" style="fill:#0078D4"><path d="M23.15 2.587 18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg></span>
+        <div><h3>VS Code</h3><p class="dw-sub">sau Cursor — un editor gratuit</p></div>
+      </div>
+      <p class="dict-analogy">E <b>biroul</b> în care lucrează agentul. Într-un singur loc: fișierele tale, ce scrie el, și chat-ul cu agentul.</p>
+      <div class="dict-why"><span class="lbl">De ce-ți pasă</span>Aici se întâmplă tot. Vezi „cu ochii tăi" ce face agentul — nu e o cutie neagră.</div>
+    </div>
+    <div class="dict-visual">
+      <div class="winframe">
+        <div class="win-bar"><span class="win-dot r"></span><span class="win-dot y"></span><span class="win-dot g"></span><span class="win-title">proiectul-meu — VS Code</span></div>
+        <div class="vscode-body">
+          <div class="vsz files"><span class="vsz-label">Fișiere</span><span class="vsz-file">📄 index</span><span class="vsz-file">📄 CLAUDE</span><span class="vsz-file">📁 assets</span><span class="vsz-file">📄 date</span></div>
+          <div class="vsz editor"><span class="vsz-label">Editor</span><span class="vsz-line" style="width:80%"></span><span class="vsz-line" style="width:60%"></span><span class="vsz-line" style="width:90%"></span><span class="vsz-line" style="width:50%"></span><span class="vsz-line" style="width:70%"></span></div>
+          <div class="vsz agent"><span class="vsz-label">Agent (Claude)</span><span class="vsz-msg me">fă raportul</span><span class="vsz-msg">Citesc datele… ✓ gata</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">04 / 29</div>
+</div>
+</section>
+
+<!-- 05 DICT · TERMINAL -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">📖 Dicționar · 2/8</div><h2 class="slide-title">Terminal — „bucătăria din spate"</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="dict-word">
+        <span class="dw-emoji">⌨️</span>
+        <div><h3>Terminal</h3><p class="dw-sub">linia de comandă</p></div>
+      </div>
+      <p class="dict-analogy">E <b>bucătăria din spate</b> a unui restaurant: acolo se gătește, dar tu stai în sală. Agentul execută acțiuni aici.</p>
+      <div class="dict-why"><span class="lbl">De ce-ți pasă</span>Nu trebuie să-l folosești tu manual. Doar îl vezi cum lucrează — agentul tastează comenzile în locul tău.</div>
+    </div>
+    <div class="dict-visual">
+      <div class="term">
+        <div class="term-bar"><span class="win-dot r"></span><span class="win-dot y"></span><span class="win-dot g"></span><span class="win-title">terminal</span></div>
+        <div class="term-body">
+          <div><span class="t-prompt">➜</span> <span class="t-cmd">claude</span></div>
+          <div class="t-out">&gt; pregătește raportul de vânzări</div>
+          <div class="t-out">Citesc <span style="color:#fff">date-vanzari.csv</span> …</div>
+          <div class="t-out">Calculez totalurile …</div>
+          <div class="t-ok">✓ Raport generat: raport-mai.pdf</div>
+          <div><span class="t-prompt">➜</span> <span class="t-cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">05 / 29</div>
+</div>
+</section>
+
+<!-- 06 DICT · GITHUB -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">📖 Dicționar · 3/8</div><h2 class="slide-title">GitHub — biblioteca publică de cod &amp; agenți</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="dict-word">
+        <span class="dw-logo" style="background:#0F172A;"><svg width="32" height="32" viewBox="0 0 24 24" style="fill:#fff"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span>
+        <div><h3>GitHub</h3><p class="dw-sub">depozitul public de proiecte (repos)</p></div>
+      </div>
+      <p class="dict-analogy">Ca un <b>magazin de aplicații, dar pentru cod</b>: oameni publică acolo proiecte gata făcute — inclusiv <b>agenți</b> — pe care le poți lua și folosi.</p>
+      <div class="dict-why"><span class="lbl">De ce-ți pasă</span>De aici vine „Calea 2": iei un agent făcut de altcineva, în loc să-l construiești de la zero.</div>
+    </div>
+    <div class="dict-visual">
+      <div class="repocard">
+        <div class="repocard-top">
+          <span class="logo"><svg width="24" height="24" viewBox="0 0 24 24" style="fill:#0F172A"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span>
+          <span class="rn"><span style="color:var(--muted);font-weight:600">echipa /</span> <b>agent-recenzii</b></span>
+        </div>
+        <div class="repocard-body">
+          <div class="rd">📦 Un pachet de agenți gata: scriu răspunsuri la recenzii, sortează feedback-ul, fac rapoarte.</div>
+          <div class="repocard-meta">
+            <span class="m"><span class="lang"></span>Agent</span>
+            <span class="m">⭐ 2.4k stele</span>
+            <span class="m">🍴 310 fork-uri</span>
+          </div>
+          <span class="repocard-clone">⬇ Clone — îl iei la tine</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">06 / 29</div>
+</div>
+</section>
+
+<!-- 07 DICT · CLAUDE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">📖 Dicționar · 4/8</div><h2 class="slide-title">Claude (Claude Code) — agentul în sine</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="dict-word">
+        <span class="dw-logo" style="background:#0F172A;"><svg width="30" height="30" viewBox="0 0 24 24" style="fill:#D97757"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg></span>
+        <div><h3>Claude</h3><p class="dw-sub">modelul / agentul cu care lucrăm</p></div>
+      </div>
+      <p class="dict-analogy">Poți folosi orice model AI — dar Claude e <b>„Apple-ul" lumii AI</b>: calitate maximă cu cel mai mic prag de intrare.</p>
+      <div class="dict-why"><span class="lbl">De ce-ți pasă</span>Pentru construit agenți serioși, e cel mai sigur start. „Claude Code" = Claude care poate folosi unelte și acționa, nu doar răspunde.</div>
+    </div>
+    <div class="dict-visual">
+      <div class="winframe" style="max-width:380px">
+        <div class="win-bar"><span class="win-dot r"></span><span class="win-dot y"></span><span class="win-dot g"></span><span class="win-title">Claude Code</span></div>
+        <div style="background:#fff;padding:20px;display:flex;flex-direction:column;gap:12px;min-height:200px;">
+          <div style="align-self:flex-end;background:var(--primary);color:#fff;border-radius:12px 12px 2px 12px;padding:10px 14px;font-size:13px;max-width:80%;">Reorganizează-mi catalogul de produse</div>
+          <div style="align-self:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:12px 12px 12px 2px;padding:10px 14px;font-size:13px;max-width:88%;color:var(--foreground)">📂 Citesc catalogul…<br>🔧 Grupez pe categorii…<br><span style="color:#16A34A;font-weight:700">✓ Gata — 142 produse, 8 categorii</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">07 / 29</div>
+</div>
+</section>
+
+<!-- 08 DICT · MD -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">📖 Dicționar · 5/8</div><h2 class="slide-title">Fișier .md (Markdown) — „Word-ul" lucrului cu AI</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="dict-word">
+        <span class="dw-emoji">📄</span>
+        <div><h3>Fișier .md</h3><p class="dw-sub">Markdown — text simplu, structurat</p></div>
+      </div>
+      <p class="dict-analogy">Text simplu cu titluri, liste și bold. Îl scrii ușor, iar agentul îl <b>citește perfect</b>. E formatul preferat al modelelor AI.</p>
+      <div class="dict-why"><span class="lbl">De ce-ți pasă</span>Aici îți scrii instrucțiunile pentru agent. Stânga = ce scrii tu; dreapta = cum „arată" formatat.</div>
+    </div>
+    <div class="dict-visual">
+      <div class="mdcompare">
+        <div class="md-src">
+          <span class="md-tablabel">Ce scrii (.md)</span>
+          <div class="h"># Brief produs</div>
+          <div>&nbsp;</div>
+          <div class="li">Ton: **prietenos**</div>
+          <div>&nbsp;</div>
+          <div class="h">## Beneficii</div>
+          <div class="li">- livrare rapidă</div>
+          <div class="li">- 100% natural</div>
+        </div>
+        <div class="md-prev">
+          <span class="md-tablabel">Cum arată</span>
+          <h4>Brief produs</h4>
+          <p>Ton: <b>prietenos</b></p>
+          <p style="font-weight:800;font-size:15px;margin-bottom:5px;">Beneficii</p>
+          <ul><li>livrare rapidă</li><li>100% natural</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">08 / 29</div>
+</div>
+</section>
+
+<!-- 09 DICT · API -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">📖 Dicționar · 6/8</div><h2 class="slide-title">API — „priza standard" dintre două programe</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="dict-word">
+        <span class="dw-emoji">🔌</span>
+        <div><h3>API</h3><p class="dw-sub">modul prin care 2 programe vorbesc</p></div>
+      </div>
+      <p class="dict-analogy">Ca o <b>priză standard</b>: orice aparat cu ștecărul potrivit se conectează. Două programe vorbesc prin „aceeași priză".</p>
+      <div class="dict-why"><span class="lbl">Exemplu</span>O aplicație de programat postări se conectează la <b>Instagram</b> prin API-ul lui — și postează în locul tău.</div>
+    </div>
+    <div class="dict-visual">
+      <div class="apidiag">
+        <div class="api-box a"><span style="font-size:26px">🗓️</span><span class="ab-t">App postări</span><span class="ab-s">programul tău</span></div>
+        <div class="api-plug"><span class="lbl">API</span><span class="line"></span><span class="socket">🔌</span></div>
+        <div class="api-box b"><span class="logo"><svg width="30" height="30" viewBox="0 0 24 24" style="fill:#E4405F"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></span><span class="ab-t">Instagram</span><span class="ab-s">serviciul extern</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">09 / 29</div>
+</div>
+</section>
+
+<!-- 10 DICT · DOMAIN + HOSTING -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">📖 Dicționar · 7/8</div><h2 class="slide-title">Domeniu &amp; Hosting — adresa și terenul site-ului</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="dict-word">
+        <span class="dw-emoji">🌐</span>
+        <div><h3>Domeniu</h3><p class="dw-sub">adresa: firma-mea.ro</p></div>
+      </div>
+      <p class="dict-analogy">Domeniul = <b>adresa</b> pe care o tastează clientul. Hostingul = <b>terenul/casa</b> pe care stă site-ul, ca să fie online non-stop.</p>
+      <div class="dict-why"><span class="lbl">De ce-ți pasă</span>Când agentul „publică un site", are nevoie de amândouă: o adresă (domeniu) + un loc unde să trăiască (hosting).</div>
+    </div>
+    <div class="dict-visual">
+      <div class="dnsdiag">
+        <div class="browserbar"><span class="lock">🔒</span><span class="url">https://<b>firma-mea.ro</b></span></div>
+        <div class="dns-link">↓ <span style="font-size:12px;color:var(--muted);font-weight:700">adresa duce la…</span></div>
+        <div class="serverbox"><span class="sb-icon">🖥️</span><div><div class="sb-t">Hosting</div><div class="sb-s">terenul unde stă site-ul, online 24/7</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">10 / 29</div>
+</div>
+</section>
+
+<!-- 11 DICT · MCP -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">📖 Dicționar · 8/8</div><h2 class="slide-title">MCP — „priza universală" a agentului</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="dict-word">
+        <span class="dw-emoji">🔗</span>
+        <div><h3>MCP</h3><p class="dw-sub">Model Context Protocol</p></div>
+      </div>
+      <p class="dict-analogy">Dacă API = o priză, <b>MCP = priza universală</b> a agentului: un singur standard prin care se conectează la toate serviciile tale deodată.</p>
+      <div class="dict-why"><span class="lbl">De ce-ți pasă</span>Prin MCP, agentul ajunge la Notion, Gmail, Drive, baza ta de date — fără să-i explici fiecare conexiune separat. Revine la „cele 5 cărămizi".</div>
+    </div>
+    <div class="dict-visual">
+      <div class="mcphub">
+        <div class="mcp-spoke" style="height:70px;top:60px;left:78px;transform:rotate(35deg)"></div>
+        <div class="mcp-spoke" style="height:70px;top:60px;right:78px;transform:rotate(-35deg)"></div>
+        <div class="mcp-spoke" style="height:70px;bottom:60px;left:78px;transform:rotate(-35deg)"></div>
+        <div class="mcp-spoke" style="height:70px;bottom:60px;right:78px;transform:rotate(35deg)"></div>
+        <div class="mcp-center"><span style="font-size:24px">🤖</span><span class="mc-t">Agent</span><span class="mc-s">MCP</span></div>
+        <div class="mcp-node n1"><span class="logo"><svg width="24" height="24" viewBox="0 0 24 24" style="fill:#0F172A"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.748.327-.748.933zm14.337.745c.093.42 0 .84-.42.888l-.7.139v10.265c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952l1.448.327s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933z"/></svg></span><span class="mn-l">Notion</span></div>
+        <div class="mcp-node n2"><span style="font-size:22px">✉️</span><span class="mn-l">Gmail</span></div>
+        <div class="mcp-node n3"><span class="logo"><svg width="22" height="22" viewBox="0 0 24 24" style="fill:#1FA463"><path d="M7.71 3.5L1.15 15l3.43 6 6.56-11.5L7.71 3.5zM9.42 15l-3.42 6h13.13l3.42-6H9.42zm13.43-1.5L16.29 2H9.42l6.57 11.5h6.86z"/></svg></span><span class="mn-l">Drive</span></div>
+        <div class="mcp-node n4"><span style="font-size:22px">🗄️</span><span class="mn-l">Bază date</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">11 / 29</div>
+</div>
+</section>
+
+<!-- 12 CE E UN AGENT -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Concept</div><h2 class="slide-title">Ce este un agent</h2><p class="slide-subtitle">Un model care își alege singur acțiunile, într-o buclă — <b>tool-use loop</b>.</p></div>
+  <div class="split-screen">
+    <div class="split-pane neutral">
+      <span class="split-pane-pill muted">Nu e agent</span>
+      <p class="split-h">LLM în chat</p>
+      <p class="split-sub">Un singur ciclu: întrebare → răspuns</p>
+      <div class="flow-chips"><span class="flow-chip">Tu</span><span class="flow-arrow">→</span><span class="flow-chip">Răspuns</span></div>
+      <p class="split-sub" style="margin-top:10px">Modelul a generat, tu ai citit. Atât. Gata.</p>
+    </div>
+    <div class="split-pane highlight">
+      <span class="split-pane-pill bright">Agent</span>
+      <p class="split-h">Tool-use loop</p>
+      <p class="split-sub">Ciclul se repetă până sarcina e închisă</p>
+      <div class="flow-chips">
+        <span class="flow-chip">Obiectiv</span><span class="flow-arrow" style="color:var(--primary-light)">→</span>
+        <span class="flow-chip">Alege unealta</span><span class="flow-arrow" style="color:var(--primary-light)">→</span>
+        <span class="flow-chip">Folosește</span><span class="flow-arrow" style="color:var(--primary-light)">→</span>
+        <span class="flow-chip">Vede rezultatul</span>
+      </div>
+      <p class="split-sub" style="margin-top:10px">…apoi decide pasul următor și o ia de la capăt — singur.</p>
+    </div>
+  </div>
+  <div class="slide-num">12 / 29</div>
+</div>
+</section>
+
+<!-- 13 TOOL-USE LOOP EXEMPLU -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Concept</div><h2 class="slide-title">Tool-use loop — un exemplu de antreprenor</h2><p class="slide-subtitle">„Pregătește-mi raportul de vânzări pe luna trecută." Câțiva pași, unelte diferite — le face singur.</p></div>
+  <div class="llm-steps" style="flex:none;margin-bottom:16px;">
+    <div class="llm-step" style="background:#F8FAFC;border-radius:var(--radius-sm) 0 0 var(--radius-sm);">
+      <div class="llm-step-num">1</div><div class="llm-step-icon">📂</div>
+      <div class="llm-step-title">Deschide datele</div>
+      <div class="llm-step-desc">Citește fișierul de vânzări.</div>
+    </div>
+    <div class="llm-step" style="background:#EEF2FF;">
+      <div class="llm-step-num">2</div><div class="llm-step-icon">🧮</div>
+      <div class="llm-step-title">Calculează</div>
+      <div class="llm-step-desc">Totaluri &amp; top produse.</div>
+    </div>
+    <div class="llm-step" style="background:#EDE9FE;">
+      <div class="llm-step-num">3</div><div class="llm-step-icon">📊</div>
+      <div class="llm-step-title">Compară</div>
+      <div class="llm-step-desc">Cu luna anterioară.</div>
+    </div>
+    <div class="llm-step" style="background:#F3E8FF;">
+      <div class="llm-step-num">4</div><div class="llm-step-icon">📝</div>
+      <div class="llm-step-title">Scrie rezumatul</div>
+      <div class="llm-step-desc">Pe scurt, pentru tine.</div>
+    </div>
+    <div class="llm-step" style="background:#FCE7F3;border-radius:0 var(--radius-sm) var(--radius-sm) 0;">
+      <div class="llm-step-num">5</div><div class="llm-step-icon">📧</div>
+      <div class="llm-step-title">Trimite</div>
+      <div class="llm-step-desc">Pe email / Slack.</div>
+    </div>
+  </div>
+  <div class="info-band" style="margin-top:auto;">
+    <div class="ib-icon">🧠</div>
+    <div class="ib-text"><b>Asta e un agent — nu un chatbot.</b> Tot ce ține „în minte" într-o sesiune se numește <b>fereastra de context</b>. Pe taskuri lungi se umple — de aici, mai târziu, regulile de igienă a contextului.</div>
+  </div>
+  <div class="slide-num">13 / 29</div>
+</div>
+</section>
+
+<!-- 14 MEDIUL DE LUCRU -->
+<section>
+<div class="slide demo">
+  <div class="slide-header"><div class="slide-tag demo-tag">🛠️ Demo live</div><h2 class="slide-title">Mediul de lucru: VS Code + extensia Claude</h2><p class="slide-subtitle">Vezi fișierele, editorul și agentul — totul într-un singur loc.</p></div>
+  <div class="cards-grid cards-3" style="flex:none;margin-bottom:16px;">
+    <div class="card sky">
+      <div class="card-num">1</div>
+      <p class="card-title">Deschizi un folder gol</p>
+      <p class="card-body">Acel folder <b>e proiectul tău</b>. Tot ce construiește agentul trăiește aici.</p>
+    </div>
+    <div class="card primary-light">
+      <div class="card-num">2</div>
+      <p class="card-title">Instalezi extensia Claude</p>
+      <p class="card-body">Apare <b>chat-ul în lateral</b>. De acolo îi dai obiective și vezi ce face.</p>
+    </div>
+    <div class="card mint">
+      <div class="card-num">3</div>
+      <p class="card-title">Lucrul rămâne în folder</p>
+      <p class="card-body">Fișiere, un site, grafice, documente — <b>output real</b>, nu doar text în chat.</p>
+    </div>
+  </div>
+  <div class="info-band" style="margin-top:auto;">
+    <div class="ib-icon">⚙️</div>
+    <div class="ib-text"><b>Care variantă de Claude?</b> Pentru lucru serios → <b>terminal</b> sau <b>extensia VS Code / Cursor</b> (acces complet). Web &amp; desktop sunt mai limitate — bune doar când ești departe de calculator.</div>
+  </div>
+  <div class="slide-num">14 / 29</div>
+</div>
+</section>
+
+<!-- 15 CELE 3 CAI -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Cele 3 căi</div><h2 class="slide-title">Trei moduri de a-ți construi agenți</h2><p class="slide-subtitle">Toate sunt testate. A treia funcționează cel mai bine — dar fiecare are locul ei.</p></div>
+  <div class="cards-grid cards-3">
+    <div class="card">
+      <div class="card-num">1</div>
+      <p class="card-title">Claude standard</p>
+      <p class="card-eyebrow">fără arhitectură</p>
+      <p class="card-body">Deschizi, explici prin cuvinte ce vrei, corectezi din mers. Prag de intrare minim.</p>
+      <div class="card-tag">Bun pentru: taskuri simple, să te obișnuiești</div>
+    </div>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:10px;"><div class="card-num">2</div><span class="logo"><svg width="22" height="22" viewBox="0 0 24 24" style="fill:#0F172A"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span></div>
+      <p class="card-title" style="margin-top:6px">GitHub repositories</p>
+      <p class="card-eyebrow">agenți gata făcuți de alții</p>
+      <p class="card-body">Iei un pachet gata de pe GitHub (agenți, skill-uri) și-l rulezi la tine.</p>
+      <div class="card-tag">Bun pentru: task tipic cu soluție matură</div>
+    </div>
+    <div class="card primary-light" style="border-width:2px;border-color:var(--primary);">
+      <div class="card-num">3</div>
+      <p class="card-title">Arhitectură proprie</p>
+      <p class="card-eyebrow" style="color:var(--primary);">construiești din cărămizi</p>
+      <p class="card-body">Îți asamblezi sistemul din componente, după canonul Anthropic. <b>Control total.</b></p>
+      <div class="card-tag" style="background:#fff;color:var(--primary);font-weight:700;">Funcționează cel mai bine — restul sesiunii</div>
+    </div>
+  </div>
+  <div class="slide-num">15 / 29</div>
+</div>
+</section>
+
+<!-- 16 CALEA 1 & 2 SE SPARG -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Cele 3 căi</div><h2 class="slide-title">Calea 1 &amp; 2 — unde se sparg</h2><p class="slide-subtitle">Nu sunt „greșite". Doar plafonează când taskul devine complex și al tău.</p></div>
+  <div class="split-screen" style="flex:none;">
+    <div class="split-pane neutral">
+      <span class="split-pane-pill muted">Calea 1 · standard</span>
+      <div class="split-list">
+        <div class="split-li"><span class="b" style="color:#16A34A">✓</span>Prag minim, merge bun pe taskuri simple</div>
+        <div class="split-li"><span class="b" style="color:#DC2626">✗</span>Contextul se împrăștie după ~50 de mesaje</div>
+        <div class="split-li"><span class="b" style="color:#DC2626">✗</span>Uită regulile; alege prost uneltele</div>
+        <div class="split-li"><span class="b" style="color:#DC2626">✗</span>„Cutie neagră" — nu știi exact ce face</div>
+      </div>
+    </div>
+    <div class="split-pane neutral">
+      <span class="split-pane-pill muted"><span class="logo"><svg width="13" height="13" viewBox="0 0 24 24" style="fill:#475569;vertical-align:-1px"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 016 0c2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span>&nbsp;Calea 2 · GitHub repositories</span>
+      <div class="split-list">
+        <div class="split-li"><span class="b" style="color:#16A34A">✓</span>Start rapid dacă taskul e tipic</div>
+        <div class="split-li"><span class="b" style="color:#16A34A">✓</span>Bun ca referință — extragi un skill util</div>
+        <div class="split-li"><span class="b" style="color:#DC2626">✗</span>Taskul e al altuia; conflicte interne</div>
+        <div class="split-li"><span class="b" style="color:#DC2626">✗</span>Cod străin — când se strică, nu știi de unde</div>
+      </div>
+    </div>
+  </div>
+  <div class="quote-block" style="margin-top:auto;"><strong>Concluzia:</strong> la complexitate reală, ambele te duc tot către Calea 3 — arhitectura proprie. Mai bine să înțelegi cărămizile din care e făcută.</div>
+  <div class="slide-num">16 / 29</div>
+</div>
+</section>
+
+<!-- 17 5 CARAMIZI -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Vocabular de extensie</div><h2 class="slide-title">Stack-ul Claude Code — cinci cărămizi</h2><p class="slide-subtitle">Cinci moduri de a extinde un agent. Vocabularul cu care vorbim mai departe.</p></div>
+  <div class="cards-grid cards-3" style="grid-template-rows:1fr 1fr;">
+    <div class="card sky">
+      <div style="display:flex;align-items:center;gap:10px;"><span class="card-num">1</span><span><p class="card-title" style="margin:0">MCP</p><p class="card-eyebrow" style="margin:0">dă date</p></span></div>
+      <p class="card-body">Conectează agentul la servicii (Notion, Gmail, baze) printr-un standard unic.</p>
+    </div>
+    <div class="card mint">
+      <div style="display:flex;align-items:center;gap:10px;"><span class="card-num">2</span><span><p class="card-title" style="margin:0">Skills</p><p class="card-eyebrow" style="margin:0">spun ce să facă</p></span></div>
+      <p class="card-body">Se încarcă automat când taskul se potrivește (ex. „audit de website"). Scrii o dată.</p>
+    </div>
+    <div class="card lavender">
+      <div style="display:flex;align-items:center;gap:10px;"><span class="card-num">3</span><span><p class="card-title" style="margin:0">Sub-agenți</p><p class="card-eyebrow" style="margin:0">izolează contextul</p></span></div>
+      <p class="card-body">Mini-executanți pentru o sarcină specifică. Pot rula în paralel, fiecare cu contextul lui.</p>
+    </div>
+    <div class="card peach">
+      <div style="display:flex;align-items:center;gap:10px;"><span class="card-num">4</span><span><p class="card-title" style="margin:0">Hooks</p><p class="card-eyebrow" style="margin:0">țin regulile</p></span></div>
+      <p class="card-body">Puncte unde agentul se oprește și-ți cere validare sau date suplimentare.</p>
+    </div>
+    <div class="card rose">
+      <div style="display:flex;align-items:center;gap:10px;"><span class="card-num">5</span><span><p class="card-title" style="margin:0">Plugins</p><p class="card-eyebrow" style="margin:0">împachetează tot</p></span></div>
+      <p class="card-body">Pui MCP + skills + sub-agenți + hooks într-un pachet și-l dai unui coleg.</p>
+    </div>
+    <div class="card dark">
+      <p class="card-title">⚠️ Regula cheie</p>
+      <p class="card-body">Mai mult <b>nu</b> înseamnă mai bine.<br>Agent simplu = 1-2 skills.<br>Workflow mare = sub-agenți + MCP.<br><b>Alegi conștient.</b></p>
+    </div>
+  </div>
+  <div class="slide-num">17 / 29</div>
+</div>
+</section>
+
+<!-- 18 CANON ANTHROPIC -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag"><span class="logo" style="vertical-align:-3px;margin-right:5px;"><svg width="15" height="15" viewBox="0 0 24 24" style="fill:var(--primary)"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg></span>Canonul Anthropic</div><h2 class="slide-title">„Building Effective Agents" — începe simplu</h2><p class="slide-subtitle">Articolul Anthropic = dicționarul industriei. O singură teză pe care o ții minte.</p></div>
+  <div class="quote-block" style="font-size:19px;margin-bottom:18px;"><strong>Teza:</strong> găsește întâi soluția cea mai simplă. Adaugă complexitate <strong>doar când fără ea nu merge</strong>. Altfel obții: mai scump + mai lent + mai multe erori acumulate.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;min-height:0;">
+    <div class="stat-card" style="background:var(--pastel-mint);border:1px solid #86EFAC;">
+      <div class="stat-num" style="color:#15803D;">Abonament</div>
+      <div class="stat-desc">Ca antreprenor lucrezi pe <b>abonament</b> (Pro ~17$ / Max), nu pe API. Limitele se reînnoiesc la fiecare <b>5 ore</b>.</div>
+    </div>
+    <div class="stat-card" style="background:var(--pastel-peach);border:1px solid #FED7AA;">
+      <div class="stat-num" style="color:#C2410C;">API ≈ 7×</div>
+      <div class="stat-desc">„Mai scump" e relevant doar la <b>API</b> (plătești per acțiune) — folosit pentru automatizări server-side, nu pentru lucrul zilnic.</div>
+    </div>
+  </div>
+  <div class="slide-num">18 / 29</div>
+</div>
+</section>
+
+<!-- 19 5 PATTERN-URI OVERVIEW -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Calea 3 · arhitectură</div><h2 class="slide-title">5 pattern-uri de la Anthropic</h2><p class="slide-subtitle">Vocabularul cu care te uiți la o sarcină și știi cum s-o asamblezi. Le luăm pe rând, vizual.</p></div>
+  <div class="cards-grid cards-3" style="flex:none;margin-bottom:14px;">
+    <div class="card sky"><div style="display:flex;align-items:center;gap:10px;"><span class="card-num">1</span><p class="card-title" style="margin:0">Prompt Chaining</p></div><p class="card-body">Lanț de pași ficși — ieșirea unuia = intrarea următorului.</p></div>
+    <div class="card mint"><div style="display:flex;align-items:center;gap:10px;"><span class="card-num">2</span><p class="card-title" style="margin:0">Routing</p></div><p class="card-body">Clasifici inputul → îl trimiți pe o cale diferită.</p></div>
+    <div class="card lavender"><div style="display:flex;align-items:center;gap:10px;"><span class="card-num">3</span><p class="card-title" style="margin:0">Parallelization</p></div><p class="card-body">Mai multe lucruri simultan → se agregă.</p></div>
+    <div class="card peach"><div style="display:flex;align-items:center;gap:10px;"><span class="card-num">4</span><p class="card-title" style="margin:0">Orchestrator-Workers</p></div><p class="card-body">Un dispecer împarte; executanții fac.</p></div>
+    <div class="card rose"><div style="display:flex;align-items:center;gap:10px;"><span class="card-num">5</span><p class="card-title" style="margin:0">Evaluator-Optimizer</p></div><p class="card-body">Un generator + un critic, în buclă.</p></div>
+  </div>
+  <div class="why-band" style="margin-top:auto;">
+    <div class="wb-icon">🧭</div>
+    <div class="wb-text"><span class="lbl">Cum schimbă gândirea</span>Te uiți la task și spui — <b>„asta e un chain"</b> · <b>„routing cu 3 ramuri"</b> · <b>„orchestrator cu 3 workeri"</b> — și construiești sub asta.</div>
+  </div>
+  <div class="slide-num">19 / 29</div>
+</div>
+</section>
+
+<!-- 20 PATTERN 1 CHAINING -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Pattern 1 / 5 · Chaining</div><h2 class="slide-title">Prompt Chaining — un lanț de pași ficși</h2><p class="slide-subtitle">Ieșirea unui pas = intrarea următorului. Ordinea nu se schimbă niciodată.</p></div>
+  <div class="example-band" style="margin-bottom:14px;background:#0F172A;border-color:#1E293B;">
+    <div class="eb-title" style="color:var(--primary-light)">📝 Exemplu: dintr-un contract PDF → o ofertă trimisă clientului</div>
+    <div class="eb-body" style="color:rgba(255,255,255,.82)">De fiecare dată parcurgi exact aceiași 4 pași, în aceeași ordine.</div>
+  </div>
+  <div class="flow-rail" style="margin-bottom:18px;">
+    <div class="frnode"><div class="frn-num">1</div><div class="frn-ic">📄</div><div class="frn-t">Citește cererea</div><div class="frn-d">Email-ul / brief-ul clientului.</div></div>
+    <div class="frarrow">→</div>
+    <div class="frnode"><div class="frn-num">2</div><div class="frn-ic">🧾</div><div class="frn-t">Extrage cerințele</div><div class="frn-d">Ce produse, cantități, termen.</div></div>
+    <div class="frarrow">→</div>
+    <div class="frnode"><div class="frn-num">3</div><div class="frn-ic">💶</div><div class="frn-t">Calculează prețul</div><div class="frn-d">Din catalogul tău + reduceri.</div></div>
+    <div class="frarrow">→</div>
+    <div class="frnode"><div class="frn-num">4</div><div class="frn-ic">📧</div><div class="frn-t">Scrie oferta</div><div class="frn-d">Email gata de trimis.</div></div>
+  </div>
+  <div class="why-band" style="margin-top:auto;">
+    <div class="wb-icon">✅</div>
+    <div class="wb-text"><span class="lbl">De ce ai nevoie de asta</span>Când pașii sunt <b>mereu aceiași, în aceeași ordine</b>. E predictibil și poți verifica rezultatul la fiecare pas, nu doar la final.</div>
+  </div>
+  <div class="slide-num">20 / 29</div>
+</div>
+</section>
+
+<!-- 21 PATTERN 2 ROUTING -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Pattern 2 / 5 · Routing</div><h2 class="slide-title">Routing — clasifici, apoi trimiți pe cale diferită</h2><p class="slide-subtitle">Un singur tip de input intră → ajunge la procesul potrivit pentru el.</p></div>
+  <div class="routing" style="margin-bottom:18px;">
+    <div class="rt-in"><div class="ri-t">📨 Mesaj client</div><div class="ri-s">intră în sistem</div></div>
+    <div class="rt-fan">→<br>→<br>→</div>
+    <div class="rt-branches">
+      <div class="rt-branch a"><span class="rb-cond">🔴 Reclamație?</span><span class="rb-arrow">→</span><span class="rb-dest">Flux A · rezolvare</span></div>
+      <div class="rt-branch b"><span class="rb-cond">🟢 Cerere de ofertă?</span><span class="rb-arrow">→</span><span class="rb-dest">Flux B · vânzări</span></div>
+      <div class="rt-branch c"><span class="rb-cond">🔵 Întrebare tehnică?</span><span class="rb-arrow">→</span><span class="rb-dest">Flux C · suport</span></div>
+    </div>
+  </div>
+  <div class="why-band" style="margin-top:auto;">
+    <div class="wb-icon">🔀</div>
+    <div class="wb-text"><span class="lbl">De ce ai nevoie de asta</span>Când tipuri diferite de cereri au nevoie de <b>tratamente complet diferite</b>. Nu le forțezi pe toate prin același proces — fiecare merge unde trebuie.</div>
+  </div>
+  <div class="slide-num">21 / 29</div>
+</div>
+</section>
+
+<!-- 22 PATTERN 3 PARALLEL -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Pattern 3 / 5 · Parallelization</div><h2 class="slide-title">Parallelization — mai multe lucruri în paralel</h2><p class="slide-subtitle">Spargi un task pe bucăți care nu depind una de alta și le rulezi simultan.</p></div>
+  <div class="fork" style="margin-bottom:14px;">
+    <div class="fk-src">📣 Postare nouă pe social media</div>
+    <div class="fk-fan">⇉</div>
+    <div class="fk-workers">
+      <div class="fk-w">✍️ Copywriting <span style="font-weight:500;color:var(--muted)">— textul</span></div>
+      <div class="fk-w">🎨 Design <span style="font-weight:500;color:var(--muted)">— imaginea</span></div>
+    </div>
+    <div class="fk-join">⇉</div>
+    <div class="fk-out">✅ Postare gata (text + vizual)</div>
+  </div>
+  <div class="example-band" style="margin-bottom:14px;">
+    <div class="eb-title">🗳️ Cealaltă formă — Voting</div>
+    <div class="eb-body">Același task rulat de mai multe ori → <b>alegi cea mai bună variantă</b>. Ex: „Generează 5 variante de titlu pentru ofertă" → alegi 1.</div>
+  </div>
+  <div class="why-band" style="margin-top:auto;">
+    <div class="wb-icon">⚡</div>
+    <div class="wb-text"><span class="lbl">De ce ai nevoie de asta</span><b>Viteză</b> (lucruri independente, făcute deodată) sau <b>cea mai bună variantă</b> din mai multe încercări.</div>
+  </div>
+  <div class="slide-num">22 / 29</div>
+</div>
+</section>
+
+<!-- 23 PATTERN 4 ORCHESTRATOR -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Pattern 4 / 5 · Orchestrator-Workers</div><h2 class="slide-title">Orchestrator-Workers — dispecer + executanți</h2><p class="slide-subtitle">Când <b>nu știi dinainte</b> câte sub-sarcini sunt — dispecerul decide la fața locului.</p></div>
+  <div class="orch" style="margin-bottom:14px;">
+    <div class="orch-top">
+      <div class="ot-t">🎯 Orchestrator (dispecer)</div>
+      <div class="ot-s">„Construiește conceptul unei pagini de produs noi" → împarte &amp; deleagă</div>
+    </div>
+    <div class="orch-connector"></div>
+    <div class="orch-fan">↓ deleagă către ↓</div>
+    <div class="orch-workers">
+      <div class="worker"><div class="w-num">WORKER 1</div><div class="w-t">Textele</div><div class="w-d">Titlu, beneficii, CTA</div></div>
+      <div class="worker"><div class="w-num">WORKER 2</div><div class="w-t">Structura</div><div class="w-d">Ordinea secțiunilor</div></div>
+      <div class="worker"><div class="w-num">WORKER 3</div><div class="w-t">Componente</div><div class="w-d">Pe stilul brandului</div></div>
+      <div class="worker"><div class="w-num">WORKER 4</div><div class="w-t">Stările goale</div><div class="w-d">Erori &amp; mesaje lipsă</div></div>
+    </div>
+  </div>
+  <div class="why-band" style="margin-top:auto;">
+    <div class="wb-icon">🧩</div>
+    <div class="wb-text"><span class="lbl">Chain vs. Orchestrator</span><b>Chain</b> = pași știuți dinainte, în ordine. <b>Orchestrator</b> = împărțire <b>dinamică</b> — dispecerul decide câți executanți și ce fac, în funcție de brief.</div>
+  </div>
+  <div class="slide-num">23 / 29</div>
+</div>
+</section>
+
+<!-- 24 PATTERN 5 EVALUATOR LOOP -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Pattern 5 / 5 · Evaluator-Optimizer</div><h2 class="slide-title">Evaluator-Optimizer — generator + critic, în buclă</h2><p class="slide-subtitle">Exemplu: <b>o postare de social media</b>. Citește pașii <b>1 → 2 → 3</b> și bucla devine clară.</p></div>
+  <div class="evflow" style="margin-bottom:14px;">
+    <div class="evstep gen">
+      <div class="evstep-badge">1</div>
+      <div class="evstep-ic">✍️</div>
+      <div class="evstep-t">Generator scrie</div>
+      <div class="evstep-d">Un draft de postare (Instagram / LinkedIn).</div>
+    </div>
+    <div class="evconn"><span class="evconn-arrow">→</span></div>
+    <div class="evstep crit">
+      <div class="evstep-badge" style="background:#EA580C">2</div>
+      <div class="evstep-ic">🔎</div>
+      <div class="evstep-t">Criticul notează</div>
+      <div class="evstep-d">Hook, claritate, call-to-action, tonul brandului. Dă o notă /10.</div>
+    </div>
+    <div class="evconn"><span class="evconn-arrow">→</span></div>
+    <div class="evstep dec">
+      <div class="evstep-badge" style="background:#16A34A">3</div>
+      <div class="evstep-ic">🔁</div>
+      <div class="evstep-t">Decizia</div>
+      <div class="evstep-d"><b>Sub prag?</b> → înapoi la pasul 1.<br><b>≥ 8/10?</b> → STOP, e gata.</div>
+    </div>
+  </div>
+  <div class="evback-rail">
+    <span class="evback-lbl">bucla:</span>
+    <span class="evback-arrow">3 ↩ înapoi la 1 — generatorul rescrie cu observațiile criticului, până trece pragul</span>
+  </div>
+  <div class="why-band" style="margin-top:auto;">
+    <div class="wb-icon">💡</div>
+    <div class="wb-text"><span class="lbl">De ce ai nevoie de asta</span>Calitate mai mare <b>fără să stai tu</b> să ceri „mai bine" de 5 ori — agentul-critic face presiunea în locul tău. Costă mai mult (limite), dar merită la conținut care contează.</div>
+  </div>
+  <div class="slide-num">24 / 29</div>
+</div>
+</section>
+
+<!-- 25 CLAUDE.md -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Implementare</div><h2 class="slide-title">Creierul proiectului: <span style="font-family:'JetBrains Mono',monospace;font-size:28px;">CLAUDE.md</span></h2><p class="slide-subtitle">Primul fișier pe care agentul îl citește la fiecare dialog nou.</p></div>
+  <div class="split-screen" style="flex:none;margin-bottom:16px;">
+    <div class="split-pane bad">
+      <span class="split-label bad">✗ Fără CLAUDE.md</span>
+      <p class="split-h" style="font-size:18px">Agentul explorează orbește</p>
+      <div class="split-list">
+        <div class="split-li"><span class="b">•</span>Citește tot ca să înțeleagă proiectul</div>
+        <div class="split-li"><span class="b">•</span>Risipă de context din primul minut</div>
+        <div class="split-li"><span class="b">•</span>Repetă greșeli pe care le-ai mai corectat</div>
+      </div>
+    </div>
+    <div class="split-pane good">
+      <span class="split-label good">✓ Cu CLAUDE.md</span>
+      <p class="split-h" style="font-size:18px">Citește un fișier → știe tot</p>
+      <div class="split-list">
+        <div class="split-li"><span class="b">•</span>Ce e proiectul, unde sunt fișierele, regulile</div>
+        <div class="split-li"><span class="b">•</span>Pornește direct la treabă, fără tatonare</div>
+        <div class="split-li"><span class="b">•</span>Memorie persistentă între dialoguri</div>
+      </div>
+    </div>
+  </div>
+  <div class="info-band" style="margin-top:auto;">
+    <div class="ib-icon">🧳</div>
+    <div class="ib-text"><b>Analogie:</b> e briefing-ul complet pe care-l dai unui angajat nou în prima zi. <b>Flux:</b> scrii ce vrei într-un .md → agentul pune întrebări &amp; creează CLAUDE.md → aprobi → dialog nou, începe lucrul.</div>
+  </div>
+  <div class="slide-num">25 / 29</div>
+</div>
+</section>
+
+<!-- 26 IGIENA CONTEXT -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Implementare</div><h2 class="slide-title">Igienă de context — 3 reguli</h2><p class="slide-subtitle">Context plin = model mai lent, mai „prost" și limite consumate mai repede.</p></div>
+  <div class="cards-grid cards-3" style="flex:none;margin-bottom:16px;">
+    <div class="card primary-light">
+      <div class="card-num">1</div>
+      <p class="card-title">O sarcină = un dialog</p>
+      <p class="card-body">CLAUDE.md într-un dialog, implementarea în altul. Nu îngrămădi totul în același chat.</p>
+    </div>
+    <div class="card mint">
+      <div class="card-num">2</div>
+      <p class="card-title">Stai sub 50% context</p>
+      <p class="card-body">Peste prag → deschide un dialog nou. Terminalul îți arată procentul în timp real.</p>
+    </div>
+    <div class="card sky">
+      <div class="card-num">3</div>
+      <p class="card-title">Proiect mare → dialog nou</p>
+      <p class="card-body">Dai fișierul de specificații la start: „ai fișierul X — pornește implementarea".</p>
+    </div>
+  </div>
+  <div class="info-band" style="margin-top:auto;">
+    <div class="ib-icon">💾</div>
+    <div class="ib-text"><b>De ce funcționează:</b> CLAUDE.md e memoria persistentă a proiectului. Dialoguri scurte, focalizate, cu un fișier care ține totul minte — în loc de un chat lung de zeci de mesaje.</div>
+  </div>
+  <div class="slide-num">26 / 29</div>
+</div>
+</section>
+
+<!-- 27 6 MEDII -->
+<section>
+<div class="slide demo">
+  <div class="slide-header"><div class="slide-tag demo-tag">🛠️ Demo live</div><h2 class="slide-title">Șase medii de lucru — un singur sistem</h2><p class="slide-subtitle">Fiecare mediu e despre altceva. Legate prin <b>meta-orchestrare</b>.</p></div>
+  <div class="cards-grid cards-3" style="flex:none;margin-bottom:14px;grid-template-rows:1fr 1fr;">
+    <div class="card sky"><div style="display:flex;align-items:center;gap:10px;"><span class="card-num">1</span><span><p class="card-title" style="margin:0">YouTube</p><p class="card-eyebrow" style="margin:0">scenarii &amp; analytics</p></span></div></div>
+    <div class="card mint"><div style="display:flex;align-items:center;gap:10px;"><span class="card-num">2</span><span><p class="card-title" style="margin:0">Școală</p><p class="card-eyebrow" style="margin:0">Telegram, anunțuri — știe tonul</p></span></div></div>
+    <div class="card lavender"><div style="display:flex;align-items:center;gap:10px;"><span class="card-num">3</span><span><p class="card-title" style="margin:0">Site Builder</p><p class="card-eyebrow" style="margin:0">site-uri pe stilul brandului</p></span></div></div>
+    <div class="card peach"><div style="display:flex;align-items:center;gap:10px;"><span class="card-num">4</span><span><p class="card-title" style="margin:0">Program Builder</p><p class="card-eyebrow" style="margin:0">programa cursului → Notion</p></span></div></div>
+    <div class="card rose"><div style="display:flex;align-items:center;gap:10px;"><span class="card-num">5</span><span><p class="card-title" style="margin:0">Curs</p><p class="card-eyebrow" style="margin:0">research de produs</p></span></div></div>
+    <div class="card"><div style="display:flex;align-items:center;gap:10px;"><span class="card-num" style="background:#64748B">6</span><span><p class="card-title" style="margin:0">Demo</p><p class="card-eyebrow" style="margin:0">sandbox pentru live</p></span></div></div>
+  </div>
+  <div class="example-band" style="margin-top:auto;">
+    <div class="eb-title">🔗 Exemplu: „fă un landing pentru curs"</div>
+    <div class="eb-body"><b>Routing</b> (alege mediul) → <b>Program Builder</b> (conținutul) → <b>Site Builder</b> (stilul) → pagină gata. Legate printr-un <b>CLAUDE.md principal</b> + un <b>registry.md</b> (maparea mediilor). <i>„Fiecare cărămidă la locul ei, fiindcă știu de ce e acolo."</i></div>
+  </div>
+  <div class="slide-num">27 / 29</div>
+</div>
+</section>
+
+<!-- 28 RECAP 3 CAI -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Recap</div><h2 class="slide-title">Cele 3 căi — când o folosești pe care</h2></div>
+  <table class="slide-table" style="flex:none;font-size:16px;margin-bottom:16px;">
+    <thead>
+      <tr>
+        <th class="col-c" style="width:24%">Calea</th>
+        <th class="col-b">Când o folosești</th>
+        <th class="col-b">Plus</th>
+        <th class="col-b">Minus</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="crit" style="color:var(--foreground);font-size:16px">1 · Standard</td><td>Start, taskuri simple</td><td>Prag minim de intrare</td><td>Plafonează la complex</td></tr>
+      <tr><td class="crit" style="color:var(--foreground);font-size:16px">2 · GitHub repositories</td><td>Task tipic, soluție matură</td><td>Start rapid, referință</td><td>Arhitectura e a altuia</td></tr>
+      <tr><td class="crit" style="color:var(--primary);font-size:16px">3 · Arhitectură proprie</td><td class="hl">Control &amp; scalare</td><td class="hl">Știi exact ce face, fără surprize</td><td class="hl">Nu e un start rapid</td></tr>
+    </tbody>
+  </table>
+  <div class="quote-block" style="margin-top:auto;"><strong>Regula Anthropic:</strong> începe simplu. Adaugă complexitate doar când nu merge altfel. <strong>Nu-ți trebuie o arhitectură pentru o sarcină punctuală.</strong></div>
+  <div class="slide-num">28 / 29</div>
+</div>
+</section>
+
+<!-- 29 WRAP-UP -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Wrap-up &amp; Homework</div><h2 class="slide-title">Ce duci acasă azi</h2></div>
+  <div class="wrapup-grid">
+    <div class="wrapup-pane learned">
+      <div class="wrapup-pane-title">✅ Azi ai înțeles</div>
+      <div class="check-list">
+        <div class="check-item"><span class="chk">✓</span>Vocabularul: API, hosting, domeniu, GitHub, MCP, VS Code, Claude</div>
+        <div class="check-item"><span class="chk">✓</span>Ce e un <b>agent</b> vs. un chat — tool-use loop</div>
+        <div class="check-item"><span class="chk">✓</span>Cele <b>3 căi</b> de a construi agenți</div>
+        <div class="check-item"><span class="chk">✓</span>Cele <b>5 cărămizi</b> și cele <b>5 pattern-uri</b></div>
+        <div class="check-item"><span class="chk">✓</span><b>CLAUDE.md</b> + igiena de context</div>
+        <div class="check-item"><span class="chk">✓</span>Cum se leagă mai multe medii într-un sistem</div>
+      </div>
+    </div>
+    <div class="wrapup-pane hw">
+      <div class="wrapup-pane-title">📋 Homework</div>
+      <div class="check-list">
+        <div class="check-item"><span class="chk">1.</span>Ia o <b>sarcină repetitivă</b> din firma ta și spune ce pattern e (chain / routing / orchestrator)</div>
+        <div class="check-item"><span class="chk">2.</span>Dă-i agentului articolul „Building Effective Agents" și cere-i <b>arhitectura cea mai simplă</b> pentru ea</div>
+        <div class="check-item"><span class="chk">3.</span>Reflecție: <b>pe ce cale ești tu acum</b> — 1, 2, 3, sau „mă uit deocamdată"?</div>
+      </div>
+      <div class="preview-row">
+        <div class="lbl">Reține →</div>
+        <div class="ttl">Începe simplu.<br><span style="font-weight:400;font-size:14px;color:var(--muted);">AI nu te înlocuiește. Te înlocuiește omul care-l folosește mai bine.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">29 / 29</div>
+</div>
+</section>
+
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>
