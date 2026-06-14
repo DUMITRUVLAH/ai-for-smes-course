@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI for Recruiters (ARA) — Platforma cursului</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:hsl(220,20%,97%);--fg:hsl(222,47%,11%);--card:hsl(0,0%,100%);
+  --border:hsl(220,13%,91%);--muted-fg:hsl(220,9%,46%);--muted:hsl(220,14%,96%);
+  --primary:hsl(262,72%,52%);--primary-fg:hsl(0,0%,100%);--primary-pale:hsl(262,72%,96%);
+  --success:hsl(142,71%,45%);
+  --radius:14px;--radius-sm:9px;--radius-full:9999px;
+  --shadow-sm:0 1px 3px hsl(222 47% 11% / .04);
+  --shadow-md:0 4px 12px hsl(222 47% 11% / .07);
+  --shadow-lg:0 12px 24px hsl(222 47% 11% / .09);
+  --sidebar-w:220px;
+  --lavender-bg:hsl(250,80%,95%);--lavender-fg:hsl(250,70%,50%);
+  --mint-bg:hsl(158,60%,90%);--mint-fg:hsl(158,55%,35%);
+  --peach-bg:hsl(20,100%,93%);--peach-fg:hsl(20,85%,45%);
+  --sky-bg:hsl(200,78%,91%);--sky-fg:hsl(200,70%,38%);
+  --rose-bg:hsl(340,78%,93%);--rose-fg:hsl(340,65%,45%);
+  --lemon-bg:hsl(50,90%,91%);--lemon-fg:hsl(40,80%,35%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;-webkit-font-smoothing:antialiased}
+.shell{display:flex;min-height:100vh}
+
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sidebar-w);position:fixed;top:0;left:0;bottom:0;background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.sidebar-brand{padding:16px 14px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px}
+.brand-mark{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--primary),hsl(290,72%,52%));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;flex-shrink:0}
+.brand-name{font-size:13px;font-weight:700;color:var(--fg)}
+.brand-sub{font-size:11px;color:var(--muted-fg)}
+.sidebar-nav{padding:10px 10px 6px;flex:1}
+.nav-section-label{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted-fg);padding:6px 8px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--radius-sm);cursor:pointer;margin-bottom:2px;transition:.13s}
+.nav-item:hover{background:var(--muted)}
+.nav-item.active{background:var(--primary-pale);color:var(--primary);font-weight:600}
+.nav-item.locked{cursor:not-allowed;opacity:.55}
+.nav-item.locked:hover{background:none}
+.nav-icon{width:30px;height:30px;border-radius:8px;background:var(--muted);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.nav-item.active .nav-icon{background:var(--primary-pale)}
+.nav-label{font-size:13px;font-weight:600;line-height:1.2;flex:1}
+.nav-meta{font-size:11px;color:var(--muted-fg);font-weight:500;margin-top:2px}
+.nav-item.active .nav-meta{color:hsl(262,60%,62%)}
+.nav-badge-lock{font-size:9.5px;font-weight:700;color:var(--muted-fg);background:var(--muted);padding:2px 6px;border-radius:999px}
+.sub-nav{padding:2px 0 6px 16px}
+.sub-item{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted-fg);padding:6px 10px;border-radius:var(--radius-sm);cursor:pointer;transition:.12s}
+.sub-item:hover{color:var(--fg);background:var(--muted)}
+.sub-item.active{color:var(--primary);font-weight:600}
+.sub-dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.5}
+.sidebar-footer{padding:12px 12px 16px;border-top:1px solid var(--border)}
+.prog-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted-fg);margin-bottom:6px}
+.prog-track{height:4px;background:var(--muted);border-radius:var(--radius-full);overflow:hidden}
+.prog-fill{height:100%;width:100%;background:linear-gradient(90deg,var(--primary),hsl(290,72%,52%));border-radius:var(--radius-full)}
+
+/* ── MAIN ── */
+.main{margin-left:var(--sidebar-w);flex:1;min-height:100vh;background:var(--bg)}
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:hsla(220,20%,97%,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.breadcrumb{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted-fg)}
+.breadcrumb b{color:var(--fg);font-weight:600}
+.topbar-pill{display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;letter-spacing:.03em;color:var(--success);background:hsl(142,60%,95%);padding:6px 12px;border-radius:999px}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--success)}
+.page{max-width:760px;margin:0 auto;padding:36px 28px 80px}
+.page-hero{margin-bottom:28px}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
+.kicker-n{width:22px;height:22px;border-radius:7px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.page-hero h1{font-size:32px;font-weight:800;letter-spacing:-.02em;line-height:1.12;margin-bottom:12px}
+.page-hero p{font-size:14.5px;color:var(--muted-fg);line-height:1.6;max-width:520px}
+.stat-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.stat-chip{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--fg);background:var(--card);border:1px solid var(--border);padding:8px 13px;border-radius:999px;box-shadow:var(--shadow-sm)}
+.stat-chip span{font-size:14px}
+.section-block{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow-sm);transition:.16s}
+.section-block:hover{box-shadow:var(--shadow-md)}
+.section-head{display:flex;align-items:center;gap:13px;padding:16px 18px;cursor:pointer;transition:.13s}
+.section-head:hover{background:hsl(220,20%,98%)}
+.section-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.section-icon.lavender{background:var(--lavender-bg)}
+.section-icon.mint{background:var(--mint-bg)}
+.section-icon.peach{background:var(--peach-bg)}
+.section-icon.sky{background:var(--sky-bg)}
+.section-icon.lemon{background:var(--lemon-bg)}
+.section-text{flex:1}
+.section-text h3{font-size:14px;font-weight:700;line-height:1.2}
+.section-text p{font-size:12px;color:var(--muted-fg);margin-top:2px}
+.section-time{font-size:11px;color:var(--muted-fg);margin-right:6px}
+.section-chevron{font-size:11px;color:var(--muted-fg);transition:transform .2s}
+.section-chevron.open{transform:rotate(180deg)}
+.section-body{padding:18px}
+.section-body.hidden{display:none}
+.pres-banner{display:flex;align-items:center;justify-content:space-between;gap:16px;background:linear-gradient(135deg,var(--primary-pale),hsl(290,72%,96%));border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:16px}
+.pres-banner-text h4{font-size:15px;font-weight:700;color:var(--fg);margin-bottom:4px}
+.pres-banner-text p{font-size:13px;color:var(--muted-fg);line-height:1.5}
+.pres-big-icon{font-size:42px;opacity:.35;flex-shrink:0}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:11px 18px;border-radius:var(--radius-sm);border:1px solid transparent;text-decoration:none;cursor:pointer;transition:.14s}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-primary:hover{background:hsl(262,72%,44%);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn-outline{background:var(--card);color:var(--fg);border-color:var(--border)}
+.btn-outline:hover{border-color:hsl(220,13%,78%);background:var(--muted)}
+.mat-list{display:flex;flex-direction:column;gap:10px}
+.mat-item{display:flex;align-items:center;gap:13px;padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);text-decoration:none;color:var(--fg);transition:.14s;background:var(--card)}
+.mat-item:hover{border-color:hsl(262,50%,75%);background:var(--primary-pale);transform:translateY(-1px)}
+.mat-ico{width:36px;height:36px;border-radius:9px;background:var(--muted);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.mat-txt{flex:1}
+.mat-txt h4{font-size:13.5px;font-weight:700}
+.mat-txt p{font-size:12px;color:var(--muted-fg);margin-top:1px}
+.mat-arrow{font-size:14px;color:var(--muted-fg)}
+.callout{display:flex;flex-direction:column;gap:4px;font-size:13px;line-height:1.55;color:var(--fg);background:var(--primary-pale);border:1px solid hsl(262,60%,90%);border-radius:var(--radius-sm);padding:14px 16px;margin-top:16px}
+.callout-title{font-weight:700;font-size:12.5px}
+
+.hamburger{display:none}
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%);transition:transform .2s}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0}
+  .hamburger{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:16px}
+  .page-hero h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ════ SIDEBAR ════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">ARA</div>
+      <div>
+        <div class="brand-name">AI for Recruiters</div>
+        <div class="brand-sub">Platforma cursului</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Program</span>
+
+      <div class="nav-item active" onclick="showLesson(1)" id="nav1">
+        <div class="nav-icon">🎯</div>
+        <div class="nav-label">
+          Sesiunea ARA
+          <div class="nav-meta">AI pentru recrutori</div>
+        </div>
+      </div>
+      <div class="sub-nav" id="sub1">
+        <div class="sub-item active" onclick="scrollToSec('prezentare',this)"><span class="sub-dot"></span>Prezentare</div>
+        <div class="sub-item" onclick="scrollToSec('tehnologii',this)"><span class="sub-dot"></span>Tehnologii</div>
+        <div class="sub-item" onclick="scrollToSec('materiale',this)"><span class="sub-dot"></span>Materiale</div>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a href="tehnologii.html" target="_blank" style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--fg);text-decoration:none;padding:8px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:8px">🛠️ Lista de tehnologii</a>
+      <a href="https://t.me/+E9aPhptp_2QxZDdk" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#fff;background:hsl(202,85%,50%);text-decoration:none;padding:8px 10px;border-radius:var(--radius-sm);margin-bottom:12px">📣 Canalul de Telegram</a>
+      <div class="prog-label"><span>Program</span><span>v2 · final</span></div>
+      <div class="prog-track"><div class="prog-fill"></div></div>
+    </div>
+  </aside>
+
+  <!-- ════ MAIN ════ -->
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="hamburger" onclick="toggleSidebar()">☰</button>
+        <div class="breadcrumb">AI for Recruiters <span style="color:var(--border)">›</span> <b>Sesiunea ARA</b></div>
+      </div>
+      <div class="topbar-pill"><span class="pill-dot"></span>SESIUNE ACTIVĂ</div>
+    </div>
+
+    <div class="page" id="lesson-1">
+      <div class="page-hero">
+        <div class="hero-kicker"><div class="kicker-n">1</div>Sesiunea ARA</div>
+        <h1>AI pentru Recrutori<br>— de la prompt la flux complet</h1>
+        <p>Prezentarea completă, lista de tehnologii și materialele practice ale trainingului ARA: prompt engineering, ecosistem Google &amp; Claude, Gems, Projects, Skills, MCP, automatizări Make.com și GDPR.</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-chip"><span>📊</span> 13 module</div>
+        <div class="stat-chip"><span>🛠️</span> Hands-on</div>
+        <div class="stat-chip"><span>🤖</span> Claude · Gemini · MCP</div>
+        <div class="stat-chip"><span>🔒</span> GDPR inclus</div>
+      </div>
+
+      <!-- ── PREZENTARE ── -->
+      <div class="section-block" id="prezentare">
+        <div class="section-head" onclick="toggleSec('b-prezentare',this)">
+          <div class="section-icon lavender">📊</div>
+          <div class="section-text">
+            <h3>Prezentarea sesiunii</h3>
+            <p>Deck-ul complet ARA — toate cele 13 module</p>
+          </div>
+          <span class="section-time">~3h</span>
+          <span class="section-chevron open">▼</span>
+        </div>
+        <div class="section-body" id="b-prezentare">
+          <div class="pres-banner">
+            <div class="pres-banner-text">
+              <h4>Sesiunea ARA — Slides (v2)</h4>
+              <p>Prompt engineering → ecosisteme AI → Skills &amp; MCP →<br>automatizări Make.com → securitate &amp; GDPR.</p>
+            </div>
+            <div class="pres-big-icon">🎞️</div>
+          </div>
+          <div class="btn-row">
+            <a href="slides.html" target="_blank" class="btn btn-primary">↗ Deschide prezentarea</a>
+            <a href="tehnologii.html" target="_blank" class="btn btn-outline">🛠️ Lista de tehnologii</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── TEHNOLOGII ── -->
+      <div class="section-block" id="tehnologii">
+        <div class="section-head" onclick="toggleSec('b-tehnologii',this)">
+          <div class="section-icon mint">🛠️</div>
+          <div class="section-text">
+            <h3>Tehnologii &amp; tool-uri</h3>
+            <p>Ce face fiecare instrument și când îl alegi în recrutare</p>
+          </div>
+          <span class="section-time">referință</span>
+          <span class="section-chevron open">▼</span>
+        </div>
+        <div class="section-body" id="b-tehnologii">
+          <p style="font-size:13.5px;color:var(--muted-fg);line-height:1.6;margin-bottom:14px">Toate instrumentele menționate în training, grupate pe flux: asistenți AI, documente &amp; CV-uri, Google Workspace &amp; Gems, conectori &amp; automatizare. Fiecare cu „la ce e bun".</p>
+          <a href="tehnologii.html" target="_blank" class="btn btn-primary">↗ Deschide lista de tehnologii</a>
+        </div>
+      </div>
+
+      <!-- ── MATERIALE ── -->
+      <div class="section-block" id="materiale">
+        <div class="section-head" onclick="toggleSec('b-materiale',this)">
+          <div class="section-icon peach">📦</div>
+          <div class="section-text">
+            <h3>Materiale practice</h3>
+            <p>Ghiduri pas-cu-pas pentru hands-on</p>
+          </div>
+          <span class="section-time">~15 min</span>
+          <span class="section-chevron open">▼</span>
+        </div>
+        <div class="section-body" id="b-materiale">
+          <div class="mat-list">
+            <a href="materiale/make-com-guide.html" target="_blank" class="mat-item">
+              <div class="mat-ico">🔗</div>
+              <div class="mat-txt">
+                <h4>Ghid Make.com — Email cu CV → Google Sheets</h4>
+                <p>Automatizare completă pas-cu-pas: detectează CV-ul, extrage datele cu AI, adaugă rând în Sheets.</p>
+              </div>
+              <div class="mat-arrow">↗</div>
+            </a>
+          </div>
+          <div class="callout">
+            <span class="callout-title">💡 Cum folosești materialele</span>
+            Le parcurgi în paralel cu modulele de pe slide-uri. Ghidul Make.com corespunde modulului M12 (automatizări).
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+function toggleSec(id, hdr){
+  const body=document.getElementById(id);
+  const chev=hdr.querySelector('.section-chevron');
+  const hidden=body.classList.toggle('hidden');
+  chev.classList.toggle('open',!hidden);
+}
+function scrollToSec(id,el){
+  const t=document.getElementById(id);
+  if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-70,behavior:'smooth'});
+  document.querySelectorAll('.sub-item').forEach(s=>s.classList.remove('active'));
+  el.classList.add('active');
+  if(window.innerWidth<=768)closeSidebar();
+}
+function showLesson(){if(window.innerWidth<=768)closeSidebar();}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open')}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open')}
+</script>
+</body>
+</html>

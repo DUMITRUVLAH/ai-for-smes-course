@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ghid Make.com — Email cu CV → Google Sheets · ARA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:hsl(220,20%,97%);--fg:hsl(222,47%,11%);--card:hsl(0,0%,100%);
+  --border:hsl(220,13%,91%);--muted-fg:hsl(220,9%,46%);--muted:hsl(220,14%,96%);
+  --primary:hsl(262,72%,52%);--primary-pale:hsl(262,72%,96%);
+  --radius:14px;--radius-sm:9px;
+  --shadow-sm:0 1px 3px hsl(222 47% 11% / .04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;line-height:1.6}
+.wrap{max-width:780px;margin:0 auto;padding:0 22px 90px}
+.bar{position:sticky;top:0;z-index:10;background:hsla(220,20%,97%,.88);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:14px 0;margin-bottom:8px}
+.bar-inner{max-width:780px;margin:0 auto;padding:0 22px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted-fg);text-decoration:none}
+.back:hover{color:var(--primary)}
+.tag{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary);background:var(--primary-pale);padding:5px 11px;border-radius:999px}
+.hero{padding:36px 0 22px;border-bottom:1px solid var(--border);margin-bottom:30px}
+.kick{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted-fg);margin-bottom:10px}
+h1{font-size:31px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:8px}
+.sub{font-size:16px;color:var(--muted-fg)}
+h2{font-size:20px;font-weight:800;margin:36px 0 12px;letter-spacing:-.01em}
+h2 .n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:var(--primary);color:#fff;font-size:14px;font-weight:800;margin-right:10px;vertical-align:middle}
+p{margin:10px 0;font-size:15px}
+strong{font-weight:700}
+ul{margin:10px 0 10px 4px;list-style:none}
+li{font-size:15px;padding:4px 0 4px 24px;position:relative}
+li::before{content:"☐";position:absolute;left:0;color:var(--primary)}
+ul.dot li::before{content:"•";font-weight:800}
+pre{background:hsl(222,30%,12%);color:hsl(220,15%,88%);border-radius:var(--radius-sm);padding:16px 18px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.55;margin:14px 0}
+code{font-family:'JetBrains Mono',monospace;font-size:.88em;background:var(--muted);padding:2px 6px;border-radius:5px}
+pre code{background:none;padding:0}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden}
+th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:var(--muted);font-weight:700;font-size:12.5px}
+tr:last-child td{border-bottom:none}
+.note{background:var(--primary-pale);border:1px solid hsl(262,55%,90%);border-left:3px solid var(--primary);border-radius:var(--radius-sm);padding:13px 16px;margin:16px 0;font-size:14px;line-height:1.55}
+.note b{color:var(--primary)}
+.warn{background:hsl(40,90%,96%);border:1px solid hsl(40,70%,85%);border-left:3px solid hsl(38,85%,50%);border-radius:var(--radius-sm);padding:13px 16px;margin:16px 0;font-size:14px;line-height:1.55}
+.divider{height:1px;background:var(--border);margin:30px 0}
+.stat-row{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.chip{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;background:var(--card);border:1px solid var(--border);padding:7px 12px;border-radius:999px;box-shadow:var(--shadow-sm)}
+footer{margin-top:40px;padding-top:22px;border-top:1px solid var(--border);font-size:13px;color:var(--muted-fg);text-align:center}
+@media(max-width:560px){h1{font-size:25px}}
+</style>
+</head>
+<body>
+
+<div class="bar"><div class="bar-inner">
+  <a href="../index.html" class="back">← Înapoi la platformă</a>
+  <span class="tag">📦 Material ARA</span>
+</div></div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="kick">Training ARA · Vector Academy · Material M12</div>
+    <h1>Ghid Make.com — Email cu CV → Google Sheets</h1>
+    <p class="sub">Automatizare completă: când vine un CV pe email, datele ajung singure în Sheets.</p>
+    <div class="stat-row">
+      <div class="chip"><span>⏱️</span> setup 45–60 min</div>
+      <div class="chip"><span>🧩</span> 5 module</div>
+      <div class="chip"><span>💸</span> ~$0.01 / CV</div>
+      <div class="chip"><span>📥</span> ~150 CV-uri/lună gratuit</div>
+    </div>
+  </div>
+
+  <h2>Ce construim</h2>
+  <p>Când cineva trimite un email cu un CV atașat, Make.com preia automat emailul, extrage din CV numele candidatului, emailul, telefonul și poziția aplicată, și adaugă un rând nou în Google Sheets — fără să atingi nimic manual.</p>
+  <pre>Email primit cu CV.pdf
+        ↓
+Make.com detectează emailul
+        ↓
+Extrage datele din CV (cu AI)
+        ↓
+Adaugă rând în Google Sheets:
+[ Ion Popescu | ion@email.com | +373 69 123 456 | Muncitor agricol | Germania ]</pre>
+
+  <div class="divider"></div>
+
+  <h2>Înainte să începi — ce ai nevoie</h2>
+  <ul>
+    <li>Cont Make.com (gratuit — <code>make.com/register</code>)</li>
+    <li>Cont Google (Gmail + Google Sheets)</li>
+    <li>Cont OpenAI cu credit (minim $5) — pentru extragerea datelor din CV</li>
+    <li>Un email dedicat pentru aplicații (ex: aplicatii@agentia-ta.md) sau eticheta Gmail unde ajung CV-urile</li>
+  </ul>
+  <p><strong>Timp estimat:</strong> 45–60 minute prima dată. <strong>Cost lunar:</strong> gratuit pe Make.com sub ~150 CV-uri/lună; OpenAI ~$0.01 per CV.</p>
+
+  <div class="divider"></div>
+
+  <h2><span class="n">0</span>Pregătește Google Sheets</h2>
+  <p>Înainte de Make, creează foaia unde vor ajunge datele.</p>
+  <ul class="dot">
+    <li>Deschide <code>sheets.google.com</code> → New spreadsheet</li>
+    <li>Redenumește: „Aplicații Candidați 2026"</li>
+    <li>Pe primul rând, scrie capetele de coloană exact așa:</li>
+  </ul>
+  <table><thead><tr><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr></thead>
+  <tbody><tr><td>Nume</td><td>Email</td><td>Telefon</td><td>Poziție</td><td>Data primirii</td><td>Fișier CV</td></tr></tbody></table>
+  <div class="note"><b>De reținut:</b> Make va adăuga câte un rând nou sub rândul 1 pentru fiecare CV. Nu șterge rândul cu capetele de coloană.</div>
+
+  <h2><span class="n">1</span>Creează scenariul în Make.com</h2>
+  <ul class="dot">
+    <li>Intră pe <code>make.com</code> → autentifică-te</li>
+    <li>Click <strong>Create a new scenario</strong> (butonul albastru, stânga sus)</li>
+    <li>Apare o interfață goală cu un cerc în mijloc — primul modul (trigger-ul)</li>
+    <li>Click pe cerc → apare un panou de căutare</li>
+  </ul>
+
+  <h2><span class="n">2</span>Modulul 1: Gmail — detectează emailul</h2>
+  <p><strong>Ce face:</strong> Make verifică Gmail la fiecare 15 minute și pornește scenariul când găsește un email nou cu atașament. Caută <strong>Gmail → Watch Emails</strong>.</p>
+  <table><thead><tr><th>Câmp</th><th>Ce completezi</th></tr></thead><tbody>
+  <tr><td>Connection</td><td>„Add" → autorizează contul Gmail → dă permisiunile cerute</td></tr>
+  <tr><td>Folder</td><td>Folderul/eticheta unde ajung CV-urile (Inbox sau o etichetă „Aplicații")</td></tr>
+  <tr><td>Criteria</td><td><strong>All email</strong> (sau „With attachment")</td></tr>
+  <tr><td>Max Results</td><td><strong>1</strong> (un email per rulare — mai sigur la început)</td></tr>
+  <tr><td>Mark as Read</td><td><strong>Yes</strong> (evită procesarea dublă)</td></tr>
+  </tbody></table>
+  <div class="note"><b>Important:</b> Make monitorizează DOAR folderul ales, nu subfolderele.</div>
+
+  <h2><span class="n">3</span>Modulul 2: Gmail — descarcă atașamentul</h2>
+  <p><strong>Ce face:</strong> Watch Emails știe că există un atașament, dar nu îl descarcă. Acest modul preia fișierul. Caută <strong>Gmail → Get an Email Attachment</strong>.</p>
+  <table><thead><tr><th>Câmp</th><th>Ce completezi</th></tr></thead><tbody>
+  <tr><td>Connection</td><td>Același cont Gmail</td></tr>
+  <tr><td>Message ID</td><td>Alege <strong>Message ID</strong> din modulul 1</td></tr>
+  <tr><td>Attachment ID</td><td>Alege <strong>Attachments[] &gt; ID</strong> din modulul 1</td></tr>
+  <tr><td>Include file data</td><td><strong>YES</strong> — obligatoriu, altfel fișierul vine gol</td></tr>
+  </tbody></table>
+  <div class="warn"><b>⚠️ Gotcha frecvent:</b> Dacă uiți „Include file data", totul pare să meargă dar AI-ul primește un fișier gol. Verifică mereu că e pe <strong>Yes</strong>.</div>
+
+  <h2><span class="n">4</span>Modulul 3: OpenAI — extrage datele din CV</h2>
+  <p><strong>Ce face:</strong> Trimite CV-ul la ChatGPT și primește un JSON cu datele candidatului. Ai nevoie de un API key (<code>platform.openai.com → API Keys</code>). Caută <strong>OpenAI → Create a Completion</strong>, model <strong>gpt-4o-mini</strong>. La Messages → Add item → User, pune promptul:</p>
+  <pre>Ești un asistent HR. Extrage din CV-ul de mai jos următoarele câmpuri
+și returnează DOAR un JSON valid, fără explicații.
+
+{
+  "nume": "",
+  "email": "",
+  "telefon": "",
+  "pozitie_aplicata": "",
+  "ani_experienta": ""
+}
+
+Dacă un câmp nu există, pune valoarea "negăsit".
+
+CV:
+[mapează aici variabila Data din modulul 2 — conținutul fișierului]</pre>
+  <div class="note"><b>PDF scanate:</b> Dacă CV-ul e o imagine, gpt-4o-mini nu o poate citi. Folosește <strong>gpt-4o</strong> și content type „File" (~$0.03/CV).</div>
+
+  <h2><span class="n">5</span>Modulul 4: JSON — parsează răspunsul</h2>
+  <p><strong>Ce face:</strong> Transformă textul JSON al AI-ului în variabile separate. Caută <strong>JSON → Parse JSON</strong>. La „JSON String" mapează <strong>Result/Content</strong> din modulul OpenAI; la „Data Structure" → Generate, lipește un exemplu:</p>
+  <pre>{
+  "nume": "Ion Popescu",
+  "email": "ion@email.com",
+  "telefon": "+373 69 123 456",
+  "pozitie_aplicata": "Muncitor agricol",
+  "ani_experienta": "3"
+}</pre>
+  <div class="warn"><b>⚠️ Gotcha:</b> Câmpurile din Parse JSON nu apar în modulele următoare până nu rulezi scenariul o dată cu date reale. La primul test mergi mai departe oricum, apoi revii și mapezi.</div>
+
+  <h2><span class="n">6</span>Modulul 5: Google Sheets — adaugă rândul</h2>
+  <p>Caută <strong>Google Sheets → Add a Row</strong>, alege fișierul „Aplicații Candidați 2026", apoi mapează coloanele:</p>
+  <table><thead><tr><th>Coloana</th><th>Variabila mapată</th></tr></thead><tbody>
+  <tr><td>A — Nume</td><td><code>nume</code> din Parse JSON</td></tr>
+  <tr><td>B — Email</td><td><code>email</code> din Parse JSON</td></tr>
+  <tr><td>C — Telefon</td><td><code>telefon</code> din Parse JSON</td></tr>
+  <tr><td>D — Poziție</td><td><code>pozitie_aplicata</code> din Parse JSON</td></tr>
+  <tr><td>E — Data primirii</td><td><code>Date</code> din Gmail (Watch Emails)</td></tr>
+  <tr><td>F — Fișier CV</td><td><code>Attachment Name</code> din Gmail</td></tr>
+  </tbody></table>
+
+  <h2><span class="n">7</span>Testează scenariul</h2>
+  <ul class="dot">
+    <li>Click <strong>Run once</strong> (triunghiul de play, stânga jos)</li>
+    <li>Trimite-ți un email de test cu un CV atașat</li>
+    <li>Așteaptă ~30 secunde → verifică fiecare modul (balonul cu numărul de deasupra)</li>
+    <li>Dacă e verde → deschide Sheets și verifică rândul nou</li>
+  </ul>
+  <p><strong>Dacă ceva nu merge:</strong></p>
+  <table><thead><tr><th>Simptom</th><th>Cauză</th><th>Soluție</th></tr></thead><tbody>
+  <tr><td>Modulul 2 dă fișier gol</td><td>„Include file data" pe No</td><td>Pune pe Yes</td></tr>
+  <tr><td>OpenAI dă text, nu JSON</td><td>Prompt prea slab</td><td>Adaugă „Returnează DOAR JSON"</td></tr>
+  <tr><td>Parse JSON fără câmpuri</td><td>N-ai rulat cu date reale</td><td>Rulează o dată, apoi mapează</td></tr>
+  <tr><td>Coloane greșite în Sheets</td><td>Mapare incorectă</td><td>Reverifică Pasul 6</td></tr>
+  </tbody></table>
+
+  <h2><span class="n">8</span>Activează scenariul</h2>
+  <ul class="dot">
+    <li>Click switch-ul <strong>OFF/ON</strong> (stânga jos) → devine <strong>ON</strong></li>
+    <li>Setează intervalul: ceasul de lângă modulul Gmail → <strong>15 minutes</strong> (minim pe gratuit)</li>
+    <li>Scenariul rulează acum automat la fiecare 15 minute</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <h2>Schema completă</h2>
+  <pre>┌──────────────┐   ┌──────────────┐   ┌──────────────┐
+│  Gmail       │   │  Gmail       │   │  OpenAI      │
+│  Watch Emails│──▶│  Get         │──▶│  ChatGPT     │
+│  (trigger)   │   │  Attachment  │   │  Extrage date│
+└──────────────┘   └──────────────┘   └──────┬───────┘
+                                             │
+                   ┌──────────────┐   ┌──────▼───────┐
+                   │ Google Sheets│   │  JSON        │
+                   │ Add a Row    │◀──│  Parse JSON  │
+                   └──────────────┘   └──────────────┘
+
+5 module · ~5–7 operații per CV · ~150 CV-uri/lună gratuit</pre>
+
+  <h2>Cum extinzi mai departe (opțional)</h2>
+  <ul class="dot">
+    <li><strong>Filtru pe subiect:</strong> procesează doar emailuri cu „CV"/„aplicație" — modul <strong>Filter</strong> între Watch Emails și Get Attachment</li>
+    <li><strong>Notificare Slack/Teams:</strong> după rând în Sheets → mesaj „Candidat nou: [Nume] pentru [Poziție]"</li>
+    <li><strong>Google Drive:</strong> înainte de OpenAI → „Upload a File" → CV-ul se salvează organizat</li>
+    <li><strong>Email de confirmare:</strong> după Sheets → Gmail „Send an Email" către candidat</li>
+  </ul>
+
+  <h2>Limite de reținut</h2>
+  <table><thead><tr><th>Lucru</th><th>Detaliu</th></tr></thead><tbody>
+  <tr><td>Plan gratuit Make.com</td><td>1.000 operații/lună, 2 scenarii active, verificare la 15 min</td></tr>
+  <tr><td>CV-uri/lună pe gratuit</td><td>~150 (la 7 operații per CV)</td></tr>
+  <tr><td>PDF scanate (imagini)</td><td>Necesită GPT-4o — puțin mai scump</td></tr>
+  <tr><td>Primul setup</td><td>Necesită o rulare de test înainte ca mapările să fie vizibile</td></tr>
+  </tbody></table>
+
+  <footer>Vector Academy S.R.L. · vlahdumitru@vectoracademy.ro · +373 760 37 475</footer>
+
+</div>
+</body>
+</html>
