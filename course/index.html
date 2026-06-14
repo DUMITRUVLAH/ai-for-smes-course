@@ -529,14 +529,12 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
         </div>
       </div>
 
-      <!-- L3 locked -->
-      <div class="nav-item locked" onclick="showLockedToast(3)">
-        <div class="nav-icon">🔒</div>
+      <div class="nav-item" onclick="showLesson(3)" id="nav3">
+        <div class="nav-icon">🤖</div>
         <div class="nav-label">
           Lecția 3
-          <div class="nav-meta">AI avansat &amp; strategie</div>
+          <div class="nav-meta">Cum îți construiești agenți AI</div>
         </div>
-        <span class="nav-badge-lock">În curând</span>
       </div>
     </nav>
 
@@ -988,10 +986,43 @@ Evită [RESTRICȚIE]. Dacă-ți lipsește un detaliu esențial, întreabă-mă �
 
     <!-- ════ LECȚIA 3 ════ -->
     <div class="page" id="lesson-3" style="display:none">
-      <div class="locked-page">
-        <div class="lock-glyph">🔒</div>
-        <h2>Lecția 3 — În curând</h2>
-        <p>Disponibilă după sesiunea 3.</p>
+      <div class="page-hero">
+        <div class="hero-kicker"><div class="kicker-n">3</div>Sesiunea 3</div>
+        <h1>Cum îți construiești<br>propriii agenți AI</h1>
+        <p>De la „un chat care răspunde" la un sistem care lucrează singur pentru tine: vocabularul de bază, ce e un agent, cele 3 căi de a-i construi și cele 5 pattern-uri de arhitectură.</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-chip"><span>⏱️</span> ~90 min</div>
+        <div class="stat-chip"><span>📖</span> Vocabular fără frică</div>
+        <div class="stat-chip"><span>🧩</span> 5 pattern-uri</div>
+        <div class="stat-chip"><span>🤖</span> Agenți &amp; arhitectură</div>
+      </div>
+
+      <!-- ── PREZENTARE ── -->
+      <div class="section-block" id="prezentare3">
+        <div class="section-head" onclick="toggleSec('b-prezentare3',this)">
+          <div class="section-icon lavender">📊</div>
+          <div class="section-text">
+            <h3>Prezentarea sesiunii</h3>
+            <p>Slide-urile complete din sesiunea 3</p>
+          </div>
+          <span class="section-time">~10 min</span>
+          <span class="section-chevron open">▼</span>
+        </div>
+        <div class="section-body" id="b-prezentare3">
+          <div class="pres-banner">
+            <div class="pres-banner-text">
+              <h4>Sesiunea 3 — Slides</h4>
+              <p>Cum îți construiești propriii agenți AI.<br>Vocabular, tool-use loop, 3 căi, 5 pattern-uri, CLAUDE.md.</p>
+            </div>
+            <div class="pres-big-icon">🤖</div>
+          </div>
+          <div class="btn-row">
+            <a href="../session-03A.html" target="_blank" class="btn btn-primary">↗ Deschide prezentarea</a>
+            <a href="../tehnologii.html" target="_blank" class="btn btn-outline">🛠️ Lista de tehnologii</a>
+          </div>
+        </div>
       </div>
     </div>
 
