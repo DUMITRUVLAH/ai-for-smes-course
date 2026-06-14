@@ -520,14 +520,13 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
         <div class="sub-item" onclick="scrollTo2('tema',this)"><span class="sub-dot"></span>Temă</div>
       </div>
 
-      <!-- L2 locked -->
-      <div class="nav-item locked" onclick="showLockedToast(2)">
-        <div class="nav-icon">🔒</div>
+      <!-- L2 activă -->
+      <div class="nav-item" onclick="showLesson(2)" id="nav2">
+        <div class="nav-icon">📣</div>
         <div class="nav-label">
           Lecția 2
-          <div class="nav-meta">Automatizare &amp; fluxuri</div>
+          <div class="nav-meta">Comunicare, marketing &amp; conținut</div>
         </div>
-        <span class="nav-badge-lock">În curând</span>
       </div>
 
       <!-- L3 locked -->
@@ -542,8 +541,10 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
     </nav>
 
     <div class="sidebar-footer">
-      <div class="prog-label"><span>Progres</span><span>1/3 lecții</span></div>
-      <div class="prog-track"><div class="prog-fill"></div></div>
+      <a href="../tehnologii.html" target="_blank" style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--fg);text-decoration:none;padding:8px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:8px">🛠️ Lista de tehnologii</a>
+      <a href="https://t.me/+E9aPhptp_2QxZDdk" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#fff;background:hsl(202,85%,50%);text-decoration:none;padding:8px 10px;border-radius:var(--radius-sm);margin-bottom:12px">📣 Canalul de Telegram</a>
+      <div class="prog-label"><span>Progres</span><span>2/3 lecții</span></div>
+      <div class="prog-track"><div class="prog-fill" style="width:66%"></div></div>
     </div>
   </aside>
 
@@ -553,7 +554,7 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
       <div class="breadcrumb">
         AI for SMEs <span style="color:var(--border)">›</span> <b id="bc">Lecția 1</b>
       </div>
-      <div class="topbar-pill"><span class="pill-dot"></span>Sesiunea 1 activă</div>
+      <div class="topbar-pill"><span class="pill-dot"></span>Sesiunile 1 &amp; 2 active</div>
     </div>
 
     <!-- ════ LECȚIA 1 ════ -->
@@ -945,10 +946,43 @@ Evită [RESTRICȚIE]. Dacă-ți lipsește un detaliu esențial, întreabă-mă �
 
     <!-- ════ LECȚIA 2 ════ -->
     <div class="page" id="lesson-2" style="display:none">
-      <div class="locked-page">
-        <div class="lock-glyph">🔒</div>
-        <h2>Lecția 2 — În curând</h2>
-        <p>Disponibilă după sesiunea 2. Lucrează la tema din Lecția 1 pentru a fi pregătit.</p>
+      <div class="page-hero">
+        <div class="hero-kicker"><div class="kicker-n">2</div>Sesiunea 2</div>
+        <h1>AI pentru Comunicare,<br>Marketing &amp; Conținut</h1>
+        <p>De la prompturi izolate la o mașinărie de marketing care sună a tine: voce de brand, conținut la scară și fluxuri reale de producție.</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-chip"><span>⏱️</span> ~90 min</div>
+        <div class="stat-chip"><span>📣</span> Voce de brand</div>
+        <div class="stat-chip"><span>🛠️</span> Mult hands-on</div>
+        <div class="stat-chip"><span>⚡</span> Prompturi noi</div>
+      </div>
+
+      <!-- ── PREZENTARE ── -->
+      <div class="section-block" id="prezentare2">
+        <div class="section-head" onclick="toggleSec('b-prezentare2',this)">
+          <div class="section-icon lavender">📊</div>
+          <div class="section-text">
+            <h3>Prezentarea sesiunii</h3>
+            <p>Slide-urile complete din sesiunea 2</p>
+          </div>
+          <span class="section-time">~10 min</span>
+          <span class="section-chevron open">▼</span>
+        </div>
+        <div class="section-body" id="b-prezentare2">
+          <div class="pres-banner">
+            <div class="pres-banner-text">
+              <h4>Sesiunea 2 — Slides</h4>
+              <p>Comunicare, marketing &amp; conținut cu AI.<br>Voce de brand, growth mindset, producție la scară.</p>
+            </div>
+            <div class="pres-big-icon">🎞️</div>
+          </div>
+          <div class="btn-row">
+            <a href="../session-02.html" target="_blank" class="btn btn-primary">↗ Deschide prezentarea</a>
+            <a href="../tehnologii.html" target="_blank" class="btn btn-outline">🛠️ Lista de tehnologii</a>
+          </div>
+        </div>
       </div>
     </div>
 

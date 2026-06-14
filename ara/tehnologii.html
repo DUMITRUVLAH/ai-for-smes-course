@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI for Recruiters (ARA) — Tehnologii & Tool-uri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:hsl(220,20%,97%);--fg:hsl(222,47%,11%);--card:hsl(0,0%,100%);
+  --border:hsl(220,13%,91%);--muted-fg:hsl(220,9%,46%);--muted:hsl(220,14%,96%);
+  --primary:hsl(262,72%,52%);--primary-pale:hsl(262,72%,96%);
+  --radius:14px;--radius-sm:9px;
+  --shadow-sm:0 1px 3px hsl(222 47% 11% / .04);
+  --shadow-md:0 4px 12px hsl(222 47% 11% / .07);
+  --lavender-bg:hsl(250,80%,95%);--lavender-fg:hsl(250,70%,50%);
+  --mint-bg:hsl(158,60%,90%);--mint-fg:hsl(158,55%,35%);
+  --peach-bg:hsl(20,100%,93%);--peach-fg:hsl(20,85%,45%);
+  --sky-bg:hsl(200,78%,91%);--sky-fg:hsl(200,70%,38%);
+  --rose-bg:hsl(340,78%,93%);--rose-fg:hsl(340,65%,45%);
+  --lemon-bg:hsl(50,90%,91%);--lemon-fg:hsl(40,80%,35%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+.hero{padding:48px 0 28px;border-bottom:1px solid var(--border);margin-bottom:32px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted-fg);text-decoration:none;margin-bottom:20px}
+.back:hover{color:var(--primary)}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary);background:var(--primary-pale);padding:5px 12px;border-radius:999px;margin-bottom:16px}
+h1{font-size:34px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.lead{font-size:16px;color:var(--muted-fg);max-width:660px}
+.group{margin-top:40px}
+.group-head{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
+.group-head h2{font-size:19px;font-weight:800}
+.group-head span{font-size:13px;color:var(--muted-fg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm);transition:.16s;display:flex;flex-direction:column}
+.card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.card-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.logo{width:42px;height:42px;border-radius:10px;background:var(--muted);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo img{width:24px;height:24px;object-fit:contain}
+.logo.emoji{font-size:22px}
+.name{font-size:16px;font-weight:800}
+.tag{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.t-lavender{background:var(--lavender-bg);color:var(--lavender-fg)}
+.t-mint{background:var(--mint-bg);color:var(--mint-fg)}
+.t-peach{background:var(--peach-bg);color:var(--peach-fg)}
+.t-sky{background:var(--sky-bg);color:var(--sky-fg)}
+.t-rose{background:var(--rose-bg);color:var(--rose-fg)}
+.t-lemon{background:var(--lemon-bg);color:var(--lemon-fg)}
+.best{font-size:14px;font-weight:700;color:var(--fg);margin-bottom:6px;line-height:1.35}
+.desc{font-size:13.5px;color:var(--muted-fg);line-height:1.55;flex:1}
+.link{margin-top:12px;font-size:13px;font-weight:700;color:var(--primary);text-decoration:none}
+.link:hover{text-decoration:underline}
+.tg{margin-top:48px;background:linear-gradient(135deg,hsl(202,90%,53%),hsl(208,88%,46%));border-radius:var(--radius);padding:26px 28px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.tg h3{font-size:18px;font-weight:800;margin-bottom:4px}
+.tg p{font-size:14px;opacity:.92}
+.tg a{background:#fff;color:hsl(208,88%,40%);font-weight:800;font-size:14px;padding:11px 22px;border-radius:999px;text-decoration:none;white-space:nowrap}
+footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);font-size:13px;color:var(--muted-fg);text-align:center}
+@media(max-width:560px){h1{font-size:27px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <a href="index.html" class="back">← Înapoi la prezentare</a>
+    <div class="kicker">🛠️ Referință tehnologii — ARA</div>
+    <h1>Tehnologii & tool-uri pentru recrutori</h1>
+    <p class="lead">Toate instrumentele AI menționate în sesiunea ARA (Asociația Recrutorilor), organizate pe ce face fiecare în fluxul de recrutare — sourcing, screening, interviuri, automatizări. Dicționar rapid.</p>
+  </div>
+
+  <!-- ASISTENȚI AI -->
+  <div class="group">
+    <div class="group-head"><h2>🤖 Asistenți AI (chat)</h2><span>creierul cu care lucrezi zilnic</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/claude.svg" alt="Claude"></div>
+          <div style="flex:1"><div class="name">Claude</div></div>
+          <span class="tag t-peach">CV-uri & cod</span>
+        </div>
+        <div class="best">Cel mai bun la documente lungi, screening CV și conectare la aplicații (MCP).</div>
+        <div class="desc">Rezumă CV-uri în formatul ARA, lucrează în Excel, rulează Skills și se conectează la Gmail/Drive prin MCP. Coloana vertebrală a fluxului de recrutare.</div>
+        <a class="link" href="https://claude.ai" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/gemini.svg" alt="Gemini"></div>
+          <div style="flex:1"><div class="name">Gemini</div></div>
+          <span class="tag t-mint">Google Suite</span>
+        </div>
+        <div class="best">Cel mai bun dacă lucrezi în Gmail / Calendar / Drive.</div>
+        <div class="desc">„Rezumă emailurile de azi de la candidați", „adaugă interviu mâine la 9:00". Chat avansat, Deep Research și Canvas pentru oferte și prezentări.</div>
+        <a class="link" href="https://gemini.google.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/openai.svg" alt="ChatGPT"></div>
+          <div style="flex:1"><div class="name">ChatGPT</div></div>
+          <span class="tag t-lavender">Universal</span>
+        </div>
+        <div class="best">Bun ca punct de plecare universal — anunțuri, drafturi, idei.</div>
+        <div class="desc">Cel mai larg ecosistem. Bun pentru anunțuri de angajare, descrieri de rol și conținut de employer branding.</div>
+        <a class="link" href="https://chat.openai.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/perplexity.svg" alt="Perplexity"></div>
+          <div style="flex:1"><div class="name">Perplexity</div></div>
+          <span class="tag t-rose">Research</span>
+        </div>
+        <div class="best">Bun pentru research de companii și piață, cu surse.</div>
+        <div class="desc">Acces la internet în timp real, fiecare răspuns cu linkuri. Util pentru a verifica un angajator, o industrie sau benchmark-uri salariale.</div>
+        <a class="link" href="https://www.perplexity.ai" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DOCUMENTE & DATE -->
+  <div class="group">
+    <div class="group-head"><h2>📄 Documente, CV-uri & date</h2><span>întreabă fișierele proprii, analizează Excel</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/notebooklm.svg" alt="NotebookLM"></div>
+          <div style="flex:1"><div class="name">NotebookLM</div></div>
+          <span class="tag t-sky">Surse proprii</span>
+        </div>
+        <div class="best">Cel mai bun când vrei răspunsuri DOAR din documentele tale, cu citat.</div>
+        <div class="desc">Încarci CV-uri, contracte, proceduri interne sau legislație și pui întrebări — răspunsuri cu citate exacte, zero halucinații. Generează și podcast audio din surse.</div>
+        <a class="link" href="https://notebooklm.google.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/qwen.svg" alt="Qwen"></div>
+          <div style="flex:1"><div class="name">Qwen</div></div>
+          <span class="tag t-mint">Excel gratuit</span>
+        </div>
+        <div class="best">Bun la analiza fișierelor Excel — gratuit, fără cont.</div>
+        <div class="desc">Încarci un Excel existent (ex. lista de candidați) și pui întrebări sau ceri fișiere noi din prompt. Acces pe qwen.ai fără înregistrare.</div>
+        <a class="link" href="https://chat.qwen.ai" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/microsoftexcel.svg" alt="Excel"></div>
+          <div style="flex:1"><div class="name">Claude în Excel</div></div>
+          <span class="tag t-lemon">Tabele candidați</span>
+        </div>
+        <div class="best">Bun pentru a construi și curăța tabele de candidați.</div>
+        <div class="desc">Claude analizează foi de calcul și generează altele noi — scoruri de screening, shortlist-uri, rapoarte pentru client.</div>
+        <a class="link" href="https://claude.ai" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WORKSPACE & GEMS -->
+  <div class="group">
+    <div class="group-head"><h2>🧩 Google Workspace & asistenți configurați</h2><span>automatizezi sarcinile repetitive</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/googledrive.svg" alt="Google Workspace"></div>
+          <div style="flex:1"><div class="name">Google Workspace</div></div>
+          <span class="tag t-mint">Gmail / Drive / Calendar</span>
+        </div>
+        <div class="best">Bun când ești deja pe Google — niciun tool nou.</div>
+        <div class="desc">Gemini activ direct în Gmail, Docs, Calendar, Drive. Connected Apps citește emailurile de la candidați și calendarul, fără copy-paste.</div>
+        <a class="link" href="https://workspace.google.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo emoji">💎</div>
+          <div style="flex:1"><div class="name">Gems (Gemini)</div></div>
+          <span class="tag t-lavender">Asistenți pre-configurați</span>
+        </div>
+        <div class="best">Bun pentru sarcini repetitive: screening, anunțuri, oferte.</div>
+        <div class="desc">Asistent configurat o dată pe o sarcină precisă. Ex.: Gem „Anunț de angajare" (poziție → anunț publicabil) sau „Copywriter Blog→LinkedIn".</div>
+        <a class="link" href="https://gemini.google.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo emoji">🎨</div>
+          <div style="flex:1"><div class="name">Canvas (Gemini)</div></div>
+          <span class="tag t-rose">Oferte & prezentări</span>
+        </div>
+        <div class="best">Bun pentru oferte, prezentări și rapoarte vizuale din prompt.</div>
+        <div class="desc">Generează documente și prezentări structurate dintr-un prompt — oferte pentru client, rapoarte de proiect de recrutare.</div>
+        <a class="link" href="https://gemini.google.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONECTORI & AUTOMATIZARE -->
+  <div class="group">
+    <div class="group-head"><h2>⚙️ Conectori & automatizare</h2><span>AI-ul acționează, nu doar răspunde</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/anthropic.svg" alt="MCP"></div>
+          <div style="flex:1"><div class="name">MCP (Model Context Protocol)</div></div>
+          <span class="tag t-peach">Conectori</span>
+        </div>
+        <div class="best">Bun pentru a conecta Claude la Gmail, Drive și LinkedIn — și a acționa.</div>
+        <div class="desc">Standard deschis Anthropic (2024), adoptat de OpenAI și Google. Claude trimite email real prin Gmail MCP, adaugă fișiere în Drive, rezumă un profil LinkedIn în format ARA.</div>
+        <a class="link" href="https://modelcontextprotocol.io" target="_blank" rel="noopener">Află mai mult →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo emoji">🔗</div>
+          <div style="flex:1"><div class="name">Make.com</div></div>
+          <span class="tag t-sky">Automatizări flux CV</span>
+        </div>
+        <div class="best">Bun pentru automatizări fixe, repetabile — fluxul de CV-uri.</div>
+        <div class="desc">Conectează aplicații în pași clari (când vine un CV → extrage date → adaugă în tabel → notifică). Template-uri pre-construite pe make.com/templates. Alegi Make când fluxul e fix; agent AI când e nevoie de judecată.</div>
+        <a class="link" href="https://www.make.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo emoji">💼</div>
+          <div style="flex:1"><div class="name">LinkedIn</div></div>
+          <span class="tag t-lavender">Sourcing</span>
+        </div>
+        <div class="best">Sursa de candidați — citită și rezumată de AI prin MCP / extensie.</div>
+        <div class="desc">Deschizi profilul unui candidat și ceri rezumatul în formatul ARA, sau generezi anunțuri publicabile direct din Gems. AI-ul accelerează sourcing-ul și screening-ul.</div>
+        <a class="link" href="https://www.linkedin.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TELEGRAM -->
+  <div class="tg">
+    <div>
+      <h3>📣 Canalul de Telegram</h3>
+      <p>Resurse, prompturi noi și anunțuri între sesiuni — intră în comunitate.</p>
+    </div>
+    <a href="https://t.me/+E9aPhptp_2QxZDdk" target="_blank" rel="noopener">Intră în canal →</a>
+  </div>
+
+  <footer>AI for Recruiters (ARA) · referință tehnologii — sesiunea v2.</footer>
+
+</div>
+</body>
+</html>
