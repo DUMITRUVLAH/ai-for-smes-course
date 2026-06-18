@@ -12,6 +12,7 @@
   --bg:hsl(220,20%,97%);--fg:hsl(222,47%,11%);--card:hsl(0,0%,100%);
   --border:hsl(220,13%,91%);--muted-fg:hsl(220,9%,46%);--muted:hsl(220,14%,96%);
   --primary:hsl(160,84%,32%);--primary-fg:hsl(0,0%,100%);--primary-pale:hsl(160,55%,95%);
+  --claude-pale:hsl(16,70%,96%);
   --success:hsl(142,71%,45%);
   --radius:14px;--radius-sm:9px;--radius-full:9999px;
   --shadow-sm:0 1px 3px hsl(222 47% 11% / .04);
@@ -149,6 +150,22 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
         <div class="sub-item" onclick="scrollToSec('tehnologii',this)"><span class="sub-dot"></span>Tehnologii</div>
         <div class="sub-item" onclick="scrollToSec('gems',this)"><span class="sub-dot"></span>Gems</div>
         <div class="sub-item" onclick="scrollToSec('materiale',this)"><span class="sub-dot"></span>Materiale</div>
+      </div>
+
+      <span class="nav-section-label" style="margin-top:8px">Module</span>
+
+      <a href="claude.html" class="nav-item" id="nav2" style="text-decoration:none;color:inherit">
+        <div class="nav-icon" style="background:var(--claude-pale)"><img src="../assets/logos/claude.svg" alt="Claude" style="width:17px;height:17px"></div>
+        <div class="nav-label">
+          Claude
+          <div class="nav-meta">Tot ce poți face</div>
+        </div>
+      </a>
+      <div class="sub-nav">
+        <a href="claude.html#moduri" class="sub-item" style="text-decoration:none"><span class="sub-dot"></span>Chat · Cowork · Code</a>
+        <a href="claude.html#skills" class="sub-item" style="text-decoration:none"><span class="sub-dot"></span>Skills</a>
+        <a href="claude.html#projects" class="sub-item" style="text-decoration:none"><span class="sub-dot"></span>Projects</a>
+        <a href="claude.html#mcp" class="sub-item" style="text-decoration:none"><span class="sub-dot"></span>Conectori (MCP)</a>
       </div>
     </nav>
 
