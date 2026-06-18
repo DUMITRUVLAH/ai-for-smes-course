@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI for Finance — Tehnologii & Tool-uri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:hsl(220,20%,97%);--fg:hsl(222,47%,11%);--card:hsl(0,0%,100%);
+  --border:hsl(220,13%,91%);--muted-fg:hsl(220,9%,46%);--muted:hsl(220,14%,96%);
+  --primary:hsl(160,84%,32%);--primary-pale:hsl(160,55%,95%);
+  --radius:14px;--radius-sm:9px;
+  --shadow-sm:0 1px 3px hsl(222 47% 11% / .04);
+  --shadow-md:0 4px 12px hsl(222 47% 11% / .07);
+  --lavender-bg:hsl(250,80%,95%);--lavender-fg:hsl(250,70%,50%);
+  --mint-bg:hsl(158,60%,90%);--mint-fg:hsl(158,55%,35%);
+  --peach-bg:hsl(20,100%,93%);--peach-fg:hsl(20,85%,45%);
+  --sky-bg:hsl(200,78%,91%);--sky-fg:hsl(200,70%,38%);
+  --rose-bg:hsl(340,78%,93%);--rose-fg:hsl(340,65%,45%);
+  --lemon-bg:hsl(50,90%,91%);--lemon-fg:hsl(40,80%,35%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px 80px}
+.hero{padding:48px 0 28px;border-bottom:1px solid var(--border);margin-bottom:32px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted-fg);text-decoration:none;margin-bottom:20px}
+.back:hover{color:var(--primary)}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary);background:var(--primary-pale);padding:5px 12px;border-radius:999px;margin-bottom:16px}
+h1{font-size:34px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.lead{font-size:16px;color:var(--muted-fg);max-width:680px}
+.group{margin-top:40px}
+.group-head{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
+.group-head h2{font-size:19px;font-weight:800}
+.group-head span{font-size:13px;color:var(--muted-fg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow-sm);transition:.16s;display:flex;flex-direction:column}
+.card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.card-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.logo{width:42px;height:42px;border-radius:10px;background:var(--muted);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.logo img{width:24px;height:24px;object-fit:contain}
+.logo.emoji{font-size:22px}
+.name{font-size:16px;font-weight:800}
+.tag{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.t-lavender{background:var(--lavender-bg);color:var(--lavender-fg)}
+.t-mint{background:var(--mint-bg);color:var(--mint-fg)}
+.t-peach{background:var(--peach-bg);color:var(--peach-fg)}
+.t-sky{background:var(--sky-bg);color:var(--sky-fg)}
+.t-rose{background:var(--rose-bg);color:var(--rose-fg)}
+.t-lemon{background:var(--lemon-bg);color:var(--lemon-fg)}
+.best{font-size:14px;font-weight:700;color:var(--fg);margin-bottom:6px;line-height:1.35}
+.desc{font-size:13.5px;color:var(--muted-fg);line-height:1.55;flex:1}
+.link{margin-top:12px;font-size:13px;font-weight:700;color:var(--primary);text-decoration:none}
+.link:hover{text-decoration:underline}
+.tg{margin-top:48px;background:linear-gradient(135deg,hsl(202,90%,53%),hsl(208,88%,46%));border-radius:var(--radius);padding:26px 28px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.tg h3{font-size:18px;font-weight:800;margin-bottom:4px}
+.tg p{font-size:14px;opacity:.92}
+.tg a{background:#fff;color:hsl(208,88%,40%);font-weight:800;font-size:14px;padding:11px 22px;border-radius:999px;text-decoration:none;white-space:nowrap}
+footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);font-size:13px;color:var(--muted-fg);text-align:center}
+@media(max-width:560px){h1{font-size:27px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <a href="index.html" class="back">← Înapoi la platformă</a>
+    <div class="kicker">🛠️ Referință tehnologii — Finance</div>
+    <h1>Tehnologii & tool-uri pentru finanțe</h1>
+    <p class="lead">Toate instrumentele AI menționate în sesiunea AI for Finance, organizate pe ce face fiecare în munca financiară — analiză de documente, cashflow, contracte, automatizări, securitatea datelor. Dicționar rapid.</p>
+  </div>
+
+  <!-- ASISTENȚI AI -->
+  <div class="group">
+    <div class="group-head"><h2>🤖 Asistenți AI (chat)</h2><span>creierul cu care lucrezi zilnic</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/gemini.svg" alt="Gemini"></div>
+          <div style="flex:1"><div class="name">Gemini</div></div>
+          <span class="tag t-mint">Google Suite</span>
+        </div>
+        <div class="best">Cel mai bun dacă lucrezi în Gmail / Calendar / Drive.</div>
+        <div class="desc">„Rezumă facturile primite azi", „pregătește un draft de răspuns la furnizor". Chat avansat, Deep Research și Canvas pentru rapoarte și oferte. Aici creezi și Gems-urile.</div>
+        <a class="link" href="https://gemini.google.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/openai.svg" alt="ChatGPT"></div>
+          <div style="flex:1"><div class="name">ChatGPT</div></div>
+          <span class="tag t-lavender">Universal</span>
+        </div>
+        <div class="best">Bun ca punct de plecare universal — drafturi, idei, explicații.</div>
+        <div class="desc">Cel mai larg ecosistem. Bun pentru a explica un concept fiscal, a redacta un email către client sau a face un prim draft de procedură internă.</div>
+        <a class="link" href="https://chat.openai.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/perplexity.svg" alt="Perplexity"></div>
+          <div style="flex:1"><div class="name">Perplexity</div></div>
+          <span class="tag t-rose">Research</span>
+        </div>
+        <div class="best">Bun pentru research de piață și legislație, cu surse.</div>
+        <div class="desc">Acces la internet în timp real, fiecare răspuns cu linkuri. Util pentru a verifica o normă, un curs valutar, un benchmark de costuri sau un furnizor.</div>
+        <a class="link" href="https://www.perplexity.ai" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CLAUDE — cele 3 moduri -->
+  <div class="group">
+    <div class="group-head"><h2>🟧 Claude — cele 3 moduri de lucru</h2><span>același Claude, trei feluri de a-l folosi</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/claude.svg" alt="Claude Chat"></div>
+          <div style="flex:1"><div class="name">Claude Chat</div></div>
+          <span class="tag t-peach">Conversație</span>
+        </div>
+        <div class="best">Chatul clasic — întrebi, primești răspuns. Cel mai bun la documente lungi.</div>
+        <div class="desc">Analizezi un contract, un extras de cont sau o factură PDF; pui întrebări, ceri rezumate și verificări. Aici rulează Gems, Projects și Skills. Punctul de pornire pentru oricine.</div>
+        <a class="link" href="https://claude.ai" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/claude.svg" alt="Claude Cowork"></div>
+          <div style="flex:1"><div class="name">Claude Cowork</div></div>
+          <span class="tag t-sky">Lucrează cu tine</span>
+        </div>
+        <div class="best">Claude lucrează alături de tine pe fișiere reale, pas cu pas.</div>
+        <div class="desc">Spre deosebire de chatul clasic, Cowork deschide și editează fișiere (Excel, documente), face mai mulți pași la rând și îți arată ce a făcut. Ideal pentru analiză financiară, curățat tabele, generat rapoarte — „fă-mi cashflow-ul din extrasul ăsta".</div>
+        <a class="link" href="https://claude.ai" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/claude.svg" alt="Claude Code"></div>
+          <div style="flex:1"><div class="name">Claude Code</div></div>
+          <span class="tag t-lavender">Automatizări & aplicații</span>
+        </div>
+        <div class="best">Claude care construiește: scripturi, automatizări, mini-aplicații.</div>
+        <div class="desc">Versiunea pentru cei care vor să meargă mai departe de chat — generează cod, conectează surse de date, construiește unelte interne. Pentru finanțe: prelucrări automate de fișiere, integrări și instrumente repetabile, fără să scrii tu codul.</div>
+        <a class="link" href="https://claude.ai/code" target="_blank" rel="noopener">Află mai mult →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- DOCUMENTE & DATE -->
+  <div class="group">
+    <div class="group-head"><h2>📄 Documente, foi de calcul & date</h2><span>întreabă fișierele proprii, analizează Excel</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/microsoftexcel.svg" alt="Excel"></div>
+          <div style="flex:1"><div class="name">Claude în Excel</div></div>
+          <span class="tag t-lemon">Analiză fără formule</span>
+        </div>
+        <div class="best">Bun pentru analiză financiară direct în foaia de calcul, fără formule.</div>
+        <div class="desc">Claude citește o foaie de calcul (cashflow, balanță, listă de plăți) și răspunde în limbaj normal, generează altele noi — indicatori, scenarii, rapoarte. Fără să mai scrii VLOOKUP.</div>
+        <a class="link" href="https://claude.ai" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/notebooklm.svg" alt="NotebookLM"></div>
+          <div style="flex:1"><div class="name">NotebookLM</div></div>
+          <span class="tag t-sky">Surse proprii</span>
+        </div>
+        <div class="best">Cel mai bun când vrei răspunsuri DOAR din documentele tale, cu citat.</div>
+        <div class="desc">Încarci legislație fiscală, proceduri interne, contracte sau rapoarte și pui întrebări — răspunsuri cu citate exacte, zero halucinații. Generează și un podcast audio din surse pentru recapitulare.</div>
+        <a class="link" href="https://notebooklm.google.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/qwen.svg" alt="Qwen"></div>
+          <div style="flex:1"><div class="name">Qwen</div></div>
+          <span class="tag t-mint">Excel gratuit</span>
+        </div>
+        <div class="best">Bun la analiza fișierelor Excel — gratuit, fără cont.</div>
+        <div class="desc">Încarci un Excel existent (ex. registru de încasări) și pui întrebări sau ceri fișiere noi din prompt. Acces pe qwen.ai fără înregistrare — util pentru un test rapid.</div>
+        <a class="link" href="https://chat.qwen.ai" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WORKSPACE & ASISTENȚI CONFIGURAȚI -->
+  <div class="group">
+    <div class="group-head"><h2>🧩 Google Workspace & asistenți configurați</h2><span>pui contextul o dată, lucrezi de multe ori</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/googledrive.svg" alt="Google Workspace"></div>
+          <div style="flex:1"><div class="name">Google Workspace</div></div>
+          <span class="tag t-mint">Gmail / Drive / Sheets</span>
+        </div>
+        <div class="best">Bun când ești deja pe Google — niciun tool nou.</div>
+        <div class="desc">Gemini activ direct în Gmail, Docs, Sheets, Drive. Connected Apps citește emailurile cu facturi și calendarul, fără copy-paste. Sheets devine analiză financiară conversațională.</div>
+        <a class="link" href="https://workspace.google.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo emoji">💎</div>
+          <div style="flex:1"><div class="name">Gems (Gemini)</div></div>
+          <span class="tag t-lavender">Asistenți pre-configurați</span>
+        </div>
+        <div class="best">Bun pentru sarcini repetitive: contracte, rechizite, cashflow, audit.</div>
+        <div class="desc">Asistent configurat o dată pe o sarcină precisă, cu Knowledge propriu (regulile firmei). În sesiune creezi 4: jurist, extractor rechizite bancare, analist cashflow și audit documente.</div>
+        <a class="link" href="materiale/gems-prompts.html">Vezi cele 4 Gems →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/claude.svg" alt="Projects"></div>
+          <div style="flex:1"><div class="name">Projects (Claude)</div></div>
+          <span class="tag t-rose">Dosar permanent</span>
+        </div>
+        <div class="best">Bun pentru un dosar permanent cu context — un client, un dosar, o lună.</div>
+        <div class="desc">Încarci o dată documentele și instrucțiunile (politici, plan de conturi, modele) și Claude le „ține minte" în toate conversațiile din acel Project. Nu mai reîncarci contextul de fiecare dată.</div>
+        <a class="link" href="https://claude.ai" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/claude.svg" alt="Skills"></div>
+          <div style="flex:1"><div class="name">Skills (Claude)</div></div>
+          <span class="tag t-peach">Documente reale</span>
+        </div>
+        <div class="best">Bun pentru a genera documente reale (Word, Excel, PDF), nu doar text.</div>
+        <div class="desc">Claude produce fișiere gata de folosit — o factură, un raport, o anexă — în format real, nu text de copiat. Combini Skills cu Projects pentru output consistent cu standardul firmei.</div>
+        <a class="link" href="https://claude.ai" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CONECTORI & AUTOMATIZARE -->
+  <div class="group">
+    <div class="group-head"><h2>⚙️ Conectori & automatizare</h2><span>AI-ul acționează, nu doar răspunde</span></div>
+    <div class="grid">
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/anthropic.svg" alt="MCP"></div>
+          <div style="flex:1"><div class="name">MCP (Model Context Protocol)</div></div>
+          <span class="tag t-peach">Conectori</span>
+        </div>
+        <div class="best">Bun pentru a conecta Claude la Gmail, Drive și aplicații — și a acționa.</div>
+        <div class="desc">Standard deschis Anthropic, adoptat de OpenAI și Google. Claude citește emailul cu factura prin Gmail MCP, salvează în Drive, extrage datele și le pune în Excel — un flux real, nu doar răspuns în chat.</div>
+        <a class="link" href="https://modelcontextprotocol.io" target="_blank" rel="noopener">Află mai mult →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo emoji">🔗</div>
+          <div style="flex:1"><div class="name">Make.com</div></div>
+          <span class="tag t-sky">Automatizări fixe</span>
+        </div>
+        <div class="best">Bun pentru automatizări fixe, repetabile — fluxul de facturi.</div>
+        <div class="desc">Conectează aplicații în pași clari (email cu factură → extrage date → adaugă rând în Sheets → notifică). Template-uri pe make.com/templates. Alegi Make când fluxul e fix; agent AI când e nevoie de judecată.</div>
+        <a class="link" href="https://www.make.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo"><img src="../assets/logos/github.svg" alt="GitHub"></div>
+          <div style="flex:1"><div class="name">GitHub</div></div>
+          <span class="tag t-lavender">Cod & aplicații</span>
+        </div>
+        <div class="best">Bun ca „dulap" pentru cod și aplicații generate cu AI.</div>
+        <div class="desc">Locul unde stă codul unei mini-aplicații sau automatizări. Nu trebuie să fii programator — îl atingi doar când treci de la chat la unelte construite (cu Lovable sau Claude Code).</div>
+        <a class="link" href="https://github.com" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <div class="logo emoji">🛠️</div>
+          <div style="flex:1"><div class="name">Lovable</div></div>
+          <span class="tag t-rose">Aplicații fără cod</span>
+        </div>
+        <div class="best">Bun pentru a construi o mini-aplicație din descriere, fără cod.</div>
+        <div class="desc">Descrii ce vrei („un mic generator de facturi", „un calculator de cashflow") și Lovable construiește aplicația funcțională. De la idee la unealtă internă, fără programator.</div>
+        <a class="link" href="https://lovable.dev" target="_blank" rel="noopener">Deschide →</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TELEGRAM -->
+  <div class="tg">
+    <div>
+      <h3>📣 Canalul de Telegram</h3>
+      <p>Resurse, prompturi noi și anunțuri între sesiuni — intră în comunitate.</p>
+    </div>
+    <a href="https://t.me/+E9aPhptp_2QxZDdk" target="_blank" rel="noopener">Intră în canal →</a>
+  </div>
+
+  <footer>AI for Finance · referință tehnologii — sesiunea v1.</footer>
+
+</div>
+</body>
+</html>
