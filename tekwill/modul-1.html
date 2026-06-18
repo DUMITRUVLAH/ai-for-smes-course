@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>De la problemă la idee — Tekwill Academy Kids</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #7C3AED;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 56px 68px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #7C3AED 0%, #DB2777 100%); }
+
+    .slide-header { margin-bottom: 28px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #F3E8FF; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 920px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 58px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 23px; font-weight: 400; color: rgba(255,255,255,0.7); margin: 0 0 50px; max-width: 680px; line-height: 1.5; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-logos .lbl { font-size: 13px; color: rgba(255,255,255,0.45); margin-right: 4px; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* VS-TABLE / SPLIT */
+    .split-screen { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .split-pane { border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .split-pane.bad { background: #FEF2F2; border: 1px solid #FECACA; } .split-pane.good { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .split-pane.red { background: #FEF2F2; border: 1px solid #FECACA; } .split-pane.blue { background: var(--pastel-sky); border: 1px solid #BAE6FD; }
+    .split-label { font-size: 15px; font-weight: 700; letter-spacing: 0.04em; } .split-label.bad { color: #DC2626; } .split-label.good { color: #16A34A; }
+    .split-label.red { color: #DC2626; } .split-label.blue { color: var(--primary); }
+    .split-prompt { font-size: 17px; font-style: italic; color: var(--foreground); background: rgba(255,255,255,0.75); border-radius: var(--radius-sm); padding: 18px 20px; line-height: 1.55; border-left: 4px solid; flex: 1; }
+    .split-prompt.big { font-size: 24px; font-weight: 600; font-style: normal; display: flex; align-items: center; }
+    .split-pane.bad .split-prompt, .split-pane.red .split-prompt { border-color: #FCA5A5; } .split-pane.good .split-prompt { border-color: #86EFAC; } .split-pane.blue .split-prompt { border-color: #7DD3FC; }
+    .split-prompt b { font-style: normal; font-weight: 800; color: var(--primary); }
+    .split-result { font-size: 15px; font-weight: 600; padding: 11px 16px; border-radius: var(--radius-sm); line-height: 1.4; }
+    .split-pane.bad .split-result, .split-pane.red .split-result { background: #FEE2E2; color: #B91C1C; } .split-pane.good .split-result { background: #DCFCE7; color: #15803D; }
+    .split-pane.blue .split-result { background: #DBEAFE; color: var(--primary); }
+    .split-head-big { font-size: 34px; font-weight: 800; letter-spacing: -0.01em; display: flex; align-items: center; gap: 12px; }
+    .split-head-big .ico { font-size: 36px; }
+    .split-pane.red .split-head-big { color: #DC2626; } .split-pane.blue .split-head-big { color: var(--primary); }
+    .split-body { font-size: 17px; line-height: 1.55; color: var(--foreground); } .split-body b { font-weight: 800; }
+    .split-ex { font-size: 15px; color: var(--foreground); background: rgba(255,255,255,0.7); border-radius: var(--radius-sm); padding: 13px 16px; line-height: 1.5; margin-top: auto; }
+    .split-ex .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); display: block; margin-bottom: 5px; }
+    .split-ex b { color: var(--foreground); }
+
+    /* TABLE */
+    .slide-table { width: 100%; border-collapse: collapse; font-size: 16px; flex: 1; }
+    .slide-table th { padding: 13px 16px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: #fff; border: none; background: var(--primary); }
+    .slide-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--foreground); vertical-align: middle; line-height: 1.4; }
+    .slide-table tr:last-child td { border-bottom: none; }
+    .slide-table tr:nth-child(even) td { background: var(--bg); }
+    .slide-table .row-label { font-weight: 700; white-space: nowrap; }
+
+    /* LLM steps / flow */
+    .llm-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; flex: 1; align-items: stretch; }
+    .llm-step { padding: 24px 16px; display: flex; flex-direction: column; gap: 10px; position: relative; justify-content: center; }
+    .llm-step::after { content: '→'; position: absolute; right: -10px; top: 46px; font-size: 22px; color: var(--primary); font-weight: 700; z-index: 2; }
+    .llm-step:last-child::after { display: none; }
+    .llm-step.focus { background: var(--primary-ultra-light); border-radius: var(--radius); }
+    .llm-step-num { width: 38px; height: 38px; border-radius: 50%; background: #CBD5E1; color: #fff; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .llm-step.focus .llm-step-num { background: var(--primary); }
+    .llm-step-icon { font-size: 30px; }
+    .llm-step-title { font-size: 17px; font-weight: 800; color: var(--foreground); }
+    .llm-step.focus .llm-step-title { color: var(--primary); }
+    .llm-step-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .focus-badge { display: inline-block; font-size: 10px; font-weight: 700; color: #fff; background: var(--primary); padding: 2px 8px; border-radius: 100px; letter-spacing: 0.04em; width: fit-content; }
+
+    /* CARDS */
+    .cards-grid { display: grid; gap: 18px; flex: 1; align-content: stretch; }
+    .cards-2 { grid-template-columns: repeat(2, 1fr); }
+    .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .cards-4 { grid-template-columns: repeat(4, 1fr); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 9px; justify-content: center; min-height: 0; overflow: hidden; }
+    .card.mint { background: var(--pastel-mint); border-color: #86EFAC; } .card.lavender { background: var(--pastel-lavender); border-color: #C4B5FD; } .card.sky { background: var(--pastel-sky); border-color: #BAE6FD; } .card.peach { background: var(--pastel-peach); border-color: #FED7AA; } .card.rose { background: var(--pastel-rose); border-color: #FBCFE8; }
+    .card-num { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .card-icon { font-size: 32px; } .card-title { font-size: 18px; font-weight: 800; color: var(--foreground); margin: 0; } .card-body { font-size: 15px; color: var(--muted); line-height: 1.55; margin: 0; }
+    .card-body b { color: var(--foreground); }
+    .cards-compact { gap: 14px; } .cards-compact .card { padding: 20px 22px; gap: 7px; justify-content: flex-start; }
+    .cards-compact .card-icon { font-size: 28px; } .cards-compact .card-title { font-size: 16px; } .cards-compact .card-body { font-size: 14px; line-height: 1.5; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+    .quote-block.warn { border-color: var(--warning); background: #FFFBEB; }
+    .quote-block.warn strong { color: #B45309; }
+
+    /* ABOUT ME */
+    .about-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; flex: 1; align-items: center; }
+    .about-left { display: flex; flex-direction: column; gap: 22px; }
+    .about-bullets { display: flex; flex-direction: column; gap: 15px; }
+    .about-bullet { display: flex; align-items: center; gap: 16px; }
+    .about-arrow { width: 34px; height: 34px; border-radius: 50%; background: var(--primary-ultra-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; flex-shrink: 0; }
+    .about-bullet-text { font-size: 18px; color: var(--foreground); font-weight: 500; line-height: 1.35; }
+    .about-bullet-text b { font-weight: 800; color: var(--primary); }
+    .about-role-badge { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; background: var(--foreground); color: #fff; font-size: 14px; font-weight: 600; padding: 8px 18px; border-radius: 100px; margin-top: 4px; }
+    .about-role-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .about-photo-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+    .about-photo-deco1 { position: absolute; top: -18px; right: 6px; width: 130px; height: 130px; border-radius: 50%; background: #FACC15; z-index: 0; }
+    .about-photo-deco2 { position: absolute; bottom: -24px; left: -8px; width: 160px; height: 160px; border-radius: 28px; background: #7C3AED; opacity: 0.85; z-index: 0; transform: rotate(-8deg); }
+    .about-photo-card { position: relative; z-index: 1; width: 100%; max-width: 420px; aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); background: #1a1a1a; border: 1px solid var(--border); }
+    .about-photo-card img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 18%; display: block; }
+    .about-photo-slot { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: #94A3B8; text-align: center; padding: 20px; }
+    .about-photo-slot .ph-icon { font-size: 48px; }
+    .about-photo-slot .ph-path { font-size: 12px; font-family: monospace; background: #E2E8F0; color: #475569; padding: 4px 10px; border-radius: 6px; }
+    .about-signature { position: absolute; top: 40px; right: 60px; font-size: 18px; font-weight: 700; color: var(--destructive); transform: rotate(-4deg); z-index: 3; }
+
+    /* OBJECTIVES grid */
+    .obj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 28px; flex: 1; align-content: center; }
+    .obj-item { display: flex; align-items: flex-start; gap: 16px; }
+    .obj-n { width: 38px; height: 38px; border-radius: 10px; background: var(--primary); color: #fff; font-size: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .obj-text { font-size: 17px; color: var(--foreground); line-height: 1.4; font-weight: 500; padding-top: 5px; } .obj-text b { font-weight: 800; color: var(--primary); }
+
+    /* DRILL / problem-not-product */
+    .drill-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 28px; flex: 1; align-items: center; }
+    .drill-card { border-radius: var(--radius); padding: 34px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; border: 1px solid var(--border); }
+    .drill-card.no { background: #FEF2F2; border-color: #FECACA; }
+    .drill-card.yes { background: #F0FDF4; border-color: #86EFAC; }
+    .drill-emoji { font-size: 72px; line-height: 1; }
+    .drill-lbl { font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; } .drill-card.no .drill-lbl { color: #DC2626; } .drill-card.yes .drill-lbl { color: #16A34A; }
+    .drill-big { font-size: 26px; font-weight: 800; color: var(--foreground); }
+    .drill-sub { font-size: 15px; color: var(--muted); line-height: 1.45; }
+    .drill-arrow { font-size: 44px; color: var(--primary); font-weight: 700; }
+
+    /* REVIEW slide */
+    .review-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 30px; flex: 1; align-items: center; }
+    .review-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .review-top { display: flex; align-items: center; gap: 12px; padding: 16px 22px; border-bottom: 1px solid var(--border); }
+    .review-stars { font-size: 20px; color: #F59E0B; letter-spacing: 2px; }
+    .review-tag { margin-left: auto; font-size: 12px; font-weight: 700; color: #DC2626; background: #FEE2E2; padding: 3px 10px; border-radius: 100px; }
+    .review-body { padding: 22px; font-size: 18px; color: var(--foreground); line-height: 1.55; font-style: italic; }
+    .review-body .hl { background: #FEF08A; font-style: normal; font-weight: 700; padding: 1px 4px; border-radius: 3px; }
+    .extract-flow { display: flex; flex-direction: column; gap: 14px; }
+    .extract-row { display: flex; align-items: flex-start; gap: 14px; }
+    .extract-n { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .extract-text { font-size: 16px; color: var(--foreground); line-height: 1.45; padding-top: 4px; } .extract-text b { font-weight: 800; color: var(--primary); }
+
+    /* PRACTICE layout */
+    .practice-layout { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 30px; flex: 1; align-items: stretch; }
+    .practice-steps { display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+    .pstep { display: flex; align-items: flex-start; gap: 14px; }
+    .pstep-num { width: 30px; height: 30px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pstep-text { font-size: 16px; color: var(--foreground); line-height: 1.45; padding-top: 3px; }
+    .pstep-text b { font-weight: 800; }
+    .practice-pane { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+    .practice-prompt { background: #fff; border-left: 4px solid var(--practice); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 16px 18px; font-size: 16px; color: var(--foreground); line-height: 1.5; }
+    .practice-prompt .lbl { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--practice); display: block; margin-bottom: 6px; }
+    .timer-pill { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 700; color: #92400E; }
+    .mode-pill { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; background: #DCFCE7; border: 1px solid #86EFAC; border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 700; color: #15803D; }
+
+    /* MOM TEST rules */
+    .rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .rule-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px; }
+    .rule-n { width: 34px; height: 34px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+    .rule-title { font-size: 17px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+    .rule-desc { font-size: 14px; color: var(--muted); line-height: 1.5; } .rule-desc b { color: var(--foreground); }
+
+    /* FORMULA box */
+    .formula-box { background: linear-gradient(160deg, #2D52D4, #7C3AED); border-radius: var(--radius); padding: 30px 34px; color: #fff; }
+    .formula-lbl { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.9; margin-bottom: 14px; }
+    .formula-text { font-size: 24px; line-height: 1.7; font-weight: 500; }
+    .formula-hl { display: inline-block; background: rgba(255,255,255,0.18); border-radius: 6px; padding: 2px 12px; font-weight: 800; margin: 2px; }
+
+    /* CRITERIA list */
+    .crit-list { display: flex; flex-direction: column; gap: 12px; }
+    .crit-item { display: flex; align-items: flex-start; gap: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 18px; }
+    .crit-check { width: 28px; height: 28px; border-radius: 50%; background: var(--success); color: #fff; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .crit-text { font-size: 16px; color: var(--foreground); line-height: 1.45; } .crit-text b { font-weight: 800; color: var(--primary); }
+
+    /* TRANSITION slide */
+    .slide-transition { padding: 0; overflow: hidden; background: #F2C94C; position: relative; justify-content: flex-start; }
+    .slide-transition::before { display: none; }
+    .trans-arc { position: absolute; left: 50%; top: 30%; transform: translateX(-50%); width: 150%; height: 150%; background: #EDEEF0; border-radius: 50%; }
+    .trans-title { position: relative; z-index: 2; text-align: center; font-size: 52px; font-weight: 800; color: var(--foreground); line-height: 1.08; letter-spacing: -0.02em; padding: 54px 80px 0; }
+    .trans-img { position: relative; z-index: 2; flex: 1; display: flex; align-items: center; justify-content: center; margin-top: 10px; }
+    .trans-img .fallback { font-size: 190px; line-height: 1; filter: drop-shadow(0 18px 30px rgba(0,0,0,0.18)); }
+
+    /* WRAP */
+    .wrapup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .wrapup-pane { border-radius: var(--radius); padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; }
+    .wrapup-pane.learned { background: var(--primary-ultra-light); border-color: #A5B4FC; } .wrapup-pane.next { background: #F0FDF4; border-color: #86EFAC; }
+    .wrapup-pane-title { font-size: 15px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 14px; } .wrapup-pane.learned .wrapup-pane-title { color: var(--primary); } .wrapup-pane.next .wrapup-pane-title { color: #16A34A; }
+    .check-list { display: flex; flex-direction: column; gap: 12px; }
+    .check-item { display: flex; align-items: flex-start; gap: 11px; font-size: 16px; color: var(--foreground); line-height: 1.45; font-weight: 500; }
+    .check-item .chk { font-size: 16px; flex-shrink: 0; margin-top: 1px; font-weight: 700; color: var(--primary); }
+    .wrapup-pane.next .check-item .chk { color: #16A34A; }
+
+    /* TWO-COL generic */
+    .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; flex: 1; align-items: center; }
+    .lead-block { display: flex; flex-direction: column; gap: 18px; }
+    .lead-big { font-size: 30px; font-weight: 800; color: var(--foreground); line-height: 1.2; letter-spacing: -0.01em; } .lead-big .hl { color: var(--primary); }
+    .lead-body { font-size: 18px; color: var(--muted); line-height: 1.6; } .lead-body b { color: var(--foreground); }
+    .visual-pane { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+
+    /* EXAMPLE STORY — problemă → idee → companie */
+    .story-flow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; flex: 1; align-items: stretch; }
+    .story-step { padding: 26px 24px; display: flex; flex-direction: column; gap: 12px; position: relative; justify-content: center; }
+    .story-step::after { content: '→'; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); font-size: 26px; color: var(--primary); font-weight: 700; z-index: 3; }
+    .story-step:last-child::after { display: none; }
+    .story-step.problem { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius) 0 0 var(--radius); }
+    .story-step.idea { background: var(--pastel-peach); border: 1px solid #FED7AA; }
+    .story-step.company { background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 0 var(--radius) var(--radius) 0; }
+    .story-lbl { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .story-step.problem .story-lbl { color: #DC2626; } .story-step.idea .story-lbl { color: #C2410C; } .story-step.company .story-lbl { color: #16A34A; }
+    .story-txt { font-size: 16px; color: var(--foreground); line-height: 1.5; } .story-txt b { font-weight: 700; }
+    .story-head { display: flex; align-items: center; gap: 14px; margin-bottom: 4px; }
+    .story-brand { font-size: 30px; font-weight: 800; color: var(--foreground); letter-spacing: -0.01em; }
+    .story-brand .tiny { font-size: 14px; font-weight: 600; color: var(--muted); margin-left: 8px; }
+
+    /* EXAMPLES GRID — mai multe povești scurte cu logo */
+    .ex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; }
+    .ex-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-direction: column; gap: 9px; box-shadow: var(--shadow); justify-content: center; overflow: hidden; }
+    .ex-head { display: flex; align-items: center; gap: 11px; }
+    .ex-logo { width: 30px; height: 30px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .ex-logo svg { width: 100%; height: 100%; }
+    .ex-name { font-size: 19px; font-weight: 800; color: var(--foreground); }
+    .ex-prob { font-size: 14px; color: #B91C1C; line-height: 1.4; } .ex-prob b { color: #B91C1C; }
+    .ex-sol { font-size: 14px; color: var(--foreground); line-height: 1.4; }
+    .ex-tag-prob { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #DC2626; }
+    .ex-tag-sol { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #16A34A; }
+
+    /* BRAND CHIP — logo inline in a soft tile */
+    .brand-tile { display: inline-flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 9px 18px 9px 14px; box-shadow: var(--shadow); font-size: 17px; font-weight: 700; color: var(--foreground); }
+    .brand-tile .bt-logo { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; }
+    .brand-tile .bt-logo svg { width: 100%; height: 100%; }
+    .brand-tile.dark { background: var(--foreground); color: #fff; border-color: #1e293b; }
+
+    /* OCEAN EXAMPLES — split with logo rows */
+    .ocean-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .ocean-pane { border-radius: var(--radius); padding: 24px 26px; display: flex; flex-direction: column; gap: 14px; }
+    .ocean-pane.red { background: #FEF2F2; border: 1px solid #FECACA; }
+    .ocean-pane.blue { background: var(--pastel-sky); border: 1px solid #BAE6FD; }
+    .ocean-head { display: flex; align-items: center; gap: 12px; font-size: 26px; font-weight: 800; letter-spacing: -0.01em; }
+    .ocean-pane.red .ocean-head { color: #DC2626; } .ocean-pane.blue .ocean-head { color: var(--primary); }
+    .ocean-head .ico { font-size: 32px; }
+    .ocean-sub { font-size: 14px; line-height: 1.45; } .ocean-pane.red .ocean-sub { color: #991B1B; } .ocean-pane.blue .ocean-sub { color: #075985; }
+    .ocean-list { display: flex; flex-direction: column; gap: 10px; margin-top: 2px; }
+    .ocean-item { display: flex; align-items: center; gap: 11px; background: rgba(255,255,255,0.8); border-radius: var(--radius-sm); padding: 11px 14px; font-size: 15px; font-weight: 600; color: var(--foreground); line-height: 1.35; }
+    .ocean-item .oi-logo { width: 24px; height: 24px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .ocean-item .oi-logo svg { width: 100%; height: 100%; }
+    .ocean-item .oi-emoji { font-size: 22px; flex-shrink: 0; width: 24px; text-align: center; }
+
+    /* DEEP RESEARCH flow */
+    .dr-flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 16px; flex: none; align-items: stretch; margin-bottom: 18px; }
+    .dr-node { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+    .dr-node.start { background: var(--primary-ultra-light); border-color: #C7D2FE; }
+    .dr-node.mid { background: var(--pastel-lavender); border-color: #C4B5FD; }
+    .dr-node.end { background: var(--pastel-mint); border-color: #86EFAC; }
+    .dr-ico { font-size: 34px; }
+    .dr-node-title { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .dr-node-desc { font-size: 14px; color: var(--muted); line-height: 1.45; }
+    .dr-arrow { display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--primary); font-weight: 700; }
+    .dr-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .dr-tools .lbl { font-size: 13px; font-weight: 700; color: var(--muted); }
+
+    /* 5 WHYS ladder */
+    .why-ladder { display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: center; }
+    .why-row { display: flex; align-items: center; gap: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 18px; }
+    .why-q { width: 64px; flex-shrink: 0; font-size: 13px; font-weight: 800; color: var(--primary); text-align: center; }
+    .why-q.final { color: var(--success); }
+    .why-row.final { background: #F0FDF4; border-color: #86EFAC; }
+    .why-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .why-txt b { font-weight: 800; }
+
+    /* RESEARCH sources */
+    .src-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; flex: 1; align-items: center; }
+    .src-list { display: flex; flex-direction: column; gap: 14px; }
+    .src-item { display: flex; align-items: flex-start; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
+    .src-ico { font-size: 28px; flex-shrink: 0; }
+    .src-name { font-size: 17px; font-weight: 800; color: var(--foreground); }
+    .src-name .url { font-size: 13px; font-weight: 700; color: var(--primary); margin-left: 8px; }
+    .src-desc { font-size: 14px; color: var(--muted); line-height: 1.45; margin-top: 2px; }
+    .src-feature { background: linear-gradient(160deg, #2D52D4, #7C3AED); border-radius: var(--radius); padding: 28px; color: #fff; display: flex; flex-direction: column; gap: 14px; }
+    .src-feature .sf-lbl { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.85; }
+    .src-feature .sf-name { font-size: 30px; font-weight: 800; letter-spacing: -0.01em; }
+    .src-feature .sf-url { font-size: 16px; font-weight: 600; background: rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 16px; align-self: flex-start; }
+    .src-feature .sf-desc { font-size: 15px; line-height: 1.55; opacity: 0.95; }
+
+    /* VENN — USP */
+    .venn-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; flex: 1; align-items: center; }
+    .venn-stage { position: relative; width: 420px; height: 380px; flex-shrink: 0; }
+    .venn-circle { position: absolute; width: 230px; height: 230px; border-radius: 50%; mix-blend-mode: multiply; }
+    .venn-circle.c1 { top: 24px; left: 18px; background: rgba(45,82,212,0.32); }
+    .venn-circle.c2 { top: 24px; right: 18px; background: rgba(124,58,237,0.32); }
+    .venn-circle.c3 { bottom: 6px; left: 50%; transform: translateX(-50%); background: rgba(34,197,94,0.32); }
+    .venn-emoji { position: absolute; font-size: 30px; z-index: 4; }
+    .venn-emoji.e1 { top: 70px; left: 60px; } .venn-emoji.e2 { top: 70px; right: 60px; } .venn-emoji.e3 { bottom: 56px; left: 50%; transform: translateX(-50%); }
+    .venn-cap { position: absolute; z-index: 6; font-size: 13px; font-weight: 800; text-align: center; width: 150px; line-height: 1.25; }
+    .venn-cap.cap1 { top: -8px; left: -36px; color: #1E3A8A; } .venn-cap.cap2 { top: -8px; right: -36px; color: #5B21B6; } .venn-cap.cap3 { bottom: -22px; left: 50%; transform: translateX(-50%); color: #14532D; }
+    .venn-center { position: absolute; top: 44%; left: 50%; transform: translate(-50%,-50%); z-index: 5; background: var(--foreground); color: #fff; width: 104px; height: 104px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-size: 14px; font-weight: 800; line-height: 1.15; box-shadow: 0 6px 20px rgba(0,0,0,0.3); padding: 8px; box-sizing: border-box; }
+    .venn-side { display: flex; flex-direction: column; gap: 16px; }
+    .venn-row { display: flex; align-items: flex-start; gap: 12px; }
+    .venn-dot { width: 16px; height: 16px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+    .venn-dot.d1 { background: var(--primary); } .venn-dot.d2 { background: var(--practice); } .venn-dot.d3 { background: var(--success); }
+    .venn-row-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .venn-row-txt b { font-weight: 800; }
+    .usp-ex { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-direction: column; gap: 9px; }
+    .usp-ex-lbl { font-size: 14px; font-weight: 800; color: #92400E; letter-spacing: 0.02em; }
+    .usp-ex-row { font-size: 15px; color: var(--foreground); line-height: 1.4; display: flex; gap: 9px; align-items: baseline; }
+    .usp-ex-row span { flex-shrink: 0; }
+    .usp-ex-usp { font-size: 15px; color: var(--foreground); line-height: 1.45; background: #FEF3C7; border-radius: var(--radius-sm); padding: 11px 14px; margin-top: 2px; } .usp-ex-usp b { color: #92400E; }
+    /* Q COMPARE — Mom Test întrebări */
+    .qcompare { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .qcol { border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .qcol.bad { background: #FEF2F2; border: 1px solid #FECACA; } .qcol.good { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .qcol-head { font-size: 16px; font-weight: 800; padding-bottom: 4px; } .qcol-head.bad { color: #DC2626; } .qcol-head.good { color: #16A34A; }
+    .qrow { background: rgba(255,255,255,0.8); border-radius: var(--radius-sm); padding: 11px 15px; font-size: 15px; font-style: italic; line-height: 1.4; color: var(--foreground); }
+    .qcol.bad .qrow { border-left: 3px solid #FCA5A5; } .qcol.good .qrow { border-left: 3px solid #86EFAC; }
+    .qcol-note { margin-top: auto; font-size: 14px; font-weight: 700; padding-top: 6px; } .qcol-note.bad { color: #B91C1C; } .qcol-note.good { color: #15803D; }
+
+    /* MOM TEST book */
+    .book-cover { width: 190px; height: 270px; border-radius: 6px 12px 12px 6px; background: linear-gradient(150deg, #2D52D4 0%, #1E3A8A 100%); box-shadow: 0 14px 36px -6px rgba(30,58,138,0.55); position: relative; display: flex; flex-direction: column; padding: 26px 22px; color: #fff; overflow: hidden; border-left: 7px solid rgba(0,0,0,0.25); }
+    .book-cover::after { content: ''; position: absolute; top: -40px; right: -40px; width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.10); }
+    .book-kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; }
+    .book-title { font-size: 34px; font-weight: 800; line-height: 1.05; margin-top: 14px; letter-spacing: -0.01em; }
+    .book-author { font-size: 14px; font-weight: 600; opacity: 0.85; margin-top: auto; position: relative; z-index: 2; }
+    .book-emoji { position: absolute; bottom: 60px; right: 18px; font-size: 50px; opacity: 0.9; }
+    .book-cover.netflix { background: linear-gradient(150deg, #E50914 0%, #8B0000 100%); box-shadow: 0 14px 36px -6px rgba(229,9,20,0.5); }
+
+    /* HOMEWORK */
+    .hw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    /* HW DOC — exemplu completat */
+    .hw-doc { display: flex; flex-direction: column; gap: 0; flex: 1; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #fff; }
+    .hw-doc-row { display: grid; grid-template-columns: 190px 1fr; gap: 18px; padding: 13px 22px; border-bottom: 1px solid var(--border); align-items: baseline; }
+    .hw-doc-row:last-child { border-bottom: none; }
+    .hw-doc-row:nth-child(even) { background: var(--bg); }
+    .hw-doc-lbl { font-size: 15px; font-weight: 800; color: var(--foreground); }
+    .hw-doc-val { font-size: 15px; color: var(--foreground); line-height: 1.45; } .hw-doc-val b { color: var(--primary); }
+    /* FAIL cards — eșecuri celebre */
+    .fail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .fail-card { background: #fff; border: 1px solid #FECACA; border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow); justify-content: flex-start; overflow: hidden; }
+    .fail-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .fail-name { font-size: 20px; font-weight: 800; color: var(--foreground); }
+    .fail-raised { font-size: 12px; font-weight: 800; color: #fff; background: #DC2626; padding: 4px 10px; border-radius: 100px; white-space: nowrap; }
+    .fail-emoji { font-size: 30px; }
+    .fail-what { font-size: 14px; color: var(--foreground); line-height: 1.45; }
+    .fail-why { font-size: 13px; color: #B91C1C; line-height: 1.45; margin-top: auto; padding-top: 10px; border-top: 1px solid #FEE2E2; } .fail-why b { color: #B91C1C; }
+    /* NEEDS — ce rezolvă un produs */
+    .needs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex: 1; }
+    .need-card { border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--border); justify-content: center; overflow: hidden; }
+    .need-card.time { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .need-card.body { background: var(--pastel-mint); border-color: #86EFAC; }
+    .need-card.emo { background: var(--pastel-rose); border-color: #FBCFE8; }
+    .need-emoji { font-size: 42px; }
+    .need-title { font-size: 20px; font-weight: 800; color: var(--foreground); }
+    .need-desc { font-size: 15px; color: var(--foreground); line-height: 1.5; }
+    .need-ex { font-size: 14px; color: var(--muted); line-height: 1.45; } .need-ex b { color: var(--foreground); }
+    /* MASLOW pyramid */
+    .maslow-grid { display: flex; gap: 34px; flex: 1; align-items: center; }
+    .pyramid { display: flex; flex-direction: column; align-items: center; gap: 6px; flex-shrink: 0; width: 440px; }
+    .pyr-row { display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 15px; border-radius: 6px; padding: 13px 16px; text-align: center; line-height: 1.2; }
+    .pyr-row.l5 { width: 44%; background: #7C3AED; } .pyr-row.l4 { width: 58%; background: #2D52D4; }
+    .pyr-row.l3 { width: 72%; background: #0EA5E9; } .pyr-row.l2 { width: 86%; background: #16A34A; }
+    .pyr-row.l1 { width: 100%; background: #F59E0B; }
+    .maslow-side { display: flex; flex-direction: column; gap: 11px; flex: 1; }
+    .maslow-row { font-size: 15px; color: var(--foreground); line-height: 1.4; display: flex; gap: 10px; align-items: baseline; }
+    .maslow-row .mdot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; position: relative; top: 2px; }
+    .maslow-row b { font-weight: 700; }
+    .hw-pane { border-radius: var(--radius); padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; }
+    .hw-pane.a { background: var(--pastel-peach); border-color: #FED7AA; }
+    .hw-pane.b { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .hw-tag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 100px; }
+    .hw-pane.a .hw-tag { background: #FB923C; color: #fff; } .hw-pane.b .hw-tag { background: var(--primary); color: #fff; }
+    .hw-pane-title { font-size: 20px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+    .hw-line { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: var(--foreground); line-height: 1.45; }
+    .hw-line .hb { font-weight: 800; color: var(--primary); flex-shrink: 0; } .hw-pane.a .hw-line .hb { color: #C2410C; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 01 COVER -->
+    <section>
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 1 din 6 · Tekwill Academy Kids — Business School</div>
+          <h1>De la problemă<br>la idee</h1>
+          <p class="subtitle">Cum găsești o problemă reală — punctul de pornire al oricărei afaceri tari 🚀</p>
+          <div class="cover-logos">
+            <span class="cover-chip">3 ore împreună</span>
+            <span class="cover-chip">Mult exercițiu</span>
+            <span class="cover-chip">Pleci cu ideea ta</span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 38</div>
+      </div>
+    </section>
+
+    <!-- 02 DESPRE MINE -->
+    <section>
+      <div class="slide">
+        <div class="about-signature">antreprenor &amp; trainer</div>
+        <div class="slide-header"><div class="slide-tag">Cine sunt</div><h2 class="slide-title">Eu predau business — și îl fac zilnic 🙌</h2></div>
+        <div class="about-grid">
+          <div class="about-left">
+            <div class="about-bullets">
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text">Founder · <b>Vector Academy</b> — școală de business &amp; AI</div></div>
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text">Fondator <b>Rosta Coffee</b> — un business adevărat de cafea ☕</div></div>
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text">Am învățat peste <b>200 de oameni</b> business, marketing &amp; AI</div></div>
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text">Nu vă învăț din cărți — vă învăț ce <b>chiar fac eu</b> în fiecare zi</div></div>
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text">Cred că cei mai tari antreprenori se nasc <b>rezolvând probleme reale</b></div></div>
+            </div>
+            <div class="about-role-badge"><span class="dot"></span>Founder · Vector Academy &amp; Rosta Coffee</div>
+          </div>
+          <div class="about-photo-wrap">
+            <div class="about-photo-deco1"></div>
+            <div class="about-photo-deco2"></div>
+            <div class="about-photo-card">
+              <img src="../assets/screenshots/dima-summit.jpg" alt="Dima" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="about-photo-slot" style="display:none"><span class="ph-icon">📷</span><span>Poza mea aici</span><span class="ph-path">dima-summit.jpg</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">02 / 38</div>
+      </div>
+    </section>
+
+    <!-- 03 OBIECTIVE -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Ce vei putea la final</div><h2 class="slide-title">După azi vei ști să… 💡</h2><p class="slide-subtitle">Toate duc spre un singur lucru: pleci acasă cu <b>o problemă reală și o idee de afacere</b> care o rezolvă</p></div>
+        <div class="obj-grid">
+          <div class="obj-item"><div class="obj-n">1</div><div class="obj-text">Înțelegi că o afacere bună pornește de la o <b>problemă</b>, nu de la un produs</div></div>
+          <div class="obj-item"><div class="obj-n">2</div><div class="obj-text">Găsești probleme din <b>4 surse</b>: tu, alții, interviuri, recenzii negative</div></div>
+          <div class="obj-item"><div class="obj-n">3</div><div class="obj-text">Cauți <b>ocean albastru</b> — acolo unde NU se bat toți</div></div>
+          <div class="obj-item"><div class="obj-n">4</div><div class="obj-text">Pui întrebări oamenilor ca să afli <b>adevărul</b>, nu complimente</div></div>
+          <div class="obj-item"><div class="obj-n">5</div><div class="obj-text">Faci <b>research</b> online: cât e de mare problema, cine o mai rezolvă</div></div>
+          <div class="obj-item"><div class="obj-n">6</div><div class="obj-text"><b>Definești o problemă corect</b> — clar, concret și validat</div></div>
+        </div>
+        <div class="slide-num">03 / 38</div>
+      </div>
+    </section>
+
+    <!-- 03b ICE-BREAKER 1 — app preferat -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Hai să spargem gheața 🎈</div><h2 class="slide-title">„Care e afacerea, produsul sau app-ul tău preferat?" 😍</h2><p class="slide-subtitle">Pe rând, fiecare spune <b>ce iubește să folosească</b> — și de ce nu se poate lăsa de el</p></div>
+        <div class="twocol">
+          <div class="lead-block">
+            <div class="cards-grid cards-3" style="flex:none">
+              <div class="card sky" style="align-items:center;text-align:center"><span class="card-icon">📱</span><p class="card-body" style="color:var(--foreground);font-weight:600">O aplicație</p></div>
+              <div class="card peach" style="align-items:center;text-align:center"><span class="card-icon">🛍️</span><p class="card-body" style="color:var(--foreground);font-weight:600">Un magazin / brand</p></div>
+              <div class="card mint" style="align-items:center;text-align:center"><span class="card-icon">🎮</span><p class="card-body" style="color:var(--foreground);font-weight:600">Un joc / produs</p></div>
+            </div>
+          </div>
+          <div class="visual-pane" style="background:var(--pastel-mint);border-color:#86EFAC">
+            <span style="font-size:60px">🔍</span>
+            <div style="font-size:21px;font-weight:700;color:var(--foreground);line-height:1.45;text-align:center">Tot ce iubești să folosești <span style="color:#16A34A">rezolvă o problemă</span> de-a ta. Azi învățăm s-o vedem.</div>
+          </div>
+        </div>
+        <div style="margin-top:20px"><div class="quote-block"><strong>Întrebarea de aur:</strong> ce ai pierde dacă produsul ăla ar dispărea mâine? Acolo e problema pe care ți-o rezolvă. 🎯</div></div>
+        <div class="slide-num">04 / 38</div>
+      </div>
+    </section>
+
+    <!-- 04 ICE-BREAKER 2 — ce te enervează -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Și acum invers 🎈</div><h2 class="slide-title">„Ce te enervează zilnic?" 😤</h2><p class="slide-subtitle">Pe rând, fiecare spune <b>un lucru mic</b> care îl scoate din sărite în fiecare zi</p></div>
+        <div class="twocol">
+          <div class="lead-block">
+            <div class="cards-grid cards-3" style="flex:none">
+              <div class="card sky" style="align-items:center;text-align:center"><span class="card-icon">🍽️</span><p class="card-body" style="color:var(--foreground);font-weight:600">Coada la cantină</p></div>
+              <div class="card peach" style="align-items:center;text-align:center"><span class="card-icon">🔋</span><p class="card-body" style="color:var(--foreground);font-weight:600">Telefonul descărcat</p></div>
+              <div class="card lavender" style="align-items:center;text-align:center"><span class="card-icon">🐌</span><p class="card-body" style="color:var(--foreground);font-weight:600">App-ul lent</p></div>
+            </div>
+          </div>
+          <div class="visual-pane" style="background:var(--primary-ultra-light);border-color:#C7D2FE">
+            <span style="font-size:60px">💡</span>
+            <div style="font-size:21px;font-weight:700;color:var(--foreground);line-height:1.45;text-align:center">Fiecare lucru care te enervează pe tine îi enervează și pe alți <span style="color:var(--primary)">1.000 de oameni</span>. Acolo se nasc afacerile.</div>
+          </div>
+        </div>
+        <div style="margin-top:20px"><div class="quote-block"><strong>Ține minte:</strong> azi transformăm „mă enervează" în „aici e o afacere". 🔥</div></div>
+        <div class="slide-num">05 / 38</div>
+      </div>
+    </section>
+
+    <!-- 05 PROBLEMA NU PRODUSUL -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Cum gândește un antreprenor</div><h2 class="slide-title">Oamenii nu cumpără produse — cumpără o rezolvare</h2><p class="slide-subtitle">Cel mai important reflex: pleacă de la <b>problemă</b>, nu de la „ce produs fac"</p></div>
+        <div class="drill-grid">
+          <div class="drill-card no">
+            <span class="drill-emoji">🛠️</span>
+            <span class="drill-lbl">Nimeni nu vrea</span>
+            <div class="drill-big">Un burghiu</div>
+            <div class="drill-sub">Produsul în sine nu interesează pe nimeni</div>
+          </div>
+          <div class="drill-arrow">→</div>
+          <div class="drill-card yes">
+            <span class="drill-emoji">🕳️</span>
+            <span class="drill-lbl">Toți vor</span>
+            <div class="drill-big">O gaură în perete</div>
+            <div class="drill-sub">Rezultatul, problema rezolvată — asta cumperi de fapt</div>
+          </div>
+        </div>
+        <div style="margin-top:22px"><div class="quote-block"><strong>Test rapid:</strong> când spui „vreau să fac o aplicație", întreabă-te „ce problemă rezolvă?". Dacă n-ai răspuns clar — încă n-ai o afacere. 😉</div></div>
+        <div class="slide-num">06 / 38</div>
+      </div>
+    </section>
+
+    <!-- 05b CE REZOLVĂ UN PRODUS -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Cum gândește un antreprenor</div><h2 class="slide-title">Un produs bun rezolvă una din 3 lucruri</h2><p class="slide-subtitle">Aproape orice afacere de succes face cel puțin <b>unul</b> dintre acestea. Întreabă-te: al tău pe care îl rezolvă?</p></div>
+        <div class="needs-grid">
+          <div class="need-card time">
+            <span class="need-emoji">⏱️</span>
+            <div class="need-title">Economisește timp</div>
+            <div class="need-desc">Îți face mai repede ceva ce oricum trebuie să faci.</div>
+            <div class="need-ex"><b>Glovo</b> — nu mai mergi după mâncare · <b>Google</b> — găsești orice în 2 secunde</div>
+          </div>
+          <div class="need-card body">
+            <span class="need-emoji">🍎</span>
+            <div class="need-title">Acoperă o nevoie de bază</div>
+            <div class="need-desc">Mâncare, apă, somn, siguranță, sănătate — lucruri fără de care nu poți trăi.</div>
+            <div class="need-ex"><b>Supermarketul</b> · o <b>app de livrare apă</b> · o <b>clinică</b></div>
+          </div>
+          <div class="need-card emo">
+            <span class="need-emoji">❤️</span>
+            <div class="need-title">Dă emoții & încredere</div>
+            <div class="need-desc">Te face să te simți bine, special, în siguranță sau parte dintr-un grup.</div>
+            <div class="need-ex"><b>Nike</b> — te simți campion · <b>Apple</b> — te simți premium · <b>Instagram</b> — apreciere</div>
+          </div>
+        </div>
+        <div style="margin-top:16px"><div class="quote-block"><strong>Curiozitate:</strong> caută pe internet „<b>ce nevoi umane rezolvă un produs</b>" — vei găsi că cele mai puternice branduri ating <b>emoțiile</b>, nu doar funcția. 🔍</div></div>
+        <div class="slide-num">07 / 38</div>
+      </div>
+    </section>
+
+    <!-- 05c PIRAMIDA MASLOW -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">O idee importantă · Piramida lui Maslow</div><h2 class="slide-title">Oamenii au nevoi pe mai multe niveluri 🔺</h2><p class="slide-subtitle">Psihologul Maslow a arătat că avem nevoi în trepte. La <b>fiecare nivel</b> se pot construi produse și afaceri.</p></div>
+        <div class="maslow-grid">
+          <div class="pyramid">
+            <div class="pyr-row l5">🌟 Împlinire — să devii cea mai bună versiune a ta</div>
+            <div class="pyr-row l4">🏆 Stimă — respect, statut, încredere</div>
+            <div class="pyr-row l3">❤️ Apartenență — prieteni, familie, comunitate</div>
+            <div class="pyr-row l2">🛡️ Siguranță — adăpost, sănătate, bani</div>
+            <div class="pyr-row l1">🍞 Nevoi de bază — mâncare, apă, somn</div>
+          </div>
+          <div class="maslow-side">
+            <div class="maslow-row"><span class="mdot" style="background:#F59E0B"></span><div><b>Bază:</b> un magazin alimentar, o app de livrare apă</div></div>
+            <div class="maslow-row"><span class="mdot" style="background:#16A34A"></span><div><b>Siguranță:</b> o asigurare, o app de bani, o alarmă smart</div></div>
+            <div class="maslow-row"><span class="mdot" style="background:#0EA5E9"></span><div><b>Apartenență:</b> Instagram, un club, o comunitate online</div></div>
+            <div class="maslow-row"><span class="mdot" style="background:#2D52D4"></span><div><b>Stimă:</b> Nike, branduri premium, un curs care te face expert</div></div>
+            <div class="maslow-row"><span class="mdot" style="background:#7C3AED"></span><div><b>Împlinire:</b> cursuri ca ăsta, aplicații de hobby-uri, călătorii</div></div>
+            <div class="quote-block" style="margin-top:6px"><strong>Truc:</strong> întreabă-te <b>la ce nivel</b> e problema ta. Cu cât e mai jos, cu atât mai mulți oameni o au. 🎯</div>
+          </div>
+        </div>
+        <div class="slide-num">08 / 38</div>
+      </div>
+    </section>
+
+    <!-- 06 HERO — Airbnb -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Exemplu real · Cum se naște o companie</div><h2 class="slide-title">Airbnb — a pornit dintr-o problemă personală</h2><p class="slide-subtitle">Doi tineri nu-și puteau plăti chiria. Azi compania valorează <b>zeci de miliarde</b>. Totul a început de la o problemă mică.</p></div>
+        <div class="story-head">
+          <span class="ex-logo" style="width:42px;height:42px"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#FF5A5F"><path d="M12.001 18.275c-1.353-1.697-2.148-3.184-2.413-4.457-.263-1.027-.16-1.848.291-2.465.477-.71 1.188-1.056 2.121-1.056s1.643.345 2.12 1.063c.446.61.558 1.432.286 2.465-.291 1.298-1.085 2.785-2.412 4.458zm9.601 1.14c-.185 1.246-1.034 2.28-2.2 2.783-2.253.98-4.483-.583-6.392-2.704 3.157-3.951 3.74-7.028 2.385-9.018-.795-1.14-1.933-1.695-3.394-1.695-2.944 0-4.563 2.49-3.927 5.382.37 1.565 1.352 3.343 2.917 5.332-.98 1.085-1.91 1.856-2.732 2.333-.636.344-1.245.558-1.828.609-2.679.399-4.778-2.2-3.825-4.88.132-.345.395-.98.845-1.961l.025-.053c1.464-3.178 3.242-6.79 5.285-10.795l.053-.132.58-1.116c.45-.822.635-1.19 1.351-1.643.346-.21.77-.315 1.246-.315.954 0 1.698.558 2.016 1.007.158.239.345.557.582.953l.558 1.089.08.159c2.041 4.004 3.821 7.608 5.279 10.794l.026.025.533 1.22.318.764c.243.613.294 1.222.213 1.858zm1.22-2.39c-.186-.583-.505-1.271-.9-2.094v-.03c-1.889-4.006-3.642-7.608-5.307-10.844l-.111-.163C15.317 1.461 14.468 0 12.001 0c-2.44 0-3.476 1.695-4.535 3.898l-.081.16c-1.669 3.236-3.421 6.843-5.303 10.847v.053l-.559 1.22c-.21.504-.317.768-.345.847C-.172 20.74 2.611 24 5.98 24c.027 0 .132 0 .265-.027h.372c1.75-.213 3.554-1.325 5.384-3.317 1.829 1.989 3.635 3.104 5.382 3.317h.372c.133.027.239.027.265.027 3.37.003 6.152-3.261 4.802-6.975z"/></svg></span>
+          <span class="story-brand">Airbnb<span class="tiny">San Francisco, 2008</span></span>
+        </div>
+        <div class="story-flow">
+          <div class="story-step problem">
+            <span class="story-lbl">Problema</span>
+            <div class="story-txt">Doi colegi de apartament <b>nu-și puteau plăti chiria</b>. În același timp, era o conferință mare în oraș și <b>toate hotelurile erau pline</b> — oamenii nu aveau unde dormi.</div>
+          </div>
+          <div class="story-step idea">
+            <span class="story-lbl">Ideea</span>
+            <div class="story-txt">Au pus 3 saltele gonflabile în living și au oferit cazare + mic dejun, online. „Air Bed &amp; Breakfast." <b>Au rezolvat două probleme deodată.</b></div>
+          </div>
+          <div class="story-step company">
+            <span class="story-lbl">Compania</span>
+            <div class="story-txt">Azi: <b>peste 4 milioane de gazde</b> în 220 de țări. Nu dețin niciun hotel — au rezolvat doar problema „unde dorm când totul e plin".</div>
+          </div>
+        </div>
+        <div style="margin-top:18px"><div class="quote-block"><strong>Lecția pentru tine:</strong> n-au pornit de la „hai să facem o companie de miliarde". Au pornit de la <b>o problemă reală pe care o aveau ei</b>. 💪</div></div>
+        <div class="slide-num">09 / 38</div>
+      </div>
+    </section>
+
+    <!-- 07 MAI MULTE EXEMPLE (cu logo) -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Exemple reale · Problemă → Companie</div><h2 class="slide-title">Toate marile companii au început la fel</h2><p class="slide-subtitle">Cineva a observat o problemă concretă — și a construit soluția. Caută tiparul: <b>problema vine prima.</b></p></div>
+        <div class="ex-grid">
+          <div class="ex-card">
+            <div class="ex-head"><span class="ex-logo"><svg viewBox="0 0 24 24" fill="#000000"><path d="M0 7.97v4.958c0 1.867 1.302 3.101 3 3.101.826 0 1.562-.316 2.094-.87v.736H6.27V7.97H5.082v4.888c0 1.257-.85 2.106-1.947 2.106-1.11 0-1.946-.827-1.946-2.106V7.971H0zm7.44 0v7.925h1.13v-.725c.521.532 1.257.86 2.06.86a3.006 3.006 0 0 0 3.034-3.01 3.01 3.01 0 0 0-3.033-3.024 2.86 2.86 0 0 0-2.049.861V7.971H7.439zm9.869 2.038c-1.687 0-2.965 1.37-2.965 3 0 1.72 1.334 3.01 3.066 3.01 1.053 0 1.913-.463 2.49-1.233l-.826-.611c-.43.577-.996.847-1.664.847-.973 0-1.753-.7-1.912-1.64h4.697v-.373c0-1.72-1.222-3-2.886-3zm6.295.068c-.634 0-1.098.294-1.381.758v-.713h-1.131v5.774h1.142V12.61c0-.894.544-1.47 1.291-1.47H24v-1.065h-.396zm-6.319.928c.85 0 1.564.588 1.756 1.47H15.52c.203-.882.916-1.47 1.765-1.47zm-6.732.012c1.086 0 1.98.883 1.98 2.004a1.993 1.993 0 0 1-1.98 2.001A1.989 1.989 0 0 1 8.56 13.02a1.99 1.99 0 0 1 1.992-2.004z"/></svg></span><span class="ex-name">Uber</span></div>
+            <div><span class="ex-tag-prob">Problema</span> <span class="ex-prob">Nu găseai un taxi într-o seară de iarnă la Paris.</span></div>
+            <div><span class="ex-tag-sol">Soluția</span> <span class="ex-sol">Chemi o mașină din telefon, în 2 minute.</span></div>
+          </div>
+          <div class="ex-card">
+            <div class="ex-head"><span class="ex-logo"><svg viewBox="0 0 24 24" fill="#E50914"><path d="m5.398 0 8.348 23.602c2.346.059 4.856.398 4.856.398L10.113 0H5.398zm8.489 0v9.172l4.715 13.33V0h-4.715zM5.398 1.5V24c1.873-.225 2.81-.312 4.715-.398V14.83L5.398 1.5z"/></svg></span><span class="ex-name">Netflix</span></div>
+            <div><span class="ex-tag-prob">Problema</span> <span class="ex-prob">Penalizări scumpe pentru un film returnat târziu.</span></div>
+            <div><span class="ex-tag-sol">Soluția</span> <span class="ex-sol">Filme acasă, fără termene — apoi streaming.</span></div>
+          </div>
+          <div class="ex-card">
+            <div class="ex-head"><span class="ex-logo" style="background:#1a1a1a;border-radius:7px;padding:4px"><svg viewBox="0 0 24 24" fill="#FFC244"><path d="M12.012 0C7.847 0 4.459 3.388 4.459 7.553c0 1.576.494 3.106 1.412 4.4l.211.281 3.93 5.555s.47.775 1.529.775h.941c1.036 0 1.53-.775 1.53-.775l3.93-5.555.187-.28a7.43 7.43 0 0 0 1.412-4.401C19.564 3.388 16.176 0 12.011 0Zm0 3.693a3.837 3.837 0 0 1 3.836 3.836c0 .824-.26 1.578-.73 2.237l-.212.28-2.894 4.095-2.895-4.07-.21-.305a3.848 3.848 0 0 1-.731-2.237 3.837 3.837 0 0 1 3.836-3.836zm-2.117 18.26c0 1.106.893 2.023 2.07 2.047 1.223 0 2.117-.917 2.117-2.059 0-1.14-.894-2.058-2.094-2.058-1.2 0-2.093.917-2.093 2.07z"/></svg></span><span class="ex-name">Glovo</span></div>
+            <div><span class="ex-tag-prob">Problema</span> <span class="ex-prob">Vrei mâncare de la un local fără livrare.</span></div>
+            <div><span class="ex-tag-sol">Soluția</span> <span class="ex-sol">Cineva îți aduce orice, în 30 de minute.</span></div>
+          </div>
+          <div class="ex-card">
+            <div class="ex-head"><span class="ex-logo"><svg viewBox="0 0 24 24" fill="#1DB954"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg></span><span class="ex-name">Spotify</span></div>
+            <div><span class="ex-tag-prob">Problema</span> <span class="ex-prob">Pirateria peste tot, iar CD-urile incomode.</span></div>
+            <div><span class="ex-tag-sol">Soluția</span> <span class="ex-sol">Toată muzica lumii, legal, pe un abonament.</span></div>
+          </div>
+        </div>
+        <div style="margin-top:16px"><div class="quote-block"><strong>Întrebare pentru voi:</strong> ce app folosiți zilnic? Acum ghiciți — <b>ce problemă rezolvă</b> și pentru cine? 🤔</div></div>
+        <div class="slide-num">10 / 38</div>
+      </div>
+    </section>
+
+    <!-- 07b CARTEA — That Will Never Work (Netflix) -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">O carte de citit 📖</div><h2 class="slide-title">„That Will Never Work" — povestea Netflix</h2><p class="slide-subtitle">Toți i-au spus fondatorului că ideea <b>nu va funcționa niciodată</b>. Cartea arată cum a pornit dintr-o problemă reală și a ajuns uriaș.</p></div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:36px;flex:1;align-items:center">
+          <div class="book-cover netflix">
+            <div class="book-kicker">The book</div>
+            <div class="book-title">THAT<br>WILL<br>NEVER<br>WORK</div>
+            <span class="book-emoji">🎬</span>
+            <div class="book-author">Marc Randolph<br><span style="opacity:0.8">co-fondator Netflix</span></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="story-flow" style="grid-template-columns:1fr">
+              <div class="story-step problem" style="border-radius:var(--radius)"><span class="story-lbl">Problema</span><div class="story-txt">Penalizări scumpe și drumuri la magazin ca să închiriezi un film. Enervant pentru toată lumea.</div></div>
+            </div>
+            <div class="quote-block" style="margin:0"><strong>Lecția pentru voi:</strong> aproape oricine cu o idee bună aude „n-o să meargă niciodată". Dacă pornești de la o <b>problemă reală</b> și o validezi — mergi mai departe, chiar dacă alții se îndoiesc. 💪</div>
+            <div class="quote-block" style="margin:0;background:#FEF2F2;border-color:#FECACA"><strong>🎯 Întrebare:</strong> ce idee au considerat oamenii „imposibilă" și totuși a reușit? (avionul, telefonul, internetul…)</div>
+          </div>
+        </div>
+        <div class="slide-num">11 / 38</div>
+      </div>
+    </section>
+
+    <!-- 09b EȘECURI CELEBRE — produse fără problemă reală -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Atenție ⚠️ · Banii nu garantează succesul</div><h2 class="slide-title">Au strâns MILIOANE — și tot au eșuat</h2><p class="slide-subtitle">Aceste produse au primit investiții uriașe, dar au rezolvat <b>o problemă pe care nimeni n-o avea</b>. Lecția: validează problema ÎNAINTE.</p></div>
+        <div class="fail-grid">
+          <div class="fail-card">
+            <div class="fail-top"><span class="fail-name">🧃 Juicero</span><span class="fail-raised">$120M</span></div>
+            <div class="fail-what">Un storcător „smart" de <b>$400–700</b> care storcea pungi cu fructe gata pregătite.</div>
+            <div class="fail-why"><b>De ce a picat:</b> jurnaliștii au arătat că puteai stoarce punga <b>cu mâna</b>, la fel de bine. Mașina era inutilă. Închis în 17 luni.</div>
+          </div>
+          <div class="fail-card">
+            <div class="fail-top"><span class="fail-name">📺 Quibi</span><span class="fail-raised">$1,75 mld</span></div>
+            <div class="fail-what">Platformă de filme scurte pentru telefon, cu staruri de la Hollywood.</div>
+            <div class="fail-why"><b>De ce a picat:</b> oamenii aveau deja YouTube și TikTok — gratis. Nimeni nu cerea așa ceva. Închis în <b>6 luni</b>.</div>
+          </div>
+          <div class="fail-card">
+            <div class="fail-top"><span class="fail-name">👓 Google Glass</span><span class="fail-raised">~$400M</span></div>
+            <div class="fail-what">Ochelari smart cu ecran și cameră, de la Google.</div>
+            <div class="fail-why"><b>De ce a picat:</b> oamenii se simțeau spionați, iar purtătorii păreau ciudați. Rezolva o problemă pe care n-o avea nimeni.</div>
+          </div>
+        </div>
+        <div style="margin-top:16px"><div class="quote-block"><strong>Morala:</strong> poți avea bani, tehnologie și staruri — dar dacă <b>nu rezolvi o problemă reală</b>, produsul moare. De-asta începem mereu cu problema. 🎯</div></div>
+        <div class="slide-num">12 / 38</div>
+      </div>
+    </section>
+
+    <!-- 08 BLUE OCEAN concept -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Cum gândește un antreprenor</div><h2 class="slide-title">Ocean roșu vs. ocean albastru 🌊</h2><p class="slide-subtitle">Nu te bate acolo unde se bat toți. Caută apa liberă — o problemă pe care alții o ignoră.</p></div>
+        <div class="split-screen">
+          <div class="split-pane red">
+            <div class="split-head-big"><span class="ico">🦈</span>Ocean roșu</div>
+            <div class="split-body">Piață plină de concurenți care se bat pe <b>aceiași clienți</b>. Rechinii se mușcă → apa devine roșie. Marje mici, totul e despre preț.</div>
+            <div class="split-ex"><span class="lbl">Exemplu</span>Încă o cafenea pe aceeași stradă cu alte 5 — la fel ca celelalte.</div>
+          </div>
+          <div class="split-pane blue">
+            <div class="split-head-big"><span class="ico">🐋</span>Ocean albastru</div>
+            <div class="split-body">O piață nouă, unde <b>nu te bate nimeni</b>, pentru că rezolvi o problemă pe care alții o ignoră.</div>
+            <div class="split-ex"><span class="lbl">Exemplu</span>Prima firmă care a oferit <b>livrare de mâncare acasă</b>, când toți aveau doar restaurante.</div>
+          </div>
+        </div>
+        <div style="margin-top:18px"><div class="quote-block"><strong>Întrebarea de aur:</strong> „Ce problemă reală nu rezolvă încă nimeni — sau o rezolvă prost?" 🎯</div></div>
+        <div class="slide-num">13 / 38</div>
+      </div>
+    </section>
+
+    <!-- 09 OCEAN — exemple roșu vs albastru -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Exemple reale</div><h2 class="slide-title">Cine se bate în mulțime — și cine a făcut apă nouă</h2><p class="slide-subtitle">În stânga: piețe aglomerate. În dreapta: cineva care a inventat o categorie nouă.</p></div>
+        <div class="ocean-grid">
+          <div class="ocean-pane red">
+            <div class="ocean-head"><span class="ico">🦈</span>Ocean roșu</div>
+            <div class="ocean-sub">Mulți concurenți, aceiași clienți, război pe preț.</div>
+            <div class="ocean-list">
+              <div class="ocean-item"><span class="oi-emoji">☕</span>Încă o cafenea pe o stradă cu alte 5</div>
+              <div class="ocean-item"><span class="oi-emoji">🍔</span>Un fast-food nou lângă 10 altele</div>
+              <div class="ocean-item"><span class="oi-emoji">👕</span>Un magazin de haine ca toate celelalte</div>
+              <div class="ocean-item"><span class="oi-emoji">🚕</span>Încă o firmă de taxi clasic</div>
+            </div>
+          </div>
+          <div class="ocean-pane blue">
+            <div class="ocean-head"><span class="ico">🐋</span>Ocean albastru</div>
+            <div class="ocean-sub">Au inventat o categorie — n-aveau cu cine să se bată.</div>
+            <div class="ocean-list">
+              <div class="ocean-item"><span class="oi-logo"><svg viewBox="0 0 24 24" fill="#FF5A5F"><path d="M12.001 18.275c-1.353-1.697-2.148-3.184-2.413-4.457-.263-1.027-.16-1.848.291-2.465.477-.71 1.188-1.056 2.121-1.056s1.643.345 2.12 1.063c.446.61.558 1.432.286 2.465-.291 1.298-1.085 2.785-2.412 4.458zm9.601 1.14c-.185 1.246-1.034 2.28-2.2 2.783-2.253.98-4.483-.583-6.392-2.704 3.157-3.951 3.74-7.028 2.385-9.018-.795-1.14-1.933-1.695-3.394-1.695-2.944 0-4.563 2.49-3.927 5.382.37 1.565 1.352 3.343 2.917 5.332-.98 1.085-1.91 1.856-2.732 2.333-.636.344-1.245.558-1.828.609-2.679.399-4.778-2.2-3.825-4.88.132-.345.395-.98.845-1.961l.025-.053c1.464-3.178 3.242-6.79 5.285-10.795l.633-1.248c.45-.822.635-1.19 1.351-1.643.346-.21.77-.315 1.246-.315.954 0 1.698.558 2.016 1.007.158.239.345.557.582.953l.638 1.248c2.041 4.004 3.821 7.608 5.279 10.794l.026.025.851 1.984c.243.613.294 1.222.213 1.858zm1.22-2.39c-.186-.583-.505-1.271-.9-2.094v-.03c-1.889-4.006-3.642-7.608-5.307-10.844l-.111-.163C15.317 1.461 14.468 0 12.001 0c-2.44 0-3.476 1.695-4.535 3.898l-.081.16c-1.669 3.236-3.421 6.843-5.303 10.847l-.559 1.273c-.21.504-.317.768-.345.847C-.172 20.74 2.611 24 5.98 24c.027 0 .132 0 .265-.027h.372c1.75-.213 3.554-1.325 5.384-3.317 1.829 1.989 3.635 3.104 5.382 3.317h.372c.133.027.239.027.265.027 3.37.003 6.152-3.261 4.802-6.975z"/></svg></span>Airbnb — cazare în casa altcuiva</div>
+              <div class="ocean-item"><span class="oi-logo"><svg viewBox="0 0 24 24" fill="#000000"><path d="M0 7.97v4.958c0 1.867 1.302 3.101 3 3.101.826 0 1.562-.316 2.094-.87v.736H6.27V7.97H5.082v4.888c0 1.257-.85 2.106-1.947 2.106-1.11 0-1.946-.827-1.946-2.106V7.971H0zm7.44 0v7.925h1.13v-.725c.521.532 1.257.86 2.06.86a3.006 3.006 0 0 0 3.034-3.01 3.01 3.01 0 0 0-3.033-3.024 2.86 2.86 0 0 0-2.049.861V7.971H7.439zm9.869 2.038c-1.687 0-2.965 1.37-2.965 3 0 1.72 1.334 3.01 3.066 3.01 1.053 0 1.913-.463 2.49-1.233l-.826-.611c-.43.577-.996.847-1.664.847-.973 0-1.753-.7-1.912-1.64h4.697v-.373c0-1.72-1.222-3-2.886-3zm6.295.068c-.634 0-1.098.294-1.381.758v-.713h-1.131v5.774h1.142V12.61c0-.894.544-1.47 1.291-1.47H24v-1.065h-.396zm-6.319.928c.85 0 1.564.588 1.756 1.47H15.52c.203-.882.916-1.47 1.765-1.47zm-6.732.012c1.086 0 1.98.883 1.98 2.004a1.993 1.993 0 0 1-1.98 2.001A1.989 1.989 0 0 1 8.56 13.02a1.99 1.99 0 0 1 1.992-2.004z"/></svg></span>Uber — mașina ta devine taxi</div>
+              <div class="ocean-item"><span class="oi-emoji">🚗</span>Tesla — mașini electrice cool, când toți făceau pe benzină</div>
+              <div class="ocean-item"><span class="oi-emoji">🪑</span>IKEA — mobilă ieftină pe care o asamblezi singur acasă</div>
+              <div class="ocean-item"><span class="oi-emoji">🎪</span>Cirque du Soleil — circ fără animale, ca un spectacol de teatru</div>
+              <div class="ocean-item"><span class="oi-emoji">☕</span>Rosta Coffee — cafea de specialitate în Moldova, nu cafea obișnuită</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px"><div class="quote-block"><strong>Vezi?</strong> Oceanul albastru nu e doar despre app-uri — o cafenea, o mașină, un circ sau o mobilă pot fi „apă nouă" dacă fac altceva decât toți. 🌊</div></div>
+        <div class="slide-num">14 / 38</div>
+      </div>
+    </section>
+
+    <!-- 10 EXERCIȚIU — roșu vs albastru -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Exercițiu · 5–10 min</div><h2 class="slide-title">Roșu sau albastru? Tu decizi!</h2><p class="slide-subtitle">În echipe sau individual — sortați cât mai multe afaceri reale în cele două oceane</p></div>
+        <div class="practice-layout">
+          <div class="practice-steps">
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4px"><span class="mode-pill">👥 Echipe sau individual</span><span class="timer-pill">⏱ 5–10 min</span></div>
+            <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Gândiți-vă la <b>afaceri pe care le cunoașteți</b> — din orașul vostru, de pe telefon, oriunde</div></div>
+            <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Puneți fiecare într-o coloană: <b>ocean roșu</b> (mulți la fel) sau <b>ocean albastru</b> (unic)</div></div>
+            <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Pentru fiecare „albastru" — spuneți <b>de ce</b> e diferit de restul</div></div>
+          </div>
+          <div class="practice-pane">
+            <div class="practice-prompt"><span class="lbl">Întrebarea care vă ghidează</span>„Această afacere face <b>același lucru ca multe altele</b> — sau a inventat ceva ce nu mai făcea nimeni?"</div>
+            <div class="practice-prompt" style="border-color:var(--primary)"><span class="lbl" style="color:var(--primary)">Provocare bonus 🏆</span>Găsiți o afacere din <b>Moldova</b> care e ocean albastru — ceva ce face altfel decât toți.</div>
+          </div>
+        </div>
+        <div class="slide-num">15 / 38</div>
+      </div>
+    </section>
+
+    <!-- 11 4 SURSE — intro -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">De unde iei idei</div><h2 class="slide-title">Cele 4 surse de probleme reale 🔍</h2><p class="slide-subtitle">Nu aștepta inspirația. Probleme bune se caută sistematic — din patru locuri. Le luăm pe rând.</p></div>
+        <div class="cards-grid cards-4 cards-compact">
+          <div class="card sky"><div class="card-num">1</div><h3 class="card-title">🙋 Tu însuți</h3><p class="card-body">Ce te enervează <b>pe tine</b>. Avantaj: înțelegi problema din interior.</p></div>
+          <div class="card mint"><div class="card-num">2</div><h3 class="card-title">👀 Observi alții</h3><p class="card-body">Familie, prieteni, profesori. Ce îi încurcă pe <b>ei</b>?</p></div>
+          <div class="card lavender"><div class="card-num">3</div><h3 class="card-title">🎤 Întrebi oameni</h3><p class="card-body">Vorbești direct cu ei. <b>Nu ghicești — întrebi.</b></p></div>
+          <div class="card peach"><div class="card-num">4</div><h3 class="card-title">⭐ Recenzii negative</h3><p class="card-body">Google Maps, App Store. Oamenii scriu <b>exact</b> ce nu le place.</p></div>
+        </div>
+        <div style="margin-top:18px"><div class="quote-block"><strong>Cel mai tare truc:</strong> combini sursele — o problemă pe care o ai TU + o confirmi la ALȚII. 🤝</div></div>
+        <div class="slide-num">16 / 38</div>
+      </div>
+    </section>
+
+    <!-- 12 SURSA 1 — probleme personale -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Sursa 1 din 4</div><h2 class="slide-title">🙋 Problemele tale personale</h2><p class="slide-subtitle">Cele mai bune idei pornesc de la ceva ce te <b>deranjează pe tine</b> în fiecare zi</p></div>
+        <div class="twocol">
+          <div class="lead-block">
+            <div class="lead-big">Dacă te enervează pe tine, <span class="hl">enervează și pe alții.</span></div>
+            <div class="lead-body">Marele avantaj: <b>înțelegi problema din interior</b>. Știi exact cum doare, cât de des și ce ai vrea în loc.</div>
+            <div class="lead-body">Multe afaceri uriașe au pornit exact așa — cineva s-a săturat de o problemă proprie și a făcut soluția.</div>
+          </div>
+          <div class="visual-pane" style="background:var(--pastel-sky);border-color:#BAE6FD">
+            <span style="font-size:60px">😤➡️💡</span>
+            <div style="font-size:18px;font-weight:600;color:#075985;line-height:1.5;text-align:center">Exemple de pornire: „mereu uit temele", „nu găsesc colegi pentru proiecte", „mâncarea de la cantină se termină repede".</div>
+          </div>
+        </div>
+        <div style="margin-top:18px"><div class="quote-block"><strong>Întreabă-te:</strong> care e lucrul pe care l-ai rezolva primul, dacă ai avea o baghetă magică? 🪄</div></div>
+        <div class="slide-num">17 / 38</div>
+      </div>
+    </section>
+
+    <!-- 13 SURSA 2 — observarea altora -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Sursa 2 din 4</div><h2 class="slide-title">👀 Observă problemele altora</h2><p class="slide-subtitle">Nu toate problemele bune sunt ale tale. Unele dintre cele mai mari le au <b>alți oameni</b>.</p></div>
+        <div class="twocol">
+          <div class="lead-block">
+            <div class="lead-big">Uită-te în jur <span class="hl">cu ochi de detectiv.</span></div>
+            <div class="lead-body">Privește <b>familia, prietenii, profesorii, bunicii</b>. Ce îi încurcă pe ei, chiar dacă pe tine nu te deranjează deloc?</div>
+            <div class="lead-body">Un bunic care nu se descurcă cu telefonul. Un părinte care pierde timp în trafic. Un coleg care nu înțelege lecția.</div>
+          </div>
+          <div class="visual-pane" style="background:var(--pastel-mint);border-color:#86EFAC">
+            <span style="font-size:60px">🕵️</span>
+            <div style="font-size:18px;font-weight:600;color:#14532D;line-height:1.5;text-align:center">Mini-misiune: numește <b>o problemă a unui părinte sau bunic</b> pe care tu n-o ai deloc.</div>
+          </div>
+        </div>
+        <div style="margin-top:18px"><div class="quote-block"><strong>Secret:</strong> problemele altora sunt o piață uriașă — pentru că ei sunt dispuși să plătească pentru rezolvare. 💰</div></div>
+        <div class="slide-num">18 / 38</div>
+      </div>
+    </section>
+
+    <!-- 14 SURSA 3 — user interviews intro -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Sursa 3 din 4</div><h2 class="slide-title">🎤 Întreabă direct oamenii (user interviews)</h2><p class="slide-subtitle">Cea mai puternică sursă: <b>vorbești cu oameni reali</b> care ar putea avea problema. Nu ghicești — întrebi.</p></div>
+        <div class="twocol">
+          <div class="lead-block">
+            <div class="lead-big">Adevărul nu e în capul tău — <span class="hl">e la oameni.</span></div>
+            <div class="lead-body">Un „user interview" e doar o discuție în care afli <b>cum trăiește omul</b> și ce îl încurcă cu adevărat.</div>
+            <div class="lead-body">Atenție: oamenii te mint cu cele mai bune intenții. Imediat învățăm <b>cum să întrebi corect</b> ca să afli adevărul.</div>
+          </div>
+          <div class="visual-pane" style="background:var(--pastel-lavender);border-color:#C4B5FD">
+            <span style="font-size:60px">🗣️👂</span>
+            <div style="font-size:18px;font-weight:600;color:#5B21B6;line-height:1.5;text-align:center">Regula de aur a interviului: <b>asculți mai mult decât vorbești.</b></div>
+          </div>
+        </div>
+        <div style="margin-top:18px"><div class="quote-block"><strong>Urmează:</strong> ghidul de întrebări + un truc numit „The Mom Test" 👇</div></div>
+        <div class="slide-num">19 / 38</div>
+      </div>
+    </section>
+
+    <!-- 15 SURSA 4 — recenzii negative -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Sursa 4 din 4</div><h2 class="slide-title">⭐ Recenziile de 1 stea = aur curat</h2><p class="slide-subtitle">Oamenii îți spun gratis ce nu funcționează. Tot ce faci e să <b>extragi problema</b> din plângere.</p></div>
+        <div class="review-grid">
+          <div class="review-card">
+            <div class="review-top"><span class="review-stars">★☆☆☆☆</span><span class="review-tag">1 stea · App de livrare</span></div>
+            <div class="review-body">„Comand mereu, dar <span class="hl">nu știu niciodată când ajunge curierul</span>. Stau cu telefonul în mână 40 de minute. <span class="hl">Aplicația nu arată nimic în timp real.</span>"</div>
+          </div>
+          <div class="extract-flow">
+            <div class="extract-row"><div class="extract-n">1</div><div class="extract-text">Citește plângerea ca pe <b>o sursă</b>, nu ca pe o critică</div></div>
+            <div class="extract-row"><div class="extract-n">2</div><div class="extract-text">Subliniază <b>ce nu merge</b>: „nu știe când ajunge", „pierde 40 min"</div></div>
+            <div class="extract-row"><div class="extract-n">3</div><div class="extract-text">Reformulează ca problemă: <b>clienții nu văd în timp real unde e livrarea</b></div></div>
+            <div class="extract-row"><div class="extract-n">4</div><div class="extract-text">Gata validată — <b>cineva a scris-o real</b>, n-ai inventat-o tu</div></div>
+          </div>
+        </div>
+        <div class="slide-num">20 / 38</div>
+      </div>
+    </section>
+
+    <!-- 15b EXERCIȚIU LIVE — căutăm recenzii reale -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Exercițiu live · Împreună</div><h2 class="slide-title">Intrăm și căutăm recenzii reale 🔎</h2><p class="slide-subtitle">Alegem câteva companii cunoscute, citim recenziile de 1–2 stele și ne gândim <b>cum am rezolva noi problema</b></p></div>
+        <div class="practice-layout">
+          <div class="practice-steps">
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4px"><span class="mode-pill">🖥️ Pe ecran, împreună</span><span class="timer-pill">⏱ 10–15 min</span></div>
+            <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Alegem o companie (un local, o app, un magazin) pe <b>Google Maps / App Store / Play Store</b></div></div>
+            <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Filtrăm recenziile de <b>1–2 stele</b> și citim 3–4 cu voce tare</div></div>
+            <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Extragem <b>problema reală</b> din fiecare plângere</div></div>
+            <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Brainstorm: <b>cum am îmbunătăți noi</b> ca să dispară plângerea?</div></div>
+          </div>
+          <div class="practice-pane">
+            <div class="practice-prompt"><span class="lbl">Unde căutăm</span>🗺️ Google Maps · 📱 App Store · ▶️ Google Play · 🛒 marketplace-uri</div>
+            <div class="practice-prompt" style="border-color:var(--primary)"><span class="lbl" style="color:var(--primary)">Întrebarea cheie</span>Dacă ar fi afacerea ta — <b>ce ai schimba mâine</b> ca recenzia aia de 1 stea să devină 5 stele? ⭐</div>
+          </div>
+        </div>
+        <div class="slide-num">21 / 38</div>
+      </div>
+    </section>
+
+    <!-- 16 PRACTICĂ — vânătoarea de probleme -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Exercițiu · Pe echipe</div><h2 class="slide-title">Vânătoarea de probleme 🏹</h2><p class="slide-subtitle">Fiecare echipă caută probleme reale dintr-o sursă și un domeniu diferit</p></div>
+        <div class="practice-layout">
+          <div class="practice-steps">
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4px"><span class="mode-pill">👥 Grupuri de 3–4</span><span class="timer-pill">⏱ 30 min</span></div>
+            <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text"><b>Setup:</b> fiecare grup primește o sursă (din cele 4) + un domeniu: școală, transport, timp liber, mâncare</div></div>
+            <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text"><b>Lucru în grup:</b> adunați minim <b>6 probleme reale</b> pe post-it-uri (grupul „recenzii" caută chiar online)</div></div>
+            <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text"><b>Galerie + votare:</b> lipim tot pe perete, votăm cu buline cele mai „dureroase" probleme</div></div>
+          </div>
+          <div class="practice-pane">
+            <div class="practice-prompt"><span class="lbl">Întrebarea care vă ghidează</span>„Ce problemă reală am găsit aici — și de unde știu că o au și alții, nu doar noi?"</div>
+            <div class="practice-prompt" style="border-color:var(--primary)"><span class="lbl" style="color:var(--primary)">Bonus 🏆</span>Echipa cu cea mai „dureroasă" problemă reală votată de toți câștigă runda.</div>
+          </div>
+        </div>
+        <div class="slide-num">22 / 38</div>
+      </div>
+    </section>
+
+    <!-- 17 PAUZĂ -->
+    <section>
+      <div class="slide slide-transition">
+        <div class="trans-arc"></div>
+        <h2 class="trans-title">Pauză 30 de minute<br>— apoi: cum afli adevărul</h2>
+        <div class="trans-img">
+          <span class="fallback">☕</span>
+        </div>
+        <div class="slide-num">23 / 38</div>
+      </div>
+    </section>
+
+    <!-- 18 DEEP RESEARCH -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Super-putere · AI</div><h2 class="slide-title">Deep Research — cercetezi o piață în 5 minute 🤖</h2><p class="slide-subtitle">Îi dai AI-ului o problemă, el citește <b>zeci de surse</b> și îți face un raport: cât e de mare, cine o mai rezolvă.</p></div>
+        <div class="dr-flow">
+          <div class="dr-node start"><span class="dr-ico">🎯</span><div class="dr-node-title">Tema ta</div><div class="dr-node-desc">„Cât de mare e problema X? Cine o rezolvă deja în Moldova?"</div></div>
+          <div class="dr-arrow">→</div>
+          <div class="dr-node mid"><span class="dr-ico">🔎</span><div class="dr-node-title">AI caută</div><div class="dr-node-desc">Citește zeci–sute de surse online în câteva minute</div></div>
+          <div class="dr-arrow">→</div>
+          <div class="dr-node end"><span class="dr-ico">📊</span><div class="dr-node-title">Raport cu surse</div><div class="dr-node-desc">Cât valorează piața, ce concurenți există, ce nișă e liberă</div></div>
+        </div>
+        <div class="twocol" style="flex:none;align-items:stretch">
+          <div class="visual-pane" style="background:var(--bg);align-items:flex-start;text-align:left;gap:10px;padding:22px 26px">
+            <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted)">La ce te ajută</div>
+            <div style="font-size:16px;color:var(--foreground);line-height:1.55">✓ Afli <b>cât de mare</b> e problema<br>✓ Vezi <b>cine o mai rezolvă</b> (concurența)<br>✓ Descoperi <b>nișa liberă</b> — oceanul albastru</div>
+          </div>
+          <div class="visual-pane" style="background:var(--primary-ultra-light);border-color:#C7D2FE;gap:12px">
+            <div class="dr-tools"><span class="lbl">Disponibil în:</span>
+              <span class="brand-tile" style="font-size:14px;padding:6px 14px"><span class="bt-logo" style="width:20px;height:20px"><svg viewBox="0 0 24 24" fill="#10A37F"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span>ChatGPT</span>
+              <span class="brand-tile" style="font-size:14px;padding:6px 14px"><span class="bt-logo" style="width:20px;height:20px"><svg viewBox="0 0 24 24" fill="#4285F4"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>Gemini</span>
+              <span class="brand-tile" style="font-size:14px;padding:6px 14px"><span class="bt-logo" style="width:20px;height:20px;font-size:16px">🔍</span>Perplexity</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">24 / 38</div>
+      </div>
+    </section>
+
+    <!-- 19 MOM TEST — de ce complimentele mint -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Cum afli adevărul</div><h2 class="slide-title">De ce complimentele te mint 🤥</h2><p class="slide-subtitle">Când întrebi „Ți-ar plăcea ideea mea?", oricine spune „da, super!" — mai ales mama ta</p></div>
+        <div class="twocol">
+          <div class="lead-block">
+            <div class="lead-big">„Da, super idee!" <span class="hl">nu</span> e o validare.</div>
+            <div class="lead-body">Oamenii vor să fie politicoși. Te <b>laudă ca să nu te supere</b> — și pleci convins de o idee care nu rezolvă nimic real.</div>
+            <div class="lead-body">Soluția: nu mai întreba despre <b>ideea ta</b>. Întreabă despre <b>viața lor</b>.</div>
+          </div>
+          <div class="visual-pane" style="background:#FEF2F2;border-color:#FECACA">
+            <span style="font-size:64px">🤥</span>
+            <div style="font-size:19px;font-weight:600;color:#7F1D1D;line-height:1.5;text-align:center">Întrebi 10 oameni dacă le place ideea ta → <b>10 „da"</b>.<br>Lansezi → <b>0 cumpărători.</b></div>
+          </div>
+        </div>
+        <div class="slide-num">25 / 38</div>
+      </div>
+    </section>
+
+    <!-- 20 MOM TEST — ghid de întrebări + carte -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Ghid de întrebări · The Mom Test</div><h2 class="slide-title">Cum pui întrebări ca să afli adevărul</h2><p class="slide-subtitle">Întrebi despre <b>viața lor</b>, nu despre ideea ta — și afli ce fac de fapt, nu ce zic că ar face</p></div>
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:34px;flex:1;align-items:center">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+            <div class="book-cover">
+              <div class="book-kicker">The book</div>
+              <div class="book-title">THE<br>MOM<br>TEST</div>
+              <span class="book-emoji">👩</span>
+              <div class="book-author">Rob Fitzpatrick</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="rules-grid" style="grid-template-columns:1fr">
+              <div class="rule-card" style="flex-direction:row;align-items:center;padding:16px 20px"><div class="rule-n">1</div><div><div class="rule-title">Întreabă despre trecut concret</div><div class="rule-desc">„Când ai avut <b>ultima oară</b> problema asta? Ce ai făcut?" — nu „Ai folosi…?"</div></div></div>
+              <div class="rule-card" style="flex-direction:row;align-items:center;padding:16px 20px"><div class="rule-n">2</div><div><div class="rule-title">Nu pomeni ideea ta deloc</div><div class="rule-desc">Vorbește despre <b>viața lor</b>. Dacă afli ideea, afli doar complimente.</div></div></div>
+              <div class="rule-card" style="flex-direction:row;align-items:center;padding:16px 20px"><div class="rule-n">3</div><div><div class="rule-title">Taci și ascultă</div><div class="rule-desc">Ascultă <b>mai mult decât vorbești.</b> Aurul vine în tăcerile pe care le lași.</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">26 / 38</div>
+      </div>
+    </section>
+
+    <!-- 20b MOM TEST — coloane întrebări greșite vs bune -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">The Mom Test · Întrebări</div><h2 class="slide-title">Întrebări greșite vs. întrebări bune</h2><p class="slide-subtitle">Aceeași curiozitate, formulată diferit. Stânga primești complimente, dreapta primești <b>adevărul</b>.</p></div>
+        <div class="qcompare">
+          <div class="qcol bad">
+            <div class="qcol-head bad">❌ Greșit — întrebi despre idee / viitor</div>
+            <div class="qrow">„Ți-ar plăcea o app care te ajută să înveți?"</div>
+            <div class="qrow">„Ai cumpăra produsul ăsta?"</div>
+            <div class="qrow">„Cât ai plăti pentru asta?"</div>
+            <div class="qrow">„Nu crezi că e o idee bună?"</div>
+            <div class="qrow">„Ai folosi o astfel de soluție?"</div>
+            <div class="qcol-note bad">→ Primești „da, super!" — păreri politicoase, nu fapte.</div>
+          </div>
+          <div class="qcol good">
+            <div class="qcol-head good">✅ Bine — întrebi despre trecut concret</div>
+            <div class="qrow">„Când ai învățat ultima oară pentru un test? Cum a fost?"</div>
+            <div class="qrow">„Ce ai cumpărat ultima dată ca să rezolvi asta?"</div>
+            <div class="qrow">„Cât ai cheltuit până acum pe problema asta?"</div>
+            <div class="qrow">„Povestește-mi ultima dată când ți-a fost greu să…"</div>
+            <div class="qrow">„Ce faci acum când apare problema asta?"</div>
+            <div class="qcol-note good">→ Afli ce face omul de fapt — fapte reale, nu păreri.</div>
+          </div>
+        </div>
+        <div class="slide-num">27 / 38</div>
+      </div>
+    </section>
+
+    <!-- 21 EXERCIȚIU — user interviews în perechi -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Exercițiu · În perechi</div><h2 class="slide-title">Interviu în perechi 🎭</h2><p class="slide-subtitle">10 copii → 5 perechi. Fiecare pune <b>3–5 întrebări</b> celuilalt despre o problemă reală.</p></div>
+        <div class="practice-layout">
+          <div class="practice-steps">
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4px"><span class="mode-pill" style="background:#F3E8FF;border-color:#D8B4FE;color:var(--practice)">🎭 În perechi</span><span class="timer-pill">⏱ 15 min</span></div>
+            <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Unul e <b>„cercetător"</b>, celălalt e <b>„omul cu problema"</b></div></div>
+            <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Cercetătorul pune <b>3–5 întrebări despre trecut concret</b> — fără să-și menționeze vreo idee</div></div>
+            <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Schimbați rolurile. Apoi <b>debrief:</b> cine a aflat ceva adevărat?</div></div>
+          </div>
+          <div class="practice-pane">
+            <div class="practice-prompt"><span class="lbl">Cele 3 reguli pe perete</span>1. Trecut concret · 2. Nu pomeni ideea · 3. Taci și ascultă</div>
+            <div class="practice-prompt" style="border-color:var(--primary)"><span class="lbl" style="color:var(--primary)">Semn de succes ✅</span>Ai aflat o problemă reală <b>fără</b> ca celălalt să ghicească vreo idee — ai reușit!</div>
+          </div>
+        </div>
+        <div class="slide-num">28 / 38</div>
+      </div>
+    </section>
+
+    <!-- 22 APP PREFERAT + 5 WHYS -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Truc de detectiv · 5 De Ce</div><h2 class="slide-title">„Care e app-ul tău preferat?" → 5× de ce</h2><p class="slide-subtitle">Întrebi omul ce iubește, apoi sapi cu <b>„de ce?"</b> de 5 ori — ajungi la problema reală pe care i-o rezolvă</p></div>
+        <div class="why-ladder">
+          <div class="why-row"><div class="why-q">Întrebare</div><div class="why-txt">„Care e app-ul tău preferat?" → <b>TikTok</b> 📱</div></div>
+          <div class="why-row"><div class="why-q">De ce? 1</div><div class="why-txt">„Pentru că mă distrează." → <b>de ce?</b></div></div>
+          <div class="why-row"><div class="why-q">De ce? 2</div><div class="why-txt">„Pentru că nu mă plictisesc niciodată." → <b>de ce?</b></div></div>
+          <div class="why-row"><div class="why-q">De ce? 3</div><div class="why-txt">„Pentru că nu am ce face când aștept." → <b>de ce?</b></div></div>
+          <div class="why-row"><div class="why-q">De ce? 4</div><div class="why-txt">„Pentru că mi-e greu să umplu timpii morți." → <b>de ce?</b></div></div>
+          <div class="why-row final"><div class="why-q final">🎯 Problema</div><div class="why-txt"><b>„Oamenii se plictisesc în timpii morți și vor distracție instant."</b> ← asta vinde de fapt TikTok</div></div>
+        </div>
+        <div class="slide-num">29 / 38</div>
+      </div>
+    </section>
+
+    <!-- 23 RESEARCH ONLINE + siriusb2b -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Research · Cifrele reale</div><h2 class="slide-title">Unde cauți cât câștigă o companie 💰</h2><p class="slide-subtitle">Ca să știi dacă o problemă merită — afli cât valorează piața și cine sunt jucătorii reali</p></div>
+        <div class="src-grid">
+          <div class="src-list">
+            <div class="src-item"><span class="src-ico">🗂️</span><div><div class="src-name">Directoare de companii</div><div class="src-desc">Liste de firme reale, pe domenii. Vezi cine activează deja în nișa ta.</div></div></div>
+            <div class="src-item"><span class="src-ico">🌐</span><div><div class="src-name">Statistici online &amp; Google</div><div class="src-desc">Caută „cât valorează piața de [X]" — vei găsi cifre și rapoarte.</div></div></div>
+            <div class="src-item"><span class="src-ico">👨‍👩‍👧</span><div><div class="src-name">Prieteni &amp; familie</div><div class="src-desc">Întrebi oameni care lucrează în domeniu — ei știu cifrele din interior.</div></div></div>
+          </div>
+          <div class="src-feature">
+            <div class="sf-lbl">Pentru Moldova 🇲🇩</div>
+            <div class="sf-name">SiriusB2B</div>
+            <div class="sf-url">siriusb2b.md</div>
+            <div class="sf-desc">Un director B2B din Moldova: cauți companii pe domenii, vezi cine activează deja, descoperi concurenții și nișele libere de la noi.</div>
+          </div>
+        </div>
+        <div style="margin-top:16px"><div class="quote-block"><strong>De ce contează:</strong> o problemă poate fi reală, dar prea mică. Research-ul îți spune dacă merită să construiești o afacere pe ea. 📈</div></div>
+        <div class="slide-num">30 / 38</div>
+      </div>
+    </section>
+
+    <!-- 24 USP — Venn -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Cum te faci unic</div><h2 class="slide-title">USP — de ce te-ar alege pe TINE</h2><p class="slide-subtitle">USP = lucrul pe care tu îl faci <b>mai bine</b>, pe care <b>clientul îl vrea</b>, și unde <b>concurența e slabă</b></p></div>
+        <div class="venn-grid" style="display:flex;gap:36px;align-items:center;flex:1">
+          <div class="venn-stage">
+            <div class="venn-circle c1"></div>
+            <div class="venn-circle c2"></div>
+            <div class="venn-circle c3"></div>
+            <div class="venn-cap cap1">Ce faci TU bine 💪</div>
+            <div class="venn-cap cap2">Ce face concurența 🏁</div>
+            <div class="venn-cap cap3">Ce vrea clientul ❤️</div>
+            <div class="venn-emoji e1">💪</div>
+            <div class="venn-emoji e2">🏁</div>
+            <div class="venn-emoji e3">❤️</div>
+            <div class="venn-center">USP 🎯</div>
+          </div>
+          <div class="venn-side" style="flex:1">
+            <div class="venn-row-txt" style="font-size:17px;margin-bottom:6px"><b>USP</b> = locul din mijloc: ce <b>tu faci bine</b> + ce <b>clientul vrea</b>, dar <b>concurența nu oferă</b>.</div>
+            <div class="usp-ex">
+              <div class="usp-ex-lbl">☕ Exemplu — Rosta Coffee</div>
+              <div class="usp-ex-row"><span class="d1">💪</span> Cafea de specialitate, prăjită cu grijă</div>
+              <div class="usp-ex-row"><span class="d2">🏁</span> Concurența: cafenele care vând cafea obișnuită</div>
+              <div class="usp-ex-row"><span class="d3">❤️</span> Clientul vrea: gust premium, local, de încredere</div>
+              <div class="usp-ex-usp">🎯 USP: <b>cafea de specialitate din Moldova</b> — calitate pe care marile lanțuri n-o dau</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">31 / 38</div>
+      </div>
+    </section>
+
+    <!-- 25 DESIGN THINKING -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Cum gândește un designer</div><h2 class="slide-title">Înainte să rezolvi — înțelege bine problema</h2><p class="slide-subtitle">Design thinking are 5 pași. Azi ne oprim la <b>Definește</b> — cel mai important pas.</p></div>
+        <div class="llm-steps">
+          <div class="llm-step"><div class="llm-step-num">1</div><span class="llm-step-icon">❤️</span><div class="llm-step-title">Empatizezi</div><div class="llm-step-desc">Asculți omul, îi înțelegi problema din interior</div></div>
+          <div class="llm-step focus"><div class="llm-step-num">2</div><span class="llm-step-icon">🎯</span><div class="llm-step-title">Definești</div><span class="focus-badge">AICI NE OPRIM AZI</span><div class="llm-step-desc">Formulezi clar problema — fundația a tot ce urmează</div></div>
+          <div class="llm-step"><div class="llm-step-num">3</div><span class="llm-step-icon">💡</span><div class="llm-step-title">Ideezi</div><div class="llm-step-desc">Generezi soluții posibile (modulele următoare)</div></div>
+          <div class="llm-step"><div class="llm-step-num">4</div><span class="llm-step-icon">🧩</span><div class="llm-step-title">Prototip</div><div class="llm-step-desc">Faci o variantă simplă, rapidă de testat</div></div>
+          <div class="llm-step"><div class="llm-step-num">5</div><span class="llm-step-icon">🧪</span><div class="llm-step-title">Testezi</div><div class="llm-step-desc">Verifici cu oameni reali, ajustezi</div></div>
+        </div>
+        <div style="margin-top:22px"><div class="quote-block"><strong>De ce contează:</strong> dacă definești prost problema, tot restul se construiește pe nisip. O problemă bine definită = o idee care merge. 🏗️</div></div>
+        <div class="slide-num">32 / 38</div>
+      </div>
+    </section>
+
+    <!-- 26 CUM DEFINEȘTI -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Definire</div><h2 class="slide-title">Cum arată o problemă bine definită</h2><p class="slide-subtitle">Trei teste simple — dacă trece toate trei, e gata de folosit</p></div>
+        <div class="twocol" style="align-items:stretch">
+          <div class="crit-list" style="justify-content:center">
+            <div class="crit-item"><div class="crit-check">✓</div><div class="crit-text"><b>Cine + ce</b> (subiect + predicat).<br>Nu „mâncarea", ci „<b>elevii nu au timp</b> să mănânce sănătos în pauză".</div></div>
+            <div class="crit-item"><div class="crit-check">✓</div><div class="crit-text"><b>Concretă</b>, nu vagă.<br>Nu „transportul e prost", ci „<b>elevii pierd 40 de minute</b> așteptând autobuzul dimineața".</div></div>
+            <div class="crit-item"><div class="crit-check">✓</div><div class="crit-text"><b>Validată</b> — ai dovada că o au și alții (interviu / recenzie / observație), nu doar tu.</div></div>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:center">
+            <div class="formula-box">
+              <div class="formula-lbl">✦ Formula de control</div>
+              <div class="formula-text"><span class="formula-hl">[Cine]</span> nu poate <span class="formula-hl">[ce]</span>, ceea ce duce la <span class="formula-hl">[consecință]</span>. Știu că e reală pentru că <span class="formula-hl">[dovada]</span>.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">33 / 38</div>
+      </div>
+    </section>
+
+    <!-- 27 VAG vs BUN -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Exemplu</div><h2 class="slide-title">Aceeași problemă: vagă vs. bine definită</h2><p class="slide-subtitle">Diferența nu e cosmetică — varianta bună spune <b>cine</b>, <b>ce</b>, <b>ce consecință</b> și <b>de unde știi</b></p></div>
+        <div class="split-screen">
+          <div class="split-pane bad">
+            <p class="split-label bad">❌ Vag — nu poți construi pe asta</p>
+            <div class="split-prompt big">„Transportul e prost."</div>
+            <div class="split-result"><b>De ce nu merge:</b> cine? ce anume? nicio dovadă. Imposibil de rezolvat — nu știi de unde s-o apuci.</div>
+          </div>
+          <div class="split-pane good">
+            <p class="split-label good">✅ Bine definit — gata de idee</p>
+            <div class="split-prompt">„<b>Elevii</b> care merg la liceu pierd <b>~40 min</b> dimineața așteptând un autobuz fără orar fix, și întârzie la prima oră. <b>Știu</b> pentru că am întrebat 5 colegi și toți au pățit-o."</div>
+            <div class="split-result"><b>De ce merge:</b> cine + ce, concret, cu dovadă. Acum poți căuta o soluție.</div>
+          </div>
+        </div>
+        <div class="slide-num">34 / 38</div>
+      </div>
+    </section>
+
+    <!-- 28 TEMĂ PENTRU ACASĂ -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">📚 Temă pentru acasă</div><h2 class="slide-title">Până data viitoare, vino cu… </h2><p class="slide-subtitle">Aceasta devine <b>baza proiectului tău</b> pe tot cursul. Ia-o în serios — e cea mai distractivă temă! 😄</p></div>
+        <div class="hw-grid">
+          <div class="hw-pane a">
+            <span class="hw-tag">A · Ideea ta 💡</span>
+            <div class="hw-pane-title">O problemă + o idee de afacere</div>
+            <div class="hw-line"><span class="hb">1.</span><div>O <b>problemă reală</b> pe care ai identificat-o (a ta sau a altcuiva)</div></div>
+            <div class="hw-line"><span class="hb">2.</span><div>O <b>idee de afacere</b> care rezolvă acea problemă</div></div>
+            <div class="hw-line"><span class="hb">3.</span><div>De ce crezi că e <b>ocean albastru</b> — ce o face diferită</div></div>
+          </div>
+          <div class="hw-pane b">
+            <span class="hw-tag">B · Dovada 🔍</span>
+            <div class="hw-pane-title">Cum ai validat problema</div>
+            <div class="hw-line"><span class="hb">1.</span><div><b>User interviews</b> — vorbește cu 2–3 oameni care au problema</div></div>
+            <div class="hw-line"><span class="hb">2.</span><div><b>Research pe internet</b> — statistici, cifre, <b>siriusb2b.md</b></div></div>
+            <div class="hw-line"><span class="hb">3.</span><div><b>Discuții</b> cu prieteni și familie despre cât e de reală</div></div>
+          </div>
+        </div>
+        <div class="slide-num">35 / 38</div>
+      </div>
+    </section>
+
+    <!-- 28b TEMĂ — exemplu completat (Rosta Coffee) -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">📄 Exemplu de temă completată</div><h2 class="slide-title">Așa arată tema gata — exemplu: Rosta Coffee ☕</h2><p class="slide-subtitle">Cafea de specialitate din Moldova. Iată cum aș completa eu fișa — folosește-o ca model.</p></div>
+        <div class="hw-doc">
+          <div class="hw-doc-row"><div class="hw-doc-lbl">🔴 Problema</div><div class="hw-doc-val">În Moldova găsești ușor cafea obișnuită, dar <b>greu cafea de specialitate</b>, proaspăt prăjită, cu gust constant. Iubitorii de cafea bună nu au de unde s-o ia.</div></div>
+          <div class="hw-doc-row"><div class="hw-doc-lbl">💡 Ideea de afacere</div><div class="hw-doc-val">Rosta Coffee — cafea de specialitate prăjită local, vândută în cafenea și online, cu boabe proaspete livrate acasă.</div></div>
+          <div class="hw-doc-row"><div class="hw-doc-lbl">🌊 De ce ocean albastru</div><div class="hw-doc-val">Marile lanțuri vând cafea standard. Noi mergem pe <b>calitate premium + local + povestea boabelor</b> — o nișă pe care concurența mare n-o acoperă.</div></div>
+          <div class="hw-doc-row"><div class="hw-doc-lbl">🎤 Validare — interviuri</div><div class="hw-doc-val">Am vorbit cu 5 oameni care beau cafea zilnic: 4 din 5 au spus că nu sunt mulțumiți de gustul cafelei din oraș.</div></div>
+          <div class="hw-doc-row"><div class="hw-doc-lbl">🔍 Validare — research</div><div class="hw-doc-val">Am căutat pe <b>siriusb2b.md</b> și online: piața de cafea de specialitate crește în fiecare an, iar concurenții direcți din Moldova sunt puțini.</div></div>
+        </div>
+        <div class="slide-num">36 / 38</div>
+      </div>
+    </section>
+
+    <!-- 29 WRAP + Modul 2 -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Ce ducem mai departe</div><h2 class="slide-title">Ai învățat azi — și ce urmează 🚀</h2><p class="slide-subtitle">Ai acum cea mai importantă piesă: <b>o problemă reală și validată.</b> Din ea construim tot.</p></div>
+        <div class="wrapup-grid">
+          <div class="wrapup-pane learned">
+            <div class="wrapup-pane-title">✓ Ce ai învățat azi</div>
+            <div class="check-list">
+              <div class="check-item"><span class="chk">✓</span>Afacerea pornește de la o problemă, nu de la un produs</div>
+              <div class="check-item"><span class="chk">✓</span>4 surse de probleme + ocean roșu vs. albastru</div>
+              <div class="check-item"><span class="chk">✓</span>Cum afli adevărul de la oameni (Mom Test + 5 De Ce)</div>
+              <div class="check-item"><span class="chk">✓</span>Research online + cum definești o problemă corect</div>
+            </div>
+          </div>
+          <div class="wrapup-pane next">
+            <div class="wrapup-pane-title">→ Modul 2 · Identitate și branding</div>
+            <div class="check-list">
+              <div class="check-item"><span class="chk">→</span>„Avem o problemă reală și validată."</div>
+              <div class="check-item"><span class="chk">→</span>„Data viitoare îi dăm un nume și un brand."</div>
+              <div class="check-item"><span class="chk">→</span>Ideea ta primește identitate: nume, ton, imagine</div>
+              <div class="check-item"><span class="chk">→</span>Drum spre <b>Final Challenge Lab</b> — pitch-ul tău mare 🎤</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">37 / 38</div>
+      </div>
+    </section>
+
+    <!-- 30 THANK YOU -->
+    <section>
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 1 · Gata!</div>
+          <h1>O problemă reală —<br>începutul oricărei afaceri</h1>
+          <p class="subtitle">Mulțumesc! Acum mergi și găsește problema ta. Ne vedem la Modulul 2. 🙌</p>
+          <div class="cover-logos">
+            <span class="cover-chip">Tekwill Academy Kids</span>
+            <span class="cover-chip">Business School</span>
+            <span class="cover-chip">Modul 1 din 6</span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">38 / 38</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

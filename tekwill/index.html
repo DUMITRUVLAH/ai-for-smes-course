@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tekwill Business School — Platforma programului</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:hsl(220,20%,97%);--fg:hsl(222,47%,11%);--card:hsl(0,0%,100%);
+  --border:hsl(220,13%,91%);--muted-fg:hsl(220,9%,46%);--muted:hsl(220,14%,96%);
+  --primary:hsl(250,76%,55%);--primary-fg:hsl(0,0%,100%);--primary-pale:hsl(250,80%,96%);
+  --success:hsl(142,71%,45%);
+  --radius:14px;--radius-sm:9px;--radius-full:9999px;
+  --shadow-sm:0 1px 3px hsl(222 47% 11% / .04);
+  --shadow-md:0 4px 12px hsl(222 47% 11% / .07);
+  --shadow-lg:0 12px 24px hsl(222 47% 11% / .09);
+  --sidebar-w:220px;
+  --lavender-bg:hsl(250,80%,95%);--lavender-fg:hsl(250,70%,50%);
+  --mint-bg:hsl(158,60%,90%);--mint-fg:hsl(158,55%,35%);
+  --peach-bg:hsl(20,100%,93%);--peach-fg:hsl(20,85%,45%);
+  --sky-bg:hsl(200,78%,91%);--sky-fg:hsl(200,70%,38%);
+  --rose-bg:hsl(340,78%,93%);--rose-fg:hsl(340,65%,45%);
+  --lemon-bg:hsl(50,90%,91%);--lemon-fg:hsl(40,80%,35%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;-webkit-font-smoothing:antialiased}
+.shell{display:flex;min-height:100vh}
+
+/* ── SIDEBAR ── */
+.sidebar{width:var(--sidebar-w);position:fixed;top:0;left:0;bottom:0;background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;overflow-y:auto}
+.sidebar-brand{padding:16px 14px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px}
+.brand-mark{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--primary),hsl(285,76%,55%));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0}
+.brand-name{font-size:13px;font-weight:700;color:var(--fg)}
+.brand-sub{font-size:11px;color:var(--muted-fg)}
+.sidebar-nav{padding:10px 10px 6px;flex:1}
+.nav-section-label{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted-fg);padding:6px 8px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--radius-sm);cursor:pointer;margin-bottom:2px;transition:.13s;text-decoration:none;color:inherit}
+.nav-item:hover{background:var(--muted)}
+.nav-item.active{background:var(--primary-pale);color:var(--primary);font-weight:600}
+.nav-item.locked{cursor:not-allowed;opacity:.5}
+.nav-item.locked:hover{background:none}
+.nav-icon{width:30px;height:30px;border-radius:8px;background:var(--muted);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.nav-item.active .nav-icon{background:var(--primary-pale)}
+.nav-label{font-size:13px;font-weight:600;line-height:1.2;flex:1}
+.nav-meta{font-size:11px;color:var(--muted-fg);font-weight:500;margin-top:2px}
+.nav-item.active .nav-meta{color:hsl(250,55%,58%)}
+.nav-lock{font-size:11px;color:var(--muted-fg)}
+.sidebar-footer{padding:12px 12px 16px;border-top:1px solid var(--border)}
+.prog-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted-fg);margin-bottom:6px}
+.prog-track{height:4px;background:var(--muted);border-radius:var(--radius-full);overflow:hidden}
+.prog-fill{height:100%;width:33%;background:linear-gradient(90deg,var(--primary),hsl(285,76%,55%));border-radius:var(--radius-full)}
+
+/* ── MAIN ── */
+.main{margin-left:var(--sidebar-w);flex:1;min-height:100vh;background:var(--bg)}
+.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:hsla(220,20%,97%,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+.breadcrumb{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted-fg)}
+.breadcrumb b{color:var(--fg);font-weight:600}
+.topbar-pill{display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;letter-spacing:.03em;color:var(--success);background:hsl(142,60%,95%);padding:6px 12px;border-radius:999px}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--success)}
+.page{max-width:760px;margin:0 auto;padding:36px 28px 80px}
+.page-hero{margin-bottom:28px}
+.hero-kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
+.kicker-n{width:22px;height:22px;border-radius:7px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
+.page-hero h1{font-size:32px;font-weight:800;letter-spacing:-.02em;line-height:1.12;margin-bottom:12px}
+.page-hero p{font-size:14.5px;color:var(--muted-fg);line-height:1.6;max-width:560px}
+.stat-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.stat-chip{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--fg);background:var(--card);border:1px solid var(--border);padding:8px 13px;border-radius:999px;box-shadow:var(--shadow-sm)}
+.stat-chip span{font-size:14px}
+
+.section-block{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow-sm);transition:.16s}
+.section-block:hover{box-shadow:var(--shadow-md)}
+.section-head{display:flex;align-items:center;gap:13px;padding:16px 18px;cursor:pointer;transition:.13s}
+.section-head:hover{background:hsl(220,20%,98%)}
+.section-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.section-icon.lavender{background:var(--lavender-bg)}
+.section-icon.mint{background:var(--mint-bg)}
+.section-icon.peach{background:var(--peach-bg)}
+.section-icon.sky{background:var(--sky-bg)}
+.section-icon.lemon{background:var(--lemon-bg)}
+.section-text{flex:1}
+.section-text h3{font-size:14px;font-weight:700;line-height:1.2}
+.section-text p{font-size:12px;color:var(--muted-fg);margin-top:2px}
+.section-time{font-size:11px;color:var(--muted-fg);margin-right:6px}
+.section-chevron{font-size:11px;color:var(--muted-fg);transition:transform .2s}
+.section-chevron.open{transform:rotate(180deg)}
+.section-body{padding:18px}
+.section-body.hidden{display:none}
+
+.pres-banner{display:flex;align-items:center;justify-content:space-between;gap:16px;background:linear-gradient(135deg,var(--primary-pale),hsl(285,70%,96%));border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:16px}
+.pres-banner-text h4{font-size:15px;font-weight:700;color:var(--fg);margin-bottom:4px}
+.pres-banner-text p{font-size:13px;color:var(--muted-fg);line-height:1.5}
+.pres-big-icon{font-size:42px;opacity:.35;flex-shrink:0}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:11px 18px;border-radius:var(--radius-sm);border:1px solid transparent;text-decoration:none;cursor:pointer;transition:.14s}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}
+.btn-primary:hover{background:hsl(250,76%,48%);transform:translateY(-1px);box-shadow:var(--shadow-md)}
+.btn-outline{background:var(--card);color:var(--fg);border-color:var(--border)}
+.btn-outline:hover{border-color:hsl(220,13%,78%);background:var(--muted)}
+
+.mod-list{display:flex;flex-direction:column;gap:12px}
+.mod-item{display:flex;align-items:center;gap:14px;padding:16px 18px;border:1px solid var(--border);border-radius:var(--radius-sm);text-decoration:none;color:var(--fg);transition:.14s;background:var(--card)}
+.mod-item:hover{border-color:hsl(250,55%,75%);background:var(--primary-pale);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.mod-num{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--primary),hsl(285,76%,55%));color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;flex-shrink:0}
+.mod-txt{flex:1}
+.mod-txt h4{font-size:14px;font-weight:700;line-height:1.25}
+.mod-txt p{font-size:12.5px;color:var(--muted-fg);margin-top:3px;line-height:1.45}
+.mod-arrow{font-size:16px;color:var(--primary);flex-shrink:0}
+.mod-item.locked{cursor:not-allowed;opacity:.6;background:var(--muted)}
+.mod-item.locked:hover{transform:none;border-color:var(--border);background:var(--muted);box-shadow:none}
+.mod-item.locked .mod-num{background:var(--border);color:var(--muted-fg)}
+.mod-item.locked .mod-arrow{color:var(--muted-fg)}
+.mod-soon{font-size:10.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted-fg);background:var(--card);border:1px solid var(--border);padding:4px 8px;border-radius:999px;flex-shrink:0}
+
+.callout{display:flex;flex-direction:column;gap:4px;font-size:13px;line-height:1.55;color:var(--fg);background:var(--primary-pale);border:1px solid hsl(250,55%,88%);border-radius:var(--radius-sm);padding:14px 16px;margin-top:16px}
+.callout-title{font-weight:700;font-size:12.5px}
+
+.fr-track{display:flex;flex-direction:column;gap:0;margin-top:4px}
+.fr-step{display:flex;gap:12px;align-items:flex-start;position:relative;padding-bottom:14px}
+.fr-step:last-child{padding-bottom:0}
+.fr-step:not(:last-child)::before{content:"";position:absolute;left:13px;top:28px;bottom:0;width:2px;background:var(--border)}
+.fr-dot{width:28px;height:28px;border-radius:50%;background:var(--primary-pale);color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;flex-shrink:0;z-index:1;border:2px solid var(--card)}
+.fr-step.done .fr-dot{background:var(--primary);color:#fff}
+.fr-txt{padding-top:3px}
+.fr-txt b{font-size:13.5px;font-weight:700}
+.fr-txt span{display:block;font-size:12.5px;color:var(--muted-fg);margin-top:1px}
+
+.hamburger{display:none}
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%);transition:transform .2s}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0}
+  .hamburger{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:16px}
+  .page-hero h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ════ SIDEBAR ════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">TBS</div>
+      <div>
+        <div class="brand-name">Business School</div>
+        <div class="brand-sub">Tekwill Academy Kids</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <span class="nav-section-label">Module</span>
+
+      <a href="modul-1.html" class="nav-item" id="nav1" target="_blank">
+        <div class="nav-icon">💡</div>
+        <div class="nav-label">
+          Modul 1
+          <div class="nav-meta">De la problemă la idee</div>
+        </div>
+      </a>
+
+      <a href="modul-2.html" class="nav-item" id="nav2" target="_blank">
+        <div class="nav-icon">🚀</div>
+        <div class="nav-label">
+          Modul 2
+          <div class="nav-meta">Validare, MVP &amp; startup</div>
+        </div>
+      </a>
+
+      <div class="nav-item locked">
+        <div class="nav-icon">👤</div>
+        <div class="nav-label">
+          Modul 3
+          <div class="nav-meta">Clientul și problema reală</div>
+        </div>
+        <span class="nav-lock">🔒</span>
+      </div>
+
+      <div class="nav-item locked">
+        <div class="nav-icon">⚔️</div>
+        <div class="nav-label">
+          Modul 4
+          <div class="nav-meta">Concurență &amp; diferențiere</div>
+        </div>
+        <span class="nav-lock">🔒</span>
+      </div>
+
+      <div class="nav-item locked">
+        <div class="nav-icon">🤝</div>
+        <div class="nav-label">
+          Modul 5
+          <div class="nav-meta">Echipa și rolurile</div>
+        </div>
+        <span class="nav-lock">🔒</span>
+      </div>
+
+      <div class="nav-item locked">
+        <div class="nav-icon">🔄</div>
+        <div class="nav-label">
+          Modul 6
+          <div class="nav-meta">Testare, eșec &amp; adaptare</div>
+        </div>
+        <span class="nav-lock">🔒</span>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="prog-label"><span>Module gata</span><span>2/6</span></div>
+      <div class="prog-track"><div class="prog-fill"></div></div>
+    </div>
+  </aside>
+
+  <!-- ════ MAIN ════ -->
+  <main class="main">
+    <div class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button class="hamburger" onclick="toggleSidebar()">☰</button>
+        <div class="breadcrumb">Tekwill Business School <span style="color:var(--border)">›</span> <b>Module</b></div>
+      </div>
+      <div class="topbar-pill"><span class="pill-dot"></span>2 MODULE ACTIVE</div>
+    </div>
+
+    <div class="page">
+      <div class="page-hero">
+        <div class="hero-kicker"><div class="kicker-n">K</div>Tekwill Academy Kids</div>
+        <h1>Business School<br>— antreprenoriat pentru 12–18 ani</h1>
+        <p>Platforma mentorului: prezentările complete ale fiecărui modul, gata de proiectat în sală. Metodă practic-înainte-de-teorie — fiecare cadru urmat imediat de un exercițiu. Firul roșu: fiecare elev își construiește propriul proiect, modul după modul, până la pitch-ul final.</p>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-chip"><span>👥</span> 10–12 elevi / grupă</div>
+        <div class="stat-chip"><span>⏱️</span> 3h / modul</div>
+        <div class="stat-chip"><span>🧩</span> 6 module</div>
+        <div class="stat-chip"><span>🏆</span> Pitch final</div>
+      </div>
+
+      <!-- ── MODULELE ── -->
+      <div class="section-block" id="module">
+        <div class="section-head" onclick="toggleSec('b-module',this)">
+          <div class="section-icon lavender">📊</div>
+          <div class="section-text">
+            <h3>Prezentările modulelor</h3>
+            <p>Deschide deck-ul fiecărui modul — gata de prezentat</p>
+          </div>
+          <span class="section-time">2 din 6</span>
+          <span class="section-chevron open">▼</span>
+        </div>
+        <div class="section-body" id="b-module">
+          <div class="mod-list">
+
+            <a href="modul-1.html" class="mod-item" target="_blank">
+              <div class="mod-num">1</div>
+              <div class="mod-txt">
+                <h4>De la problemă la idee</h4>
+                <p>Cum identifici o problemă reală, cum o definești clar și o transformi în ideea de proiect. Output: problema bine definită și validată.</p>
+              </div>
+              <div class="mod-arrow">↗</div>
+            </a>
+
+            <a href="modul-2.html" class="mod-item" target="_blank">
+              <div class="mod-num">2</div>
+              <div class="mod-txt">
+                <h4>Validare, MVP și mentalitatea de startup</h4>
+                <p>Cum testezi ideea înainte s-o construiești, ce e un MVP și cum gândești ca un fondator. Output: ipoteza validată + plan de testare + MVP conceput.</p>
+              </div>
+              <div class="mod-arrow">↗</div>
+            </a>
+
+            <div class="mod-item locked">
+              <div class="mod-num">3</div>
+              <div class="mod-txt">
+                <h4>Clientul și problema reală</h4>
+                <p>Profilul clientului real (persoana) și mesajul adaptat pentru el.</p>
+              </div>
+              <span class="mod-soon">În curând</span>
+            </div>
+
+            <div class="mod-item locked">
+              <div class="mod-num">4</div>
+              <div class="mod-txt">
+                <h4>Concurență și diferențiere</h4>
+                <p>Analiza concurenței și un diferențiator clar față de ceilalți.</p>
+              </div>
+              <span class="mod-soon">În curând</span>
+            </div>
+
+            <div class="mod-item locked">
+              <div class="mod-num">5</div>
+              <div class="mod-txt">
+                <h4>Echipa și rolurile</h4>
+                <p>Echipa imaginară a proiectului și rolurile bine definite.</p>
+              </div>
+              <span class="mod-soon">În curând</span>
+            </div>
+
+            <div class="mod-item locked">
+              <div class="mod-num">6</div>
+              <div class="mod-txt">
+                <h4>Testare, eșec și adaptare</h4>
+                <p>Cum testezi, înveți din eșec și adaptezi — finalul: Gala Tinerilor Antreprenori.</p>
+              </div>
+              <span class="mod-soon">În curând</span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ── FIRUL ROȘU ── -->
+      <div class="section-block" id="fir">
+        <div class="section-head" onclick="toggleSec('b-fir',this)">
+          <div class="section-icon mint">🧵</div>
+          <div class="section-text">
+            <h3>Firul roșu al programului</h3>
+            <p>Cum se leagă modulele într-un singur proiect, până la pitch</p>
+          </div>
+          <span class="section-time">context</span>
+          <span class="section-chevron open">▼</span>
+        </div>
+        <div class="section-body" id="b-fir">
+          <p style="font-size:13.5px;color:var(--muted-fg);line-height:1.6;margin-bottom:16px">Fiecare elev construiește <b style="color:var(--fg)">un proiect personal</b> care evoluează de la un modul la altul. Fișele individuale din fiecare modul se păstrează — sunt baza pitch-ului final.</p>
+          <div class="fr-track">
+            <div class="fr-step done"><div class="fr-dot">1</div><div class="fr-txt"><b>Problema bine definită și validată</b><span>Modul 1 — punctul de plecare</span></div></div>
+            <div class="fr-step done"><div class="fr-dot">2</div><div class="fr-txt"><b>Ipoteza validată + plan de testare + MVP</b><span>Modul 2</span></div></div>
+            <div class="fr-step"><div class="fr-dot">3</div><div class="fr-txt"><b>Profilul clientului real + mesaj adaptat</b><span>Modul 3</span></div></div>
+            <div class="fr-step"><div class="fr-dot">4</div><div class="fr-txt"><b>Analiza concurenței + diferențiator clar</b><span>Modul 4</span></div></div>
+            <div class="fr-step"><div class="fr-dot">5</div><div class="fr-txt"><b>Echipa imaginară + roluri definite</b><span>Modul 5</span></div></div>
+            <div class="fr-step"><div class="fr-dot">6</div><div class="fr-txt"><b>Prezentare finală — Gala Tinerilor Antreprenori</b><span>Modul 6 — pitch de 3–5 min în fața juriului</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ROLUL MENTORULUI ── -->
+      <div class="section-block" id="mentor">
+        <div class="section-head" onclick="toggleSec('b-mentor',this)">
+          <div class="section-icon peach">🎓</div>
+          <div class="section-text">
+            <h3>Rolul mentorului</h3>
+            <p>Cum facilitezi — nu predai</p>
+          </div>
+          <span class="section-time">~2 min</span>
+          <span class="section-chevron open">▼</span>
+        </div>
+        <div class="section-body" id="b-mentor">
+          <div class="callout">
+            <span class="callout-title">💡 Reguli de aur</span>
+            <span><b>Nu predai — facilitezi descoperirea.</b> Copiii ajung singuri la concluzii prin exerciții. Treci pe la fiecare în momentele de lucru individual. Nu lăsa teoria mai mult de 8–10 min fără un exercițiu imediat. Validează munca — niciun elev nu pleacă fără output concret. Fișele de la fiecare modul se păstrează: sunt baza pitch-ului final.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+function toggleSec(id, hdr){
+  const body=document.getElementById(id);
+  const chev=hdr.querySelector('.section-chevron');
+  const hidden=body.classList.toggle('hidden');
+  chev.classList.toggle('open',!hidden);
+}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open')}
+</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>404 — Vector Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:hsl(220,20%,97%);--fg:hsl(222,47%,11%);--card:hsl(0,0%,100%);
+  --border:hsl(220,13%,91%);--muted-fg:hsl(220,9%,46%);--muted:hsl(220,14%,96%);
+  --primary:hsl(250,76%,55%);--primary-pale:hsl(250,80%,96%);
+  --radius:14px;--radius-sm:9px;
+  --shadow-sm:0 1px 3px hsl(222 47% 11% / .04);
+  --shadow-md:0 6px 18px hsl(222 47% 11% / .08);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px}
+body{font-family:'Onest',system-ui,sans-serif;background:
+  radial-gradient(1100px 600px at 50% -10%, hsl(250,80%,96%), transparent 60%),
+  var(--bg);
+  color:var(--fg);min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:32px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:560px;width:100%;text-align:center}
+
+.glitch{
+  font-size:clamp(96px,22vw,180px);font-weight:900;letter-spacing:-.04em;line-height:.9;
+  background:linear-gradient(135deg,var(--primary),hsl(285,76%,55%));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:6px;
+}
+.joke{font-size:clamp(28px,7vw,44px);font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+.joke .wink{display:inline-block;animation:wink 2.4s ease-in-out infinite;transform-origin:70% 70%}
+@keyframes wink{0%,88%,100%{transform:rotate(0)}92%{transform:rotate(14deg)}96%{transform:rotate(-6deg)}}
+.sub{font-size:15px;color:var(--muted-fg);line-height:1.6;margin:0 auto 28px;max-width:420px}
+.sub b{color:var(--fg);font-weight:700}
+
+.courses{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;text-align:left}
+.course{display:flex;align-items:center;gap:12px;padding:14px 15px;background:var(--card);
+  border:1px solid var(--border);border-radius:var(--radius-sm);text-decoration:none;color:var(--fg);
+  box-shadow:var(--shadow-sm);transition:.15s}
+.course:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);border-color:hsl(250,55%,78%)}
+.c-ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:18px;flex-shrink:0;background:var(--primary-pale)}
+.c-txt h3{font-size:13.5px;font-weight:700;line-height:1.2}
+.c-txt p{font-size:11.5px;color:var(--muted-fg);margin-top:2px}
+
+.contact{font-size:13.5px;color:var(--muted-fg);line-height:1.6}
+.contact a{color:var(--primary);font-weight:700;text-decoration:none}
+.contact a:hover{text-decoration:underline}
+.brand{margin-top:26px;font-size:12px;color:var(--muted-fg);letter-spacing:.04em}
+.brand b{color:var(--fg);font-weight:700}
+
+@media(max-width:520px){.courses{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="glitch">404</div>
+  <div class="joke">Glumesc <span class="wink">😉</span></div>
+  <p class="sub">Pagina asta nu există — sau ai nimerit un link greșit spre un curs. Dar uite, <b>tot ce e real e mai jos.</b></p>
+
+  <div class="courses">
+    <a href="/course/" class="course">
+      <div class="c-ico">🧠</div>
+      <div class="c-txt"><h3>AI for SMEs</h3><p>AI pentru afaceri mici</p></div>
+    </a>
+    <a href="/ara/" class="course">
+      <div class="c-ico">🧲</div>
+      <div class="c-txt"><h3>AI for Recruiters</h3><p>Recrutare cu AI</p></div>
+    </a>
+    <a href="/finance/" class="course">
+      <div class="c-ico">💰</div>
+      <div class="c-txt"><h3>AI for Finance</h3><p>AI aplicat în finanțe</p></div>
+    </a>
+    <a href="/tekwill/" class="course">
+      <div class="c-ico">🚀</div>
+      <div class="c-txt"><h3>Business School</h3><p>Antreprenoriat 12–18 ani</p></div>
+    </a>
+  </div>
+
+  <p class="contact">Linkul nu merge sau cauți altceva?<br>Scrie-mi la <a href="mailto:vlahdumitru@vectoracademy.ro?subject=Link%20curs%20care%20nu%20merge">vlahdumitru@vectoracademy.ro</a></p>
+
+  <div class="brand"><b>Vector Academy</b> · cursuri AI</div>
+</div>
+</body>
+</html>
