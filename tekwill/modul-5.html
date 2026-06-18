@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modul 5 — Echipa și rolurile · Tekwill Academy</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #7C3AED;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 52px 64px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #7C3AED 0%, #DB2777 100%); }
+    .slide.story::before { background: linear-gradient(90deg, #0EA5E9 0%, #2D52D4 100%); }
+
+    .slide-header { margin-bottom: 20px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #F3E8FF; color: var(--practice); }
+    .slide-tag.story-tag { background: #E0F2FE; color: #0284C7; }
+    .slide-title { font-size: 36px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 980px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 18px; right: 32px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+    .slide-foot { position: absolute; bottom: 18px; left: 64px; font-size: 11px; color: #94A3B8; font-weight: 500; letter-spacing: 0.03em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 30px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 54px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 20px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 23px; font-weight: 400; color: rgba(255,255,255,0.7); margin: 0 0 36px; max-width: 680px; line-height: 1.5; }
+    .cover-ice { display: inline-flex; align-items: center; gap: 11px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; padding: 14px 20px; font-size: 16px; color: rgba(255,255,255,0.78); font-style: italic; max-width: 680px; line-height: 1.5; }
+    .cover-ice .ic { font-size: 22px; font-style: normal; flex-shrink: 0; }
+
+    /* QUESTION / OBJECTIVE list */
+    .q-center { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+    .q-item { display: flex; align-items: center; gap: 24px; padding: 20px 28px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); }
+    .q-num { font-size: 38px; font-weight: 800; color: var(--primary); line-height: 1; flex-shrink: 0; min-width: 42px; }
+    .q-text { font-size: 21px; font-weight: 500; color: var(--foreground); line-height: 1.4; }
+    .q-text b { font-weight: 800; }
+
+    /* STATEMENT — big hero */
+    .stmt-hero { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 12px; }
+    .stmt-bignum { font-size: 120px; font-weight: 800; color: var(--primary); line-height: 1; letter-spacing: -0.03em; }
+    .stmt-bigline { font-size: 44px; font-weight: 800; color: var(--foreground); line-height: 1.15; letter-spacing: -0.02em; max-width: 900px; }
+    .stmt-bigcap { font-size: 22px; font-weight: 500; color: var(--foreground); line-height: 1.4; max-width: 860px; }
+    .stmt-bigcap b { font-weight: 800; }
+
+    /* REASON ROW (3 small cards) */
+    .reason-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 8px; width: 100%; }
+    .reason-card { border-radius: var(--radius); padding: 18px 16px; display: flex; flex-direction: column; align-items: center; gap: 9px; text-align: center; border: 1px solid var(--border); background: var(--bg); }
+    .reason-ic { font-size: 26px; line-height: 1; }
+    .reason-tx { font-size: 15px; color: var(--foreground); line-height: 1.4; }
+    .reason-tx b { font-weight: 800; }
+
+    /* SPLIT / VS */
+    .split-screen { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .split-pane { border-radius: var(--radius); padding: 24px 28px; display: flex; flex-direction: column; gap: 14px; }
+    .split-pane.bad { background: #FEF2F2; border: 1px solid #FECACA; }
+    .split-pane.good { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .split-pane.neutral { background: var(--bg); border: 1px solid var(--border); }
+    .split-label { font-size: 15px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+    .split-label.bad { color: #DC2626; } .split-label.good { color: #16A34A; } .split-label.neutral { color: var(--muted); }
+    .split-list { display: flex; flex-direction: column; gap: 12px; }
+    .split-li { display: flex; align-items: flex-start; gap: 12px; font-size: 18px; line-height: 1.42; color: var(--foreground); }
+    .split-li .mk { flex-shrink: 0; font-weight: 800; font-size: 18px; margin-top: 1px; }
+    .split-li .mk.no { color: var(--destructive); } .split-li .mk.yes { color: #16A34A; } .split-li .mk.dim { color: var(--muted); }
+    .split-li em { font-style: italic; color: var(--muted); }
+    .split-li b { font-weight: 700; }
+    .split-foot { margin-top: auto; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 16px; font-weight: 700; line-height: 1.4; }
+    .split-pane.good .split-foot { background: #DCFCE7; color: #15803D; }
+    .split-pane.bad .split-foot { background: #FEE2E2; color: #B91C1C; }
+    .vs-highlight { margin-top: 16px; text-align: center; font-size: 19px; font-weight: 700; color: var(--primary); background: var(--primary-ultra-light); border-radius: var(--radius); padding: 15px 20px; line-height: 1.4; }
+    .vs-highlight b { color: var(--foreground); }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 22px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 18px; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { color: var(--primary); }
+    .quote-block.warn { border-color: var(--warning); background: #FFFBEB; }
+    .quote-block.warn strong { color: #B45309; }
+    .quote-block.good { border-color: var(--success); background: #F0FDF4; }
+    .quote-block.good strong { color: #15803D; }
+
+    /* EXERCISE / ACTIVITY */
+    .exercise-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 20px; }
+    .timer-pill { display: flex; align-items: center; gap: 8px; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 100px; padding: 9px 22px; font-size: 16px; font-weight: 700; color: #92400E; }
+    .exercise-template { background: var(--bg); border: 2px dashed var(--practice); border-radius: var(--radius); padding: 28px 42px; max-width: 880px; font-size: 24px; font-weight: 500; color: var(--foreground); line-height: 1.7; }
+    .exercise-template .tpl-label { font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--practice); display: block; margin-bottom: 16px; }
+    .exercise-hl { display: inline-block; background: var(--practice); color: #fff; border-radius: 7px; padding: 3px 13px; font-weight: 700; margin: 3px; }
+    .ex-note { font-size: 17px; color: var(--muted); max-width: 760px; line-height: 1.5; }
+    .ex-note b { color: var(--foreground); }
+
+    /* CARNET / WORKSHEET */
+    .sheet { background: var(--bg); border: 2px solid var(--primary); border-radius: var(--radius); padding: 24px 32px; display: flex; flex-direction: column; gap: 15px; flex: 1; justify-content: center; }
+    .sheet-row { font-size: 20px; color: var(--foreground); line-height: 1.5; display: flex; align-items: flex-start; gap: 14px; }
+    .sheet-row .sn { font-weight: 800; color: var(--primary); flex-shrink: 0; font-size: 21px; }
+    .sheet-row em { font-style: italic; color: var(--muted); font-size: 16px; }
+    .sheet-row b { font-weight: 800; }
+    .sheet-head { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--primary); }
+    .sheet-pct { background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius-sm); padding: 12px 18px; font-size: 20px; font-weight: 700; color: var(--primary); text-align: center; }
+    .sheet-pct b { color: var(--foreground); }
+
+    /* CARDS generic */
+    .cards-grid { display: grid; gap: 18px; flex: 1; }
+    .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: center; gap: 10px; min-height: 0; overflow: hidden; }
+    .card.mint { background: var(--pastel-mint); border-color: #86EFAC; }
+    .card.sky { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .card.peach { background: var(--pastel-peach); border-color: #FDBA74; }
+    .card.lavender { background: var(--pastel-lavender); border-color: #C4B5FD; }
+    .card.rose { background: var(--pastel-rose); border-color: #F9A8D4; }
+    .card-icon { font-size: 34px; line-height: 1; }
+    .card-title { font-size: 20px; font-weight: 800; color: var(--foreground); margin: 0; }
+    .card-body { font-size: 15px; color: var(--foreground); line-height: 1.5; margin: 0; }
+    .card-body b { font-weight: 800; }
+    .card-q { font-size: 14px; font-weight: 700; color: var(--primary); padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.08); font-style: italic; }
+
+    /* 6-CARD compact grid (companies) */
+    .cards-6 { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .cards-6 .card { padding: 16px 18px; gap: 6px; box-shadow: none; }
+    .cards-6 .card-icon { font-size: 28px; }
+    .cards-6 .card-title { font-size: 17px; }
+    .co-resp { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+    .co-resp span { font-size: 13px; color: var(--muted); line-height: 1.3; display: flex; gap: 7px; }
+    .co-resp span::before { content: '•'; color: var(--primary); font-weight: 800; }
+
+    /* STEPS numbered */
+    .steps-list { display: flex; flex-direction: column; gap: 14px; flex: 1; justify-content: center; }
+    .step-item { display: flex; align-items: flex-start; gap: 18px; }
+    .step-num { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 18px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-text { font-size: 19px; color: var(--foreground); line-height: 1.42; padding-top: 6px; }
+    .step-text b { font-weight: 800; } .step-text em { color: var(--muted); font-style: italic; font-size: 16px; }
+
+    /* FOUNDER DOC (shareholder agreement) */
+    .doc-layout { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 26px; flex: 1; align-items: stretch; }
+    .doc-paper { background: #fff; border: 2px solid var(--primary); border-radius: var(--radius); box-shadow: var(--shadow); padding: 24px 28px; display: flex; flex-direction: column; gap: 13px; position: relative; }
+    .doc-paper::before { content: '📄'; position: absolute; top: -16px; left: 22px; font-size: 26px; background: #fff; padding: 0 6px; }
+    .doc-paper .doc-tt { font-size: 15px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary); margin-bottom: 2px; }
+    .doc-line { display: flex; align-items: flex-start; gap: 12px; font-size: 18px; line-height: 1.4; color: var(--foreground); }
+    .doc-line .dq { font-weight: 800; color: var(--primary); flex-shrink: 0; }
+    .doc-line b { font-weight: 800; }
+    .doc-side { display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+    .doc-pizza { background: var(--pastel-peach); border: 1px solid #FDBA74; border-radius: var(--radius); padding: 18px 24px; font-size: 18px; line-height: 1.55; color: var(--foreground); }
+    .doc-pizza b { font-weight: 800; color: #C2410C; }
+    .doc-pizza .plbl { font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #C2410C; display: block; margin-bottom: 8px; }
+
+    /* RULES GRID (working agreements, 6) */
+    .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; align-content: center; }
+    .rule-card { display: flex; align-items: flex-start; gap: 15px; padding: 16px 20px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); }
+    .rule-n { width: 38px; height: 38px; border-radius: 11px; background: var(--primary); color: #fff; font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .rule-tx { font-size: 16px; color: var(--foreground); line-height: 1.4; }
+    .rule-tx b { font-weight: 800; }
+    .rule-tx em { color: var(--muted); font-style: italic; font-size: 14px; }
+
+    .ask-note { font-size: 17px; color: var(--muted); margin-top: 14px; text-align: center; line-height: 1.5; }
+    .ask-note b { color: var(--foreground); }
+
+    /* WRAP-UP */
+    .wrap-lessons { display: flex; flex-direction: column; gap: 11px; }
+    .wrap-lesson { display: flex; align-items: center; gap: 20px; padding: 14px 22px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); }
+    .wrap-lesson .wn { font-size: 26px; font-weight: 800; color: var(--primary); line-height: 1; flex-shrink: 0; min-width: 32px; }
+    .wrap-lesson .wt { font-size: 18px; color: var(--foreground); line-height: 1.4; }
+    .wrap-lesson .wt b { font-weight: 800; }
+    .wrap-bottom { display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px; margin-top: 16px; }
+    .wrap-tema { background: #F0FDF4; border: 1px solid #86EFAC; border-radius: var(--radius); padding: 16px 22px; }
+    .wrap-tema .lbl { font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #16A34A; display: block; margin-bottom: 8px; }
+    .wrap-tema .tx { font-size: 15px; color: var(--foreground); line-height: 1.55; }
+    .wrap-tema .tx b { font-weight: 800; }
+    .wrap-preview { background: var(--foreground); color: #fff; border-radius: var(--radius); padding: 16px 22px; display: flex; flex-direction: column; justify-content: center; }
+    .wrap-preview .lbl { font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--primary-light); margin-bottom: 8px; }
+    .wrap-preview .tx { font-size: 17px; font-weight: 600; line-height: 1.4; }
+
+    /* WORKSHOP banner */
+    .ws-center { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+    .ws-hero { display: flex; align-items: center; gap: 22px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 26px; }
+    .ws-emoji { font-size: 52px; line-height: 1; flex-shrink: 0; }
+    .ws-hero .ws-rule { font-size: 19px; color: var(--foreground); line-height: 1.45; }
+    .ws-hero .ws-rule b { font-weight: 800; }
+    .ws-mats { display: flex; flex-wrap: wrap; gap: 10px; }
+    .ws-mat { background: var(--primary-ultra-light); color: var(--primary); border-radius: 100px; padding: 7px 16px; font-size: 15px; font-weight: 700; }
+    .ws-lessons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .ws-lesson { background: var(--pastel-mint); border: 1px solid #86EFAC; border-radius: var(--radius); padding: 15px 18px; }
+    .ws-lesson .wl-n { font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #15803D; margin-bottom: 6px; }
+    .ws-lesson .wl-t { font-size: 16px; color: var(--foreground); line-height: 1.4; }
+    .ws-lesson .wl-t b { font-weight: 800; }
+
+    .pause-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 16px; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 01 COVER -->
+    <section>
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Tekwill Academy · Kids Business School · Modul 5</div>
+          <h1>Contează ce construiești,<br>dar contează<br>și cu cine.</h1>
+          <p class="subtitle">Echipa, cofondatorul și rolurile</p>
+          <div class="cover-ice"><span class="ic">🙋</span>Ice-breaker: spune un lucru la care ești bun — și un lucru la care ești bun, dar pe care l-ai delega pentru că nu-ți place. Nimeni nu trebuie să facă tot singur.</div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 25</div>
+      </div>
+    </section>
+
+    <!-- 02 OBIECTIVE -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Obiectivele de azi</div><h2 class="slide-title">Până la final vei putea răspunde la 3 întrebări</h2></div>
+        <div class="q-center">
+          <div class="q-item"><div class="q-num">1</div><div class="q-text">De ce ai nevoie de un cofondator — și cum treci cu el prin <b>urcușuri, coborâșuri și certuri?</b></div></div>
+          <div class="q-item"><div class="q-num">2</div><div class="q-text">Cum împărțiți corect compania — <b>roluri, procente și banii</b>, chiar dacă e incomod?</div></div>
+          <div class="q-item"><div class="q-num">3</div><div class="q-text">Cum lucrați și creșteți împreună — <b>reguli scrise, plan, angajări?</b></div></div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">02 / 25</div>
+      </div>
+    </section>
+
+    <!-- 03 IDEEA ≠ AFACERE -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">De ce echipa</div><h2 class="slide-title">Ideea genială nu e o afacere. Echipa o face.</h2></div>
+        <div class="stmt-hero">
+          <div class="stmt-bignum">2+</div>
+          <div class="stmt-bigcap">Aproape toate companiile mari au fost pornite de <b>2 sau mai mulți oameni</b> — un „om de produs" + un „om de vânzări". Aproape nimeni nu reușește singur.</div>
+          <div class="reason-row">
+            <div class="reason-card"><span class="reason-ic">💡</span><div class="reason-tx">O idee o are <b>oricine</b> — e ieftină</div></div>
+            <div class="reason-card"><span class="reason-ic">🔨</span><div class="reason-tx">Execuția e grea — și se face <b>în echipă</b></div></div>
+            <div class="reason-card"><span class="reason-ic">🏆</span><div class="reason-tx">Câștigă cine <b>construiește</b>, nu cine visează</div></div>
+          </div>
+        </div>
+        <div class="quote-block warn" style="margin-top:16px"><strong>Idee bună + execuție proastă = 0.</strong> Idee bună + echipă bună = afacere.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">03 / 25</div>
+      </div>
+    </section>
+
+    <!-- 04 SOLO VS ECHIPĂ -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Solo vs. echipă</div><h2 class="slide-title">De ce e greu de unul singur?</h2></div>
+        <div class="split-screen">
+          <div class="split-pane bad">
+            <div class="split-label bad">🧍 Singur</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk no">✗</span>Faci tu produsul, vânzările, banii, clienții — <b>prea mult pentru un om</b></div>
+              <div class="split-li"><span class="mk no">✗</span>Îți spui mereu „da" singur — nimeni nu te contrazice</div>
+              <div class="split-li"><span class="mk no">✗</span>Când e greu, n-ai pe cine să te sprijini → te demotivezi</div>
+              <div class="split-li"><span class="mk no">✗</span>Un singur cap = un singur fel de idei</div>
+            </div>
+          </div>
+          <div class="split-pane good">
+            <div class="split-label good">🤝 Cu un cofondator</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk yes">→</span>Împărțiți munca — fiecare pe ce e bun</div>
+              <div class="split-li"><span class="mk yes">→</span>Vă completați abilitățile</div>
+              <div class="split-li"><span class="mk yes">→</span>Vă țineți de mână la greu</div>
+              <div class="split-li"><span class="mk yes">→</span>Doi oameni conving mai ușor clienții și investitorii</div>
+            </div>
+          </div>
+        </div>
+        <div class="vs-highlight">Singur ajungi <b>repede</b>. Împreună ajungi <b>departe</b>.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">04 / 25</div>
+      </div>
+    </section>
+
+    <!-- 05 COMPLEMENTAR -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Regula de aur</div><h2 class="slide-title">Cofondatorul bun e DIFERIT de tine, nu o copie</h2></div>
+        <div class="split-screen">
+          <div class="split-pane bad">
+            <div class="split-label bad">❌ Doi „la fel"</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk no">✗</span>Amândoi iubiți același lucru (ex: produsul)</div>
+              <div class="split-li"><span class="mk no">✗</span>Amândoi <b>evitați</b> aceleași treburi (ex: vânzările)</div>
+              <div class="split-li"><span class="mk no">✗</span>Rămâne o jumătate de afacere nefăcută</div>
+            </div>
+          </div>
+          <div class="split-pane good">
+            <div class="split-label good">✅ Complementari</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk yes">→</span>Tu construiești → <b>el vinde</b></div>
+              <div class="split-li"><span class="mk yes">→</span>Tu ai idei → <b>el le organizează</b></div>
+              <div class="split-li"><span class="mk yes">→</span>El acoperă golul tău, tu pe al lui</div>
+            </div>
+            <div class="split-foot">Caut pe cineva bun exact acolo unde eu sunt slab.</div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">05 / 25</div>
+      </div>
+    </section>
+
+    <!-- 06 RELAȚIA CU COFONDATORUL — UPS & DOWNS -->
+    <section>
+      <div class="slide story">
+        <div class="slide-header"><div class="slide-tag story-tag">📖 Cofondatorul tău · să-i zicem Mark</div><h2 class="slide-title">Un cofondator e un drum lung — cu urcușuri și coborâșuri</h2><p class="slide-subtitle">Azi îți cauți un cofondator. Hai să-i zicem <b>Mark</b>. Relația cu Mark nu e pentru o săptămână — e pentru drumul lung.</p></div>
+        <div class="cards-grid cards-3">
+          <div class="card peach">
+            <span class="card-icon">🎢</span>
+            <h3 class="card-title">Urcușuri și coborâșuri</h3>
+            <p class="card-body">Vor fi zile bune și zile grele. Uneori vă veți certa, alteori unul va vrea să renunțe. <b>E normal</b> — orice echipă trece prin asta.</p>
+          </div>
+          <div class="card sky">
+            <span class="card-icon">🚪</span>
+            <h3 class="card-title">Te poate părăsi</h3>
+            <p class="card-body">Mark poate pleca, se poate răzgândi sau poate să nu-și facă partea. De aia <b>documentul de fondare</b> spune ce se întâmplă dacă pleacă cineva.</p>
+          </div>
+          <div class="card mint">
+            <span class="card-icon">⚖️</span>
+            <h3 class="card-title">Vă țineți în frâu</h3>
+            <p class="card-body">Când unul o ia razna de entuziasm → celălalt pune frână. Când unul cade → celălalt îl ridică. <b>Vă trageți la răspundere reciproc.</b></p>
+          </div>
+        </div>
+        <div class="quote-block good" style="margin-top:16px"><strong>Alegi un cofondator nu pentru zilele bune — ci pentru cele grele.</strong> Cu cine ai vrea lângă tine când nu merge nimic?</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">06 / 25</div>
+      </div>
+    </section>
+
+    <!-- 07 CARNET — CINE EȘTI TU -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🟣 În carnet · individual</div><h2 class="slide-title">Înainte să-l cauți pe Mark — cunoaște-te pe tine</h2></div>
+        <div class="sheet">
+          <span class="sheet-head">✍️ Scrie de mână în caiet</span>
+          <div class="sheet-row"><span class="sn">1.</span><div>La ce sunt <b>EU bun?</b> <em>(min. 3 — ex: explic bine, desenez, sunt organizat, mă pricep la tehnologie)</em></div></div>
+          <div class="sheet-row"><span class="sn">2.</span><div>Ce <b>ÎMI lipsește?</b> <em>(ce parte din proiect NU pot face bine singur)</em></div></div>
+          <div class="sheet-row"><span class="sn">3.</span><div>Am pe cineva în <b>anturaj</b> care e bun exact acolo unde eu sunt slab? <em>(scriu numele unui prieten — sau scriu „caut")</em></div></div>
+        </div>
+        <div class="ex-note" style="margin-top:14px"><b>⏱️ 12 minute.</b> „Sunt bun la toate" nu e răspuns valid — toți avem un gol.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">07 / 25</div>
+      </div>
+    </section>
+
+    <!-- 08 WORKSHOP 1 — SPAGHETTI -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🍝 Workshop 1 · grupuri · 45 min</div><h2 class="slide-title">Spaghetti Challenge — construiți în echipă</h2></div>
+        <div class="ws-center">
+          <div class="ws-hero">
+            <span class="ws-emoji">🍝</span>
+            <div class="ws-rule">În <b>18 minute</b>: cel mai înalt turn care <b>stă singur</b> și ține o bezea întreagă în vârf. Câștigă cel mai înalt.</div>
+          </div>
+          <div class="ws-mats">
+            <span class="ws-mat">20 spaghete</span><span class="ws-mat">1 m bandă</span><span class="ws-mat">1 m sfoară</span><span class="ws-mat">1 bezea</span><span class="ws-mat">grupe de 3–4</span>
+          </div>
+          <div class="ws-lessons">
+            <div class="ws-lesson"><div class="wl-n">Lecția 1</div><div class="wl-t"><b>Prototipează repede.</b> Pune bezeaua sus din minutul 1, testează des.</div></div>
+            <div class="ws-lesson"><div class="wl-n">Lecția 2</div><div class="wl-t"><b>Rolurile apar singure.</b> Cineva taie, cineva ține, cineva conduce.</div></div>
+            <div class="ws-lesson"><div class="wl-n">Lecția 3</div><div class="wl-t"><b>Bezeaua e adevărul.</b> Realitatea îți arată dacă presupunerea ține.</div></div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">08 / 25</div>
+      </div>
+    </section>
+
+    <!-- 09 UNDE ÎL GĂSEȘTI PE MARK -->
+    <section>
+      <div class="slide story">
+        <div class="slide-header"><div class="slide-tag story-tag">📖 Mark · etapa 1</div><h2 class="slide-title">Unde îl găsești pe cofondator?</h2></div>
+        <div class="cards-grid cards-3">
+          <div class="card sky">
+            <span class="card-icon">👥</span>
+            <h3 class="card-title">Oameni cu care ai lucrat</h3>
+            <p class="card-body">Colegi de proiecte, prieteni care „livrează". Cel mai sigur — <b>ai văzut deja cum muncesc</b>.</p>
+          </div>
+          <div class="card mint">
+            <span class="card-icon">🎟️</span>
+            <h3 class="card-title">Comunități & evenimente</h3>
+            <p class="card-body">Cluburi, hackathoane, ateliere, concursuri. Acolo sunt oameni care <b>fac</b>, nu doar vorbesc.</p>
+          </div>
+          <div class="card peach">
+            <span class="card-icon">⭐</span>
+            <h3 class="card-title">Recomandări</h3>
+            <p class="card-body">Cea mai puternică sursă: cineva de încredere îți <b>garantează</b> pe altcineva.</p>
+          </div>
+        </div>
+        <div class="quote-block good" style="margin-top:16px"><strong>Așa l-ai cunoscut pe Mark:</strong> un prieten a zis „vorbește cu Mark, e bun la vânzări și e serios." O recomandare.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">09 / 25</div>
+      </div>
+    </section>
+
+    <!-- 10 CUM CERI O RECOMANDARE -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Cel mai practic slide</div><h2 class="slide-title">Cum ceri o recomandare ca să primești un nume</h2></div>
+        <div class="split-screen">
+          <div class="split-pane bad">
+            <div class="split-label bad">❌ Vag — primești „nu știu"</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk no">—</span><em>„Cunoști pe cineva care vrea să facă un startup cu mine?"</em></div>
+            </div>
+            <div class="split-foot">Prea larg. Omul dă din umeri și uită.</div>
+          </div>
+          <div class="split-pane good">
+            <div class="split-label good">✅ Specific — primești un nume</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk yes">→</span><em>„Caut pe cineva bun la <b>vânzări</b>, serios și de încredere, care ar lucra câteva ore pe săptămână la un proiect de <b>___</b>. Cunoști pe cineva?"</em></div>
+            </div>
+            <div class="split-foot">Abilitate + fel de om + proiect = un nume concret.</div>
+          </div>
+        </div>
+        <div class="ask-note">Regula: spune <b>ce abilitate</b>, <b>ce fel de om</b> și <b>la ce proiect</b> — ca celălalt să-și amintească o persoană reală.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">10 / 25</div>
+      </div>
+    </section>
+
+    <!-- 11 INCOMOD SĂ VORBIM DESPRE BANI -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Cel mai greu subiect</div><h2 class="slide-title">Mereu e incomod să vorbești despre bani. Fă-o oricum.</h2></div>
+        <div class="stmt-hero">
+          <div class="stmt-bigline">„Cât iei tu? Cât iau eu?<br>Cine cât deține?"</div>
+          <div class="stmt-bigcap">E cea mai incomodă întrebare dintr-o echipă. Și cea mai importantă. Toți o evită — și de-acolo pornesc cele mai mari certuri.</div>
+          <div class="reason-row">
+            <div class="reason-card"><span class="reason-ic">🤐</span><div class="reason-tx">Banii <b>nediscutați azi</b> = cea mai mare ceartă de mâine</div></div>
+            <div class="reason-card"><span class="reason-ic">⏳</span><div class="reason-tx">Cu cât amâni, cu atât <b>doare mai tare</b> când explodează</div></div>
+            <div class="reason-card"><span class="reason-ic">🤝</span><div class="reason-tx">Pune-i pe masă <b>devreme</b>, cât sunteți calmi și prieteni</div></div>
+          </div>
+        </div>
+        <div class="quote-block warn" style="margin-top:16px"><strong>Banii tac la început și țipă la final.</strong> Mai bine vorbiți de la început.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">11 / 25</div>
+      </div>
+    </section>
+
+    <!-- 12 PRIMA DISCUȚIE CU MARK -->
+    <section>
+      <div class="slide story">
+        <div class="slide-header"><div class="slide-tag story-tag">📖 Mark · etapa 2</div><h2 class="slide-title">L-ai găsit pe Mark. Ce discutați la prima întâlnire?</h2><p class="slide-subtitle">Vorbiți deschis ÎNAINTE să porniți. La cald, după, nu mai poți.</p></div>
+        <div class="steps-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-text"><b>De ce vrei să faci asta?</b> <em>— vreți același lucru? bani, învățare, impact?</em></div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-text"><b>Cât timp poți pune?</b> <em>— amândoi serios, sau unul „când are chef"?</em></div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-text"><b>La ce ești bun / ce rol vrei?</b> <em>— ca să nu vreți amândoi același rol</em></div></div>
+          <div class="step-item"><div class="step-num">4</div><div class="step-text"><b>Cum împărțim banii și ce facem dacă ne certăm?</b> <em>— subiectul incomod, dar obligatoriu</em></div></div>
+        </div>
+        <div class="quote-block" style="margin-top:14px"><strong>Cu Mark v-ați înțeles:</strong> tu faci produsul, el vinde. Amândoi serioși. Acum urmează partea grea — împărțirea.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">12 / 25</div>
+      </div>
+    </section>
+
+    <!-- 13 CELE 3 ROLURI -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Rolurile cheie</div><h2 class="slide-title">Cele 3 roluri într-o echipă mică</h2><p class="slide-subtitle">La început un om poate purta 2 pălării — dar trebuie să știți <b>clar cine răspunde de ce</b>.</p></div>
+        <div class="cards-grid cards-3">
+          <div class="card sky">
+            <span class="card-icon">🔧</span>
+            <h3 class="card-title">Produs</h3>
+            <p class="card-body">Construiește lucrul: app, obiect, serviciu.</p>
+            <div class="card-q">„Funcționează bine?"</div>
+          </div>
+          <div class="card mint">
+            <span class="card-icon">📣</span>
+            <h3 class="card-title">Clienți / Vânzări</h3>
+            <p class="card-body">Vorbește cu oameni, vinde, aduce clienți.</p>
+            <div class="card-q">„Cui îi pasă de asta?"</div>
+          </div>
+          <div class="card peach">
+            <span class="card-icon">📊</span>
+            <h3 class="card-title">Bani / Organizare</h3>
+            <p class="card-body">Ține banii, planul, termenele.</p>
+            <div class="card-q">„Ne ajung resursele? Suntem la timp?"</div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">13 / 25</div>
+      </div>
+    </section>
+
+    <!-- 14 EXERCIȚIU NEGOCIERE — SETUP -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🟣 Exercițiu · în perechi</div><h2 class="slide-title">Negociați: cât % din companie ia fiecare?</h2></div>
+        <div class="sheet">
+          <span class="sheet-head">🤝 Tu + un coleg = „Mark". Alegeți o companie de pe slide-ul următor.</span>
+          <div class="sheet-row"><span class="sn">1.</span><div><b>Împărțiți responsabilitățile</b> <em>— cine ce face din companie?</em></div></div>
+          <div class="sheet-row"><span class="sn">2.</span><div><b>Negociați cât % deține fiecare</b> <em>— cine aduce/muncește mai mult poate cere mai mult</em></div></div>
+          <div class="sheet-row"><span class="sn">3.</span><div><b>La final, spuneți cu voce tare</b> <em>— „Eu __%, Mark __%, și de ce."</em></div></div>
+          <div class="sheet-pct">Eu <b>____%</b> &nbsp;+&nbsp; Mark <b>____%</b> &nbsp;=&nbsp; 100%</div>
+        </div>
+        <div class="ex-note" style="margin-top:12px"><b>⏱️ 12 min.</b> Țintiți un deal <b>corect</b>, nu unul „câștigat" — un partener demotivat strică toată afacerea.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">14 / 25</div>
+      </div>
+    </section>
+
+    <!-- 15 6 EXEMPLE DE COMPANII -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🟣 Alegeți una</div><h2 class="slide-title">6 companii · împărțiți responsabilitățile, apoi procentele</h2></div>
+        <div class="cards-grid cards-6">
+          <div class="card sky">
+            <span class="card-icon">🍕</span><h3 class="card-title">Food truck</h3>
+            <div class="co-resp"><span>Gătit & meniu</span><span>Vânzare & clienți</span><span>Bani & aprovizionare</span></div>
+          </div>
+          <div class="card peach">
+            <span class="card-icon">👕</span><h3 class="card-title">Brand de haine</h3>
+            <div class="co-resp"><span>Design & idei</span><span>Producție & furnizori</span><span>Marketing & vânzări</span></div>
+          </div>
+          <div class="card mint">
+            <span class="card-icon">📱</span><h3 class="card-title">Aplicație mobilă</h3>
+            <div class="co-resp"><span>Programare</span><span>Design & UX</span><span>Marketing & useri</span></div>
+          </div>
+          <div class="card lavender">
+            <span class="card-icon">🎮</span><h3 class="card-title">Canal YouTube</h3>
+            <div class="co-resp"><span>Filmare & montaj</span><span>Idei de conținut</span><span>Promovare & sponsori</span></div>
+          </div>
+          <div class="card rose">
+            <span class="card-icon">🛹</span><h3 class="card-title">Magazin online</h3>
+            <div class="co-resp"><span>Site & produse</span><span>Achiziții & stoc</span><span>Livrare & suport</span></div>
+          </div>
+          <div class="card sky">
+            <span class="card-icon">🎉</span><h3 class="card-title">Agenție de evenimente</h3>
+            <div class="co-resp"><span>Organizare & logistică</span><span>Vânzări & clienți</span><span>Buget & furnizori</span></div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">15 / 25</div>
+      </div>
+    </section>
+
+    <!-- 16 DOCUMENT DE FONDARE / SHAREHOLDER AGREEMENT -->
+    <section>
+      <div class="slide story">
+        <div class="slide-header"><div class="slide-tag story-tag">📖 Mark · etapa 3</div><h2 class="slide-title">Scrieți pe hârtie: documentul de fondare</h2><p class="slide-subtitle">Procentele pe care le-ați negociat acum se <b>scriu</b>. Asta e un „shareholder agreement".</p></div>
+        <div class="doc-layout">
+          <div class="doc-paper">
+            <div class="doc-tt">Shareholder agreement</div>
+            <div class="doc-line"><span class="dq">1</span><div><b>Cine cât deține?</b> — câte „felii" e a ta, câte ale lui Mark</div></div>
+            <div class="doc-line"><span class="dq">2</span><div><b>Cine ce face?</b> — rolul fiecăruia, scris</div></div>
+            <div class="doc-line"><span class="dq">3</span><div><b>Cine decide</b> când nu sunteți de acord?</div></div>
+            <div class="doc-line"><span class="dq">4</span><div><b>Ce se întâmplă dacă cineva pleacă</b> sau nu-și face partea?</div></div>
+          </div>
+          <div class="doc-side">
+            <div class="doc-pizza">
+              <span class="plbl">🍕 Pe limba noastră</span>
+              Dacă afacerea ar fi o <b>pizza</b>, cât din ea e a ta și cât a lui Mark? <b>50–50?</b> Asta sunt „acțiunile" — feliile de pizza.
+            </div>
+            <div class="quote-block good" style="margin:0">De ce pe hârtie? <strong>Cuvintele se uită și se ceartă. Hârtia ține minte.</strong> Nu din neîncredere — ca să <b>rămâneți prieteni</b> când apare o neînțelegere.</div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">16 / 25</div>
+      </div>
+    </section>
+
+    <!-- 17 REGULILE DE LUCRU ÎN ECHIPĂ (6) -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Reguli de echipă</div><h2 class="slide-title">Cum lucrați corect împreună — 6 reguli</h2><p class="slide-subtitle">O echipă bună NU se ține din gură. Se ține din reguli clare, scrise.</p></div>
+        <div class="rules-grid">
+          <div class="rule-card"><div class="rule-n">1</div><div class="rule-tx"><b>Fiecare spune CLAR ce face.</b> <em>Fără „credeam că faci tu".</em></div></div>
+          <div class="rule-card"><div class="rule-n">2</div><div class="rule-tx"><b>Delimitați rolurile.</b> <em>Nu doi pe același lucru, nimeni pe ceva important.</em></div></div>
+          <div class="rule-card"><div class="rule-n">3</div><div class="rule-tx"><b>Scrieți TOTUL.</b> <em>Cine ce face, ce-ați decis, până când — într-un caiet/doc comun.</em></div></div>
+          <div class="rule-card"><div class="rule-n">4</div><div class="rule-tx"><b>Termene + check-in.</b> <em>Nu „cândva", ci „până vineri". Vorbiți des și scurt.</em></div></div>
+          <div class="rule-card"><div class="rule-n">5</div><div class="rule-tx"><b>Feedback la problemă, nu la om.</b> <em>„Nu merge X", nu „ești prost".</em></div></div>
+          <div class="rule-card"><div class="rule-n">6</div><div class="rule-tx"><b>Stabiliți cine decide.</b> <em>Fiecare are ultimul cuvânt pe domeniul lui.</em></div></div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">17 / 25</div>
+      </div>
+    </section>
+
+    <!-- 18 CUM GESTIONEZI CONFLICTUL -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Conflictul</div><h2 class="slide-title">Conflictele apar mereu. Contează cum le rezolvi.</h2></div>
+        <div class="steps-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-text"><b>Atacă problema, nu omul.</b> <em>— „soluția asta nu merge", nu „tu ești de vină"</em></div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-text"><b>Ascultă întâi.</b> <em>— repetă ce-a zis celălalt înainte să răspunzi</em></div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-text"><b>Ia o pauză dacă v-ați enervat.</b> <em>— reveniți la rece, nu decideți la nervi</em></div></div>
+          <div class="step-item"><div class="step-num">4</div><div class="step-text"><b>Cine are ultimul cuvânt decide.</b> <em>— pe domeniul lui, așa cum ați stabilit dinainte</em></div></div>
+          <div class="step-item"><div class="step-num">5</div><div class="step-text"><b>Scrieți decizia.</b> <em>— ca să n-o mai reluați peste o săptămână</em></div></div>
+        </div>
+        <div class="quote-block warn" style="margin-top:14px"><strong>Cearta nu strică echipa.</strong> Cearta nerezolvată o strică.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">18 / 25</div>
+      </div>
+    </section>
+
+    <!-- 19 DE CE CONTEAZĂ PLANIFICAREA -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Planificarea</div><h2 class="slide-title">De ce contează planificarea?</h2></div>
+        <div class="split-screen">
+          <div class="split-pane bad">
+            <div class="split-label bad">❌ Fără plan</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk no">✗</span>Toți fac tot → vă încurcați și vă călcați pe picioare</div>
+              <div class="split-li"><span class="mk no">✗</span>Nimeni nu știe ce urmează</div>
+              <div class="split-li"><span class="mk no">✗</span>Munca se pierde, termenele se ratează</div>
+            </div>
+          </div>
+          <div class="split-pane good">
+            <div class="split-label good">✅ Cu plan</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk yes">→</span>Împărțiți munca — fiecare știe ce face și până când</div>
+              <div class="split-li"><span class="mk yes">→</span>Vedeți din timp ce nu merge</div>
+              <div class="split-li"><span class="mk yes">→</span>Avansați împreună, nu în cerc</div>
+            </div>
+          </div>
+        </div>
+        <div class="vs-highlight">Dar planul <b>nu e bătut în cuie</b> — îl ajustezi după fiecare rundă. Hai s-o testăm pe viu, la avioane.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">19 / 25</div>
+      </div>
+    </section>
+
+    <!-- 20 WORKSHOP 2 — AVIOANE -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">✈️ Workshop 2 · grupuri · 25 min</div><h2 class="slide-title">Avioane de hârtie — roluri & planificare</h2></div>
+        <div class="ws-center">
+          <div class="ws-hero">
+            <span class="ws-emoji">✈️</span>
+            <div class="ws-rule">În <b>2–3 runde</b>: cât mai multe avioane care ating ținta. Cu <b>roluri pe linia de producție</b> — cine pliază, cine verifică, cine lansează, cine notează.</div>
+          </div>
+          <div class="ws-mats">
+            <span class="ws-mat">coli A4</span><span class="ws-mat">o țintă la ~4–5 m</span><span class="ws-mat">foaie de scor</span><span class="ws-mat">grupe de 3–4</span>
+          </div>
+          <div class="ws-lessons">
+            <div class="ws-lesson"><div class="wl-n">Lecția 1</div><div class="wl-t"><b>Roluri clare = viteză.</b> Când fiecare știe ce face, produceți mai mult.</div></div>
+            <div class="ws-lesson"><div class="wl-n">Lecția 2</div><div class="wl-t"><b>Planul se îmbunătățește prin runde.</b> Nimeni n-a avut planul perfect din runda 1.</div></div>
+            <div class="ws-lesson"><div class="wl-n">Lecția 3</div><div class="wl-t"><b>Măsori, nu ghicești.</b> Ați numărat avioanele care ating ținta.</div></div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">20 / 25</div>
+      </div>
+    </section>
+
+    <!-- 21 ECHIPA = CEA MAI MARE CHELTUIALĂ -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Costul echipei</div><h2 class="slide-title">Echipa e una dintre cele mai mari cheltuieli</h2><p class="slide-subtitle">Când crești și angajezi oameni, salariile devin <b>cheltuiala #1</b>. De aia alegi cu cap.</p></div>
+        <div class="cards-grid cards-3">
+          <div class="card peach">
+            <span class="card-icon">💸</span>
+            <h3 class="card-title">Salariile nu se opresc</h3>
+            <p class="card-body">Oamenii buni costă — îi plătești <b>lună de lună</b>, și când merge bine, și când merge prost.</p>
+          </div>
+          <div class="card sky">
+            <span class="card-icon">⚖️</span>
+            <h3 class="card-title">Fiecare om = o decizie</h3>
+            <p class="card-body">Un om în plus = mai multă treabă făcută, dar și <b>mai mulți bani de scos</b> în fiecare lună.</p>
+          </div>
+          <div class="card rose">
+            <span class="card-icon">❌</span>
+            <h3 class="card-title">Un angajat greșit e scump de 2 ori</h3>
+            <p class="card-body">Îl plătești <b>ȘI</b> strică munca și atmosfera. Costă timp și bani să repari.</p>
+          </div>
+        </div>
+        <div class="quote-block warn" style="margin-top:16px"><strong>Nu angaja pe cel mai ieftin sau pe primul venit.</strong> Angajează pe cel mai potrivit — e cea mai scumpă decizie pe care o iei.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">21 / 25</div>
+      </div>
+    </section>
+
+    <!-- 22 ANGAJARE & CULTURĂ -->
+    <section>
+      <div class="slide story">
+        <div class="slide-header"><div class="slide-tag story-tag">📖 Mark · etapa finală</div><h2 class="slide-title">Creșteți → angajați primul om. Ce se schimbă?</h2></div>
+        <div class="split-screen">
+          <div class="split-pane neutral">
+            <div class="split-label neutral">🧑‍💼 Angajarea</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk dim">→</span>Nu mai sunteți doar tu și Mark</div>
+              <div class="split-li"><span class="mk dim">→</span>Noul om trebuie să <b>știe regulile</b> — de aia le-ați scris!</div>
+              <div class="split-li"><span class="mk dim">→</span>Primește un rol clar din prima zi</div>
+            </div>
+          </div>
+          <div class="split-pane good">
+            <div class="split-label good">🎯 Cultura</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk yes">→</span><b>„Cum facem lucrurile la noi"</b></div>
+              <div class="split-li"><span class="mk yes">→</span>Cum vorbim, cum ne ținem de cuvânt, cum tratăm clientul</div>
+              <div class="split-li"><span class="mk yes">→</span>Noul om o învață <b>uitându-se la voi</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="vs-highlight">O echipă bună nu e doar oameni talentați — e oameni care <b>împart aceleași reguli și valori</b>.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">22 / 25</div>
+      </div>
+    </section>
+
+    <!-- 23 FIȘA ECHIPA MEA -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🟣 Output · în carnet</div><h2 class="slide-title">Fișa „Echipa mea" — intră în pitch-ul final</h2></div>
+        <div class="sheet">
+          <span class="sheet-head">✍️ Completează pentru proiectul tău</span>
+          <div class="sheet-row"><span class="sn">→</span><div><b>Rolul meu:</b> <em>produs / clienți / organizare</em></div></div>
+          <div class="sheet-row"><span class="sn">→</span><div><b>Cofondatorul de care am nevoie:</b> <em>ce abilitate complementară?</em></div></div>
+          <div class="sheet-row"><span class="sn">→</span><div><b>De unde / de la cine l-aș cere:</b> <em>recomandare specifică</em></div></div>
+          <div class="sheet-row"><span class="sn">→</span><div><b>Cum împărțim compania:</b> <em>eu __% / cofondator __%</em></div></div>
+          <div class="sheet-row"><span class="sn">→</span><div><b>3 reguli ale echipei mele</b> <em>(scrise — una e „scriem totul")</em></div></div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">23 / 25</div>
+      </div>
+    </section>
+
+    <!-- 24 WRAP-UP -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Wrap-up</div><h2 class="slide-title">Ce duci acasă azi</h2></div>
+        <div class="wrap-lessons">
+          <div class="wrap-lesson"><div class="wn">1</div><div class="wt">Cofondatorul bun e <b>diferit de tine</b> — și alegi pe cineva pentru zilele grele, nu doar pentru cele bune.</div></div>
+          <div class="wrap-lesson"><div class="wn">2</div><div class="wt">Banii și procentele sunt <b>incomode</b>, dar le discuți devreme și le scrii în documentul de fondare.</div></div>
+          <div class="wrap-lesson"><div class="wn">3</div><div class="wt">Echipa bună se ține <b>în scris</b>: roluri clare, reguli, plan — și conflictele se rezolvă, nu se ignoră.</div></div>
+        </div>
+        <div class="wrap-bottom">
+          <div class="wrap-tema">
+            <span class="lbl">🎯 Temă — până la M6</span>
+            <div class="tx">→ Identifică un cofondator <b>real, plauzibil</b> din viața ta și scrie cererea de recomandare.<br>→ Adu fișa „Echipa mea" completată, cu procentele incluse.</div>
+          </div>
+          <div class="wrap-preview">
+            <span class="lbl">Modul 6 →</span>
+            <div class="tx">Testare, eșec și adaptare. Punem totul la încercare.</div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · M5</div>
+        <div class="slide-num">24 / 25</div>
+      </div>
+    </section>
+
+    <!-- 25 ÎNCHEIERE -->
+    <section>
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content pause-center">
+          <div class="cover-kicker"><span class="dot"></span> Modul 5 · gata</div>
+          <h1 style="font-size:58px;text-align:center">Ai echipa, rolurile<br>și regulile. În scris.</h1>
+          <p class="subtitle" style="text-align:center">Mark e lângă tine. Data viitoare: punem totul la încercare.</p>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">25 / 25</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

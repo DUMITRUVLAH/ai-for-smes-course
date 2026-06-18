@@ -52,7 +52,7 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
 .sidebar-footer{padding:12px 12px 16px;border-top:1px solid var(--border)}
 .prog-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted-fg);margin-bottom:6px}
 .prog-track{height:4px;background:var(--muted);border-radius:var(--radius-full);overflow:hidden}
-.prog-fill{height:100%;width:33%;background:linear-gradient(90deg,var(--primary),hsl(285,76%,55%));border-radius:var(--radius-full)}
+.prog-fill{height:100%;width:50%;background:linear-gradient(90deg,var(--primary),hsl(285,76%,55%));border-radius:var(--radius-full)}
 
 /* ── MAIN ── */
 .main{margin-left:var(--sidebar-w);flex:1;min-height:100vh;background:var(--bg)}
@@ -188,14 +188,13 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
         <span class="nav-lock">🔒</span>
       </div>
 
-      <div class="nav-item locked">
+      <a href="modul-5.html" class="nav-item" id="nav5">
         <div class="nav-icon">🤝</div>
         <div class="nav-label">
           Modul 5
           <div class="nav-meta">Echipa și rolurile</div>
         </div>
-        <span class="nav-lock">🔒</span>
-      </div>
+      </a>
 
       <div class="nav-item locked">
         <div class="nav-icon">🔄</div>
@@ -208,7 +207,7 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
     </nav>
 
     <div class="sidebar-footer">
-      <div class="prog-label"><span>Module gata</span><span>2/6</span></div>
+      <div class="prog-label"><span>Module gata</span><span>3/6</span></div>
       <div class="prog-track"><div class="prog-fill"></div></div>
     </div>
   </aside>
@@ -220,7 +219,7 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
         <button class="hamburger" onclick="toggleSidebar()">☰</button>
         <div class="breadcrumb">Tekwill Business School <span style="color:var(--border)">›</span> <b>Module</b></div>
       </div>
-      <div class="topbar-pill"><span class="pill-dot"></span>2 MODULE ACTIVE</div>
+      <div class="topbar-pill"><span class="pill-dot"></span>3 MODULE ACTIVE</div>
     </div>
 
     <div class="page">
@@ -245,7 +244,7 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
             <h3>Prezentările modulelor</h3>
             <p>Deschide fiecare modul și vezi exact ce parcurge copilul tău</p>
           </div>
-          <span class="section-time">2 din 6</span>
+          <span class="section-time">3 din 6</span>
           <span class="section-chevron open">▼</span>
         </div>
         <div class="section-body" id="b-module">
@@ -287,14 +286,14 @@ body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--f
               <span class="mod-soon">În curând</span>
             </div>
 
-            <div class="mod-item locked">
+            <a href="modul-5.html" class="mod-item">
               <div class="mod-num">5</div>
               <div class="mod-txt">
                 <h4>Echipa și rolurile</h4>
-                <p>Echipa imaginară a proiectului și rolurile bine definite.</p>
+                <p>De ce contează cu cine construiești, cum îți alegi cofondatorul și cum împărțiți rolurile. Output: echipa proiectului + roluri definite.</p>
               </div>
-              <span class="mod-soon">În curând</span>
-            </div>
+              <div class="mod-arrow">↗</div>
+            </a>
 
             <div class="mod-item locked">
               <div class="mod-num">6</div>
