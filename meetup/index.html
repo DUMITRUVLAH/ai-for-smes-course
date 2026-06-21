@@ -1,0 +1,1616 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibecoding mini-meetup — Lovable vs Claude, GitHub, găzduire</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary:#2D52D4;--primary-light:#5B7CF7;--primary-ultra-light:#EEF2FF;
+      --foreground:#0F172A;--muted:#64748B;--border:#E2E8F0;--card:#FFFFFF;--bg:#F8FAFC;
+      --success:#22C55E;--destructive:#EF4444;--warning:#F59E0B;
+      --pastel-mint:#DCFCE7;--pastel-lavender:#EDE9FE;--pastel-peach:#FFEDD5;
+      --pastel-sky:#E0F2FE;--pastel-rose:#FCE7F3;
+      --radius:14px;--radius-sm:8px;--shadow:0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice:#7C3AED;
+    }
+    .reveal{font-family:'Onest',system-ui,sans-serif!important;font-size:28px;color:var(--foreground);}
+    .reveal .slides{text-align:left;}
+    .reveal section{padding:0;height:100%;box-sizing:border-box;}
+    .reveal h1,.reveal h2,.reveal h3{font-family:'Onest',system-ui,sans-serif;text-transform:none;text-shadow:none;}
+    .reveal .progress{color:var(--primary);height:3px;}
+    .reveal .controls{color:var(--primary);}
+    .slide{width:100%;height:100%;padding:48px 62px;box-sizing:border-box;display:flex;flex-direction:column;background:#fff;position:relative;overflow:hidden;}
+    .slide::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary) 0%,#7C3AED 100%);}
+    .slide.demo::before{background:linear-gradient(90deg,#7C3AED 0%,#DB2777 100%);}
+    .slide-header{margin-bottom:20px;}
+    .slide-tag{display:inline-block;background:var(--primary-ultra-light);color:var(--primary);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:100px;margin-bottom:10px;}
+    .slide-tag.demo-tag{background:#F3E8FF;color:var(--practice);}
+    .slide-tag.dict-tag{background:#FEF3C7;color:#92400E;}
+    .slide-title{font-size:35px!important;font-weight:800!important;line-height:1.12!important;color:var(--foreground)!important;margin:0 0 6px!important;letter-spacing:-.015em;}
+    .slide-subtitle{font-size:16px;color:var(--muted);font-weight:400;margin:0;line-height:1.5;max-width:920px;}
+    .slide-subtitle b{color:var(--foreground);font-weight:600;}
+    .slide-num{position:absolute;bottom:16px;right:30px;font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.04em;}
+    .logo{display:inline-block;vertical-align:middle;}.logo svg{display:block;}
+
+    /* COVER */
+    .slide-cover{background:var(--foreground);color:#fff;justify-content:center;}
+    .slide-cover::before{display:none;}
+    .cover-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0B1120 0%,#1E3A8A 58%,#3B2F8F 100%);}
+    .cover-accent{position:absolute;top:-140px;right:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(93,112,247,.40) 0%,transparent 70%);}
+    .cover-accent2{position:absolute;bottom:-100px;left:-90px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,.30) 0%,transparent 70%);}
+    .cover-content{position:relative;z-index:2;}
+    .cover-kicker{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:7px 18px;font-size:14px;font-weight:500;color:rgba(255,255,255,.82);margin-bottom:32px;}
+    .cover-kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--primary-light);}
+    .slide-cover h1{font-size:56px;font-weight:800;line-height:1.06;color:#fff;margin:0 0 20px;letter-spacing:-.025em;}
+    .slide-cover .subtitle{font-size:22px;font-weight:400;color:rgba(255,255,255,.7);margin:0 0 46px;max-width:660px;line-height:1.5;}
+    .cover-logos{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+    .cover-logos .lbl{font-size:13px;color:rgba(255,255,255,.45);margin-right:4px;}
+    .cover-logos .logo svg{fill:rgba(255,255,255,.85);}
+
+    /* VS TABLE */
+    .vs-table{display:grid;grid-template-columns:1fr 1fr;flex:1;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);}
+    .vs-col{display:flex;flex-direction:column;}
+    .vs-col.right{background:var(--bg);border-left:1px solid var(--border);}
+    .vs-head{padding:14px 24px;font-size:17px;font-weight:700;display:flex;align-items:center;gap:10px;}
+    .vs-head.classic{background:#F8FAFC;color:var(--muted);}
+    .vs-head.growth{background:var(--primary-ultra-light);color:var(--primary);}
+    .vs-row{padding:13px 24px;font-size:17px;color:var(--foreground);border-top:1px solid var(--border);line-height:1.4;display:flex;align-items:center;gap:12px;flex:1;}
+    .vs-row .ic{font-size:18px;flex-shrink:0;}
+
+    /* TABLE */
+    .slide-table{width:100%;border-collapse:collapse;font-size:15px;}
+    .slide-table th{padding:12px 16px;text-align:left;font-size:13px;font-weight:700;letter-spacing:.04em;color:#fff;border:none;}
+    .slide-table th.col-b{background:#475569;}
+    .slide-table th.col-c{background:#334155;}
+    .slide-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--foreground);vertical-align:middle;line-height:1.4;}
+    .slide-table tr:last-child td{border-bottom:none;}
+    .slide-table tr:nth-child(even) td{background:var(--bg);}
+    .slide-table td.hl{background:#EEF2FF!important;font-weight:600;}
+    .slide-table .crit{font-weight:700;color:var(--muted);font-size:13px;}
+
+    /* LLM STEPS (tool-use loop) */
+    .llm-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:0;align-items:stretch;}
+    .llm-step{padding:22px 16px;display:flex;flex-direction:column;gap:9px;position:relative;}
+    .llm-step::after{content:'→';position:absolute;right:-11px;top:42px;font-size:22px;color:var(--primary);font-weight:700;z-index:2;}
+    .llm-step:last-child::after{display:none;}
+    .llm-step-num{width:34px;height:34px;border-radius:50%;background:var(--primary);color:#fff;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+    .llm-step-icon{font-size:28px;}
+    .llm-step-title{font-size:15px;font-weight:700;color:var(--foreground);line-height:1.2;}
+    .llm-step-desc{font-size:12.5px;color:var(--muted);line-height:1.45;}
+
+    /* SPLIT SCREEN */
+    .split-screen{display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;}
+    .split-pane{border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px;}
+    .split-pane.bad{background:#FEF2F2;border:1px solid #FECACA;}
+    .split-pane.good{background:#F0FDF4;border:1px solid #86EFAC;}
+    .split-pane.neutral{background:var(--bg);border:1px solid var(--border);}
+    .split-pane.indigo{background:var(--primary-ultra-light);border:1px solid #A5B4FC;}
+    .split-pane.highlight{background:#0F172A;border:2px solid var(--primary-light);color:#fff;}
+    .split-label{font-size:14px;font-weight:700;letter-spacing:.04em;}
+    .split-label.bad{color:#DC2626;}
+    .split-label.good{color:#16A34A;}
+    .split-pane-pill{display:inline-flex;align-self:flex-start;align-items:center;gap:7px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:100px;}
+    .split-pane-pill.muted{background:#E2E8F0;color:#475569;}
+    .split-pane-pill.bright{background:var(--primary-light);color:#0B1120;}
+    .split-h{font-size:21px;font-weight:800;margin:0;}
+    .split-sub{font-size:14px;color:var(--muted);margin:0 0 4px;}
+    .split-pane.highlight .split-sub{color:rgba(255,255,255,.62);}
+    .split-list{display:flex;flex-direction:column;gap:8px;margin-top:2px;}
+    .split-li{font-size:14.5px;line-height:1.45;display:flex;gap:9px;align-items:flex-start;}
+    .split-li .b{flex-shrink:0;}
+    .flow-chips{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:6px;}
+    .flow-chip{background:#fff;border:1px solid var(--border);border-radius:8px;padding:7px 11px;font-size:13px;font-weight:600;color:var(--foreground);}
+    .flow-arrow{color:var(--primary);font-weight:800;font-size:15px;}
+
+    /* CARDS */
+    .cards-grid{display:grid;gap:16px;flex:1;}
+    .cards-3{grid-template-columns:repeat(3,1fr);}
+    .cards-2{grid-template-columns:repeat(2,1fr);}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px;position:relative;}
+    .card.mint{background:var(--pastel-mint);border-color:#86EFAC;}
+    .card.lavender{background:var(--pastel-lavender);border-color:#C4B5FD;}
+    .card.sky{background:var(--pastel-sky);border-color:#BAE6FD;}
+    .card.peach{background:var(--pastel-peach);border-color:#FED7AA;}
+    .card.rose{background:var(--pastel-rose);border-color:#FBCFE8;}
+    .card.primary-light{background:var(--primary-ultra-light);border-color:#A5B4FC;}
+    .card.dark{background:#0F172A;border-color:#1E293B;}
+    .card.dark .card-title{color:#fff;}.card.dark .card-body{color:rgba(255,255,255,.72);}.card.dark .card-body b{color:#fff;}
+    .card-icon{font-size:28px;}
+    .card-num{width:30px;height:30px;border-radius:8px;background:var(--primary);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .card.mint .card-num{background:#16A34A;}.card.lavender .card-num{background:#7C3AED;}
+    .card.sky .card-num{background:#0284C7;}.card.peach .card-num{background:#EA580C;}
+    .card.rose .card-num{background:#DB2777;}
+    .card-title{font-size:17px;font-weight:800;color:var(--foreground);margin:0;}
+    .card-eyebrow{font-size:12px;font-weight:700;color:var(--muted);font-style:italic;margin:-2px 0 0;}
+    .card-body{font-size:13.5px;color:var(--muted);line-height:1.5;margin:0;}
+    .card-body b{color:var(--foreground);}
+    .card-tag{margin-top:auto;font-size:11.5px;font-weight:600;color:var(--muted);background:rgba(255,255,255,.6);border:1px solid rgba(15,23,42,.06);border-radius:7px;padding:6px 9px;}
+    .card.dark .card-tag{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.7);}
+
+    /* ===== DICTIONARY SLIDES ===== */
+    .dict{display:grid;grid-template-columns:.92fr 1.08fr;gap:30px;flex:1;align-items:center;}
+    .dict-left{display:flex;flex-direction:column;gap:16px;}
+    .dict-word{display:flex;align-items:center;gap:14px;}
+    .dict-word .dw-logo{width:54px;height:54px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .dict-word .dw-emoji{font-size:42px;}
+    .dict-word h3{font-size:34px;font-weight:800;margin:0;letter-spacing:-.02em;}
+    .dict-word .dw-sub{font-size:14px;color:var(--muted);margin:2px 0 0;}
+    .dict-analogy{font-size:21px;line-height:1.4;color:var(--foreground);font-weight:500;}
+    .dict-analogy b{color:var(--primary);font-weight:800;}
+    .dict-why{background:var(--primary-ultra-light);border:1px solid #C7D2FE;border-radius:var(--radius);padding:14px 17px;font-size:14.5px;color:var(--foreground);line-height:1.5;}
+    .dict-why .lbl{display:block;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--primary);margin-bottom:5px;}
+    .dict-visual{display:flex;align-items:center;justify-content:center;min-height:0;height:100%;}
+
+    /* visual: app window (VS Code 3-zone) */
+    .winframe{width:100%;border-radius:12px;overflow:hidden;border:1px solid var(--border);box-shadow:0 10px 40px -8px rgba(15,23,42,.22);background:#fff;}
+    .win-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#E8EDF4;border-bottom:1px solid var(--border);}
+    .win-dot{width:11px;height:11px;border-radius:50%;}
+    .win-dot.r{background:#FF5F57;}.win-dot.y{background:#FEBC2E;}.win-dot.g{background:#28C840;}
+    .win-title{font-size:12px;color:var(--muted);margin-left:8px;font-weight:600;}
+    .vscode-body{display:grid;grid-template-columns:84px 1fr 150px;height:240px;}
+    .vsz{padding:12px 11px;display:flex;flex-direction:column;gap:7px;}
+    .vsz.files{background:#F1F5F9;border-right:1px solid var(--border);}
+    .vsz.editor{background:#fff;}
+    .vsz.agent{background:#0F172A;border-left:1px solid var(--border);}
+    .vsz-label{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;}
+    .vsz.files .vsz-label{color:#94A3B8;}.vsz.agent .vsz-label{color:#5B7CF7;}.vsz.editor .vsz-label{color:#94A3B8;}
+    .vsz-line{height:8px;border-radius:4px;background:#CBD5E1;}
+    .vsz.editor .vsz-line{background:#E2E8F0;}
+    .vsz.files .vsz-file{font-size:10px;color:#475569;display:flex;gap:5px;align-items:center;}
+    .vsz.agent .vsz-msg{font-size:10px;color:#CBD5E1;line-height:1.4;background:rgba(255,255,255,.06);border-radius:6px;padding:6px 7px;}
+    .vsz.agent .vsz-msg.me{background:var(--primary);color:#fff;}
+
+    /* visual: terminal */
+    .term{width:100%;border-radius:12px;overflow:hidden;border:1px solid #1E293B;box-shadow:0 12px 40px -8px rgba(15,23,42,.3);}
+    .term-bar{display:flex;align-items:center;gap:7px;padding:10px 14px;background:#1E293B;}
+    .term-bar .win-title{color:#94A3B8;}
+    .term-body{background:#0B1120;padding:20px 22px;font-family:'JetBrains Mono',monospace;font-size:14px;line-height:1.85;min-height:230px;}
+    .term-body .t-prompt{color:#5B7CF7;}
+    .term-body .t-cmd{color:#fff;}
+    .term-body .t-out{color:#94A3B8;}
+    .term-body .t-ok{color:#22C55E;}
+    .term-body .t-cursor{display:inline-block;width:9px;height:16px;background:#5B7CF7;vertical-align:-2px;animation:blink 1s steps(2) infinite;}
+    @keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+
+    /* visual: repo card (GitHub) */
+    .repocard{width:100%;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);background:#fff;}
+    .repocard-top{padding:18px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+    .repocard-top .gh{font-size:13px;color:var(--muted);}
+    .repocard-top .rn{font-size:18px;font-weight:800;}
+    .repocard-top .rn b{color:var(--primary);}
+    .repocard-body{padding:16px 20px;display:flex;flex-direction:column;gap:12px;}
+    .repocard-body .rd{font-size:14px;color:var(--muted);line-height:1.5;}
+    .repocard-meta{display:flex;gap:18px;align-items:center;font-size:13px;color:var(--muted);}
+    .repocard-meta .m{display:flex;align-items:center;gap:5px;}
+    .repocard-meta .lang{width:11px;height:11px;border-radius:50%;background:#5B7CF7;}
+    .repocard-clone{display:flex;align-items:center;gap:8px;background:#16A34A;color:#fff;font-size:13px;font-weight:700;padding:8px 14px;border-radius:8px;align-self:flex-start;}
+
+    /* visual: markdown */
+    .mdcompare{display:grid;grid-template-columns:1fr 1fr;gap:0;width:100%;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+    .md-src,.md-prev{padding:18px;min-height:230px;}
+    .md-src{background:#0B1120;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.7;color:#CBD5E1;border-right:1px solid var(--border);}
+    .md-src .h{color:#5B7CF7;}.md-src .b{color:#fff;font-weight:700;}.md-src .li{color:#94A3B8;}
+    .md-prev{background:#fff;}
+    .md-prev h4{font-size:18px;font-weight:800;margin:0 0 10px;}
+    .md-prev p{font-size:13px;color:var(--foreground);margin:0 0 9px;line-height:1.5;}
+    .md-prev ul{margin:0;padding-left:18px;}
+    .md-prev li{font-size:13px;color:var(--foreground);line-height:1.6;}
+    .md-tablabel{font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#94A3B8;margin-bottom:9px;display:block;}
+
+    /* visual: API plug diagram */
+    .apidiag{display:flex;align-items:center;justify-content:center;gap:0;width:100%;}
+    .api-box{width:150px;height:120px;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;border:2px solid;text-align:center;}
+    .api-box.a{background:var(--primary-ultra-light);border-color:#A5B4FC;}
+    .api-box.b{background:var(--pastel-peach);border-color:#FED7AA;}
+    .api-box .ab-t{font-size:15px;font-weight:800;}
+    .api-box .ab-s{font-size:11px;color:var(--muted);}
+    .api-plug{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 6px;}
+    .api-plug .socket{font-size:30px;}
+    .api-plug .line{width:64px;height:3px;background:repeating-linear-gradient(90deg,var(--primary) 0 8px,transparent 8px 14px);}
+    .api-plug .lbl{font-size:11px;font-weight:700;color:var(--primary);letter-spacing:.04em;text-transform:uppercase;}
+
+    /* visual: domain+hosting */
+    .dnsdiag{width:100%;display:flex;flex-direction:column;gap:18px;align-items:center;}
+    .browserbar{width:100%;max-width:420px;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);border-radius:100px;padding:11px 18px;box-shadow:var(--shadow);}
+    .browserbar .lock{color:#16A34A;font-size:14px;}
+    .browserbar .url{font-family:'JetBrains Mono',monospace;font-size:15px;color:var(--foreground);}
+    .browserbar .url b{color:var(--primary);}
+    .dns-link{font-size:24px;color:var(--primary);}
+    .serverbox{width:100%;max-width:300px;background:#0F172A;border-radius:14px;padding:18px 22px;display:flex;align-items:center;gap:14px;color:#fff;}
+    .serverbox .sb-icon{font-size:34px;}
+    .serverbox .sb-t{font-size:16px;font-weight:800;}
+    .serverbox .sb-s{font-size:12px;color:rgba(255,255,255,.6);}
+
+    /* visual: MCP hub */
+    .mcphub{position:relative;width:380px;height:300px;display:flex;align-items:center;justify-content:center;}
+    .mcp-center{width:120px;height:120px;border-radius:24px;background:#0F172A;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;z-index:3;box-shadow:0 10px 30px -6px rgba(15,23,42,.4);}
+    .mcp-center .mc-t{font-size:15px;font-weight:800;}
+    .mcp-center .mc-s{font-size:10px;color:var(--primary-light);font-weight:700;letter-spacing:.05em;}
+    .mcp-node{position:absolute;width:78px;height:78px;border-radius:16px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;z-index:2;}
+    .mcp-node .mn-l{font-size:10px;font-weight:700;color:var(--muted);}
+    .mcp-node.n1{top:0;left:18px;}.mcp-node.n2{top:0;right:18px;}
+    .mcp-node.n3{bottom:0;left:18px;}.mcp-node.n4{bottom:0;right:18px;}
+    .mcp-spoke{position:absolute;width:3px;background:repeating-linear-gradient(180deg,#A5B4FC 0 6px,transparent 6px 11px);z-index:1;}
+
+    /* ===== PATTERN FLOW RAILS ===== */
+    .flow-rail{display:flex;align-items:stretch;gap:0;flex:none;}
+    .frnode{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px 14px;display:flex;flex-direction:column;gap:8px;position:relative;}
+    .frnode .frn-num{width:32px;height:32px;border-radius:50%;background:var(--primary);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+    .frnode .frn-ic{font-size:26px;}
+    .frnode .frn-t{font-size:15px;font-weight:800;color:var(--foreground);line-height:1.2;}
+    .frnode .frn-d{font-size:12.5px;color:var(--muted);line-height:1.45;}
+    .frarrow{display:flex;align-items:center;justify-content:center;width:42px;flex-shrink:0;font-size:28px;color:var(--primary);font-weight:800;}
+    .why-band{background:#0F172A;border-radius:var(--radius);padding:16px 22px;display:flex;gap:16px;align-items:center;}
+    .why-band .wb-icon{font-size:28px;flex-shrink:0;}
+    .why-band .wb-text{font-size:15px;color:#fff;line-height:1.5;}
+    .why-band .wb-text b{color:var(--primary-light);}
+    .why-band .wb-text .lbl{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--primary-light);margin-right:8px;}
+
+    /* routing branch */
+    .routing{display:flex;align-items:center;gap:0;flex:none;}
+    .rt-in{background:#0F172A;color:#fff;border-radius:var(--radius);padding:20px 22px;text-align:center;flex-shrink:0;width:190px;}
+    .rt-in .ri-t{font-size:16px;font-weight:800;}
+    .rt-in .ri-s{font-size:12px;color:rgba(255,255,255,.6);margin-top:4px;}
+    .rt-fan{width:54px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--primary);font-size:24px;font-weight:800;gap:34px;}
+    .rt-branches{display:flex;flex-direction:column;gap:12px;flex:1;}
+    .rt-branch{display:flex;align-items:center;gap:12px;border-radius:var(--radius);padding:13px 18px;border:1px solid;}
+    .rt-branch.a{background:#FEF2F2;border-color:#FECACA;}
+    .rt-branch.b{background:#F0FDF4;border-color:#86EFAC;}
+    .rt-branch.c{background:#EFF6FF;border-color:#BFDBFE;}
+    .rt-branch .rb-cond{font-size:15px;font-weight:800;flex:1;}
+    .rt-branch.a .rb-cond{color:#B91C1C;}.rt-branch.b .rb-cond{color:#15803D;}.rt-branch.c .rb-cond{color:#1D4ED8;}
+    .rt-branch .rb-arrow{color:var(--muted);font-weight:800;}
+    .rt-branch .rb-dest{font-size:13px;font-weight:700;color:var(--foreground);background:#fff;border-radius:7px;padding:5px 11px;}
+
+    /* fork-join (parallel) */
+    .fork{display:flex;align-items:center;gap:0;flex:none;}
+    .fk-src{width:150px;flex-shrink:0;background:var(--primary-ultra-light);border:1px solid #A5B4FC;border-radius:var(--radius);padding:18px;text-align:center;font-size:15px;font-weight:800;color:var(--primary);}
+    .fk-fan{width:44px;flex-shrink:0;text-align:center;color:var(--primary);font-size:24px;font-weight:800;}
+    .fk-workers{display:flex;flex-direction:column;gap:10px;flex:1;}
+    .fk-w{background:#fff;border:1px solid var(--border);border-top:3px solid var(--primary-light);border-radius:10px;padding:11px 16px;font-size:14px;font-weight:700;box-shadow:var(--shadow);}
+    .fk-join{width:44px;flex-shrink:0;text-align:center;color:#16A34A;font-size:24px;font-weight:800;}
+    .fk-out{width:130px;flex-shrink:0;background:var(--pastel-mint);border:1px solid #86EFAC;border-radius:var(--radius);padding:18px;text-align:center;font-size:14px;font-weight:800;color:#15803D;}
+
+    /* orchestrator */
+    .orch{display:flex;flex-direction:column;flex:none;gap:0;align-items:center;}
+    .orch-top{background:#0F172A;color:#fff;border-radius:var(--radius);padding:18px 28px;text-align:center;max-width:580px;}
+    .orch-top .ot-t{font-size:19px;font-weight:800;}
+    .orch-top .ot-s{font-size:14px;color:rgba(255,255,255,.7);margin-top:4px;}
+    .orch-connector{width:2px;height:20px;background:var(--primary);}
+    .orch-fan{font-size:13px;color:var(--muted);font-weight:700;margin-bottom:10px;letter-spacing:.04em;}
+    .orch-workers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:100%;}
+    .worker{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:15px;display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--primary-light);}
+    .worker .w-num{font-size:11px;font-weight:800;color:var(--primary);letter-spacing:.05em;}
+    .worker .w-t{font-size:15px;font-weight:800;color:var(--foreground);}
+    .worker .w-d{font-size:12.5px;color:var(--muted);line-height:1.4;}
+
+    /* evaluator flow 1-2-3 */
+    .evflow{display:flex;align-items:stretch;gap:0;flex:none;}
+    .evstep{flex:1;border-radius:var(--radius);padding:20px 18px;display:flex;flex-direction:column;gap:8px;position:relative;}
+    .evstep.gen{background:var(--primary-ultra-light);border:1px solid #A5B4FC;}
+    .evstep.crit{background:var(--pastel-peach);border:1px solid #FED7AA;}
+    .evstep.dec{background:#F0FDF4;border:1px solid #86EFAC;}
+    .evstep-badge{width:38px;height:38px;border-radius:50%;background:var(--primary);color:#fff;font-size:18px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+    .evstep-ic{font-size:30px;}
+    .evstep-t{font-size:18px;font-weight:800;color:var(--foreground);}
+    .evstep-d{font-size:13.5px;color:var(--muted);line-height:1.5;}
+    .evstep-d b{color:var(--foreground);}
+    .evconn{width:46px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+    .evconn-arrow{font-size:30px;color:var(--primary);font-weight:800;}
+    .evback-rail{display:flex;align-items:center;gap:12px;background:#FFF7ED;border:1px dashed #FB923C;border-radius:var(--radius);padding:12px 18px;margin-top:14px;}
+    .evback-rail .evback-lbl{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#C2410C;flex-shrink:0;}
+    .evback-rail .evback-arrow{font-size:14px;font-weight:700;color:#9A3412;line-height:1.4;}
+
+    /* WRAP */
+    .wrapup-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;}
+    .wrapup-pane{border-radius:var(--radius);padding:24px;border:1px solid var(--border);display:flex;flex-direction:column;}
+    .wrapup-pane.learned{background:var(--primary-ultra-light);border-color:#A5B4FC;}
+    .wrapup-pane.hw{background:#F0FDF4;border-color:#86EFAC;}
+    .wrapup-pane-title{font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:13px;}
+    .wrapup-pane.learned .wrapup-pane-title{color:var(--primary);}
+    .wrapup-pane.hw .wrapup-pane-title{color:#16A34A;}
+    .preview-row{margin-top:auto;padding-top:13px;border-top:1px solid #86EFAC;}
+    .preview-row .lbl{font-size:12px;font-weight:600;color:var(--muted);}
+    .preview-row .ttl{font-size:15px;font-weight:800;color:var(--foreground);}
+    .check-list{display:flex;flex-direction:column;gap:9px;}
+    .check-item{display:flex;align-items:flex-start;gap:10px;font-size:14.5px;color:var(--foreground);line-height:1.45;font-weight:500;}
+    .check-item .chk{font-size:15px;flex-shrink:0;margin-top:1px;font-weight:700;color:var(--primary);}
+    .wrapup-pane.hw .check-item .chk{color:#16A34A;}
+
+    /* QUOTE / BANDS */
+    .quote-block{border-left:4px solid var(--primary);padding:14px 18px;background:var(--primary-ultra-light);border-radius:0 var(--radius-sm) var(--radius-sm) 0;font-size:16px;font-style:italic;color:var(--foreground);line-height:1.55;}
+    .quote-block strong{font-style:normal;color:var(--primary);}
+    .quote-block.warning{border-left-color:var(--warning);background:#FFFBEB;}
+    .quote-block.warning strong{color:#92400E;font-style:normal;}
+    .info-band{background:var(--primary-ultra-light);border:1px solid #A5B4FC;border-radius:var(--radius);padding:15px 20px;display:flex;gap:16px;align-items:center;}
+    .info-band .ib-icon{font-size:28px;flex-shrink:0;}
+    .info-band .ib-text{font-size:14.5px;color:var(--foreground);line-height:1.5;}
+    .info-band .ib-text b{font-weight:700;}
+    .example-band{background:var(--pastel-lavender);border:1px solid #C4B5FD;border-radius:var(--radius);padding:15px 20px;}
+    .example-band .eb-title{font-size:13px;font-weight:700;color:var(--primary);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+    .example-band .eb-body{font-size:14.5px;color:var(--foreground);line-height:1.5;}
+    .stat-card{border-radius:var(--radius);padding:18px 20px;display:flex;flex-direction:column;justify-content:center;}
+    .stat-num{font-size:28px;font-weight:800;line-height:1;}
+    .stat-desc{font-size:14px;color:var(--foreground);line-height:1.45;margin-top:6px;}
+
+    /* AGENDA */
+    .agenda-list{display:grid;grid-template-columns:1fr 1fr;gap:4px 38px;list-style:none;margin:0;padding:0;}
+    .agenda-item{display:flex;align-items:center;gap:12px;padding:7px 0;border-bottom:1px solid var(--border);}
+    .agenda-num{width:26px;height:26px;border-radius:50%;background:var(--primary-ultra-light);color:var(--primary);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .agenda-label{font-size:13.5px;font-weight:500;color:var(--foreground);}
+    .agenda-badge{font-size:9px;font-weight:700;color:var(--practice);background:#F3E8FF;padding:2px 7px;border-radius:100px;margin-left:7px;letter-spacing:.04em;}
+
+    /* ===== VIBECODING EXTRAS ===== */
+    .speaker-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:40px;flex:1;align-items:center;}
+    .speaker-photo{position:relative;}
+    .speaker-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:18px;box-shadow:0 18px 50px -12px rgba(15,23,42,.35);}
+    .speaker-photo .ph-badge{position:absolute;bottom:-16px;left:22px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow);border-radius:100px;padding:9px 17px;font-size:13px;font-weight:700;color:var(--primary);display:flex;align-items:center;gap:8px;}
+    .speaker-name{font-size:42px;font-weight:800;letter-spacing:-.025em;margin:0;}
+    .speaker-role{font-size:18px;color:var(--muted);margin:6px 0 20px;}
+    .fact-list{display:flex;flex-direction:column;gap:11px;}
+    .fact{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.45;color:var(--foreground);}
+    .fact .fi{font-size:19px;flex-shrink:0;line-height:1.2;}
+    .fact b{color:var(--primary);}
+    .tool-hero{display:flex;align-items:center;gap:16px;}
+    .tool-hero .th-mark{width:62px;height:62px;border-radius:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .tool-hero h3{font-size:34px;font-weight:800;margin:0;letter-spacing:-.02em;}
+    .tool-hero .th-sub{font-size:14px;color:var(--muted);margin:3px 0 0;}
+    .taglist{display:flex;flex-wrap:wrap;gap:8px;}
+    .tag-pill{background:#fff;border:1px solid var(--border);border-radius:100px;padding:7px 14px;font-size:13.5px;font-weight:600;color:var(--foreground);}
+    .tag-pill.on{background:var(--primary-ultra-light);border-color:#A5B4FC;color:var(--primary);}
+    .fam-logos{display:flex;flex-wrap:wrap;gap:12px;align-items:center;}
+    .fam-logo{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:10px 15px;font-size:14.5px;font-weight:700;box-shadow:var(--shadow);}
+    .fam-logo .fl-txt{display:flex;flex-direction:column;line-height:1.15;}
+    .fam-logo .fl-txt small{font-size:11px;font-weight:600;color:var(--muted);}
+    .pagemock{padding:14px;display:flex;flex-direction:column;gap:9px;background:#fff;min-height:230px;}
+    .pm-hero{height:54px;border-radius:8px;background:linear-gradient(120deg,#EEF2FF,#FCE7F3);display:flex;align-items:center;padding:0 14px;}
+    .pm-hero .pm-h{height:11px;width:60%;border-radius:5px;background:#A5B4FC;}
+    .pm-row{display:flex;gap:9px;}
+    .pm-card{flex:1;height:48px;border-radius:8px;border:1px solid var(--border);background:var(--bg);}
+    .pm-btn{align-self:flex-start;height:26px;width:96px;border-radius:7px;background:var(--primary);}
+    .dbmock{width:100%;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:#fff;font-size:12.5px;}
+    .dbmock .db-head{display:grid;grid-template-columns:46px 1fr 1fr;background:#0F172A;color:#fff;font-weight:700;}
+    .dbmock .db-head span,.dbmock .db-row span{padding:9px 12px;}
+    .dbmock .db-row{display:grid;grid-template-columns:46px 1fr 1fr;border-top:1px solid var(--border);color:var(--foreground);}
+    .dbmock .db-row:nth-child(even){background:var(--bg);}
+    .dbmock .db-key{color:var(--primary);font-family:'JetBrains Mono',monospace;font-weight:700;}
+
+    /* ===== V2 EXTRAS ===== */
+    .effort-rail{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+    .effort-pill{display:flex;flex-direction:column;align-items:center;gap:2px;border-radius:10px;padding:9px 14px;border:1px solid var(--border);background:#fff;min-width:74px;}
+    .effort-pill .ep-t{font-size:13px;font-weight:800;color:var(--foreground);}
+    .effort-pill .ep-s{font-size:10px;color:var(--muted);}
+    .effort-pill.lo{background:#F0FDF4;border-color:#86EFAC;}
+    .effort-pill.mid{background:#EFF6FF;border-color:#BFDBFE;}
+    .effort-pill.hi{background:var(--primary-ultra-light);border-color:#A5B4FC;}
+    .effort-pill.max{background:#FEF3C7;border-color:#FCD34D;}
+    .effort-pill.think{background:#0F172A;border-color:#0F172A;}
+    .effort-pill.think .ep-t{color:#fff;}.effort-pill.think .ep-s{color:var(--primary-light);}
+    /* git visual */
+    .gitviz{display:flex;flex-direction:column;gap:13px;width:100%;}
+    .git-box{border-radius:14px;padding:14px 20px;display:flex;align-items:center;gap:18px;box-shadow:var(--shadow);}
+    .git-box.local{background:#fff;border:1px solid var(--border);}
+    .git-box.remote{background:#0F172A;}
+    .git-box .gb-label{font-size:15px;font-weight:800;display:flex;align-items:center;gap:9px;min-width:170px;color:var(--foreground);}
+    .git-box.remote .gb-label{color:#fff;}
+    .commit-rail{display:flex;align-items:center;flex:1;}
+    .commit-rail .cr-line{height:3px;flex:1;background:var(--primary);opacity:.5;}
+    .commit-rail .cr-dot{width:16px;height:16px;border-radius:50%;background:var(--primary);flex-shrink:0;}
+    .commit-rail .cr-dot.now{background:var(--success);box-shadow:0 0 0 4px rgba(34,197,94,.18);}
+    .git-box.remote .cr-dot{background:var(--primary-light);}
+    .git-box.remote .cr-line{background:var(--primary-light);}
+    .git-mid{display:flex;justify-content:center;gap:60px;}
+    .git-mid .gm{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--primary);letter-spacing:.03em;}
+    .git-mid .gm .ar{font-size:20px;}
+    .git-mid .gm.pull{color:var(--muted);}
+    /* pipeline */
+    .pipeline{display:grid;grid-template-columns:repeat(7,1fr);gap:0;align-items:stretch;}
+    .pl-step{padding:14px 6px;display:flex;flex-direction:column;gap:7px;align-items:center;text-align:center;position:relative;}
+    .pl-step::after{content:'\203A';position:absolute;right:-4px;top:20px;font-size:24px;color:var(--primary);font-weight:800;}
+    .pl-step:last-child::after{display:none;}
+    .pl-num{width:30px;height:30px;border-radius:50%;background:var(--primary);color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;}
+    .pl-step.build .pl-num{background:#16A34A;}.pl-step.test .pl-num{background:#EA580C;}
+    .pl-ic{font-size:20px;}
+    .pl-t{font-size:11.5px;font-weight:700;line-height:1.25;color:var(--foreground);}
+    /* brandbook */
+    .brandbook{width:100%;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);background:#fff;}
+    .bb-head{padding:11px 18px;background:var(--bg);border-bottom:1px solid var(--border);font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;}
+    .bb-body{padding:18px;display:flex;flex-direction:column;gap:16px;}
+    .bb-swatches{display:flex;gap:9px;}
+    .bb-sw{flex:1;height:48px;border-radius:9px;display:flex;align-items:flex-end;padding:6px 7px;font-size:9px;font-weight:700;color:rgba(255,255,255,.92);}
+    .bb-row{display:flex;gap:20px;align-items:center;}
+    .bb-font{font-size:12px;color:var(--muted);line-height:1.3;}
+    .bb-font b{font-size:24px;color:var(--foreground);display:block;font-weight:800;}
+    .bb-comp{display:flex;gap:9px;}
+    .bb-btn{padding:9px 15px;border-radius:9px;font-size:12.5px;font-weight:700;}
+    /* permission modes table accent */
+    .pmode{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:0;}
+    .pl-d{font-size:9.5px;color:var(--muted);line-height:1.25;margin-top:1px;}
+  </style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="lovgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FF7A45"/><stop offset=".5" stop-color="#FF4D8D"/><stop offset="1" stop-color="#9B5DE5"/></linearGradient></defs></svg>
+<div class="reveal">
+<div class="slides">
+
+<!-- 01 COVER -->
+<section>
+<div class="slide slide-cover">
+  <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+  <div class="cover-content">
+    <div class="cover-kicker"><span class="dot"></span>mini-meetup · construiești cu AI</div>
+    <h1>Vibecoding <span style="color:var(--primary-light)">mini-meetup</span></h1>
+    <p class="subtitle">De la idee la produs: Lovable vs Claude, GitHub, găzduire și securitate — onest, cu exemple reale.</p>
+    <div class="cover-logos">
+      <span class="lbl">Azi vorbim despre:</span>
+      <span class="logo" title="Lovable"><svg width="26" height="26" viewBox="0 0 24 24"><path fill="url(#lovgrad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+      <span class="logo" title="Claude"><svg width="26" height="26" viewBox="0 0 24 24"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span>
+      <span class="logo" title="GitHub"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span>
+      <span class="logo" title="Vercel"><svg width="24" height="24" viewBox="0 0 24 24"><path d="m12 1.608 12 20.784H0Z"/></svg></span>
+      <span class="logo" title="Supabase"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z"/></svg></span>
+    </div>
+  </div>
+  <div class="slide-num" style="color:rgba(255,255,255,.35)">01 / 51</div>
+</div>
+</section>
+
+<!-- 02 SPEAKER -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Cine vorbește</div><h2 class="slide-title">Salut, sunt Dima</h2></div>
+  <div class="speaker-grid">
+    <div class="speaker-photo">
+      <img src="assets/photos/dima-summit.jpg" alt="Dima" />
+      <div class="ph-badge">🎤 build cu AI, zilnic</div>
+    </div>
+    <div>
+      <p class="speaker-name">Dima</p>
+      <p class="speaker-role">Founder · <b>Vector Academy</b> · trainer AI &amp; Marketing — <i>„not expert, but learning"</i></p>
+      <div class="fact-list">
+        <div class="fact"><span class="fi">🎓</span><div><b>8 ani</b> în Marketing · studii economice (licență &amp; master), <b>UBB Cluj-Napoca</b> · predau la <b>ASEM</b>.</div></div>
+        <div class="fact"><span class="fi">🚀</span><div>Founder <b>Vector Academy</b> · peste <b>200 de persoane</b> instruite la cursurile mele de AI &amp; Marketing · 5+ ani în educație.</div></div>
+        <div class="fact"><span class="fi">⚡</span><div>Din practică: cu <b>Lovable</b> ajung mai repede la rezultat (framework, cloud, securitate incluse) — de-aceea recomand începătorilor să pornească de aici.</div></div>
+        <div class="fact"><span class="fi">⌨️</span><div>Pentru control lucrez în <b>Claude</b> — am un agent „<b>autopilot</b>" (revin spre final). <b>Business Suite</b> pe care o vedeți azi e construită exact așa.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">02 / 51</div>
+</div>
+</section>
+
+<!-- 02b MEME -->
+<section>
+<div class="slide" style="align-items:center;">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:20px;flex:1;justify-content:center;">
+    <h2 class="slide-title" style="text-align:center;font-size:30px!important;">Când ai <span style="color:var(--primary)">multe idei</span> și abonament la Claude 😅</h2>
+    <img src="assets/photos/meme-ideas.png" alt="meme: multe idei" style="max-height:430px;max-width:76%;border-radius:14px;box-shadow:0 18px 50px -12px rgba(15,23,42,.35);object-fit:contain;" />
+  </div>
+  <div class="slide-num">03 / 51</div>
+</div>
+</section>
+
+<!-- 02c PET PROJECT 1 -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Pet project</div><h2 class="slide-title">Înainte de teorie — uite ce am construit cu vibecoding</h2><p class="slide-subtitle">O „Business Suite" reală (Lovable + Claude), fără echipă de programatori. 5 module; vi le arăt, apoi vedem <b>cum</b>.</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;min-height:0;">
+    <figure style="margin:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;background:#fff;">
+      <img src="assets/photos/pet-roas.png" alt="ROAS Dashboard" style="width:100%;height:300px;object-fit:cover;object-position:top;display:block;" />
+      <figcaption style="padding:10px 14px;font-size:13px;font-weight:700;color:var(--foreground);border-top:1px solid var(--border);">📊 ROAS Dashboard — marketing (Kommo + Facebook Ads)</figcaption>
+    </figure>
+    <figure style="margin:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;background:#fff;">
+      <img src="assets/photos/pet-findesk.png" alt="FinDesk" style="width:100%;height:300px;object-fit:cover;object-position:top;display:block;" />
+      <figcaption style="padding:10px 14px;font-size:13px;font-weight:700;color:var(--foreground);border-top:1px solid var(--border);">💼 FinDesk — facturi B2B &amp; finanțe</figcaption>
+    </figure>
+  </div>
+  <div class="slide-num">04 / 51</div>
+</div>
+</section>
+
+<!-- 02d PET PROJECT 2 -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Pet project</div><h2 class="slide-title">Business Suite — module (2/3)</h2></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;min-height:0;">
+    <figure style="margin:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;background:#fff;">
+      <img src="assets/photos/pet-cx.png" alt="Customer Experience" style="width:100%;height:330px;object-fit:cover;object-position:top;display:block;" />
+      <figcaption style="padding:10px 14px;font-size:13px;font-weight:700;color:var(--foreground);border-top:1px solid var(--border);">🤝 Customer Experience — CRM training + SMS/WhatsApp</figcaption>
+    </figure>
+    <figure style="margin:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;background:#fff;">
+      <img src="assets/photos/pet-efactura.png" alt="e-Factura" style="width:100%;height:330px;object-fit:cover;object-position:top;display:block;" />
+      <figcaption style="padding:10px 14px;font-size:13px;font-weight:700;color:var(--foreground);border-top:1px solid var(--border);">🧾 e-Factura — facturare fiscală integrată</figcaption>
+    </figure>
+  </div>
+  <div class="slide-num">05 / 51</div>
+</div>
+</section>
+
+<!-- 02e PET PROJECT 3 -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Pet project</div><h2 class="slide-title">Business Suite — module (3/3)</h2></div>
+  <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:24px;flex:1;align-items:center;min-height:0;">
+    <figure style="margin:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;background:#fff;">
+      <img src="assets/photos/pet-diplome.png" alt="Generare diplome" style="width:100%;height:330px;object-fit:cover;object-position:top;display:block;" />
+      <figcaption style="padding:10px 14px;font-size:13px;font-weight:700;color:var(--foreground);border-top:1px solid var(--border);">🎓 Generare diplome — certificate (Vector Academy)</figcaption>
+    </figure>
+    <div>
+      <p class="dict-analogy" style="font-size:19px;">Un singur om. <b>5 module</b>: marketing, finanțe, CRM, facturare, certificate — construite și legate cu <b>Lovable + Claude</b>.</p>
+      <div class="why-band" style="margin-top:14px;"><span class="wb-icon">🚀</span><span class="wb-text"><span class="lbl">Ideea</span>Asta e ce devine posibil prin vibecoding. Acum hai să vedem <b>cum</b>.</span></div>
+    </div>
+  </div>
+  <div class="slide-num">06 / 51</div>
+</div>
+</section>
+
+<!-- 02f MARKETING AGENTS -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Pet project</div><h2 class="slide-title">Agenți de marketing, integrați în VS Code</h2><p class="slide-subtitle">În Claude (VS Code) am integrat agenți care fac <b>marketing real</b> — fiecare cu treaba lui.</p></div>
+  <div class="cards-grid cards-3" style="flex:none;">
+    <div class="card sky"><span class="card-icon">💬</span><p class="card-title">SMS</p><p class="card-body">Trimite campanii SMS către liste, direct din flux.</p></div>
+    <div class="card primary-light"><span class="card-icon">✉️</span><p class="card-title">Email marketing</p><p class="card-body">Compune &amp; trimite secvențe de email personalizate.</p></div>
+    <div class="card lavender"><span class="card-icon">🎠</span><p class="card-title">Generare carusele</p><p class="card-body">Carusele pentru social, gata de postat.</p></div>
+    <div class="card peach"><span class="card-icon">🕸️</span><p class="card-title">Scraping</p><p class="card-body">Adună lead-uri &amp; date publice pentru campanii.</p></div>
+    <div class="card mint"><span class="card-icon">📄</span><p class="card-title">Generare oferte</p><p class="card-body">Oferte personalizate (.pdf/.docx) la cerere.</p></div>
+    <div class="card rose"><span class="card-icon">🖥️</span><p class="card-title">Generare landing pages</p><p class="card-body">Pagini de campanie, rapid, pe stilul brandului.</p></div>
+  </div>
+  <div class="why-band" style="margin-top:16px;"><span class="wb-icon">🧩</span><span class="wb-text"><span class="lbl">De reținut</span>Nu un singur tool magic — o <b>echipă de agenți</b>, fiecare specializat, în același loc (VS Code).</span></div>
+  <div class="slide-num">07 / 51</div>
+</div>
+</section>
+
+<!-- 03 CE E VIBECODING -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Cadru</div><h2 class="slide-title">Ce e „vibecoding"?</h2><p class="slide-subtitle">Termen lansat de <b>Andrej Karpathy</b> (2025): construiești software <b>descriindu-l</b> în limbaj natural, nu scriindu-l de la zero.</p></div>
+  <div class="vs-table" style="flex:none;margin-bottom:16px;">
+    <div class="vs-col left">
+      <div class="vs-head classic">🐌 Modelul clasic</div>
+      <div class="vs-row"><span class="ic">•</span>Înveți să programezi, luni de zile…</div>
+      <div class="vs-row"><span class="ic">•</span>…sau plătești o echipă și aștepți</div>
+      <div class="vs-row"><span class="ic">•</span>O idee simplă = un proiect mare</div>
+    </div>
+    <div class="vs-col right">
+      <div class="vs-head growth">⚡ Vibecoding</div>
+      <div class="vs-row"><span class="ic">•</span>Descrii ce vrei; AI scrie codul, îl rulează, îl repară</div>
+      <div class="vs-row"><span class="ic">•</span>Iterezi în conversație, vezi rezultatul rapid</div>
+      <div class="vs-row"><span class="ic">•</span>Treci de la idee la prototip în ore, nu săptămâni</div>
+    </div>
+  </div>
+  <div class="quote-block" style="margin-top:auto;"><strong>Ce schimbă:</strong> nu dispare programarea — scade <strong>bariera de intrare</strong>. Tu aduci ideea și judecata; AI aduce viteza.</div>
+  <div class="slide-num">08 / 51</div>
+</div>
+</section>
+
+<!-- 04 AGENDA -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Agenda</div><h2 class="slide-title">Ce acoperim azi</h2><p class="slide-subtitle">De la „ce e vibecoding" → la un <b>stack real</b>, cu exemple și capcanele de evitat.</p></div>
+  <ul class="agenda-list">
+    <li class="agenda-item"><span class="agenda-num">1</span><span class="agenda-label">Ce poți construi — și ce cere scara</span></li>
+    <li class="agenda-item"><span class="agenda-num">2</span><span class="agenda-label">Două familii de unelte</span></li>
+    <li class="agenda-item"><span class="agenda-num">3</span><span class="agenda-label">Lovable · Claude · VS Code (separat)</span></li>
+    <li class="agenda-item"><span class="agenda-num">4</span><span class="agenda-label">Model, effort &amp; thinking</span></li>
+    <li class="agenda-item"><span class="agenda-num">5</span><span class="agenda-label">Drumul: de la MVP la producție</span></li>
+    <li class="agenda-item"><span class="agenda-num">6</span><span class="agenda-label">GitHub: de ce &amp; cum funcționează</span></li>
+    <li class="agenda-item"><span class="agenda-num">7</span><span class="agenda-label">Agenți gata făcuți &amp; multi-agent</span></li>
+    <li class="agenda-item"><span class="agenda-num">8</span><span class="agenda-label">Sub capotă: API, MCP, hosting, Supabase</span></li>
+    <li class="agenda-item"><span class="agenda-num">9</span><span class="agenda-label">Design system înainte de build</span></li>
+    <li class="agenda-item"><span class="agenda-num">10</span><span class="agenda-label">Securitate, permisiuni &amp; costuri</span></li>
+    <li class="agenda-item"><span class="agenda-num">11</span><span class="agenda-label">Greșeli, best practices &amp; recomandări</span></li>
+  </ul>
+  <div class="slide-num">09 / 51</div>
+</div>
+</section>
+
+<!-- 05 CE POTI CONSTRUI / SCARA -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Realist</div><h2 class="slide-title">Poți construi (aproape) orice — dar scara cere pricepere</h2><p class="slide-subtitle">Vibecoding-ul te duce repede la un produs care merge. Ca să reziste la mulți clienți, intervin lucruri pe care trebuie să le înțelegi.</p></div>
+  <div class="split-screen">
+    <div class="split-pane good">
+      <span class="split-label good">✅ AJUNGI SINGUR LA</span>
+      <div class="split-list">
+        <div class="split-li"><span class="b">→</span>Landing pages &amp; pagini de înscriere</div>
+        <div class="split-li"><span class="b">→</span>MVP-uri &amp; prototipuri ca să testezi o idee</div>
+        <div class="split-li"><span class="b">→</span>Tool-uri interne, calculatoare, dashboards</div>
+        <div class="split-li"><span class="b">→</span>Chiar o aplicație cu utilizatori (cu integrări gata)</div>
+        <div class="split-li"><span class="b">→</span>Automatizări care îți scot muncă de pe umeri</div>
+      </div>
+    </div>
+    <div class="split-pane indigo">
+      <span class="split-pane-pill bright">⚙️ La scară, contează priceperea pe</span>
+      <div class="split-list" style="margin-top:6px;">
+        <div class="split-li"><span class="b">›</span><b>Infrastructură</b> — să țină la trafic mare, fără să cadă</div>
+        <div class="split-li"><span class="b">›</span><b>Securitatea datelor</b> — cine vede ce, unde stau datele</div>
+        <div class="split-li"><span class="b">›</span><b>Scalare</b> la mii de clienți — costuri &amp; performanță</div>
+        <div class="split-li"><span class="b">›</span><b>Decizii</b> pe care AI le execută, dar tu le validezi</div>
+      </div>
+    </div>
+  </div>
+  <div class="info-band" style="margin-top:16px;"><span class="ib-icon">🧠</span><span class="ib-text">AI te ajută enorm — poți cere lui Claude „<b>testează</b>" sau „<b>fă-l mai sigur</b>". Dar trebuie să <b>înțelegi ce-ți livrează</b>. Vibecoding nu înlocuiește înțelegerea — o accelerează.</span></div>
+  <div class="slide-num">10 / 51</div>
+</div>
+</section>
+
+<!-- 06 DOUA FAMILII -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Peisajul</div><h2 class="slide-title">Două familii de unelte</h2><p class="slide-subtitle">Toate fac „vibecoding", pe drumuri diferite. Azi comparăm <b>câte un reprezentant din fiecare</b>.</p></div>
+  <div class="split-screen">
+    <div class="split-pane neutral">
+      <span class="split-pane-pill muted">🎨 Buildere vizuale</span>
+      <p class="split-h">Descrii UI → vezi pagina</p>
+      <p class="split-sub">Vizual, găzduire inclusă. Pentru pagini, MVP-uri, apps cu integrări.</p>
+      <div class="fam-logos" style="margin-top:6px;">
+        <span class="fam-logo"><span class="logo"><svg width="20" height="20" viewBox="0 0 24 24"><path fill="url(#lovgrad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>Lovable</span>
+        <span class="fam-logo"><span style="font-size:18px">⚡</span>Bolt</span>
+        <span class="fam-logo"><span style="font-weight:800;font-size:16px">v0</span></span>
+        <span class="fam-logo"><span class="logo"><svg width="18" height="18" viewBox="0 0 24 24" style="fill:#F26207"><path d="M2 1.5A1.5 1.5 0 0 1 3.5 0h7A1.5 1.5 0 0 1 12 1.5V8H3.5A1.5 1.5 0 0 1 2 6.5ZM12 8h8.5A1.5 1.5 0 0 1 22 9.5v5a1.5 1.5 0 0 1-1.5 1.5H12ZM2 17.5A1.5 1.5 0 0 1 3.5 16H12v6.5a1.5 1.5 0 0 1-1.5 1.5h-7A1.5 1.5 0 0 1 2 22.5Z"/></svg></span>Replit</span>
+      </div>
+    </div>
+    <div class="split-pane indigo">
+      <span class="split-pane-pill bright">⌨️ Agenți de cod</span>
+      <p class="split-h">Lucrează în fișierele tale</p>
+      <p class="split-sub">Control total, logică reală, orice tip de proiect.</p>
+      <div class="fam-logos" style="margin-top:6px;">
+        <span class="fam-logo"><span class="logo"><svg width="18" height="18" viewBox="0 0 24 24" style="fill:#D97757"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg></span>Claude</span>
+        <span class="fam-logo"><span class="logo"><svg width="18" height="18" viewBox="0 0 24 24" style="fill:#0F172A"><path d="M11.925 24l10.425-6-10.425-6L1.5 18l10.425 6zm.15-12L1.65 6l10.425-6L22.5 6 12.075 12z"/></svg></span>Cursor</span>
+        <span class="fam-logo"><span style="font-size:17px">🪐</span><span class="fl-txt">Antigravity<small>Google</small></span></span>
+        <span class="fam-logo"><span class="logo"><svg width="17" height="17" viewBox="0 0 24 24" style="fill:#0F172A"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span>Codex</span>
+      </div>
+    </div>
+  </div>
+  <div class="why-band" style="margin-top:16px;"><span class="wb-icon">🥊</span><span class="wb-text"><span class="lbl">Meciul de azi</span><b>Lovable</b> (vizual) vs <b>Claude</b> (cod). Nu „cine câștigă" — ci <b>când folosești pe care</b>.</span></div>
+  <div class="slide-num">11 / 51</div>
+</div>
+</section>
+
+<!-- 07 LOVABLE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag" style="background:#FFE9F0;color:#C2185B;">🎨 Protagonist 1</div><h2 class="slide-title">Lovable — de la idee la pagină, din vorbă</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="tool-hero">
+        <span class="th-mark" style="background:#FFF1F5;"><svg width="38" height="38" viewBox="0 0 24 24"><path fill="url(#lovgrad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+        <div><h3>Lovable</h3><p class="th-sub">builder vizual · lovable.dev</p></div>
+      </div>
+      <p class="dict-analogy">Descrii „<b>o pagină de înscriere cu formular și plată</b>" → o vezi live, o editezi conversațional, o publici.</p>
+      <p class="card-eyebrow" style="margin-top:2px;">Integrări native (nu doar pagini statice):</p>
+      <div class="taglist">
+        <span class="tag-pill on">Google Sign-in</span><span class="tag-pill on">Telegram</span><span class="tag-pill on">Google Sheets</span><span class="tag-pill on">Gmail</span><span class="tag-pill on">Resend</span><span class="tag-pill on">Stripe</span><span class="tag-pill on">WooCommerce → plăți (ex. maib)</span>
+      </div>
+      <div class="example-band" style="margin-top:4px;"><div class="eb-title">💡 Exemplu</div><div class="eb-body">Pagină de înscriere → plată cu cardul (Stripe / WooCommerce) → lista de clienți în Google Sheets. Fără să scrii cod.</div></div>
+    </div>
+    <div class="dict-visual">
+      <div class="winframe">
+        <div class="win-bar"><span class="win-dot r"></span><span class="win-dot y"></span><span class="win-dot g"></span><span class="win-title">lovable.dev — proiectul meu</span></div>
+        <div class="pagemock">
+          <div class="pm-hero"><div class="pm-h"></div></div>
+          <div class="pm-row"><div class="pm-card"></div><div class="pm-card"></div><div class="pm-card"></div></div>
+          <div class="pm-btn"></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;">💬 „adaugă plată cu Stripe și salvează în Sheets" → ✓ gata</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">12 / 51</div>
+</div>
+</section>
+
+<!-- 07b LOVABLE SKILLS -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag" style="background:#FFE9F0;color:#C2185B;">🎨 Lovable</div><h2 class="slide-title">Lovable are și „Skills" — abilități reutilizabile</h2><p class="slide-subtitle">Ca în Claude: îi dai agentului <b>capabilități gata făcute</b> pe care le aplică automat, fără să le explici de fiecare dată.</p></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="tool-hero">
+        <span class="th-mark" style="background:#FFF1F5;"><svg width="34" height="34" viewBox="0 0 24 24"><path fill="url(#lovgrad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>
+        <div><h3>Lovable Skills</h3><p class="th-sub">abilități modulare, reutilizabile</p></div>
+      </div>
+      <p class="dict-analogy">Un <b>Skill</b> = o „rețetă" pe care Lovable o știe pe de rost. O activezi o dată → o aplică în tot proiectul, consecvent.</p>
+      <p class="card-eyebrow" style="margin-top:2px;">Exemple de skills:</p>
+      <div class="taglist">
+        <span class="tag-pill on">SEO</span><span class="tag-pill on">Plăți</span><span class="tag-pill on">Autentificare</span><span class="tag-pill on">Formulare</span><span class="tag-pill on">Design consecvent</span>
+      </div>
+      <div class="dict-why"><span class="lbl">De ce contează</span>Scrii / activezi o dată, agentul reutilizează. <b>Mai puține explicații</b>, rezultate mai <b>consecvente</b> — și pe Lovable, și pe Claude.</div>
+    </div>
+    <div class="dict-visual">
+      <div class="winframe">
+        <div class="win-bar"><span class="win-dot r"></span><span class="win-dot y"></span><span class="win-dot g"></span><span class="win-title">Lovable — Skills</span></div>
+        <div style="padding:15px 16px;display:flex;flex-direction:column;gap:9px;background:#fff;min-height:230px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border);border-radius:9px;padding:10px 13px;"><span style="font-size:13.5px;font-weight:600;">🔍 SEO</span><span style="font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#15803D;background:var(--pastel-mint);padding:3px 9px;border-radius:100px;">Activat</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border);border-radius:9px;padding:10px 13px;"><span style="font-size:13.5px;font-weight:600;">💳 Plăți (Stripe)</span><span style="font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#15803D;background:var(--pastel-mint);padding:3px 9px;border-radius:100px;">Activat</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border);border-radius:9px;padding:10px 13px;"><span style="font-size:13.5px;font-weight:600;">🔐 Autentificare</span><span style="font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#15803D;background:var(--pastel-mint);padding:3px 9px;border-radius:100px;">Activat</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;border:1px solid var(--border);border-radius:9px;padding:10px 13px;opacity:.6;"><span style="font-size:13.5px;font-weight:600;">🌍 Multilingv</span><span style="font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);background:var(--bg);padding:3px 9px;border-radius:100px;">+ Adaugă</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">13 / 51</div>
+</div>
+</section>
+
+<!-- 07c LOVABLE LANDING -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag" style="background:#FFE9F0;color:#C2185B;">🎨 Lovable</div><h2 class="slide-title">Lovable — cel mai rapid drum la un landing page</h2><p class="slide-subtitle">Descrii pagina, o vezi live, o publici. Pentru landing pages e greu de bătut.</p></div>
+  <div style="display:grid;grid-template-columns:1fr 1.25fr;gap:24px;flex:1;align-items:center;min-height:0;">
+    <div class="check-list">
+      <div class="check-item"><span class="chk">⚡</span><div>De la prompt → pagină live în <b>minute</b></div></div>
+      <div class="check-item"><span class="chk">🎨</span><div>Design decent „din cutie", responsive</div></div>
+      <div class="check-item"><span class="chk">📝</span><div>Formular + plată + listă de lead-uri, gata legate</div></div>
+      <div class="check-item"><span class="chk">🚀</span><div>Publici cu un click (găzduire inclusă)</div></div>
+      <div class="check-item"><span class="chk">🔬</span><div>Ideal pentru <b>A/B testing</b> rapid pe variante</div></div>
+    </div>
+    <figure style="margin:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:#fff;">
+      <img src="assets/photos/lovable-landing.png" alt="Lovable landing page" style="width:100%;max-height:340px;object-fit:cover;object-position:top;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div style="display:none;flex-direction:column;align-items:center;justify-content:center;gap:8px;height:300px;color:var(--primary);background:var(--primary-ultra-light);"><span style="font-size:32px">📷</span><span style="font-weight:700;font-size:13px">Captură Lovable (landing page) aici</span><span style="font-size:11px;color:var(--muted)">assets/photos/lovable-landing.png</span></div>
+    </figure>
+  </div>
+  <div class="slide-num">14 / 51</div>
+</div>
+</section>
+
+<!-- 07d LOVABLE CONNECTORS -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag" style="background:#FFE9F0;color:#C2185B;">🎨 Lovable</div><h2 class="slide-title">Lovable — zeci de „Connectors" native</h2><p class="slide-subtitle">Conectezi servicii reale dintr-un click: plăți, mesagerie, ecommerce, CRM, Google. „Lipsește unul? → Request."</p></div>
+  <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:22px;flex:1;align-items:center;min-height:0;">
+    <figure style="margin:0;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:#fff;">
+      <img src="assets/photos/lovable-connectors.png" alt="Lovable connectors" style="width:100%;max-height:370px;object-fit:cover;object-position:top;display:block;" />
+    </figure>
+    <div>
+      <div class="taglist">
+        <span class="tag-pill on">Stripe</span><span class="tag-pill on">Paddle</span><span class="tag-pill on">Shopify</span><span class="tag-pill on">WooCommerce</span><span class="tag-pill on">Telegram</span><span class="tag-pill on">Resend</span><span class="tag-pill on">Supabase</span><span class="tag-pill on">Google Sheets</span><span class="tag-pill on">Search Console</span><span class="tag-pill on">Zoho CRM</span><span class="tag-pill on">Firecrawl</span>
+      </div>
+      <div class="info-band" style="margin-top:14px;"><span class="ib-icon">🔌</span><span class="ib-text">Categorii: Ecommerce · Marketing · Messaging · Productivity · Sales · Google · Microsoft.</span></div>
+    </div>
+  </div>
+  <div class="slide-num">15 / 51</div>
+</div>
+</section>
+
+<!-- 07e LOVABLE ADVANTAGES -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag" style="background:#FFE9F0;color:#C2185B;">🎨 Lovable</div><h2 class="slide-title">Lovable — mai mult decât un builder de pagini</h2><p class="slide-subtitle">Funcții care, altfel, ar cere un developer. Verificat iunie 2026.</p></div>
+  <div class="cards-grid cards-2" style="flex:none;">
+    <div class="card sky"><span class="card-icon">🔎</span><p class="card-title">SEO &amp; sitemap, automat</p><p class="card-body">Generează <b>sitemap.xml</b>, robots, metadata; „SEO review" găsește ce lipsește și <b>repară cu un click</b>. SSR + pre-rendering pentru Google.</p></div>
+    <div class="card mint"><span class="card-icon">🛡️</span><p class="card-title">Security scan, la fiecare publish</p><p class="card-body">Scanează automat RLS, secrete, configurări (~10–15s). Deep AI review (2–4 min) + <b>auto-fix</b> opțional; blochează publicarea la probleme critice.</p></div>
+    <div class="card lavender"><span class="card-icon">📈</span><p class="card-title">Analytics &amp; cercetare SEO</p><p class="card-body">Cu <b>Semrush</b> integrat: cuvinte-cheie, competitori, backlinks, ranking — direct din chat.</p></div>
+    <div class="card peach"><span class="card-icon">🌐</span><p class="card-title">Custom domain</p><p class="card-body">Cumperi sau conectezi <b>domeniul tău</b> — îți construiești prezența pe un domeniu pe care-l controlezi.</p></div>
+  </div>
+  <div class="why-band" style="margin-top:14px;"><span class="wb-icon">✨</span><span class="wb-text"><span class="lbl">De reținut</span>Lovable nu doar „desenează" pagina — îți dă <b>SEO, securitate, analytics și domeniu</b> aproape gata.</span></div>
+  <div class="slide-num">16 / 51</div>
+</div>
+</section>
+
+<!-- 08 CLAUDE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag" style="background:#FBEEE6;color:#B45309;">⌨️ Protagonist 2</div><h2 class="slide-title">Claude (Claude Code) — control &amp; logică, nu doar pagini</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="tool-hero">
+        <span class="th-mark" style="background:#FBEEE6;"><svg width="36" height="36" viewBox="0 0 24 24" style="fill:#D97757"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg></span>
+        <div><h3>Claude Code</h3><p class="th-sub">agent de cod · în VS Code / terminal</p></div>
+      </div>
+      <p class="dict-analogy">Îi dai un <b>obiectiv</b> și lucrează în proiectul tău: scrie cod, îl rulează, repară, salvează.</p>
+      <div class="taglist">
+        <span class="tag-pill on">Logică reală</span><span class="tag-pill on">Automatizări</span><span class="tag-pill on">Orice proiect</span><span class="tag-pill on">Flexibilitate: alegi orice unealtă / model</span>
+      </div>
+      <div class="example-band" style="margin-top:2px;"><div class="eb-title">💡 Exemplu</div><div class="eb-body">„Citește înscrierile, trimite-mi pe email cine a plătit și generează factura." Logică reală, nu doar UI.</div></div>
+      <div class="info-band" style="margin-top:2px;"><span class="ib-icon">💳</span><span class="ib-text"><b>Preț:</b> abonamentul Claude (~$20/Pro) acoperă mult mai mult decât pare. Chiar și cu limite, faci semnificativ mai mult pe dolar decât pe credite — cel mai bun raport pentru uz zilnic.</span></div>
+    </div>
+    <div class="dict-visual">
+      <div class="term">
+        <div class="term-bar"><span class="win-dot r"></span><span class="win-dot y"></span><span class="win-dot g"></span><span class="win-title">claude — proiectul meu</span></div>
+        <div class="term-body">
+          <div><span class="t-prompt">➜</span> <span class="t-cmd">claude</span></div>
+          <div class="t-out">&gt; trimite-mi cine a plătit azi + factura</div>
+          <div class="t-out">Citesc <span style="color:#fff">plati.csv</span> …</div>
+          <div class="t-out">Generez facturile, compun emailul …</div>
+          <div class="t-ok">✓ 7 plăți · 7 facturi · email trimis.</div>
+          <div><span class="t-prompt">➜</span> <span class="t-cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">17 / 51</div>
+</div>
+</section>
+
+<!-- 09 CLAUDE IN VS CODE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Mediul de lucru</div><h2 class="slide-title">Claude „trăiește" în VS Code</h2><p class="slide-subtitle">VS Code = un editor gratuit. Adaugi extensia Claude → ai un coleg care lucrează în același loc cu tine.</p></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="tool-hero">
+        <span class="th-mark" style="background:#EFF6FF;"><svg width="34" height="34" viewBox="0 0 24 24" style="fill:#0078D4"><path d="M23.15 2.587 18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/></svg></span>
+        <div><h3>VS Code + Claude</h3><p class="th-sub">biroul + colegul</p></div>
+      </div>
+      <p class="dict-analogy">Trei zone, un singur ecran: <b>fișierele</b> (stânga), <b>codul</b> (centru), <b>chat-ul cu agentul</b> (dreapta).</p>
+      <div class="dict-why"><span class="lbl">De ce contează</span>Vezi cu ochii tăi ce face — nu e o cutie neagră. Web/desktop = limitat; <b>VS Code / terminal = varianta serioasă</b>.</div>
+    </div>
+    <div class="dict-visual">
+      <div class="winframe">
+        <div class="win-bar"><span class="win-dot r"></span><span class="win-dot y"></span><span class="win-dot g"></span><span class="win-title">proiectul-meu — VS Code</span></div>
+        <div class="vscode-body">
+          <div class="vsz files"><span class="vsz-label">Fișiere</span><span class="vsz-file">📄 index</span><span class="vsz-file">📄 CLAUDE</span><span class="vsz-file">📁 assets</span><span class="vsz-file">📄 .env</span></div>
+          <div class="vsz editor"><span class="vsz-label">Editor</span><span class="vsz-line" style="width:80%"></span><span class="vsz-line" style="width:60%"></span><span class="vsz-line" style="width:90%"></span><span class="vsz-line" style="width:50%"></span><span class="vsz-line" style="width:70%"></span></div>
+          <div class="vsz agent"><span class="vsz-label">Agent (Claude)</span><span class="vsz-msg me">adaugă login</span><span class="vsz-msg">Scriu codul… ✓ gata</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">18 / 51</div>
+</div>
+</section>
+
+<!-- 09b INSTALL GUIDE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Setup</div><h2 class="slide-title">Cum pornești Claude în VS Code — pas cu pas</h2><p class="slide-subtitle">Descarci, instalezi extensia, autorizezi. Atât.</p></div>
+  <div class="llm-steps" style="margin:auto 0;">
+    <div class="llm-step"><div class="llm-step-num">1</div><span class="llm-step-icon">⬇️</span><div class="llm-step-title">Descarcă VS Code</div><div class="llm-step-desc">code.visualstudio.com — gratuit, Mac/Windows.</div></div>
+    <div class="llm-step"><div class="llm-step-num">2</div><span class="llm-step-icon">🧩</span><div class="llm-step-title">Deschide „Extensions"</div><div class="llm-step-desc">Iconița cu pătrate din bara laterală.</div></div>
+    <div class="llm-step"><div class="llm-step-num">3</div><span class="llm-step-icon">🔎</span><div class="llm-step-title">Caută „Claude Code"</div><div class="llm-step-desc">Și apasă <b>Install</b>.</div></div>
+    <div class="llm-step"><div class="llm-step-num">4</div><span class="llm-step-icon">🔑</span><div class="llm-step-title">Autorizează</div><div class="llm-step-desc">Te loghezi cu contul Claude (Pro/Max).</div></div>
+    <div class="llm-step"><div class="llm-step-num">5</div><span class="llm-step-icon">✅</span><div class="llm-step-title">Dă-i acces la folder</div><div class="llm-step-desc">Aprobi accesul → poți începe să-i scrii.</div></div>
+  </div>
+  <div class="info-band" style="margin-top:18px;"><span class="ib-icon">ℹ️</span><span class="ib-text">Variantele Claude: <b>web/desktop = limitat</b>; în <b>VS Code / terminal = serios</b>. Pentru autorizare ai nevoie de un abonament (Pro/Max).</span></div>
+  <div class="slide-num">19 / 51</div>
+</div>
+</section>
+
+<!-- 10 MODEL, EFFORT, THINKING -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Reglaje Claude</div><h2 class="slide-title">Model, effort &amp; thinking — câtă „minte" pui la treabă</h2><p class="slide-subtitle">Două reglaje contează: ce <b>model</b> alegi și cât <b>effort</b> îi ceri.</p></div>
+  <div class="split-screen" style="flex:none;">
+    <div class="split-pane neutral">
+      <span class="split-pane-pill muted">Sonnet · zilnicul</span>
+      <p class="split-h">Rapid &amp; eficient</p>
+      <div class="split-list">
+        <div class="split-li"><span class="b" style="color:#16A34A">✓</span>Acoperă majoritatea muncii: cod, editări, iterație</div>
+        <div class="split-li"><span class="b" style="color:#16A34A">✓</span>Răspunde repede, consumă mai puțin</div>
+        <div class="split-li"><span class="b" style="color:#DC2626">✗</span>Se poate bloca la raționament foarte greu</div>
+      </div>
+    </div>
+    <div class="split-pane indigo">
+      <span class="split-pane-pill bright">Opus · greaua artilerie</span>
+      <p class="split-h">Cel mai capabil</p>
+      <div class="split-list">
+        <div class="split-li"><span class="b" style="color:#16A34A">✓</span>Probleme grele, refactor mare, arhitectură</div>
+        <div class="split-li"><span class="b" style="color:#16A34A">✓</span>Gândește mai adânc când contează</div>
+        <div class="split-li"><span class="b" style="color:#DC2626">✗</span>Mai lent, mai scump, consumă limitele mai repede</div>
+      </div>
+    </div>
+  </div>
+  <div class="info-band" style="margin-top:16px;align-items:flex-start;">
+    <span class="ib-icon">🎚️</span>
+    <div style="flex:1;">
+      <span class="ib-text" style="display:block;margin-bottom:10px;"><b>Effort</b> = cât raționează înainte să răspundă. Mic = rapid/ieftin; Max = pentru probleme grele. <b>Thinking</b> = îl lași să „gândească cu voce tare" întâi.</span>
+      <div class="effort-rail">
+        <div class="effort-pill lo"><span class="ep-t">Low</span><span class="ep-s">rapid, ieftin</span></div>
+        <div class="effort-pill mid"><span class="ep-t">Medium</span><span class="ep-s">echilibru</span></div>
+        <div class="effort-pill hi"><span class="ep-t">High</span><span class="ep-s">sarcini grele</span></div>
+        <div class="effort-pill max"><span class="ep-t">Max</span><span class="ep-s">maxim de gândire</span></div>
+        <div class="effort-pill think"><span class="ep-t">+ Thinking</span><span class="ep-s">raționează întâi</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="quote-block warning" style="margin-top:14px;font-size:13.5px;"><strong>De actualitate (iunie 2026):</strong> <strong>Fable 5</strong> — cel mai capabil model Anthropic — a fost suspendat printr-o directivă a guvernului SUA (control export / securitate națională). <strong>Sonnet, Opus și Haiku</strong> rămân disponibile.</div>
+  <div class="slide-num">20 / 51</div>
+</div>
+</section>
+
+<!-- 11 LOVABLE — DATELE CONCRETE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag" style="background:#FFE9F0;color:#C2185B;">🎨 Lovable · datele concrete</div><h2 class="slide-title">Lovable — pe bune, cifre nu generalități</h2></div>
+  <div class="cards-grid cards-2" style="flex:none;">
+    <div class="card"><span class="card-icon">💳</span><p class="card-title">Preț (credite)</p><p class="card-body">Free: <b>5 credite/zi</b> (30/lună), subdomenii .lovable.app. <b>Pro de la ~$25/lună</b> (~100 credite). O funcție reală ≈ <b>30–60 credite</b>.</p></div>
+    <div class="card"><span class="card-icon">🧱</span><p class="card-title">Tehnic (ce e dedesubt)</p><p class="card-body">Construit pe <b>React + TypeScript</b>, backend <b>Supabase</b>. Cod standard, exportabil pe GitHub.</p></div>
+    <div class="card mint"><span class="card-icon">✅</span><p class="card-title">Strălucește la</p><p class="card-body">UI / landing / MVP, viteză, <b>integrări gata</b>, găzduire inclusă (Lovable Cloud, facturată pe consum).</p></div>
+    <div class="card peach"><span class="card-icon">⚠️</span><p class="card-title">Cedează la</p><p class="card-body">Apps mari / logică complexă. Creditele <b>se duc repede</b> dacă re-iterezi mult pe același ecran.</p></div>
+  </div>
+  <div class="slide-num">21 / 51</div>
+</div>
+</section>
+
+<!-- 11c CLAUDE — DATELE CONCRETE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag" style="background:#FBEEE6;color:#B45309;">⌨️ Claude Code · datele concrete</div><h2 class="slide-title">Claude Code — pe bune, cifre nu generalități</h2></div>
+  <div class="cards-grid cards-2" style="flex:none;">
+    <div class="card"><span class="card-icon">💳</span><p class="card-title">Preț</p><p class="card-body"><b>Pro $20/lună</b> (1×) · <b>Max 5× $100</b> · <b>Max 20× $200</b>. API separat (plată per token).</p></div>
+    <div class="card"><span class="card-icon">⏱️</span><p class="card-title">Limite</p><p class="card-body">Fereastră de <b>5h</b> + plafon <b>săptămânal</b>. Doar multiplicatori publicați (Max 20× ≈ <b>220k tokeni/5h</b>). Dublate în mai 2026.</p></div>
+    <div class="card mint"><span class="card-icon">✅</span><p class="card-title">Strălucește la</p><p class="card-body">Logică reală, automatizări, control, <b>orice tip de proiect</b>. Mult „pe dolar".</p></div>
+    <div class="card lavender"><span class="card-icon">🧩</span><p class="card-title">Extensibil</p><p class="card-body"><b>MCP</b> (conectezi orice unealtă), <b>Skills</b>, <b>sub-agenți</b> în paralel, agenți gata de pe GitHub. Îl crești cât ai nevoie.</p></div>
+  </div>
+  <div style="font-size:10.5px;color:var(--muted);margin-top:9px;">Date verificate iunie 2026 — pricing &amp; limite oficiale Lovable / Anthropic.</div>
+  <div class="slide-num">22 / 51</div>
+</div>
+</section>
+
+
+<!-- 11d VS — PERF / COST / EASE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Cap-la-cap</div><h2 class="slide-title">Lovable vs Claude — performanță, cost, ușurință</h2></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);flex:none;">
+    <div style="display:flex;align-items:center;gap:9px;padding:13px 16px;background:#FFF1F5;border-bottom:2px solid #F3C5D8;"><span class="logo"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="url(#lovgrad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span><span style="font-size:18px;font-weight:800;color:#C2185B;">Lovable</span></div>
+    <div style="display:flex;align-items:center;gap:9px;padding:13px 16px;background:#FBEEE6;border-bottom:2px solid #F6D8B8;"><span class="logo"><svg width="20" height="20" viewBox="0 0 24 24" style="fill:#D97757"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg></span><span style="font-size:18px;font-weight:800;color:#B45309;">Claude Code</span></div>
+    <div style="grid-column:1/-1;background:#0F172A;color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:7px 16px;">⚡ Performanță</div>
+    <div style="padding:12px 16px;font-size:13.5px;line-height:1.45;border-right:1px solid var(--border);background:rgba(252,231,243,.22);">Rapid la UI &amp; pagini; apps simple zboară. La logică complexă/scalare devine greoi.</div>
+    <div style="padding:12px 16px;font-size:13.5px;line-height:1.45;background:rgba(254,237,213,.22);">Tu controlezi performanța; duce și proiecte mari/rapide — dacă știi ce faci.</div>
+    <div style="grid-column:1/-1;background:#0F172A;color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:7px 16px;">💳 Cost</div>
+    <div style="padding:12px 16px;font-size:13.5px;line-height:1.45;border-right:1px solid var(--border);background:rgba(252,231,243,.22);">Credite (Free 5/zi · Pro ~$25 / 100 credite). Iterațiile dese ard credite.</div>
+    <div style="padding:12px 16px;font-size:13.5px;line-height:1.45;background:rgba(254,237,213,.22);">Abonament fix ($20 Pro · $100–200 Max). Mult „pe dolar", previzibil.</div>
+    <div style="grid-column:1/-1;background:#0F172A;color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:7px 16px;">👍 Ușurință (ease of use)</div>
+    <div style="padding:12px 16px;font-size:13.5px;line-height:1.45;border-right:1px solid var(--border);background:rgba(252,231,243,.22);">Foarte ușor, vizual, <b>zero setup</b>. Ideal pentru non-tehnici.</div>
+    <div style="padding:12px 16px;font-size:13.5px;line-height:1.45;background:rgba(254,237,213,.22);">Cere VS Code + un vocabular de bază. Mediu — dar te face capabil.</div>
+  </div>
+  <div class="slide-num">23 / 51</div>
+</div>
+</section>
+
+<!-- 11e VS — BUGS / RECOMANDAT -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Cap-la-cap</div><h2 class="slide-title">Lovable vs Claude — bugs &amp; pentru ce e fiecare</h2></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);flex:none;">
+    <div style="display:flex;align-items:center;gap:9px;padding:13px 16px;background:#FFF1F5;border-bottom:2px solid #F3C5D8;"><span class="logo"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="url(#lovgrad)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span><span style="font-size:18px;font-weight:800;color:#C2185B;">Lovable</span></div>
+    <div style="display:flex;align-items:center;gap:9px;padding:13px 16px;background:#FBEEE6;border-bottom:2px solid #F6D8B8;"><span class="logo"><svg width="20" height="20" viewBox="0 0 24 24" style="fill:#D97757"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg></span><span style="font-size:18px;font-weight:800;color:#B45309;">Claude Code</span></div>
+    <div style="grid-column:1/-1;background:#0F172A;color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:7px 16px;">🐞 Bugs &amp; setup</div>
+    <div style="padding:12px 16px;font-size:13.5px;line-height:1.45;border-right:1px solid var(--border);background:rgba(252,231,243,.22);"><b>E presetat:</b> stack, securitate, găzduire deja configurate → <b>mai puține bug-uri de setup</b>. Dar ești în „cutia" lui.</div>
+    <div style="padding:12px 16px;font-size:13.5px;line-height:1.45;background:rgba(254,237,213,.22);">Control total → repari orice, dar poți și <b>introduce</b> bug-uri. Verifici &amp; testezi (de-aia agenți de testare).</div>
+    <div style="grid-column:1/-1;background:#0F172A;color:#fff;font-size:11.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:7px 16px;">🎯 Recomandat pentru</div>
+    <div style="padding:12px 16px;font-size:13.5px;line-height:1.45;border-right:1px solid var(--border);background:rgba(252,231,243,.22);">Începători · MVP · landing · validare rapidă · apps cu integrări gata.</div>
+    <div style="padding:12px 16px;font-size:13.5px;line-height:1.45;background:rgba(254,237,213,.22);">Control · automatizări · logică reală · producție · proiecte care cresc.</div>
+  </div>
+  <div class="why-band" style="margin-top:14px;"><span class="wb-icon">⚖️</span><span class="wb-text"><span class="lbl">Verdict</span>Nu „unul mai bun" — depinde de etapă: <b>Lovable validează rapid</b>, <b>Claude duce în producție</b>.</span></div>
+  <div class="slide-num">24 / 51</div>
+</div>
+</section>
+
+<!-- 12b UNDE TRAIESC FISIERELE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Înainte de GitHub</div><h2 class="slide-title">Unde „trăiesc" fișierele tale</h2><p class="slide-subtitle">Trei locuri, trei roluri — ca să înțelegi de ce ai nevoie de GitHub.</p></div>
+  <div class="cards-grid cards-3" style="flex:none;">
+    <div class="card sky"><span class="card-icon">💻</span><p class="card-title">Pe calculatorul tău</p><p class="card-body">Aici se scriu și se salvează efectiv fișierele. <b>Local = doar la tine.</b></p></div>
+    <div class="card primary-light"><span class="card-icon">🗂️</span><p class="card-title">VS Code le organizează</p><p class="card-body">Le vezi pe toate într-un loc, le deschizi, le editezi ordonat.</p></div>
+    <div class="card mint"><span class="card-icon">🐙</span><p class="card-title">GitHub le duce online</p><p class="card-body">Backup, istoric, partajare. <b>Plasa de siguranță</b> (urmează).</p></div>
+  </div>
+  <div class="why-band" style="margin-top:16px;"><span class="wb-icon">🔁</span><span class="wb-text"><span class="lbl">Pe scurt</span>Lucrezi <b>local</b> (VS Code, pe calculatorul tău) → salvezi <b>online</b> (GitHub).</span></div>
+  <div class="slide-num">25 / 51</div>
+</div>
+</section>
+
+<!-- 13 GITHUB DE CE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Plasa de siguranță</div><h2 class="slide-title">GitHub — de ce contează (chiar dacă nu scrii cod)</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="tool-hero">
+        <span class="th-mark" style="background:#F1F5F9;"><svg width="32" height="32" viewBox="0 0 24 24" style="fill:#0F172A"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span>
+        <div><h3>GitHub</h3><p class="th-sub">„Drive pentru proiecte de cod"</p></div>
+      </div>
+      <div class="check-list" style="margin-top:4px;">
+        <div class="check-item"><span class="chk">⏪</span><div><b>Versiuni:</b> revii oricând la o variantă care funcționa. Un „Ctrl+Z" istoric.</div></div>
+        <div class="check-item"><span class="chk">☁️</span><div><b>Backup:</b> codul nu trăiește doar pe laptop.</div></div>
+        <div class="check-item"><span class="chk">👥</span><div><b>Colaborare ordonată:</b> mai mulți lucrează fără să se suprascrie.</div></div>
+        <div class="check-item"><span class="chk">📦</span><div><b>Sursă de cod &amp; agenți gata făcuți.</b></div></div>
+      </div>
+    </div>
+    <div class="dict-visual">
+      <div class="repocard">
+        <div class="repocard-top"><span class="logo"><svg width="24" height="24" viewBox="0 0 24 24" style="fill:#0F172A"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span><div class="rn"><span class="gh">dima/</span><b>firma-mea</b></div></div>
+        <div class="repocard-body">
+          <div class="rd">Site-ul + automatizările afacerii. Salvat la fiecare pas.</div>
+          <div class="repocard-meta"><span class="m"><span class="lang"></span> TypeScript</span><span class="m">⭐ 0</span><span class="m">🕘 acum 2 min</span></div>
+          <div class="repocard-clone">⬇ Clone</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">26 / 51</div>
+</div>
+</section>
+
+<!-- 14 GITHUB CUM FUNCTIONEAZA (VIZUAL) -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">GitHub vizual</div><h2 class="slide-title">Cum funcționează GitHub, pe scurt</h2><p class="slide-subtitle">Codul stă în 2 locuri: <b>local</b> (laptopul tău) și <b>remote</b> (GitHub, în cloud). Le ții la sincron.</p></div>
+  <div class="gitviz" style="margin:auto 0;">
+    <div class="git-box local">
+      <span class="gb-label">💻 Local · <span style="color:var(--muted)">offline</span></span>
+      <div class="commit-rail">
+        <span class="cr-dot"></span><span class="cr-line"></span><span class="cr-dot"></span><span class="cr-line"></span><span class="cr-dot"></span><span class="cr-line"></span><span class="cr-dot now"></span>
+      </div>
+    </div>
+    <div class="git-mid">
+      <span class="gm"><span class="ar">⬆</span> push <span style="font-weight:500;color:var(--muted)">— urci versiunile tale</span></span>
+      <span class="gm pull"><span class="ar">⬇</span> pull <span style="font-weight:500;color:var(--muted)">— descarci ce-au pus alții</span></span>
+    </div>
+    <div class="git-box remote">
+      <span class="gb-label">☁️ GitHub · <span style="color:var(--primary-light)">online</span></span>
+      <div class="commit-rail">
+        <span class="cr-dot"></span><span class="cr-line"></span><span class="cr-dot"></span><span class="cr-line"></span><span class="cr-dot"></span>
+      </div>
+    </div>
+  </div>
+  <div class="info-band" style="margin-top:18px;"><span class="ib-icon">📁</span><span class="ib-text"><b>Local = offline</b> (pe laptop, doar tu) · <b>GitHub = online</b> (în cloud, partajat). Ca pe <b>Google Drive</b>: fișierul de pe laptop e „offline"; când îl <b>urci (push)</b> în Drive devine online; <b>pull</b> = descarci ce-au pus alții. Diferența: la GitHub tu decizi <i>când</i> urci/cobori.</span></div>
+  <div class="slide-num">27 / 51</div>
+</div>
+</section>
+
+<!-- 14b BRANCHES -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">GitHub vizual</div><h2 class="slide-title">Branch-uri — lucrezi fără să strici ce merge</h2><p class="slide-subtitle">Un <b>branch</b> = o copie separată în care lucrezi liniștit. La final, pui modificările înapoi.</p></div>
+  <figure style="margin:4px 0 0;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);background:#fff;padding:12px 16px;">
+    <img src="assets/photos/github-flow.png" alt="GitHub flow: creezi feature din main → commit → pull request → discuții → merge în main" style="width:100%;display:block;" />
+  </figure>
+  <div class="info-band" style="margin-top:16px;"><span class="ib-icon">📁</span><span class="ib-text"><b>Analogie Google Drive:</b> ca să modifici un document important fără să-l strici, faci o <b>copie</b>, lucrezi pe ea, apoi pui modificările în original. Și ca pe Drive, <b>vezi toate versiunile</b> și revii la oricare. <b>Branch = copia · Merge = le pui înapoi.</b></span></div>
+  <div class="slide-num">28 / 51</div>
+</div>
+</section>
+
+<!-- 14c GITHUB CONFLICTS -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">GitHub vizual</div><h2 class="slide-title">Conflicte — când lucrați în paralel pe același loc</h2><p class="slide-subtitle">Doi oameni schimbă <b>aceeași linie</b> → Git nu știe pe care s-o păstreze. Asta e un „conflict".</p></div>
+  <div class="split-screen">
+    <div class="split-pane bad">
+      <span class="split-label bad">⚠️ CÂND APARE</span>
+      <div class="split-list">
+        <div class="split-li"><span class="b">🔀</span>Doi lucrați pe <b>aceeași porțiune</b>, în paralel.</div>
+        <div class="split-li"><span class="b">⬆️</span>Faceți push pe <b>versiuni diferite</b> ale aceluiași fișier.</div>
+        <div class="split-li"><span class="b">🤷</span>Git se oprește și întreabă: „pe care o țin?"</div>
+      </div>
+    </div>
+    <div class="split-pane good">
+      <span class="split-label good">✅ CUM EVIȚI</span>
+      <div class="split-list">
+        <div class="split-li"><span class="b">🌿</span>Fiecare pe <b>branch-ul lui</b> (nu toți direct pe main).</div>
+        <div class="split-li"><span class="b">⬇️</span><b>Pull des</b> — aduci ce-au făcut alții înainte să lucrezi.</div>
+        <div class="split-li"><span class="b">✂️</span>Commit-uri <b>mici &amp; dese</b>; nu 2 oameni pe același fișier simultan.</div>
+      </div>
+    </div>
+  </div>
+  <div class="info-band" style="margin-top:16px;"><span class="ib-icon">🛠️</span><span class="ib-text"><b>Cum rezolvi:</b> Git îți arată <b>ambele variante</b> una lângă alta → alegi/combini → confirmi (commit). Cel mai simplu: ceri lui <b>Claude</b> „rezolvă conflictele" — îți explică și le închide.</span></div>
+  <div class="slide-num">29 / 51</div>
+</div>
+</section>
+
+
+<!-- 15 AGENTI GATA FACUTI -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag"><span class="logo" style="vertical-align:-3px;margin-right:5px;"><svg width="15" height="15" viewBox="0 0 24 24" style="fill:var(--primary)"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.5 11.5 0 016 0c2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span>Agenți gata făcuți</div><h2 class="slide-title">Avantaj mare: descarci agenți de pe GitHub</h2><p class="slide-subtitle">Nu trebuie să-i construiești. Îi clonezi, gata configurați de alții, și-i pui la treabă în proiectul tău.</p></div>
+  <div class="cards-grid cards-2" style="flex:none;grid-template-columns:repeat(4,1fr);">
+    <div class="card sky"><span class="card-icon">🤖</span><p class="card-title">Dezvoltare</p><p class="card-body">Frontend, backend, refactor, baze de date.</p></div>
+    <div class="card mint"><span class="card-icon">🛡️</span><p class="card-title">Securitate</p><p class="card-body">Audit: parole expuse, RLS lipsă, vulnerabilități.</p></div>
+    <div class="card peach"><span class="card-icon">📣</span><p class="card-title">Marketing</p><p class="card-body">Conținut, SEO, campanii, analiză.</p></div>
+    <div class="card lavender"><span class="card-icon">📊</span><p class="card-title">Finanțe</p><p class="card-body">Rapoarte, calcule, modele, facturare.</p></div>
+  </div>
+  <div class="info-band" style="margin-top:16px;"><span class="ib-icon">💡</span><span class="ib-text">Depinde de ce ai nevoie — există agenți pentru aproape orice. În Claude îi poți rula și ca <b>sub-agenți în paralel</b>, fiecare cu sarcina lui.</span></div>
+  <div class="slide-num">30 / 51</div>
+</div>
+</section>
+
+<!-- 16 MULTI-AGENT / AUTOPILOT -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Exemplu real</div><h2 class="slide-title">În Claude: o echipă de agenți în lanț</h2><p class="slide-subtitle">Poți avea un agent de <b>dezvoltare</b>, unul de <b>testare</b>, unul de <b>securitate</b> — lucrează pe rând sau în paralel.</p></div>
+  <div class="example-band" style="margin-bottom:12px;background:var(--primary-ultra-light);border-color:#A5B4FC;"><div class="eb-title" style="color:var(--primary)">🤖 Agentul meu „autopilot" — de la nevoie la produs testat</div></div>
+  <div class="pipeline">
+    <div class="pl-step"><div class="pl-num">1</div><span class="pl-ic">🎙️</span><div class="pl-t">Interviuri cu userii</div><div class="pl-d">Află ce-i doare pe oameni cu adevărat — nu ce presupui tu.</div></div>
+    <div class="pl-step"><div class="pl-num">2</div><span class="pl-ic">🎯</span><div class="pl-t">Jobs-to-be-done</div><div class="pl-d">„Ce treabă angajează userul produsul să facă?" Nevoia reală din spate.</div></div>
+    <div class="pl-step"><div class="pl-num">3</div><span class="pl-ic">📝</span><div class="pl-t">User stories</div><div class="pl-d">„Ca [user] vreau [X], ca să [Y]." Nevoile → funcții concrete.</div></div>
+    <div class="pl-step"><div class="pl-num">4</div><span class="pl-ic">📋</span><div class="pl-t">Backlog prioritizat</div><div class="pl-d">Lista de făcut, în ordinea importanței.</div></div>
+    <div class="pl-step"><div class="pl-num">5</div><span class="pl-ic">🧪</span><div class="pl-t">Scenarii de test</div><div class="pl-d">Min. 5/feature: „dacă fac X → trebuie să iasă Y." Cazuri verificabile.</div></div>
+    <div class="pl-step build"><div class="pl-num">6</div><span class="pl-ic">🔨</span><div class="pl-t">Construiește</div><div class="pl-d">Scrie codul fiecărei funcții din backlog.</div></div>
+    <div class="pl-step test"><div class="pl-num">7</div><span class="pl-ic">✅</span><div class="pl-t">Testează</div><div class="pl-d">Rulează scenariile: trece ✓ sau revine la pasul 6.</div></div>
+  </div>
+  <div class="why-band" style="margin-top:14px;"><span class="wb-icon">⚙️</span><span class="wb-text"><span class="lbl">De ce contează</span>Nu „scrie cod" pur și simplu, ci <b>gândește, construiește și verifică</b> — ca o echipă mică.</span></div>
+  <div class="slide-num">31 / 51</div>
+</div>
+</section>
+
+<!-- 17 API -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">🔌 Sub capotă</div><h2 class="slide-title">API — cum vorbesc două programe</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="dict-word"><span class="dw-emoji">🔌</span><div><h3>API</h3><p class="dw-sub">„priza standard"</p></div></div>
+      <p class="dict-analogy">E <b>priza standard</b> prin care două programe se conectează și schimbă date — fără să se cunoască între ele.</p>
+      <div class="quote-block warning" style="font-size:14.5px;padding:12px 16px;"><strong>Cheia API e un secret.</strong> Nu o pui în chat și nici în cod public. În <strong>Lovable</strong> → o pui în „<strong>Secrets</strong>". În <strong>Claude</strong> → într-un fișier „<strong>.env</strong>" (local, ne-publicat pe internet).</div>
+    </div>
+    <div class="dict-visual">
+      <div class="apidiag">
+        <div class="api-box a"><span style="font-size:26px">📱</span><span class="ab-t">Aplicația ta</span><span class="ab-s">ce ai construit</span></div>
+        <div class="api-plug"><span class="lbl">API</span><span class="socket">🔌</span><span class="line"></span></div>
+        <div class="api-box b"><span style="font-size:26px">💳</span><span class="ab-t">Stripe</span><span class="ab-s">serviciul de plăți</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">32 / 51</div>
+</div>
+</section>
+
+<!-- 17b LLM API + RAG -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">🔌 Sub capotă</div><h2 class="slide-title">Aplicațiile „cu AI" lucrează cu API-uri de la LLM-uri</h2><p class="slide-subtitle">Orice app cu AI trimite cereri, prin API, către un model (LLM) — cu o cheie. Modelul „gândește", app-ul livrează.</p></div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+    <span style="font-size:13px;font-weight:700;color:var(--muted);">Modele (LLM) prin API:</span>
+    <span class="fam-logo"><span class="logo"><svg width="15" height="15" viewBox="0 0 24 24" style="fill:#0F172A"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span>OpenAI · GPT</span>
+    <span class="fam-logo"><span class="logo"><svg width="15" height="15" viewBox="0 0 24 24" style="fill:#4285F4"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>Gemini</span>
+    <span class="fam-logo"><span class="logo"><svg width="15" height="15" viewBox="0 0 24 24" style="fill:#D97757"><path d="M17.3041 3.541h-3.6718l6.696 16.918H24Zm-10.6082 0L0 20.459h3.7442l1.3693-3.5527h7.0052l1.3693 3.5528h3.7442L10.5363 3.5409Zm-.3712 10.2232 2.2914-5.9456 2.2914 5.9456Z"/></svg></span>Claude</span>
+    <span class="fam-logo"><span style="font-size:15px">🌙</span>Kimi</span>
+  </div>
+  <div class="flow-rail">
+    <div class="frnode"><div class="frn-num">1</div><span class="frn-ic">🧑</span><div class="frn-t">Întrebare</div><div class="frn-d">Userul scrie în chat.</div></div>
+    <div class="frarrow">→</div>
+    <div class="frnode"><div class="frn-num">2</div><span class="frn-ic">🤖</span><div class="frn-t">Chatbot (app-ul tău)</div><div class="frn-d">Primește întrebarea.</div></div>
+    <div class="frarrow">→</div>
+    <div class="frnode"><div class="frn-num">3</div><span class="frn-ic">📚</span><div class="frn-t">RAG: caută în datele tale</div><div class="frn-d">Găsește bucățile relevante.</div></div>
+    <div class="frarrow">→</div>
+    <div class="frnode"><div class="frn-num">4</div><span class="frn-ic">🔌</span><div class="frn-t">API + cheie → LLM</div><div class="frn-d">Trimite întrebarea + context.</div></div>
+    <div class="frarrow">→</div>
+    <div class="frnode"><div class="frn-num">5</div><span class="frn-ic">💬</span><div class="frn-t">Răspuns</div><div class="frn-d">Ancorat în datele tale.</div></div>
+  </div>
+  <div class="info-band" style="margin-top:16px;"><span class="ib-icon">📚</span><span class="ib-text"><b>RAG</b> (Retrieval-Augmented Generation) = app-ul „citește" întâi din datele tale, apoi cere modelului un răspuns <b>bazat pe ele</b> — așa eviți răspunsurile inventate.</span></div>
+  <div class="slide-num">33 / 51</div>
+</div>
+</section>
+
+<!-- 17c OPENAI DATA -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag" style="background:#FEF3C7;color:#92400E;">⚠️ Atenție la date</div><h2 class="slide-title">OpenAI: „tokeni gratis" în schimbul datelor tale</h2><p class="slide-subtitle">Implicit, OpenAI <b>nu</b> antrenează pe datele trimise prin API. Dar există un opt-in: dai datele → primești tokeni gratis.</p></div>
+  <div class="cards-grid cards-3" style="flex:none;">
+    <div class="card mint"><span class="card-icon">🎁</span><p class="card-title">Ce primești</p><p class="card-body">Până la <b>1M tokeni/zi</b> pe modele mari (GPT‑5, 4.1, 4o, o3) și <b>10M tokeni/zi</b> pe modele mici (mini/nano).</p></div>
+    <div class="card sky"><span class="card-icon">📉</span><p class="card-title">Limite (tier mic)</p><p class="card-body">La Usage Tier 1–2: <b>250k/zi</b> (mari) și <b>2.5M/zi</b> (mici). Trebuie să fii eligibil din setări.</p></div>
+    <div class="card peach"><span class="card-icon">🔁</span><p class="card-title">Prețul real</p><p class="card-body">Input <b>și</b> output devin <b>date de training/evaluare</b> pentru OpenAI. „Gratis" = plătești cu datele tale.</p></div>
+  </div>
+  <div class="quote-block warning" style="margin-top:14px;font-size:13.5px;"><strong>Regula:</strong> pentru date sensibile / de clienți — <strong>nu</strong> activa partajarea. Echivalent: zeci de $/lună în tokeni, dar costul real sunt datele. <em>(Program OpenAI, valabil iunie 2026.)</em></div>
+  <div class="slide-num">34 / 51</div>
+</div>
+</section>
+
+<!-- 18 MCP -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">🔌 Sub capotă</div><h2 class="slide-title">MCP — „priza universală" a agentului</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="dict-word"><span class="dw-emoji">🧩</span><div><h3>MCP</h3><p class="dw-sub">Model Context Protocol</p></div></div>
+      <p class="dict-analogy">Un <b>standard unic</b> prin care Claude se conectează la uneltele tale: Notion, Drive, GitHub, baza de date.</p>
+      <div class="dict-why"><span class="lbl">Cum te ajută</span>Cu MCP, agentul nu doar scrie cod — <b>vede și acționează</b> în aplicațiile tale: „citește din Notion, scrie în Drive" — fără să programezi fiecare conexiune.</div>
+    </div>
+    <div class="dict-visual">
+      <div class="mcphub">
+        <div class="mcp-spoke" style="height:70px;top:38px;left:78px;transform:rotate(35deg)"></div>
+        <div class="mcp-spoke" style="height:70px;top:38px;right:78px;transform:rotate(-35deg)"></div>
+        <div class="mcp-spoke" style="height:70px;bottom:38px;left:78px;transform:rotate(-35deg)"></div>
+        <div class="mcp-spoke" style="height:70px;bottom:38px;right:78px;transform:rotate(35deg)"></div>
+        <div class="mcp-center"><span style="font-size:22px">🤖</span><span class="mc-t">Claude</span><span class="mc-s">MCP</span></div>
+        <div class="mcp-node n1"><span class="logo"><svg width="22" height="22" viewBox="0 0 24 24" style="fill:#0F172A"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.981-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.167V6.354c0-.606-.233-.933-.748-.887l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952L12.21 19s0 .84-1.168.84l-3.222.186c-.093-.186 0-.653.327-.746l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.139c-.093-.514.28-.887.747-.933z"/></svg></span><span class="mn-l">Notion</span></div>
+        <div class="mcp-node n2"><span class="logo"><svg width="22" height="22" viewBox="0 0 24 24" style="fill:#1FA463"><path d="M12.01 1.485c-2.082 0-3.754.02-3.743.047.01.02 1.708 3.001 3.774 6.62l3.76 6.574h3.76c2.081 0 3.753-.02 3.742-.047-.005-.02-1.708-3.001-3.775-6.62l-3.76-6.574zm-4.76 1.73a789.828 789.861 0 0 0-3.63 6.319L0 15.868l1.89 3.298 1.885 3.297 3.62-6.335 3.618-6.33-1.88-3.287C8.1 4.704 7.255 3.22 7.25 3.214zm2.259 12.653-.203.348c-.114.198-.96 1.672-1.88 3.287a423.93 423.948 0 0 1-1.698 2.97c-.01.026 3.24.042 7.222.042h7.244l1.796-3.157c.992-1.734 1.85-3.23 1.906-3.323l.104-.167h-7.249z"/></svg></span><span class="mn-l">Drive</span></div>
+        <div class="mcp-node n3"><span class="logo"><svg width="22" height="22" viewBox="0 0 24 24" style="fill:#0F172A"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span><span class="mn-l">GitHub</span></div>
+        <div class="mcp-node n4"><span style="font-size:22px">🗄️</span><span class="mn-l">Bază date</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">35 / 51</div>
+</div>
+</section>
+
+<!-- 18b LOCALHOST -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">🔌 Sub capotă</div><h2 class="slide-title">localhost — site-ul tău, dar numai pentru tine</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="dict-word"><span class="dw-emoji">🏠</span><div><h3>localhost</h3><p class="dw-sub">127.0.0.1 — „acasă"</p></div></div>
+      <p class="dict-analogy">Când construiești, aplicația rulează pe <b>calculatorul tău</b>, la o adresă specială — <b>localhost</b>. O vezi <b>doar tu</b>.</p>
+      <div class="dict-why"><span class="lbl">De ce contează</span>E „sala de probă": testezi în voie, nimeni altcineva n-o vede. Ca s-o vadă lumea → trebuie <b>publicată</b> (hosting). <b>localhost ≠ online.</b></div>
+    </div>
+    <div class="dict-visual">
+      <div class="dnsdiag">
+        <div class="browserbar"><span class="lock" style="color:var(--muted)">🔒</span><span class="url"><b>localhost</b>:3000</span></div>
+        <div class="dns-link">＝</div>
+        <div class="serverbox" style="background:#334155"><span class="sb-icon">💻</span><div><div class="sb-t">Calculatorul tău</div><div class="sb-s">rulează local — doar tu ai acces</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">36 / 51</div>
+</div>
+</section>
+
+<!-- 19 HOSTING -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">🔌 Sub capotă</div><h2 class="slide-title">Hosting — site-ul trebuie să stea undeva</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="dict-word"><span class="dw-emoji">🏠</span><div><h3>Hosting</h3><p class="dw-sub">găzduire</p></div></div>
+      <p class="dict-analogy">Site-ul tău e un fișier. Ca să-l vadă lumea, trebuie să stea pe un <b>calculator pornit non-stop</b> — ăla e hostingul (terenul).</p>
+      <div class="dict-why"><span class="lbl">De ce contează</span>Pe laptopul tău, doar tu îl vezi. Ca să fie <b>public</b> → trebuie găzduit. Lovable face asta automat; cu Claude alegi tu unde.</div>
+    </div>
+    <div class="dict-visual">
+      <div class="dnsdiag">
+        <div class="browserbar"><span class="lock">🔒</span><span class="url"><b>firma-mea</b>.ro</span></div>
+        <div class="dns-link">↓</div>
+        <div class="serverbox"><span class="sb-icon">🖥️</span><div><div class="sb-t">Server (host)</div><div class="sb-s">pornit 24/7, accesibil oricui</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">37 / 51</div>
+</div>
+</section>
+
+<!-- 20 VERCEL -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">🔌 Sub capotă</div><h2 class="slide-title">Vercel — publici cu un click</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="tool-hero">
+        <span class="th-mark" style="background:#F1F5F9;"><svg width="30" height="30" viewBox="0 0 24 24" style="fill:#000"><path d="m12 1.608 12 20.784H0Z"/></svg></span>
+        <div><h3>Vercel</h3><p class="th-sub">găzduire pentru site-uri · vercel.com</p></div>
+      </div>
+      <p class="dict-analogy">Codul tău de pe GitHub devine un <b>site public</b>, cu adresă reală — și se actualizează singur la fiecare salvare.</p>
+      <div class="flow-chips"><span class="flow-chip">cod pe GitHub</span><span class="flow-arrow">→</span><span class="flow-chip">Vercel</span><span class="flow-arrow">→</span><span class="flow-chip">live: firma-mea.vercel.app</span></div>
+      <div class="dict-why"><span class="lbl">De ce contează</span>Lovable găzduiește pentru tine. Dacă pleci în Claude, <b>Vercel face același lucru</b> — gratuit pentru proiecte mici, plus domeniu propriu.</div>
+    </div>
+    <div class="dict-visual">
+      <div class="dnsdiag">
+        <div class="browserbar"><span class="lock">🔒</span><span class="url"><b>firma-mea</b>.vercel.app</span></div>
+        <div class="dns-link">↑ deploy</div>
+        <div class="serverbox" style="background:#000"><span class="sb-icon">▲</span><div><div class="sb-t">Vercel</div><div class="sb-s">se actualizează la fiecare push pe GitHub</div></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">38 / 51</div>
+</div>
+</section>
+
+<!-- 21 SUPABASE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag dict-tag">🔌 Sub capotă</div><h2 class="slide-title">Supabase — unde stau datele</h2></div>
+  <div class="dict">
+    <div class="dict-left">
+      <div class="tool-hero">
+        <span class="th-mark" style="background:#ECFDF5;"><svg width="30" height="30" viewBox="0 0 24 24" style="fill:#3FCF8E"><path d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z"/></svg></span>
+        <div><h3>Supabase</h3><p class="th-sub">bază de date + login, gata făcute</p></div>
+      </div>
+      <p class="dict-analogy">Site-ul e <b>fața</b>. Baza de date e <b>memoria</b>: ține minte utilizatori, comenzi, mesaje. Supabase ți le dă pe amândouă.</p>
+      <div class="dict-why" style="background:#FFFBEB;border-color:#FCD34D;"><span class="lbl" style="color:#92400E">Când se potrivește</span>Recomand Supabase pentru <b>proiecte mici / număr mic de utilizatori</b>. La <b>mii de useri</b> → plan plătit sau infrastructură de la jucători mai mari din industrie.</div>
+    </div>
+    <div class="dict-visual">
+      <div class="dbmock">
+        <div class="db-head"><span>id</span><span>nume</span><span>email</span></div>
+        <div class="db-row"><span class="db-key">01</span><span>Maria P.</span><span>maria@…</span></div>
+        <div class="db-row"><span class="db-key">02</span><span>Andrei T.</span><span>andrei@…</span></div>
+        <div class="db-row"><span class="db-key">03</span><span>Ioana R.</span><span>ioana@…</span></div>
+        <div class="db-row"><span class="db-key">04</span><span>…</span><span>…</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">39 / 51</div>
+</div>
+</section>
+
+<!-- 22 DESIGN SYSTEM -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Înainte de build</div><h2 class="slide-title">Întâi un design system, apoi construiești</h2><p class="slide-subtitle">Pentru un proiect serios, stabilește întâi <b>cum arată</b>: fonturi, culori, componente. Așa totul iese coerent, nu cârpit.</p></div>
+  <div class="dict">
+    <div class="dict-left">
+      <p class="dict-analogy">Un „<b>brand book</b>" — regulile vizuale ale proiectului. Le dai agentului o dată, le folosește peste tot.</p>
+      <div class="check-list" style="margin-top:2px;">
+        <div class="check-item"><span class="chk">🎨</span><div><b>Claude Design</b> (web): pui referințe → îți generează un design system (fonturi, culori, componente).</div></div>
+        <div class="check-item"><span class="chk">🧩</span><div>Toate paginile și funcțiile arată <b>ca din aceeași familie</b> — integrat nativ.</div></div>
+        <div class="check-item"><span class="chk">✨</span><div>Rezultatul arată <b>profesional</b>, nu „vibe-coded".</div></div>
+      </div>
+    </div>
+    <div class="dict-visual">
+      <div class="brandbook">
+        <div class="bb-head">Brand book — proiectul meu</div>
+        <div class="bb-body">
+          <div class="bb-swatches">
+            <div class="bb-sw" style="background:#2D52D4">#2D52D4</div>
+            <div class="bb-sw" style="background:#0F172A">#0F172A</div>
+            <div class="bb-sw" style="background:#7C3AED">#7C3AED</div>
+            <div class="bb-sw" style="background:#22C55E">#22C55E</div>
+            <div class="bb-sw" style="background:#F8FAFC;color:#64748B;border:1px solid var(--border)">#F8FAFC</div>
+          </div>
+          <div class="bb-row"><div class="bb-font"><b>Onest</b>Titluri &amp; text · 300–800</div><div class="bb-comp"><span class="bb-btn" style="background:var(--primary);color:#fff">Buton primar</span><span class="bb-btn" style="background:#fff;color:var(--foreground);border:1px solid var(--border)">Secundar</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">40 / 51</div>
+</div>
+</section>
+
+<!-- 23 SECURITATE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag" style="background:#FEF2F2;color:#DC2626;">⚠️ Securitate</div><h2 class="slide-title">3 capcane care te ard: date expuse, chei API &amp; costuri AI</h2></div>
+  <div class="split-screen">
+    <div class="split-pane bad">
+      <span class="split-label bad">❌ AȘA TE EXPUI</span>
+      <div class="split-list">
+        <div class="split-li"><span class="b">👥</span><b>RLS oprit:</b> baza e deschisă — te trezești că <b>userii văd datele între ei</b> (datele unui client le vede altul).</div>
+        <div class="split-li"><span class="b">🔑</span><b>Chei API / parole</b> puse direct în chat sau în cod public pe GitHub.</div>
+        <div class="split-li"><span class="b">🤖</span><b>Funcții de AI lăsate publice</b> → cineva le re-apelează în buclă și <b>te trezești fără bani</b> (factură uriașă la model).</div>
+      </div>
+    </div>
+    <div class="split-pane good">
+      <span class="split-label good">✅ AȘA STAI SIGUR</span>
+      <div class="split-list">
+        <div class="split-li"><span class="b">🔐</span>Pornește <b>RLS</b> (Row Level Security) — fiecare user vede <b>doar</b> datele lui.</div>
+        <div class="split-li"><span class="b">📄</span>Secretele în <b>Secrets</b> (Lovable) / <b>.env</b> (Claude) — niciodată în chat.</div>
+        <div class="split-li"><span class="b">🚦</span><b>Autentificare + limite (rate limit)</b> pe funcțiile AI, ca să nu fie re-apelate la nesfârșit. Pune un <b>agent de securitate</b> să verifice.</div>
+      </div>
+    </div>
+  </div>
+  <div class="quote-block warning" style="margin-top:16px;"><strong>Cele mai frecvente la vibecoders:</strong> baza de date lăsată publică și endpoint-uri AI fără limită. Verifică-le <strong>înainte</strong> să dai drumul la lume.</div>
+  <div class="slide-num">41 / 51</div>
+</div>
+</section>
+
+<!-- 23b SECURITATE — ALTE CAPCANE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag" style="background:#FEF2F2;color:#DC2626;">⚠️ Securitate</div><h2 class="slide-title">Alte capcane — din incidente reale</h2><p class="slide-subtitle">Studiile arată că <b>40–62%</b> din codul AI are vulnerabilități — de ~<b>2.7×</b> mai des decât codul scris de om. De-aceea: review înainte de lansare.</p></div>
+  <div class="cards-grid cards-2" style="flex:none;">
+    <div class="card" style="background:#FEF2F2;border-color:#FECACA;"><span class="card-icon">🚪</span><p class="card-title">Ușa din spate descuiată</p><p class="card-body">Ai pus lacăt pe ușa din față (ce vede userul), dar <b>ai lăsat ușa din spate deschisă</b> — poarta prin care programele își trimit date direct. Cineva intră pe acolo. <span style="color:var(--muted);font-size:11.5px;">(termenul: API neprotejat)</span></p></div>
+    <div class="card" style="background:#FEF2F2;border-color:#FECACA;"><span class="card-icon">💉</span><p class="card-title">Text „otrăvit"</p><p class="card-body">Arăți ce scriu userii <b>fără să „cureți" textul</b> → cineva poate ascunde cod rău în el, care rulează apoi pe ecranele celorlalți. <span style="color:var(--muted);font-size:11.5px;">(termenul: XSS)</span></p></div>
+    <div class="card" style="background:#FEF2F2;border-color:#FECACA;"><span class="card-icon">🗝️</span><p class="card-title">Cheia de director, la vedere</p><p class="card-body">Lași la vedere <b>cheia care deschide tot</b> (de director), în loc de <b>cheia de oaspete</b> (acces limitat). Oricine o vede, o folosește. <span style="color:var(--muted);font-size:11.5px;">(director = service_role · oaspete = anon)</span></p></div>
+    <div class="card" style="background:#FEF2F2;border-color:#FECACA;"><span class="card-icon">🔁</span><p class="card-title">Regula pusă pe dos</p><p class="card-body">Regula „cine vede ce" e fix invers: lasă <b>pe oricine</b> să vadă datele și-i blochează tocmai pe userii tăi reali. S-a întâmplat la <b>170+ aplicații</b>. <span style="color:var(--muted);font-size:11.5px;">(regula = RLS)</span></p></div>
+  </div>
+  <div class="quote-block warning" style="margin-top:14px;font-size:13.5px;"><strong>Concluzia tuturor:</strong> <strong>review uman de securitate e obligatoriu</strong> înainte de lansare. Folosește scan-ul automat Lovable + un agent de securitate, și nu publica „pe încredere".</div>
+  <div class="slide-num">42 / 51</div>
+</div>
+</section>
+
+<!-- 24 PERMISSION MODES -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Control</div><h2 class="slide-title">Moduri de lucru în Claude — cât control îi dai</h2><p class="slide-subtitle">De la „întreabă-mă la fiecare pas" → la „fă orice singur". Alegi conștient, după risc.</p></div>
+  <table class="slide-table">
+    <thead><tr><th class="crit" style="background:#fff;color:var(--muted)">Mod</th><th class="col-b">Ce face</th><th class="col-c">Pentru cine</th></tr></thead>
+    <tbody>
+      <tr><td class="crit"><span class="pmode" style="background:#16A34A"></span>Plan mode <span style="color:var(--muted);font-weight:400;">(zice planul întâi)</span></td><td>Îți spune întâi <b>ce vrea să facă</b>; nu atinge nimic până nu aprobi tu.</td><td class="hl">Cel mai sigur · sarcini mari</td></tr>
+      <tr><td class="crit"><span class="pmode" style="background:#2D52D4"></span>Ask <span style="color:var(--muted);font-weight:400;">(cere voie)</span></td><td>Te întreabă „pot?" înainte de <b>fiecare</b> schimbare. <i>(modul implicit)</i></td><td class="hl">Începători · vrei control total</td></tr>
+      <tr><td class="crit"><span class="pmode" style="background:#F59E0B"></span>Auto-edit <span style="color:var(--muted);font-weight:400;">(face singur)</span></td><td>Modifică singur, <b>fără să te întrebe</b> la fiecare pas.</td><td class="hl">Când ai încredere în ce i-ai cerut</td></tr>
+      <tr><td class="crit"><span class="pmode" style="background:#EF4444"></span>Bypass <span style="color:var(--muted);font-weight:400;">(fără frâne)</span></td><td>Face <b>orice</b>, fără să întrebe deloc. Poate șterge sau rula orice.</td><td class="hl">Doar într-un folder de test, izolat</td></tr>
+    </tbody>
+  </table>
+  <div class="quote-block warning" style="margin-top:16px;"><strong>Recomandare:</strong> începe cu <strong>Plan mode</strong> + confirmări. „Bypass" doar într-un folder de test, unde n-ai ce pierde.</div>
+  <div class="slide-num">43 / 51</div>
+</div>
+</section>
+
+<!-- 25 TOKENS & COSTURI -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Bani</div><h2 class="slide-title">Tokens &amp; costuri — cum nu arzi resurse</h2><p class="slide-subtitle"><b>Tokenii</b> = „bucățele de text" pe care AI le numără. Mai mult text citit/scris = mai mulți tokeni = mai mult timp și bani. Și abonamentul are un „plin" de tokeni, care se reîncarcă la 5h.</p></div>
+  <div class="cards-grid cards-3" style="flex:none;">
+    <div class="card primary-light">
+      <span class="card-icon">🪙</span><p class="card-title">Ce consumă mult</p>
+      <p class="card-body">Când îl pui să <b>repete de multe ori</b> același lucru, sau îi dai <b>mult de citit</b> (PDF-uri, Excel-uri mari). Cu cât „ține minte" mai mult, cu atât e mai lent și mai scump.</p>
+    </div>
+    <div class="card mint">
+      <span class="card-icon">📄</span><p class="card-title">Trucul: fișiere „curate"</p>
+      <p class="card-body">Un fișier <b>text simplu și curat</b> (<code>.md</code>, adică „Markdown") se citește mult mai ușor decât un PDF/Excel încărcat. <b>Transformă</b> documentele în .md → consumi mai puțin.</p>
+    </div>
+    <div class="card peach">
+      <span class="card-icon">⏱️</span><p class="card-title">Limite &amp; reîncărcare</p>
+      <p class="card-body">„Plinul" se <b>reîncarcă la 5 ore</b>. Ține <b>un singur lucru</b> pe conversație (să nu-i încarci memoria degeaba) → nu-l golești fără rost.</p>
+    </div>
+  </div>
+  <div class="why-band" style="margin-top:16px;"><span class="wb-icon">💡</span><span class="wb-text"><span class="lbl">Pe scurt</span><b>Mai puțin text inutil = mai mult din abonament + răspunsuri mai rapide.</b></span></div>
+  <div class="slide-num">44 / 51</div>
+</div>
+</section>
+
+<!-- 26 LIMITELE -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Limite</div><h2 class="slide-title">Ce se întâmplă dacă sari peste best practices</h2><p class="slide-subtitle">Vibecoding-ul fără disciplină te duce repede în zid. Cele 4 ziduri:</p></div>
+  <div class="cards-grid cards-2" style="flex:none;">
+    <div class="card peach"><span class="card-icon">🧱</span><p class="card-title">Datorie tehnică</p><p class="card-body">Codul crește dezordonat. La un punct, <b>nici AI nu se mai descurcă</b> în el — fiecare schimbare devine grea.</p></div>
+    <div class="card rose"><span class="card-icon">🔄</span><p class="card-title">„Merge până nu mai merge"</p><p class="card-body">Un fix strică altceva. Fără versiuni pe GitHub, <b>nu poți reveni</b> la ce funcționa.</p></div>
+    <div class="card" style="background:#FEF2F2;border-color:#FECACA;"><span class="card-icon">🔓</span><p class="card-title">Securitate șubredă</p><p class="card-body">Date expuse, chei în cod, RLS lipsă. Merge în demo, devine <b>problemă reală</b> când intră clienți.</p></div>
+    <div class="card sky"><span class="card-icon">📈</span><p class="card-title">Nu scalează</p><p class="card-body">Merge la 10 useri, cedează la 1000. Alegeri proaste la început = <b>rescriere</b> mai târziu.</p></div>
+  </div>
+  <div class="quote-block warning" style="margin-top:14px;"><strong>Pe scurt:</strong> vibecoding fără disciplină = o casă frumoasă construită repede… <strong>fără fundație</strong>.</div>
+  <div class="slide-num">45 / 51</div>
+</div>
+</section>
+
+<!-- 27 GRESELI -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Capcane</div><h2 class="slide-title">Greșelile frecvente de început</h2></div>
+  <div class="cards-grid cards-3">
+    <div class="card"><span class="card-icon">🔀</span><p class="card-title">Lucrezi în paralel</p><p class="card-body">Două variante ale aceluiași proiect → <b>conflicte de cod</b>: se bat cap în cap și le suprascrii.</p></div>
+    <div class="card"><span class="card-icon">🔑</span><p class="card-title">Chei API în chat</p><p class="card-body">Pui parole/chei direct în conversație sau în cod public. <b>Le vede oricine.</b></p></div>
+    <div class="card"><span class="card-icon">💾</span><p class="card-title">Nu salvezi</p><p class="card-body">Fără GitHub → un prompt prost strică tot și <b>nu mai ai cum reveni</b>.</p></div>
+    <div class="card"><span class="card-icon">🙈</span><p class="card-title">Accepți fără să verifici</p><p class="card-body">Aduni greșeli mici până devine un munte greu de descurcat.</p></div>
+    <div class="card"><span class="card-icon">🌊</span><p class="card-title">Un dialog uriaș</p><p class="card-body">Tot proiectul într-o conversație → context plin, model confuz, costuri mari.</p></div>
+    <div class="card"><span class="card-icon">🐘</span><p class="card-title">Ceri prea mult deodată</p><p class="card-body">„Fă-mi un Facebook." Prea mare, prea vag. <b>Taie în bucăți mici.</b></p></div>
+  </div>
+  <div class="slide-num">46 / 51</div>
+</div>
+</section>
+
+<!-- 28 BEST PRACTICES -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Best practices</div><h2 class="slide-title">Regulile care fac diferența</h2></div>
+  <div class="cards-grid cards-2">
+    <div class="card primary-light">
+      <p class="card-title" style="margin-bottom:6px;">🛠️ Cum construiești</p>
+      <div class="check-list">
+        <div class="check-item"><span class="chk">1</span><div><b>Start mic</b>, un pas pe rând — nu tot deodată</div></div>
+        <div class="check-item"><span class="chk">2</span><div><b>Descrie clar:</b> ce, pentru cine, cum arată</div></div>
+        <div class="check-item"><span class="chk">3</span><div><b>Un task = un dialog</b> (context curat)</div></div>
+        <div class="check-item"><span class="chk">4</span><div><b>Verifică</b> la fiecare pas</div></div>
+        <div class="check-item"><span class="chk">5</span><div><b>Salvează pe GitHub</b> regulat</div></div>
+      </div>
+    </div>
+    <div class="card mint">
+      <p class="card-title" style="margin-bottom:6px;">🛡️ Cum stai sigur &amp; eficient</p>
+      <div class="check-list">
+        <div class="check-item"><span class="chk">✓</span><div>Secretele în <b>Secrets / .env</b>, niciodată în chat</div></div>
+        <div class="check-item"><span class="chk">✓</span><div>Pornește <b>RLS</b> pe baza de date</div></div>
+        <div class="check-item"><span class="chk">✓</span><div><b>Sonnet</b> default, <b>Opus</b> la nevoie</div></div>
+        <div class="check-item"><span class="chk">✓</span><div>Pune un <b>agent de securitate</b> să verifice</div></div>
+        <div class="check-item"><span class="chk">✓</span><div><b>Plan mode</b> + confirmări până prinzi încredere</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">47 / 51</div>
+</div>
+</section>
+
+<!-- 12 DRUMUL RECOMANDAT -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Drumul recomandat</div><h2 class="slide-title">De la MVP la producție — pas cu pas</h2><p class="slide-subtitle">Cel mai <b>ușor</b> drum dacă vrei doar să <b>validezi o idee, cât mai repede</b>: începi vizual cu Lovable și muți pe control doar când e nevoie.</p></div>
+  <div class="cards-grid cards-3" style="flex:none;">
+    <div class="card rose">
+      <div style="display:flex;align-items:center;gap:9px;"><span class="card-num" style="background:#DB2777">1</span><p class="card-title">Pornește în Lovable</p></div>
+      <p class="card-body">MVP — sau chiar o <b>app cu utilizatori</b> (are sign-in, plăți, Sheets, email). Pentru începători, cel mai bun start.</p>
+    </div>
+    <div class="card sky">
+      <div style="display:flex;align-items:center;gap:9px;"><span class="card-num" style="background:#0284C7">2</span><p class="card-title">Testează cu useri reali</p></div>
+      <p class="card-body">Vezi dacă ideea ține înainte să investești în dezvoltare „grea". Validezi, nu presupui.</p>
+    </div>
+    <div class="card primary-light">
+      <div style="display:flex;align-items:center;gap:9px;"><span class="card-num">3</span><p class="card-title">Conectează la GitHub</p></div>
+      <p class="card-body">Când vrei mai mult (rapiditate, securitate, control), legi proiectul Lovable la GitHub.</p>
+    </div>
+    <div class="card peach">
+      <div style="display:flex;align-items:center;gap:9px;"><span class="card-num" style="background:#EA580C">4</span><p class="card-title">Continuă în Claude</p></div>
+      <p class="card-body">Dezvolți peste codul existent: logică avansată, performanță, securitate. Aici intervine priceperea.</p>
+    </div>
+    <div class="card mint">
+      <div style="display:flex;align-items:center;gap:9px;"><span class="card-num" style="background:#16A34A">5</span><p class="card-title">Găzduire — alegi</p></div>
+      <p class="card-body">Rămâi pe <b>Lovable</b> (~$25/lună credite) <b>sau</b> muți pe <b>Vercel + Claude</b> și ești live pe internet.</p>
+    </div>
+    <div class="card dark">
+      <span class="card-icon">🧭</span><p class="card-title">Regula</p>
+      <p class="card-body">Nu sări etape. <b>Lovable validează ideea</b>; <b>Claude o duce în producție</b>.</p>
+    </div>
+  </div>
+  <div class="slide-num">48 / 51</div>
+</div>
+</section>
+
+<!-- 29 RECOMANDARI -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Recomandări</div><h2 class="slide-title">Ce stack alegi, după ce vrei</h2></div>
+  <table class="slide-table">
+    <thead><tr><th class="crit" style="background:#fff;color:var(--muted)">Vreau să…</th><th class="col-b">Stack recomandat</th></tr></thead>
+    <tbody>
+      <tr><td class="crit">Pornesc &amp; sunt începător</td><td class="hl">Lovable (MVP, chiar app cu integrări)</td></tr>
+      <tr><td class="crit">O app reală cu date &amp; login</td><td class="hl">Lovable + Supabase + GitHub + Vercel</td></tr>
+      <tr><td class="crit">Control &amp; automatizări serioase</td><td class="hl">Claude Code în VS Code + GitHub</td></tr>
+      <tr><td class="crit">Să duc un MVP în producție</td><td class="hl">Lovable → GitHub → Claude (+ design system)</td></tr>
+    </tbody>
+  </table>
+  <div class="why-band" style="margin-top:18px;"><span class="wb-icon">🧰</span><span class="wb-text"><span class="lbl">Stack-ul „și-și"</span><b>Lovable → GitHub → Claude → Supabase → Vercel.</b> Validezi vizual, continui cu control, publici cu un click.</span></div>
+  <div class="slide-num">49 / 51</div>
+</div>
+</section>
+
+<!-- 30 PRIMUL PROIECT -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Acțiune</div><h2 class="slide-title">Cum începi: decide-te pe un instrument, apoi pornește</h2><p class="slide-subtitle">Nu „când știi destul" — ci acum. Întâi o decizie simplă, apoi primul pas.</p></div>
+  <div class="cards-grid cards-2" style="flex:none;">
+    <div class="card primary-light">
+      <span class="card-icon">🧭</span><p class="card-title">1 · Decide-te pe un instrument</p>
+      <div class="check-list" style="margin-top:4px;">
+        <div class="check-item"><span class="chk">🎨</span><div>Ești la început, vrei rapid &amp; vizual → <b>Lovable</b></div></div>
+        <div class="check-item"><span class="chk">⌨️</span><div>Vrei control &amp; automatizări → <b>Claude Code</b></div></div>
+        <div class="check-item"><span class="chk">🔗</span><div>Vrei și-și → <b>Lovable, apoi Claude</b></div></div>
+      </div>
+    </div>
+    <div class="card mint">
+      <span class="card-icon">🚀</span><p class="card-title">2 · Pornește la drum</p>
+      <div class="check-list" style="margin-top:4px;">
+        <div class="check-item"><span class="chk">🎯</span><div>Alege ceva <b>mic și real</b> (o pagină, un tool intern)</div></div>
+        <div class="check-item"><span class="chk">🔨</span><div>Fă-l <b>azi</b> — nu aștepta să „știi destul"</div></div>
+        <div class="check-item"><span class="chk">👀</span><div>Arată-l cuiva → ia feedback → iterezi</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="why-band" style="margin-top:16px;"><span class="wb-icon">🔥</span><span class="wb-text"><span class="lbl">Esența</span>Decizia e simplă; valoarea vine din <b>start</b>. Vibecoding se învață <b>construind</b>.</span></div>
+  <div class="slide-num">50 / 51</div>
+</div>
+</section>
+
+<!-- 31 WRAP-UP -->
+<section>
+<div class="slide">
+  <div class="slide-header"><div class="slide-tag">Wrap-up</div><h2 class="slide-title">Ce reții &amp; de unde continui</h2></div>
+  <div class="wrapup-grid">
+    <div class="wrapup-pane learned">
+      <div class="wrapup-pane-title">✅ Ce reții</div>
+      <div class="check-list">
+        <div class="check-item"><span class="chk">✓</span><div>Vibecoding = descrii → primești software; scara cere pricepere</div></div>
+        <div class="check-item"><span class="chk">✓</span><div><b>Lovable</b> pentru start &amp; MVP · <b>Claude</b> pentru control &amp; producție</div></div>
+        <div class="check-item"><span class="chk">✓</span><div><b>GitHub</b> leagă tot (commit · push · pull)</div></div>
+        <div class="check-item"><span class="chk">✓</span><div>Securitate: <b>RLS</b> + secrete în <b>Secrets/.env</b></div></div>
+        <div class="check-item"><span class="chk">✓</span><div>Design system întâi · tokeni = efort · agenți gata făcuți</div></div>
+      </div>
+    </div>
+    <div class="wrapup-pane hw">
+      <div class="wrapup-pane-title">🔗 Resurse</div>
+      <div class="check-list">
+        <div class="check-item"><span class="chk">🎨</span><div>lovable.dev</div></div>
+        <div class="check-item"><span class="chk">⌨️</span><div>claude.ai/code + VS Code (extensia Claude) · Claude Design</div></div>
+        <div class="check-item"><span class="chk">🐙</span><div>github.com</div></div>
+        <div class="check-item"><span class="chk">🗄️</span><div>supabase.com · ▲ vercel.com</div></div>
+      </div>
+      <div class="preview-row"><span class="lbl">Acum:</span> <span class="ttl">Întrebări? Hai să construim ceva, live. 🚀</span></div>
+    </div>
+  </div>
+  <div class="slide-num">51 / 51</div>
+</div>
+</section>
+
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>
