@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Branding &amp; Design — de ce contează cum arăți · Tekwill Academy</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #7C3AED;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 56px 68px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #DB2777 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #7C3AED 0%, #DB2777 100%); }
+
+    .slide-header { margin-bottom: 24px; }
+    .slide-tag { display: inline-block; background: #FCE7F3; color: #DB2777; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #F3E8FF; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 980px; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+    .slide-foot { position: absolute; bottom: 20px; left: 68px; font-size: 11px; color: #94A3B8; font-weight: 500; letter-spacing: 0.03em; }
+
+    .brand-chip { display: inline-flex; align-items: center; gap: 7px; font-weight: 800; font-size: 17px; letter-spacing: -0.01em; padding: 6px 15px; border-radius: 100px; line-height: 1; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #1A0B20 0%, #6D1A4F 55%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(219,39,119,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 30px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: #F472B6; }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 20px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 23px; font-weight: 400; color: rgba(255,255,255,0.7); margin: 0 0 36px; max-width: 680px; line-height: 1.5; }
+    .cover-ice { display: inline-flex; align-items: center; gap: 11px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; padding: 14px 20px; font-size: 16px; color: rgba(255,255,255,0.78); font-style: italic; max-width: 660px; line-height: 1.5; }
+    .cover-ice .ic { font-size: 22px; font-style: normal; flex-shrink: 0; }
+
+    /* STATEMENT */
+    .stmt-hero { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 10px; }
+    .stmt-bignum { font-size: 130px; font-weight: 800; color: #DB2777; line-height: 1; letter-spacing: -0.03em; }
+    .stmt-bigcap { font-size: 24px; font-weight: 500; color: var(--foreground); line-height: 1.4; max-width: 820px; }
+    .stmt-bigcap b { font-weight: 800; }
+
+    /* SPLIT */
+    .split-screen { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .split-pane { border-radius: var(--radius); padding: 26px 28px; display: flex; flex-direction: column; gap: 14px; }
+    .split-pane.bad { background: #FEF2F2; border: 1px solid #FECACA; }
+    .split-pane.good { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .split-label { font-size: 15px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+    .split-label.bad { color: #DC2626; } .split-label.good { color: #16A34A; }
+    .split-list { display: flex; flex-direction: column; gap: 12px; }
+    .split-li { display: flex; align-items: flex-start; gap: 12px; font-size: 18px; line-height: 1.4; color: var(--foreground); }
+    .split-li .mk { flex-shrink: 0; font-weight: 800; font-size: 18px; margin-top: 1px; }
+    .split-li .mk.no { color: var(--destructive); } .split-li .mk.yes { color: #16A34A; }
+    .split-li b { font-weight: 700; }
+    .split-foot { margin-top: auto; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 16px; font-weight: 700; line-height: 1.4; }
+    .split-pane.good .split-foot { background: #DCFCE7; color: #15803D; }
+    .split-pane.bad .split-foot { background: #FEE2E2; color: #B91C1C; }
+
+    .vs-highlight { margin-top: 16px; text-align: center; font-size: 19px; font-weight: 700; color: #DB2777; background: #FCE7F3; border-radius: var(--radius); padding: 16px 20px; line-height: 1.4; }
+    .vs-highlight b { color: var(--foreground); }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid #DB2777; padding: 16px 22px; background: #FCE7F3; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 18px; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { color: #DB2777; }
+
+    /* CARDS */
+    .cards-grid { display: grid; gap: 18px; flex: 1; }
+    .cards-2 { grid-template-columns: 1fr 1fr; }
+    .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: center; gap: 11px; min-height: 0; overflow: hidden; }
+    .card.mint { background: var(--pastel-mint); border-color: #86EFAC; }
+    .card.sky { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .card.peach { background: var(--pastel-peach); border-color: #FDBA74; }
+    .card.lavender { background: var(--pastel-lavender); border-color: #C4B5FD; }
+    .card.rose { background: var(--pastel-rose); border-color: #F9A8D4; }
+    .card-icon { font-size: 34px; line-height: 1; }
+    .card-title { font-size: 19px; font-weight: 800; color: var(--foreground); margin: 0; }
+    .card-body { font-size: 15px; color: var(--foreground); line-height: 1.5; margin: 0; }
+    .card-body b { font-weight: 800; }
+
+    /* CHECKLIST */
+    .check-list { display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: center; }
+    .check-item { display: flex; align-items: flex-start; gap: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 22px; }
+    .check-ic { width: 36px; height: 36px; border-radius: 10px; background: var(--pastel-rose); color: #DB2777; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+    .check-text { font-size: 19px; color: var(--foreground); line-height: 1.4; padding-top: 6px; }
+    .check-text b { font-weight: 800; }
+
+    /* PALETTE strip */
+    .palette { display: flex; gap: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); height: 64px; }
+    .palette div { flex: 1; }
+
+    /* EXERCISE */
+    .exercise-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 22px; }
+    .timer-pill { display: flex; align-items: center; gap: 8px; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 100px; padding: 9px 22px; font-size: 16px; font-weight: 700; color: #92400E; }
+    .ex-note { font-size: 17px; color: var(--muted); max-width: 720px; line-height: 1.5; }
+    .ex-note b { color: var(--foreground); }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 01 COVER -->
+    <section>
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Tekwill Academy · Kids Business School · Companion</div>
+          <h1>Branding &amp; design:<br>de ce contează cum arăți</h1>
+          <p class="subtitle">Cum te văd oamenii în prima secundă — pe Instagram, pe site, oriunde</p>
+          <div class="cover-ice"><span class="ic">👀</span>Ai 3 secunde. Atât durează până cineva decide dacă te ia în serios sau dă scroll mai departe.</div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 10</div>
+      </div>
+    </section>
+
+    <!-- 02 — 3 SECUNDE -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">De ce contează</div><h2 class="slide-title">Oamenii te judecă în 3 secunde — înainte să citească un cuvânt</h2></div>
+        <div class="stmt-hero">
+          <div class="stmt-bignum">3 sec</div>
+          <div class="stmt-bigcap">Atât durează ca cineva să decidă, doar din <b>cum arăți</b>, dacă ești de încredere — sau dă scroll.</div>
+        </div>
+        <div class="quote-block" style="margin-top:18px"><strong>Brandul</strong> nu e doar logo-ul. E <b>sentimentul</b> pe care îl lași: „ăștia par serioși" vs. „ăștia par făcuți în grabă". Același produs, alt rezultat.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Branding</div>
+        <div class="slide-num">02 / 10</div>
+      </div>
+    </section>
+
+    <!-- 03 — CE E BRANDUL -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Fundament</div><h2 class="slide-title">Brandul = cum te simt oamenii. Designul = cum arăți.</h2></div>
+        <div class="cards-grid cards-3">
+          <div class="card rose"><span class="card-icon">💗</span><p class="card-title">Brand</p><p class="card-body">Ce simt oamenii când te văd: încredere, prietenie, calitate. <b>Reputația ta, în mic.</b></p></div>
+          <div class="card lavender"><span class="card-icon">🎨</span><p class="card-title">Design</p><p class="card-body">Cum arăți concret: logo, culori, font, poze. <b>Hainele afacerii tale.</b></p></div>
+          <div class="card sky"><span class="card-icon">🗣️</span><p class="card-title">Ton (voice)</p><p class="card-body">Cum vorbești: glumeț sau serios, scurt sau detaliat. <b>Vocea ta.</b></p></div>
+        </div>
+        <div class="vs-highlight">Toate trei trebuie să spună <b>același lucru</b>. Dacă logo-ul e serios dar postările sunt haotice — oamenii se zăpăcesc.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Branding</div>
+        <div class="slide-num">03 / 10</div>
+      </div>
+    </section>
+
+    <!-- 04 — 5 ELEMENTE -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Kit-ul de bază</div><h2 class="slide-title">Cele 5 lucruri de care ai nevoie ca să arăți „adevărat"</h2></div>
+        <div class="check-list">
+          <div class="check-item"><div class="check-ic">①</div><div class="check-text"><b>Nume + logo simplu</b> — ușor de scris, ușor de ținut minte, citeț și mic.</div></div>
+          <div class="check-item"><div class="check-ic">②</div><div class="check-text"><b>2–3 culori</b> alese o dată și folosite peste tot — nu un curcubeu diferit la fiecare postare.</div></div>
+          <div class="check-item"><div class="check-ic">③</div><div class="check-text"><b>Un singur font</b> (maxim două). Curat, lizibil. Fără 5 fonturi fanteziste.</div></div>
+          <div class="check-item"><div class="check-ic">④</div><div class="check-text"><b>Poze de calitate</b> — clare, luminoase, în același stil. Telefonul + lumină naturală e suficient.</div></div>
+          <div class="check-item"><div class="check-ic">⑤</div><div class="check-text"><b>O frază care te descrie</b> — ce faci, pentru cine, în 5 cuvinte.</div></div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Branding</div>
+        <div class="slide-num">04 / 10</div>
+      </div>
+    </section>
+
+    <!-- 05 — CONSECVENȚA + PALETĂ -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Regula de aur</div><h2 class="slide-title">Consecvența bate frumusețea</h2></div>
+        <div style="display:flex;flex-direction:column;gap:18px;flex:1;justify-content:center">
+          <div>
+            <p style="font-size:18px;color:var(--muted);margin:0 0 10px">O paletă aleasă o dată, folosită peste tot — așa arată un brand consecvent:</p>
+            <div class="palette">
+              <div style="background:#0F172A"></div><div style="background:#DB2777"></div><div style="background:#F472B6"></div><div style="background:#FCE7F3"></div><div style="background:#fff;border-left:1px solid var(--border)"></div>
+            </div>
+          </div>
+          <div class="quote-block"><strong>Consecvența</strong> = aceleași culori, același font, același stil de poze, de fiecare dată. Asta face creierul să recunoască: „aha, ăștia sunt". Un brand mai puțin frumos dar <b>consecvent</b> bate unul frumos dar haotic.</div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Branding</div>
+        <div class="slide-num">05 / 10</div>
+      </div>
+    </section>
+
+    <!-- 06 — ANALIZĂM INSTAGRAM -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🟣 Analizăm împreună · Instagram</div><h2 class="slide-title">Ce face un cont de Instagram să pară „serios"?</h2></div>
+        <div class="cards-grid cards-2" style="grid-template-rows:1fr 1fr">
+          <div class="card mint"><span class="card-icon">🖼️</span><p class="card-title">Feed cu un stil clar</p><p class="card-body">Pozele „se potrivesc" între ele — aceleași culori, aceeași lumină. Pare gândit, nu aruncat.</p></div>
+          <div class="card sky"><span class="card-icon">📌</span><p class="card-title">Bio clar</p><p class="card-body">În 1 rând: ce faci + pentru cine + un link. Nu emoji-uri la întâmplare.</p></div>
+          <div class="card peach"><span class="card-icon">⭐</span><p class="card-title">Highlights organizate</p><p class="card-body">Categorii curate: „Produse", „Recenzii", „Cum comanzi". Arată că te-ai gândit.</p></div>
+          <div class="card rose"><span class="card-icon">💬</span><p class="card-title">Răspunde la comentarii</p><p class="card-body">Un brand viu vorbește cu oamenii. Tăcerea pare „abandonat".</p></div>
+        </div>
+        <div class="vs-highlight" style="margin-top:14px">Mentorul deschide 2 conturi reale: <b>unul îngrijit vs. unul haotic.</b> „Pe care l-ai crede?"</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Branding</div>
+        <div class="slide-num">06 / 10</div>
+      </div>
+    </section>
+
+    <!-- 07 — ANALIZĂM SITE-URI -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🟣 Analizăm împreună · site-uri</div><h2 class="slide-title">Ce face un site să pară de încredere?</h2></div>
+        <div class="split-screen">
+          <div class="split-pane good">
+            <div class="split-label good">✅ Site care inspiră încredere</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk yes">✓</span>Înțelegi din <b>prima frază</b> ce vinde</div>
+              <div class="split-li"><span class="mk yes">✓</span>Un singur buton clar: „Comandă", „Încearcă"</div>
+              <div class="split-li"><span class="mk yes">✓</span>Poze bune + recenzii reale</div>
+              <div class="split-li"><span class="mk yes">✓</span>Spațiu liber, curat — nu înghesuit</div>
+            </div>
+            <div class="split-foot">În 5 secunde știi ce e și ce să faci.</div>
+          </div>
+          <div class="split-pane bad">
+            <div class="split-label bad">❌ Site care sperie</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk no">✗</span>Text mult, nu înțelegi ce vinde</div>
+              <div class="split-li"><span class="mk no">✗</span>10 butoane, nu știi unde să dai</div>
+              <div class="split-li"><span class="mk no">✗</span>Poze neclare, culori țipătoare</div>
+              <div class="split-li"><span class="mk no">✗</span>Totul înghesuit, pop-up-uri peste tot</div>
+            </div>
+            <div class="split-foot">Te pierzi → închizi pagina.</div>
+          </div>
+        </div>
+        <div class="vs-highlight">Regula: <b>un mesaj clar + o singură acțiune.</b> Confuzia = clic pe „înapoi".</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Branding</div>
+        <div class="slide-num">07 / 10</div>
+      </div>
+    </section>
+
+    <!-- 08 — GREȘELI -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Atenție</div><h2 class="slide-title">Greșelile care te fac să pari „neserios"</h2></div>
+        <div class="cards-grid cards-3" style="grid-template-rows:1fr 1fr">
+          <div class="card"><span class="card-icon">🌈</span><p class="card-title">Prea multe culori</p><p class="card-body">Fiecare postare altfel → pare haotic.</p></div>
+          <div class="card"><span class="card-icon">🔤</span><p class="card-title">Prea multe fonturi</p><p class="card-body">5 fonturi „fancy" = greu de citit.</p></div>
+          <div class="card"><span class="card-icon">📷</span><p class="card-title">Poze neclare</p><p class="card-body">Întunecate, blurate → pare amator.</p></div>
+          <div class="card"><span class="card-icon">🗯️</span><p class="card-title">Mesaj neclar</p><p class="card-body">Nu se înțelege ce faci → pleacă.</p></div>
+          <div class="card"><span class="card-icon">🤐</span><p class="card-title">Cont „mort"</p><p class="card-body">Nicio postare nouă, niciun răspuns.</p></div>
+          <div class="card"><span class="card-icon">🪞</span><p class="card-title">Copiezi pe altcineva</p><p class="card-body">Pari o copie → nu te ține minte nimeni.</p></div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Branding</div>
+        <div class="slide-num">08 / 10</div>
+      </div>
+    </section>
+
+    <!-- 09 — EXERCIȚIU -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🟣 Exercițiu rapid</div><h2 class="slide-title">Schițează brandul afacerii tale <span style="font-size:18px;font-weight:700;color:var(--practice);background:#F3E8FF;padding:5px 14px;border-radius:100px;vertical-align:middle;margin-left:8px">⏱️ 10 min</span></h2></div>
+        <div class="exercise-center">
+          <div class="timer-pill">⏱️ 10 min · în carnet</div>
+          <div class="cards-grid cards-3" style="width:100%;max-width:920px">
+            <div class="card rose"><span class="card-icon">✏️</span><p class="card-title">Numele + logo</p><p class="card-body">Scrie numele și desenează un logo simplu.</p></div>
+            <div class="card lavender"><span class="card-icon">🎨</span><p class="card-title">2–3 culori</p><p class="card-body">Alege-le acum. Ce sentiment vrei să dea?</p></div>
+            <div class="card sky"><span class="card-icon">🗣️</span><p class="card-title">Fraza ta</p><p class="card-body">Ce faci, pentru cine, în 5 cuvinte.</p></div>
+          </div>
+          <div class="ex-note">Nu trebuie perfect. Trebuie <b>consecvent</b>. Astea intră în pitch-ul tău — adaugă-le pe Foaia de pitch.</div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Branding</div>
+        <div class="slide-num">09 / 10</div>
+      </div>
+    </section>
+
+    <!-- 10 — WRAP -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">De reținut</div><h2 class="slide-title">3 lucruri pe care le duci cu tine</h2></div>
+        <div class="check-list">
+          <div class="check-item"><div class="check-ic">1</div><div class="check-text">Oamenii te judecă <b>în 3 secunde</b>, din cum arăți — designul nu e „decor", e prima impresie.</div></div>
+          <div class="check-item"><div class="check-ic">2</div><div class="check-text"><b>Consecvența bate frumusețea:</b> aceleași 2–3 culori, un font, un stil — de fiecare dată.</div></div>
+          <div class="check-item"><div class="check-ic">3</div><div class="check-text">Un mesaj clar + o singură acțiune. <b>Confuzia alungă clienții.</b></div></div>
+        </div>
+        <div class="quote-block" style="margin-top:18px"><strong>Pentru pitch:</strong> un brand îngrijit îți spune juriului „ăștia se iau în serios". Aceeași idee, cu un design curat, pare de 2 ori mai matură.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Branding</div>
+        <div class="slide-num">10 / 10</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

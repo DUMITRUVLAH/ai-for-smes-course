@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modele de business + Pregătirea pitch-ului · Tekwill Academy</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #7C3AED;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 56px 68px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #7C3AED 0%, #DB2777 100%); }
+
+    .slide-header { margin-bottom: 24px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #F3E8FF; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 980px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+    .slide-foot { position: absolute; bottom: 20px; left: 68px; font-size: 11px; color: #94A3B8; font-weight: 500; letter-spacing: 0.03em; }
+
+    .logo { display: inline-block; vertical-align: middle; } .logo svg { display: block; }
+    .brand-chip { display: inline-flex; align-items: center; gap: 7px; font-weight: 800; font-size: 17px; letter-spacing: -0.01em; padding: 6px 15px; border-radius: 100px; line-height: 1; }
+    .brand-chip svg { display: block; }
+    .brand-chip.lg { font-size: 22px; padding: 9px 20px; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 30px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 20px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 23px; font-weight: 400; color: rgba(255,255,255,0.7); margin: 0 0 36px; max-width: 680px; line-height: 1.5; }
+    .cover-ice { display: inline-flex; align-items: center; gap: 11px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; padding: 14px 20px; font-size: 16px; color: rgba(255,255,255,0.78); font-style: italic; max-width: 640px; line-height: 1.5; }
+    .cover-ice .ic { font-size: 22px; font-style: normal; flex-shrink: 0; }
+
+    /* QUESTION list */
+    .q-center { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+    .q-item { display: flex; align-items: center; gap: 24px; padding: 24px 28px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); }
+    .q-num { font-size: 44px; font-weight: 800; color: var(--primary); line-height: 1; flex-shrink: 0; min-width: 48px; }
+    .q-text { font-size: 24px; font-weight: 500; color: var(--foreground); line-height: 1.4; }
+    .q-text b { font-weight: 800; }
+
+    /* EXERCISE / ACTIVITY */
+    .exercise-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 22px; }
+    .timer-pill { display: flex; align-items: center; gap: 8px; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 100px; padding: 9px 22px; font-size: 16px; font-weight: 700; color: #92400E; }
+    .exercise-template { background: var(--bg); border: 2px dashed var(--practice); border-radius: var(--radius); padding: 30px 40px; max-width: 880px; font-size: 22px; font-weight: 500; color: var(--foreground); line-height: 1.7; }
+    .exercise-template .tpl-label { font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--practice); display: block; margin-bottom: 14px; }
+    .exercise-hl { display: inline-block; background: var(--practice); color: #fff; border-radius: 7px; padding: 3px 13px; font-weight: 700; margin: 3px; }
+    .ex-note { font-size: 17px; color: var(--muted); max-width: 720px; line-height: 1.5; }
+    .ex-note b { color: var(--foreground); }
+
+    /* STATEMENT */
+    .stmt-hero { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 6px; }
+
+    /* VS / SPLIT */
+    .split-screen { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .split-pane { border-radius: var(--radius); padding: 26px 28px; display: flex; flex-direction: column; gap: 14px; }
+    .split-pane.bad { background: #FEF2F2; border: 1px solid #FECACA; }
+    .split-pane.good { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .split-pane.neutral { background: var(--bg); border: 1px solid var(--border); }
+    .split-label { font-size: 15px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+    .split-label.bad { color: #DC2626; } .split-label.good { color: #16A34A; } .split-label.neutral { color: var(--muted); }
+    .split-list { display: flex; flex-direction: column; gap: 12px; }
+    .split-li { display: flex; align-items: flex-start; gap: 12px; font-size: 18px; line-height: 1.4; color: var(--foreground); }
+    .split-li .mk { flex-shrink: 0; font-weight: 800; font-size: 18px; margin-top: 1px; }
+    .split-li .mk.no { color: var(--destructive); } .split-li .mk.yes { color: #16A34A; } .split-li .mk.dim { color: var(--muted); }
+    .split-li em { font-style: italic; color: var(--muted); }
+    .split-li b { font-weight: 700; }
+    .split-foot { margin-top: auto; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 16px; font-weight: 700; line-height: 1.4; }
+    .split-pane.good .split-foot { background: #DCFCE7; color: #15803D; }
+    .split-pane.neutral .split-foot { background: #EEF2FF; color: var(--primary); }
+
+    .vs-highlight { margin-top: 16px; text-align: center; font-size: 19px; font-weight: 700; color: var(--primary); background: var(--primary-ultra-light); border-radius: var(--radius); padding: 16px 20px; line-height: 1.4; }
+    .vs-highlight b { color: var(--foreground); }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 22px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 18px; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { color: var(--primary); }
+    .quote-block.warn { border-color: var(--warning); background: #FFFBEB; }
+    .quote-block.warn strong { color: #B45309; }
+    .quote-block.good { border-color: var(--success); background: #F0FDF4; }
+    .quote-block.good strong { color: #15803D; }
+
+    /* MODEL slide — big icon + how/who/example cards */
+    .model-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-ultra-light); color: var(--primary); font-size: 15px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; padding: 7px 17px; border-radius: 100px; margin-bottom: 12px; }
+    .model-layout { display: flex; gap: 26px; flex: 1; align-items: stretch; }
+    .model-visual { width: 230px; flex-shrink: 0; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; background: linear-gradient(160deg, #EEF2FF, #E0F2FE); padding: 24px; text-align: center; }
+    .model-visual .big-ic { font-size: 84px; line-height: 1; }
+    .model-visual .v-brands { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .model-cards { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; }
+    .mc { border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 24px; display: flex; flex-direction: column; justify-content: center; gap: 9px; min-height: 0; overflow: hidden; }
+    .mc-label { font-size: 16px; font-weight: 800; letter-spacing: 0.04em; color: var(--muted); display: flex; align-items: center; gap: 7px; }
+    .mc-body { font-size: 19px; color: var(--foreground); line-height: 1.5; }
+    .mc-body b { font-weight: 800; }
+    .mc.who { background: var(--pastel-mint); border-color: #BBF7D0; }
+    .mc.example { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .mc.win { background: var(--pastel-peach); border-color: #FDBA74; }
+
+    /* CARDS generic */
+    .cards-grid { display: grid; gap: 18px; flex: 1; }
+    .cards-2 { grid-template-columns: 1fr 1fr; }
+    .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: center; gap: 11px; min-height: 0; overflow: hidden; }
+    .card.mint { background: var(--pastel-mint); border-color: #86EFAC; }
+    .card.sky { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .card.peach { background: var(--pastel-peach); border-color: #FDBA74; }
+    .card.lavender { background: var(--pastel-lavender); border-color: #C4B5FD; }
+    .card.rose { background: var(--pastel-rose); border-color: #F9A8D4; }
+    .card-icon { font-size: 34px; line-height: 1; }
+    .card-title { font-size: 19px; font-weight: 800; color: var(--foreground); margin: 0; }
+    .card-body { font-size: 15px; color: var(--foreground); line-height: 1.5; margin: 0; }
+    .card-body b { font-weight: 800; }
+
+    /* SHEET / pitch fields */
+    .sheet { background: var(--bg); border: 2px solid var(--primary); border-radius: var(--radius); padding: 24px 30px; display: flex; flex-direction: column; gap: 13px; }
+    .sheet-row { font-size: 19px; color: var(--foreground); line-height: 1.5; display: flex; align-items: baseline; gap: 12px; }
+    .sheet-row .sn { font-weight: 800; color: var(--primary); flex-shrink: 0; }
+    .sheet-row b { font-weight: 800; }
+    .sheet-row em { font-style: italic; color: var(--muted); }
+    .andrei-box { background: #FFF7ED; border: 1px solid #FDBA74; border-radius: var(--radius); padding: 18px 22px; font-size: 15.5px; line-height: 1.55; color: var(--foreground); display: flex; flex-direction: column; gap: 7px; }
+    .andrei-box .alabel { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #C2410C; margin-bottom: 4px; }
+    .andrei-box .arow b { color: #C2410C; }
+
+    /* PITCH 5 steps */
+    .steps-list { display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: center; }
+    .step-item { display: flex; align-items: flex-start; gap: 16px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 22px; }
+    .step-num { width: 40px; height: 40px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .step-text { font-size: 19px; color: var(--foreground); line-height: 1.4; padding-top: 6px; flex: 1; }
+    .step-text b { font-weight: 800; } .step-text em { color: var(--muted); }
+    .step-time { font-size: 13px; font-weight: 800; color: var(--practice); background: #F3E8FF; padding: 5px 12px; border-radius: 100px; align-self: center; white-space: nowrap; }
+
+    /* TABLE */
+    .slide-table { width: 100%; border-collapse: collapse; font-size: 17px; flex: 1; }
+    .slide-table th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .slide-table td { padding: 12px 18px; border-bottom: 1px solid var(--border); color: var(--foreground); vertical-align: middle; line-height: 1.35; }
+    .slide-table tr:last-child td { border-bottom: none; }
+    .slide-table tr:nth-child(even) td { background: var(--bg); }
+    .slide-table td b { font-weight: 800; }
+
+    /* WRAP */
+    .wrap-lessons { display: flex; flex-direction: column; gap: 12px; }
+    .wrap-lesson { display: flex; align-items: center; gap: 20px; padding: 16px 22px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); }
+    .wrap-lesson .wn { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1; flex-shrink: 0; min-width: 36px; }
+    .wrap-lesson .wt { font-size: 19px; color: var(--foreground); line-height: 1.4; }
+    .wrap-lesson .wt b { font-weight: 800; }
+    .wrap-bottom { display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px; margin-top: 16px; }
+    .wrap-tema { background: #F0FDF4; border: 1px solid #86EFAC; border-radius: var(--radius); padding: 18px 22px; }
+    .wrap-tema .lbl { font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #16A34A; display: block; margin-bottom: 10px; }
+    .wrap-tema .tx { font-size: 15px; color: var(--foreground); line-height: 1.6; }
+    .wrap-tema .tx b { font-weight: 800; }
+    .wrap-preview { background: var(--foreground); color: #fff; border-radius: var(--radius); padding: 18px 22px; display: flex; flex-direction: column; justify-content: center; }
+    .wrap-preview .lbl { font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--primary-light); margin-bottom: 8px; }
+    .wrap-preview .tx { font-size: 17px; font-weight: 600; line-height: 1.4; }
+
+    /* PAUSE */
+    .pause-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 16px; }
+
+    /* FINANCE — P&L math layout */
+    .pnl { display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: center; }
+    .pnl-row { display: flex; align-items: center; gap: 16px; padding: 16px 24px; border-radius: var(--radius); font-size: 20px; border: 1px solid var(--border); }
+    .pnl-row .pnl-label { flex: 1; font-weight: 600; color: var(--foreground); }
+    .pnl-row .pnl-label b { font-weight: 800; }
+    .pnl-row .pnl-val { font-weight: 800; font-size: 24px; white-space: nowrap; }
+    .pnl-row .pnl-ic { font-size: 24px; line-height: 1; flex-shrink: 0; width: 32px; text-align: center; }
+    .pnl-row.rev { background: var(--pastel-mint); border-color: #86EFAC; } .pnl-row.rev .pnl-val { color: #16A34A; }
+    .pnl-row.cost { background: #FEF2F2; border-color: #FECACA; } .pnl-row.cost .pnl-val { color: var(--destructive); }
+    .pnl-row.profit { background: var(--primary-ultra-light); border-color: #C7D2FE; border-width: 2px; } .pnl-row.profit .pnl-label, .pnl-row.profit .pnl-val { color: var(--primary); font-weight: 800; font-size: 26px; }
+    .pnl-eq { text-align: center; font-size: 16px; color: var(--muted); font-weight: 700; letter-spacing: 0.04em; }
+
+    /* COST split: fixe vs variabile */
+    .cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .cost-pane { border-radius: var(--radius); padding: 24px 26px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--border); background: var(--bg); }
+    .cost-pane .cp-label { font-size: 15px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+    .cost-pane.fix { background: #FFF7ED; border-color: #FDBA74; } .cost-pane.fix .cp-label { color: #C2410C; }
+    .cost-pane.var { background: var(--pastel-sky); border-color: #BAE6FD; } .cost-pane.var .cp-label { color: #0284C7; }
+    .cost-li { display: flex; align-items: flex-start; gap: 10px; font-size: 17px; line-height: 1.4; color: var(--foreground); }
+    .cost-li .mk { color: var(--primary); font-weight: 800; flex-shrink: 0; }
+    .cost-li b { font-weight: 800; }
+
+    /* CASHFLOW months */
+    .cf-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; flex: 1; align-items: end; padding: 10px 0; }
+    .cf-col { display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; justify-content: flex-end; }
+    .cf-bar { width: 100%; border-radius: 8px 8px 0 0; min-height: 8px; }
+    .cf-bar.neg { background: repeating-linear-gradient(45deg, #FCA5A5, #FCA5A5 6px, #FECACA 6px, #FECACA 12px); }
+    .cf-bar.pos { background: linear-gradient(180deg, #4ADE80, #16A34A); }
+    .cf-month { font-size: 13px; font-weight: 700; color: var(--muted); }
+    .cf-amt { font-size: 13px; font-weight: 800; }
+    .cf-amt.neg { color: var(--destructive); } .cf-amt.pos { color: #16A34A; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 01 COVER -->
+    <section>
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Tekwill Academy · Kids Business School · Lecția pre-pitch</div>
+          <h1>Cum face afacerea ta<br>bani?</h1>
+          <p class="subtitle">Modele de business + pregătirea pitch-ului</p>
+          <div class="cover-ice"><span class="ic">🤔</span>YouTube, Spotify, Bolt — toate sunt gratis sau aproape gratis pentru tine. Atunci de unde au bani?</div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 26</div>
+      </div>
+    </section>
+
+    <!-- 02 — CE ÎNȚELEGI AZI -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Ce înțelegi azi</div><h2 class="slide-title">Până la final vei putea răspunde la 3 întrebări</h2></div>
+        <div class="q-center">
+          <div class="q-item"><div class="q-num">1</div><div class="q-text">Cum fac bani afacerile pe care le folosești <b>în fiecare zi?</b></div></div>
+          <div class="q-item"><div class="q-num">2</div><div class="q-text">Care e <b>modelul de business potrivit</b> pentru ideea TA?</div></div>
+          <div class="q-item"><div class="q-num">3</div><div class="q-text">Cum pui toată afacerea ta <b>pe o singură foaie</b> și o spui în 3 minute?</div></div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">02 / 26</div>
+      </div>
+    </section>
+
+    <!-- 03 — CE E UN MODEL DE BUSINESS -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Fundament</div><h2 class="slide-title">Un model de business nu e „ce vinzi". E cum intră banii.</h2></div>
+        <div class="split-screen">
+          <div class="split-pane neutral">
+            <div class="split-label neutral">Greșit: te gândești doar la produs</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk dim">—</span>„Vând o mașină"</div>
+              <div class="split-li"><span class="mk dim">—</span>„Fac o aplicație"</div>
+              <div class="split-li"><span class="mk dim">—</span>„Vând prăjituri"</div>
+            </div>
+            <div class="split-foot">Aceeași mașină: o cumperi o dată SAU o iei în leasing lunar. Alt model — alți bani.</div>
+          </div>
+          <div class="split-pane good">
+            <div class="split-label good">Corect: cele 3 întrebări ale banilor</div>
+            <div class="split-list">
+              <div class="split-li"><span class="mk yes">→</span><b>Cine plătește?</b> (clientul direct? sau altcineva — ex. reclama?)</div>
+              <div class="split-li"><span class="mk yes">→</span><b>Pentru ce plătește?</b> (un produs? acces? un abonament?)</div>
+              <div class="split-li"><span class="mk yes">→</span><b>Cât de des?</b> (o dată? lunar? la fiecare folosire?)</div>
+            </div>
+            <div class="split-foot">Răspunzi la cele 3 → ai un model de business.</div>
+          </div>
+        </div>
+        <div class="vs-highlight">La ideea TA: <b>cine ar plăti, pentru ce, și cât de des?</b> Ține minte întrebarea — îi răspunzi mai târziu.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">03 / 26</div>
+      </div>
+    </section>
+
+    <!-- 04 — MODEL 1 VÂNZARE DIRECTĂ -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="model-tag">Model 1 · Vânzare directă</div><h2 class="slide-title">Plătești o dată, primești produsul</h2></div>
+        <div class="model-layout">
+          <div class="model-visual"><span class="big-ic">🛍️</span><div class="v-brands"><span class="brand-chip" style="background:#1A1A1A;color:#fff;font-size:14px;padding:4px 12px">Brutărie</span><span class="brand-chip" style="background:#2D52D4;color:#fff;font-size:14px;padding:4px 12px">Magazin</span></div></div>
+          <div class="model-cards">
+            <div class="mc"><div class="mc-label">🎯 Cum</div><div class="mc-body">Dai un produs, primești bani. <b>O singură tranzacție.</b> Cel mai simplu model din lume.</div></div>
+            <div class="mc who"><div class="mc-label">👤 Cine plătește</div><div class="mc-body">Clientul, direct, pentru produsul pe care îl ia acum.</div></div>
+            <div class="mc"><div class="mc-label">⚖️ Atenție</div><div class="mc-body">Ca să crești, trebuie să vinzi <b>mereu către clienți noi</b> — fiecare vânzare începe de la zero.</div></div>
+            <div class="mc example"><div class="mc-label">🇲🇩 Exemplu</div><div class="mc-body">Faci prăjituri și le vinzi la Gusto Festival — 20 buc., 20 de plăți.</div></div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">04 / 26</div>
+      </div>
+    </section>
+
+    <!-- 05 — MODEL 2 ABONAMENT -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="model-tag">Model 2 · Abonament</div><h2 class="slide-title">Plătești lunar, ai acces continuu</h2></div>
+        <div class="model-layout">
+          <div class="model-visual">
+            <span class="big-ic">🔁</span>
+            <div class="v-brands">
+              <span class="brand-chip" style="background:#000;color:#E50914;font-size:15px;padding:5px 13px">NETFLIX</span>
+              <span class="brand-chip" style="background:#1DB954;color:#fff;font-size:15px;padding:5px 13px">Spotify</span>
+            </div>
+          </div>
+          <div class="model-cards">
+            <div class="mc"><div class="mc-label">🎯 Cum</div><div class="mc-body">Clientul plătește <b>lunar</b> și are acces tot timpul. Nu cumperi un film — cumperi accesul.</div></div>
+            <div class="mc win"><div class="mc-label">💪 Superputerea</div><div class="mc-body">Bani <b>predictibili</b> în fiecare lună. Știi azi cam cât intri luna viitoare.</div></div>
+            <div class="mc who"><div class="mc-label">👤 Cine plătește</div><div class="mc-body">Clientul, din nou și din nou, atâta timp cât rămâne abonat.</div></div>
+            <div class="mc example"><div class="mc-label">🇲🇩 Exemplu</div><div class="mc-body">Sala de sport, un curs online lunar, sau „cutia surpriză" trimisă în fiecare lună.</div></div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">05 / 26</div>
+      </div>
+    </section>
+
+    <!-- 06 — MODEL 3 GILLETTE (intro) -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="model-tag">Model 3 · Gillette (razor &amp; blades)</div><h2 class="slide-title">Dai ceva ieftin acum, ca să câștigi din altceva — mereu</h2></div>
+        <div class="model-layout">
+          <div class="model-visual"><span class="big-ic">🪒</span><div class="v-brands"><span class="brand-chip" style="background:#0057A8;color:#fff;font-size:15px;padding:5px 13px">Gillette</span></div></div>
+          <div class="model-cards">
+            <div class="mc"><div class="mc-label">🎯 Ideea</div><div class="mc-body"><b>Aparatul de ras = aproape gratis.</b> Lamele, pe care le cumperi toată viața = banii adevărați.</div></div>
+            <div class="mc win"><div class="mc-label">🧠 De ce e deștept</div><div class="mc-body">Prima vânzare e o <b>momeală</b>. Câștigul vine din ce cumperi <b>la nesfârșit</b> după.</div></div>
+            <div class="mc who"><div class="mc-label">👤 Cine plătește</div><div class="mc-body">Tot clientul — dar de multe ori, pentru consumabil.</div></div>
+            <div class="mc example"><div class="mc-label">➡️ Urmează</div><div class="mc-body">E peste tot azi. Hai să vedem unde — o să te surprindă.</div></div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">06 / 26</div>
+      </div>
+    </section>
+
+    <!-- 07 — MODEL 4 FREEMIUM -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="model-tag">Model 4 · Freemium</div><h2 class="slide-title">Gratis pentru mulți, plătit pentru cei care vor mai mult</h2></div>
+        <div class="model-layout">
+          <div class="model-visual"><span class="big-ic">🎁</span><div class="v-brands"><span class="brand-chip" style="background:#1DB954;color:#fff;font-size:14px;padding:4px 12px">Spotify Free → Premium</span></div></div>
+          <div class="model-cards">
+            <div class="mc"><div class="mc-label">🎯 Cum</div><div class="mc-body">Versiunea de bază e <b>gratis</b> — ca să vină mulți. Cine vrea mai mult, <b>plătește</b>.</div></div>
+            <div class="mc who"><div class="mc-label">👤 Cine plătește</div><div class="mc-body">Doar o parte mică din utilizatori — dar ei țin afacerea. Restul sunt „vitrina".</div></div>
+            <div class="mc win"><div class="mc-label">💪 Avantaj</div><div class="mc-body">Crești repede pentru că <b>gratis</b> atrage lumea ușor.</div></div>
+            <div class="mc example"><div class="mc-label">🎮 Exemplu</div><div class="mc-body">Un joc gratis → bani din <b>skin-uri și upgrade-uri</b>. Spotify gratis cu reclame → Premium fără.</div></div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">07 / 26</div>
+      </div>
+    </section>
+
+    <!-- 08 — MODEL 5 MARKETPLACE / COMISION -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="model-tag">Model 5 · Marketplace / Comision</div><h2 class="slide-title">Conectezi două părți și iei un procent</h2></div>
+        <div class="model-layout">
+          <div class="model-visual">
+            <span class="big-ic">🤝</span>
+            <div class="v-brands">
+              <span class="brand-chip" style="background:#34D186;color:#fff;font-size:15px;padding:5px 13px">Bolt</span>
+              <span class="brand-chip" style="background:#FFC244;color:#1A1A1A;font-size:15px;padding:5px 13px">Glovo</span>
+            </div>
+          </div>
+          <div class="model-cards">
+            <div class="mc"><div class="mc-label">🎯 Cum</div><div class="mc-body">Pui în legătură <b>doi care au nevoie unul de altul</b> și iei un <b>procent</b> din fiecare tranzacție.</div></div>
+            <div class="mc win"><div class="mc-label">💪 Superputerea</div><div class="mc-body"><b>Tu nu produci nimic.</b> Bolt n-are mașini, Glovo n-are restaurante.</div></div>
+            <div class="mc who"><div class="mc-label">👤 Cine plătește</div><div class="mc-body">Ambele părți, prin comisionul luat din fiecare comandă.</div></div>
+            <div class="mc example"><div class="mc-label">🇲🇩 Exemplu</div><div class="mc-body">Un grup unde elevii vând/cumpără manuale — iei un mic comision la fiecare schimb.</div></div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">08 / 26</div>
+      </div>
+    </section>
+
+    <!-- 09 — MODEL 6 RECLAMĂ -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="model-tag">Model 6 · Reclamă</div><h2 class="slide-title">Gratis pentru tine — plătesc firmele</h2></div>
+        <div class="model-layout">
+          <div class="model-visual">
+            <span class="big-ic">📣</span>
+            <div class="v-brands">
+              <span class="brand-chip" style="background:#FF0000;color:#fff;font-size:14px;padding:4px 12px">YouTube</span>
+              <span class="brand-chip" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF);color:#fff;font-size:14px;padding:4px 12px">Instagram</span>
+            </div>
+          </div>
+          <div class="model-cards">
+            <div class="mc"><div class="mc-label">🎯 Cum</div><div class="mc-body">Tu folosești gratis. Banii vin de la <b>firme</b> care vor ca reclama lor să ajungă la tine.</div></div>
+            <div class="mc win"><div class="mc-label">🔑 Cheia</div><div class="mc-body">Ai nevoie de <b>foarte mulți oameni</b> care îți dau atenție — atenția se vinde.</div></div>
+            <div class="mc who"><div class="mc-label">👤 Cine plătește</div><div class="mc-body">NU utilizatorul. Plătesc firmele care fac reclamă.</div></div>
+            <div class="mc example"><div class="mc-label">🇲🇩 Exemplu</div><div class="mc-body">Un cont / canal cu mulți urmăritori → branduri plătesc ca să apară la tine.</div></div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">09 / 26</div>
+      </div>
+    </section>
+
+    <!-- 10 — MICRO-ACTIVITATE: CE MODEL E? -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🟣 Micro-activitate · strigă răspunsul</div><h2 class="slide-title">Ce model de business e? <span style="font-size:18px;font-weight:700;color:var(--practice);background:#F3E8FF;padding:5px 14px;border-radius:100px;vertical-align:middle;margin-left:8px">⏱️ 7 min</span></h2></div>
+        <div class="cards-grid cards-3" style="grid-template-rows:1fr 1fr">
+          <div class="card mint"><span class="card-icon">🎬</span><p class="card-title">Netflix</p><p class="card-body">→ <b>Abonament</b></p></div>
+          <div class="card sky"><span class="card-icon">🚕</span><p class="card-title">Bolt</p><p class="card-body">→ <b>Marketplace / comision</b></p></div>
+          <div class="card peach"><span class="card-icon">📺</span><p class="card-title">YouTube</p><p class="card-body">→ <b>Reclamă</b></p></div>
+          <div class="card lavender"><span class="card-icon">🎮</span><p class="card-title">Un joc mobil gratis</p><p class="card-body">→ <b>Freemium</b></p></div>
+          <div class="card rose"><span class="card-icon">🖨️</span><p class="card-title">Imprimantă + cartușe</p><p class="card-body">→ <b>Gillette</b></p></div>
+          <div class="card"><span class="card-icon">🥐</span><p class="card-title">Brutăria din cartier</p><p class="card-body">→ <b>Vânzare directă</b></p></div>
+        </div>
+        <div class="vs-highlight" style="margin-top:14px">Mentorul spune brandul, voi strigați <b>modelul</b>. (Răspunsurile apar pe slide ca să te verifici.)</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">10 / 26</div>
+      </div>
+    </section>
+
+    <!-- 11 — TRUCUL GILLETTE PESTE TOT -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Gillette · în viața ta</div><h2 class="slide-title">Același truc, peste tot în jurul tău</h2></div>
+        <div class="cards-grid cards-2" style="grid-template-rows:1fr 1fr">
+          <div class="card lavender"><span class="card-icon">🎮</span><p class="card-title">Consolă ieftină → jocuri scumpe</p><p class="card-body">PlayStation / Xbox se vând aproape la cost. Banii vin din <b>jocuri</b>, an după an.</p></div>
+          <div class="card sky"><span class="card-icon">🖨️</span><p class="card-title">Imprimantă ieftină → cartușe scumpe</p><p class="card-body">Imprimanta e ieftină. <b>Cerneala</b> e scumpă și o cumperi mereu.</p></div>
+          <div class="card peach"><span class="card-icon">☕</span><p class="card-title">Espressor „gratis" → capsule</p><p class="card-body">Aparatul de cafea e ieftin. <b>Capsulele</b> se cumpără la nesfârșit (Nespresso).</p></div>
+          <div class="card mint"><span class="card-icon">📱</span><p class="card-title">Telefon „0 lei" → abonament 2 ani</p><p class="card-body">Telefonul pare gratis. Plătești prin <b>abonamentul lunar</b> ani la rând.</p></div>
+        </div>
+        <div class="vs-highlight" style="margin-top:14px">Vezi tiparul? <b>Momeala ieftină → consumabilul aduce banii.</b></div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">11 / 26</div>
+      </div>
+    </section>
+
+    <!-- 12 — DE CE FUNCȚIONEAZĂ GILLETTE -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Gillette · de ce merge</div><h2 class="slide-title">Banii nu vin din prima vânzare. Vin din repetare.</h2></div>
+        <div class="steps-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-text"><b>Dai „aparatul" ieftin sau gratis</b> — omul intră ușor, fără să se gândească.</div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-text">O dată ce-l are, <b>îi trebuie „lamele" mereu</b> — e prins în sistem.</div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-text">Tu câștigi din <b>consumabilul care se cumpără la nesfârșit</b>, nu din prima vânzare.</div></div>
+        </div>
+        <div class="quote-block good" style="margin-top:18px"><strong>Întrebarea pentru tine:</strong> la ideea ta, ai putea da ceva ieftin/gratis la început ca să câștigi din altceva după? Ce ar fi „aparatul" și ce ar fi „lamele"?</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">12 / 26</div>
+      </div>
+    </section>
+
+    <!-- 13 — REVENUE NU E PROFIT -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Matematica banilor</div><h2 class="slide-title">Atenție: „venit mare" nu înseamnă „bani în buzunar"</h2></div>
+        <div class="pnl">
+          <div class="pnl-row rev"><span class="pnl-ic">📥</span><span class="pnl-label"><b>Venit</b> (cât INTRĂ) — toți banii pe care ți-i dau clienții</span><span class="pnl-val">+ 10.000 lei</span></div>
+          <div class="pnl-eq">— minus —</div>
+          <div class="pnl-row cost"><span class="pnl-ic">📤</span><span class="pnl-label"><b>Costuri</b> (cât IESE) — materiale, chirie, energie, salarii, transport...</span><span class="pnl-val">− 8.500 lei</span></div>
+          <div class="pnl-eq">= egal =</div>
+          <div class="pnl-row profit"><span class="pnl-ic">💰</span><span class="pnl-label"><b>Profit</b> — banii care chiar rămân ai tăi</span><span class="pnl-val">= 1.500 lei</span></div>
+        </div>
+        <div class="quote-block warn" style="margin-top:16px"><strong>Greșeala #1 a începătorilor:</strong> se uită doar la venit („am vândut de 10.000!") și uită costurile. Juriul întreabă mereu: <b>«și cât îți RĂMÂNE?»</b></div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">13 / 26</div>
+      </div>
+    </section>
+
+    <!-- 14 — COSTURI: FIXE vs VARIABILE -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Costuri</div><h2 class="slide-title">Două feluri de costuri — trebuie să le știi pe amândouă</h2></div>
+        <div class="cost-grid">
+          <div class="cost-pane fix">
+            <div class="cp-label">🏠 Costuri FIXE — le plătești oricum, chiar dacă nu vinzi nimic</div>
+            <div class="cost-li"><span class="mk">•</span><b>Chiria</b> spațiului</div>
+            <div class="cost-li"><span class="mk">•</span><b>Energie / electricitate</b>, internet, apă</div>
+            <div class="cost-li"><span class="mk">•</span><b>Salariile</b> fixe ale echipei</div>
+            <div class="cost-li"><span class="mk">•</span>Abonamente, licențe, asigurări</div>
+          </div>
+          <div class="cost-pane var">
+            <div class="cp-label">📦 Costuri VARIABILE — cresc cu fiecare produs vândut</div>
+            <div class="cost-li"><span class="mk">•</span><b>Materia primă</b> (făină, materiale, ingrediente)</div>
+            <div class="cost-li"><span class="mk">•</span><b>Ambalaj</b> + livrare per comandă</div>
+            <div class="cost-li"><span class="mk">•</span>Comision pe plata cu cardul</div>
+            <div class="cost-li"><span class="mk">•</span>Reclamă plătită per vânzare</div>
+          </div>
+        </div>
+        <div class="vs-highlight">Întrebarea cheie: <b>cât mă costă să fac UN produs?</b> Dacă produsul te costă 30 lei și-l vinzi cu 25 — pierzi la fiecare vânzare.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">14 / 26</div>
+      </div>
+    </section>
+
+    <!-- 15 — COSTURI PE CARE LE CONTROLEZI / AVANTAJ -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Avantaj la costuri</div><h2 class="slide-title">Ce costuri poți controla — ca să fii mai ieftin decât concurența</h2></div>
+        <div class="cards-grid cards-3" style="grid-template-rows:1fr 1fr">
+          <div class="card peach"><span class="card-icon">⚡</span><p class="card-title">Energie / electricitate</p><p class="card-body">Folosești orele ieftine, lumini econome, sau produci doar când e nevoie. <b>Mic acum, mare la scară.</b></p></div>
+          <div class="card sky"><span class="card-icon">🤝</span><p class="card-title">Deal cu furnizorul</p><p class="card-body">Cumperi mai mult o dată → preț mai mic. Sau te înțelegi cu un furnizor local de încredere.</p></div>
+          <div class="card mint"><span class="card-icon">🏠</span><p class="card-title">Spațiu „gratis"</p><p class="card-body">Lucrezi de acasă, sau folosești orele moarte ale altui spațiu (M2, Metoda 9).</p></div>
+          <div class="card lavender"><span class="card-icon">🙋</span><p class="card-title">Faci tu, nu plătești</p><p class="card-body">La început faci singur ce poți → eviți salarii. Plătești doar ce nu poți face.</p></div>
+          <div class="card rose"><span class="card-icon">📍</span><p class="card-title">Local vs. import</p><p class="card-body">Materie primă locală = mai ieftină + mai rapidă decât din import.</p></div>
+          <div class="card"><span class="card-icon">♻️</span><p class="card-title">Mai puțin risipă</p><p class="card-body">Produci cât se vinde → nu arunci marfă. Risipa e cost ascuns.</p></div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">15 / 26</div>
+      </div>
+    </section>
+
+    <!-- 16 — SALARII: CERCETEAZĂ -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Costul oamenilor</div><h2 class="slide-title">Salariile sunt un cost real — cercetează-le, nu le ghici</h2></div>
+        <div class="steps-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-text"><b>Ce roluri îți trebuie?</b> Cine face produsul, cine vinde, cine livrează? Fiecare rol = un cost.</div></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-text"><b>Cât câștigă oamenii ăștia, real?</b> Caută pe rabota.md / delucru.md / 999.md cât e salariul unui vânzător, livrator, designer în Moldova.</div></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-text"><b>Pune cifra în calcul.</b> Dacă un livrator costă 8.000 lei/lună, afacerea ta trebuie să producă acel cost + profit.</div></div>
+        </div>
+        <div class="quote-block" style="margin-top:16px"><strong>Truc pentru pitch:</strong> chiar dacă la început faci tu totul (salariu 0), arată că <b>știi cât ar costa</b> când crești. Asta convinge juriul că ai gândit serios.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">16 / 26</div>
+      </div>
+    </section>
+
+    <!-- 17 — CASH FLOW + SEZONALITATE -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Cash flow &amp; sezonalitate</div><h2 class="slide-title">Banii nu intră egal în fiecare lună — planifică pentru asta</h2></div>
+        <div class="cf-grid">
+          <div class="cf-col"><span class="cf-amt neg">−2.000</span><div class="cf-bar neg" style="height:30%"></div><span class="cf-month">Ian</span></div>
+          <div class="cf-col"><span class="cf-amt neg">−500</span><div class="cf-bar neg" style="height:12%"></div><span class="cf-month">Feb</span></div>
+          <div class="cf-col"><span class="cf-amt pos">+1.500</span><div class="cf-bar pos" style="height:38%"></div><span class="cf-month">Mar</span></div>
+          <div class="cf-col"><span class="cf-amt pos">+4.000</span><div class="cf-bar pos" style="height:75%"></div><span class="cf-month">Iun</span></div>
+          <div class="cf-col"><span class="cf-amt pos">+5.500</span><div class="cf-bar pos" style="height:100%"></div><span class="cf-month">Dec</span></div>
+          <div class="cf-col"><span class="cf-amt neg">−1.000</span><div class="cf-bar neg" style="height:20%"></div><span class="cf-month">Ian²</span></div>
+        </div>
+        <div class="vs-highlight" style="margin-top:8px"><b>Cash flow</b> = banii care chiar intră și ies, lună de lună. Poate ai profit pe an, dar <b>rămâi fără bani</b> într-o lună slabă dacă nu te-ai pregătit.</div>
+        <div class="quote-block warn" style="margin-top:14px"><strong>Sezonalitate:</strong> înghețata se vinde vara, brazii în decembrie, meditațiile în sesiune. <b>Cercetează când e cererea</b> și pune deoparte din lunile bune pentru lunile slabe.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">17 / 26</div>
+      </div>
+    </section>
+
+    <!-- 18 — RISCURI -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Riscuri</div><h2 class="slide-title">Ce poate merge prost — și cum răspunzi când juriul te întreabă</h2></div>
+        <div class="cards-grid cards-2" style="grid-template-rows:1fr 1fr">
+          <div class="card"><span class="card-icon">📉</span><p class="card-title">Vine mai puțină lume decât credeai</p><p class="card-body"><b>Mitigare:</b> ai testat deja (M2) → știi că există cerere. Începi mic.</p></div>
+          <div class="card"><span class="card-icon">💸</span><p class="card-title">Costurile cresc (energie, materiale)</p><p class="card-body"><b>Mitigare:</b> deal cu furnizorul, alternative locale, preț cu marjă de siguranță.</p></div>
+          <div class="card"><span class="card-icon">🌦️</span><p class="card-title">Sezon slab / cerere variabilă</p><p class="card-body"><b>Mitigare:</b> pui bani deoparte din lunile bune; produs „de extrasezon".</p></div>
+          <div class="card"><span class="card-icon">🥊</span><p class="card-title">Apare un concurent mai ieftin</p><p class="card-body"><b>Mitigare:</b> diferențiatorul tău (M4) + costuri pe care le controlezi.</p></div>
+        </div>
+        <div class="vs-highlight" style="margin-top:14px">Juriul NU se sperie de riscuri — se sperie când <b>nu le-ai văzut</b>. Să ai un risc + un răspuns = pari matur.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">18 / 26</div>
+      </div>
+    </section>
+
+    <!-- 19 — ALEGE MODELUL TĂU (carnet) -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🟣 În carnet · individual</div><h2 class="slide-title">Alege modelul TĂU + fă matematica <span style="font-size:18px;font-weight:700;color:var(--practice);background:#F3E8FF;padding:5px 14px;border-radius:100px;vertical-align:middle;margin-left:8px">⏱️ 20 min</span></h2></div>
+        <div class="sheet" style="border-style:dashed;border-color:var(--practice)">
+          <div class="sheet-row"><span class="sn">1.</span><div><b>Modelul meu:</b> ___ <em>(unul din cele 6 — pot combina 2)</em></div></div>
+          <div class="sheet-row"><span class="sn">2.</span><div><b>Prețul:</b> cât plătește un client? &nbsp;·&nbsp; <b>Costul/produs:</b> cât mă costă să-l fac?</div></div>
+          <div class="sheet-row"><span class="sn">3.</span><div><b>Profit la o vânzare</b> = preț − cost. <em>(trebuie să fie pozitiv!)</em></div></div>
+          <div class="sheet-row"><span class="sn">4.</span><div><b>Costuri fixe lunare:</b> chirie, energie, salarii... &nbsp;·&nbsp; <b>1 cost pe care îl pot controla</b></div></div>
+          <div class="sheet-row"><span class="sn">5.</span><div><b>Sezonalitate:</b> când e cererea mare/mică? &nbsp;·&nbsp; <b>1 risc + cum îl rezolv</b></div></div>
+        </div>
+        <div class="ex-note" style="margin-top:14px;text-align:center;align-self:center">Nu doar venit — <b>fă matematica</b>: cât rămâne. Cercetează salariile reale (rabota.md). Mentorul trece pe la fiecare.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">19 / 26</div>
+      </div>
+    </section>
+
+    <!-- 20 — PAUZĂ -->
+    <section>
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content pause-center" style="z-index:2">
+          <div style="font-size:80px">☕</div>
+          <h1 style="text-align:center">Pauză</h1>
+          <p class="subtitle" style="text-align:center;margin:0">30 de minute. Apoi: punem toată afacerea ta — cu tot cu cifre — pe o singură foaie.</p>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">20 / 26</div>
+      </div>
+    </section>
+
+    <!-- 21 — FOAIA DE PITCH: 7 CÂMPURI -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Pregătirea pitch-ului</div><h2 class="slide-title">Foaia de pitch — toată afacerea ta pe o pagină</h2></div>
+        <div class="cards-grid" style="grid-template-columns:repeat(4,1fr);grid-template-rows:1fr 1fr">
+          <div class="card sky"><span class="card-icon">①</span><p class="card-title">Problema</p><p class="card-body">Ce doare și pentru cine. <em>(M1)</em></p></div>
+          <div class="card mint"><span class="card-icon">②</span><p class="card-title">Soluția</p><p class="card-body">Ce faci + de ce e mai bună. <em>(M2)</em></p></div>
+          <div class="card peach"><span class="card-icon">③</span><p class="card-title">Clientul</p><p class="card-body">Cine plătește, ca persoană reală.</p></div>
+          <div class="card lavender"><span class="card-icon">④</span><p class="card-title">Modelul</p><p class="card-body">Cum intră banii. <em>(de azi)</em></p></div>
+          <div class="card" style="background:#EEF2FF;border-color:#C7D2FE"><span class="card-icon">⑤</span><p class="card-title" style="color:var(--primary)">Banii (matematica)</p><p class="card-body">Preț − cost = profit · costuri fixe · sezon · risc.</p></div>
+          <div class="card rose"><span class="card-icon">⑥</span><p class="card-title">Echipa</p><p class="card-body">Tu + cofondator / roluri.</p></div>
+          <div class="card"><span class="card-icon">⑦</span><p class="card-title">Cererea (ask)</p><p class="card-body">Un pilot, un client, încredere.</p></div>
+          <div class="card" style="background:#0F172A;color:#fff"><span class="card-icon">🎯</span><p class="card-title" style="color:#fff">Ținta</p><p class="card-body" style="color:rgba(255,255,255,0.8)">Arată că <b style="color:#fff">banii sunt reali</b> și că poți câștiga.</p></div>
+        </div>
+        <div class="vs-highlight" style="margin-top:14px">Câmpul <b style="color:var(--primary)">⑤ Banii</b> e nou și e cel care impresionează juriul: nu doar venit, ci <b>cât rămâne</b>.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">21 / 26</div>
+      </div>
+    </section>
+
+    <!-- 22 — EXEMPLUL ANDREI (complet) -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Model complet</div><h2 class="slide-title">Cum arată o Foaie de pitch „gata" — exemplul Andrei</h2></div>
+        <div class="andrei-box" style="font-size:14.5px;gap:5px">
+          <div class="alabel">📕 Andrei, 16 ani · platformă de schimb de cărți între liceeni</div>
+          <div class="arow"><b>① Problema:</b> Liceenii cheltuie sute de lei pe cărți citite o dată. <em>(8 din 20 ar schimba o carte/lună — M2)</em></div>
+          <div class="arow"><b>② Soluția:</b> Platformă simplă, doar pentru liceeni, schimbi cărți direct — gratis și de încredere.</div>
+          <div class="arow"><b>③ Clientul:</b> Liceeni 14–18 ani din Chișinău, citesc mult, n-au bani de cumpărat tot.</div>
+          <div class="arow"><b>④ Modelul:</b> Freemium + comision. Schimb de bază = gratis. Bani din livrare + „Plus" 20 lei/lună.</div>
+          <div class="arow" style="background:#EEF2FF;padding:8px 12px;border-radius:8px"><b style="color:var(--primary)">⑤ Banii:</b> „Plus" 20 lei × 50 abonați = <b>1.000 lei/lună venit</b>. Costuri: server 200 + reclamă 150 = <b>350 lei</b>. <b style="color:var(--primary)">Profit ≈ 650 lei/lună.</b> Sezon: vârf la început de an școlar (sept) + sesiune. Risc: puțini abonați la start → încep gratis, cresc comunitatea întâi.</div>
+          <div class="arow"><b>⑥ Echipa:</b> Andrei = produs + organizare. Caută cofondator la marketing.</div>
+          <div class="arow"><b>⑦ Cererea:</b> „Lăsați-mă să rulez un pilot cu 2 licee o lună și să vă arăt câte schimburi s-au făcut."</div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">22 / 26</div>
+      </div>
+    </section>
+
+    <!-- 23 — ACTIVITATE MARE: COMPLETEAZĂ FOAIA -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🟣 Activitate mare · individual</div><h2 class="slide-title">Completează Foaia ta de pitch</h2></div>
+        <div class="exercise-center">
+          <div class="timer-pill">⏱️ 40 de minute · folosește carnetul</div>
+          <div class="exercise-template">
+            <span class="tpl-label">La final, fiecare are o foaie completă din care își ține pitch-ul</span>
+            <span class="exercise-hl">① Problema</span> <span class="exercise-hl">② Soluția</span> <span class="exercise-hl">③ Clientul</span> <span class="exercise-hl">④ Modelul</span><br>
+            <span class="exercise-hl" style="background:var(--primary)">⑤ Banii</span> <span class="exercise-hl">⑥ Echipa</span> <span class="exercise-hl">⑦ Cererea</span>
+          </div>
+          <div class="ex-note">Iei piesele din modulele trecute + modelul și <b>matematica</b> de azi. La ⑤ <b>fă cifrele</b>: preț − cost = profit, costuri fixe, sezon, risc. Mentorul trece pe la fiecare de 2 ori. <b>Nimeni nu pleacă fără foaia completă.</b></div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">23 / 26</div>
+      </div>
+    </section>
+
+    <!-- 24 — CUM PREZINȚI: 5 PAȘI -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Cum prezinți</div><h2 class="slide-title">Pitch-ul în 5 pași — o mini-poveste, nu o listă citită</h2></div>
+        <div class="steps-list">
+          <div class="step-item"><div class="step-num">1</div><div class="step-text"><b>Cârligul</b> — o frază care doare, ca să prindă atenția. <em>„Știați că un elev pierde X ore pe ___?"</em></div><span class="step-time">15 sec</span></div>
+          <div class="step-item"><div class="step-num">2</div><div class="step-text"><b>Soluția</b> — ce faci + de ce e mai bună. Simplu.</div><span class="step-time">45 sec</span></div>
+          <div class="step-item"><div class="step-num">3</div><div class="step-text"><b>Cum faci bani + cifrele</b> — modelul + preț, cost, profit. <em>Arată că banii sunt reali.</em></div><span class="step-time">45 sec</span></div>
+          <div class="step-item"><div class="step-num">4</div><div class="step-text"><b>De ce voi</b> — echipa: de ce voi sunteți oamenii potriviți.</div><span class="step-time">30 sec</span></div>
+          <div class="step-item"><div class="step-num">5</div><div class="step-text"><b>Cererea</b> — ce ceri la final. Închizi cu o frază memorabilă.</div><span class="step-time">15 sec</span></div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">24 / 26</div>
+      </div>
+    </section>
+
+    <!-- 25 — REPETIȚIE DE PITCH -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🟣 Repetiție · perechi + voluntari</div><h2 class="slide-title">Repetiție de pitch — ca să nu fie prima oară la juriu <span style="font-size:18px;font-weight:700;color:var(--practice);background:#F3E8FF;padding:5px 14px;border-radius:100px;vertical-align:middle;margin-left:8px">⏱️ 18 min</span></h2></div>
+        <div class="cards-grid cards-2">
+          <div class="card lavender"><span class="card-icon">👥</span><p class="card-title">În perechi · 10 min</p><p class="card-body">Fiecare ține pitch-ul de <b>2 min</b> colegului (Foaia + cei 5 pași). Colegul dă <b>1 lucru bun + 1 întrebare</b>. Apoi inversați.</p></div>
+          <div class="card sky"><span class="card-icon">🎤</span><p class="card-title">Voluntari în față · 8 min</p><p class="card-body">2–3 voluntari prezintă în fața tuturor. Feedback scurt: <b>cifrele se țin? cât rămâne? cine e clientul? cârligul prinde?</b></p></div>
+        </div>
+        <div class="vs-highlight" style="margin-top:14px">Exact ce te va întreba juriul. Mai bine afli azi ce nu e clar.</div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">25 / 26</div>
+      </div>
+    </section>
+
+    <!-- 26 — WRAP -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Wrap-up</div><h2 class="slide-title">Ce duci la juriu</h2></div>
+        <div class="wrap-lessons">
+          <div class="wrap-lesson"><div class="wn">1</div><div class="wt">Venit ≠ profit. <b>Profit = preț − costuri.</b> Juriul întreabă mereu: „și cât îți rămâne?"</div></div>
+          <div class="wrap-lesson"><div class="wn">2</div><div class="wt">Ai făcut <b>matematica</b>: costuri fixe/variabile, salarii reale, cash flow, sezon și un risc cu răspuns.</div></div>
+          <div class="wrap-lesson"><div class="wn">3</div><div class="wt">Toată afacerea — <b>cu cifre</b> — pe Foaia de pitch, repetată o dată cu voce tare.</div></div>
+        </div>
+        <div class="wrap-bottom">
+          <div class="wrap-tema">
+            <span class="lbl">🎤 Final Challenge Lab — ce caută juriul</span>
+            <div class="tx">→ E o <b>problemă reală</b>? Soluția are sens?<br>→ <b>Cifrele se țin — faci bani cu adevărat</b>?<br>→ Ai văzut riscurile și sezonul? Aduceți <b>Foaia de pitch</b>.</div>
+          </div>
+          <div class="wrap-preview">
+            <span class="lbl">Companion →</span>
+            <div class="tx">Branding &amp; design: de ce contează cum arăți. Deck separat.</div>
+          </div>
+        </div>
+        <div class="slide-foot">Tekwill Academy · Business School · Pre-pitch</div>
+        <div class="slide-num">26 / 26</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>
