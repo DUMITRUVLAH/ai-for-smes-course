@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI in HR — Platforma sesiunii</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#F8FAFC;--fg:#0F172A;--card:#FFFFFF;--border:#E2E8F0;--muted-fg:#64748B;--muted:#F1F5F9;
+  --primary:#2D52D4;--primary-light:#5B7CF7;--primary-pale:#EEF2FF;--practice:#7C3AED;
+  --radius:16px;--radius-sm:10px;--radius-full:9999px;
+  --shadow-sm:0 1px 3px rgba(15,23,42,.05);--shadow-md:0 4px 16px rgba(15,23,42,.08);--shadow-lg:0 16px 40px -8px rgba(15,23,42,.14);
+  --mint-bg:#DCFCE7;--mint-fg:#16A34A;--lav-bg:#EDE9FE;--lav-fg:#7C3AED;--peach-bg:#FFEDD5;--peach-fg:#EA580C;
+  --sky-bg:#E0F2FE;--sky-fg:#0284C7;--rose-bg:#FCE7F3;--rose-fg:#DB2777;--lemon-bg:#FEF9C3;--lemon-fg:#CA8A04;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;line-height:1.5}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* top bar */
+.top{border-bottom:1px solid var(--border);background:var(--card);position:sticky;top:0;z-index:10}
+.top-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--practice));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff}
+.brand-name{font-size:14px;font-weight:800}
+.brand-sub{font-size:11.5px;color:var(--muted-fg)}
+.top-pill{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--primary);background:var(--primary-pale);padding:6px 13px;border-radius:var(--radius-full)}
+.top-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--primary);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* hero */
+.hero{padding:52px 0 30px}
+.hero-kicker{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary);background:var(--primary-pale);padding:6px 14px;border-radius:var(--radius-full);margin-bottom:18px}
+.hero h1{font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
+.hero h1 .y{color:var(--practice)}
+.hero p{font-size:17px;color:var(--muted-fg);max-width:720px;line-height:1.6}
+.stat-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.stat-chip{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;background:var(--card);border:1px solid var(--border);padding:8px 15px;border-radius:var(--radius-full);box-shadow:var(--shadow-sm)}
+
+/* primary CTA */
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:700;padding:13px 24px;border-radius:var(--radius-sm);transition:.15s;border:1px solid transparent}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:var(--shadow-md)}
+.btn-primary:hover{background:#2344b8;transform:translateY(-1px)}
+.btn-ghost{background:var(--card);color:var(--fg);border-color:var(--border)}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+
+/* section */
+.sec{padding:14px 0 40px}
+.sec-title{display:flex;align-items:baseline;gap:12px;margin:26px 0 6px}
+.sec-title h2{font-size:22px;font-weight:800;letter-spacing:-.01em}
+.sec-title span{font-size:13.5px;color:var(--muted-fg)}
+.sec-lead{font-size:14.5px;color:var(--muted-fg);margin-bottom:20px;max-width:720px}
+
+/* topics grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+.topic{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);transition:.16s;position:relative;overflow:hidden}
+.topic::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--practice));opacity:0;transition:.16s}
+.topic:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#c7d2fe}
+.topic:hover::before{opacity:1}
+.topic:hover .go{color:var(--primary);gap:9px}
+.t-top{display:flex;align-items:center;gap:12px}
+.t-ico{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.t-num{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--muted-fg);background:var(--muted);padding:4px 10px;border-radius:var(--radius-full)}
+.t-title{font-size:16.5px;font-weight:800;line-height:1.25}
+.t-desc{font-size:13.5px;color:var(--muted-fg);line-height:1.5;flex:1}
+.go{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--muted-fg);transition:.16s}
+.ic-mint{background:var(--mint-bg);color:var(--mint-fg)}.ic-lav{background:var(--lav-bg);color:var(--lav-fg)}
+.ic-peach{background:var(--peach-bg);color:var(--peach-fg)}.ic-sky{background:var(--sky-bg);color:var(--sky-fg)}
+.ic-rose{background:var(--rose-bg);color:var(--rose-fg)}.ic-lemon{background:var(--lemon-bg);color:var(--lemon-fg)}
+.ic-blue{background:var(--primary-pale);color:var(--primary)}
+
+/* gems band */
+.band{background:linear-gradient(135deg,#0B1120,#1E3A8A 60%,#3B2F8F);border-radius:var(--radius);padding:28px 30px;color:#fff;margin-top:14px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.band-txt{flex:1;min-width:260px}
+.band-txt h3{font-size:20px;font-weight:800;margin-bottom:6px}
+.band-txt p{font-size:14px;color:rgba(255,255,255,.75);line-height:1.55}
+.band .btn-primary{background:#fff;color:var(--primary)}
+.band .btn-primary:hover{background:#eef2ff}
+
+/* footer */
+.foot{border-top:1px solid var(--border);padding:26px 0;margin-top:20px;color:var(--muted-fg);font-size:13px;text-align:center}
+.foot b{color:var(--fg)}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <div class="brand-mark">V</div>
+      <div><div class="brand-name">Vector Academy</div><div class="brand-sub">AI in HR / Recruiting</div></div>
+    </div>
+    <div class="top-pill"><span class="dot"></span>SESIUNE ACTIVĂ</div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-kicker">🎯 Platforma sesiunii</div>
+    <h1>AI Aplicat în HR<br>— de la prompt la <span class="y">flux complet</span></h1>
+    <p>Prezentarea completă și subiectele sesiunii: prompt engineering, ecosistem Google &amp; Claude, NotebookLM, Gems, Projects, agenți AI, Lovable, automatizări și securitatea datelor de HR. Apasă pe orice subiect și te duce direct la slide-ul lui.</p>
+    <div class="stat-row">
+      <div class="stat-chip"><span>📊</span> 85 slide-uri</div>
+      <div class="stat-chip"><span>🛠️</span> Hands-on</div>
+      <div class="stat-chip"><span>🤖</span> Claude · Gemini · NotebookLM</div>
+      <div class="stat-chip"><span>🔒</span> Securitate &amp; GDPR</div>
+    </div>
+    <div class="cta-row">
+      <a href="slides.html" class="btn btn-primary">↗ Deschide prezentarea completă</a>
+      <a href="slides.html#/6" class="btn btn-ghost">▸ Începe de la Modulul 1</a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><h2>Sari direct la un subiect</h2><span>fiecare card deschide prezentarea la slide-ul potrivit</span></div>
+    <p class="sec-lead">Cele 13 teme ale sesiunii. Click → te duce fix la modulul respectiv în deck.</p>
+    <div class="grid">
+
+      <a class="topic" href="slides.html#/6">
+        <div class="t-top"><div class="t-ico ic-blue">🧠</div><span class="t-num">Modul 1</span></div>
+        <div class="t-title">Prompt Engineering</div>
+        <div class="t-desc">Garbage in/out, anatomia promptului, few-shot cu raport, multi-prompt în cascadă, meta-prompting.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/14">
+        <div class="t-top"><div class="t-ico ic-sky">🔵</div><span class="t-num">Modul 2</span></div>
+        <div class="t-title">Ecosistem Google</div>
+        <div class="t-desc">Gemini în Workspace, Deep Research pe piața muncii &amp; EVP, Canvas.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/17">
+        <div class="t-top"><div class="t-ico ic-peach">📓</div><span class="t-num">Modul 2</span></div>
+        <div class="t-title">NotebookLM</div>
+        <div class="t-desc">Knowledge base intern, conferințe &amp; podcast de pe YouTube, generare video de onboarding.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/23">
+        <div class="t-top"><div class="t-ico ic-lav">💎</div><span class="t-num">Modul 3</span></div>
+        <div class="t-title">Gems — asistenți custom</div>
+        <div class="t-desc">Scriitor JD, Extragere CV, Screening CV vs JD, Analist interviu — plus Gem-ul „Roast".</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/26">
+        <div class="t-top"><div class="t-ico ic-mint">📁</div><span class="t-num">Modul 4</span></div>
+        <div class="t-title">Projects</div>
+        <div class="t-desc">Un dosar permanent de recrutare — context, fișa postului și CV-uri într-un singur loc.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/28">
+        <div class="t-top"><div class="t-ico ic-peach">🟠</div><span class="t-num">Claude</span></div>
+        <div class="t-title">Claude — Excel, Cowork, Skills</div>
+        <div class="t-desc">„Junior pe care-l formezi", Skills (.md, marketplace), Excel pe 360°, Cowork pe CV-uri.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/38">
+        <div class="t-top"><div class="t-ico ic-blue">🔌</div><span class="t-num">Claude</span></div>
+        <div class="t-title">MCP &amp; conectare</div>
+        <div class="t-desc">API vs MCP, Chrome extension (scanare piață), Google Drive, Gmail, raport din mai multe surse.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/49">
+        <div class="t-top"><div class="t-ico ic-lav">🤖</div><span class="t-num">Agenți AI</span></div>
+        <div class="t-title">Agenți AI</div>
+        <div class="t-desc">Ce e un agent, bucla de tool-use, tipare de arhitectură, un agent de recrutare cap-coadă, CLAUDE.md.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/63">
+        <div class="t-top"><div class="t-ico ic-rose">💜</div><span class="t-num">Modul 9</span></div>
+        <div class="t-title">Lovable</div>
+        <div class="t-desc">De la idee la aplicație fără cod: pagină de carieră, formular de aplicare, simulator de training GDPR.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/66">
+        <div class="t-top"><div class="t-ico ic-lemon">📚</div><span class="t-num">Ghiduri</span></div>
+        <div class="t-title">Ghiduri &amp; documentație</div>
+        <div class="t-desc">Tango (ghiduri pas-cu-pas din capturi) și Komodo (video → transcript → documentație).</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/68">
+        <div class="t-top"><div class="t-ico ic-sky">⚙️</div><span class="t-num">Modul 10</span></div>
+        <div class="t-title">Automatizări — Make.com</div>
+        <div class="t-desc">Automatizare vs AI, fluxul „Email cu CV → Google Sheets", template-uri gata făcute.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/72">
+        <div class="t-top"><div class="t-ico ic-rose">🔒</div><span class="t-num">Modul 11</span></div>
+        <div class="t-title">Securitate &amp; GDPR</div>
+        <div class="t-desc">Ce NU introduci în AI, cont gratuit vs plătit (DPA), soluții de anonimizare, ROI-ul real.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/76">
+        <div class="t-top"><div class="t-ico ic-mint">🧰</div><span class="t-num">Lifehacks</span></div>
+        <div class="t-title">Lifehacks HR</div>
+        <div class="t-desc">HR365 (pontaj &amp; ordine automate) și SSM Digital (securitatea muncii, fără hârtii).</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="band">
+      <div class="band-txt">
+        <h3>💎 4 Gems gata de creat pentru HR</h3>
+        <p>Asistenți custom cu prompturile complete: Scriitor Job Description, Extragere date CV, Screening CV vs JD și Analist interviu — plus fluxul EVP rapid.</p>
+      </div>
+      <a href="slides.html#/23" class="btn btn-primary">↗ Vezi cele 4 Gems</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <b>Vector Academy</b> · AI in HR / Recruiting · Trainer: Vlah Dumitru — <b>vectoracademy.ro</b>
+  </div>
+</main>
+</body>
+</html>
