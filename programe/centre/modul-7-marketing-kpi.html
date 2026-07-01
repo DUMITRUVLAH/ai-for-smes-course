@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modul 7: Marketing &amp; Vânzări — Măsori, nu Ghicești · ToT Antreprenoriat</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #0EA371;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 54px 66px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #0EA371 0%, #0891B2 100%); }
+
+    .slide-header { margin-bottom: 22px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #D1FAE5; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-title .hl { color: var(--primary); }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 980px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0 0 40px; max-width: 760px; line-height: 1.5; }
+    .cover-bait { font-size: 70px; margin: 6px 0 34px; letter-spacing: 8px; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+    .quote-block.warn { border-color: var(--warning); background: #FFFBEB; } .quote-block.warn strong { color: #B45309; }
+
+    /* brand chips */
+    .brand-chip { display: inline-flex; align-items: center; font-size: 14px; font-weight: 700; color: var(--foreground); background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 5px 13px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+    .brand-chip .dot { width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; flex-shrink: 0; }
+
+    /* MAP cards (harta modulului) */
+    .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+    .card { border-radius: var(--radius); padding: 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; justify-content: center; min-height: 0; overflow: hidden; }
+    .card.mint { background: var(--pastel-mint); border-color: #86EFAC; }
+    .card.sky { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .card.peach { background: var(--pastel-peach); border-color: #FED7AA; }
+    .card.lavender { background: var(--pastel-lavender); border-color: #DDD6FE; }
+    .card.rose { background: var(--pastel-rose); border-color: #FBCFE8; }
+    .card-icon { font-size: 34px; line-height: 1; }
+    .card-title { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .card-body { font-size: 15px; color: var(--foreground); line-height: 1.45; }
+    .card-body b { font-weight: 800; }
+
+    /* DRILL analogy (car eyes closed) */
+    .drill-grid-tek { display: grid; grid-template-columns: 1fr auto 1fr; gap: 28px; flex: 1; align-items: center; }
+    .drill-card-tek { border-radius: var(--radius); padding: 30px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; border: 1px solid var(--border); }
+    .drill-card-tek.no { background: #FEF2F2; border-color: #FECACA; }
+    .drill-card-tek.yes { background: #F0FDF4; border-color: #86EFAC; }
+    .dtek-emoji { font-size: 56px; line-height: 1; }
+    .dtek-lbl { font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .drill-card-tek.no .dtek-lbl { color: #DC2626; }
+    .drill-card-tek.yes .dtek-lbl { color: #16A34A; }
+    .dtek-big { font-size: 22px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+    .dtek-sub { font-size: 15px; color: var(--muted); line-height: 1.45; }
+    .dtek-arrow { font-size: 42px; color: var(--primary); font-weight: 700; text-align: center; }
+
+    /* KPI TABLE */
+    .gt { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .gt th { padding: 14px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .gt td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.4; color: var(--foreground); }
+    .gt tr:last-child td { border-bottom: none; }
+    .gt tr:nth-child(even) td { background: var(--bg); }
+    .gt .kpi-name { font-weight: 800; color: var(--foreground); white-space: nowrap; }
+    .gt .kpi-name .em { font-size: 18px; margin-right: 8px; }
+    .gt .formula { font-family: 'Onest', monospace; font-weight: 700; color: var(--primary); white-space: nowrap; }
+    .gt .formula.dash { color: var(--muted); font-weight: 600; }
+    .gt b { font-weight: 800; }
+
+    /* LTV/CAC balance */
+    .ltv-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 26px; flex: 1; align-items: stretch; }
+    .balance-pane { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 28px; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; position: relative; overflow: hidden; text-align: center; }
+    .balance-pane::after { content: ''; position: absolute; top: -90px; right: -70px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .balance-vis { position: relative; z-index: 2; display: flex; align-items: flex-end; gap: 18px; width: 100%; justify-content: center; height: 150px; }
+    .balance-bar { border-radius: 10px 10px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 12px; color: #fff; width: 86px; }
+    .balance-bar.cac { background: linear-gradient(180deg, #F87171, #DC2626); height: 46px; }
+    .balance-bar.ltv { background: linear-gradient(180deg, #34D399, #059669); height: 150px; }
+    .balance-bar .bb-lbl { font-size: 13px; font-weight: 800; }
+    .balance-bar .bb-val { font-size: 11px; opacity: 0.85; margin-top: 2px; }
+    .balance-cap { position: relative; z-index: 2; font-size: 17px; font-weight: 800; line-height: 1.35; } .balance-cap .hl { color: var(--primary-light); }
+    .ltv-rules { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .ltv-rule { display: flex; align-items: center; gap: 16px; border-radius: var(--radius); padding: 16px 20px; border: 1px solid var(--border); }
+    .ltv-rule.bad { background: #FEF2F2; border-color: #FECACA; }
+    .ltv-rule.mid { background: #FFFBEB; border-color: #FDE68A; }
+    .ltv-rule.good { background: #F0FDF4; border-color: #86EFAC; }
+    .ltv-cond { font-size: 19px; font-weight: 800; white-space: nowrap; min-width: 168px; }
+    .ltv-rule.bad .ltv-cond { color: #B91C1C; }
+    .ltv-rule.mid .ltv-cond { color: #B45309; }
+    .ltv-rule.good .ltv-cond { color: #15803D; }
+    .ltv-desc { font-size: 15.5px; color: var(--foreground); line-height: 1.4; } .ltv-desc b { font-weight: 800; }
+
+    /* CALC MODEL (Rezervo / Quiz) */
+    .calc-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; flex: 1; align-items: stretch; }
+    .calc-flow { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+    .calc-row { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 18px; }
+    .calc-step-n { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .calc-txt { font-size: 15.5px; color: var(--foreground); line-height: 1.4; } .calc-txt b { font-weight: 800; color: var(--primary); }
+    .calc-result { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 26px; color: #fff; display: flex; flex-direction: column; gap: 16px; justify-content: center; position: relative; overflow: hidden; }
+    .calc-result::after { content: ''; position: absolute; top: -90px; right: -70px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .cr-line { position: relative; z-index: 2; }
+    .cr-eq { font-size: 16px; font-weight: 700; line-height: 1.5; color: rgba(255,255,255,0.92); }
+    .cr-eq .slot { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); border-radius: 7px; padding: 1px 10px; font-weight: 800; margin: 0 2px; }
+    .cr-eq .cac { color: #FCA5A5; } .cr-eq .ltv { color: #6EE7B7; }
+    .cr-verdict { position: relative; z-index: 2; background: rgba(34,197,94,0.16); border: 1px solid rgba(110,231,183,0.4); border-radius: var(--radius-sm); padding: 14px 16px; font-size: 16px; font-weight: 700; line-height: 1.4; color: #fff; }
+    .cr-verdict .vh { color: #6EE7B7; font-weight: 800; }
+
+    /* FUNNEL — sales/marketing gap */
+    .gap-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 28px; flex: 1; align-items: center; }
+    .funnel-gap { display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .fg-layer { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 16px; color: #fff; text-align: center; }
+    .fg-layer.l1 { width: 100%; background: #1D4ED8; clip-path: polygon(0 0,100% 0,90% 100%,10% 100%); border-radius: 8px 8px 0 0; }
+    .fg-layer.l2 { width: 80%; background: #2563EB; clip-path: polygon(10% 0,90% 0,82% 100%,18% 100%); }
+    .fg-gap { width: 72%; margin: 6px 0; border: 2px dashed #DC2626; background: #FEF2F2; border-radius: 10px; padding: 10px 12px; color: #B91C1C; font-size: 14px; font-weight: 800; text-align: center; line-height: 1.3; }
+    .fg-layer.l3 { width: 64%; background: #7C3AED; clip-path: polygon(18% 0,82% 0,74% 100%,26% 100%); }
+    .fg-layer.l4 { width: 48%; background: #16A34A; clip-path: polygon(26% 0,74% 0,66% 100%,34% 100%); border-radius: 0 0 8px 8px; }
+    .fg-txt { font-size: 13.5px; font-weight: 700; line-height: 1.3; }
+    .gap-side { display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+    .gap-pt { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; }
+    .gap-pt.prob { background: #FEF2F2; border-color: #FECACA; } .gap-pt.prob .gp-lbl { color: #B91C1C; }
+    .gap-pt.sol { background: #F0FDF4; border-color: #86EFAC; } .gap-pt.sol .gp-lbl { color: #15803D; }
+    .gap-pt.lever { background: var(--primary-ultra-light); border-color: #C7D2FE; } .gap-pt.lever .gp-lbl { color: var(--primary); }
+    .gp-lbl { font-size: 13px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 6px; }
+    .gp-txt { font-size: 15.5px; color: var(--foreground); line-height: 1.45; } .gp-txt b { font-weight: 800; }
+
+    /* CHANNELS — owned/earned/paid */
+    .chan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .chan-card { border-radius: var(--radius); padding: 22px 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 11px; overflow: hidden; }
+    .chan-card.owned { background: var(--pastel-mint); border-color: #86EFAC; }
+    .chan-card.earned { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .chan-card.paid { background: var(--pastel-peach); border-color: #FED7AA; }
+    .chan-ico { font-size: 34px; line-height: 1; }
+    .chan-name { font-size: 21px; font-weight: 800; color: var(--foreground); }
+    .chan-name small { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 3px; }
+    .chan-list { font-size: 14.5px; color: var(--foreground); line-height: 1.5; background: rgba(255,255,255,0.6); border-radius: var(--radius-sm); padding: 10px 13px; }
+    .chan-list b { font-weight: 800; }
+    .chan-foot { margin-top: auto; font-size: 13.5px; font-weight: 700; color: var(--muted); line-height: 1.4; }
+    .chan-foot b { color: var(--foreground); }
+
+    /* DECISION arrows row */
+    .decision-row { margin-top: 16px; display: flex; align-items: center; gap: 14px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 16px 22px; }
+    .decision-row .de { font-size: 28px; flex-shrink: 0; }
+    .decision-row .dt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .decision-row .dt b { font-weight: 800; color: var(--primary); }
+
+    /* FB ADS structure (campaign stages) */
+    .stages { display: flex; align-items: stretch; gap: 0; flex: 1; }
+    .stage { flex: 1; padding: 26px 18px; display: flex; flex-direction: column; gap: 12px; position: relative; justify-content: center; border: 1px solid var(--border); }
+    .stage::after { content: '→'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); font-size: 26px; color: var(--primary); font-weight: 800; z-index: 3; }
+    .stage:last-child::after { display: none; }
+    .stage.s1 { background: var(--pastel-sky); border-color: #BAE6FD; border-radius: var(--radius) 0 0 var(--radius); }
+    .stage.s2 { background: var(--pastel-lavender); border-color: #DDD6FE; }
+    .stage.s3 { background: var(--pastel-peach); border-color: #FED7AA; border-radius: 0 var(--radius) var(--radius) 0; }
+    .stage-num { width: 36px; height: 36px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+    .stage-name { font-size: 19px; font-weight: 800; color: var(--foreground); }
+    .stage-name small { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 3px; }
+    .stage-desc { font-size: 14.5px; color: var(--foreground); line-height: 1.45; }
+
+    /* BUDGET allocation bars */
+    .budget-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; flex: 1; align-items: stretch; }
+    .budget-bars { display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+    .budget-row { display: flex; flex-direction: column; gap: 6px; }
+    .budget-head { display: flex; align-items: baseline; justify-content: space-between; }
+    .budget-label { font-size: 16px; font-weight: 800; color: var(--foreground); }
+    .budget-amt { font-size: 16px; font-weight: 800; color: var(--primary); }
+    .budget-track { height: 30px; border-radius: 8px; background: var(--bg); border: 1px solid var(--border); overflow: hidden; }
+    .budget-fill { height: 100%; border-radius: 7px 0 0 7px; display: flex; align-items: center; padding-left: 12px; font-size: 12px; font-weight: 700; color: #fff; }
+    .budget-fill.f1 { width: 40%; background: linear-gradient(135deg, #5B7CF7, #2D52D4); }
+    .budget-fill.f2 { width: 40%; background: linear-gradient(135deg, #818CF8, #6D28D9); }
+    .budget-fill.f3 { width: 20%; background: linear-gradient(135deg, #FB923C, #EA580C); }
+    .budget-sub { font-size: 13.5px; color: var(--muted); line-height: 1.4; padding-left: 2px; }
+    .budget-result { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 26px; color: #fff; display: flex; flex-direction: column; gap: 14px; justify-content: center; position: relative; overflow: hidden; }
+    .budget-result::after { content: ''; position: absolute; top: -90px; right: -70px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .br-tag { position: relative; z-index: 2; font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--primary-light); }
+    .br-line { position: relative; z-index: 2; display: flex; align-items: center; gap: 14px; font-size: 16px; line-height: 1.4; }
+    .br-line .brn { font-size: 30px; font-weight: 800; color: #6EE7B7; flex-shrink: 0; min-width: 64px; }
+    .br-line .brt { color: rgba(255,255,255,0.9); } .br-line .brt b { color: #fff; font-weight: 800; }
+
+    /* QUIZ data cards */
+    .quiz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 1; align-items: stretch; }
+    .quiz-data { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+    .quiz-data-head { display: flex; align-items: center; gap: 12px; }
+    .quiz-biz { font-size: 20px; font-weight: 800; color: var(--foreground); }
+    .quiz-data-rows { display: flex; flex-direction: column; gap: 9px; }
+    .quiz-data-row { display: flex; align-items: center; justify-content: space-between; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 16px; }
+    .qd-lbl { font-size: 15px; color: var(--muted); font-weight: 600; }
+    .qd-val { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .quiz-ask { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .quiz-q { background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 18px 22px; display: flex; align-items: center; gap: 16px; }
+    .quiz-q .qf { font-size: 19px; font-weight: 800; color: var(--practice); white-space: nowrap; min-width: 64px; }
+    .quiz-q .qe { font-size: 15px; color: var(--foreground); line-height: 1.35; } .quiz-q .qe b { font-weight: 800; }
+    .quiz-q .qblank { margin-left: auto; font-size: 26px; font-weight: 800; color: #CBD5E1; }
+
+    /* CHANNEL comparison table */
+    .ct { width: 100%; border-collapse: collapse; font-size: 17px; }
+    .ct th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .ct td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.4; color: var(--foreground); }
+    .ct tr:last-child td { border-bottom: none; }
+    .ct tr:nth-child(even) td { background: var(--bg); }
+    .ct .ch-name { font-weight: 800; color: var(--foreground); display: flex; align-items: center; gap: 9px; white-space: nowrap; }
+    .ct .ch-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .ct .ch-when { font-size: 15.5px; } .ct .ch-when b { font-weight: 800; }
+    .ct .ch-why { font-size: 15px; color: var(--muted); }
+    .ct b { font-weight: 800; }
+
+    /* PRACTICE — plan template */
+    .ex-banner { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #0EA371, #0891B2); color: #fff; border-radius: var(--radius); padding: 14px 22px; margin-bottom: 18px; }
+    .ex-banner .ex-ico { font-size: 26px; }
+    .ex-banner .ex-txt { font-size: 17px; font-weight: 600; line-height: 1.4; } .ex-banner .ex-txt b { font-weight: 800; }
+    .ex-banner .ex-time { margin-left: auto; font-size: 15px; font-weight: 800; background: rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+
+    .plan-table { width: 100%; border-collapse: collapse; font-size: 16px; }
+    .plan-table th { padding: 12px 14px; text-align: left; font-size: 13px; font-weight: 800; letter-spacing: 0.03em; color: #fff; background: var(--practice); border: none; }
+    .plan-table td { padding: 16px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; color: var(--foreground); }
+    .plan-table tr:last-child td { border-bottom: none; }
+    .plan-fill { border-bottom: 1.5px dashed #CBD5E1; height: 22px; }
+    .plan-table .pt-ex td { background: var(--bg); font-size: 14px; color: var(--muted); font-style: italic; }
+    .plan-table .pt-ex b { color: var(--foreground); font-style: normal; }
+
+    /* PEER REVIEW checklist */
+    .pr-split { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; flex: 1; align-items: stretch; }
+    .pr-pane { border-radius: var(--radius); padding: 26px 30px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; }
+    .pr-pane.present { background: var(--pastel-peach); border-color: #FED7AA; }
+    .pr-tag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 100px; background: #FB923C; color: #fff; }
+    .pr-line { display: flex; align-items: flex-start; gap: 12px; font-size: 16px; color: var(--foreground); line-height: 1.5; } .pr-line .pb { font-weight: 800; color: #C2410C; flex-shrink: 0; }
+    .check-pane { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 30px; display: flex; flex-direction: column; }
+    .check-head { font-size: 15px; font-weight: 800; color: var(--practice); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 9px; }
+    .check-item { display: flex; align-items: flex-start; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--border); }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--practice); flex-shrink: 0; margin-top: 1px; }
+    .check-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .check-txt b { font-weight: 800; }
+    .check-txt small { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+
+    /* RULE pane */
+    .rule-grid { display: grid; grid-template-columns: 1fr; gap: 28px; flex: 1; align-items: stretch; }
+    .rule-pane { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 44px 56px; color: #fff; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+    .rule-pane::after { content: ''; position: absolute; top: -90px; right: -70px; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .rule-badge { position: relative; z-index: 2; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 800; letter-spacing: 0.08em; margin-bottom: 26px; }
+    .rule-badge .rb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--primary-light); }
+    .rule-text { position: relative; z-index: 2; font-size: 34px; font-weight: 800; line-height: 1.3; letter-spacing: -0.01em; } .rule-text .hl { color: var(--primary-light); }
+
+    /* TRANSITION */
+    .slide-transition { padding: 0 !important; overflow: hidden; position: relative; display: flex; justify-content: center; align-items: center; }
+    .slide-transition::before { display: none; }
+    .trans-content { position: relative; z-index: 2; text-align: center; color: #fff; }
+    .trans-title { font-size: 50px; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+    .trans-sub { font-size: 20px; color: rgba(255,255,255,0.82); margin-top: 16px; }
+    .trans-arrow { font-size: 56px; margin-top: 22px; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ================================================================ -->
+    <!-- 7.1 — COVER -->
+    <!-- ================================================================ -->
+    <section data-notes="Deschidere Modul 7 — 13:30–15:45. Marketing &amp; Vânzări predate ca disciplină măsurabilă, nu ca artă mistică. Mesajul-ancoră: în marketing nu ghicești, măsori. Scopul modulului: formatorii pleacă cu 6 KPI pe care îi pot explica simplu, cu logica owned/earned/paid, și cu un plan de marketing pe 1 lună construit cu buget real (max 2000 MDL). DE CE contează: cursanții lor — antreprenori mici din Moldova — au bugete de 500–2000 MDL/lună. Fără indicatori, nu poți optimiza un buget mic; pierzi banii la prima campanie. Ton: de la egal la egal, practic, calculăm împreună. Spune din start: la 14:xx avem quiz live unde calculează ei.">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 7 · 13:30–15:45</div>
+          <h1>Marketing &amp; Vânzări:<br>măsori, nu ghicești</h1>
+          <div class="cover-bait">📊 🎯 📋</div>
+          <p class="subtitle">Cei 6 indicatori care îți spun <b style="color:#fff">unde câștigi și unde pierzi bani</b> — și un plan de marketing pe o lună, cu buget real.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">6 KPI esențiali</span>
+            <span class="cover-chip">LTV &gt; 3×CAC</span>
+            <span class="cover-chip">Owned / Earned / Paid</span>
+            <span class="cover-chip">Quiz live: calculezi tu</span>
+            <span class="cover-chip">Plan pe 1 lună</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.2 — Harta modulului -->
+    <!-- ================================================================ -->
+    <section data-notes="Harta modulului — 1 min. Parcursul în 5 stații. Subliniază că nu e un modul teoretic: două blocuri sunt mâinile pe tastatură — quiz-ul de calcul și planul de marketing. KPI-urile sunt limbajul comun; corelarea marketing–vânzări e locul unde se pierd cei mai mulți bani la IMM-uri; logica canalelor răspunde la 'unde pun banii'; planul cu buget real e livrabilul. Spune: la final fiecare echipă are un tabel de plan pe care îl poate da mai departe cursanților.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Harta modulului</div>
+          <h2 class="slide-title">Cinci stații — de la <span class="hl">indicatori</span> la un plan cu buget real.</h2>
+          <p class="slide-subtitle">Două dintre ele sunt cu mâinile pe calculator: <b>calculezi tu</b> indicatorii și <b>construiești un plan</b> pe o lună.</p>
+        </div>
+        <div class="cards-3">
+          <div class="card sky">
+            <div class="card-icon">📊</div>
+            <div class="card-title">6 KPI esențiali</div>
+            <div class="card-body">Reach, CTR, CPL, Conversion, CAC, LTV — limbajul comun al oricărei campanii.</div>
+          </div>
+          <div class="card lavender">
+            <div class="card-icon">🔗</div>
+            <div class="card-title">Marketing ↔ Vânzări</div>
+            <div class="card-body">Unde se rupe pâlnia și cum lipești cele două echipe cu aceleași cifre.</div>
+          </div>
+          <div class="card peach">
+            <div class="card-icon">🗺️</div>
+            <div class="card-title">Logica canalelor</div>
+            <div class="card-body">Owned / Earned / Paid — ce controlezi, ce câștigi, ce cumperi. În ce ordine.</div>
+          </div>
+          <div class="card mint">
+            <div class="card-icon">📋</div>
+            <div class="card-title">Plan pe 1 lună</div>
+            <div class="card-body">Tabel cu canal, acțiune, buget, KPI țintă, responsabil — max <b>2.000 MDL</b>.</div>
+          </div>
+          <div class="card rose">
+            <div class="card-icon">🧮</div>
+            <div class="card-title">Quiz live</div>
+            <div class="card-body">Calculezi tu CPL, CAC, Conversion pe date reale din casebook.</div>
+          </div>
+          <div class="card sky">
+            <div class="card-icon">🎯</div>
+            <div class="card-title">Livrabilul tău</div>
+            <div class="card-body">Un plan gata de predat mâine cursanților — nu teorie, un instrument.</div>
+          </div>
+        </div>
+        <div class="slide-num"None>02 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.3 — CADRU: marketing fără indicatori = bani aruncați -->
+    <!-- ================================================================ -->
+    <section data-notes="Cadru-ancoră — 3 min. Analogia mașinii cu ochii închiși: mergi, simți că te miști, dar nu știi unde ajungi. Marketing fără KPI = exact asta — cheltui, pare că faci ceva, dar nu știi dacă te apropii de client. Replica-cheie de spus tare: 'dacă nu măsori, nu știi unde câștigi și unde pierzi — și mai important, nu știi ce să tai.' Pentru un buget de 500–2000 MDL/lună, fiecare leu prost cheltuit doare. DE CE predăm: formatorii lor vor ajuta antreprenori cu bugete mici să decidă pe ce să oprească banii și pe ce să dubleze. Fără indicatori nu poți lua decizia asta.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · de ce măsurăm</div>
+          <h2 class="slide-title">Marketing fără indicatori = <span class="hl">să conduci cu ochii închiși.</span></h2>
+          <p class="slide-subtitle">Știi că mergi. Nu știi unde te duci — și nu știi când să frânezi.</p>
+        </div>
+        <div class="drill-grid-tek">
+          <div class="drill-card-tek no">
+            <div class="dtek-emoji">🙈</div>
+            <div class="dtek-lbl">❌ Fără KPI</div>
+            <div class="dtek-big">„Am cheltuit 1.500 lei pe reclame. Cred că a mers ceva."</div>
+            <div class="dtek-sub">Nu știi câți clienți ai adus, cât te-a costat fiecare, ce să oprești și ce să dublezi.</div>
+          </div>
+          <div class="dtek-arrow">→</div>
+          <div class="drill-card-tek yes">
+            <div class="dtek-emoji">📊</div>
+            <div class="dtek-lbl">✅ Cu KPI</div>
+            <div class="dtek-big">„1.500 lei → 5 clienți → 300 lei/client. Tai canalul A, dublez B."</div>
+            <div class="dtek-sub">Vezi exact unde câștigi și unde pierzi. Pe buget mic, asta e diferența între profit și pierdere.</div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:18px;font-size:16px">Dacă nu măsori, nu știi unde câștigi și unde pierzi. Și mai important: <strong>nu știi ce să tai.</strong></div>
+        <div class="slide-num"None>03 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.3b — DE CE contează pentru cursantul tău (rationale) -->
+    <!-- ================================================================ -->
+    <section data-notes="Slide de rationale — de ce predăm asta și cum ajută concret cursantul. 2 min. Contextul Moldova: antreprenorii mici cu care lucrează formatorii au bugete de 500–2000 MDL/lună pe marketing. Pe un buget atât de mic, nu-ți permiți să greșești de două ori. KPI-ul nu e birocrație — e exact instrumentul care îți spune pe ce să oprești banii (canalul care nu aduce) și pe ce să dublezi (cel care aduce). Mesajul pentru formator: când predai asta cursantului, nu predai 'metrici de corporație', ci 'cum să nu-ți arzi cei 1.500 de lei pe luna asta'. Asta îi convinge. Leagă fiecare KPI de o decizie de buget, nu de un raport.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">De ce contează · pentru cursantul tău</div>
+          <h2 class="slide-title">Pe un buget de <span class="hl">500–2.000 MDL/lună</span>, n-ai voie să greșești de două ori.</h2>
+          <p class="slide-subtitle">KPI-ul nu e birocrație de corporație. E instrumentul care îți spune <b>pe ce oprești banii</b> și <b>pe ce dublezi</b>.</p>
+        </div>
+        <div class="cards-3" style="flex:1">
+          <div class="card peach">
+            <div class="card-icon">🪙</div>
+            <div class="card-title">Buget mic = zero loc de greșeală</div>
+            <div class="card-body">Marii jucători își permit să ardă bani învățând. Antreprenorul tău, nu. Fiecare leu trebuie să muncească.</div>
+          </div>
+          <div class="card sky">
+            <div class="card-icon">✂️</div>
+            <div class="card-title">KPI = decizia „ce tai"</div>
+            <div class="card-body">Fără cifre nu poți opri ce nu merge. Cu cifre, în 2 săptămâni știi ce canal să închizi.</div>
+          </div>
+          <div class="card mint">
+            <div class="card-icon">🎓</div>
+            <div class="card-title">Ce predai cursantului</div>
+            <div class="card-body">Nu „metrici de corporație" — ci <b>cum să nu-și ardă cei 1.500 lei</b> pe luna asta. Asta îl convinge.</div>
+          </div>
+        </div>
+        <div class="slide-num"None>04 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.4 — Cei 6 KPI: harta pe pâlnie (overview vizual) -->
+    <!-- ================================================================ -->
+    <section data-notes="Overview vizual al celor 6 KPI — 2 min. Înainte de tabele, arătăm că indicatorii nu sunt o listă aleatorie: fiecare măsoară o etapă din drumul clientului, de sus în jos. Reach (cât de larg te vede lumea) → CTR (câți reacționează) → CPL (cât plătești pe un contact) → Conversion (câți cumpără) → CAC (cât te costă un client) → LTV (cât aduce el înapoi). Mesajul: dacă înțelegi pâlnia, înțelegi unde se rupe — și exact acolo te uiți când o cifră e proastă. Asta dă structura. La detalii intrăm pe tabelele care urmează.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">6 KPI · harta pe pâlnie</div>
+          <h2 class="slide-title">Cei 6 indicatori nu sunt o listă — sunt <span class="hl">o pâlnie.</span></h2>
+          <p class="slide-subtitle">Fiecare măsoară o etapă din drumul clientului. Când o cifră e proastă, știi exact <b>unde se rupe</b>.</p>
+        </div>
+        <div class="funnel-gap" style="flex:1;justify-content:center">
+          <div class="fg-layer l1" style="width:100%"><span class="fg-txt">👁️ REACH — câți te-au văzut</span></div>
+          <div class="fg-layer l2" style="width:84%;clip-path:polygon(8% 0,92% 0,84% 100%,16% 100%)"><span class="fg-txt">🖱️ CTR — câți au dat click</span></div>
+          <div class="fg-layer l3" style="width:68%;background:#6D28D9;clip-path:polygon(16% 0,84% 0,76% 100%,24% 100%)"><span class="fg-txt">📨 CPL — cât costă un lead</span></div>
+          <div class="fg-layer" style="width:52%;background:#0891B2;clip-path:polygon(24% 0,76% 0,68% 100%,32% 100%);color:#fff;padding:14px 16px;display:flex;align-items:center;justify-content:center"><span class="fg-txt">🛒 CONVERSION — câți cumpără</span></div>
+          <div class="fg-layer l4" style="width:38%;clip-path:polygon(32% 0,68% 0,60% 100%,40% 100%);border-radius:0"><span class="fg-txt">💰 CAC + 📈 LTV — cost vs. valoare</span></div>
+        </div>
+        <div class="slide-num"None>05 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.4a — Cei 6 KPI (tabel, partea 1: vizibilitate → vânzare) -->
+    <!-- ================================================================ -->
+    <section data-notes="Cei 6 KPI — prima jumătate a pâlniei. 3 min pe acest slide. Logica: urmărim drumul clientului de sus în jos. Reach = câți ochi. CTR = câți reacționează. CPL = cât plătești pentru un contact interesat. Conversion Rate = câți din cei care ajung la tine chiar cumpără. Spune simplu: fiecare KPI răspunde la o întrebare de business. Reach: 'm-a văzut cineva?'. CTR: 'i-a interesat?'. CPL: 'cât mă costă un lead?'. Conversion: 'cumpără?'. Nu intra în formule complicate — sublinează că toate sunt împărțiri simple. Pe slide următor: CAC și LTV, cei doi care decid dacă afacerea trăiește.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">KPI · partea 1 — de la vizibilitate la vânzare</div>
+          <h2 class="slide-title">Patru indicatori care urmăresc <span class="hl">drumul clientului</span> spre tine.</h2>
+          <p class="slide-subtitle">Fiecare răspunde la o singură întrebare. Toate sunt împărțiri simple — fără matematică avansată.</p>
+        </div>
+        <table class="gt">
+          <thead>
+            <tr><th style="width:22%">KPI</th><th style="width:42%">Ce măsoară</th><th style="width:36%">Formula</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="kpi-name"><span class="em">👁️</span>Reach</td>
+              <td>Câți oameni au <b>văzut</b> mesajul tău</td>
+              <td class="formula dash">— se citește direct din platformă</td>
+            </tr>
+            <tr>
+              <td class="kpi-name"><span class="em">🖱️</span>CTR</td>
+              <td>Ce <b>%</b> dintre cei care au văzut au dat <b>click</b></td>
+              <td class="formula">Clicks ÷ Afișări × 100</td>
+            </tr>
+            <tr>
+              <td class="kpi-name"><span class="em">📨</span>CPL</td>
+              <td>Cât te costă <b>un lead</b> (un contact interesat)</td>
+              <td class="formula">Buget ÷ Nr. leaduri</td>
+            </tr>
+            <tr>
+              <td class="kpi-name"><span class="em">🛒</span>Conversion</td>
+              <td>Ce <b>%</b> dintre vizitatori chiar <b>cumpără</b></td>
+              <td class="formula">Vânzări ÷ Vizitatori × 100</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="slide-num"None>06 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.4b — Cei 6 KPI (tabel, partea 2: CAC + LTV) -->
+    <!-- ================================================================ -->
+    <section data-notes="CAC și LTV — cei doi indicatori care decid dacă afacerea trăiește sau moare. 3 min. CAC = cât plătești ca să aduci un client nou (nu un lead — un client care a plătit). LTV = cât îți aduce acel client pe toată durata relației, nu doar la prima vânzare. Aici e capcana antreprenorilor: se uită doar la prima vânzare și cred că pierd bani pe reclame. Dacă clientul revine, LTV-ul real e mult mai mare. Exemplu de spus: un client care cumpără cafea lunar timp de 2 ani valorează mult mai mult decât o singură comandă. Pe slide următor punem CAC și LTV împreună — regula de aur 3×.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">KPI · partea 2 — cât costă vs. cât aduce un client</div>
+          <h2 class="slide-title">Doi indicatori decid dacă <span class="hl">afacerea trăiește</span> sau pierde bani.</h2>
+          <p class="slide-subtitle">Aici e capcana: mulți se uită doar la prima vânzare. Clientul care <b>revine</b> schimbă tot calculul.</p>
+        </div>
+        <table class="gt">
+          <thead>
+            <tr><th style="width:22%">KPI</th><th style="width:42%">Ce măsoară</th><th style="width:36%">Formula</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="kpi-name"><span class="em">💰</span>CAC</td>
+              <td><b>Costul de achiziție</b> a unui client nou (care chiar a plătit)</td>
+              <td class="formula">Buget total ÷ Clienți noi</td>
+            </tr>
+            <tr>
+              <td class="kpi-name"><span class="em">📈</span>LTV</td>
+              <td>Valoarea clientului pe <b>toată durata</b> relației — nu doar prima vânzare</td>
+              <td class="formula">Vânzare medie × Frecvență × Ani</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="quote-block" style="margin-top:20px">Un client care cumpără o dată valorează <strong>CAC</strong>. Unul care revine 2 ani valorează de zece ori mai mult — dar costul de a-l aduce a fost același.</div>
+        <div class="slide-num"None>07 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.5 — Regula LTV > 3×CAC -->
+    <!-- ================================================================ -->
+    <section data-notes="Regula de aur a întregului modul — 4 min. Aceasta e singura formulă pe care vreau să o rețină toți. LTV > 3×CAC = afacere sănătoasă. De ce 3 și nu 1? Pentru că între CAC și LTV mai sunt costuri: produs, livrare, operare, salarii. Dacă LTV doar acoperă CAC, n-ai bani de nimic altceva. Cele trei zone: roșu (pierzi pe fiecare client — cu cât crești, cu atât te scufunzi mai repede; e contraintuitiv dar real), galben (supraviețuiești dar nu ai cu ce crește), verde (poți reinvesti în creștere). Balanța din stânga: bara CAC mică, bara LTV mare. Spune: dacă vrei să scalezi, prima întrebare nu e 'cât buget' ci 'cât e LTV vs CAC'.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Regula de aur</div>
+          <h2 class="slide-title">LTV &gt; 3×CAC — <span class="hl">altfel nu ai cu ce crește.</span></h2>
+          <p class="slide-subtitle">De ce 3×? Între ce plătești pentru client (CAC) și ce aduce el (LTV) mai sunt: produs, livrare, salarii, operare.</p>
+        </div>
+        <div class="ltv-grid">
+          <div class="balance-pane">
+            <div class="balance-vis">
+              <div class="balance-bar cac"><span class="bb-lbl">CAC</span><span class="bb-val">cost</span></div>
+              <div class="balance-bar ltv"><span class="bb-lbl">LTV</span><span class="bb-val">valoare</span></div>
+            </div>
+            <div class="balance-cap">Ținta: LTV de cel puțin <span class="hl">3 ori</span> mai mare decât CAC.</div>
+          </div>
+          <div class="ltv-rules">
+            <div class="ltv-rule bad">
+              <div class="ltv-cond">LTV &lt; CAC</div>
+              <div class="ltv-desc"><b>Pierzi bani pe fiecare client.</b> Cu cât crești mai mult, cu atât te scufunzi mai repede.</div>
+            </div>
+            <div class="ltv-rule mid">
+              <div class="ltv-cond">LTV = 1–3×CAC</div>
+              <div class="ltv-desc"><b>Supraviețuiești, nu crești.</b> Acoperi costurile, dar n-ai bani de reinvestit.</div>
+            </div>
+            <div class="ltv-rule good">
+              <div class="ltv-cond">LTV &gt; 3×CAC</div>
+              <div class="ltv-desc"><b>Afacere sănătoasă.</b> Poți investi în creștere — fiecare client adus aduce profit real.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num"None>08 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.6 — MODEL: indicatori calculați pe Rezervo -->
+    <!-- ================================================================ -->
+    <section data-notes="MODEL completat — 4 min. Arătăm calculul de la cap la coadă pe Rezervo (platformă fictivă de rezervări, abonament SaaS). Citește pas cu pas, lasă sala să urmărească: 50.000 afișări → 3% CTR → 1.500 click-uri → 5% conversie → 75 clienți noi. Buget 3.000 MDL ÷ 75 = 40 MDL CAC. LTV: 200 MDL/lună × 12 luni = 2.400 MDL. Verifică regula: 3×40 = 120; 2.400 e mult peste 120. Concluzia care convinge: Rezervo poate cheltui până la 800 MDL ca să aducă un client și tot e pe profit (LTV/3). Asta e puterea KPI-ului: îți dă plafonul de cheltuială. Acesta e modelul; la quiz calculează ei singuri.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Model completat · <span style="text-transform:none;font-weight:800">Rezervo</span> — platformă de rezervări</div>
+          <h2 class="slide-title">De la afișări la profit — <span class="hl">calculul complet, pas cu pas.</span></h2>
+        </div>
+        <div class="calc-grid">
+          <div class="calc-flow">
+            <div class="calc-row"><span class="calc-step-n">1</span><div class="calc-txt"><b>50.000</b> afișări/lună (Reach)</div></div>
+            <div class="calc-row"><span class="calc-step-n">2</span><div class="calc-txt">CTR <b>3%</b> → <b>1.500</b> click-uri</div></div>
+            <div class="calc-row"><span class="calc-step-n">3</span><div class="calc-txt">Conversion <b>5%</b> → <b>75</b> clienți noi</div></div>
+            <div class="calc-row"><span class="calc-step-n">4</span><div class="calc-txt">Buget reclame: <b>3.000 MDL</b></div></div>
+            <div class="calc-row"><span class="calc-step-n">5</span><div class="calc-txt">LTV: abonament <b>200 MDL × 12 luni</b> = 2.400 MDL</div></div>
+          </div>
+          <div class="calc-result">
+            <div class="cr-line cr-eq">
+              <span class="slot cac">CAC</span> = 3.000 ÷ 75 = <b style="color:#fff">40 MDL</b> / client
+            </div>
+            <div class="cr-line cr-eq">
+              <span class="slot ltv">LTV</span> = 2.400 MDL · <b style="color:#fff">3×CAC = 120</b>
+            </div>
+            <div class="cr-verdict">
+              <span class="vh">✅ 2.400 ≫ 120</span> — afacere sănătoasă, poate scala.<br>
+              <span style="display:block;margin-top:8px">Rezervo poate plăti până la <b style="color:#6EE7B7">800 MDL</b> ca să aducă un client și tot e pe profit.</span>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num"None>09 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.7 — Corelarea marketing–vânzări: unde se rupe pâlnia -->
+    <!-- ================================================================ -->
+    <section data-notes="Corelarea marketing–vânzări — 4 min. Cea mai scumpă gaură din IMM-uri. Pâlnia: marketingul umple gura pâlniei cu leaduri, dar la mijloc se rupe — vânzările nu le contactează la timp, sau le contactează prost, sau invers (marketingul aduce leaduri de proastă calitate). Banii cheltuiți pe lead se evaporă. Soluția practică: un SLA intern simplu — câte leaduri pe lună se așteaptă, în cât timp se contactează (ex: max 24h), cu ce calitate minimă. Nu trebuie sistem complicat; o foaie de Excel și o regulă clară. Replica-cheie: dacă marketing și vânzări nu vorbesc cu aceleași cifre, bugetul se pierde la mijloc. Întreabă sala: la afacerile pe care le cunoașteți, cine răspunde de lead în primele 24h?">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Marketing ↔ Vânzări · unde se rupe pâlnia</div>
+          <h2 class="slide-title">Marketingul aduce leaduri. Vânzările nu le închid. <span class="hl">Banii se pierd la mijloc.</span></h2>
+        </div>
+        <div class="gap-grid">
+          <div class="funnel-gap">
+            <div class="fg-layer l1"><span class="fg-txt">Afișări / atenție</span></div>
+            <div class="fg-layer l2"><span class="fg-txt">Leaduri (contacte)</span></div>
+            <div class="fg-gap">⚠️ GAP — leadul nu e contactat la timp</div>
+            <div class="fg-layer l3"><span class="fg-txt">Discuții de vânzare</span></div>
+            <div class="fg-layer l4"><span class="fg-txt">Clienți</span></div>
+          </div>
+          <div class="gap-side">
+            <div class="gap-pt prob">
+              <div class="gp-lbl">⚠️ Problema frecventă</div>
+              <div class="gp-txt">Marketingul aduce leaduri, vânzările nu le contactează la timp — sau marketingul aduce leaduri de <b>proastă calitate</b>. Oricum: banii pe lead se evaporă.</div>
+            </div>
+            <div class="gap-pt sol">
+              <div class="gp-lbl">✅ Soluția — un SLA intern simplu</div>
+              <div class="gp-txt">O înțelegere clară: <b>câte leaduri/lună</b>, <b>în cât timp se contactează</b> (ex. max 24h), <b>cu ce calitate minimă</b>. O foaie de Excel, nu un sistem scump.</div>
+            </div>
+            <div class="gap-pt lever">
+              <div class="gp-lbl">🔑 Regula</div>
+              <div class="gp-txt">Dacă marketing și vânzări nu vorbesc cu <b>aceleași cifre</b>, bugetul se pierde la mijloc.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num"None>10 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.8a — QUIZ LIVE: setup -->
+    <!-- ================================================================ -->
+    <section data-notes="QUIZ LIVE — setup. 15 min total pentru acest bloc (2 slide-uri). Mecanica: dai 3 seturi de date din casebook, fiecare participant calculează individual CPL, CAC, Conversion Rate pe hârtie sau Mentimeter. După ~6-7 min de calcul, verifici live pe ecran. Apoi discuția care contează: ce înseamnă numerele? Ce decizie generează? Un CPL mare nu e bun sau rău în sine — depinde de LTV. Aici exersezi 'citirea' cifrelor, nu doar calculul. Acest slide e instrucțiunea; următorul are exemplul rezolvat NaturaLab pe care îl faci împreună ca model înainte ca ei să atace celelalte seturi. Format: anunță oral sau pune pe Mentimeter codul.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">🧮 Quiz live · 15 min — calculezi tu</div>
+          <h2 class="slide-title">Trei afaceri, trei seturi de date. <span class="hl" style="color:var(--practice)">Calculezi indicatorii.</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">📝</span>
+          <span class="ex-txt">Individual: calculează <b>CPL · CAC · Conversion Rate</b> pentru fiecare afacere → verificăm live pe ecran → discutăm <b>ce decizie</b> generează fiecare cifră.</span>
+          <span class="ex-time">⏱ 15 min</span>
+        </div>
+        <div class="cards-3" style="flex:1">
+          <div class="card sky">
+            <div class="card-icon">🧮</div>
+            <div class="card-title">1. Calculezi</div>
+            <div class="card-body">Pe hârtie sau Mentimeter. Folosești formulele de la KPI — toate sunt împărțiri simple.</div>
+          </div>
+          <div class="card lavender">
+            <div class="card-icon">👀</div>
+            <div class="card-title">2. Verificăm</div>
+            <div class="card-body">Rezolvăm împreună pe ecran. Comparăm — unde au apărut diferențe și de ce.</div>
+          </div>
+          <div class="card mint">
+            <div class="card-icon">💡</div>
+            <div class="card-title">3. Interpretăm</div>
+            <div class="card-body">Cel mai important: ce <b>decizie</b> generează cifra? Un CPL mare e rău doar dacă LTV-ul nu-l acoperă.</div>
+          </div>
+        </div>
+        <div class="slide-num"None>11 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.8b — QUIZ LIVE: exemplu NaturaLab (de rezolvat împreună) -->
+    <!-- ================================================================ -->
+    <section data-notes="QUIZ — exemplul-model NaturaLab. Rezolvi acesta ÎMPREUNĂ cu sala, pe ecran, ca să fixezi metoda, înainte să-i lași pe celelalte seturi. Date: buget ads 2.400 MDL, 60 leaduri, 1.200 vizitatori site, 36 clienți noi. Răspunsuri (le ai în notes, nu pe slide — lasă-i pe ei să le strige): CPL = 2.400 ÷ 60 = 40 MDL per lead. CAC = 2.400 ÷ 36 = 66,7 MDL per client. Conversion Rate = 36 ÷ 1.200 × 100 = 3%. Discuție: CAC 67 lei e bun dacă LTV-ul cosmeticelor cu reachat depășește 200 lei — și de obicei depășește, fiindcă oamenii recumpără cremă lunar. Conversion 3% e tipic pentru e-commerce. Lasă-i să spună ce decizie ar lua.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">🧮 Quiz · exemplu de încălzire — îl rezolvăm împreună</div>
+          <h2 class="slide-title"><span style="font-weight:800">NaturaLab</span> — completează cele <span class="hl" style="color:var(--practice)">trei cifre.</span></h2>
+        </div>
+        <div class="quiz-grid">
+          <div class="quiz-data">
+            <div class="quiz-data-head"><span class="card-icon" style="font-size:30px">🌿</span><span class="quiz-biz">NaturaLab · cosmetice</span></div>
+            <div class="quiz-data-rows">
+              <div class="quiz-data-row"><span class="qd-lbl">Buget reclame</span><span class="qd-val">2.400 MDL</span></div>
+              <div class="quiz-data-row"><span class="qd-lbl">Leaduri obținute</span><span class="qd-val">60</span></div>
+              <div class="quiz-data-row"><span class="qd-lbl">Vizitatori site</span><span class="qd-val">1.200</span></div>
+              <div class="quiz-data-row"><span class="qd-lbl">Clienți noi</span><span class="qd-val">36</span></div>
+            </div>
+          </div>
+          <div class="quiz-ask">
+            <div class="quiz-q"><span class="qf">CPL</span><span class="qe">Buget ÷ Leaduri = <b>?</b></span><span class="qblank">?</span></div>
+            <div class="quiz-q"><span class="qf">CAC</span><span class="qe">Buget ÷ Clienți noi = <b>?</b></span><span class="qblank">?</span></div>
+            <div class="quiz-q"><span class="qf">Conv.</span><span class="qe">Clienți ÷ Vizitatori × 100 = <b>?</b></span><span class="qblank">?</span></div>
+          </div>
+        </div>
+        <div class="slide-num"None>12 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.8c — Cum citești o cifră: numărul → decizia -->
+    <!-- ================================================================ -->
+    <section data-notes="Cum citești o cifră — pasul cel mai valoros din quiz. 3 min. Calculul e ușor; interpretarea e meseria. Regula de aur: o cifră singură nu e nici bună, nici rea — capătă sens doar lângă alta. CPL mic dar conversion 0 = leaduri ieftine, dar de proastă calitate (atragi pe cine nu cumpără). CAC mare dar LTV uriaș = perfect normal, clientul revine. Conversion mic dar trafic uriaș = problema e pe site/ofertă, nu pe reclamă. Mesajul de fixat: nu te uiți la o cifră, te uiți la perechi de cifre — și fiecare pereche îți spune ce să schimbi. Asta predau formatorii mai departe: cifra nu e o notă, e o săgeată spre o decizie.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">💡 Quiz · partea care contează — de la cifră la decizie</div>
+          <h2 class="slide-title">O cifră singură nu e bună sau rea. <span class="hl" style="color:var(--practice)">Capătă sens lângă alta.</span></h2>
+        </div>
+        <table class="ct">
+          <thead>
+            <tr><th style="width:40%">Ce vezi</th><th style="width:34%">Ce înseamnă</th><th style="width:26%">Ce decizie iei</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="ch-when"><b>CPL mic</b>, dar conversion ≈ 0</td>
+              <td class="ch-why" style="color:var(--foreground)">Leaduri ieftine, dar de proastă calitate — atragi pe cine nu cumpără</td>
+              <td><b>Schimbi targetarea</b>, nu bugetul</td>
+            </tr>
+            <tr>
+              <td class="ch-when"><b>CAC mare</b>, dar LTV uriaș</td>
+              <td class="ch-why" style="color:var(--foreground)">Perfect normal — clientul revine și își „plătește" costul de mai multe ori</td>
+              <td><b>Dublezi</b> liniștit bugetul</td>
+            </tr>
+            <tr>
+              <td class="ch-when"><b>Conversion mic</b>, dar trafic uriaș</td>
+              <td class="ch-why" style="color:var(--foreground)">Problema nu e reclama — e site-ul sau oferta unde ajung oamenii</td>
+              <td><b>Repari pagina</b>, nu reclama</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="quote-block" style="margin-top:18px;font-size:16px">Nu te uiți la o cifră — te uiți la <strong>perechi de cifre.</strong> Fiecare pereche îți spune exact ce să schimbi.</div>
+        <div class="slide-num"None>13 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.9a — Logica canalelor: owned / earned / paid -->
+    <!-- ================================================================ -->
+    <section data-notes="Logica canalelor — concept. 3 min. Trei familii de canale, după cine deține controlul. Owned = ce controlezi tu: website, lista de email, grupul de WhatsApp. Nu depinzi de nimeni, construiești pe termen lung. Earned = ce câștigi: recenzii, share-uri, recomandări — vine GRATIS dacă produsul livrează, dar nu-l poți cumpăra direct. Paid = ce cumperi: FB Ads, Google Ads, influenceri — pornește și se oprește instant, dar costă continuu. Spune clar: nu e o ierarhie de bun/rău; e o ordine de construcție. Pe slide următor: regula de decizie și greșeala clasică.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Logica canalelor</div>
+          <h2 class="slide-title">Owned · Earned · Paid — <span class="hl">ce controlezi, ce câștigi, ce cumperi.</span></h2>
+          <p class="slide-subtitle">Nu e o ierarhie de bun și rău. E o întrebare de <b>cine deține controlul</b> asupra canalului.</p>
+        </div>
+        <div class="chan-grid">
+          <div class="chan-card owned">
+            <div class="chan-ico">🏠</div>
+            <div class="chan-name">Owned<small>ce controlezi 100%</small></div>
+            <div class="chan-list"><b>Website</b> · lista de <b>email</b> · grup <b>WhatsApp</b></div>
+            <div class="chan-foot">Nu depinzi de nimeni. <b>Construiești pe termen lung.</b></div>
+          </div>
+          <div class="chan-card earned">
+            <div class="chan-ico">⭐</div>
+            <div class="chan-name">Earned<small>ce câștigi gratis</small></div>
+            <div class="chan-list"><b>Recenzii</b> · share-uri · <b>word-of-mouth</b></div>
+            <div class="chan-foot">Nu-l poți cumpăra. <b>Vine dacă produsul livrează.</b></div>
+          </div>
+          <div class="chan-card paid">
+            <div class="chan-ico">💸</div>
+            <div class="chan-name">Paid<small>ce cumperi</small></div>
+            <div class="chan-list"><b>FB Ads</b> · Google Ads · <b>influenceri</b></div>
+            <div class="chan-foot">Pornește și se oprește instant. <b>Amplifici ce deja merge.</b></div>
+          </div>
+        </div>
+        <div class="slide-num"None>14 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.9b — Regula de decizie a canalelor -->
+    <!-- ================================================================ -->
+    <section data-notes="Regula de decizie — 3 min. Ordinea corectă: întâi construiești OWNED (site, listă, grup), apoi testezi cu PAID mic, iar EARNED vine singur dacă produsul e bun. NU inversezi ordinea. Greșeala clasică, pe care o face aproape orice antreprenor la început: toarnă tot bugetul în paid fără să aibă owned. Rezultatul: cât timp plătești, vin clienți; în secunda în care oprești reclamele, totul dispare — n-ai construit nimic al tău. E ca și cum ai închiria o casă în loc să o cumperi: plătești la nesfârșit. Replica: paid-ul fără owned e o robinet care curge doar cât plătești apa. Întreabă sala: cunoașteți afaceri care 'trăiesc' doar din reclame?">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Regula de decizie</div>
+          <h2 class="slide-title">Construiești owned → testezi cu paid mic → <span class="hl">earned vine singur.</span></h2>
+          <p class="slide-subtitle">Ordinea contează. Inversată, rămâi fără nimic al tău în momentul în care oprești banii.</p>
+        </div>
+        <div class="stages">
+          <div class="stage s1">
+            <div class="stage-num">1</div>
+            <div class="stage-name">Construiești OWNED<small>site, listă de email, grup</small></div>
+            <div class="stage-desc">Baza pe care o deții. Aici aduci oamenii și îi păstrezi.</div>
+          </div>
+          <div class="stage s2">
+            <div class="stage-num">2</div>
+            <div class="stage-name">Testezi cu PAID mic<small>reclame, buget controlat</small></div>
+            <div class="stage-desc">Amplifici ce deja funcționează organic. Nu pariezi tot bugetul deodată.</div>
+          </div>
+          <div class="stage s3">
+            <div class="stage-num">3</div>
+            <div class="stage-name">EARNED vine singur<small>recenzii, recomandări</small></div>
+            <div class="stage-desc">Dacă produsul livrează, oamenii vorbesc. Gratis, dar doar la final.</div>
+          </div>
+        </div>
+        <div class="quote-block warn" style="margin-top:18px;font-size:16px">⚠️ Greșeala clasică: torni <strong>tot bugetul pe paid fără owned.</strong> Oprești reclamele → clientul dispare. Ai plătit chirie, nu ți-ai construit casa.</div>
+        <div class="slide-num"None>15 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.10 — Facebook Ads în Moldova: buget mic, targetare precisă -->
+    <!-- ================================================================ -->
+    <section data-notes="Facebook Ads în Moldova — 4 min. Vestea bună pentru bugetele mici: CPM (cost la 1.000 de afișări) în Moldova e ~15–40 MDL, mult mai ieftin decât în România sau vest. Înseamnă că 500 MDL îți cumpără 15.000–30.000 de afișări dacă targetezi corect — destul ca să testezi serios. Structura corectă a campaniei, în 3 pași: Awareness (oameni care nu te cunosc) → Remarketing (cei care au interacționat deja) → Conversie (ofertă directă celor calzi). Greșeala: sari direct la 'cumpără acum' către oameni care nu te-au văzut niciodată. E ca o cerere în căsătorie la prima întâlnire. Replica-cheie: cel mai mare cost nu e bugetul de ads — e testarea fără structură (arzi bani învățând lucruri pe care le puteai planifica). FB chip — folosesc brand-chip, nu logo descărcat.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">
+            <span style="display:inline-flex;align-items:center;gap:8px;vertical-align:middle"><span class="brand-chip" style="font-size:12px;padding:3px 11px"><span class="dot" style="background:#1877F2"></span>Facebook Ads</span></span>
+            · în Moldova
+          </div>
+          <h2 class="slide-title">500 MDL îți cumpără <span class="hl">15.000–30.000 de afișări</span> — dacă targetezi corect.</h2>
+          <p class="slide-subtitle">CPM în Moldova: <b>~15–40 MDL</b> la 1.000 de afișări — mult mai ieftin decât în România. Bugetul mic e suficient ca să testezi serios.</p>
+        </div>
+        <div class="stages">
+          <div class="stage s1">
+            <div class="stage-num">1</div>
+            <div class="stage-name">Awareness<small>brand nou, audiență largă</small></div>
+            <div class="stage-desc">Te arăți oamenilor care nu te cunosc. Aici nu vinzi — te faci văzut.</div>
+          </div>
+          <div class="stage s2">
+            <div class="stage-num">2</div>
+            <div class="stage-name">Remarketing<small>cei care au interacționat</small></div>
+            <div class="stage-desc">Revii la cine a dat like, a vizitat site-ul, a comentat. Te cunosc deja.</div>
+          </div>
+          <div class="stage s3">
+            <div class="stage-num">3</div>
+            <div class="stage-name">Conversie<small>ofertă directă</small></div>
+            <div class="stage-desc">Ofertă clară către cei calzi. Acum „cumpără" are sens — te-au văzut de 3 ori.</div>
+          </div>
+        </div>
+        <div class="quote-block warn" style="margin-top:18px;font-size:16px">Cel mai mare cost nu e bugetul de ads — e <strong>testarea fără structură.</strong> A sări direct la „cumpără" e o cerere în căsătorie la prima întâlnire.</div>
+        <div class="slide-num"None>16 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.10b — Ce înseamnă CPM ieftin: ROI contextual -->
+    <!-- ================================================================ -->
+    <section data-notes="ROI contextual al CPM-ului ieftin din Moldova — 2 min. Cifra brută (15–40 MDL/1.000 afișări) nu spune mult singură; o raportăm la ceva real. Cu 500 MDL pe lună (16-17 lei/zi — cât o cafea), atingi 15.000–30.000 de oameni. Pus în perspectivă: aceiași 500 lei nu plătesc nici 2 ore din salariul unui angajat de vânzări, dar îți pun produsul în fața a 20.000 de oameni. Mesajul: bugetul mic NU e un handicap în Moldova — e suficient să testezi serios, dacă ai structură. Asta îi dă curaj antreprenorului speriat de 'reclamele costă mult'. Leagă de regula de la KPI: 500 lei sunt utili doar dacă măsori ce-ți aduc.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">ROI · ce înseamnă de fapt un CPM ieftin</div>
+          <h2 class="slide-title">16 lei pe zi — cât o cafea — te pun în fața a <span class="hl">20.000 de oameni.</span></h2>
+          <p class="slide-subtitle">Cifra brută nu convinge. Raportată la ceva real, da: bugetul mic <b>nu e un handicap în Moldova</b>.</p>
+        </div>
+        <div class="cards-3" style="flex:1">
+          <div class="card sky">
+            <div class="card-icon">☕</div>
+            <div class="card-title">500 MDL / lună</div>
+            <div class="card-body">= ~16 lei pe zi. Cât o cafea. Și cumpără <b>15.000–30.000 de afișări</b>.</div>
+          </div>
+          <div class="card peach">
+            <div class="card-icon">⚖️</div>
+            <div class="card-title">Pus în perspectivă</div>
+            <div class="card-body">Aceiași 500 lei nu plătesc nici 2 ore de salariu de vânzător — dar îți arată produsul la <b>20.000 de oameni</b>.</div>
+          </div>
+          <div class="card mint">
+            <div class="card-icon">🧪</div>
+            <div class="card-title">Suficient ca să testezi</div>
+            <div class="card-body">Nu trebuie buget mare ca să afli ce merge. Trebuie <b>structură + măsurare</b>. Atât.</div>
+          </div>
+        </div>
+        <div class="slide-num"None>17 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.11 — MODEL: alocare buget Ronțo (1.500 MDL/lună) -->
+    <!-- ================================================================ -->
+    <section data-notes="MODEL alocare buget Ronțo — 4 min. Ronțo = brand local de gustări (fictiv). Aplicăm structura din slide-ul anterior pe un buget real de 1.500 MDL/lună. 600 lei (40%) Awareness: video de 15 sec, audiență largă Moldova 25-45 ani. 600 lei (40%) Remarketing: cei care au vizitat site-ul sau au dat like paginii. 300 lei (20%) Conversie: ofertă specifică pentru cine a adăugat în coș și n-a cumpărat (cei mai calzi, cel mai mic buget fiindcă sunt deja aproape). Rezultat așteptat: 3-5 clienți noi/lună la CAC ~300-500 MDL, LTV estimat ~2.400 MDL. Verifică mental regula: LTV 2.400 vs 3×400 = 1.200 → sănătos. Sublinează: bugetul cel mai mic merge pe etapa cea mai caldă, nu invers — mulți fac fix pe dos.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Model completat · <span style="text-transform:none;font-weight:800">Ronțo</span> — gustări locale · 1.500 MDL/lună</div>
+          <h2 class="slide-title">Cum împarți <span class="hl">1.500 MDL</span> pe cele trei etape.</h2>
+        </div>
+        <div class="budget-grid">
+          <div class="budget-bars">
+            <div class="budget-row">
+              <div class="budget-head"><span class="budget-label">Awareness</span><span class="budget-amt">600 MDL</span></div>
+              <div class="budget-track"><div class="budget-fill f1">40%</div></div>
+              <div class="budget-sub">Video 15 sec · audiență largă Moldova 25–45 ani</div>
+            </div>
+            <div class="budget-row">
+              <div class="budget-head"><span class="budget-label">Remarketing</span><span class="budget-amt">600 MDL</span></div>
+              <div class="budget-track"><div class="budget-fill f2">40%</div></div>
+              <div class="budget-sub">Cei care au vizitat site-ul sau au dat like paginii</div>
+            </div>
+            <div class="budget-row">
+              <div class="budget-head"><span class="budget-label">Conversie</span><span class="budget-amt">300 MDL</span></div>
+              <div class="budget-track"><div class="budget-fill f3">20%</div></div>
+              <div class="budget-sub">Ofertă pentru cine a adăugat în coș și n-a cumpărat</div>
+            </div>
+          </div>
+          <div class="budget-result">
+            <div class="br-tag">Rezultat așteptat / lună</div>
+            <div class="br-line"><span class="brn">3–5</span><span class="brt"><b>clienți noi</b> pe lună</span></div>
+            <div class="br-line"><span class="brn" style="font-size:24px;min-width:64px">~400</span><span class="brt">MDL <b>CAC</b> per client</span></div>
+            <div class="br-line"><span class="brn" style="font-size:24px;min-width:64px;color:#6EE7B7">2.400</span><span class="brt">MDL <b>LTV</b> · 3×CAC = 1.200 → <b style="color:#6EE7B7">sănătos ✅</b></span></div>
+          </div>
+        </div>
+        <div class="slide-num"None>18 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.12a — Când Facebook vs Google vs Email vs WhatsApp (tabel) -->
+    <!-- ================================================================ -->
+    <section data-notes="Tabelul de decizie a canalelor — 4 min. Întrebarea pe care o pune orice antreprenor: 'pe ce canal pun banii?'. Răspunsul nu e un canal, ci o potrivire cu situația. Facebook: creezi cerere — omul nu știe încă că are problema; canal vizual, audiențe largi, retargeting. Google: captezi cerere — omul deja caută soluția; intenție de cumpărare mare, mai scump dar mai precis. Email: nurturing și fidelizare — owned, zero cost per trimitere, rate de deschidere 20-40%. WhatsApp: B2B local și comunitate — în Moldova funcționează excepțional pentru relații directe, foarte subestimat. Diferența-cheie de explicat: Facebook CREEAZĂ cerere, Google o CAPTEAZĂ. Pe slide următor punctul despre email ca cel mai valoros owned asset.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Decizie · ce canal, când</div>
+          <h2 class="slide-title">Întrebarea nu e „ce canal e bun" — ci <span class="hl">„ce canal, în ce situație".</span></h2>
+        </div>
+        <table class="ct">
+          <thead>
+            <tr><th style="width:20%">Canal</th><th style="width:40%">Când îl folosești</th><th style="width:40%">De ce</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="ch-name"><span class="ch-dot" style="background:#1877F2"></span>Facebook Ads</span></td>
+              <td class="ch-when"><b>Creezi</b> cerere — omul nu știe încă că are problema</td>
+              <td class="ch-why">Vizual, audiențe largi, retargeting puternic</td>
+            </tr>
+            <tr>
+              <td><span class="ch-name"><span class="ch-dot" style="background:#EA4335"></span>Google Ads</span></td>
+              <td class="ch-when"><b>Captezi</b> cerere — omul deja caută soluția</td>
+              <td class="ch-why">Intenție de cumpărare mare · mai scump, mai precis</td>
+            </tr>
+            <tr>
+              <td><span class="ch-name"><span class="ch-dot" style="background:#0EA371"></span>Email list</span></td>
+              <td class="ch-when"><b>Nurturing</b> + fidelizare — clienții pe care îi ai deja</td>
+              <td class="ch-why">Owned · zero cost / trimitere · deschidere 20–40%</td>
+            </tr>
+            <tr>
+              <td><span class="ch-name"><span class="ch-dot" style="background:#25D366"></span>WhatsApp grup</span></td>
+              <td class="ch-when"><b>B2B local</b> + comunitate — relații directe</td>
+              <td class="ch-why">În Moldova funcționează excepțional · subestimat</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="decision-row">
+          <span class="de">🧭</span>
+          <span class="dt"><b>Facebook</b> creează cererea · <b>Google</b> o captează. Nu sunt concurenți — sunt etape diferite.</span>
+        </div>
+        <div class="slide-num"None>19 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.12b — Email list = cel mai valoros owned asset -->
+    <!-- ================================================================ -->
+    <section data-notes="Email list — slide propriu, fiindcă e cel mai subestimat și mai valoros activ. 3 min. Mesajul provocator: 1.000 de abonați de email activi valorează mai mult decât 10.000 de urmăritori pe Instagram. De ce? Pe Instagram, algoritmul decide cine vede postarea ta (de obicei 5-10% din urmăritori). Pe email, ajungi în inbox la 100% — și deschid 20-40%. Mai mult: contul de Instagram nu e al tău, e al Meta; mâine îți pot închide contul sau schimba algoritmul. Lista de email o deții tu, o exporți, nimeni nu ți-o ia. E owned pur. Replica: urmăritorii sunt închiriați, lista de email e cumpărată. Pentru un IMM din Moldova: cere emailul la fiecare comandă, oferă ceva în schimb (reducere, ghid). Acesta e fundamentul.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Owned · activul cel mai subestimat</div>
+          <h2 class="slide-title">1.000 de abonați de email &gt; <span class="hl">10.000 de urmăritori pe Instagram.</span></h2>
+          <p class="slide-subtitle">Sună exagerat. Nu e — și uite de ce contează pentru orice afacere mică.</p>
+        </div>
+        <div class="ltv-grid">
+          <div class="balance-pane">
+            <div class="balance-vis">
+              <div class="balance-bar cac" style="height:120px;background:linear-gradient(180deg,#94A3B8,#475569)"><span class="bb-lbl">📱 IG</span><span class="bb-val">10.000</span></div>
+              <div class="balance-bar ltv" style="background:linear-gradient(180deg,#34D399,#059669)"><span class="bb-lbl">📧 Email</span><span class="bb-val">1.000</span></div>
+            </div>
+            <div class="balance-cap">Mai puțini oameni — dar <span class="hl">toți ai tăi.</span></div>
+          </div>
+          <div class="ltv-rules">
+            <div class="ltv-rule bad">
+              <div class="ltv-cond" style="min-width:150px">📱 Urmăritori</div>
+              <div class="ltv-desc"><b>Algoritmul decide</b> cine vede postarea (5–10%). Contul e al Meta — mâine ți-l pot închide sau schimba regula.</div>
+            </div>
+            <div class="ltv-rule good">
+              <div class="ltv-cond" style="min-width:150px">📧 Email list</div>
+              <div class="ltv-desc"><b>Ajungi în inbox</b> la 100%, deschid 20–40%. Lista o deții tu — o exporți, nimeni nu ți-o ia.</div>
+            </div>
+            <div class="ltv-rule mid" style="background:var(--primary-ultra-light);border-color:#C7D2FE">
+              <div class="ltv-cond" style="min-width:150px;color:var(--primary)">🔑 Pentru IMM</div>
+              <div class="ltv-desc">Cere emailul la <b>fiecare comandă</b>, oferă ceva în schimb (reducere, ghid). Construiești un activ care e doar al tău.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num"None>20 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.13a — PRACTICĂ: plan de marketing — instrucțiune -->
+    <!-- ================================================================ -->
+    <section data-notes="PRACTICĂ plan de marketing — instrucțiune. 25 min total pentru bloc (acest slide + template-ul). Echipe de 3-4 oameni, fiecare echipă primește o afacere diferită din casebook. Construiesc un plan pe 1 lună într-un tabel cu 5 coloane: Canal, Acțiune concretă, Buget MDL, KPI țintă, Cine răspunde. Regula de aur a exercițiului: bugetul total NU depășește 2.000 MDL. Constrângerea e intenționată — forțează prioritizarea. Nu poți face tot; trebuie să alegi 2-3 canale și să justifici. Livrabilul: tabelul completat + o justificare a alegerii canalului principal (de ce ăla și nu altul, legat de avatarul afacerii). Plimbă-te printre echipe, întreabă 'de ce canalul ăsta pentru clientul vostru?'. Următorul slide e template-ul vizual de completat.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">📋 Practică · 25 min — plan de marketing pe 1 lună</div>
+          <h2 class="slide-title">Echipe de 3–4. Plan pe o lună. <span class="hl" style="color:var(--practice)">Buget max 2.000 MDL.</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">💼</span>
+          <span class="ex-txt">Fiecare echipă primește o <b>afacere diferită</b> din casebook → construiește un tabel cu canal, acțiune, buget, KPI țintă și responsabil. <b>Constrângerea de 2.000 MDL forțează prioritizarea.</b></span>
+          <span class="ex-time">⏱ 25 min</span>
+        </div>
+        <div class="cards-3" style="flex:1">
+          <div class="card sky">
+            <div class="card-icon">🏢</div>
+            <div class="card-title">Alegi 2–3 canale</div>
+            <div class="card-body">Nu poți face tot cu 2.000 MDL. Decizi unde pui banii — și unde NU.</div>
+          </div>
+          <div class="card lavender">
+            <div class="card-icon">🎯</div>
+            <div class="card-title">Pui un KPI țintă</div>
+            <div class="card-body">Fiecare acțiune are un număr de atins — măsurabil în 30 de zile.</div>
+          </div>
+          <div class="card mint">
+            <div class="card-icon">📝</div>
+            <div class="card-title">Justifici alegerea</div>
+            <div class="card-body">Livrabil: tabelul + de ce canalul principal — legat de <b>avatarul afacerii</b>.</div>
+          </div>
+        </div>
+        <div class="slide-num"None>21 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.13b — PRACTICĂ: template-ul de plan (5 coloane) -->
+    <!-- ================================================================ -->
+    <section data-notes="Template-ul de plan — slide de lucru. Cele 5 coloane sunt fixe: Canal · Acțiune concretă · Buget MDL · KPI țintă · Cine răspunde. Primul rând e un exemplu-model pre-completat (Facebook Ads / video awareness / 800 MDL / 30.000 afișări / Marketing) ca să le arăți nivelul de concretețe așteptat — nu 'fac niște reclame' ci 'video de awareness, 800 lei, țintă 30.000 afișări'. Restul rândurilor sunt goale pentru ei. Reamintește la final: suma coloanei Buget ≤ 2.000 MDL. Acesta e tabelul pe care îl pot fotografia și refolosi cu cursanții lor — un instrument, nu o teorie.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">📋 Template · completează cu echipa ta</div>
+          <h2 class="slide-title">Cinci coloane. Primul rând e <span class="hl" style="color:var(--practice)">exemplul. Restul — tu.</span></h2>
+        </div>
+        <table class="plan-table">
+          <thead>
+            <tr>
+              <th style="width:22%">Canal</th>
+              <th style="width:30%">Acțiune concretă</th>
+              <th style="width:14%">Buget (MDL)</th>
+              <th style="width:20%">KPI țintă</th>
+              <th style="width:14%">Cine răspunde</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="pt-ex">
+              <td><b>Facebook Ads</b></td>
+              <td>Video awareness, audiență largă</td>
+              <td><b>800</b></td>
+              <td>30.000 afișări</td>
+              <td>Marketing</td>
+            </tr>
+            <tr><td><div class="plan-fill"></div></td><td><div class="plan-fill"></div></td><td><div class="plan-fill"></div></td><td><div class="plan-fill"></div></td><td><div class="plan-fill"></div></td></tr>
+            <tr><td><div class="plan-fill"></div></td><td><div class="plan-fill"></div></td><td><div class="plan-fill"></div></td><td><div class="plan-fill"></div></td><td><div class="plan-fill"></div></td></tr>
+            <tr><td><div class="plan-fill"></div></td><td><div class="plan-fill"></div></td><td><div class="plan-fill"></div></td><td><div class="plan-fill"></div></td><td><div class="plan-fill"></div></td></tr>
+          </tbody>
+        </table>
+        <div class="quote-block" style="margin-top:18px;font-size:16px">Regula: suma coloanei <strong>Buget ≤ 2.000 MDL.</strong> Dacă nu încape — taie un canal. Asta e prioritizarea.</div>
+        <div class="slide-num"None>22 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.14 — Prezentare + peer review -->
+    <!-- ================================================================ -->
+    <section data-notes="Prezentare + peer review — 15 min. 2-3 echipe prezintă planul, 3 min/echipă. Restul sălii ascultă cu checklist-ul în față și bifează. Checklist-ul (pe slide, pentru cursanți): obiectiv numeric? canalul justificat prin avatar? KPI măsurabil în 30 zile? buget realist pentru stadiul afacerii? După fiecare prezentare, 1-2 întrebări scurte din sală pe baza checklist-ului. Scopul peer review: nu critică, ci antrenament — învață să citească un plan cu ochi de mentor, fiindcă exact asta vor face cu cursanții lor. Dacă o echipă a pus un KPI ne-măsurabil ('mai multă vizibilitate'), e momentul de aur de predat: cum îl transformi într-un număr.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">👥 Prezentare + peer review · 15 min</div>
+          <h2 class="slide-title">2–3 echipe prezintă. Restul <span class="hl" style="color:var(--practice)">bifează checklist-ul.</span></h2>
+        </div>
+        <div class="pr-split">
+          <div class="pr-pane present">
+            <span class="pr-tag">🎤 Prezintă · 3 min / echipă</span>
+            <div class="pr-line"><span class="pb">→</span><div>Ce afacere ați primit și <b>care e canalul principal</b> ales.</div></div>
+            <div class="pr-line"><span class="pb">→</span><div>Cum ați împărțit cele <b>2.000 MDL</b> și de ce așa.</div></div>
+            <div class="pr-line"><span class="pb">→</span><div>Ce <b>KPI țintă</b> ați pus și cum îl măsurați în 30 de zile.</div></div>
+            <div class="pr-line"><span class="pb">→</span><div>O singură <b>justificare</b>: de ce canalul ăsta pentru clientul vostru.</div></div>
+          </div>
+          <div class="check-pane">
+            <div class="check-head">✅ Checklist peer review — bifează pentru fiecare echipă</div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Planul are un <b>obiectiv numeric</b>?<small>nu „mai multă vizibilitate" — un număr</small></div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Canalul ales e <b>justificat prin avatar</b>?<small>se potrivește cu cine e clientul</small></div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">KPI-ul e <b>măsurabil în 30 de zile</b>?<small>poți pune un număr la sfârșit de lună</small></div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Bugetul e <b>realist pentru stadiul</b> afacerii?<small>nu 2.000 lei la o afacere de o lună</small></div></div>
+          </div>
+        </div>
+        <div class="slide-num"None>23 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.15a — REGULA 7 -->
+    <!-- ================================================================ -->
+    <section data-notes="Regula 7 — ancora de luat acasă, slide propriu, full-bleed, un singur mesaj care respiră. 2 min. Citește-o rar, lasă-o să cadă: un plan de marketing fără KPI e o listă de dorințe. Lanțul logic: dacă nu poți măsura → nu poți îmbunătăți → bugetul se pierde. E sinteza întregului modul într-o frază. Leagă de ce-au făcut azi: planul lor de marketing are KPI pe fiecare rând — exact pentru că un plan fără cifre nu e plan, e speranță. Asta e ce duc mai departe la cursanți: cere-le mereu numărul.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Regula modulului 7</div>
+        </div>
+        <div class="rule-grid">
+          <div class="rule-pane">
+            <div class="rule-badge"><span class="rb-dot"></span>REGULA 7</div>
+            <div class="rule-text">Un plan de marketing fără KPI e o <span class="hl">listă de dorințe.</span><br><br>Dacă nu poți măsura, nu poți îmbunătăți. Dacă nu poți îmbunătăți, <span class="hl">bugetul se pierde.</span></div>
+          </div>
+        </div>
+        <div class="slide-num"None>24 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.15b — Recapitulare: ce duci acasă (checklist) -->
+    <!-- ================================================================ -->
+    <section data-notes="Recapitularea modulului — checklist de luat acasă, slide separat de regulă. 2 min. Trece rapid prin cele 5 lucruri concrete pe care le poate folosi mâine: cei 6 KPI ca limbaj comun, regula LTV>3×CAC ca test de sănătate, structura campaniei în 3 etape, logica owned/earned/paid pentru ordinea de construcție, și template-ul de plan pe 1 lună. Spune: nu trebuie să rețină tot — trebuie să știe că există și unde să se uite. Kitul de predat e al lor. După asta, tranziția spre AI: cel mai rapid mod de a crea materialele astea.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Ce duci acasă</div>
+          <h2 class="slide-title">Cinci instrumente — gata de <span class="hl">predat mâine.</span></h2>
+        </div>
+        <div class="check-pane" style="flex:1;justify-content:center">
+          <div class="check-item"><div class="check-box" style="border-color:var(--primary)"></div><div class="check-txt">Cei <b>6 KPI</b> — Reach, CTR, CPL, Conversion, CAC, LTV — ca limbaj comun al oricărei campanii.</div></div>
+          <div class="check-item"><div class="check-box" style="border-color:var(--primary)"></div><div class="check-txt">Testul de sănătate: <b>LTV &gt; 3×CAC</b> — într-o singură formulă știi dacă afacerea poate crește.</div></div>
+          <div class="check-item"><div class="check-box" style="border-color:var(--primary)"></div><div class="check-txt">Structura campaniei: <b>Awareness → Remarketing → Conversie</b> — nu sări direct la „cumpără".</div></div>
+          <div class="check-item"><div class="check-box" style="border-color:var(--primary)"></div><div class="check-txt">Logica <b>Owned → Paid → Earned</b> — construiești ce e al tău înainte să cumperi atenție.</div></div>
+          <div class="check-item"><div class="check-box" style="border-color:var(--primary)"></div><div class="check-txt">Template-ul de <b>plan pe 1 lună</b> cu buget real — instrumentul pe care îl dai mai departe.</div></div>
+        </div>
+        <div class="slide-num"None>25 / 26</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 7.16 — TRANZIȚIE spre Modul 8 (AI) -->
+    <!-- ================================================================ -->
+    <section data-notes="Tranziție spre Modul 8: AI. Legătura: tot ce am construit azi — postări, video de awareness, texte de email, planuri — cere timp și efort de creație. Cârligul: cel mai rapid instrument de creat conținut de predare apărut în 2025 e AI. Nu ca gadget, ci ca multiplicator de timp pentru un formator: generezi variante de mesaje, draft-uri de postări, idei de campanie în minute. Modulul 8 arată ce face DE FAPT AI-ul pentru un formator — concret, nu hype. Pauza între module: 10 minute. Lasă-i să respire înainte de blocul AI.">
+      <div class="slide slide-transition">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#0B1120 0%,#1E3A8A 55%,#3B2F8F 100%);"></div>
+        <div style="position:absolute;top:-120px;right:-100px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(93,112,247,0.4) 0%,transparent 70%);"></div>
+        <div class="trans-content">
+          <div style="font-size:14px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:14px">Urmează · Modul 8</div>
+          <div class="trans-title">Toate astea cer timp de creat.<br>Și dacă le-ai face<br>de <span style="color:#6EE7B7">10 ori mai rapid?</span></div>
+          <div class="trans-sub">Cel mai rapid instrument de creat conținut de predare din 2025 — AI, și ce face de fapt pentru un formator.</div>
+          <div class="trans-arrow">🤖</div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.4)">26 / 26</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

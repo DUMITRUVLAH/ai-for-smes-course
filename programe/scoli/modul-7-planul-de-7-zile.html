@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planul de 7 zile — De la atelier la piață</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #0EA371;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 54px 66px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #0EA371 0%, #0891B2 100%); }
+
+    .slide-header { margin-bottom: 24px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #D1FAE5; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-title .hl { color: var(--primary); }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 960px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0 0 40px; max-width: 740px; line-height: 1.5; }
+    .cover-bait { font-size: 70px; margin: 6px 0 34px; letter-spacing: 8px; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+    .quote-block.warn { border-color: var(--warning); background: #FFFBEB; } .quote-block.warn strong { color: #B45309; }
+
+    /* brand chips */
+    .brand-chip { display: inline-flex; align-items: center; font-size: 14px; font-weight: 700; color: var(--foreground); background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 5px 13px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+    .brand-chip .dot { width: 7px; height: 7px; border-radius: 50%; margin-right: 7px; flex-shrink: 0; }
+
+    /* VS table */
+    .vs-table { width: 100%; border-collapse: collapse; font-size: 19px; }
+    .vs-table th { padding: 14px 20px; text-align: left; font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: #fff; border: none; }
+    .vs-table th.col-bad { background: #B91C1C; }
+    .vs-table th.col-good { background: #15803D; }
+    .vs-table td { padding: 18px 20px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.4; }
+    .vs-table tr:last-child td { border-bottom: none; }
+    .vs-table td.bad-cell { color: #B91C1C; font-style: italic; }
+    .vs-table td.good-cell { background: #F0FDF4; font-weight: 700; color: #15803D; }
+    .vs-table td b { font-weight: 800; }
+
+    /* drill analogy */
+    .drill-row { display: flex; align-items: stretch; gap: 18px; margin-top: 4px; }
+    .drill-card { flex: 1; border-radius: var(--radius); padding: 22px 26px; display: flex; align-items: center; gap: 18px; }
+    .drill-card.no { background: #FEF2F2; border: 1px solid #FECACA; }
+    .drill-card.yes { background: #ECFDF5; border: 1px solid #6EE7B7; }
+    .drill-emoji { font-size: 46px; line-height: 1; flex-shrink: 0; }
+    .drill-txt { font-size: 18px; line-height: 1.4; color: var(--foreground); } .drill-txt b { font-weight: 800; }
+    .drill-card.no .drill-lbl { color: #B91C1C; } .drill-card.yes .drill-lbl { color: #15803D; }
+    .drill-lbl { font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+    .drill-arrow { display: flex; align-items: center; font-size: 30px; color: var(--muted); }
+
+    /* FORMULA */
+    .formula-box { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 34px 40px; color: #fff; position: relative; overflow: hidden; }
+    .formula-box::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .formula-line { position: relative; z-index: 2; font-size: 30px; font-weight: 700; line-height: 1.5; }
+    .formula-line .slot { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); border-radius: 8px; padding: 2px 14px; font-weight: 800; margin: 0 2px; }
+    .formula-line .slot.who { color: #93C5FD; } .formula-line .slot.res { color: #6EE7B7; } .formula-line .slot.dif { color: #FCD34D; }
+    .formula-line .slot.prob { color: #FCA5A5; }
+    .ex-flip { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+    .flip { border-radius: var(--radius-sm); padding: 16px 20px; font-size: 18px; line-height: 1.45; }
+    .flip.no { background: #FEF2F2; border: 1px solid #FECACA; color: #B91C1C; }
+    .flip.yes { background: #ECFDF5; border: 1px solid #6EE7B7; color: var(--foreground); }
+    .flip .fl-mark { font-weight: 800; margin-right: 8px; }
+    .flip.yes b { color: #15803D; font-weight: 800; }
+
+    /* GENERIC GRID TABLE */
+    .gt { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .gt th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .gt td { padding: 15px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.42; color: var(--foreground); }
+    .gt tr:last-child td { border-bottom: none; }
+    .gt tr:nth-child(even) td { background: var(--bg); }
+    .gt .lead { font-weight: 800; color: var(--foreground); }
+    .gt .lead .em { font-size: 20px; margin-right: 6px; }
+    .gt .why { color: var(--muted); font-size: 15px; }
+    .gt b { font-weight: 800; }
+    .gt .quoted { font-style: italic; }
+
+    /* BIG STATEMENT pane */
+    .stmt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .stmt-card { border-radius: var(--radius); padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px; border: 1px solid var(--border); }
+    .stmt-card.cold { background: #FEF2F2; border-color: #FECACA; }
+    .stmt-card.warm { background: #ECFDF5; border-color: #6EE7B7; }
+    .stmt-ico { font-size: 34px; line-height: 1; flex-shrink: 0; }
+    .stmt-txt { font-size: 17px; line-height: 1.45; color: var(--foreground); } .stmt-txt b { font-weight: 800; }
+    .stmt-card.cold .stmt-txt b { color: #B91C1C; } .stmt-card.warm .stmt-txt b { color: #15803D; }
+    .stmt-hero { margin-top: 18px; background: linear-gradient(135deg, #0B1120, #1E3A8A 70%, #3B2F8F); border-radius: var(--radius); padding: 22px 28px; color: #fff; font-size: 22px; font-weight: 800; line-height: 1.35; text-align: center; position: relative; overflow: hidden; }
+    .stmt-hero .hl { color: var(--primary-light); }
+
+    /* TOOLS MAP */
+    .tools-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; flex: 1; }
+    .tool-card { border-radius: var(--radius); padding: 26px 24px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 13px; overflow: hidden; position: relative; }
+    .tool-card.t1 { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .tool-card.t2 { background: var(--pastel-mint); border-color: #86EFAC; }
+    .tool-ico { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: #fff; box-shadow: 0 2px 8px rgba(15,23,42,0.08); }
+    .tool-name { font-size: 24px; font-weight: 800; color: var(--foreground); line-height: 1.15; }
+    .tool-name small { display: block; font-size: 14px; font-weight: 600; color: var(--muted); margin-top: 4px; }
+    .tool-q { font-size: 16px; color: var(--foreground); line-height: 1.4; font-style: italic; background: #fff; border-radius: var(--radius-sm); padding: 12px 15px; margin-top: auto; }
+
+    /* PROFILE BANK */
+    .prof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; }
+    .prof-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 17px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+
+    /* exercise banner + form */
+    .ex-banner { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #0EA371, #0891B2); color: #fff; border-radius: var(--radius); padding: 14px 22px; margin-bottom: 18px; }
+    .ex-banner .ex-ico { font-size: 26px; }
+    .ex-banner .ex-txt { font-size: 17px; font-weight: 600; line-height: 1.4; } .ex-banner .ex-txt b { font-weight: 800; }
+    .ex-banner .ex-time { margin-left: auto; font-size: 15px; font-weight: 800; background: rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+
+    /* ROLE-PLAY / GAME steps */
+    .rp-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; flex: 1; }
+    .rp-steps { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .rp-step { display: flex; align-items: flex-start; gap: 14px; }
+    .rp-num { width: 34px; height: 34px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .rp-text { font-size: 17px; color: var(--foreground); line-height: 1.4; padding-top: 4px; } .rp-text b { font-weight: 800; color: var(--practice); }
+    .rp-pane { background: var(--pastel-mint); border: 1px solid #86EFAC; border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .rp-pane .rp-head { display: flex; align-items: center; gap: 12px; }
+    .rp-pane .rp-emoji { font-size: 38px; }
+    .rp-pane .rp-title { font-size: 19px; font-weight: 800; color: #15803D; line-height: 1.2; }
+    .rp-debrief { margin-top: auto; font-size: 15px; color: var(--muted); line-height: 1.5; } .rp-debrief b { color: var(--foreground); }
+
+    /* PRESENT + RETRO */
+    .pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 1; }
+    .pr-pane { border-radius: var(--radius); padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; }
+    .pr-pane.present { background: var(--pastel-peach); border-color: #FED7AA; }
+    .pr-pane.retro { background: var(--primary-ultra-light); border-color: #C7D2FE; }
+    .pr-tag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 100px; }
+    .pr-pane.present .pr-tag { background: #FB923C; color: #fff; } .pr-pane.retro .pr-tag { background: var(--primary); color: #fff; }
+    .pr-title { font-size: 21px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+    .pr-line { display: flex; align-items: flex-start; gap: 11px; font-size: 16px; color: var(--foreground); line-height: 1.5; } .pr-line .pb { font-weight: 800; color: var(--primary); flex-shrink: 0; } .pr-pane.present .pr-line .pb { color: #C2410C; }
+
+    /* RULE + CHECKLIST */
+    .rule-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 28px; flex: 1; align-items: stretch; }
+    .rule-pane { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 32px; color: #fff; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+    .rule-pane::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .rule-badge { position: relative; z-index: 2; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 800; letter-spacing: 0.08em; margin-bottom: 22px; }
+    .rule-badge .rb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--primary-light); }
+    .rule-text { position: relative; z-index: 2; font-size: 26px; font-weight: 800; line-height: 1.28; letter-spacing: -0.01em; } .rule-text .hl { color: var(--primary-light); }
+    .check-pane { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 28px; display: flex; flex-direction: column; }
+    .check-head { font-size: 15px; font-weight: 800; color: var(--practice); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 9px; }
+    .check-item { display: flex; align-items: flex-start; gap: 14px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 22px; height: 22px; border-radius: 7px; border: 2px solid var(--practice); flex-shrink: 0; margin-top: 1px; }
+    .check-txt { font-size: 15px; color: var(--foreground); line-height: 1.4; } .check-txt b { font-weight: 800; }
+
+    /* TRANSITION / closing */
+    .slide-transition { padding: 0; overflow: hidden; background: #1E3A8A; position: relative; justify-content: center; align-items: center; display: flex; }
+    .slide-transition::before { display: none; }
+
+    /* ============ COMPONENTE NOI (M7) ============ */
+
+    /* REGULA 1% — grafic ×37 vs ~0 */
+    .onepct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; flex: 1; }
+    .onepct-card { border-radius: var(--radius); padding: 24px 26px; border: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; gap: 12px; position: relative; overflow: hidden; }
+    .onepct-card.up { background: #ECFDF5; border-color: #6EE7B7; }
+    .onepct-card.down { background: #FEF2F2; border-color: #FECACA; }
+    .onepct-formula { font-size: 17px; font-weight: 700; color: var(--foreground); line-height: 1.35; }
+    .onepct-card.up .onepct-formula b { color: #15803D; } .onepct-card.down .onepct-formula b { color: #B91C1C; }
+    .onepct-big { display: flex; align-items: baseline; gap: 10px; }
+    .onepct-num { font-size: 64px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; }
+    .onepct-card.up .onepct-num { color: #15803D; } .onepct-card.down .onepct-num { color: #B91C1C; }
+    .onepct-cap { font-size: 14px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .onepct-trend { font-size: 32px; }
+    .onepct-curve { height: 10px; border-radius: 100px; margin-top: 2px; }
+    .onepct-card.up .onepct-curve { background: linear-gradient(90deg, #BBF7D0 0%, #15803D 100%); }
+    .onepct-card.down .onepct-curve { background: linear-gradient(90deg, #FCA5A5 0%, #FEE2E2 100%); }
+
+    /* PLAN MODEL / FOAIA DE DRUM — fișă cu rânduri */
+    .roadmap { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .rm-row { display: grid; grid-template-columns: 230px 1fr; gap: 14px; align-items: center; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 16px; }
+    .rm-row.filled { background: var(--bg); }
+    .rm-mod { display: flex; align-items: center; gap: 9px; font-size: 14px; font-weight: 800; color: var(--foreground); }
+    .rm-mod .rm-badge { font-size: 11px; font-weight: 800; color: #fff; background: var(--primary); border-radius: 6px; padding: 2px 8px; letter-spacing: 0.03em; flex-shrink: 0; }
+    .rm-val { font-size: 15px; color: var(--foreground); line-height: 1.35; } .rm-val b { font-weight: 800; color: var(--primary); }
+    .rm-step { margin-top: 6px; background: linear-gradient(135deg, #0B1120, #1E3A8A 70%, #3B2F8F); border-radius: var(--radius); padding: 16px 22px; color: #fff; display: flex; flex-direction: column; gap: 6px; position: relative; overflow: hidden; }
+    .rm-step .rm-step-lbl { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--primary-light); }
+    .rm-step .rm-step-txt { font-size: 18px; font-weight: 800; line-height: 1.35; }
+    .rm-step .rm-step-txt .if { color: #FCD34D; } .rm-step .rm-step-txt .then { color: #6EE7B7; }
+    .rm-2nd { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.4; } .rm-2nd b { color: #fff; font-weight: 700; }
+
+    /* FOAIA DE DRUM fillable (practice) */
+    .rm-row.blank { border: 2px solid var(--practice); background: #fff; }
+    .rm-row.blank .rm-mod .rm-badge { background: var(--practice); }
+    .rm-fill { flex: 1; border-bottom: 1.5px dashed #CBD5E1; height: 20px; align-self: flex-end; margin-bottom: 4px; }
+    .rm-step.blank-step { background: #fff; border: 2px solid var(--practice); color: var(--foreground); }
+    .rm-step.blank-step .rm-step-lbl { color: var(--practice); }
+    .rm-step.blank-step .rm-step-txt { font-size: 17px; line-height: 1.6; color: var(--foreground); }
+    .rm-step.blank-step .rm-blank { display: inline-block; min-width: 150px; border-bottom: 1.5px dashed #94A3B8; }
+    .rm-step.blank-step .rm-blank.if { border-color: #D97706; } .rm-step.blank-step .rm-blank.then { border-color: var(--practice); }
+    .rm-step.blank-step .kw { font-weight: 800; } .rm-step.blank-step .kw.if { color: #D97706; } .rm-step.blank-step .kw.then { color: var(--practice); }
+
+    /* MĂSURI — indicator strip */
+    .meas-rule { margin-top: 16px; display: flex; align-items: center; gap: 14px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 14px 20px; }
+    .meas-rule .mre { font-size: 28px; } .meas-rule .mrt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .meas-rule .mrt b { font-weight: 800; color: var(--primary); }
+
+    /* RECAP 7 reguli — listă cu R-badge + teorie */
+    .recap-grid { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+    .recap-row { display: grid; grid-template-columns: 54px 1fr 230px; gap: 14px; align-items: center; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 14px; }
+    .recap-r { width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(135deg, var(--primary), #7C3AED); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .recap-rule { font-size: 15.5px; font-weight: 700; color: var(--foreground); line-height: 1.3; }
+    .recap-theory { display: flex; flex-wrap: wrap; gap: 5px; justify-content: flex-end; }
+    .recap-tag { font-size: 12px; font-weight: 700; color: var(--primary); background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: 100px; padding: 3px 10px; white-space: nowrap; }
+
+    /* TRANSFORM dorință → pas (practice) */
+    .tf-list { display: flex; flex-direction: column; gap: 11px; flex: 1; }
+    .tf-row { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 14px; align-items: center; }
+    .tf-vague { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius-sm); padding: 13px 16px; font-size: 15px; color: #B91C1C; font-style: italic; line-height: 1.35; }
+    .tf-vague .vb { font-weight: 800; font-style: normal; margin-right: 6px; }
+    .tf-arrow { display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--practice); font-weight: 800; }
+    .tf-step { background: #ECFDF5; border: 1px solid #6EE7B7; border-radius: var(--radius-sm); padding: 13px 16px; font-size: 15px; color: var(--foreground); line-height: 1.35; }
+    .tf-step .sb { color: #15803D; font-weight: 800; margin-right: 6px; } .tf-step b { font-weight: 800; color: #15803D; }
+
+    /* PITCH FINAL sheet (practice) */
+    .pf-sheet { display: flex; flex-direction: column; gap: 12px; }
+    .pf-line { background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 15px 22px; display: flex; align-items: center; gap: 16px; }
+    .pf-word { font-size: 20px; font-weight: 800; color: var(--practice); white-space: nowrap; }
+    .pf-fill { flex: 1; border-bottom: 1.5px dashed #CBD5E1; height: 1px; align-self: flex-end; margin-bottom: 6px; }
+    .pf-tag { font-size: 13px; font-weight: 800; color: var(--muted); background: #ECFDF5; border-radius: 100px; padding: 5px 13px; white-space: nowrap; }
+
+    /* ============ COMPONENTE NOI (M7 · v4 — Lista caldă + lead magnet) ============ */
+
+    /* LISTA CALDĂ — cele 3 atingeri (pași în culoarea primary, nu practice) */
+    .touch-list { display: flex; flex-direction: column; gap: 10px; }
+    .touch-row { display: flex; align-items: flex-start; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 16px; }
+    .touch-num { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), #7C3AED); color: #fff; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .touch-body { font-size: 16px; color: var(--foreground); line-height: 1.4; padding-top: 4px; }
+    .touch-body .tt { font-weight: 800; color: var(--primary); margin-right: 6px; }
+    .touch-body .tw { font-size: 13px; font-weight: 800; color: var(--muted); background: var(--bg); border: 1px solid var(--border); border-radius: 100px; padding: 2px 9px; margin-left: 6px; white-space: nowrap; }
+    .touch-body b { font-weight: 800; }
+    .twocol { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 22px; flex: 1; align-items: start; }
+    .twocol-head { font-size: 14px; font-weight: 800; color: var(--foreground); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .twocol-head .em { font-size: 18px; }
+
+    /* CLOSING (dark, energic) */
+    .slide-closing { padding: 0; overflow: hidden; background: #0B1120; position: relative; justify-content: center; align-items: center; display: flex; }
+    .slide-closing::before { display: none; }
+    .closing-foot { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; margin-top: 34px; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- SLIDE 7.1 — COVER / TITLU -->
+    <section data-notes="Deschidere Modul 7 (60 min) — ăsta e modulul de EXECUȚIE: aici se adună TOT ce s-a făcut azi (M0–M6) într-un singur plan executabil. Ritm: Cadru+teorie 16 → Plan model+obstacole+instrumente de urmărire 12 → Consolidare Foaia de drum 14 → Pereche de responsabilitate 10 → Cum măsori 4 → Pitch final+retro 6. Output în Foaia de drum: primul pas concret pe 7 zile (formula dacă-atunci) + un partener + 1 indicator de măsurat. Cârligul firului roșu: o zi de training fără un prim pas = o zi pierdută; azi pleci cu pasul. Cele 2 instrumente noi (dacă-atunci + regula 1%) sunt trucurile prin care pasul chiar se întâmplă. Nu lăsa pe nimeni să plece cu un pas vag.">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 7 · De la atelier la piață — vânzări &amp; marketing digital</div>
+          <h1>Ce faci LUNI<br>dimineață?</h1>
+          <div class="cover-bait">📅 ✅</div>
+          <p class="subtitle">O zi de training fără un prim pas = o zi pierdută. Azi pleci cu pasul.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">60 min</span>
+            <span class="cover-chip">Dacă-atunci + Regula 1%</span>
+            <span class="cover-chip">Pleci cu primul pas pe 7 zile</span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.2 — Ce înveți azi (harta modulului) -->
+    <section data-notes="Cârlig mentor: «Cele mai multe traininguri se uită în 2 săptămâni. Azi învățăm cele 2 trucuri prin care pasul tău chiar se întâmplă.» Cele 2 instrumente de execuție există ca planul să nu moară vineri: «dacă-atunci» leagă pasul de un moment real din calendar; regula 1% dă speranță — nu trebuie să revoluționezi, doar 1 lucru repetat. Anunță harta clar: azi nu mai adăugăm teorie de marketing, ci ne asigurăm că PASUL se face.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Ce înveți azi · harta modulului</div>
+          <h2 class="slide-title">2 instrumente de execuție — <span class="hl">ca planul să nu moară vineri</span></h2>
+          <p class="slide-subtitle">Cele mai multe traininguri se uită în 2 săptămâni. Azi înveți cele <b>2 trucuri</b> prin care pasul tău chiar se întâmplă.</p>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card t1">
+            <div class="tool-ico">🔗</div>
+            <div class="tool-name">„Dacă–atunci"<small>Implementation Intentions</small></div>
+            <div class="tool-q">„Cum mă asigur că chiar fac pasul?"</div>
+          </div>
+          <div class="tool-card t2">
+            <div class="tool-ico">📈</div>
+            <div class="tool-name">Regula 1%<small>Atomic Habits</small></div>
+            <div class="tool-q">„De ce un pas mic, repetat, bate un plan mare?"</div>
+          </div>
+        </div>
+        <div class="slide-num">02 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.3 — Cadru: de ce 7 zile, nu 30 -->
+    <section data-notes="Cadru-ancoră. Cârlig mentor: «Nu te întreb ce vrei să faci anul ăsta. Te întreb ce faci LUNI la ora 10.» Mesaj cheie: planurile mari mor în sală, pasul mic se face. 7 zile = aproape ca să nu uiți, scurt ca să nu amâni. Nu-ți trebuie 10 acțiuni, îți trebuie UNA, făcută. Forțează specificitatea: ora fixă, nu «săptămâna asta».">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · de ce 7 zile, nu 30</div>
+          <h2 class="slide-title">Planurile mari mor. <span class="hl">Pasul mic se face.</span></h2>
+          <p class="slide-subtitle">Nu te întreb ce vrei să faci anul ăsta. Te întreb <b>ce faci LUNI la ora 10</b>.</p>
+        </div>
+        <div class="stmt-grid">
+          <div class="stmt-card cold">
+            <span class="stmt-ico">🗓️</span>
+            <div class="stmt-txt">Un „plan pe <b>30 de zile</b>" sună bine în sală — și se uită vineri.</div>
+          </div>
+          <div class="stmt-card warm">
+            <span class="stmt-ico">⏱️</span>
+            <div class="stmt-txt"><b>7 zile</b> = aproape ca să nu uiți, scurt ca să nu amâni.</div>
+          </div>
+        </div>
+        <div class="stmt-hero">Nu-ți trebuie 10 acțiuni. <span class="hl">Îți trebuie UNA, făcută.</span></div>
+        <div class="slide-num">03 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.4 — Cadru: de ce planurile mari mor (3 motive) -->
+    <section data-notes="Cele 3 motive pentru care planul ambițios nu se face niciodată. Adresează-le ÎNAINTE să apară ca scuze. Antidotul de azi: 1 pas + 7 zile + 1 partener — mic, aproape, văzut de cineva. Fiecare motiv are antidotul lui: prea mare→1 pas, prea departe→7 zile, doar în cap→1 partener. Leagă vizual cele 3 motive de cele 3 piese ale antidotului.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · de ce mor planurile mari</div>
+          <h2 class="slide-title">3 motive pentru care planul ambițios <span class="hl">nu se face niciodată</span></h2>
+        </div>
+        <table class="gt" style="font-size:17px">
+          <thead>
+            <tr><th style="width:34%">Motivul</th><th style="width:66%">Ce se întâmplă</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="lead"><span class="em">😵</span>Prea mare = paralizie</td><td class="why">„10 acțiuni" sperie. Creierul amână tot.</td></tr>
+            <tr><td class="lead"><span class="em">🌫️</span>Prea departe = nu doare azi</td><td class="why">„Până la sfârșitul anului" nu te grăbește. Termen vag = niciun termen.</td></tr>
+            <tr><td class="lead"><span class="em">🙈</span>Doar în capul tău = nimeni nu vede</td><td class="why">Fără cineva care întreabă „ai făcut?", planul moare în liniște.</td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note" style="margin-top:14px"><div class="quote-block"><strong>Antidotul de azi:</strong> 1 pas + 7 zile + 1 partener. <strong>Mic, aproape, văzut de cineva.</strong></div></div>
+        <div class="slide-num">04 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.5 — TEORIE 1: Regula 1% -->
+    <section data-notes="TEORIE 1 — Regula 1% (James Clear, Atomic Habits). Dă speranță, important pentru un public obosit/sceptic. Ideea: nu te schimbi dintr-un salt mare, ci din pași mici repetați. 1% mai bine zilnic un an = ×37; 1% mai prost = aproape 0. Exemple care lovesc local: o postare/săptămână constant bate o campanie mare abandonată; un telefon la o firmă pe zi = 20 firme/lună, asta schimbă o școală. Cârlig mentor: «Nu-ți cer să revoluționezi școala. Îți cer 1 lucru mic, repetat. Aia o face mare.»">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie 1 · Regula 1% (Atomic Habits)</div>
+          <h2 class="slide-title">Nu te schimbi dintr-un salt. <span class="hl">Te schimbi din pași mici, repetați.</span></h2>
+          <p class="slide-subtitle">Ideea (James Clear): <b>1% mai bine în fiecare zi = de 37 de ori mai bine într-un an</b>. Nu saltul — repetiția.</p>
+        </div>
+        <div class="onepct-grid">
+          <div class="onepct-card up">
+            <div class="onepct-formula">1% mai bine zilnic, <b>1 an</b></div>
+            <div class="onepct-big"><span class="onepct-num">×37</span><span class="onepct-trend">📈</span></div>
+            <div class="onepct-cap">de 37 de ori mai bun</div>
+            <div class="onepct-curve"></div>
+          </div>
+          <div class="onepct-card down">
+            <div class="onepct-formula">1% mai prost zilnic, <b>1 an</b></div>
+            <div class="onepct-big"><span class="onepct-num">~0</span><span class="onepct-trend">📉</span></div>
+            <div class="onepct-cap">aproape de zero</div>
+            <div class="onepct-curve"></div>
+          </div>
+        </div>
+        <div class="cw-note" style="margin-top:16px"><div class="quote-block"><strong>În practică:</strong> o postare/săptămână constant bate „o campanie mare" abandonată. Un telefon/zi = <strong>20 de firme pe lună</strong> — asta schimbă o școală.</div></div>
+        <div class="slide-num">05 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.6 — TEORIE 2: Dacă–atunci -->
+    <section data-notes="TEORIE 2 — «Dacă-atunci» (Implementation Intentions). Instrumentul cel mai practic al modulului. Cercetare clasică (Gollwitzer): cine leagă acțiunea de un MOMENT și un LOC concret o face de 2-3 ori mai des decât cei cu «o voi face cândva». Formula: DACĂ [moment+loc], ATUNCI [acțiunea concretă]. Cârlig mentor: «Cândva nu există în calendar. Luni la 10, la birou există. Leagă pasul de un moment real și se întâmplă.» Insistă pe ora fixă — ăsta e elementul care lipsește cel mai des.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie 2 · „Dacă–atunci"</div>
+          <h2 class="slide-title">Un plan vag nu se face. <span class="hl">Un «dacă–atunci» se face de 2–3 ori mai des.</span></h2>
+          <p class="slide-subtitle">Cercetare clasică: cine leagă acțiunea de un <b>MOMENT și un LOC concret</b> o face mult mai des decât cei cu „o voi face cândva".</p>
+        </div>
+        <div class="ex-flip">
+          <div class="flip no"><span class="fl-mark">❌</span><b>Vag:</b> „o să sun niște firme săptămâna asta"</div>
+          <div class="flip yes"><span class="fl-mark">✅</span><b>Dacă–atunci:</b> „LUNI, când ajung la birou la 10:00, ATUNCI sun 3 firme de pe lista mea"</div>
+        </div>
+        <div class="formula-box" style="margin-top:18px;padding:26px 36px">
+          <div class="formula-line" style="font-size:26px">„DACĂ <span class="slot dif">[ moment + loc ]</span>, ATUNCI <span class="slot res">[ acțiunea concretă ]</span>."</div>
+        </div>
+        <div class="slide-num">06 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.7 — Cadru: cum arată un prim pas BUN -->
+    <section data-notes="Cum arată un prim pas BUN: concret, mic, cu moment fix. Tabelul pas slab vs pas bun arată exact transformarea pe care o cerem la consolidare. Formula: [Moment] + [Ce] + [Cui/Unde]. Lipsește una → nu e pas, e dorință. Ăsta e filtrul cu care verifici fiecare pereche la consolidare. Citește 1-2 rânduri cu voce ca să se vadă diferența.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · cum arată un prim pas bun</div>
+          <h2 class="slide-title">Pasul bun e: <span class="hl">concret, mic, cu moment fix</span></h2>
+          <p class="slide-subtitle">Formula: <b>[Moment] + [Ce] + [Cui/Unde]</b>. Lipsește una → nu e pas, e dorință.</p>
+        </div>
+        <table class="vs-table" style="font-size:16px">
+          <thead>
+            <tr><th class="col-bad" style="width:42%">❌ Pas slab (dorință)</th><th class="col-good" style="width:58%">✅ Pas bun (dacă–atunci)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="bad-cell">„Să fim mai activi pe TikTok"</td><td class="good-cell">„Joi la 14:00 filmez <b>1 clip de 15 sec</b> cu un elev în atelier"</td></tr>
+            <tr><td class="bad-cell">„Să găsim parteneri"</td><td class="good-cell">„Marți la 10:00 sun <b>3 firme</b>: [nume], [nume], [nume]"</td></tr>
+            <tr><td class="bad-cell">„Să atragem adulți"</td><td class="good-cell">„Miercuri dimineață merg la <b>ANOFM</b> și întreb de voucher"</td></tr>
+          </tbody>
+        </table>
+        <div class="slide-num">07 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.8 — Plan MODEL completat -->
+    <section data-notes="Planul model e ancora vizuală — oamenii completează mai bine după ce VĂD un exemplu bun. Profil nou: mobilă/tâmplărie (nu repetăm cofetărie/auto). De ce e bun: clientul concret (firme de amenajări, B2B repetabil), pasul are moment fix (marți 10:00), e o singură mișcare. Mesaj: copiază STRUCTURA, nu conținutul. Arată cum fiecare rând vine din modulele M0-M6, apoi cum se condensează în UN prim pas dacă-atunci.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Model · „arată, nu descrie"</div>
+          <h2 class="slide-title">Așa arată un plan bun — <span class="hl">copiază structura, nu conținutul</span></h2>
+          <p class="slide-subtitle">Exemplu model · profil <span class="brand-chip"><span class="dot" style="background:#A16207"></span>mobilă / tâmplărie</span></p>
+        </div>
+        <div class="roadmap">
+          <div class="rm-row filled"><div class="rm-mod"><span class="rm-badge">M0</span>Oceanul</div><div class="rm-val">„singurul atelier din raion care face <b>mobilă la comandă</b>"</div></div>
+          <div class="rm-row filled"><div class="rm-mod"><span class="rm-badge">M1</span>Clientul</div><div class="rm-val">firmele de amenajări locale <b>(B2B repetabil)</b></div></div>
+          <div class="rm-row filled"><div class="rm-mod"><span class="rm-badge">M2</span>Mesajul</div><div class="rm-val">„mobilă la comandă, livrată, <b>fără să cauți meșteri</b>"</div></div>
+          <div class="rm-row filled"><div class="rm-mod"><span class="rm-badge">M3</span>Canalul</div><div class="rm-val">telefon direct + Instagram cu poze de produse</div></div>
+          <div class="rm-row filled"><div class="rm-mod"><span class="rm-badge">M4</span>Produsul</div><div class="rm-val">o masă-model + 3 telefoane de probă (treapta «mostră»)</div></div>
+          <div class="rm-row filled"><div class="rm-mod"><span class="rm-badge">M5</span>Video</div><div class="rm-val">1 clip „satisfying" cu lemnul șlefuit</div></div>
+          <div class="rm-row filled"><div class="rm-mod"><span class="rm-badge">M6</span>Prețul</div><div class="rm-val">pachet pe 3 opțiuni (masă / set masă+scaune / mobilier complet)</div></div>
+        </div>
+        <div class="rm-step">
+          <div class="rm-step-lbl">🔗 Primul pas (dacă–atunci)</div>
+          <div class="rm-step-txt">„<span class="if">MARȚI la 10:00, la birou</span>, ATUNCI <span class="then">sun 3 firme de amenajări din raion</span>."</div>
+          <div class="rm-2nd"><b>Al 2-lea pas (până vineri):</b> postez 1 poză cu o masă finită pe Instagram + Marketplace</div>
+        </div>
+        <div class="slide-num">08 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.9 — Obstacole tipice -->
+    <section data-notes="Obstacolele preîntâmpină scuzele — adresează-le ÎNAINTE să apară. «Da, dar…» — răspunsurile la scuzele care omoară pasul. Cârlig: «Frica nu dispare gândind. Dispare după primul telefon. Fă-l urât, dar fă-l.» Cele 4 scuze sunt cele mai frecvente: n-am timp, mi-e frică să sun, dacă mă refuză, nu știu de unde să încep. Fiecare are un răspuns concret, nu o încurajare goală.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · obstacole tipice</div>
+          <h2 class="slide-title">„Da, dar…" — <span class="hl">răspunsurile la scuzele care omoară pasul</span></h2>
+        </div>
+        <table class="gt" style="font-size:17px">
+          <thead>
+            <tr><th style="width:34%">Obstacolul</th><th style="width:66%">Cum îl treci</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="lead"><span class="em">⏰</span>„Nu am timp"</td><td class="why">Pasul tău e de 30 de minute. <b>Pune-l în calendar ca pe o ședință.</b></td></tr>
+            <tr><td class="lead"><span class="em">😰</span>„Mi-e frică să sun"</td><td class="why">Scrie-ți <b>3 fraze pe hârtie</b> înainte. Citești de pe foaie.</td></tr>
+            <tr><td class="lead"><span class="em">🙅</span>„Dacă mă refuză?"</td><td class="why">Un „nu" îți dă info gratis. Suni <b>3, nu 1</b> — unul spune da.</td></tr>
+            <tr><td class="lead"><span class="em">🤷</span>„Nu știu de unde să încep"</td><td class="why">De la pasul cel mai mic. Un telefon. O postare. Atât.</td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note" style="margin-top:14px"><div class="quote-block warn"><strong>Cârlig:</strong> frica nu dispare gândind. Dispare <strong>după primul telefon</strong>. Fă-l urât, dar fă-l.</div></div>
+        <div class="slide-num">09 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.9b — INSTRUMENT: Lista caldă + 3 atingeri -->
+    <section data-notes="INSTRUMENT (how-to, nu practice) — «Lista caldă». Mesaj cheie: oamenii nu se pierd pentru că-s dezinteresați, ci pentru că nu i-a urmărit nimeni. Leagă explicit de pâlnia din M4: la etapa «Te cred» colectezi contacte; dacă nu le notezi și nu revii, le pierzi. Nu trebuie CRM — un caiet sau o foaie A4 ajunge. Tabelul simplu (Nume / Telefon / De unde a venit / Ce l-a interesat / Următorul contact / Stadiu) e tot instrumentul. Apoi REGULA CELOR 3 ATINGERI: atingerea 1 = răspunzi + pui o întrebare; atingerea 2 (peste 2-3 zile) = trimiți o dovadă (poză absolvent angajat, o mărturie); atingerea 3 = o invitație concretă (veniți joi la atelier / ziua porților deschise). Cârlig mentor: «Un poate devine da la a treia atingere. Cei mai mulți se opresc la prima — și cred că omul n-a fost interesat. Ba a fost. Doar n-a fost urmărit.» Insistă: notatul e gratis, pierderea contactelor e scumpă.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Instrument · lista caldă</div>
+          <h2 class="slide-title">Oamenii nu se pierd pentru că-s dezinteresați. <span class="hl">Se pierd pentru că nu i-a urmărit nimeni.</span></h2>
+          <p class="slide-subtitle">Din pâlnia <b>M4</b>: la etapa „Te cred" colectezi contacte. Dacă nu le notezi și nu revii — le pierzi. <b>Nu-ți trebuie CRM</b> — un caiet sau o foaie A4.</p>
+        </div>
+        <div class="twocol">
+          <div>
+            <div class="twocol-head"><span class="em">📒</span>„Lista mea caldă" — un tabel simplu</div>
+            <table class="gt" style="font-size:13.5px">
+              <thead>
+                <tr><th>Nume</th><th>Telefon</th><th>De unde</th><th>Ce l-a interesat</th><th>Următorul contact</th><th>Stadiu</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="lead">(părinte)</td><td class="why">…</td><td class="why">comentariu FB</td><td>meserie pt băiat</td><td class="why">marți</td><td><span class="brand-chip" style="font-size:12px;padding:3px 10px"><span class="dot" style="background:var(--practice)"></span>cald</span></td></tr>
+              </tbody>
+            </table>
+            <div class="cw-note" style="margin-top:14px"><div class="quote-block"><strong>Cârlig:</strong> un „poate" devine „da" la a treia atingere. Cei mai mulți se opresc la prima — și cred că omul n-a fost interesat. <strong>Ba a fost. Doar n-a fost urmărit.</strong></div></div>
+          </div>
+          <div>
+            <div class="twocol-head"><span class="em">🔁</span>Regula celor 3 atingeri</div>
+            <div class="touch-list">
+              <div class="touch-row">
+                <div class="touch-num">1</div>
+                <div class="touch-body"><span class="tt">Atingerea 1</span>răspunzi + pui o întrebare <b>(„la ce meserie se gândea?")</b></div>
+              </div>
+              <div class="touch-row">
+                <div class="touch-num">2</div>
+                <div class="touch-body"><span class="tt">Atingerea 2</span><span class="tw">peste 2–3 zile</span><br>trimiți o <b>dovadă</b>: poză absolvent angajat, o mărturie</div>
+              </div>
+              <div class="touch-row">
+                <div class="touch-num">3</div>
+                <div class="touch-body"><span class="tt">Atingerea 3</span>o <b>invitație concretă</b>: „veniți joi să vedeți atelierul / la ziua porților deschise"</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">10 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.9c — INSTRUMENT: momeala (lead magnet) -->
+    <section data-notes="INSTRUMENT (how-to, nu practice) — «momeala» / lead magnet. Problema concretă: postezi, omul e interesat, dar pleacă fără să-ți lase nicio coordonată. Un adolescent nu dă «scrie-ne», dar lasă un contact dacă-i dai ceva mic și util în schimb. Soluția: oferi ceva GRATIS și UTIL în schimbul unui nume + telefon/Messenger. Trei momeli pe trei publicuri: TINERI — «Test: ce meserie ți se potrivește?» (5 întrebări, în privat) → iei nume + contact + ce-l interesează; PĂRINȚI — «Ghid: 5 meserii cu deficit în [raion] și cât se câștigă» (1 pagină) → iei contactul părintelui; FIRME — «Lista cu 3 absolvenți care termină în [lună], cu profil» → iei contactul firmei + nevoia ei. Regula: ceva gratis și util deschide ușa; apoi contactul intră pe Lista caldă (slide-ul anterior) și pornești cele 3 atingeri. Cârlig mentor: «Nu cere înscrie-te de la cineva care abia te-a văzut. Oferă-i un test sau un ghid — și ai un contact pe care-l poți încălzi.»">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Instrument · momeala (lead magnet)</div>
+          <h2 class="slide-title">Un adolescent nu „scrie-ne". <span class="hl">Dar lasă un contact dacă-i dai ceva mic în schimb.</span></h2>
+          <p class="slide-subtitle">Problema: postezi, omul e interesat, dar pleacă fără nicio coordonată. Soluția: oferi <b>ceva mic și util, gratis</b>, în schimbul unui nume + telefon/Messenger.</p>
+        </div>
+        <table class="gt" style="font-size:16px">
+          <thead>
+            <tr><th style="width:20%">Pentru cine</th><th style="width:48%">Momeala (lead magnet)</th><th style="width:32%">Ce primești</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="lead"><span class="em">🎓</span>Tineri</td><td>„Test: <b>ce meserie ți se potrivește?</b>" (5 întrebări, în privat)</td><td class="why">nume + contact + ce-l interesează</td></tr>
+            <tr><td class="lead"><span class="em">👪</span>Părinți</td><td>„Ghid: <b>5 meserii cu deficit</b> în [raion] și cât se câștigă" (1 pagină)</td><td class="why">contactul părintelui</td></tr>
+            <tr><td class="lead"><span class="em">🛠️</span>Firme</td><td>„Lista cu <b>3 absolvenți</b> care termină în [lună], cu profil"</td><td class="why">contactul firmei + nevoia ei</td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note" style="margin-top:14px"><div class="quote-block"><strong>Regula:</strong> ceva GRATIS și UTIL deschide ușa. Apoi contactul intră pe <strong>„Lista caldă"</strong> și pornești cele 3 atingeri. <em>Nu cere „înscrie-te" de la cineva care abia te-a văzut — oferă-i un test sau un ghid.</em></div></div>
+        <div class="slide-num">11 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.10 — CONSOLIDARE: Foaia ta de drum, completă -->
+    <section data-notes="CONSOLIDARE — 14 min · aici se adună TOT ce s-a făcut azi într-un singur plan. Instrucțiune: răsfoiește Foaia ta de drum, ia ce e mai bun din fiecare modul (M0-M6), scrie planul folosind modelul de la 7.8. Apoi formulează PRIMUL PAS ca dacă-atunci — moment+loc, ce+cui. Treci pe la fiecare și verifică formula: dacă pasul e vag, oprește-te și ajută. Nu lăsa pe nimeni să plece fără un pas cu moment fix. Ăsta e momentul-cheie al modulului.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Consolidare · Foaia mea de drum, completă</div>
+          <h2 class="slide-title">Adună tot ce ai făcut azi <span style="font-size:24px;color:var(--muted);font-weight:600">— într-un singur plan</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">🗺️</span>
+          <span class="ex-txt">Răsfoiește Foaia ta de drum. Ia <b>ce e mai bun din fiecare modul</b>. Scrie planul (modelul 7.8).</span>
+          <span class="ex-time">⏱ 14 min</span>
+        </div>
+        <div class="roadmap">
+          <div class="rm-row blank"><div class="rm-mod"><span class="rm-badge">M0</span>Oceanul albastru</div><div class="rm-fill"></div></div>
+          <div class="rm-row blank"><div class="rm-mod"><span class="rm-badge">M1</span>Clientul țintit</div><div class="rm-fill"></div></div>
+          <div class="rm-row blank"><div class="rm-mod"><span class="rm-badge">M2</span>Mesajul / USP-ul</div><div class="rm-fill"></div></div>
+          <div class="rm-row blank"><div class="rm-mod"><span class="rm-badge">M3</span>Canalul #1</div><div class="rm-fill"></div></div>
+          <div class="rm-row blank"><div class="rm-mod"><span class="rm-badge">M4</span>Produsul / oferta</div><div class="rm-fill"></div></div>
+          <div class="rm-row blank"><div class="rm-mod"><span class="rm-badge">M5</span>Video / postarea</div><div class="rm-fill"></div></div>
+          <div class="rm-row blank"><div class="rm-mod"><span class="rm-badge">M6</span>Prețul / pachetul</div><div class="rm-fill"></div></div>
+        </div>
+        <div class="rm-step blank-step">
+          <div class="rm-step-lbl">🔗 Primul pas (dacă–atunci)</div>
+          <div class="rm-step-txt">„<span class="kw if">DACĂ</span> <span class="rm-blank if" style="min-width:200px"></span> [moment+loc], <span class="kw then">ATUNCI</span> <span class="rm-blank then" style="min-width:220px"></span> [ce+cui]"</div>
+          <div class="rm-2nd" style="color:var(--muted)"><b style="color:var(--foreground)">Al 2-lea pas (până vineri):</b> <span class="rm-blank" style="min-width:280px;border-bottom:1.5px dashed #CBD5E1;display:inline-block"></span></div>
+        </div>
+        <div class="slide-num">12 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.11 — JOC: Pereche de responsabilitate -->
+    <section data-notes="JOC — 10 min · «Partenerul care te ține de cuvânt». Schimbul de telefon e OBLIGATORIU — fără el responsabilitatea moare la ușă. Pas cu pas: pereche cu un coleg (ideal de la altă școală); vă citiți unul altuia primul pas (formula dacă-atunci); partenerul verifică — are moment fix? e concret? dacă nu, îl ajută; schimbați numerele și vă trimiteți dovada (poză/screenshot) când ați făcut pasul, până vineri. De ce funcționează: un plan spus cu voce altui om are de 3x mai multe șanse; responsabilitatea socială bate disciplina personală. Treci pe la fiecare pereche și verifică formula.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Joc · pereche de responsabilitate</div>
+          <h2 class="slide-title">Partenerul care te ține de cuvânt <span style="font-size:24px;color:var(--muted);font-weight:600">— schimbați numerele</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">🤝</span>
+          <span class="ex-txt">Un plan spus cu voce altui om are <b>de 3× mai multe șanse</b>. Responsabilitatea socială bate disciplina personală.</span>
+          <span class="ex-time">⏱ 10 min</span>
+        </div>
+        <div class="rp-grid">
+          <div class="rp-steps">
+            <div class="rp-step"><div class="rp-num">1</div><div class="rp-text"><b>Pereche cu un coleg</b> — ideal de la altă școală.</div></div>
+            <div class="rp-step"><div class="rp-num">2</div><div class="rp-text">Vă citiți unul altuia <b>primul pas</b> (formula dacă–atunci).</div></div>
+            <div class="rp-step"><div class="rp-num">3</div><div class="rp-text">Partenerul verifică: <b>are moment fix? e concret?</b> Dacă nu — îl ajută.</div></div>
+            <div class="rp-step"><div class="rp-num">4</div><div class="rp-text"><b>Schimbați numerele.</b> Vă trimiteți dovada (poză/screenshot) când ați făcut pasul — până vineri.</div></div>
+          </div>
+          <div class="rp-pane">
+            <div class="rp-head"><span class="rp-emoji">📲</span><div class="rp-title">Dovada până<br>VINERI seara</div></div>
+            <div class="quote-block" style="background:#fff;border-color:var(--practice)"><strong>Cum verifici partenerul:</strong> „Pasul tău are <em>oră fixă</em>? Are <em>ce</em> și <em>cui</em>? Dacă lipsește una — nu e pas, e dorință."</div>
+            <div class="rp-debrief"><b>Regula de aur:</b> nu pleci din sală fără numărul partenerului în telefon.</div>
+          </div>
+        </div>
+        <div class="slide-num">13 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.12 — Cum măsori dacă a funcționat -->
+    <section data-notes="Cum măsori — 1 indicator. Nu măsura tot, măsoară UN singur lucru pe 7 zile. Indicatorul depinde de tipul pasului: suni firme→câte telefoane (țintă 3); postezi→câte vizualizări/mesaje; mergi la ANOFM→ai aflat DA/NU. Regula: vineri seara îți pui O întrebare — «am făcut numărul?». Da→repeți. Nu→afli de ce și ajustezi. Ideea e simplitatea: un indicator pe care îl poți număra fără efort.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · cum măsori</div>
+          <h2 class="slide-title">Nu măsura tot. <span class="hl">Măsoară UN singur lucru pe 7 zile.</span></h2>
+        </div>
+        <table class="gt" style="font-size:17px">
+          <thead>
+            <tr><th style="width:42%">Dacă pasul tău e…</th><th style="width:58%">Indicatorul (numeri vineri)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="lead"><span class="em">📞</span>Suni firme</td><td><b>Câte telefoane</b> ai dat? <span class="why">(țintă: 3)</span></td></tr>
+            <tr><td class="lead"><span class="em">📱</span>Postezi pe TikTok / FB</td><td><b>Câte vizualizări / mesaje</b> a primit?</td></tr>
+            <tr><td class="lead"><span class="em">🏛️</span>Mergi la ANOFM</td><td><b>Ai aflat</b> dacă există voucher? <span class="why">DA / NU</span></td></tr>
+          </tbody>
+        </table>
+        <div class="meas-rule"><span class="mre">🎯</span><div class="mrt"><b>Regula:</b> vineri seara îți pui O întrebare — „am făcut numărul?". <b>Da</b> → repeți. <b>Nu</b> → afli de ce și ajustezi.</div></div>
+        <div class="slide-num">14 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.13 — EXERCIȚIU: Transformă dorința în pas -->
+    <section data-notes="EXERCIȚIU rapid — 5 min · «Transformă dorința în pas» (individual + verificare în pereche). Mentorul citește o «dorință» vagă; tu o rescrii ca PAS dacă-atunci; spui colegului, el verifică — are moment+ce+cui? dacă lipsește una, completați. Cele 4 dorințe au exemple-țintă ca model pentru mentor (NU le citi din prima — lasă-i pe ei să încerce, apoi compari). Scopul: să simtă pe pielea lor diferența vag→concret, ca pasul lor de la consolidare să fie bun.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Exercițiu · transformă dorința în pas</div>
+          <h2 class="slide-title">De la vag la concret <span style="font-size:24px;color:var(--muted);font-weight:600">— individual + verificare în pereche</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">🔁</span>
+          <span class="ex-txt">Mentorul citește o dorință vagă. Tu o rescrii ca <b>pas dacă–atunci</b>. Colegul verifică: are moment + ce + cui?</span>
+          <span class="ex-time">⏱ 5 min</span>
+        </div>
+        <div class="tf-list">
+          <div class="tf-row">
+            <div class="tf-vague"><span class="vb">✕</span>„Să fim mai vizibili."</div>
+            <div class="tf-arrow">→</div>
+            <div class="tf-step"><span class="sb">✓</span>„<b>Joi la 14:00</b> postez 1 poveste de absolvent"</div>
+          </div>
+          <div class="tf-row">
+            <div class="tf-vague"><span class="vb">✕</span>„Să atragem firme."</div>
+            <div class="tf-arrow">→</div>
+            <div class="tf-step"><span class="sb">✓</span>„<b>Marți la 10:00</b> sun 3 firme: [nume]…"</div>
+          </div>
+          <div class="tf-row">
+            <div class="tf-vague"><span class="vb">✕</span>„Să facem ceva cu adulții."</div>
+            <div class="tf-arrow">→</div>
+            <div class="tf-step"><span class="sb">✓</span>„<b>Miercuri</b> merg la ANOFM și întreb de voucher"</div>
+          </div>
+          <div class="tf-row">
+            <div class="tf-vague"><span class="vb">✕</span>„Să intrăm pe TikTok."</div>
+            <div class="tf-arrow">→</div>
+            <div class="tf-step"><span class="sb">✓</span>„<b>Vineri</b> filmez 1 clip de 15 sec cu un elev"</div>
+          </div>
+        </div>
+        <div class="slide-num">15 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.14 — PITCH FINAL în fața grupului -->
+    <section data-notes="PITCH FINAL — 6 min · «Pasul meu de luni», 30 de secunde fiecare voluntar. 4-5 voluntari spun cu voce: clientul + canalul + primul pas (dacă-atunci). Grupul aplaudă. Mentorul prinde cele mai bune ca model. E momentul de ANGAJAMENT PUBLIC — cine spune cu voce, face. Ține energia sus, e penultimul exercițiu. Nu corecta dur aici — celebrează pasul, nu vâna greșeala.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Pitch final · în fața grupului</div>
+          <h2 class="slide-title">„Pasul meu de luni" <span class="hl">— 30 de secunde fiecare</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">🎤</span>
+          <span class="ex-txt">4–5 voluntari spun cu voce. <b>Cine spune cu voce, face.</b> Momentul de angajament public.</span>
+          <span class="ex-time">⏱ 6 min</span>
+        </div>
+        <div class="pf-sheet">
+          <div class="pf-line"><span class="pf-word">Clientul meu este</span><span class="pf-fill"></span><span class="pf-tag">CINE</span></div>
+          <div class="pf-line"><span class="pf-word">Îl găsesc pe</span><span class="pf-fill"></span><span class="pf-tag">CANALUL</span></div>
+          <div class="pf-line"><span class="pf-word">Primul meu pas: DACĂ … ATUNCI</span><span class="pf-fill"></span><span class="pf-tag">DACĂ–ATUNCI</span></div>
+        </div>
+        <div class="cw-note" style="margin-top:16px"><div class="quote-block"><strong>Grupul aplaudă.</strong> Mentorul prinde cele mai bune pitch-uri ca <strong>model pentru toți</strong>.</div></div>
+        <div class="slide-num">16 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.15 — RETROSPECTIVA + recap 7 reguli -->
+    <section data-notes="Retrospectiva colectivă — 4 min · leagă ziua. Întoarce-te la Tabloul de bord din M0: diferența dimineață↔seară = valoarea trainingului, vizibilă. Întrebări de grup, rapid, cu voce: ce s-a schimbat în cap față de dimineață? care regulă/teorie a rămas cel mai tare? un cuvânt — cum plecați? Apoi recapitulează cele 7 reguli R0-R6 + teoriile zilei — ASTEA sunt ce duc acasă peste 2 săptămâni. Citește-le cu voce ca un crescendo, e harta întregului curs pe un slide.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Retrospectivă · ce ducem acasă</div>
+          <h2 class="slide-title">Cele 7 reguli ale zilei <span class="hl">+ teoria fiecăreia</span></h2>
+          <p class="slide-subtitle">Compară cu Tabloul de bord de dimineață (M0): <b>ce s-a schimbat în cap?</b> Astea sunt ce duci acasă peste 2 săptămâni.</p>
+        </div>
+        <div class="recap-grid">
+          <div class="recap-row"><div class="recap-r">R0</div><div class="recap-rule">Invizibil = pierzi · diferit = câștigi.</div><div class="recap-theory"><span class="recap-tag">Blue Ocean</span><span class="recap-tag">Golden Circle</span></div></div>
+          <div class="recap-row"><div class="recap-r">R1</div><div class="recap-rule">Cunoaște jobul clientului.</div><div class="recap-theory"><span class="recap-tag">Jobs-to-be-Done</span><span class="recap-tag">Harta empatiei</span></div></div>
+          <div class="recap-row"><div class="recap-r">R2</div><div class="recap-rule">Vinde rezultatul, în limba lui.</div><div class="recap-theory"><span class="recap-tag">USP</span><span class="recap-tag">Tone of voice</span></div></div>
+          <div class="recap-row"><div class="recap-r">R3</div><div class="recap-rule">2–3 canale constant.</div><div class="recap-theory"><span class="recap-tag">AIDA</span><span class="recap-tag">Pâlnia</span></div></div>
+          <div class="recap-row"><div class="recap-r">R4</div><div class="recap-rule">Vinde și produsele din atelier.</div><div class="recap-theory"><span class="recap-tag">Value Ladder</span><span class="recap-tag">Long Tail</span></div></div>
+          <div class="recap-row"><div class="recap-r">R5</div><div class="recap-rule">Primele 3 secunde decid.</div><div class="recap-theory"><span class="recap-tag">Hook-Retention</span><span class="recap-tag">PAS · BAB</span></div></div>
+          <div class="recap-row"><div class="recap-r">R6</div><div class="recap-rule">Dă 3 opțiuni, crește vânzarea.</div><div class="recap-theory"><span class="recap-tag">Anchoring</span><span class="recap-tag">Decoy</span></div></div>
+        </div>
+        <div class="slide-num">17 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.16 — REGULA 7 + CHECKLIST FINAL -->
+    <section data-notes="REGULA 7 + checklist final de luat acasă. Regula: «Un plan spus cu voce altui om se întâmplă. Dacă luni la 10, atunci sun se întâmplă. Cândva — nu.» Checklist-ul final verifică TOT cursul: au plecat cu fiecare piesă M0-M7 + indicator + partener? Pune-i să bifeze ACUM, cu voce: cine n-are o căsuță bifată, are 5 minute s-o completeze cu vecinul. Ăsta e ultimul filtru înainte de închidere — nimeni nu pleacă cu goluri.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Regula modulului · 7 din 7</div>
+          <h2 class="slide-title">Regula 7 + <span class="hl">checklist final</span></h2>
+        </div>
+        <div class="rule-grid">
+          <div class="rule-pane">
+            <div class="rule-badge"><span class="rb-dot"></span> REGULA 7</div>
+            <div class="rule-text">„Un plan spus cu voce altui om <span class="hl">se întâmplă</span>. «Dacă luni la 10, atunci sun» se întâmplă. <span class="hl">«Cândva» — nu</span>."</div>
+          </div>
+          <div class="check-pane">
+            <div class="check-head">✓ Ai plecat cu tot? (verifică acum)</div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Ocean albastru <b>(M0)</b> + client clar &amp; jobul lui <b>(M1)</b>.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">USP + mesaj de 30 sec <b>(M2)</b> + 2–3 canale <b>(M3)</b>.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Ofertă de produs <b>(M4)</b> + scenariu video/postare <b>(M5)</b>.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Preț pe 3 opțiuni + strategie de creștere <b>(M6)</b>.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">UN prim pas <b>„dacă–atunci"</b> cu moment fix <b>(M7)</b>.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt"><b>1 indicator</b> de măsurat vineri + <b>1 partener</b> cu numărul lui.</div></div>
+          </div>
+        </div>
+        <div class="slide-num">18 / 19</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7.17 — ÎNCHIDERE -->
+    <section data-notes="Închidere — energie de final. Termină pe sus, cu un om hotărât, NU cu logistică. Mesaj: «O școală bună, dar invizibilă, pierde. Tu, de luni, nu mai ești invizibil — și ești DIFERIT.» Trimite-i la pas: «Acum du-te și fă pasul.» Reamintește contactul + trimite-mi dovada primului pas. Nu mai adăuga conținut — doar avânt și un apel clar la acțiune.">
+      <div class="slide slide-closing">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div style="position:relative;z-index:2;text-align:center;padding:0 90px;max-width:1040px;">
+          <div class="cover-kicker" style="margin-bottom:26px"><span class="dot"></span> Modul 7 · închidere</div>
+          <div style="font-size:72px;margin-bottom:14px">🚀</div>
+          <h2 style="font-size:50px;font-weight:800;color:#fff;line-height:1.08;letter-spacing:-0.02em;margin:0 0 20px;">Mulțumesc.<br>Acum du-te și <span style="color:var(--primary-light)">fă pasul.</span></h2>
+          <p style="font-size:21px;color:rgba(255,255,255,0.78);line-height:1.5;margin:0 auto;max-width:820px;">„O școală bună, dar invizibilă, pierde. Tu, de luni, <b style="color:#fff;font-weight:700">nu mai ești invizibil — și ești DIFERIT</b>."</p>
+          <div class="closing-foot">
+            <span class="brand-chip" style="background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.18);color:#fff"><span class="dot" style="background:var(--primary-light)"></span>Vector Academy</span>
+            <span class="cover-chip">📲 Trimite-mi dovada primului pas</span>
+            <span class="cover-chip">✉️ Contact trainer</span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">19 / 19</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

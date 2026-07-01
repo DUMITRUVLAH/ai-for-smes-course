@@ -1,0 +1,2248 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modul 2: USP — Mesajul care Vinde · ToT Antreprenoriat</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #0EA371;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 54px 66px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #0EA371 0%, #0891B2 100%); }
+
+    .slide-header { margin-bottom: 24px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #D1FAE5; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-title .hl { color: var(--primary); }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 960px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0 0 40px; max-width: 740px; line-height: 1.5; }
+    .cover-bait { font-size: 70px; margin: 6px 0 34px; letter-spacing: 8px; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+
+    /* VS table */
+    .vs-table { width: 100%; border-collapse: collapse; font-size: 19px; }
+    .vs-table th { padding: 14px 20px; text-align: left; font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: #fff; border: none; }
+    .vs-table th.col-bad { background: #B91C1C; }
+    .vs-table th.col-good { background: #15803D; }
+    .vs-table td { padding: 18px 20px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.4; }
+    .vs-table tr:last-child td { border-bottom: none; }
+    .vs-table td.bad-cell { color: #B91C1C; font-style: italic; }
+    .vs-table td.good-cell { background: #F0FDF4; font-weight: 700; color: #15803D; }
+    .vs-table td b { font-weight: 800; }
+
+    /* FORMULA */
+    .formula-box { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 34px 40px; color: #fff; position: relative; overflow: hidden; }
+    .formula-box::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .formula-line { position: relative; z-index: 2; font-size: 30px; font-weight: 700; line-height: 1.5; }
+    .formula-line .slot { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); border-radius: 8px; padding: 2px 14px; font-weight: 800; margin: 0 2px; }
+    .formula-line .slot.who { color: #93C5FD; }
+    .formula-line .slot.res { color: #6EE7B7; }
+    .formula-line .slot.dif { color: #FCD34D; }
+
+    /* exercise banner */
+    .ex-banner { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #0EA371, #0891B2); color: #fff; border-radius: var(--radius); padding: 14px 22px; margin-bottom: 18px; }
+    .ex-banner .ex-ico { font-size: 26px; }
+    .ex-banner .ex-txt { font-size: 17px; font-weight: 600; line-height: 1.4; }
+    .ex-banner .ex-txt b { font-weight: 800; }
+    .ex-banner .ex-time { margin-left: auto; font-size: 15px; font-weight: 800; background: rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+
+    /* PRESENT + RETRO */
+    .pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 1; }
+    .pr-pane { border-radius: var(--radius); padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; }
+    .pr-pane.present { background: var(--pastel-peach); border-color: #FED7AA; }
+    .pr-pane.retro { background: var(--primary-ultra-light); border-color: #C7D2FE; }
+    .pr-tag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 100px; }
+    .pr-pane.present .pr-tag { background: #FB923C; color: #fff; }
+    .pr-pane.retro .pr-tag { background: var(--primary); color: #fff; }
+    .pr-title { font-size: 21px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+    .pr-line { display: flex; align-items: flex-start; gap: 11px; font-size: 16px; color: var(--foreground); line-height: 1.5; }
+    .pr-line .pb { font-weight: 800; color: var(--primary); flex-shrink: 0; }
+    .pr-pane.present .pr-line .pb { color: #C2410C; }
+
+    /* RULE + CHECKLIST */
+    .rule-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 28px; flex: 1; align-items: stretch; }
+    .rule-pane { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 32px; color: #fff; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+    .rule-pane::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .rule-badge { position: relative; z-index: 2; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 800; letter-spacing: 0.08em; margin-bottom: 22px; }
+    .rule-badge .rb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--primary-light); }
+    .rule-text { position: relative; z-index: 2; font-size: 24px; font-weight: 800; line-height: 1.3; letter-spacing: -0.01em; }
+    .rule-text .hl { color: var(--primary-light); }
+    .check-pane { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 28px; display: flex; flex-direction: column; }
+    .check-head { font-size: 15px; font-weight: 800; color: var(--practice); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 9px; }
+    .check-item { display: flex; align-items: flex-start; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--practice); flex-shrink: 0; margin-top: 1px; }
+    .check-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; }
+    .check-txt b { font-weight: 800; }
+
+    /* GENERIC GRID TABLE */
+    .gt { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .gt th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .gt td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.42; color: var(--foreground); }
+    .gt tr:last-child td { border-bottom: none; }
+    .gt tr:nth-child(even) td { background: var(--bg); }
+    .gt .lead { font-weight: 800; color: var(--foreground); }
+    .gt b { font-weight: 800; }
+    .gt .quoted { font-style: italic; }
+
+    /* ============ COMPONENTE MODUL 2 ============ */
+
+    /* CARDS */
+    .cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; }
+    .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+    .card { border-radius: var(--radius); padding: 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; }
+    .card.mint { background: var(--pastel-mint); border-color: #86EFAC; }
+    .card.sky { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .card.peach { background: var(--pastel-peach); border-color: #FED7AA; }
+    .card.lavender { background: var(--pastel-lavender); border-color: #DDD6FE; }
+    .card.rose { background: var(--pastel-rose); border-color: #FBCFE8; }
+    .card-icon { font-size: 36px; line-height: 1; }
+    .card-title { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .card-body { font-size: 15px; color: var(--foreground); line-height: 1.5; }
+    .card-body b { font-weight: 800; }
+
+    /* DRILL TEKWILL */
+    .drill-grid-tek { display: grid; grid-template-columns: 1fr auto 1fr; gap: 28px; flex: 1; align-items: center; }
+    .drill-card-tek { border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; border: 1px solid var(--border); }
+    .drill-card-tek.no { background: #FEF2F2; border-color: #FECACA; }
+    .drill-card-tek.yes { background: #F0FDF4; border-color: #86EFAC; }
+    .dtek-emoji { font-size: 56px; line-height: 1; }
+    .dtek-lbl { font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .drill-card-tek.no .dtek-lbl { color: #DC2626; }
+    .drill-card-tek.yes .dtek-lbl { color: #16A34A; }
+    .dtek-big { font-size: 22px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+    .dtek-sub { font-size: 14px; color: var(--muted); line-height: 1.45; }
+    .dtek-arrow { font-size: 42px; color: var(--primary); font-weight: 700; text-align: center; }
+
+    /* AUDIENCE CARDS */
+    .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; flex: 1; }
+    .aud-card { padding: 28px 24px; display: flex; flex-direction: column; gap: 14px; border: 1px solid var(--border); }
+    .aud-card.cold { background: #EFF6FF; border-color: #BFDBFE; border-radius: var(--radius) 0 0 var(--radius); }
+    .aud-card.warm { background: var(--pastel-peach); border-color: #FED7AA; }
+    .aud-card.hot { background: #FEF2F2; border-color: #FECACA; border-radius: 0 var(--radius) var(--radius) 0; }
+    .aud-temp { font-size: 32px; }
+    .aud-name { font-size: 22px; font-weight: 800; color: var(--foreground); }
+    .aud-desc { font-size: 14px; color: var(--muted); line-height: 1.5; }
+    .aud-msg { font-size: 14px; color: var(--foreground); line-height: 1.45; background: rgba(255,255,255,0.6); border-radius: var(--radius-sm); padding: 10px 12px; border-left: 3px solid var(--primary); }
+    .aud-msg .msg-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 4px; }
+
+    /* CONVO (so what) */
+    .convo { display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: center; }
+    .bubble { display: flex; align-items: flex-start; gap: 12px; }
+    .bubble.right { flex-direction: row-reverse; }
+    .bub-who { font-size: 12px; font-weight: 700; color: var(--muted); white-space: nowrap; margin-top: 10px; }
+    .bub-text { border-radius: var(--radius); padding: 12px 16px; font-size: 16px; line-height: 1.4; max-width: 70%; }
+    .bubble .bub-text { background: var(--primary-ultra-light); border: 1px solid #C7D2FE; color: var(--foreground); border-radius: var(--radius-sm) var(--radius) var(--radius) var(--radius); }
+    .bubble.right .bub-text { background: #F0FDF4; border: 1px solid #86EFAC; color: var(--foreground); border-radius: var(--radius) var(--radius-sm) var(--radius) var(--radius); }
+    .bub-text b { font-weight: 800; color: var(--primary); }
+    .bubble.right .bub-text b { color: #16A34A; }
+
+    /* PRACTICE */
+    .timer-pill { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 700; color: #92400E; }
+    .mode-pill { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; background: #DCFCE7; border: 1px solid #86EFAC; border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 700; color: #15803D; }
+    .practice-layout { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 30px; flex: 1; align-items: stretch; }
+    .practice-steps { display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+    .pstep { display: flex; align-items: flex-start; gap: 14px; }
+    .pstep-num { width: 30px; height: 30px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pstep-text { font-size: 16px; color: var(--foreground); line-height: 1.45; padding-top: 3px; }
+    .pstep-text b { font-weight: 800; }
+    .practice-pane { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+    .practice-prompt { background: #fff; border-left: 4px solid var(--practice); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 16px 18px; font-size: 16px; color: var(--foreground); line-height: 1.5; }
+    .practice-prompt .lbl { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--practice); display: block; margin-bottom: 6px; }
+    .practice-prompt b { font-weight: 800; }
+
+    /* CHECKLIST VISUAL */
+    .clist { display: flex; flex-direction: column; gap: 10px; }
+    .cl-item { display: flex; align-items: flex-start; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 16px; }
+    .cl-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--primary); flex-shrink: 0; margin-top: 2px; }
+    .cl-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; }
+    .cl-txt b { font-weight: 800; }
+
+    /* PITCH FORM */
+    .pitch-sheet { display: flex; flex-direction: column; gap: 12px; }
+    .ps-line { background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 16px 22px; display: flex; align-items: center; gap: 16px; }
+    .ps-word { font-size: 17px; font-weight: 800; color: var(--practice); white-space: nowrap; min-width: 200px; }
+    .ps-fill { flex: 1; border-bottom: 1.5px dashed #CBD5E1; height: 1px; align-self: flex-end; margin-bottom: 6px; }
+    .ps-area { flex: 1; border-bottom: 1.5px dashed #CBD5E1; height: 44px; }
+
+    /* TRANSITION */
+    .slide-transition { padding: 0 !important; overflow: hidden; background: #F2C94C; position: relative; display: flex; justify-content: center; align-items: center; }
+    .slide-transition::before { display: none; }
+    .trans-content { position: relative; z-index: 2; text-align: center; color: var(--foreground); }
+    .trans-title { font-size: 52px; font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; }
+    .trans-sub { font-size: 20px; color: var(--foreground); opacity: 0.75; margin-top: 16px; }
+    .trans-arrow { font-size: 56px; margin-top: 22px; }
+
+    /* ============ SCHEME NOI MODUL 2 ============ */
+
+    /* SHELF — raft de produse (slide 03) */
+    .shelf { display:flex; gap:6px; align-items:flex-end; flex:1; padding:30px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); justify-content:center; }
+    .shelf-item { width:54px; height:150px; background:#CBD5E1; border-radius:6px; display:flex; align-items:flex-end; justify-content:center; padding-bottom:8px; font-size:11px; color:#64748B; }
+    .shelf-item.you { background:linear-gradient(160deg,#2D52D4,#7C3AED); height:185px; box-shadow:0 10px 30px -6px rgba(45,82,212,0.5); color:#fff; font-weight:800; font-size:13px; }
+
+    /* PHONE MOCK — Apple vs Samsung (slide 04) */
+    .fv-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; flex:1; align-items:stretch; }
+    .fv-card { border-radius:var(--radius); padding:24px; border:1px solid var(--border); display:flex; flex-direction:column; gap:14px; }
+    .fv-card.good { background:#F0FDF4; border-color:#86EFAC; }
+    .fv-card.bad { background:#FEF2F2; border-color:#FECACA; }
+    .fv-head { display:flex; align-items:center; gap:12px; }
+    .fv-logo { width:40px; height:40px; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+    .fv-logo svg { width:34px; height:34px; }
+    .fv-logo .tile { width:100%; height:100%; background:#1428A0; color:#fff; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; letter-spacing:0.04em; }
+    .fv-brand { font-size:18px; font-weight:800; color:var(--foreground); }
+    .fv-kind { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; }
+    .fv-card.good .fv-kind { color:#15803D; }
+    .fv-card.bad .fv-kind { color:#B91C1C; }
+    .fv-stage { display:flex; gap:16px; align-items:stretch; flex:1; }
+    .phone-mock { width:118px; flex-shrink:0; border-radius:20px; border:5px solid #1E293B; background:#0F172A; padding:8px 6px; display:flex; flex-direction:column; gap:6px; align-items:center; justify-content:center; position:relative; }
+    .phone-mock::before { content:''; position:absolute; top:9px; left:50%; transform:translateX(-50%); width:34px; height:5px; border-radius:100px; background:#334155; }
+    .phone-screen-img { width:100%; flex:1; border-radius:10px; background:linear-gradient(160deg,#FDE68A 0%,#FB7185 45%,#7C3AED 100%); display:flex; align-items:flex-end; padding:8px; overflow:hidden; position:relative; }
+    .phone-screen-img img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+    .phone-screen-img .cap { position:relative; z-index:2; font-size:10px; font-weight:800; color:#fff; text-shadow:0 1px 4px rgba(0,0,0,0.5); }
+    .phone-spec-screen { width:100%; flex:1; border-radius:10px; background:#0B1120; padding:9px; display:flex; flex-direction:column; gap:5px; justify-content:center; }
+    .phone-spec-screen .sp { font-size:9px; color:#93C5FD; font-weight:700; line-height:1.3; }
+    .fv-body { flex:1; display:flex; flex-direction:column; gap:8px; justify-content:center; }
+    .fv-msg { font-size:15px; color:var(--foreground); line-height:1.45; }
+    .fv-msg b { font-weight:800; }
+    .fv-react { font-size:13px; font-style:italic; margin-top:auto; }
+    .fv-card.good .fv-react { color:#15803D; font-weight:700; }
+    .fv-card.bad .fv-react { color:var(--muted); }
+
+    /* VENN — USP (slide 06) */
+    .venn-grid { display:flex; gap:36px; align-items:center; flex:1; }
+    .venn-stage { position:relative; width:420px; height:380px; flex-shrink:0; }
+    .venn-circle { position:absolute; width:230px; height:230px; border-radius:50%; mix-blend-mode:multiply; }
+    .venn-circle.c1 { top:24px; left:18px; background:rgba(45,82,212,0.32); }
+    .venn-circle.c2 { top:24px; right:18px; background:rgba(124,58,237,0.32); }
+    .venn-circle.c3 { bottom:6px; left:50%; transform:translateX(-50%); background:rgba(34,197,94,0.32); }
+    .venn-emoji { position:absolute; font-size:30px; z-index:4; }
+    .venn-emoji.e1 { top:70px; left:60px; } .venn-emoji.e2 { top:70px; right:60px; } .venn-emoji.e3 { bottom:56px; left:50%; transform:translateX(-50%); }
+    .venn-cap { position:absolute; z-index:6; font-size:13px; font-weight:800; text-align:center; width:150px; line-height:1.25; }
+    .venn-cap.cap1 { top:-8px; left:-36px; color:#1E3A8A; } .venn-cap.cap2 { top:-8px; right:-36px; color:#5B21B6; } .venn-cap.cap3 { bottom:-22px; left:50%; transform:translateX(-50%); color:#14532D; }
+    .venn-center { position:absolute; top:44%; left:50%; transform:translate(-50%,-50%); z-index:5; background:var(--foreground); color:#fff; width:104px; height:104px; border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; font-size:14px; font-weight:800; line-height:1.15; box-shadow:0 6px 20px rgba(0,0,0,0.3); padding:8px; box-sizing:border-box; }
+    .venn-side { display:flex; flex-direction:column; gap:16px; flex:1; }
+    .venn-row-txt { font-size:16px; color:var(--foreground); line-height:1.4; } .venn-row-txt b { font-weight:800; }
+    .usp-ex { background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:18px 20px; display:flex; flex-direction:column; gap:9px; }
+    .usp-ex-lbl { font-size:14px; font-weight:800; color:#92400E; letter-spacing:0.02em; }
+    .usp-ex-row { font-size:15px; color:var(--foreground); line-height:1.4; display:flex; gap:9px; align-items:baseline; }
+    .usp-ex-row span { flex-shrink:0; }
+    .usp-ex-usp { font-size:15px; color:var(--foreground); line-height:1.45; background:#FEF3C7; border-radius:var(--radius-sm); padding:11px 14px; margin-top:2px; } .usp-ex-usp b { color:#92400E; }
+
+    /* FUNNEL — Cold/Warm/Hot (slide 09) */
+    .funnel { display:flex; flex-direction:column; align-items:center; gap:4px; flex:1; justify-content:center; }
+    .funnel-cap { font-size:12px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted); }
+    .funnel-layer { display:flex; align-items:center; justify-content:center; gap:14px; padding:16px 12%; color:#fff; }
+    .funnel-layer.cold { width:92%; background:#3B82F6; clip-path:polygon(0 0,100% 0,94% 100%,6% 100%); border-radius:8px 8px 0 0; }
+    .funnel-layer.warm { width:74%; background:#F59E0B; clip-path:polygon(6% 0,94% 0,86% 100%,14% 100%); color:var(--foreground); }
+    .funnel-layer.hot { width:54%; background:#DC2626; clip-path:polygon(14% 0,86% 0,78% 100%,22% 100%); border-radius:0 0 8px 8px; }
+    .funnel-emoji { font-size:26px; flex-shrink:0; }
+    .funnel-txt { font-size:13px; line-height:1.4; text-align:center; } .funnel-txt b { font-weight:800; }
+
+    /* DESIGN THINKING — 5 pași (slide 12) */
+    .llm-steps { display:grid; grid-template-columns:repeat(5, 1fr); gap:0; flex:1; align-items:stretch; }
+    .llm-step { padding:24px 16px; display:flex; flex-direction:column; gap:10px; position:relative; justify-content:center; }
+    .llm-step::after { content:'→'; position:absolute; right:-10px; top:46px; font-size:22px; color:var(--primary); font-weight:700; z-index:2; }
+    .llm-step:last-child::after { display:none; }
+    .llm-step.focus { background:var(--primary-ultra-light); border-radius:var(--radius); }
+    .llm-step-num { width:38px; height:38px; border-radius:50%; background:#CBD5E1; color:#fff; font-size:17px; font-weight:700; display:flex; align-items:center; justify-content:center; }
+    .llm-step.focus .llm-step-num { background:var(--primary); }
+    .llm-step-icon { font-size:30px; }
+    .llm-step-title { font-size:17px; font-weight:800; color:var(--foreground); }
+    .llm-step.focus .llm-step-title { color:var(--primary); }
+    .llm-step-desc { font-size:13px; color:var(--muted); line-height:1.5; }
+    .focus-badge { display:inline-block; font-size:10px; font-weight:700; color:#fff; background:var(--primary); padding:2px 8px; border-radius:100px; letter-spacing:0.04em; width:fit-content; }
+
+    /* MESSAGE MOCK — ton consistent (slide 15) */
+    .mock-grid { display:grid; grid-template-columns:repeat(3, 1fr); gap:18px; flex:1; align-items:stretch; }
+    .msg-mock { background:#fff; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column; box-shadow:var(--shadow); }
+    .msg-mock-bar { display:flex; align-items:center; gap:9px; padding:12px 14px; border-bottom:1px solid var(--border); }
+    .msg-avatar { width:30px; height:30px; border-radius:50%; background:linear-gradient(150deg,#22C55E,#16A34A); flex-shrink:0; }
+    .msg-handle { font-size:13px; font-weight:800; color:var(--foreground); }
+    .msg-sub { font-size:11px; color:var(--muted); }
+    .msg-channel { margin-left:auto; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; color:var(--primary); background:var(--primary-ultra-light); border-radius:100px; padding:4px 9px; }
+    .msg-body { padding:14px; font-size:14px; color:var(--foreground); line-height:1.5; flex:1; }
+    .msg-body b { font-weight:800; }
+    .msg-foot { padding:10px 14px; border-top:1px solid var(--border); font-size:12px; color:var(--muted); display:flex; gap:16px; }
+
+
+    /* FUNNEL-CJ — Customer Journey vertical narrowing funnel */
+    .funnel-cj { display:flex; flex-direction:column; align-items:center; gap:0; flex:1; justify-content:center; }
+    .funnel-cj .funnel-layer { justify-content:center; text-align:center; gap:10px; padding:12px 16%; }
+    .funnel-cj .fl1 { width:100%; background:#1D4ED8; clip-path:polygon(0 0,100% 0,93% 100%,7% 100%); border-radius:8px 8px 0 0; }
+    .funnel-cj .fl2 { width:86%; background:#2563EB; clip-path:polygon(7% 0,93% 0,86% 100%,14% 100%); }
+    .funnel-cj .fl3 { width:72%; background:#7C3AED; clip-path:polygon(14% 0,86% 0,79% 100%,21% 100%); }
+    .funnel-cj .fl4 { width:58%; background:#0891B2; clip-path:polygon(21% 0,79% 0,72% 100%,28% 100%); }
+    .funnel-cj .fl5 { width:44%; background:#16A34A; clip-path:polygon(28% 0,72% 0,65% 100%,35% 100%); border-radius:0 0 6px 6px; }
+    .funnel-cj .fl-pct { font-size:13px; font-weight:900; color:rgba(255,255,255,0.55); flex-shrink:0; }
+
+  
+    /* ---- PORTED FROM SCOLI PROFESIONALE M2/M3/M4 ---- */
+    /* Stmt cards (Mesajul bate bugetul) */
+    .stmt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .stmt-card { border-radius: var(--radius); padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px; border: 1px solid var(--border); }
+    .stmt-card.cold { background: #FEF2F2; border-color: #FECACA; }
+    .stmt-card.warm { background: #ECFDF5; border-color: #6EE7B7; }
+    .stmt-ico { font-size: 34px; line-height: 1; flex-shrink: 0; }
+    .stmt-txt { font-size: 17px; line-height: 1.45; color: var(--foreground); } .stmt-txt b { font-weight: 800; }
+    .stmt-card.cold .stmt-txt b { color: #B91C1C; } .stmt-card.warm .stmt-txt b { color: #15803D; }
+    .stmt-hero { margin-top: 18px; background: linear-gradient(135deg, #0B1120, #1E3A8A 70%, #3B2F8F); border-radius: var(--radius); padding: 22px 28px; color: #fff; font-size: 22px; font-weight: 800; line-height: 1.35; text-align: center; position: relative; overflow: hidden; }
+    .stmt-hero .hl { color: var(--primary-light); }
+    /* USP sources grid */
+    .usp-src-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; }
+    .usp-src-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; display: flex; gap: 16px; align-items: flex-start; }
+    .usp-src-ico { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+    .usp-src-card.s1 .usp-src-ico { background: #DBEAFE; } .usp-src-card.s2 .usp-src-ico { background: #D1FAE5; }
+    .usp-src-card.s3 .usp-src-ico { background: #FEF3C7; } .usp-src-card.s4 .usp-src-ico { background: #EDE9FE; }
+    .usp-src-body { display: flex; flex-direction: column; gap: 6px; }
+    .usp-src-name { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .usp-src-q { font-size: 14px; color: var(--muted); font-style: italic; line-height: 1.35; }
+    .usp-src-ex { font-size: 14.5px; color: var(--foreground); line-height: 1.4; background: var(--bg); border-radius: var(--radius-sm); padding: 8px 12px; border-left: 3px solid var(--primary); }
+    .usp-src-ex b { font-weight: 800; color: var(--primary); }
+    /* Tone of voice v2 */
+    .tov2-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 4px; }
+    .tov2-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+    .tov2-ico { font-size: 30px; line-height: 1; }
+    .tov2-name { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .tov2-name small { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 2px; }
+    .tov2-bad { font-size: 14px; color: #B91C1C; font-style: italic; line-height: 1.35; }
+    .tov2-bad .m { font-weight: 800; font-style: normal; margin-right: 5px; }
+    .tov2-good { font-size: 14.5px; color: var(--foreground); line-height: 1.4; }
+    .tov2-good .m { color: #15803D; font-weight: 800; margin-right: 5px; } .tov2-good b { font-weight: 800; color: #15803D; }
+    .tov2-rule { margin-top: 16px; display: flex; align-items: center; gap: 14px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 14px 20px; }
+    .tov2-rule .tre2 { font-size: 28px; } .tov2-rule .trt2 { font-size: 16px; color: var(--foreground); line-height: 1.4; } .tov2-rule .trt2 b { font-weight: 800; color: var(--primary); }
+    /* GT2 generic table */
+    .gt2 { width: 100%; border-collapse: collapse; font-size: 17px; }
+    .gt2 th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .gt2 td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.42; color: var(--foreground); }
+    .gt2 tr:last-child td { border-bottom: none; }
+    .gt2 tr:nth-child(even) td { background: var(--bg); }
+    .gt2 .lead2 { font-weight: 800; color: var(--foreground); }
+    .gt2 .lead2 .em2 { font-size: 20px; margin-right: 6px; }
+    .gt2 .why2 { color: var(--muted); font-size: 15px; }
+    .gt2 b { font-weight: 800; }
+    /* Emotion hook v2 */
+    .emo2-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; flex: 1; }
+    .emo2-card { border-radius: var(--radius); padding: 14px 14px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 7px; }
+    .emo2-card.es { background: #F0FDF4; border-color: #86EFAC; }
+    .emo2-card.em { background: #FFF7ED; border-color: #FED7AA; }
+    .emo2-card.eu { background: #FFF1F2; border-color: #F9A8D4; }
+    .emo2-card.ea { background: #EFF6FF; border-color: #BAE6FD; }
+    .emo2-ico { font-size: 28px; line-height: 1; }
+    .emo2-name { font-size: 16px; font-weight: 800; color: var(--foreground); }
+    .emo2-ex { font-size: 13px; color: var(--foreground); line-height: 1.4; font-style: italic; }
+    .ds2-box { margin-top: 14px; display: flex; align-items: stretch; gap: 12px; }
+    .ds2-half { flex: 1; border-radius: var(--radius); padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
+    .ds2-half.pain2 { background: #FEF2F2; border: 1px solid #FECACA; }
+    .ds2-half.fix2 { background: #ECFDF5; border: 1px solid #6EE7B7; }
+    .ds2-lbl { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+    .ds2-half.pain2 .ds2-lbl { color: #B91C1C; } .ds2-half.fix2 .ds2-lbl { color: #15803D; }
+    .ds2-txt { font-size: 15px; color: var(--foreground); line-height: 1.4; } .ds2-txt b { font-weight: 800; }
+    .ds2-arrow { display: flex; align-items: center; font-size: 26px; color: var(--practice); font-weight: 800; }
+    /* Conversion funnel bars */
+    .conv-funnel { display: flex; flex-direction: column; gap: 8px; flex: 1; justify-content: center; }
+    .conv-row { display: flex; align-items: center; gap: 14px; }
+    .conv-stage { font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; width: 90px; text-align: right; flex-shrink: 0; }
+    .conv-bar { color: #fff; border-radius: 8px; padding: 13px 18px; display: flex; align-items: center; justify-content: space-between; }
+    .conv-bar .cb-num { font-size: 28px; font-weight: 800; line-height: 1; }
+    .conv-bar .cb-lbl { font-size: 13px; font-weight: 700; text-align: right; line-height: 1.25; }
+    .conv-r1 .conv-bar { width: 100%; background: linear-gradient(135deg, #93C5FD, #60A5FA); }
+    .conv-r2 .conv-bar { width: 72%; background: linear-gradient(135deg, #60A5FA, #3B82F6); }
+    .conv-r3 .conv-bar { width: 48%; background: linear-gradient(135deg, #3B82F6, #2D52D4); }
+    .conv-r4 .conv-bar { width: 28%; background: linear-gradient(135deg, #2D52D4, #1E3A8A); }
+    .conv-side { display: flex; flex-direction: column; gap: 12px; }
+    .conv-pt { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; font-size: 15px; line-height: 1.4; color: var(--foreground); }
+    .conv-pt.bad { background: #FEF2F2; border-color: #FECACA; } .conv-pt.bad .cp-lbl { color: #B91C1C; }
+    .conv-pt.truth { background: #ECFDF5; border-color: #6EE7B7; } .conv-pt.truth .cp-lbl { color: #15803D; }
+    .conv-pt.lever { background: var(--primary-ultra-light); border-color: #C7D2FE; } .conv-pt.lever .cp-lbl { color: var(--primary); }
+    .cp-lbl { font-size: 13px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 4px; }
+    .conv-pt b { font-weight: 800; }
+    /* Leaking bucket */
+    .leak2-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 22px; flex: 1; align-items: stretch; }
+    .leak2-visual { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 28px; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; position: relative; overflow: hidden; text-align: center; }
+    .leak2-visual::after { content: ''; position: absolute; top: -90px; right: -70px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .leak2-emoji { font-size: 68px; line-height: 1; position: relative; z-index: 2; }
+    .leak2-cap { position: relative; z-index: 2; font-size: 18px; font-weight: 800; line-height: 1.3; } .leak2-cap .hl { color: var(--primary-light); }
+    .leak2-sub { position: relative; z-index: 2; font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+    .leak2-pts { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .leak2-pt { display: flex; gap: 14px; align-items: flex-start; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; }
+    .lp2-em { font-size: 26px; line-height: 1; flex-shrink: 0; }
+    .lp2-txt { font-size: 15px; color: var(--foreground); line-height: 1.45; } .lp2-txt b { font-weight: 800; color: var(--primary); }
+    /* TE VĂD/CRED/ALEG grid */
+    .te-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; }
+    .te-card { border-radius: var(--radius); padding: 18px 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; }
+    .te-card.do { background: #EFF6FF; border-color: #BFDBFE; }
+    .te-card.dont { background: #FEF2F2; border-color: #FECACA; }
+    .te-card.how { background: #F0FDF4; border-color: #BBF7D0; }
+    .te-card.proof { background: #FFFBEB; border-color: #FDE68A; }
+    .te-card h3 { font-size: 14px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin: 0; }
+    .te-card.do h3 { color: #1D4ED8; } .te-card.dont h3 { color: #B91C1C; }
+    .te-card.how h3 { color: #047857; } .te-card.proof h3 { color: #B45309; }
+    .te-item { font-size: 15px; color: var(--foreground); line-height: 1.45; display: flex; gap: 8px; }
+    .te-item .ti { flex-shrink: 0; }
+    .te-item b { font-weight: 800; }
+    /* Value ladder v2 */
+    .ladder2 { display: flex; flex-direction: column; gap: 3px; margin-bottom: 16px; }
+    .ladder2-step { display: flex; align-items: center; gap: 16px; border-radius: var(--radius); padding: 14px 20px; color: #fff; }
+    .ladder2-step .l2n { width: 36px; height: 36px; border-radius: 11px; background: rgba(255,255,255,0.22); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; flex-shrink: 0; }
+    .ladder2-step .l2b { flex: 1; }
+    .ladder2-step .l2name { font-size: 18px; font-weight: 800; line-height: 1.15; }
+    .ladder2-step .l2desc { font-size: 13px; opacity: 0.9; margin-top: 2px; }
+    .ladder2-step.ls1 { background: linear-gradient(135deg, #94A3B8, #64748B); width: 68%; }
+    .ladder2-step.ls2 { background: linear-gradient(135deg, #5B7CF7, #2D52D4); width: 83%; margin-left: 10%; }
+    .ladder2-step.ls3 { background: linear-gradient(135deg, #10B981, #059669); width: 100%; }
+    .ladder2-step .l2tag { font-size: 12px; font-weight: 800; background: rgba(255,255,255,0.22); border-radius: 100px; padding: 4px 11px; white-space: nowrap; }
+    .l2-arrows { display: flex; justify-content: center; color: var(--muted); font-size: 17px; margin: 1px 0; }
+    /* AIDA exercise v2 */
+    .aida-ex2-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; align-items: stretch; }
+    .aida-ex2-col { display: flex; flex-direction: column; gap: 8px; min-height: 0; }
+    .aida-ex2-lbl { font-size: 13px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+    .aida-ex2-lbl.model2 { color: var(--primary); } .aida-ex2-lbl.fill2 { color: var(--practice); }
+    .aida-pair2 { display: flex; align-items: center; gap: 12px; margin-top: 10px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 12px 18px; }
+    .aida-pair2 .ape2 { font-size: 22px; }
+    .aida-pair2 .apt2 { font-size: 15px; color: var(--foreground); line-height: 1.4; } .aida-pair2 .apt2 b { font-weight: 800; }
+    .aida-k2 { color: #93C5FD; font-weight: 800; }
+    .aida-hint2 { color: #64748B; font-size: 13px; }
+    .aida-blank2 { display: block; color: #FCD34D; }
+
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 01 — COVER -->
+    <!-- ================================================================ -->
+    <section data-notes="Deschidere Modul 2 — 90 min. Scopul: la final fiecare participant pleacă cu un USP clar și un ton de voce ales. Legătura cu Modul 1: profilul de client construit acolo e materia primă pentru USP-ul de azi. Nu testăm cunoștințe — construim un instrument pe care îl iau și îl predau mâine cursanților lor. DE CE USP: ca să fii diferit de competiție — un motiv clar pentru care clientul te alege pe tine, nu pe vecin. Ton: relaxat, practic, de la egal la egal.">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 2 · 90 min</div>
+          <h1>USP —<br>Mesajul care Vinde</h1>
+          <div class="cover-bait">🎯 💬 ✅</div>
+          <p class="subtitle">De la «produse bune la prețuri bune» la un mesaj care te face <b style="color:#fff">diferit de competiție</b> — specific, verificabil, memorabil.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">Ce e USP</span>
+            <span class="cover-chip">Features vs. Outcomes</span>
+            <span class="cover-chip">Diagrama USP</span>
+            <span class="cover-chip">Pâlnia Cold / Warm / Hot</span>
+            <span class="cover-chip">Tonul vocii</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE — Cadru: mesajul bate bugetul -->
+    <section data-notes="Cadru-ancoră. Mesajul e singura piesă pe care o controlezi 100% și nu costă un leu. Antreprenorii cu bugete mici câștigă teren față de companii mari nu prin reclame, ci prin mesaje mai bune. Un mesaj bun, postat gratis, poate aduce clienți — dacă lovește durerea reală. Un buget mare cu un mesaj generic (despre TU, nu despre EI) rămâne fără rezultat. Cârlig: ce controlezi 100%, fără bani, e mesajul.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · de ce mesajul bate bugetul</div>
+          <h2 class="slide-title">Bugetul de reclamă cumpără atenție. <span class="hl">Mesajul o transformă în vânzare.</span></h2>
+          <p class="slide-subtitle">Antreprenorii mici nu câștigă prin bugete mai mari — ci prin <b>mesaje mai bune</b>. Și mesajul nu costă nimic.</p>
+        </div>
+        <div class="stmt-grid">
+          <div class="stmt-card cold">
+            <span class="stmt-ico">💸</span>
+            <div class="stmt-txt">O firmă poate <b>plăti reclame</b> și tot să nu vândă — dacă mesajul e <b>despre EA</b>, nu despre problema clientului.</div>
+          </div>
+          <div class="stmt-card warm">
+            <span class="stmt-ico">📣</span>
+            <div class="stmt-txt">Un mesaj bun, <b>postat gratis</b>, poate aduce clienți — dacă lovește <b>durerea reală</b> a avatarului tău.</div>
+          </div>
+        </div>
+        <div class="stmt-hero">Mesajul e singura piesă pe care o <span class="hl">controlezi 100%</span> — și nu costă un leu.</div>
+        <div class="slide-num">02 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 02 — CE E USP? Drill No/Yes -->
+    <!-- ================================================================ -->
+    <section data-notes="Definiție simplă și concretă — nu teoretică. Contrastul ❌/✅ se referă la tipul de mesaj, nu la participanți. ❌ Vag: 'produse de calitate' — oricine o poate spune, nimeni n-o crede. ✅ Specific: fiecare cuvânt e verificabil. DE CE contează USP-ul: ca să fii diferit de competiție — clientul are nevoie de un motiv clar să te aleagă pe tine. Întreabă sala: 'Care dintre aceste mesaje te-ar face să dai clic?' — 30 de secunde să se gândească, fără să răspundă cu voce tare.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Definiție</div>
+          <h2 class="slide-title">Ce e USP? <span class="hl">Un motiv clar și specific</span> pentru care clientul te alege pe tine.</h2>
+          <p class="slide-subtitle">Nu o promisiune vagă — o afirmație verificabilă pe care concurența <b>nu o poate copia identic</b>. E ceea ce te face <b>diferit de competiție</b>.</p>
+        </div>
+        <div class="drill-grid-tek">
+          <div class="drill-card-tek no">
+            <div class="dtek-emoji">🙈</div>
+            <div class="dtek-lbl">❌ Vag — nu convinge pe nimeni</div>
+            <div class="dtek-big">„Produse de calitate la prețuri bune"</div>
+            <div class="dtek-sub">Oricine o poate spune. Nimeni n-o crede. Clientul nu știe de ce să te aleagă față de alți 10 concurenți.</div>
+          </div>
+          <div class="dtek-arrow">→</div>
+          <div class="drill-card-tek yes">
+            <div class="dtek-emoji">✅</div>
+            <div class="dtek-lbl">✅ Specific — convinge imediat</div>
+            <div class="dtek-big">„Cosmetice 100% naturale, fără parabeni, livrate în 24h la tine acasă"</div>
+            <div class="dtek-sub">Specific, verificabil, memorabil. Clientul știe exact ce primește și de ce să aleagă.</div>
+          </div>
+        </div>
+        <div class="slide-num">03 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 03 — SCHEMA: raftul cu 47 de produse -->
+    <!-- ================================================================ -->
+    <section data-notes="Slide schematic — fără poză. Construit în CSS: un raft cu 12 produse identice gri + 1 colorat (USP-ul tău, cel care iese în evidență). Citește textul cu voce tare și fă o pauză de 8-10 secunde. Întrebare pentru sală: 'Câți dintre voi ați ales un produs de pe raft în mai puțin de 5 secunde, fără să citiți toată eticheta?' (probabil toți). Asta e realitatea USP-ului: câștigă sau pierde în secunde. Produsul colorat e cel care are un mesaj clar — restul se pierd în masă. DE CE: dacă arăți la fel ca toți, clientul alege după preț; dacă ieși în evidență, alege după valoare.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Contextul real</div>
+          <h2 class="slide-title">Pe un raft sunt <span class="hl">47 de produse</span> aproape identice.</h2>
+          <p class="slide-subtitle">Clientul alege în <b>3 secunde</b>. Care iese în evidență din prima privire? Cel cu un mesaj clar — restul se pierd în masă.</p>
+        </div>
+        <div class="shelf">
+          <div class="shelf-item">produs</div>
+          <div class="shelf-item">produs</div>
+          <div class="shelf-item">produs</div>
+          <div class="shelf-item">produs</div>
+          <div class="shelf-item">produs</div>
+          <div class="shelf-item">produs</div>
+          <div class="shelf-item you">TU 🎯</div>
+          <div class="shelf-item">produs</div>
+          <div class="shelf-item">produs</div>
+          <div class="shelf-item">produs</div>
+          <div class="shelf-item">produs</div>
+          <div class="shelf-item">produs</div>
+          <div class="shelf-item">produs</div>
+        </div>
+        <div class="quote-block" style="margin-top:16px;font-size:16px">Dacă mesajul tău nu e clar din prima privire — <strong>ai pierdut deja.</strong> USP-ul tău e ce te face să fii produsul colorat, nu unul din cele 46 gri.</div>
+        <div class="slide-num">04 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 04 — TEORIE: Features vs. Outcomes (Apple vs Samsung) -->
+    <!-- ================================================================ -->
+    <section data-notes="Conceptul cheie al întregului modul. Comparație schematică — logo Apple SVG real + mock de telefon, NU poză cu oameni. Apple nu vorbește de specificații — arată ce poți face cu telefonul (outcome: o fotografie frumoasă pe care ești mândru să o postezi). Samsung listează specificații tehnice (features) — nimeni nu înțelege 108MP dacă nu e fotograf profesionist. Exercițiu mental rapid: 'Câte specificații de pe ultima cutie cumpărată vă amintiți?' vs 'Ce efect ați simțit?' — efectul e ce rămâne. DE CE: clientul cumpără rezultatul, nu specificația. '5000 mAh' nu spune nimic; '2 zile fără priză' vinde.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie · Features vs. Outcomes</div>
+          <h2 class="slide-title">Clientul nu cumpără <span class="hl">specificații tehnice.</span></h2>
+          <p class="slide-subtitle">Cumpără ce <b>poate face cu produsul tău</b> — efectul în viața lui.</p>
+        </div>
+        <div class="fv-grid">
+          <div class="fv-card good">
+            <div class="fv-head">
+              <div class="fv-logo"><svg viewBox="0 0 24 24" fill="#000"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg></div>
+              <div>
+                <div class="fv-brand">Apple</div>
+                <div class="fv-kind">✅ Arată outcomes</div>
+              </div>
+            </div>
+            <div class="fv-stage">
+              <div class="phone-mock">
+                <div class="phone-screen-img"><img src="assets/screenshots/image.png" alt="Shot on iPhone 6s" onerror="this.style.display='none';this.nextElementSibling.style.display='block'" /><span class="cap" style="display:none">Shot on iPhone</span></div>
+              </div>
+              <div class="fv-body">
+                <div class="fv-msg"><b>„Shot on iPhone"</b><br>O fotografie frumoasă, fără nicio specificație. Mesajul implicit: <b>tu poți face asta.</b></div>
+                <div class="fv-react">Clientul: „Vreau și eu asta."</div>
+              </div>
+            </div>
+          </div>
+          <div class="fv-card bad">
+            <div class="fv-head">
+              <div class="fv-logo"><div class="tile">SAMSUNG</div></div>
+              <div>
+                <div class="fv-brand">Samsung</div>
+                <div class="fv-kind">❌ Listează features</div>
+              </div>
+            </div>
+            <div class="fv-stage">
+              <div class="phone-mock">
+                <div class="phone-spec-screen">
+                  <div class="sp">108MP Wide</div>
+                  <div class="sp">12MP Ultra Wide</div>
+                  <div class="sp">Space Zoom 100x</div>
+                  <div class="sp">5000 mAh</div>
+                  <div class="sp">Sensor 1/1.33"</div>
+                </div>
+              </div>
+              <div class="fv-body">
+                <div class="fv-msg"><b>„108MP, 12MP Ultra Wide, 5000mAh…"</b><br>O listă de cifre. Tehnic impresionant — dar ce înseamnă pentru mine?</div>
+                <div class="fv-react">Clientul: „Și ce înseamnă asta pentru mine?"</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">05 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 05 — TEORIE: Regula „so what?" -->
+    <!-- ================================================================ -->
+    <section data-notes="Testul «so what?» — instrumentul cel mai simplu și mai puternic din modul. Îl aplici pe orice mesaj de marketing: scrii o frază, te întrebi «și ce?» — dacă poți răspunde mai concret, mai aproape de beneficiul real, înseamnă că prima variantă era la nivel de feature. Continuă până când nu mai poți răspunde cu ceva mai concret. Demo live: scrie pe flipchart un mesaj propus de sală și aplică testul de 2-3 ori împreună. Durată demo: 3-4 minute.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Instrument · Regula „So What?"</div>
+          <h2 class="slide-title">Dacă poți întreba <span class="hl">„și ce?"</span> — mai ai de lucru.</h2>
+          <p class="slide-subtitle">Aplică testul oricărui mesaj de marketing. Oprești când nu mai poți răspunde mai concret.</p>
+        </div>
+        <div class="convo">
+          <div class="bubble">
+            <div class="bub-who">Companie</div>
+            <div class="bub-text">„Telefonul nostru are baterie de 5000 mAh."</div>
+          </div>
+          <div class="bubble right">
+            <div class="bub-who">Client</div>
+            <div class="bub-text">Și ce? <b>Ce înseamnă asta pentru mine?</b></div>
+          </div>
+          <div class="bubble">
+            <div class="bub-who">Companie</div>
+            <div class="bub-text">„Baterie care ține 2 zile fără încărcare."</div>
+          </div>
+          <div class="bubble right">
+            <div class="bub-who">Client</div>
+            <div class="bub-text">Și ce? <b>De ce contează asta?</b></div>
+          </div>
+          <div class="bubble">
+            <div class="bub-who">Companie</div>
+            <div class="bub-text" style="background:#F0FDF4;border-color:#86EFAC"><b>„Nu mai cauți priză toată ziua — nici în întâlniri, nici în deplasări."</b></div>
+          </div>
+          <div class="bubble right">
+            <div class="bub-who">Client</div>
+            <div class="bub-text" style="background:#F0FDF4;border-color:#86EFAC;color:#15803D"><b>ACESTA e outcomes-ul. Acum înțeleg de ce să aleg.</b></div>
+          </div>
+        </div>
+        <div class="slide-num">06 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+
+    <!-- ================================================================ -->
+    <!-- ENERGIZER — Feature sau Outcome? Flash (5 min) -->
+    <!-- ================================================================ -->
+    <section data-notes="5 min. Energizer rapid între secțiuni. Regula: trainer spune o frază — participanții ridică degetul în sus (Outcome) sau jos (Feature). Fără explicații în prealabil — ei simt diferența. Corectezi după fiecare rând, cu 1 propoziție de justificare. Ultimul exemplu e ambiguu intenționat ('livrare în 24h') — dă naștere la dezbatere bună: depinde de context! Dacă e pe landing page izolat = feature; dacă e spus 'nu mai aștepți 3 zile' = outcome. Asta e lecția reală.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">⚡ Energizer · 5 min</div>
+          <h2 class="slide-title">Feature sau Outcome? — <span class="hl">răspunde instant</span></h2>
+          <p class="slide-subtitle">Trainer spune o frază. Tu răspunzi: deget <b>jos</b> = Feature (specificație) · deget <b>sus</b> = Outcome (rezultat pentru client).</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;align-items:start;">
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="padding:10px 16px;background:#FEF2F2;border:1px solid #FECACA;border-left:4px solid #DC2626;border-radius:8px;font-size:15px;">👎 „Baterie 5000 mAh"</div>
+            <div style="padding:10px 16px;background:#F0FDF4;border:1px solid #BBF7D0;border-left:4px solid #16A34A;border-radius:8px;font-size:15px;">👍 „2 zile fără priză"</div>
+            <div style="padding:10px 16px;background:#FEF2F2;border:1px solid #FECACA;border-left:4px solid #DC2626;border-radius:8px;font-size:15px;">👎 „Ingrediente naturale"</div>
+            <div style="padding:10px 16px;background:#F0FDF4;border:1px solid #BBF7D0;border-left:4px solid #16A34A;border-radius:8px;font-size:15px;">👍 „Știi exact ce aplici pe pielea copilului"</div>
+            <div style="padding:10px 16px;background:#FEF2F2;border:1px solid #FECACA;border-left:4px solid #DC2626;border-radius:8px;font-size:15px;">👎 „Activare în 5 minute"</div>
+            <div style="padding:10px 16px;background:#F0FDF4;border:1px solid #BBF7D0;border-left:4px solid #16A34A;border-radius:8px;font-size:15px;">👍 „Nu mai pierzi programări când ești ocupat"</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:12px;padding:18px 16px;">
+              <div style="font-size:13px;font-weight:800;color:#D97706;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">⚠️ Ambiguu — dezbatere!</div>
+              <div style="font-size:15px;font-weight:700;color:var(--foreground);">„Livrare în 24h"</div>
+              <div style="font-size:13px;color:var(--muted);margin-top:6px;line-height:1.4;">Feature singur — sau Outcome dacă spui:<br>„Nu mai aștepți 3 zile"</div>
+            </div>
+            <div style="background:var(--primary-ultra-light);border:1px solid var(--primary);border-radius:12px;padding:16px;">
+              <div style="font-size:13px;font-weight:800;color:var(--primary);margin-bottom:6px;">Regula de aur</div>
+              <div style="font-size:14px;color:var(--foreground);line-height:1.5;">Un Feature devine Outcome când răspunde la:<br><b>„Și ce dacă?"</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">07 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 06 — TEORIE: Diagrama USP (Venn) -->
+    <!-- ================================================================ -->
+    <section data-notes="Slide cheie al modulului — diagrama Venn cu 3 cercuri. USP-ul stă fix la intersecția dintre: ce faci TU bine 💪, ce vrea clientul ❤️, și ce NU face concurența 🏁. Dacă lipsește un cerc, nu e USP. Exemplu adaptat: NaturaLab (cosmetice naturale) în loc de cafenea. DE CE această diagramă: ca să fii diferit de competiție — punctul forte al USP-ului e cercul 'concurența nu oferă'. Dacă faci ceva bine și clientul vrea, dar și concurența oferă același lucru, nu te diferențiază. Lasă 1 minut ca sala să citească exemplul concret.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cum te faci unic</div>
+          <h2 class="slide-title">USP — <span class="hl">de ce te-ar alege pe TINE</span></h2>
+          <p class="slide-subtitle">USP = lucrul pe care tu îl faci <b>mai bine</b>, pe care <b>clientul îl vrea</b>, și pe care <b>concurența nu-l oferă</b>. De aici vine diferențierea.</p>
+        </div>
+        <div class="venn-grid">
+          <div class="venn-stage">
+            <div class="venn-circle c1"></div>
+            <div class="venn-circle c2"></div>
+            <div class="venn-circle c3"></div>
+            <div class="venn-cap cap1">Ce faci TU bine 💪</div>
+            <div class="venn-cap cap2">Ce NU face concurența 🏁</div>
+            <div class="venn-cap cap3">Ce vrea clientul ❤️</div>
+            <div class="venn-emoji e1">💪</div>
+            <div class="venn-emoji e2">🏁</div>
+            <div class="venn-emoji e3">❤️</div>
+            <div class="venn-center">USP 🎯</div>
+          </div>
+          <div class="venn-side">
+            <div class="venn-row-txt"><b>USP</b> = locul din mijloc: ce <b>tu faci bine</b> + ce <b>clientul vrea</b>, dar <b>concurența nu oferă</b>.</div>
+            <div class="usp-ex">
+              <div class="usp-ex-lbl">🧴 Exemplu — NaturaLab (cosmetice naturale)</div>
+              <div class="usp-ex-row"><span>💪</span> Formule 100% naturale, fără parabeni</div>
+              <div class="usp-ex-row"><span>❤️</span> Clientul vrea: să știe exact ce pune pe piele</div>
+              <div class="usp-ex-row"><span>🏁</span> Concurența: branduri mari cu liste de ingrediente neclare</div>
+              <div class="usp-ex-usp">🎯 USP: <b>cosmetice 100% naturale, livrate în 24h</b> — transparența pe care marile branduri n-o dau</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">08 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 07 — TEORIE: Formula USP (3 elemente) -->
+    <!-- ================================================================ -->
+    <section data-notes="Formula structurată care combină ce s-a construit în Modul 1 (profilul de client) cu beneficiul real și diferențiatorul. Importantă e ordinea: 1. CUI (clientul specific din Modul 1) → 2. CE PROBLEMĂ rezolvăm → 3. DE CE NOI (ce nu poate face concurența). Toți trei sunt esențiali — fără CUI, mesajul e vag; fără DE CE NOI, nu e USP, e o promisiune generică. Lăsați 1 minut ca toată lumea să citească formula și să o interiorizeze înainte de exemplul următor.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie · Formula USP</div>
+          <h2 class="slide-title">USP = <span class="hl">CUI</span> + <span class="hl">CE PROBLEMĂ</span> + <span class="hl">DE CE TU</span></h2>
+          <p class="slide-subtitle">Trei elemente obligatorii. Lipsește unul — nu mai e USP, e o promisiune vagă.</p>
+        </div>
+        <div class="formula-box" style="margin-bottom:22px">
+          <div class="formula-line" style="font-size:24px;text-align:center">
+            <span class="slot who">[CUI te adresezi]</span>
+            &nbsp;+&nbsp;
+            <span class="slot res">[CE PROBLEMĂ rezolvi]</span>
+            &nbsp;+&nbsp;
+            <span class="slot dif">[DE CE TU și nu altcineva]</span>
+          </div>
+          <div style="position:relative;z-index:2;text-align:center;margin-top:14px;font-size:16px;color:rgba(255,255,255,0.72)">Același format pentru orice tip de afacere — produs, serviciu, B2B sau B2C.</div>
+        </div>
+        <div class="cards-3">
+          <div class="card sky">
+            <div class="card-icon">🎯</div>
+            <div class="card-title">CUI</div>
+            <div class="card-body">Clientul din Modul 1 — <b>o persoană specifică</b>, nu «toată lumea» sau «firmele».</div>
+          </div>
+          <div class="card mint">
+            <div class="card-icon">🔧</div>
+            <div class="card-title">CE PROBLEMĂ</div>
+            <div class="card-body">Durerea sau dorința reală — <b>outcomes, nu features</b>. Ce câștigă, nu ce primește tehnic.</div>
+          </div>
+          <div class="card peach">
+            <div class="card-icon">⚡</div>
+            <div class="card-title">DE CE TU</div>
+            <div class="card-body">Diferențiatorul verificabil — <b>ceva concret</b> pe care concurența nu-l poate copia identic.</div>
+          </div>
+        </div>
+        <div class="slide-num">09 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE — USP: testul de aur (merge și pentru concurent?) -->
+    <section data-notes="Testul de aur: acoperă numele afacerii tale. Dacă fraza merge și pentru concurent, n-ai USP — ai un slogan gol. Cârlig: 'Calitate' nu e diferență — toți zic asta. Diferența e ceva concret pe care concurentul NU poate să-l spună. Pune-i pe participanți să-și acopere mental numele afacerii și să testeze.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Instrument · Testul de aur</div>
+          <h2 class="slide-title">Dacă răspunsul merge și pentru concurent, <span class="hl">NU e USP</span></h2>
+          <p class="slide-subtitle">Acoperă numele afacerii tale. Dacă fraza merge și pentru alt brand — ai un slogan gol, nu un USP.</p>
+        </div>
+        <table class="vs-table" style="font-size:17px">
+          <thead>
+            <tr><th class="col-bad" style="width:42%">❌ Nu e USP (merge pentru oricine)</th><th class="col-good" style="width:58%">✅ Este USP (doar al tău)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="bad-cell">„Oferim produse de calitate"</td><td class="good-cell">„Singura cremă cu <b>5 ingrediente — toate pe etichetă</b>"</td></tr>
+            <tr><td class="bad-cell">„Servicii profesioniste la prețuri bune"</td><td class="good-cell">„Prânz <b>livrat la birou în 30 min</b> — sau nu plătești"</td></tr>
+            <tr><td class="bad-cell">„Echipă cu experiență"</td><td class="good-cell">„Contabilitate <b>cu răspuns în 24h</b> — garantat prin contract"</td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block warn"><strong>Cârlig:</strong> „Calitate" nu e diferență — toți zic asta. Diferența e ceva <strong>concret</strong> pe care concurentul NU poate să-l spună.</div></div>
+        <div class="slide-num">10 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE — 4 surse de USP -->
+    <section data-notes="Mesaj cheie: nu inventezi USP-ul, îl GĂSEȘTI în ce ai deja. 4 locuri unde să cauți: dotarea/procesul (ce faci TU diferit), partenerul/certificarea (cu cine ești asociat), rezultatul/viteza (cât de repede rezolvi), locul/comunitatea (ce înseamnă să fii local, nișat, dedicat). Regula de aur: cel mai puternic USP combină 2 surse.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · de unde scoți USP-ul</div>
+          <h2 class="slide-title">Nu inventezi USP-ul. <span class="hl">Îl GĂSEȘTI în ce ai deja.</span></h2>
+          <p class="slide-subtitle">4 locuri unde să cauți — fiecare cu întrebarea care-l scoate la suprafață.</p>
+        </div>
+        <div class="usp-src-grid">
+          <div class="usp-src-card s1">
+            <div class="usp-src-ico">⚙️</div>
+            <div class="usp-src-body">
+              <div class="usp-src-name">Procesul / dotarea</div>
+              <div class="usp-src-q">„Ce faci TU diferit față de toți ceilalți?"</div>
+              <div class="usp-src-ex"><b>„singurul producător local cu certificare BIO verificată"</b></div>
+            </div>
+          </div>
+          <div class="usp-src-card s2">
+            <div class="usp-src-ico">🤝</div>
+            <div class="usp-src-body">
+              <div class="usp-src-name">Partenerul / certificarea</div>
+              <div class="usp-src-q">„Cu cine ești asociat? Ce nume poți menționa?"</div>
+              <div class="usp-src-ex"><b>„furnizor oficial al HoReCa din centru — și clientele rămân"</b></div>
+            </div>
+          </div>
+          <div class="usp-src-card s3">
+            <div class="usp-src-ico">⏱️</div>
+            <div class="usp-src-body">
+              <div class="usp-src-name">Rezultatul / viteza</div>
+              <div class="usp-src-q">„Cât de repede și sigur rezolvi problema?"</div>
+              <div class="usp-src-ex"><b>„contabilitate gata în 24h — garantat prin contract"</b></div>
+            </div>
+          </div>
+          <div class="usp-src-card s4">
+            <div class="usp-src-ico">🎯</div>
+            <div class="usp-src-body">
+              <div class="usp-src-name">Nișa / dedicarea</div>
+              <div class="usp-src-q">„Ești specializat pe un singur tip de client?"</div>
+              <div class="usp-src-ex"><b>„packaging DOAR pentru branduri de cosmetice naturale"</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="cw-note"><div class="quote-block"><strong>Regula:</strong> cel mai puternic USP combină 2 surse. „Livrare în 30 min <strong>(viteză)</strong> + fără zahăr adăugat <strong>(proces/ingredient)</strong>."</div></div>
+        <div class="slide-num">11 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 08 — EXEMPLU: USP complet pentru 3 afaceri -->
+    <!-- ================================================================ -->
+    <section data-notes="Tabelul model — citit rând cu rând, nu tot deodată. La fiecare rând, opriți-vă și întrebați: 'Ce element e diferențiatorul?' (NaturaLab = 24h + 100% natural; Rezervo = 5 minute activare; FreshBox = prânz sănătos livrat la birou). Participanții vor folosi aceeași structură la exercițiul de la slide 16. Asigurați-vă că toți au tabelul clar în minte înainte să treceți mai departe.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Exemplu · USP Complet</div>
+          <h2 class="slide-title">Formula aplicată pe <span class="hl">3 afaceri reale</span></h2>
+          <p class="slide-subtitle">Modelul pe care îl urmăriți la exercițiu — CUI + CE + DE CE TU.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;flex:1;">
+          <div style="border:1px solid #E2E8F0;border-top:4px solid #16A34A;border-radius:12px;padding:20px 18px;display:flex;flex-direction:column;gap:10px;">
+            <div style="font-size:16px;font-weight:800;color:#15803D;">🌿 NaturaLab</div>
+            <div style="font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">cosmetice naturale</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;"><b>CUI:</b> Mame 28-42 ani, atente la ingrediente</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;"><b>CE:</b> Vor să știe exact ce pun pe pielea lor</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;"><b>DE CE EI:</b> 100% natural, fără parabeni, 24h</div>
+            <div style="margin-top:4px;padding:10px 12px;background:#F0FDF4;border-left:3px solid #16A34A;border-radius:4px;font-size:14px;font-weight:700;color:#15803D;line-height:1.4;">„Cosmetice 100% naturale pentru mame — livrate în 24h."</div>
+          </div>
+          <div style="border:1px solid #E2E8F0;border-top:4px solid var(--primary);border-radius:12px;padding:20px 18px;display:flex;flex-direction:column;gap:10px;">
+            <div style="font-size:16px;font-weight:800;color:var(--primary);">📅 Rezervo</div>
+            <div style="font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">app B2B programări</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;"><b>CUI:</b> Patroni de salon cu 2-8 angajate</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;"><b>CE:</b> Pierd programări cu mâinile ocupate</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;"><b>DE CE EI:</b> Activare 5 min, clienții se programează 24/7</div>
+            <div style="margin-top:4px;padding:10px 12px;background:var(--primary-ultra-light);border-left:3px solid var(--primary);border-radius:4px;font-size:14px;font-weight:700;color:var(--primary);line-height:1.4;">„Programări 24/7 — activare în 5 minute, fără să ridici telefonul."</div>
+          </div>
+          <div style="border:1px solid #E2E8F0;border-top:4px solid #D97706;border-radius:12px;padding:20px 18px;display:flex;flex-direction:column;gap:10px;">
+            <div style="font-size:16px;font-weight:800;color:#B45309;">🍱 FreshBox</div>
+            <div style="font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;">livrare prânz la birou</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;"><b>CUI:</b> Angajați 25-40 ani, vor prânz sănătos la birou</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;"><b>CE:</b> Prânzul e stresant — fast food sau coadă lungă</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;"><b>DE CE EI:</b> Livrat în 30 min, meniu zilnic variat, componente fresh</div>
+            <div style="margin-top:4px;padding:10px 12px;background:#FFFBEB;border-left:3px solid #D97706;border-radius:4px;font-size:14px;font-weight:700;color:#B45309;line-height:1.4;">„Prânz sănătos livrat la birou în 30 min — fără restaurante de mall, fără vinovăție."</div>
+          </div>
+        </div>
+        <div class="slide-num">12 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+
+    <!-- ================================================================ -->
+    <!-- SLIDE — Analiza Competiției: Cum găsești -->
+    <!-- ================================================================ -->
+    <section data-notes="4 min. Înainte să-ți scrii USP-ul, trebuie să știi cu cine te compari. Nu ca să-i copiezi — ca să vezi ce spațiu liber există. Exercițiu rapid: alege o afacere din sală și facem live o căutare pe Google + App Store. Surpriză frecventă: competiția face lucruri similare dar le comunică prost — acolo e oportunitatea. Subliniez: nu vrem să fim 'mai buni la același lucru' ci 'diferiți în mod relevant'.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cercetare · Competiție</div>
+          <h2 class="slide-title">Cine mai rezolvă <span class="hl">aceeași problemă?</span></h2>
+          <p class="slide-subtitle">Înainte să-ți scrii USP-ul, mapezi competiția. Nu ca să-i copiezi — ca să găsești <b>spațiul liber</b> pe care îl poți ocupa tu.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;flex:1;align-items:start;">
+          <div style="border:1px solid #E2E8F0;border-top:3px solid var(--primary);border-radius:10px;padding:16px 14px;display:flex;flex-direction:column;gap:10px;">
+            <div style="font-size:13px;font-weight:800;color:var(--primary);text-transform:uppercase;letter-spacing:0.06em;">🔍 Google</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;">„[problema ta] app" sau „[produs] alternatives"</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;">„cel mai bun [serviciu] Moldova / România"</div>
+            <div style="font-size:12px;color:var(--muted);background:#F8FAFC;padding:8px 10px;border-radius:6px;margin-top:4px;">→ Atenție la Google Ads: cine plătește pe termenul tău de căutare?</div>
+          </div>
+          <div style="border:1px solid #E2E8F0;border-top:3px solid #7C3AED;border-radius:10px;padding:16px 14px;display:flex;flex-direction:column;gap:10px;">
+            <div style="font-size:13px;font-weight:800;color:#7C3AED;text-transform:uppercase;letter-spacing:0.06em;">📱 App Store / Google Play</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;">Caută categoria: câte recenzii au, ce scriu utilizatorii</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;">Recenziile de 1-2 stele = problemele lor nerezolvate = șansa ta</div>
+            <div style="font-size:12px;color:var(--muted);background:#F8FAFC;padding:8px 10px;border-radius:6px;margin-top:4px;">→ Dacă nu există app, poate e oportunitate de piață</div>
+          </div>
+          <div style="border:1px solid #E2E8F0;border-top:3px solid #D97706;border-radius:10px;padding:16px 14px;display:flex;flex-direction:column;gap:10px;">
+            <div style="font-size:13px;font-weight:800;color:#D97706;text-transform:uppercase;letter-spacing:0.06em;">💬 Comunități online</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;">Grupuri Facebook: „ce recomandați pentru X?"</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;">Reddit, G2.com, Capterra (pentru SaaS)</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.5;">eMAG, OLX — cine vinde ceva similar?</div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin:0;">Competiția nu e dușmanul — e <b>dovada că piața există</b>. Fără competiție, poate nu există nici cerere.</div>
+        <div class="slide-num">13 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE — Analiza Competiției: Ce extragi -->
+    <!-- ================================================================ -->
+    <section data-notes="4 min. Atenție: exercițiul NU e să copiezi competiția — e să identifici LACUNELE lor. Recenziile negative ale competiției sunt oportunitatea ta. Exemplu: dacă toți competitorii au recenzii care spun 'serviciu clienți slab' — asta e USP-ul tău potențial. Exercițiu rapid: alege un competitor și completează tabelul împreună, live. Lasă 2-3 minute pentru exercițiu individual la final.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cercetare · Analiza Competiției</div>
+          <h2 class="slide-title">Ce extragi <span class="hl">de la competiție?</span></h2>
+          <p class="slide-subtitle">6 întrebări despre fiecare competitor — răspunsurile arată unde ești diferit și unde e spațiu liber.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;flex:1;align-items:start;">
+          <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:14px 13px;">
+            <div style="font-size:12px;font-weight:800;color:var(--primary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">1 · Ce promit?</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.4;">USP-ul lor — ce scriu pe site / în profil? Fraza lor cheie?</div>
+          </div>
+          <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:14px 13px;">
+            <div style="font-size:12px;font-weight:800;color:#16A34A;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">2 · Cine cumpără de la ei?</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.4;">Recenziile spun tot: ce persoane, ce probleme aveau, ce au rezolvat</div>
+          </div>
+          <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:10px;padding:14px 13px;">
+            <div style="font-size:12px;font-weight:800;color:#DC2626;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">3 · Ce NU rezolvă? ⭐</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.4;">Recenziile de 1-3 stele — plângerile lor = oportunitatea ta</div>
+          </div>
+          <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:14px 13px;">
+            <div style="font-size:12px;font-weight:800;color:#D97706;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">4 · Cum arată prețul?</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.4;">Model: abonament / per serviciu / freemium? Range-ul de prețuri?</div>
+          </div>
+          <div style="background:#F5F3FF;border:1px solid #DDD6FE;border-radius:10px;padding:14px 13px;">
+            <div style="font-size:12px;font-weight:800;color:#7C3AED;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">5 · Ce ton de voce?</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.4;">Formal / prietenos / tehnic / emoțional? Asta e un diferențiator!</div>
+          </div>
+          <div style="background:#ECFEFF;border:1px solid #A5F3FC;border-radius:10px;padding:14px 13px;">
+            <div style="font-size:12px;font-weight:800;color:#0891B2;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:6px;">6 · Unde sunt invizibili?</div>
+            <div style="font-size:13px;color:var(--foreground);line-height:1.4;">Ce canal / audiență / nișă ignoră complet? Acolo ești tu.</div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin:0;">Cel mai bun USP vine din lacunele competiției — ce <b>nu spun</b> ei, ce <b>nu rezolvă</b> ei, pe cine <b>ignoră</b> ei.</div>
+        <div class="slide-num">14 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 09a — Customer Journey (Awareness → Purchase) -->
+    <!-- ================================================================ -->
+    <section data-notes="4 min. Înainte să vorbim cum îți segmentezi audiența, înțelegem cum trec oamenii de la 'nu știu cine ești' la 'cumpăr de la tine'. Fiecare client trece prin toate etapele — mai repede sau mai lent. Tu nu poți sări etape, dar poți reduce fricțiunea la fiecare pas. Prezintă etapele rând pe rând, cu exemplul mașinilor chinezești (slide următor) ca ancoră concretă.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie · Customer Journey</div>
+          <h2 class="slide-title">Nimeni nu cumpără <span class="hl">la primul contact.</span></h2>
+          <p class="slide-subtitle">Din 100 de oameni care aud prima dată de tine — doar 3-5 ajung să cumpere. Mesajul tău trebuie să îi însoțească <b>la fiecare etapă</b>.</p>
+        </div>
+        <div style="display:flex;gap:24px;flex:1;align-items:center;">
+          <div class="funnel-cj">
+            <div class="funnel-cap">▲ Toată piața ta</div>
+            <div class="funnel-layer fl1">
+              <span class="funnel-emoji">👁️</span>
+              <div class="funnel-txt"><b>1. Conștientizare</b> — „Am auzit de ei" — prima impresie, niciun angajament</div>
+              <span class="fl-pct">100%</span>
+            </div>
+            <div class="funnel-layer fl2">
+              <span class="funnel-emoji">🧐</span>
+              <div class="funnel-txt"><b>2. Interes</b> — Se documentează, caută informații, citește</div>
+              <span class="fl-pct">60%</span>
+            </div>
+            <div class="funnel-layer fl3">
+              <span class="funnel-emoji">⚖️</span>
+              <div class="funnel-txt"><b>3. Evaluare</b> — Compară cu alternative, citește recenzii</div>
+              <span class="fl-pct">25%</span>
+            </div>
+            <div class="funnel-layer fl4">
+              <span class="funnel-emoji">💭</span>
+              <div class="funnel-txt"><b>4. Intenție</b> — Aproape convins, caută ultimul argument</div>
+              <span class="fl-pct">10%</span>
+            </div>
+            <div class="funnel-layer fl5">
+              <span class="funnel-emoji">✅</span>
+              <div class="funnel-txt"><b>5. Cumpărare</b> — Decizia DA</div>
+              <span class="fl-pct">3–5%</span>
+            </div>
+            <div class="funnel-cap" style="margin-top:4px;">▼ Clienții tăi</div>
+          </div>
+          <div style="width:230px;flex-shrink:0;display:flex;flex-direction:column;gap:10px;">
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:14px 14px;font-size:13px;color:var(--foreground);line-height:1.5;">
+              <b>De ce contează?</b><br>Dacă transmiți un mesaj de cumpărare cuiva la etapa 1 — îl pierzi. Dacă trimiți conținut educativ cuiva la etapa 4 — pierzi vânzarea.
+            </div>
+            <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:14px 14px;font-size:13px;color:var(--foreground);line-height:1.5;">
+              <b>Mesajul corect</b> = conținut potrivit etapei + canal potrivit + moment potrivit
+            </div>
+            <div class="quote-block" style="margin:0;font-size:13px;">Nu poți vinde același mesaj tuturor. <b>Etapa decide conținutul.</b></div>
+          </div>
+        </div>
+        <div class="slide-num">15 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 09b — Exemplu: mașini chinezești prin Customer Journey -->
+    <!-- ================================================================ -->
+    <section data-notes="3 min. Exemplul mașinilor chinezești (BYD, Chery) e perfect: TOATĂ LUMEA îl poate urmări. Exercițiu rapid: 'La ce etapă ești tu cu mașinile chinezești?' — mâini ridicate pentru fiecare etapă. Observi că toată sala e în stadii diferite — același produs, 5 mesaje diferite necesare.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Exemplu real · Customer Journey</div>
+          <h2 class="slide-title">De la <span class="hl">„ce-s astea?"</span> la <span class="hl">„am cumpărat"</span> — mașini chinezești</h2>
+          <p class="slide-subtitle">Același produs, 5 etape diferite — fiecare etapă cere un mesaj diferit.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;flex:1;justify-content:center;">
+          <div style="display:grid;grid-template-columns:160px 1fr;gap:0;align-items:stretch;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;">
+            <div style="background:#1D4ED8;padding:12px 16px;display:flex;align-items:center;"><span style="font-size:13px;font-weight:800;color:white;">1 · Conștientizare</span></div>
+            <div style="padding:12px 16px;font-size:14px;color:var(--foreground);background:#F8FAFC;">Nu știe că există mașini chinezești de calitate. Zero impresie.</div>
+          </div>
+          <div style="display:grid;grid-template-columns:160px 1fr;gap:0;align-items:stretch;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;">
+            <div style="background:#2563EB;padding:12px 16px;display:flex;align-items:center;"><span style="font-size:13px;font-weight:800;color:white;">2 · Interes</span></div>
+            <div style="padding:12px 16px;font-size:14px;color:var(--foreground);background:#F8FAFC;">Vede un anunț sau aude un prieten. Intră pe YouTube: „BYD review România".</div>
+          </div>
+          <div style="display:grid;grid-template-columns:160px 1fr;gap:0;align-items:stretch;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;">
+            <div style="background:#7C3AED;padding:12px 16px;display:flex;align-items:center;"><span style="font-size:13px;font-weight:800;color:white;">3 · Evaluare</span></div>
+            <div style="padding:12px 16px;font-size:14px;color:var(--foreground);background:#F8FAFC;">Compară cu Toyota și Skoda. Verifică prețul, garanția, consumul. Citește recenzii.</div>
+          </div>
+          <div style="display:grid;grid-template-columns:160px 1fr;gap:0;align-items:stretch;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;">
+            <div style="background:#0891B2;padding:12px 16px;display:flex;align-items:center;"><span style="font-size:13px;font-weight:800;color:white;">4 · Intenție</span></div>
+            <div style="padding:12px 16px;font-size:14px;color:var(--foreground);background:#F8FAFC;">Merge la un showroom sau eveniment auto. Test drive. Ultimul test: „Cum e service-ul?"</div>
+          </div>
+          <div style="display:grid;grid-template-columns:160px 1fr;gap:0;align-items:stretch;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;">
+            <div style="background:#16A34A;padding:12px 16px;display:flex;align-items:center;"><span style="font-size:13px;font-weight:800;color:white;">5 · Cumpărare</span></div>
+            <div style="padding:12px 16px;font-size:14px;color:var(--foreground);background:#F8FAFC;">Negociază, semnează contractul. <b>A cumpărat.</b> Drumul: de la câteva zile la câteva luni.</div>
+          </div>
+        </div>
+        <div class="slide-num">16 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+
+    <!-- ================================================================ -->
+    <section data-notes="20 min. Împarți sala în echipe de 3-4 persoane. Fiecare echipă propune 5 produse/afaceri ÎN CREȘTERE + 5 ÎN MATURITATE/DECLIN — din domenii diverse (nu neapărat ce știu ei ca formatori). Prezentare pe echipe: când două echipe pun același produs în coloane diferite (ex. O echipă zice că magazinele online sunt în Creștere, alta în Maturitate) — ACEEA e discuția reală: depinde de piață! Moldova ≠ SUA. Magazinele online în USA = Maturitate. În Moldova unele nișe = încă Creștere. Lecția: PLC e contextual, nu universal. Timer vizibil: 10 min lucru + 10 min prezentare.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">👥 Exercițiu în echipă · 20 min</div>
+          <h2 class="slide-title">Harta PLC 5+5 — <span class="hl">în ce etapă e piața ta?</span></h2>
+          <p class="slide-subtitle">Propuneți câte 5 produse/afaceri în fiecare coloană — dezbaterile când nu ești de acord cu o altă echipă sunt mai valoroase decât răspunsul corect.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1;align-items:start;">
+          <div style="border:2px solid #16A34A;border-radius:12px;overflow:hidden;">
+            <div style="background:#16A34A;padding:12px 16px;text-align:center;">
+              <div style="font-size:15px;font-weight:800;color:white;">🚀 5 produse/piețe ÎN CREȘTERE</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.8);margin-top:2px;">Demand crește, competiție în formare, early movers câștigă</div>
+            </div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;background:#F0FDF4;">
+              <div style="background:white;border:1px dashed #BBF7D0;border-radius:6px;padding:10px 12px;font-size:14px;color:#6B7280;font-style:italic;">1. ___________________________</div>
+              <div style="background:white;border:1px dashed #BBF7D0;border-radius:6px;padding:10px 12px;font-size:14px;color:#6B7280;font-style:italic;">2. ___________________________</div>
+              <div style="background:white;border:1px dashed #BBF7D0;border-radius:6px;padding:10px 12px;font-size:14px;color:#6B7280;font-style:italic;">3. ___________________________</div>
+              <div style="background:white;border:1px dashed #BBF7D0;border-radius:6px;padding:10px 12px;font-size:14px;color:#6B7280;font-style:italic;">4. ___________________________</div>
+              <div style="background:white;border:1px dashed #BBF7D0;border-radius:6px;padding:10px 12px;font-size:14px;color:#6B7280;font-style:italic;">5. ___________________________</div>
+            </div>
+          </div>
+          <div style="border:2px solid #DC2626;border-radius:12px;overflow:hidden;">
+            <div style="background:#DC2626;padding:12px 16px;text-align:center;">
+              <div style="font-size:15px;font-weight:800;color:white;">📉 5 produse/piețe LA MATURITATE sau DECLIN</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.8);margin-top:2px;">Saturate sau înlocuite de alternative mai noi</div>
+            </div>
+            <div style="padding:14px 16px;display:flex;flex-direction:column;gap:8px;background:#FEF2F2;">
+              <div style="background:white;border:1px dashed #FECACA;border-radius:6px;padding:10px 12px;font-size:14px;color:#6B7280;font-style:italic;">1. ___________________________</div>
+              <div style="background:white;border:1px dashed #FECACA;border-radius:6px;padding:10px 12px;font-size:14px;color:#6B7280;font-style:italic;">2. ___________________________</div>
+              <div style="background:white;border:1px dashed #FECACA;border-radius:6px;padding:10px 12px;font-size:14px;color:#6B7280;font-style:italic;">3. ___________________________</div>
+              <div style="background:white;border:1px dashed #FECACA;border-radius:6px;padding:10px 12px;font-size:14px;color:#6B7280;font-style:italic;">4. ___________________________</div>
+              <div style="background:white;border:1px dashed #FECACA;border-radius:6px;padding:10px 12px;font-size:14px;color:#6B7280;font-style:italic;">5. ___________________________</div>
+            </div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin:0;">Dacă 2 echipe pun <b>același produs în coloane diferite</b> — aceea e discuția cea mai valoroasă. Depinde de piață, de context, de țară.</div>
+        <div class="slide-num">17 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 09 — TEORIE: Pâlnia Cold / Warm / Hot -->
+    <!-- ================================================================ -->
+    <section data-notes="Conceptul care leagă USP-ul de stadiul clientului — reprezentat ca o PÂLNIE (funnel) care se îngustează de sus în jos. Sus, lat = top of funnel (mulți care nu te cunosc). Jos, îngust = bottom of funnel (puțini, gata să cumpere). Greșeala comună: același mesaj pentru toți — ca și cum ai oferi oferta finală cuiva care nici nu știe cine ești. Cold: problema lor (empatizezi, nu vinzi). Warm: de ce tu (construiești credibilitate). Hot: oferta concretă cu urgență/bonus. Exemplele NaturaLab vorbesc despre ACELAȘI produs, dar sună complet diferit pe fiecare bandă. Acesta e insight-ul cheie.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie · Pâlnia audienței</div>
+          <h2 class="slide-title">Mesajul corect, <span class="hl">pentru clientul în etapa potrivită.</span></h2>
+          <p class="slide-subtitle">Sus, lat — mulți care nu te cunosc. Jos, îngust — puțini, gata să cumpere. Mesajul se schimbă pe fiecare nivel.</p>
+        </div>
+        <div class="funnel">
+          <div class="funnel-cap">▲ Top of funnel</div>
+          <div class="funnel-layer cold">
+            <span class="funnel-emoji">❄️</span>
+            <div class="funnel-txt"><b>COLD — nu te cunosc.</b> Mesaj: problema lor. → NaturaLab: „Știi ce ingrediente sunt în crema ta de față? Noi știm."</div>
+          </div>
+          <div class="funnel-layer warm">
+            <span class="funnel-emoji">🔥</span>
+            <div class="funnel-txt"><b>WARM — te știu, n-au cumpărat.</b> Mesaj: de ce tu. → NaturaLab: „90% din cliente văd diferența în 14 zile — sau returnezi banii."</div>
+          </div>
+          <div class="funnel-layer hot">
+            <span class="funnel-emoji">🔥🔥</span>
+            <div class="funnel-txt"><b>HOT — gata să cumpere.</b> Mesaj: oferta. → NaturaLab: „Azi + ser anti-age gratuit (89 lei)."</div>
+          </div>
+          <div class="funnel-cap">▼ Bottom of funnel</div>
+        </div>
+        <div class="slide-num">18 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 10 — EXEMPLU: Mesajul se schimbă cu audiența (3 carduri) -->
+    <!-- ================================================================ -->
+    <section data-notes="Consolidare cu 3 carduri NaturaLab — același produs, trei mesaje în funcție de stadiu. Participanții văd pattern-ul concret: Cold = empatizez cu problema, Warm = demonstrez credibilitate cu dovezi, Hot = ofertă cu urgență/bonus. Citește cardul pe rând. Sondaj rapid: 'La ce tip de audiență lucrați în principal acum, pentru afacerea voastră de caz?' — mâini ridicate pentru Cold / Warm / Hot. Pregătește terenul pentru exercițiul de la slide 11.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Exemplu · NaturaLab</div>
+          <h2 class="slide-title">Același produs, <span class="hl">trei mesaje diferite</span> — în funcție de stadiu.</h2>
+          <p class="slide-subtitle">Pattern simplu: Cold = problema lor · Warm = de ce tu · Hot = oferta concretă.</p>
+        </div>
+        <div class="audience-grid">
+          <div class="aud-card cold">
+            <div class="aud-temp">❄️</div>
+            <div class="aud-name">COLD</div>
+            <div class="aud-desc">Nu te cunoaște. Te vede prima dată. E în modul „nu am nevoie" sau „nu știu dacă pot avea încredere".</div>
+            <div class="aud-msg">
+              <span class="msg-lbl">Mesaj: problema lor</span>
+              „Știi ce ingrediente sunt în crema ta de față? Noi știm — și e doar natură."
+            </div>
+          </div>
+          <div class="aud-card warm">
+            <div class="aud-temp">🔥</div>
+            <div class="aud-name">WARM</div>
+            <div class="aud-desc">Te-a văzut deja, știe ce faci, dar n-a cumpărat. E în modul „interesant, dar de ce tu?".</div>
+            <div class="aud-msg">
+              <span class="msg-lbl">Mesaj: de ce tu</span>
+              „90% din clientele noastre văd diferența în 14 zile — sau returnezi banii."
+            </div>
+          </div>
+          <div class="aud-card hot">
+            <div class="aud-temp">🔥🔥</div>
+            <div class="aud-name">HOT</div>
+            <div class="aud-desc">Gata să cumpere. Te caută activ. Vrea un motiv final să spună DA acum.</div>
+            <div class="aud-msg">
+              <span class="msg-lbl">Mesaj: oferta concretă</span>
+              „Cumpără azi, primești gratuit serul anti-age (valoare 89 lei)."
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">19 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE — Găleata găurită: Te văd → ??? → Te aleg -->
+    <section data-notes="INIMA cadrului. De ce etapa de mijloc (TE CRED) e etapa pe care o sar toți: e 'găleata găurită'. Mulți postează (te văd) și se miră că nu vinde nimeni (te aleg). Adevărul: între 'te-a văzut' și 'te-a ales' e un drum de încredere — de obicei 7+ contacte până decide. Un singur mesaj sau o singură postare nu închide niciodată o decizie de cumpărare. Cârlig: degeaba torni apă în găleată (postezi mult) dacă fundul e găurit (nu prinzi pe nimeni la mijloc). Azi astupăm fundul.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · de ce se sare etapa de mijloc</div>
+          <h2 class="slide-title">„Te văd" → ??? → „cumpăr". <span class="hl">Aici e găleata găurită.</span></h2>
+          <p class="slide-subtitle">Mulți postează (te văd) și se miră că nu cumpără nimeni. Între ele e un drum de <b>încredere</b> — care se sare cel mai des.</p>
+        </div>
+        <div class="leak2-grid">
+          <div class="leak2-visual">
+            <span class="leak2-emoji">🪣</span>
+            <div class="leak2-cap">Torni apă, dar <span class="hl">fundul e găurit</span></div>
+            <div class="leak2-sub">Postezi mult (TE VĂD), dar nu prinzi pe nimeni la mijloc (TE CRED). Tot ce torni se scurge.</div>
+          </div>
+          <div class="leak2-pts">
+            <div class="leak2-pt"><span class="lp2-em">🔁</span><div class="lp2-txt">Între „te-a văzut" și „a cumpărat" e nevoie de <b>mai multe contacte</b> — regula: ~7 atingeri până decide.</div></div>
+            <div class="leak2-pt"><span class="lp2-em">⏳</span><div class="lp2-txt">O decizie importantă — a schimba furnizorul, a încerca un produs nou — durează <b>timp</b>. O singură postare n-o închide.</div></div>
+            <div class="leak2-pt"><span class="lp2-em">🔧</span><div class="lp2-txt">Soluția nu e „postează mai mult". E <b>să astupi fundul</b>: construiește încredere și ia contactul la TE CRED.</div></div>
+          </div>
+        </div>
+        <div class="cw-note"><div class="quote-block warn"><strong>Cârlig:</strong> degeaba torni apă în găleată (postezi mult) dacă fundul e găurit (nu prinzi pe nimeni la mijloc). <strong>Azi astupăm fundul.</strong></div></div>
+        <div class="slide-num">20 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE — TE VĂD: etapa de atragere -->
+    <section data-notes="Etapa 1 · TE VĂD (~70% din efort). Scop: te descoperă oameni care nici nu știau de tine. NU vinzi încă. Ce funcționează: conținut valoros, un cârlig bun, arăți produsul/procesul în acțiune. Ce NU faci: nu ceri comanda, nu ceri abonamentul, nu dai prețul din prima — asta sperie audiența rece. Regula etapei: la TE VĂD faci umbră, nu vânzare.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Etapa 1 · TE VĂD <span style="background:#DBEAFE;color:#1D4ED8;padding:2px 10px;border-radius:100px;margin-left:8px;font-size:11px;">👀 ATRAGERE · ~70%</span></div>
+          <h2 class="slide-title">Te descoperă oameni care <span class="hl">nici nu știau de tine</span></h2>
+          <p class="slide-subtitle">Scop: să fii descoperit. <b>NU vinzi încă.</b> La TE VĂD faci umbră, nu vânzare.</p>
+        </div>
+        <div class="te-grid">
+          <div class="te-card do">
+            <h3>✅ Ce faci</h3>
+            <div class="te-item"><span class="ti">📱</span><div>Video cu produsul/procesul în acțiune — „uite cum se face"</div></div>
+            <div class="te-item"><span class="ti">🎣</span><div>Un cârlig bun — întrebarea-durere, cifra-șoc, mini-povestea</div></div>
+            <div class="te-item"><span class="ti">🎁</span><div>Conținut cu valoare gratuită — sfat util, comparație, insight</div></div>
+            <div class="te-item"><span class="ti">📍</span><div>Postat unde e avatarul tău: TikTok, Reels, Facebook, LinkedIn</div></div>
+          </div>
+          <div class="te-card dont">
+            <h3>❌ Ce NU faci</h3>
+            <div class="te-item"><span class="ti">🚫</span><div>Nu ceri comanda sau abonamentul din prima postare</div></div>
+            <div class="te-item"><span class="ti">🚫</span><div>Nu dai prețul la audiența rece — sperie înainte să cunoști</div></div>
+            <div class="te-item"><span class="ti">🚫</span><div>Nu trimiți mesaj „Te interesează?" imediat după follow</div></div>
+            <div class="te-item"><span class="ti">🚫</span><div>Nu postezi generic — „Suntem o firmă cu experiență de 10 ani"</div></div>
+          </div>
+          <div class="te-card how">
+            <h3>💡 Exemple de conținut</h3>
+            <div class="te-item"><span class="ti">🍱</span><div><b>FreshBox:</b> video 15 sec cum se pregătesc cutiile — ASMR, fără text, muzică</div></div>
+            <div class="te-item"><span class="ti">🌿</span><div><b>NaturaLab:</b> „Câte ingrediente ai în crema ta? Noi avem 5. Toate pe etichetă."</div></div>
+          </div>
+          <div class="te-card proof">
+            <h3>📊 Metrica etapei</h3>
+            <div class="te-item"><span class="ti">👁️</span><div>Reach, vizualizări, urmăritori noi — NU vânzări</div></div>
+            <div class="te-item"><span class="ti">💬</span><div>Comentarii, share-uri, salvări — semne de interes</div></div>
+            <div class="te-item"><span class="ti">🎯</span><div>Dacă cineva comentează sau urmărește → intră în etapa TE CRED</div></div>
+          </div>
+        </div>
+        <div class="slide-num">21 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE — TE CRED: etapa-cheie (încredere + contact) -->
+    <section data-notes="ETAPA 2 · TE CRED (~20%) — ETAPA-CHEIE. Scop: cineva e interesat dar nu convins. Construiești ÎNCREDERE + îi iei CONTACTUL. Ce funcționează: dovezi, testimoniale, mostră gratuită, răspunzi la DM-uri, inviți la o demo/consultanță scurtă. Colectezi: email, număr, Messenger — 'Lista caldă'. 2-3 contacte pe 1-2 săptămâni, nu unul. Psihologie: mostra gratuită creează reciprocitate, dovada socială construiește încredere. INIMA modulului.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Etapa 2 · TE CRED <span style="background:#FEF3C7;color:#B45309;padding:2px 10px;border-radius:100px;margin-left:8px;font-size:11px;">🤝 ÎNCĂLZIRE · ~20% · ETAPA-CHEIE</span></div>
+          <h2 class="slide-title">Construiești <span class="hl">încredere</span> + îi iei <span class="hl">contactul</span></h2>
+          <p class="slide-subtitle">E interesat, dar nu convins. <b>Inima modulului</b> — tot drumul se rupe dacă sari de la „te-a văzut" direct la „cumpără".</p>
+        </div>
+        <div class="te-grid">
+          <div class="te-card do">
+            <h3>✅ Ce faci</h3>
+            <div class="te-item"><span class="ti">🎁</span><div>Oferi o <b>mostră gratuită</b> sau o consultanță scurtă fără obligații</div></div>
+            <div class="te-item"><span class="ti">💬</span><div>Răspunzi la DM-uri, comentarii — construiești relația 1:1</div></div>
+            <div class="te-item"><span class="ti">📸</span><div>Arăți <b>dovezi</b>: testimoniale, înainte/după, cifre reale</div></div>
+            <div class="te-item"><span class="ti">📋</span><div>Colectezi contactul: email, telefon, Messenger → <b>Lista caldă</b></div></div>
+          </div>
+          <div class="te-card proof">
+            <h3>⭐ Dovada (cheia etapei)</h3>
+            <div class="te-item"><span class="ti">🍱</span><div><b>FreshBox:</b> „Prima livrare gratis — fără abonament"</div></div>
+            <div class="te-item"><span class="ti">🌿</span><div><b>NaturaLab:</b> „14 zile trial — sau banii înapoi"</div></div>
+            <div class="te-item"><span class="ti">📊</span><div>Cifre: „340 de birouri comandă săptămânal"</div></div>
+          </div>
+          <div class="te-card how">
+            <h3>🔁 Câte atingeri</h3>
+            <div class="te-item"><span class="ti">📬</span><div>2–3 contacte pe 1–2 săptămâni — nu un singur mesaj</div></div>
+            <div class="te-item"><span class="ti">📱</span><div>Email → DM → apel scurt → follow-up la 3 zile</div></div>
+          </div>
+          <div class="te-card dont" style="border-color:#FDE68A;background:#FFFBEB;">
+            <h3 style="color:#B45309;">💡 De ce funcționează</h3>
+            <div class="te-item"><span class="ti">🧠</span><div>Mostra gratuită creează <b>reciprocitate</b> — simte că datorează un pas</div></div>
+            <div class="te-item"><span class="ti">👥</span><div>Dovada socială (<b>cifre, testimoniale</b>) construiește încredere rapid</div></div>
+          </div>
+        </div>
+        <div class="slide-num">22 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE — TE ALEG: etapa de conversie -->
+    <section data-notes="ETAPA 3 · TE ALEG (~10%). Scop: e cald, gata să decidă. Acum aplici pitch, preț, chemare, urgență. Ce funcționează: ofertă concretă, urgență reală, un pas mic clar. Greșeala: nu dai destul clar ce face mai departe. Regula: la TE ALEG ești scurt și clar — tot greul (încrederea) l-ai făcut la TE CRED. Pâlnia se închide în cerc: clientul mulțumit aduce alți clienți.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Etapa 3 · TE ALEG <span style="background:#D1FAE5;color:#047857;padding:2px 10px;border-radius:100px;margin-left:8px;font-size:11px;">✅ CONVERSIE · ~10%</span></div>
+          <h2 class="slide-title">E cald, gata să decidă. <span class="hl">Acum închizi — scurt și clar.</span></h2>
+          <p class="slide-subtitle">Aplici ce știi deja: pitch, preț, chemare, urgență. <b>Tot greul (încrederea) l-ai făcut la TE CRED.</b></p>
+        </div>
+        <div class="te-grid">
+          <div class="te-card do">
+            <h3>✅ Ce faci</h3>
+            <div class="te-item"><span class="ti">💬</span><div>Ofertă <b>concretă și clară</b> — nu „hai să discutăm", ci „iată exact ce primești"</div></div>
+            <div class="te-item"><span class="ti">⏰</span><div>Urgență <b>reală</b>: stoc limitat, preț valabil până [dată], locuri disponibile</div></div>
+            <div class="te-item"><span class="ti">👣</span><div>Un <b>pas mic următor</b> clar: „comandă acum", „apasă link", „scrie-mi"</div></div>
+          </div>
+          <div class="te-card proof">
+            <h3>⭐ Exemple de închidere</h3>
+            <div class="te-item"><span class="ti">🍱</span><div><b>FreshBox:</b> „Abonament lunar — 20 prânzuri. Prețul se blochează la valoarea de azi dacă comanzi până vineri."</div></div>
+            <div class="te-item"><span class="ti">🌿</span><div><b>NaturaLab:</b> „Kit complet + livrare gratis dacă comanzi azi. Oferta expiră la miezul nopții."</div></div>
+          </div>
+          <div class="te-card dont">
+            <h3>❌ Ce NU faci</h3>
+            <div class="te-item"><span class="ti">🚫</span><div>Nu lăsa pasul următor neclar — „sunați dacă vreți"</div></div>
+            <div class="te-item"><span class="ti">🚫</span><div>Nu pune urgență falsă — se vede și strică relația</div></div>
+            <div class="te-item"><span class="ti">🚫</span><div>Nu lăsa conversația deschisă fără un next step</div></div>
+          </div>
+          <div class="te-card how">
+            <h3>🔄 Pâlnia se închide în cerc</h3>
+            <div class="te-item"><span class="ti">😊</span><div>Client mulțumit → <b>referral</b> → aduce alți clienți</div></div>
+            <div class="te-item"><span class="ti">💬</span><div>Testimonialul lui → hrănește din nou <b>etapa TE CRED</b></div></div>
+          </div>
+        </div>
+        <div class="slide-num">23 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE — Scara de valoare: urcă clientul în 3 trepte -->
+    <section data-notes="Nu cere comanda mare din prima — urcă clientul în 3 trepte: 1. MOSTRA/PROBA (gratis, etapa TE CRED); 2. PRIMA COMANDĂ (de probă, plătită); 3. CLIENT REPETABIL (abonament / comandă lunară). Venitul care se repetă e cel mai valoros. 1 client pe abonament bate 50 de clienți de o dată — ăla ține afacerea în viață. Cârlig: nu căuta vânzarea de o dată. Caută clientul care vine în fiecare luni.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Instrument · Scara de valoare</div>
+          <h2 class="slide-title">Nu cere comanda mare din prima. <span class="hl">Urcă clientul în 3 trepte.</span></h2>
+          <p class="slide-subtitle">Treapta 1 = mostra (etapa TE CRED). Apoi prima comandă. Apoi <b>clientul repetabil</b> — cel mai valoros.</p>
+        </div>
+        <div class="ladder2">
+          <div class="ladder2-step ls1"><span class="l2n">1</span><div class="l2b"><div class="l2name">Mostra / proba</div><div class="l2desc">gratis — etapa TE CRED, creează încrederea</div></div><span class="l2tag">gratis</span></div>
+          <div class="l2-arrows">↑</div>
+          <div class="ladder2-step ls2"><span class="l2n">2</span><div class="l2b"><div class="l2name">Prima comandă</div><div class="l2desc">plătită, de probă — validezi că e mulțumit</div></div><span class="l2tag">plătită</span></div>
+          <div class="l2-arrows">↑</div>
+          <div class="ladder2-step ls3"><span class="l2n">3</span><div class="l2b"><div class="l2name">Client repetabil</div><div class="l2desc">abonament / comandă lunară — cel mai valoros</div></div><span class="l2tag">cel mai valoros</span></div>
+        </div>
+        <table class="vs-table" style="font-size:15px">
+          <thead>
+            <tr><th class="col-bad" style="width:50%">❌ Vânzare la întâmplare</th><th class="col-good" style="width:50%">✅ Venit repetabil</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="bad-cell">1 client FreshBox = 50 lei, o dată</td><td class="good-cell">1 birou pe abonament = 50 lei × 20 zile/lună = <b>1.000 lei/lună</b></td></tr>
+            <tr><td class="bad-cell">alergi mereu după clienți noi</td><td class="good-cell">clientul vine singur, lună de lună</td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block warn"><strong>Cârlig:</strong> nu căuta vânzarea de o dată. Caută <strong>biroul care comandă în fiecare luni</strong>. Acela ține afacerea în viață.</div></div>
+        <div class="slide-num">24 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11 — PRACTICĂ: Identifică-ți audiența (5 min) -->
+    <!-- ================================================================ -->
+    <section data-notes="Exercițiu individual — 5 minute. Participanții lucrează pe afacerea aleasă în Foaia de drum. Pasul 1: estimează % Cold/Warm/Hot (chiar dacă e aproximativ). Pasul 2: scrie 1-2 propoziții diferite pentru fiecare grup. Obiectiv: să realizeze că mesajul lor curent e probabil același pentru toate cele 3 grupuri. Debrief rapid: 2-3 persoane citesc variantele lor — grupul oferă feedback de 1 minut per persoană.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">✍️ Exercițiu individual</div>
+          <h2 class="slide-title">Identifică-ți <span class="hl" style="color:#0EA371">audiența</span></h2>
+          <p class="slide-subtitle">Pentru afacerea ta de caz din Foaia de drum — cine e și în ce stadiu se află.</p>
+        </div>
+        <div style="display:flex;gap:14px;margin-bottom:18px">
+          <div class="timer-pill">⏱️ 5 minute</div>
+          <div class="mode-pill">👤 Individual</div>
+        </div>
+        <div class="pitch-sheet">
+          <div class="ps-line">
+            <div class="ps-word">1. Afacerea mea de caz</div>
+            <div class="ps-fill"></div>
+          </div>
+          <div class="ps-line">
+            <div class="ps-word">2. % Cold / Warm / Hot</div>
+            <div style="flex:1;display:flex;gap:8px;align-items:center">
+              <span style="font-size:14px;color:var(--muted)">❄️ Cold ___% &nbsp;&nbsp; 🔥 Warm ___% &nbsp;&nbsp; 🔥🔥 Hot ___%</span>
+            </div>
+          </div>
+          <div class="ps-line" style="flex-direction:column;align-items:flex-start;gap:10px">
+            <div class="ps-word" style="min-width:0">3. Ce le spun diferit?</div>
+            <div style="width:100%;font-size:15px;color:var(--muted);line-height:2.2">
+              ❄️ Cold: ________________________________________________________<br>
+              🔥 Warm: _______________________________________________________<br>
+              🔥🔥 Hot: &nbsp;________________________________________________________
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">25 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE — Pâlnia de conversie: 100 te văd → 2 cumpără -->
+    <section data-notes="Pâlnia dezarmează frustrarea «am postat și n-a cumpărat nimeni». 100 te văd → 2 cumpără, și ăsta e un rezultat BUN. De ce contează: dacă aștepți ca un om să cumpere din prima postare, te dezamăgești. Vrei mai mulți clienți? 2 opțiuni: lărgești gura pâlniei (mai mulți te văd) SAU astupi găurile (pierzi mai puțini pe drum). Întrebare de discuție: pe care treaptă pierzi tu cei mai mulți oameni acum?">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie · Pâlnia de conversie</div>
+          <h2 class="slide-title">100 te văd → 2 cumpără. <span class="hl">Și ăsta e un rezultat BUN.</span></h2>
+          <p class="slide-subtitle">Dacă aștepți ca un om să cumpere din prima postare, te dezamăgești. Pâlnia explică <b>de ce ai nevoie de mulți sus</b>.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1.2fr 0.8fr;gap:28px;flex:1;align-items:center;">
+          <div class="conv-funnel">
+            <div class="conv-row conv-r1"><span class="conv-stage">Atenție</span><div class="conv-bar"><span class="cb-num">100</span><span class="cb-lbl">TE VĂD</span></div></div>
+            <div class="conv-row conv-r2"><span class="conv-stage">Interes</span><div class="conv-bar"><span class="cb-num">20</span><span class="cb-lbl">TE CUNOSC</span></div></div>
+            <div class="conv-row conv-r3"><span class="conv-stage">Dorință</span><div class="conv-bar"><span class="cb-num">5</span><span class="cb-lbl">TE CONTACTEAZĂ</span></div></div>
+            <div class="conv-row conv-r4"><span class="conv-stage">Acțiune</span><div class="conv-bar"><span class="cb-num">2</span><span class="cb-lbl">CUMPĂRĂ</span></div></div>
+          </div>
+          <div class="conv-side">
+            <div class="conv-pt bad"><div class="cp-lbl">Greșeala #1</div>Vrei vânzare <b>direct din prima postare</b>. Nu funcționează.</div>
+            <div class="conv-pt truth"><div class="cp-lbl">Adevărul</div">Ai nevoie de <b>mulți oameni sus</b>, ca să curgă câțiva jos — asta e normal.</div>
+            <div class="conv-pt lever"><div class="cp-lbl">Cele 2 pârghii</div><b>Lărgești gura</b> (mai mulți te văd) SAU <b>astupi găurile</b> (pierzi mai puțini pe drum).</div>
+          </div>
+        </div>
+        <div class="slide-num">26 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE — Product Life Cycle (teoria + chart) -->
+    <!-- ================================================================ -->
+    <section data-notes="4 min. PLC arată că orice produs / piață trece prin 4 etape — și că strategia ta USP depinde de unde ești. Dacă ești în Introducere: educa piața. Dacă ești în Maturitate: diferențiază-te agresiv sau caută nișă. Declin: caut extensie sau exit. Subliniez: mașinile chinezești sunt acum la Introducere-Creștere în Moldova — momentul optim să intri. Benzinăriile clasice sunt la Maturitate-Declin. Ai ocazia să treci la exercițiu: ce produse cunoașteți în fiecare fază?">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie · Ciclul de viață al produsului</div>
+          <h2 class="slide-title">Orice produs are <span class="hl">4 etape de viață</span></h2>
+          <p class="slide-subtitle">Strategia ta diferă total în funcție de unde ești pe curbă — ce e geniu în Introducere poate fi greșit în Maturitate.</p>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:12px;">
+          <!-- Curba PLC — SVG simplu -->
+          <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative;">
+            <svg viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;height:auto;">
+              <!-- Axes -->
+              <line x1="40" y1="220" x2="680" y2="220" stroke="#CBD5E1" stroke-width="1.5"/>
+              <line x1="40" y1="20" x2="40" y2="220" stroke="#CBD5E1" stroke-width="1.5"/>
+              <text x="360" y="238" text-anchor="middle" font-size="11" fill="#94A3B8" font-family="Onest,sans-serif">Timp</text>
+              <text x="14" y="120" text-anchor="middle" font-size="11" fill="#94A3B8" font-family="Onest,sans-serif" transform="rotate(-90,14,120)">Vânzări</text>
+              <!-- S-curve PLC: Intro→Growth→Maturity→Decline -->
+              <path d="M 60,210 C 100,205 130,200 160,180 C 195,155 210,100 260,60 C 310,25 350,20 400,22 C 450,22 480,30 520,60 C 560,90 590,140 640,200" 
+                    fill="none" stroke="url(#plcGrad)" stroke-width="3.5" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="plcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#3B82F6"/>
+                  <stop offset="35%" stop-color="#16A34A"/>
+                  <stop offset="60%" stop-color="#F59E0B"/>
+                  <stop offset="100%" stop-color="#DC2626"/>
+                </linearGradient>
+              </defs>
+              <!-- Phase vertical dividers -->
+              <line x1="180" y1="30" x2="180" y2="218" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4"/>
+              <line x1="380" y1="20" x2="380" y2="218" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4"/>
+              <line x1="540" y1="40" x2="540" y2="218" stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4"/>
+              <!-- Phase labels -->
+              <text x="110" y="45" text-anchor="middle" font-size="13" font-weight="800" fill="#2563EB" font-family="Onest,sans-serif">1. Introducere</text>
+              <text x="110" y="60" text-anchor="middle" font-size="11" fill="#64748B" font-family="Onest,sans-serif">Educi piața</text>
+              <text x="280" y="22" text-anchor="middle" font-size="13" font-weight="800" fill="#15803D" font-family="Onest,sans-serif">2. Creștere</text>
+              <text x="280" y="37" text-anchor="middle" font-size="11" fill="#64748B" font-family="Onest,sans-serif">Scalezi rapid</text>
+              <text x="460" y="30" text-anchor="middle" font-size="13" font-weight="800" fill="#B45309" font-family="Onest,sans-serif">3. Maturitate</text>
+              <text x="460" y="45" text-anchor="middle" font-size="11" fill="#64748B" font-family="Onest,sans-serif">Diferențiezi</text>
+              <text x="605" y="55" text-anchor="middle" font-size="13" font-weight="800" fill="#DC2626" font-family="Onest,sans-serif">4. Declin</text>
+              <text x="605" y="70" text-anchor="middle" font-size="11" fill="#64748B" font-family="Onest,sans-serif">Pivot / exit</text>
+            </svg>
+          </div>
+          <!-- 4 phase strategy cards -->
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+            <div style="background:#EFF6FF;border-top:3px solid #2563EB;border-radius:8px;padding:10px 12px;">
+              <div style="font-size:12px;font-weight:800;color:#2563EB;margin-bottom:4px;">Introducere</div>
+              <div style="font-size:12px;color:var(--muted);line-height:1.4;">Ex: mașini electrice moldovene, food delivery în orașe mici</div>
+            </div>
+            <div style="background:#F0FDF4;border-top:3px solid #16A34A;border-radius:8px;padding:10px 12px;">
+              <div style="font-size:12px;font-weight:800;color:#15803D;margin-bottom:4px;">Creștere</div>
+              <div style="font-size:12px;color:var(--muted);line-height:1.4;">Ex: mașini chinezești în Moldova, produse naturale, AI tools</div>
+            </div>
+            <div style="background:#FFFBEB;border-top:3px solid #D97706;border-radius:8px;padding:10px 12px;">
+              <div style="font-size:12px;font-weight:800;color:#B45309;margin-bottom:4px;">Maturitate</div>
+              <div style="font-size:12px;color:var(--muted);line-height:1.4;">Ex: cafenele clasice, servicii de contabilitate standard, SMS</div>
+            </div>
+            <div style="background:#FEF2F2;border-top:3px solid #DC2626;border-radius:8px;padding:10px 12px;">
+              <div style="font-size:12px;font-weight:800;color:#DC2626;margin-bottom:4px;">Declin</div>
+              <div style="font-size:12px;color:var(--muted);line-height:1.4;">Ex: DVD-uri, cabine foto clasice, agenții de turism tradiționale</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">27 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE — Exercițiu PLC 5+5 (20 min) -->
+    <!-- ================================================================ -->
+    <!-- SLIDE 12 — TEORIE: Design Thinking (5 pași) -->
+    <!-- ================================================================ -->
+    <section data-notes="Cum ajungi la un USP bun — nu prin inspirație, ci printr-un proces. Design thinking are 5 pași: Empatizezi (asculți clientul) → Definești (formulezi problema clar) → Ideezi (generezi mesaje USP) → Prototip (alegi o variantă) → Testezi (verifici pe oameni reali). Aplicat la USP: nu inventezi USP-ul la birou; pleci de la ce simte clientul, definești problema lui, abia apoi formulezi mesajul. Pasul 2 (Definești) e cel mai important — dacă definești prost problema, tot mesajul se construiește pe nisip. Acesta e exact procesul pe care îl fac participanții la exercițiul în echipă de la slide 17.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cum ajungi la un USP bun</div>
+          <h2 class="slide-title">USP-ul nu se inventează — <span class="hl">se construiește prin proces</span></h2>
+          <p class="slide-subtitle">Design thinking, 5 pași. Pleci de la client, nu de la birou. Pasul cheie: <b>Definești problema corect</b>.</p>
+        </div>
+        <div class="llm-steps">
+          <div class="llm-step"><div class="llm-step-num">1</div><span class="llm-step-icon">❤️</span><div class="llm-step-title">Empatizezi</div><div class="llm-step-desc">Asculți clientul, înțelegi ce simte din interior</div></div>
+          <div class="llm-step focus"><div class="llm-step-num">2</div><span class="llm-step-icon">🎯</span><div class="llm-step-title">Definești</div><span class="focus-badge">PASUL CHEIE</span><div class="llm-step-desc">Formulezi clar problema — fundația întregului USP</div></div>
+          <div class="llm-step"><div class="llm-step-num">3</div><span class="llm-step-icon">💡</span><div class="llm-step-title">Ideezi</div><div class="llm-step-desc">Generezi mai multe variante de mesaj USP</div></div>
+          <div class="llm-step"><div class="llm-step-num">4</div><span class="llm-step-icon">🧩</span><div class="llm-step-title">Prototip</div><div class="llm-step-desc">Alegi o variantă, o scrii clar și simplu</div></div>
+          <div class="llm-step"><div class="llm-step-num">5</div><span class="llm-step-icon">🧪</span><div class="llm-step-title">Testezi</div><div class="llm-step-desc">Verifici cu clienți reali, ajustezi mesajul</div></div>
+        </div>
+        <div class="quote-block" style="margin-top:22px"><strong>De ce contează:</strong> dacă definești prost problema, tot mesajul se construiește pe nisip. O problemă bine definită = un USP care convinge. 🏗️</div>
+        <div class="slide-num">28 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 12b — Exemplu: NaturaLab prin Design Thinking -->
+    <!-- ================================================================ -->
+    <section data-notes="4 min. NaturaLab aplicat. Empatizezi = nu 'ne gândim la client' ci 'stăm de vorbă cu 30 de mame'. Prototipul nu e lansarea — e o mostră la 20 persoane. Testezi dă un feedback concret: 'prea cremoasă' → ajustezi ÎNAINTE de lansare, nu după ce ai investit 50k. Acesta e puterea procesului față de intuiție.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Exemplu aplicat · Design Thinking</div>
+          <h2 class="slide-title">NaturaLab — <span class="hl">cremă piele uscată</span> prin Design Thinking</h2>
+          <p class="slide-subtitle">Nu a inventat produsul la birou — a urmat procesul pas cu pas.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;flex:1;align-items:stretch;">
+          <div style="border:1px solid #E2E8F0;border-top:3px solid #EC4899;border-radius:8px;padding:14px 12px;display:flex;flex-direction:column;gap:8px;">
+            <div style="font-size:11px;font-weight:800;color:#EC4899;text-transform:uppercase;letter-spacing:0.06em;">1 · Empatizezi</div>
+            <div style="font-size:13px;font-weight:700;color:var(--foreground);">30 interviuri cu mame</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.45;">„Mi-e frică să dau copilului ceva cu chimicale — nu știu ce e în cremă."</div>
+          </div>
+          <div style="border:1px solid var(--primary);border-top:3px solid var(--primary);border-radius:8px;padding:14px 12px;background:var(--primary-ultra-light);display:flex;flex-direction:column;gap:8px;">
+            <div style="font-size:11px;font-weight:800;color:var(--primary);text-transform:uppercase;letter-spacing:0.06em;">2 · Definești ★</div>
+            <div style="font-size:13px;font-weight:700;color:var(--foreground);">Enunțul problemei</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.45;">„Mamă 30-40 ani, piele uscată, vrea cremă 100% naturală, aplicată rapid"</div>
+          </div>
+          <div style="border:1px solid #E2E8F0;border-top:3px solid #2563EB;border-radius:8px;padding:14px 12px;display:flex;flex-direction:column;gap:8px;">
+            <div style="font-size:11px;font-weight:800;color:#2563EB;text-transform:uppercase;letter-spacing:0.06em;">3 · Ideezi</div>
+            <div style="font-size:13px;font-weight:700;color:var(--foreground);">12 formulări în lab</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.45;">Ingrediente, textură, parfum vs fără. 12 variante → 3 candidate</div>
+          </div>
+          <div style="border:1px solid #E2E8F0;border-top:3px solid #D97706;border-radius:8px;padding:14px 12px;display:flex;flex-direction:column;gap:8px;">
+            <div style="font-size:11px;font-weight:800;color:#D97706;text-transform:uppercase;letter-spacing:0.06em;">4 · Prototip</div>
+            <div style="font-size:13px;font-weight:700;color:var(--foreground);">3 mostre → 50 teste</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.45;">Feedback pe textură, miros, absorbție. Date concrete.</div>
+          </div>
+          <div style="border:1px solid #E2E8F0;border-top:3px solid #16A34A;border-radius:8px;padding:14px 12px;display:flex;flex-direction:column;gap:8px;">
+            <div style="font-size:11px;font-weight:800;color:#16A34A;text-transform:uppercase;letter-spacing:0.06em;">5 · Testezi</div>
+            <div style="font-size:13px;font-weight:700;color:var(--foreground);">Feedback → ajustare</div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.45;">„Prea cremoasă" → ajustăm textura → lansare reală</div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin:0;">Feedbackul „prea cremoasă" schimbă produsul <b>înainte</b> de lansare — nu după ce ai investit 50.000 lei.</div>
+        <div class="slide-num">29 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 12c — Build-Measure-Learn (Lean Startup) -->
+    <!-- ================================================================ -->
+    <section data-notes="3 min. Build-Measure-Learn e ciclul din cartea 'The Lean Startup' de Eric Ries (2011). Ideea centrală: nu construiești produsul perfect la birou — construiești minim, măsori, înveți, ajustezi. Fiecare iterație = un ciclu nou. NaturaLab: Build = mostre. Measure = 50 feedback-uri. Learn = 'textură prea cremoasă'. Ajustezi. Build din nou. Recomandă cartea ca lectură esențială.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Framework · Lean Startup</div>
+          <h2 class="slide-title">Nu perfecta la birou — <span class="hl">validează rapid cu piața</span></h2>
+          <p class="slide-subtitle">Construiești minim → măsori reacția → înveți → ajustezi. Fiecare ciclu economisește luni și bani.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 130px;gap:28px;flex:1;align-items:center;">
+          <div style="display:flex;flex-direction:column;gap:16px;">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
+              <div style="border:2px solid var(--primary);border-radius:12px 0 0 12px;padding:20px 16px;background:var(--primary-ultra-light);text-align:center;">
+                <div style="font-size:28px;margin-bottom:8px;">🔨</div>
+                <div style="font-size:16px;font-weight:800;color:var(--primary);">BUILD</div>
+                <div style="font-size:13px;color:var(--muted);line-height:1.4;margin-top:6px;">Construiești versiunea minimă, cât mai repede</div>
+              </div>
+              <div style="border-top:2px solid var(--primary);border-bottom:2px solid var(--primary);padding:20px 16px;background:#F8FAFC;text-align:center;">
+                <div style="font-size:28px;margin-bottom:8px;">📊</div>
+                <div style="font-size:16px;font-weight:800;color:var(--foreground);">MEASURE</div>
+                <div style="font-size:13px;color:var(--muted);line-height:1.4;margin-top:6px;">Măsori reacția pieței — date reale, nu opinia ta</div>
+              </div>
+              <div style="border:2px solid var(--primary);border-radius:0 12px 12px 0;padding:20px 16px;background:var(--primary-ultra-light);text-align:center;">
+                <div style="font-size:28px;margin-bottom:8px;">💡</div>
+                <div style="font-size:16px;font-weight:800;color:var(--primary);">LEARN</div>
+                <div style="font-size:13px;color:var(--muted);line-height:1.4;margin-top:6px;">Înveți ce funcționează. Ajustezi. Repeți.</div>
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;">
+              <div style="padding:10px 16px;background:#E0E7FF;border-radius:8px 0 0 8px;font-size:13px;color:var(--primary);text-align:center;font-weight:600;">NaturaLab: 3 mostre</div>
+              <div style="padding:10px 16px;background:#F1F5F9;font-size:13px;color:var(--foreground);text-align:center;font-weight:600;">50 feedback-uri reale</div>
+              <div style="padding:10px 16px;background:#E0E7FF;border-radius:0 8px 8px 0;font-size:13px;color:var(--primary);text-align:center;font-weight:600;">„Prea cremoasă" → ajustez</div>
+            </div>
+          </div>
+          <div style="background:#1a1a1a;border-radius:8px;padding:16px 12px;display:flex;flex-direction:column;gap:8px;align-items:center;box-shadow:4px 4px 16px rgba(0,0,0,0.15);">
+            <div style="font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;color:#888;text-align:center;">The book</div>
+            <div style="font-size:13px;font-weight:900;color:#E50914;text-align:center;line-height:1.2;text-transform:uppercase;">THE<br>LEAN<br>STARTUP</div>
+            <div style="font-size:26px;text-align:center;">🚀</div>
+            <div style="font-size:9px;color:#aaa;text-align:center;line-height:1.4;">Eric Ries<br><span style="opacity:0.6">2011</span></div>
+          </div>
+        </div>
+        <div class="slide-num">30 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 13 — TEORIE: Tonul Vocii (ToV) -->
+    <!-- ================================================================ -->
+    <section data-notes="Tonul vocii e la fel de important ca și CE spui — e HOW spui. Același USP comunicat formal vs informal vs jucăuș creează percepții complet diferite. NaturaLab: informal (se adresează ca unei prietene), empatic (înțelege frustrarea), serios (nu jucăuș — produsul e despre sănătate, nu entertainment). Cele 3 scale nu sunt bune/rele — depind de brand și de client. Rezervo e mai formal și serios (B2B, bani la mijloc). FreshBox poate fi mai empatic (sănătate, birou). Atenție: formalitatea și empatia sunt scale independente — poți fi formal ȘI empatic.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie · Tonul Vocii</div>
+          <h2 class="slide-title">HOW spui e la fel de important <span class="hl">ca și CE spui.</span></h2>
+          <p class="slide-subtitle">Același mesaj, 3 tonuri diferite — percepții complet diferite despre brand.</p>
+        </div>
+        <div class="cards-3" style="margin-top:8px">
+          <div class="card sky">
+            <div class="card-icon">📐</div>
+            <div class="card-title">1. Formal ↔ Informal</div>
+            <div class="card-body">
+              <b>Formal:</b> „Produsele noastre sunt formulate din ingrediente naturale selectate."<br><br>
+              <b>Informal:</b> „Știi cum e când citești eticheta și nu înțelegi nimic? Noi am rezolvat asta."
+            </div>
+          </div>
+          <div class="card lavender">
+            <div class="card-icon">🎭</div>
+            <div class="card-title">2. Serios ↔ Jucăuș</div>
+            <div class="card-body">
+              <b>Serios:</b> „Ingrediente certificate, fără aditivi artificiali."<br><br>
+              <b>Jucăuș:</b> „Pielea ta merită mai bine decât chimicale pe care nu le poți pronunța 😄"
+            </div>
+          </div>
+          <div class="card peach">
+            <div class="card-icon">❤️</div>
+            <div class="card-title">3. Rece ↔ Empatic</div>
+            <div class="card-body">
+              <b>Rece:</b> „Livrare în 24 de ore pe întreg teritoriul țării."<br><br>
+              <b>Empatic:</b> „Comandat azi seara — la tine mâine dimineață, înainte să pleci."
+            </div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:16px">
+          NaturaLab alege: <strong>informal + empatic + serios</strong> — se adresează ca o prietenă, nu ca o corporație.
+        </div>
+        <div class="slide-num">31 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 14 — EXEMPLU: Același mesaj, 3 tonuri diferite -->
+    <!-- ================================================================ -->
+    <section data-notes="Exercițiu mental rapid: citești toate cele 3 variante și întrebi sala — 'Care ton rezonează cel mai mult cu clientul vostru de caz?' Nu există răspuns corect universal. Un salon de înfrumusețare pentru mame poate merge pe informal+empatic. Un B2B SaaS pentru contabili merge pe formal+serios. Scopul: conștientizarea că alegerea tonului e o decizie deliberată, nu întâmplătoare. Durată: 3-4 minute.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Exemplu · 3 Tonuri</div>
+          <h2 class="slide-title">Același produs, <span class="hl">trei voci diferite</span> — NaturaLab</h2>
+          <p class="slide-subtitle">Care ton rezonează cu <b>clientul tău specific</b>? Depinde de avatar, nu de preferința personală.</p>
+        </div>
+        <div class="cards-3" style="flex:1">
+          <div class="card" style="background:#F8FAFC;border-color:#CBD5E1">
+            <div class="card-icon">🏢</div>
+            <div class="card-title">Ton formal / rece</div>
+            <div class="card-body" style="font-style:italic;color:var(--muted)">„Produsele NaturaLab sunt formulate exclusiv din ingrediente naturale certificate, fără conservanți sau coloranți artificiali."</div>
+            <div style="margin-top:auto;font-size:13px;color:var(--muted)">→ Percepție: corporație, distantă</div>
+          </div>
+          <div class="card mint">
+            <div class="card-icon">🤝</div>
+            <div class="card-title">Ton informal / empatic ✅</div>
+            <div class="card-body" style="font-style:italic">„Știi cum e când citești eticheta și nu înțelegi nimic din ce scrie? Noi am rezolvat asta. Cinci ingrediente. Toate pe care le cunoști."</div>
+            <div style="margin-top:auto;font-size:13px;color:#15803D;font-weight:700">→ Percepție: prietenă care înțelege</div>
+          </div>
+          <div class="card lavender">
+            <div class="card-icon">😄</div>
+            <div class="card-title">Ton jucăuș</div>
+            <div class="card-body" style="font-style:italic">„Pielea ta merită mai bine decât chimicale pe care nu le poți pronunța 😄 Noi avem o soluție cu ingrediente pe care le știi din bucătărie."</div>
+            <div style="margin-top:auto;font-size:13px;color:var(--muted)">→ Percepție: tânăr, energic, relaxat</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;font-size:16px;color:var(--muted);text-align:center">Care ton rezonează cu <b style="color:var(--foreground)">clientul tău</b>?</div>
+        <div class="slide-num">32 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 15 — SCHEMA: ton consistent în tot brandul (mock-uri) -->
+    <!-- ================================================================ -->
+    <section data-notes="Slide schematic — fără poză. Trei mock-uri de mesaje (postare Instagram, reclamă, răspuns la comentariu) cu ACELAȘI ton informal+empatic. Ideea: brandurile mari au un ton consistent în FIECARE mesaj — de pe ambalaj, de pe site, din reclame, din răspunsurile la comentarii. Cumpărătorii recunosc vocea brandului fără să vadă logo-ul. Dacă tonul se schimbă de la un post la altul, brandul pare incoerent, nu autentic. Tranziție rapidă spre exercițiul individual (slide 16).">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Coerență de brand</div>
+          <h2 class="slide-title">Același ton — <span class="hl">în fiecare mesaj al brandului</span></h2>
+          <p class="slide-subtitle">Postare, reclamă, răspuns la comentariu — clientul recunoaște vocea înainte să vadă logo-ul. NaturaLab: peste tot <b>informal + empatic</b>.</p>
+        </div>
+        <div class="mock-grid">
+          <div class="msg-mock">
+            <div class="msg-mock-bar">
+              <div class="msg-avatar"></div>
+              <div>
+                <div class="msg-handle">@naturalab</div>
+                <div class="msg-sub">acum 2 ore</div>
+              </div>
+              <div class="msg-channel">Post</div>
+            </div>
+            <div class="msg-body">„Știi cum e când citești eticheta și nu înțelegi nimic? 🙈 Noi am rezolvat asta — <b>cinci ingrediente, toate pe care le cunoști.</b>"</div>
+            <div class="msg-foot">♥ 1.2K &nbsp; 💬 84</div>
+          </div>
+          <div class="msg-mock">
+            <div class="msg-mock-bar">
+              <div class="msg-avatar"></div>
+              <div>
+                <div class="msg-handle">NaturaLab</div>
+                <div class="msg-sub">Sponsorizat</div>
+              </div>
+              <div class="msg-channel">Reclamă</div>
+            </div>
+            <div class="msg-body">„Comandat azi seara — <b>la tine mâine dimineață,</b> înainte să pleci la muncă. Pielea ta n-așteaptă, nici noi. 💚"</div>
+            <div class="msg-foot">Află mai mult →</div>
+          </div>
+          <div class="msg-mock">
+            <div class="msg-mock-bar">
+              <div class="msg-avatar"></div>
+              <div>
+                <div class="msg-handle">NaturaLab</div>
+                <div class="msg-sub">răspunde</div>
+              </div>
+              <div class="msg-channel">Comentariu</div>
+            </div>
+            <div class="msg-body">„Te înțelegem perfect! 🙌 Și noi ne-am săturat de promisiuni goale. De-asta scriem <b>fix ce e în borcan</b> — nimic ascuns."</div>
+            <div class="msg-foot">♥ 47 &nbsp; Răspunde</div>
+          </div>
+        </div>
+        <div class="slide-num">33 / 46</div>
+      </div>
+    </section>
+
+
+    <!-- SLIDE — Tone of voice: nu CE, ci CUM -->
+    <section data-notes="Tone of voice e un aha mare pentru antreprenori. Nu contează doar CE spui, ci CUM sună — asta e vocea brandului. Aceeași informație în 2 voci atrage 2 oameni diferiți. Capcana frecventă: scriem pe social media ca într-un comunicat oficial, stânjenitor și rece. Cârlig: clienții tăi vorbesc pe WhatsApp, nu în limbaj corporatist. Vorbește-le pe limba lor.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · Tone of Voice</div>
+          <h2 class="slide-title">Nu contează doar CE spui. <span class="hl">Contează cum sună.</span></h2>
+          <p class="slide-subtitle">Aceeași informație, 3 voci, 3 reacții diferite. Capcana frecventă: scriem pe Facebook <b>ca într-un comunicat oficial</b>. Și e greu de citit.</p>
+        </div>
+        <div class="tov2-grid">
+          <div class="tov2-card">
+            <span class="tov2-ico">🏛️</span>
+            <div class="tov2-name">Oficial<small>rece, corporatist</small></div>
+            <div class="tov2-bad"><span class="m">✕</span>„Compania noastră vă oferă produse cosmetice de înaltă calitate, realizate conform standardelor internaționale."</div>
+          </div>
+          <div class="tov2-card">
+            <span class="tov2-ico">😊</span>
+            <div class="tov2-name">Prietenos<small>cald, om-către-om</small></div>
+            <div class="tov2-good"><span class="m">✓</span>„Știi câte ingrediente necunoscute sunt în crema ta? Noi folosim <b>5. Toate pe etichetă.</b> 🌿"</div>
+          </div>
+          <div class="tov2-card">
+            <span class="tov2-ico">💪</span>
+            <div class="tov2-name">Direct<small>scurt, fără menajamente</small></div>
+            <div class="tov2-good"><span class="m">✓</span>„NaturaLab: 5 ingrediente, zero chimicale. <b>14 zile trial sau banii înapoi.</b>"</div>
+          </div>
+        </div>
+        <div class="tov2-rule"><span class="tre2">🎙️</span><div class="trt2"><b>Cârlig:</b> clienții tăi vorbesc pe WhatsApp, nu în „ministerese". Vorbește-le cum le vorbește <b>un om care le înțelege problema</b> — nu o companie.</div></div>
+        <div class="slide-num">34 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE — Care e vocea TA? Ghid de alegere -->
+    <section data-notes="Ghid de alegere a vocii pentru antreprenori: alege vocea în funcție de avatarul tău, apoi ține-o constantă. Tânăr/Gen Z: direct, scurt, cu umor; nu suportă corporatism. Profesionistul: concis, pe cifre, respect pentru timp. Părintele/familia: cald, sigur, responsabil. Managerul/firma: eficacitate, ROI, soluție rapidă. Regula: o voce dominantă + mici ajustări pe client — nu personalități schizofrenice.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · ghid de alegere</div>
+          <h2 class="slide-title">Care e vocea TA? <span class="hl">Alege-o după avatarul tău.</span></h2>
+          <p class="slide-subtitle">Apoi ține-o constantă. <b>O voce dominantă + mici ajustări pe client</b> — nu patru tonuri diferite de la o zi la alta.</p>
+        </div>
+        <table class="gt2" style="flex:1;">
+          <thead>
+            <tr><th style="width:24%">Avatarul tău</th><th style="width:34%">Vocea care prinde</th><th style="width:42%">De ce</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="lead2"><span class="em2">👦</span>Tânăr / Gen Z</td><td>direct, scurt, cu umor</td><td class="why2">nu suportă corporatism; vrea să se simtă văzut și înțeles</td></tr>
+            <tr><td class="lead2"><span class="em2">💼</span>Profesionistul ocupat</td><td>concis, pe cifre, respect pentru timp</td><td class="why2">are 2 minute; vrea să vadă că-i rezolvi ceva real, rapid</td></tr>
+            <tr><td class="lead2"><span class="em2">👪</span>Părintele / familia</td><td>cald + sigur + responsabil</td><td class="why2">caută siguranță, nu oferte; vrea „omul ăsta are grijă"</td></tr>
+            <tr><td class="lead2"><span class="em2">🏢</span>Managerul / firma</td><td>eficacitate, ROI, soluție clară</td><td class="why2">vrea cifre și un pas următor — nu povești</td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block"><strong>Regula vocii:</strong> alege tonul de bază (cald + direct merge la majoritatea), apoi <strong>nuanțezi</strong> pe avatar. Nu te schimba complet de la o postare la alta.</div></div>
+        <div class="slide-num">35 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE — Formula de Pitch (30 sec) -->
+    <section data-notes="4 min. Formula de pitch e structura universal valabilă pentru orice prezentare de afacere. Completată cu USP-ul și avatarul, devine mesajul de bază al brandului. Exercițiu rapid: cer 2-3 voluntari să completeze formula pe loc cu afacerea lor. Atenție la o greșeală comună: oamenii completează 'noi oferim [produs]' în loc de 'noi oferim [rezultat/experiență]'. Corectez pe loc: nu spui CE faci, spui CE CÂȘTIGĂ clientul.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Formulă · Pitch de 30 de secunde</div>
+          <h2 class="slide-title">Mesajul tău în <span class="hl">30 de secunde</span></h2>
+          <p class="slide-subtitle">O structură simplă care funcționează oriunde: elevator pitch, postare, pagina About, prezentare.</p>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;">
+          <div style="background:linear-gradient(150deg,#0B1120 0%,#1E3A8A 70%,#3B2F8F 100%);border-radius:14px;padding:32px 36px;position:relative;overflow:hidden;">
+            <div style="position:absolute;top:-60px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(93,112,247,0.3) 0%,transparent 70%);"></div>
+            <div style="font-size:24px;font-weight:700;line-height:1.7;color:white;position:relative;z-index:1;">
+              Pentru <span style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.28);border-radius:8px;padding:2px 14px;color:#93C5FD;font-weight:800;">[ CINE — avatarul tău ]</span>,<br>
+              care se confruntă cu <span style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.28);border-radius:8px;padding:2px 14px;color:#FCA5A5;font-weight:800;">[ PROBLEMA lui reală ]</span>,<br>
+              noi oferim <span style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.28);border-radius:8px;padding:2px 14px;color:#FCD34D;font-weight:800;">[ USP-ul tău ]</span>,<br>
+              ca să <span style="background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.28);border-radius:8px;padding:2px 14px;color:#6EE7B7;font-weight:800;">[ REZULTATUL pe care-l vrea EL ]</span>.
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;">
+            <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:14px 16px;">
+              <div style="font-size:12px;font-weight:800;color:#16A34A;margin-bottom:6px;">✅ Exemplu NaturaLab</div>
+              <div style="font-size:14px;color:var(--foreground);line-height:1.5;">Pentru <b>mamele cu copii mici</b>, care se tem că <b>cremele conțin chimicale</b>, NaturaLab oferă <b>cosmetice 100% naturale</b>, ca să <b>știi exact ce aplici pe pielea copilului.</b></div>
+            </div>
+            <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:10px;padding:14px 16px;">
+              <div style="font-size:12px;font-weight:800;color:var(--primary);margin-bottom:6px;">✅ Exemplu FreshBox</div>
+              <div style="font-size:14px;color:var(--foreground);line-height:1.5;">Pentru <b>angajații de birou</b>, care <b>nu au timp de un prânz decent</b>, FreshBox oferă <b>livrare în 30 min</b>, ca să <b>ai energie după-amiaza fără să pierzi ora de prânz.</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">36 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE — Cârligul: primele 5 cuvinte decid totul -->
+    <section data-notes="4 min. Cârligul e prima propoziție sau prima linie dintr-un mesaj/postare/pitch. Dacă nu oprește, restul nu contează. Exercițiu rapid: citesc 3 exemple de mai jos și sala ghicește tipul. Atenție: contrastul e cel mai puternic la audiențele care au o prejudecată clară ('5 ani de facultate vs 4 luni și un job'). Cifra-șoc funcționează NUMAI dacă e credibilă — nu inventa. Mini-povestea e cel mai memorabil dar cel mai lung.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Copywriting · Cârligul</div>
+          <h2 class="slide-title">Ai 1 secundă. <span class="hl">Primele 5 cuvinte decid totul.</span></h2>
+          <p class="slide-subtitle">Cârligul oprește atenția. Restul convinge. Fără cârlig, nimeni nu ajunge la USP-ul tău.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;flex:1;justify-content:center;">
+          <div style="display:grid;grid-template-columns:180px 1fr;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;">
+            <div style="background:#EFF6FF;padding:12px 16px;display:flex;align-items:center;gap:8px;"><span style="font-size:18px;">❓</span><span style="font-size:13px;font-weight:800;color:var(--primary);">Întrebarea-durere</span></div>
+            <div style="padding:12px 16px;font-size:14px;color:var(--foreground);font-style:italic;background:#FAFAFA;">„Ți s-a întâmplat să comandi online și livrarea să dispară? Uite ce facem noi altfel."</div>
+          </div>
+          <div style="display:grid;grid-template-columns:180px 1fr;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;">
+            <div style="background:#FEF2F2;padding:12px 16px;display:flex;align-items:center;gap:8px;"><span style="font-size:18px;">🔢</span><span style="font-size:13px;font-weight:800;color:#DC2626;">Cifra-șoc</span></div>
+            <div style="padding:12px 16px;font-size:14px;color:var(--foreground);font-style:italic;background:#FAFAFA;">„93% din clienții noștri recomandă. 1 din 3 vine din recomandare. Acesta e USP-ul nostru real."</div>
+          </div>
+          <div style="display:grid;grid-template-columns:180px 1fr;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;">
+            <div style="background:#FFFBEB;padding:12px 16px;display:flex;align-items:center;gap:8px;"><span style="font-size:18px;">📖</span><span style="font-size:13px;font-weight:800;color:#D97706;">Mini-povestea</span></div>
+            <div style="padding:12px 16px;font-size:14px;color:var(--foreground);font-style:italic;background:#FAFAFA;">„Acum 6 luni, Andreea nu știa cum să gestioneze programările. Azi are 40% mai mulți clienți."</div>
+          </div>
+          <div style="display:grid;grid-template-columns:180px 1fr;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;">
+            <div style="background:#F5F3FF;padding:12px 16px;display:flex;align-items:center;gap:8px;"><span style="font-size:18px;">⚡</span><span style="font-size:13px;font-weight:800;color:#7C3AED;">Contrastul</span></div>
+            <div style="padding:12px 16px;font-size:14px;color:var(--foreground);font-style:italic;background:#FAFAFA;">„Alte cosmetice: 20 ingrediente, 12 necunoscute. NaturaLab: 5 ingrediente. Toate cunoscute."</div>
+          </div>
+          <div style="display:grid;grid-template-columns:180px 1fr;border:1px solid #E2E8F0;border-radius:10px;overflow:hidden;">
+            <div style="background:#F0FDF4;padding:12px 16px;display:flex;align-items:center;gap:8px;"><span style="font-size:18px;">🎯</span><span style="font-size:13px;font-weight:800;color:#16A34A;">Oferta directă</span></div>
+            <div style="padding:12px 16px;font-size:14px;color:var(--foreground);font-style:italic;background:#FAFAFA;">„Primul prânz livrat, gratuit. Fără abonament. Dacă nu îți place, nu plătești nimic."</div>
+          </div>
+        </div>
+        <div class="slide-num">37 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- ================================================================ -->
+    <!-- SLIDE — Cârligul emoțional: durerea → scăparea -->
+    <section data-notes="Oamenii decid cu emoția și justifică cu rațiunea — pune-le pe ambele. Cele 4 emoții care vând: siguranța, mândria (de sine), urgența, apartenența. Tehnica de aur: durerea LUI întâi, scăparea după. 'Te-ai săturat să mănânci prost la birou? (durere) → FreshBox livrează prânz sănătos în 30 min. (scăpare)'. O cifră convinge mintea, o emoție pune omul în mișcare.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Copywriting · Cârligul emoțional</div>
+          <h2 class="slide-title">Oamenii decid cu <span class="hl">emoția</span>, justifică cu rațiunea</h2>
+          <p class="slide-subtitle">Pune-le pe ambele. 4 emoții care vând — fiecare cu cârligul ei:</p>
+        </div>
+        <div class="emo2-grid">
+          <div class="emo2-card es">
+            <span class="emo2-ico">😌</span>
+            <span class="emo2-name">Siguranța</span>
+            <span class="emo2-ex">„Nu mai pierde 40 de minute la coadă la restaurant — prânzul vine la tine."</span>
+          </div>
+          <div class="emo2-card em">
+            <span class="emo2-ico">🏅</span>
+            <span class="emo2-name">Mândria</span>
+            <span class="emo2-ex">„Pielea ta merită mai mult de 12 ingrediente pe care nu le poți pronunța."</span>
+          </div>
+          <div class="emo2-card eu">
+            <span class="emo2-ico">⏱️</span>
+            <span class="emo2-name">Urgența</span>
+            <span class="emo2-ex">„Prețul special se închide vineri. Locuri limitate pentru luna aceasta."</span>
+          </div>
+          <div class="emo2-card ea">
+            <span class="emo2-ico">🤝</span>
+            <span class="emo2-name">Apartenența</span>
+            <span class="emo2-ex">„Alătură-te celor 340 de birouri care au trecut la prânz sănătos."</span>
+          </div>
+        </div>
+        <div class="ds2-box">
+          <div class="ds2-half pain2"><div><div class="ds2-lbl">1 · Durerea LUI întâi</div><div class="ds2-txt">„Te-ai săturat să mănânci fast food la birou în fiecare zi?"</div></div></div>
+          <div class="ds2-arrow">→</div>
+          <div class="ds2-half fix2"><div><div class="ds2-lbl">2 · Scăparea după</div><div class="ds2-txt">„<b>FreshBox</b> livrează prânz sănătos la birou în 30 min."</div></div></div>
+        </div>
+        <div class="slide-num">38 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 16 — PRACTICĂ: Scrie USP-ul tău (12 min) -->
+    <!-- ================================================================ -->
+    <section data-notes="Exercițiul central al modulului — 12 minute individual. Participanții lucrează pe afacerea din Foaia de drum. Procesul: umplu cele 3 câmpuri (CUI, CE, DE CE TU) și le combină în USP-ul final. Regula: USP-ul final trebuie să treacă testul «so what?» — să nu poți cere o variantă mai concretă a beneficiului. Formatorul circulă prin sală și verifică: dacă cineva scrie 'produse de calitate' în câmpul DE CE TU, ajută-l să fie mai specific. Debrief: în echipă la slide 17.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">✍️ Exercițiu principal</div>
+          <h2 class="slide-title">Scrie <span class="hl" style="color:#0EA371">USP-ul tău</span></h2>
+          <p class="slide-subtitle">Aplică formula CUI + CE + DE CE TU pe afacerea ta de caz din Foaia de drum.</p>
+        </div>
+        <div style="display:flex;gap:14px;margin-bottom:18px">
+          <div class="timer-pill">⏱️ 12 minute</div>
+          <div class="mode-pill">👤 Individual</div>
+        </div>
+        <div class="pitch-sheet">
+          <div class="ps-line">
+            <div class="ps-word">1. Cui te adresezi?</div>
+            <div class="ps-fill"></div>
+          </div>
+          <div class="ps-line">
+            <div class="ps-word">2. Ce problemă rezolvi?</div>
+            <div class="ps-fill"></div>
+          </div>
+          <div class="ps-line">
+            <div class="ps-word">3. De ce tu, nu altcineva?</div>
+            <div class="ps-fill"></div>
+          </div>
+          <div class="ps-line" style="border-color:var(--primary);background:var(--primary-ultra-light)">
+            <div class="ps-word" style="color:var(--primary);min-width:260px">4. USP complet (max 2 propoziții)</div>
+            <div class="ps-area"></div>
+          </div>
+        </div>
+        <div class="slide-num">39 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 17 — PRACTICĂ în ECHIPĂ: Design thinking pe USP (20 min) -->
+    <!-- ================================================================ -->
+    <section data-notes="Exercițiu în echipă — 20 de minute. Aici aplică tot modulul: design thinking (slide 12) + diagrama USP (slide 6) + formula (slide 7). Echipele de 3-4 aleg O afacere de caz comună. Pasul 1 — Empatizezi: ce simte clientul, ce-l frustrează? Pasul 2 — Definești: problema în 1 frază clară. Pasul 3 — Formulați un USP care e DIFERIT de tot ce face concurența (insistă pe diferențiere — aici e valoarea). Pasul 4 — Prezentați (2 min). Formatorul circulă, ajută la pasul 3 dacă USP-ul seamănă prea mult cu concurența. Debrief la slide 18.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">👥 Exercițiu în echipă</div>
+          <h2 class="slide-title">Construiți un USP <span class="hl" style="color:#0EA371">prin design thinking</span></h2>
+          <p class="slide-subtitle">Pe echipe, aplicați procesul în 4 pași — de la ce simte clientul la un mesaj diferit de toți.</p>
+        </div>
+        <div class="practice-layout">
+          <div class="practice-steps">
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4px"><span class="mode-pill">👥 Pe echipe</span><span class="timer-pill">⏱️ 20 minute</span></div>
+            <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text"><b>Empatizați</b> — alegeți o afacere de caz. Ce simte clientul? Ce-l frustrează?</div></div>
+            <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text"><b>Definiți</b> problema clientului <b>într-o singură frază</b>.</div></div>
+            <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text"><b>Formulați un USP</b> care e <b>diferit de tot ce face concurența</b>.</div></div>
+            <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text"><b>Prezentați</b> echipei restul — 2 minute per grup.</div></div>
+          </div>
+          <div class="practice-pane">
+            <div class="practice-prompt"><span class="lbl">Întrebarea care vă ghidează</span>„Ce poate spune afacerea noastră, pe care <b>niciun concurent nu o poate spune la fel</b>?"</div>
+            <div class="practice-prompt" style="border-color:var(--primary)"><span class="lbl" style="color:var(--primary)">Testul final 🎯</span>Treceți USP-ul prin <b>„so what?"</b> — dacă mai puteți cere ceva mai concret, coborâți încă o dată.</div>
+          </div>
+        </div>
+        <div class="slide-num">40 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+
+    <!-- ================================================================ -->
+    <!-- SLIDE — Licitația de USP cu Devil's Advocate (30 min) -->
+    <!-- ================================================================ -->
+    <section data-notes="30 min. Cel mai util exercițiu din modul — testează USP-ul sub presiune ÎNAINTE de a-l folosi în lumea reală. Reguli stricte: Echipa B trebuie să facă OBLIGATORIU ambele obiecții. Nu e opțional. Dacă Echipa A repetă ce a spus deja — nu se acceptă, trebuie argument nou. Rolul trainerului: nu judecă cine are dreptate — facilitează, menține energia, cronometrează 3 min per rundă. Rotajul e critic: fiecare echipă trebuie să joace și rolul A și rolul B. 3-4 echipe = 6-8 runde = 25 min. Ultimele 5 min: refine USP-ul pe baza obiecțiilor primite. Extra: trainerii pot adăuga a 3-a obiecție opțională — 'Și ce dacă?' — dacă e timp.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">⚔️ Exercițiu în echipă · 30 min</div>
+          <h2 class="slide-title">Licitația de USP — <span class="hl">Devil's Advocate</span></h2>
+          <p class="slide-subtitle">Testezi USP-ul sub presiune înainte să-l folosești în lumea reală. Un USP care supraviețuiește obiecțiilor obligatorii e un USP solid.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;align-items:start;">
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="background:var(--primary-ultra-light);border:2px solid var(--primary);border-radius:12px;padding:16px 14px;">
+              <div style="font-size:13px;font-weight:800;color:var(--primary);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Echipa A — Apărătorul</div>
+              <div style="font-size:14px;color:var(--foreground);line-height:1.5;">Prezintă USP-ul în <b>30 de secunde</b>. Clar, complet: CUI + CE + DE CE TU.</div>
+              <div style="font-size:13px;color:var(--muted);margin-top:8px;line-height:1.4;">Timp de răspuns la obiecții: max <b>2 min total</b>. Nu poți repeta ce ai spus deja.</div>
+            </div>
+            <div style="background:#FEF2F2;border:2px solid #DC2626;border-radius:12px;padding:16px 14px;">
+              <div style="font-size:13px;font-weight:800;color:#DC2626;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">Echipa B — Devil's Advocate</div>
+              <div style="font-size:14px;color:var(--foreground);line-height:1.5;">Obligatoriu <b>2 obiecții</b> în această ordine:</div>
+              <div style="margin-top:8px;padding:8px 12px;background:white;border-left:3px solid #DC2626;border-radius:4px;font-size:14px;font-weight:700;color:#DC2626;">„Și concurentul face asta."</div>
+              <div style="margin-top:6px;padding:8px 12px;background:white;border-left:3px solid #DC2626;border-radius:4px;font-size:14px;font-weight:700;color:#DC2626;">„Nu te cred — unde e dovada?"</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:16px 14px;">
+              <div style="font-size:13px;font-weight:800;color:var(--foreground);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;">⏱ Structura rundei (7 min)</div>
+              <div style="display:flex;flex-direction:column;gap:6px;">
+                <div style="display:flex;gap:10px;align-items:baseline;">
+                  <div style="font-size:12px;font-weight:800;color:var(--primary);width:45px;flex-shrink:0;">30 sec</div>
+                  <div style="font-size:13px;color:var(--foreground);">Echipa A prezintă USP-ul</div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:baseline;">
+                  <div style="font-size:12px;font-weight:800;color:#DC2626;width:45px;flex-shrink:0;">2 min</div>
+                  <div style="font-size:13px;color:var(--foreground);">Echipa B atacă cu 2 obiecții</div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:baseline;">
+                  <div style="font-size:12px;font-weight:800;color:var(--primary);width:45px;flex-shrink:0;">2 min</div>
+                  <div style="font-size:13px;color:var(--foreground);">Echipa A răspunde fără să repete</div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:baseline;">
+                  <div style="font-size:12px;font-weight:800;color:#D97706;width:45px;flex-shrink:0;">2 min</div>
+                  <div style="font-size:13px;color:var(--foreground);">Sala votează: cine a câștigat runda?</div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:baseline;">
+                  <div style="font-size:12px;font-weight:800;color:#16A34A;width:45px;flex-shrink:0;">30 sec</div>
+                  <div style="font-size:13px;color:var(--foreground);">Echipa A ajustează USP-ul pe loc</div>
+                </div>
+              </div>
+            </div>
+            <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:10px;padding:12px 14px;">
+              <div style="font-size:12px;font-weight:800;color:#D97706;margin-bottom:6px;">Regula rotației</div>
+              <div style="font-size:13px;color:var(--foreground);line-height:1.4;">Fiecare echipă joacă ambele roluri. Echipa A devine B și invers la runda următoare.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">41 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 18 — PREZENTARE + RETRO -->
+    <!-- ================================================================ -->
+    <section data-notes="Prezentare în plen: fiecare echipă citește USP-ul construit (max 3 minute per echipă). Feedback-ul grupului: 1 lucru concret care funcționează + 1 sugestie de îmbunătățire. Formatorul notează pe flipchart pattern-urile comune: ce tip de diferențiator apare cel mai des? Unde lipsește specificitatea? Retrospecția (dreapta) se face mental sau în scris — nu toți trebuie să răspundă public, dar e important să se gândească. Durată totală pentru prezentare+retro: 15-20 min depinzând de numărul de echipe.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Prezentare &amp; Reflecție</div>
+          <h2 class="slide-title">Prezentăm USP-urile și <span class="hl">reflectăm</span></h2>
+          <p class="slide-subtitle">3 minute per echipă. Feedback concret de la grup — ce funcționează și o îmbunătățire.</p>
+        </div>
+        <div class="pr-grid">
+          <div class="pr-pane present">
+            <div class="pr-tag">🎤 Prezentare</div>
+            <div class="pr-title">Fiecare echipă prezintă USP-ul</div>
+            <div class="pr-line"><span class="pb">1.</span> Citiți USP-ul construit — clar și ferm</div>
+            <div class="pr-line"><span class="pb">2.</span> Grupul: un lucru care convinge</div>
+            <div class="pr-line"><span class="pb">3.</span> Grupul: o îmbunătățire concretă</div>
+            <div class="pr-line"><span class="pb">4.</span> Reviziați pe loc dacă vreți</div>
+          </div>
+          <div class="pr-pane retro">
+            <div class="pr-tag">💭 Reflecție</div>
+            <div class="pr-title">3 întrebări de consolidare</div>
+            <div class="pr-line"><span class="pb">1.</span> Ce ai descoperit NOU despre afacerea ta care nu știai înainte?</div>
+            <div class="pr-line"><span class="pb">2.</span> Ce ai schimba în mesaj față de cum comunicai înainte?</div>
+            <div class="pr-line"><span class="pb">3.</span> Unde e cea mai mare diferență față de concurența ta?</div>
+          </div>
+        </div>
+        <div class="slide-num">42 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 19 — REGULĂ + CHECKLIST -->
+    <!-- ================================================================ -->
+    <section data-notes="Regula finală a modulului — contraintuitivă și importantă. Un USP bun respinge 80% din piață. Asta sperie antreprenorii la început ('și dacă pierd clienți?'). Răspunsul: cei 80% pe care îi respingi n-ar fi cumpărat oricum sau ar fi cumpărat o dată și n-ar fi revenit. Cei 20% care rămân devin loiali, recomandă, plătesc mai mult. Checklistul e pentru evaluarea auto-critică a USP-ului scris la exercițiu — participanții bifează dacă USP-ul lor trece fiecare criteriu. Criteriul 'diferă de primii 3 concurenți' e cel mai important — fără el, nu e USP.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Regula modulului</div>
+          <h2 class="slide-title">Un USP bun <span class="hl">respinge 80%</span> din piață — și asta e corect.</h2>
+        </div>
+        <div class="rule-grid">
+          <div class="rule-pane">
+            <div class="rule-badge"><span class="rb-dot"></span>REGULA</div>
+            <div class="rule-text">
+              Un USP slab încearcă să atragă <span class="hl">pe toată lumea</span> — și nu convinge pe nimeni.<br><br>
+              Un USP bun <span class="hl">respinge 80%</span> din piață și e perfect pentru <span class="hl">20% care rămân</span>.
+            </div>
+          </div>
+          <div class="check-pane">
+            <div class="check-head">✅ Checklist USP</div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-txt">USP-ul descrie o <b>persoană specifică</b>, nu «toată lumea»</div>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-txt">Conține cel puțin un <b>beneficiu concret</b> (nu «calitate», nu «profesionalism»)</div>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-txt">Pot <b>verifica fiecare afirmație</b> — nimic vag sau nedemonstrat</div>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-txt"><b>Diferă vizibil</b> de ce spun primii 3 concurenți ai mei</div>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-txt">Am ales un <b>ton consistent</b> cu brandul meu (formal/informal/empatic)</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">43 / 46</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- SLIDE 20 — TRANZIȚIE spre Modul 3 -->
+    <!-- ================================================================ -->
+        <!-- SLIDE — AIDA: formula celor 4 trepte -->
+    <section data-notes="4 min. AIDA e cel mai vechi model de marketing — și cel mai folosit. Nimeni nu sare direct de la 'nu știu' la 'cumpăr'. Fiecare treaptă cere altceva: Atenție = cârligul (prima propoziție, prima imagine); Interes = conținut, dovezi; Dorință = povești, rezultate reale; Acțiune = chemarea clară cu un termen. Greșeala #1: antreprenorii cer Acțiunea (cumpără!) când omul e abia la Atenție. Exemplul NaturaLab arată cum arată AIDA în practică — un text complet pe cele 4 trepte.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Formulă · AIDA</div>
+          <h2 class="slide-title">De la „nu te știu" la „cumpăr" — <span class="hl">4 trepte, în ordine</span></h2>
+          <p class="slide-subtitle">Cel mai folosit model din marketing. Nimeni nu sare direct sus. Fiecare treaptă cere altceva de la tine.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1.1fr 0.9fr;gap:24px;flex:1;align-items:center;">
+          <!-- AIDA stairs (ported from Scoli Profesionale modul-3) -->
+          <div style="display:flex;align-items:flex-end;gap:10px;height:320px;">
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;border-radius:10px 10px 0 0;padding:14px 14px 16px;color:#fff;background:linear-gradient(160deg,#93C5FD,#60A5FA);min-height:120px;position:relative;">
+              <div style="position:absolute;top:10px;right:12px;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;">1</div>
+              <div style="font-size:38px;font-weight:800;line-height:1;opacity:.9;">A</div>
+              <div style="font-size:16px;font-weight:800;margin-top:6px;">Atenție</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.9);margin-top:2px;">te observă</div>
+              <div style="font-size:12px;margin-top:8px;background:rgba(255,255,255,.16);border-radius:6px;padding:7px 9px;line-height:1.3;"><b>Îți trebuie: CÂRLIG</b></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;border-radius:10px 10px 0 0;padding:14px 14px 16px;color:#fff;background:linear-gradient(160deg,#60A5FA,#3B82F6);min-height:180px;position:relative;">
+              <div style="position:absolute;top:10px;right:12px;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;">2</div>
+              <div style="font-size:38px;font-weight:800;line-height:1;opacity:.9;">I</div>
+              <div style="font-size:16px;font-weight:800;margin-top:6px;">Interes</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.9);margin-top:2px;">vrea să afle mai mult</div>
+              <div style="font-size:12px;margin-top:8px;background:rgba(255,255,255,.16);border-radius:6px;padding:7px 9px;line-height:1.3;"><b>Îți trebuie: conținut, dovezi</b></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;border-radius:10px 10px 0 0;padding:14px 14px 16px;color:#fff;background:linear-gradient(160deg,#3B82F6,#2D52D4);min-height:240px;position:relative;">
+              <div style="position:absolute;top:10px;right:12px;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;">3</div>
+              <div style="font-size:38px;font-weight:800;line-height:1;opacity:.9;">D</div>
+              <div style="font-size:16px;font-weight:800;margin-top:6px;">Dorință</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.9);margin-top:2px;">se vede pe el acolo</div>
+              <div style="font-size:12px;margin-top:8px;background:rgba(255,255,255,.16);border-radius:6px;padding:7px 9px;line-height:1.3;"><b>Îți trebuie: povești, rezultate reale</b></div>
+            </div>
+            <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;border-radius:10px 10px 0 0;padding:14px 14px 16px;color:#fff;background:linear-gradient(160deg,#2D52D4,#1E3A8A);min-height:300px;position:relative;">
+              <div style="position:absolute;top:10px;right:12px;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;">4</div>
+              <div style="font-size:38px;font-weight:800;line-height:1;opacity:.9;">A</div>
+              <div style="font-size:16px;font-weight:800;margin-top:6px;">Acțiune</div>
+              <div style="font-size:11px;color:rgba(255,255,255,.9);margin-top:2px;">face pasul</div>
+              <div style="font-size:12px;margin-top:8px;background:rgba(255,255,255,.16);border-radius:6px;padding:7px 9px;line-height:1.3;"><b>Îți trebuie: chemare clară + termen</b></div>
+            </div>
+          </div>
+          <!-- NaturaLab AIDA example -->
+          <div style="background:#0B1120;border-radius:12px;padding:20px 22px;color:#E2E8F0;font-size:14px;line-height:1.65;height:100%;display:flex;flex-direction:column;justify-content:center;">
+            <div style="display:flex;gap:6px;margin-bottom:14px;"><span style="width:10px;height:10px;border-radius:50%;background:#EF4444;display:inline-block;"></span><span style="width:10px;height:10px;border-radius:50%;background:#F59E0B;display:inline-block;"></span><span style="width:10px;height:10px;border-radius:50%;background:#22C55E;display:inline-block;"></span><span style="font-size:11px;color:#64748B;margin-left:8px;font-weight:600;">Postare NaturaLab · Facebook</span></div>
+            <div><span style="display:inline-block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#93C5FD;background:rgba(147,197,253,.14);border-radius:5px;padding:2px 8px;margin-bottom:4px;">A — Atenție</span><br>„Știi câte ingrediente necunoscute sunt în crema ta de față? 🔍"</div>
+            <div style="margin-top:10px;"><span style="display:inline-block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#6EE7B7;background:rgba(110,231,183,.14);border-radius:5px;padding:2px 8px;margin-bottom:4px;">I — Interes</span><br>„Noi folosim 5 ingrediente. Toate cunoscute, toate naturale."</div>
+            <div style="margin-top:10px;"><span style="display:inline-block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#FCD34D;background:rgba(252,211,77,.14);border-radius:5px;padding:2px 8px;margin-bottom:4px;">D — Dorință</span><br>„Ana a renunțat la cremele din farmacii. Pielea ei s-a schimbat în 3 săptămâni. (poză + testimonial)"</div>
+            <div style="margin-top:10px;"><span style="display:inline-block;font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#F9A8D4;background:rgba(249,168,212,.14);border-radius:5px;padding:2px 8px;margin-bottom:4px;">A — Acțiune</span><br>„Comandă până vineri — livrare gratuită. Link în bio. 🌿"</div>
+          </div>
+        </div>
+        <div class="slide-num">44 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE — AIDA: exercițiu practic -->
+    <section data-notes="PRACTICĂ — 10 min. AIDA nu e de citit, e o rețetă de scris. Ia avatarul tău și scrie un mesaj/postare de 4-5 rânduri care trece prin cele 4 trepte. Model complet: FreshBox pe Facebook. Dreapta: template gol de completat. În perechi: citeste textul colegului — are toate 4 treptele? Unde lipseste D (dovada) sau A finala (chemarea + termenul)?">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">✍️ Practică · scrie un text pe formula AIDA</div>
+          <h2 class="slide-title">AIDA nu e de citit. <span class="hl" style="color:var(--practice)">E o rețetă de scris.</span></h2>
+        </div>
+        <div class="aida-ex2-grid">
+          <div class="aida-ex2-col">
+            <div class="aida-ex2-lbl model2">📘 Model completat · FreshBox (Facebook)</div>
+            <div style="background:#0B1120;border-radius:var(--radius);padding:18px 22px;color:#E2E8F0;font-family:&#39;Onest&#39;,monospace;font-size:14.5px;line-height:1.62;flex:1;white-space:pre-wrap;position:relative;overflow:hidden;"><div style="display:flex;gap:6px;margin-bottom:14px;"><span style="width:10px;height:10px;border-radius:50%;background:#EF4444;display:inline-block;"></span><span style="width:10px;height:10px;border-radius:50%;background:#F59E0B;display:inline-block;"></span><span style="width:10px;height:10px;border-radius:50%;background:#22C55E;display:inline-block;"></span></div><span class="aida-k2">A — ATENȚIE:</span>  „Câte calorii ai mâncat azi la prânz — și cât ți-a luat?" 🍱
+
+<span class="aida-k2">I — INTERES:</span>   „FreshBox livrează prânz sănătos
+                la birou în 30 min — fără
+                restaurante de mall."
+
+<span class="aida-k2">D — DORINȚĂ:</span>   „Ana de la marketing a renunțat la
+                fast food. În 3 săptămâni se
+                simte mai energică după-amiaza."
+
+<span class="aida-k2">A — ACȚIUNE:</span>   „Prima livrare gratis. Comandă
+                până joi. Link în bio. 🌿"</div>
+          </div>
+          <div class="aida-ex2-col">
+            <div class="aida-ex2-lbl fill2">✏️ Acum tu · completează pentru avatarul tău</div>
+            <div style="background:#0B1120;border-radius:var(--radius);padding:18px 22px;color:#E2E8F0;font-family:&#39;Onest&#39;,monospace;font-size:14.5px;line-height:1.62;flex:1;white-space:pre-wrap;"><span class="aida-k2">A — ATENȚIE</span> <span class="aida-hint2">(cârligul — prima frază)</span>
+<span class="aida-blank2">______________________________</span>
+
+<span class="aida-k2">I — INTERES</span> <span class="aida-hint2">(ce afli mai mult, de ce contează)</span>
+<span class="aida-blank2">______________________________</span>
+
+<span class="aida-k2">D — DORINȚĂ</span> <span class="aida-hint2">(o dovadă: poveste / cifră / testimonial)</span>
+<span class="aida-blank2">______________________________</span>
+
+<span class="aida-k2">A — ACȚIUNE</span> <span class="aida-hint2">(chemarea + un termen)</span>
+<span class="aida-blank2">______________________________</span></div>
+          </div>
+        </div>
+        <div class="aida-pair2">
+          <span class="ape2">👥</span>
+          <div class="apt2">În perechi: citește textul colegului. El bifează — <b>are toate 4 treptele?</b> Unde se simte „rupt" (sare o treaptă)?</div>
+          <span style="margin-left:auto;font-size:14px;font-weight:800;background:var(--practice);color:#fff;border-radius:100px;padding:6px 16px;white-space:nowrap;">⏱ 10 min</span>
+        </div>
+        <div class="slide-num">45 / 46</div>
+      </div>
+    </section>
+
+    <!-- SLIDE — PAS: Problem-Agitate-Solution -->
+    <section data-notes="3 min. PAS e formula ideală pentru texte scurte — un singur mesaj, o singură durere, o singură soluție. Funcționează pentru: postări scurte, mesaje directe, SMS-uri, anunțuri. Structura: Problemă (identifici exact durerea lui, în cuvintele lui), Agitezi (amplifici durerea — ce se întâmplă dacă nu rezolvă), Soluție (propunerea ta, clară și directă). Diferența față de AIDA: PAS e mai agresiv și mai scurt — ocolești 'Interes' și 'Dorință' și sari direct la durere amplifică. Bun pentru audiențe care știu deja că au problema (Warm/Hot). AIDA e mai bun pentru audiențe Cold care nu știu încă că au problema.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Formulă · PAS</div>
+          <h2 class="slide-title">PAS — formula scurtă care <span class="hl">funcționează întotdeauna</span></h2>
+          <p class="slide-subtitle">Ideal pentru mesaje scurte, postări directe, SMS. Pornești de la durerea lui — nu de la produsul tău.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:1;align-items:stretch;">
+          <!-- PAS steps -->
+          <div style="display:flex;flex-direction:column;gap:12px;justify-content:center;">
+            <div style="border-left:4px solid #DC2626;padding:14px 18px;background:#FEF2F2;border-radius:0 10px 10px 0;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                <div style="width:32px;height:32px;border-radius:50%;background:#DC2626;color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">P</div>
+                <div style="font-size:16px;font-weight:800;color:#991B1B;">Problemă</div>
+              </div>
+              <div style="font-size:13.5px;color:var(--foreground);line-height:1.45;">Identifici <b>exact durerea lui</b> — în cuvintele lui, nu ale tale. El trebuie să se simtă înțeles din prima propoziție.</div>
+            </div>
+            <div style="border-left:4px solid #D97706;padding:14px 18px;background:#FFFBEB;border-radius:0 10px 10px 0;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                <div style="width:32px;height:32px;border-radius:50%;background:#D97706;color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">A</div>
+                <div style="font-size:16px;font-weight:800;color:#92400E;">Agitezi</div>
+              </div>
+              <div style="font-size:13.5px;color:var(--foreground);line-height:1.45;">Amplifici durerea — <b>ce se întâmplă dacă nu rezolvă</b>. Faci problema mai urgentă, nu mai dramatică.</div>
+            </div>
+            <div style="border-left:4px solid #16A34A;padding:14px 18px;background:#F0FDF4;border-radius:0 10px 10px 0;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                <div style="width:32px;height:32px;border-radius:50%;background:#16A34A;color:#fff;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;">S</div>
+                <div style="font-size:16px;font-weight:800;color:#15803D;">Soluție</div>
+              </div>
+              <div style="font-size:13.5px;color:var(--foreground);line-height:1.45;">Propunerea ta — <b>clară și directă</b>. Nu „noi facem X", ci „tu obții Y". Cu chemare la acțiune.</div>
+            </div>
+          </div>
+          <!-- Examples -->
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:16px 16px;flex:1;">
+              <div style="font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">📦 FreshBox — prânz la birou</div>
+              <div style="font-size:13px;color:var(--foreground);line-height:1.6;">
+                <span style="color:#DC2626;font-weight:700;">P:</span> „Mănânci la repezală la birou — fie fast food, fie nu mănânci deloc."<br>
+                <span style="color:#D97706;font-weight:700;">A:</span> „Până la 3 PM ești deja obosit și neatent — și azi aveai meeting important."<br>
+                <span style="color:#16A34A;font-weight:700;">S:</span> „FreshBox livrează prânz sănătos în 30 min, direct la birou. Prima livrare gratis."
+              </div>
+            </div>
+            <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:16px 16px;flex:1;">
+              <div style="font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">🌿 NaturaLab — cosmetice</div>
+              <div style="font-size:13px;color:var(--foreground);line-height:1.6;">
+                <span style="color:#DC2626;font-weight:700;">P:</span> „Nu știi ce ingrediente aplici pe pielea ta în fiecare zi."<br>
+                <span style="color:#D97706;font-weight:700;">A:</span> „Unele dintre ele sunt asociate cu iritații cronice. Și totuși le folosești zilnic."<br>
+                <span style="color:#16A34A;font-weight:700;">S:</span> „NaturaLab: 5 ingrediente. Toate cunoscute. Încearcă 14 zile — sau banii înapoi."
+              </div>
+            </div>
+            <div class="quote-block" style="margin:0;font-size:13px;">AIDA = pentru audiențe <b>COLD</b>. PAS = pentru audiențe <b>WARM/HOT</b> — știu problema, vor soluție.</div>
+          </div>
+        </div>
+        <div class="slide-num">46 / 46</div>
+      </div>
+    </section>
+
+<section data-notes="Tranziție energizantă spre Modul 3: Oceanul Albastru. Legătura logică: acum că ai mesajul perfect (USP), trebuie să-l poziționezi față de competiție. USP-ul ne face diferiți; Oceanul Albastru ne scoate complet din luptă. Cum te plasezi pe o piață aglomerată? Cum creezi un spațiu unde ești singurul jucător relevant? Asta e Modulul 3. Pauza între module: 10 minute. Dă-le voie să bea apă, să se miște, să se decomprimeze.">
+      <div class="slide slide-transition">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#F2C94C 0%,#F59E0B 50%,#D97706 100%);"></div>
+        <div class="trans-content">
+          <div style="font-size:14px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;color:rgba(0,0,0,0.5);margin-bottom:14px">Urmează · Modul 3</div>
+          <div class="trans-title">Acum că ai mesajul perfect —<br>unde te poziționezi<br>față de competiție?</div>
+          <div class="trans-sub">Modul 3: Oceanul Albastru — creează un spațiu unde ești singurul jucător</div>
+          <div class="trans-arrow">🌊</div>
+        </div>
+        <div class="slide-num" style="color:rgba(0,0,0,0.4)">32 / 32</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pâlnia: cum atragi tineri și vinzi produse — De la atelier la piață</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #0EA371;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 54px 66px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #0EA371 0%, #0891B2 100%); }
+
+    .slide-header { margin-bottom: 24px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #D1FAE5; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-title .hl { color: var(--primary); }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 960px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0 0 40px; max-width: 740px; line-height: 1.5; }
+    .cover-bait { font-size: 70px; margin: 6px 0 34px; letter-spacing: 8px; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+    .quote-block.warn { border-color: var(--warning); background: #FFFBEB; } .quote-block.warn strong { color: #B45309; }
+
+    /* brand chips */
+    .brand-chip { display: inline-flex; align-items: center; font-size: 14px; font-weight: 700; color: var(--foreground); background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 5px 13px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+    .brand-chip .dot { width: 7px; height: 7px; border-radius: 50%; margin-right: 7px; flex-shrink: 0; }
+
+    /* VS table — ce spune școala vs ce aude clientul */
+    .vs-table { width: 100%; border-collapse: collapse; font-size: 19px; }
+    .vs-table th { padding: 14px 20px; text-align: left; font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: #fff; border: none; }
+    .vs-table th.col-bad { background: #B91C1C; }
+    .vs-table th.col-good { background: #15803D; }
+    .vs-table td { padding: 18px 20px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.4; }
+    .vs-table tr:last-child td { border-bottom: none; }
+    .vs-table td.bad-cell { color: #B91C1C; font-style: italic; }
+    .vs-table td.good-cell { background: #F0FDF4; font-weight: 700; color: #15803D; }
+    .vs-table td b { font-weight: 800; }
+
+    /* drill analogy */
+    .drill-row { display: flex; align-items: stretch; gap: 18px; margin-top: 4px; }
+    .drill-card { flex: 1; border-radius: var(--radius); padding: 22px 26px; display: flex; align-items: center; gap: 18px; }
+    .drill-card.no { background: #FEF2F2; border: 1px solid #FECACA; }
+    .drill-card.yes { background: #ECFDF5; border: 1px solid #6EE7B7; }
+    .drill-emoji { font-size: 46px; line-height: 1; flex-shrink: 0; }
+    .drill-txt { font-size: 18px; line-height: 1.4; color: var(--foreground); } .drill-txt b { font-weight: 800; }
+    .drill-card.no .drill-lbl { color: #B91C1C; } .drill-card.yes .drill-lbl { color: #15803D; }
+    .drill-lbl { font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+    .drill-arrow { display: flex; align-items: center; font-size: 30px; color: var(--muted); }
+
+    /* FORMULA */
+    .formula-box { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 34px 40px; color: #fff; position: relative; overflow: hidden; }
+    .formula-box::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .formula-line { position: relative; z-index: 2; font-size: 30px; font-weight: 700; line-height: 1.5; }
+    .formula-line .slot { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); border-radius: 8px; padding: 2px 14px; font-weight: 800; margin: 0 2px; }
+    .formula-line .slot.who { color: #93C5FD; } .formula-line .slot.res { color: #6EE7B7; } .formula-line .slot.dif { color: #FCD34D; }
+    .formula-line .slot.prob { color: #FCA5A5; }
+    .ex-flip { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+    .flip { border-radius: var(--radius-sm); padding: 16px 20px; font-size: 18px; line-height: 1.45; }
+    .flip.no { background: #FEF2F2; border: 1px solid #FECACA; color: #B91C1C; }
+    .flip.yes { background: #ECFDF5; border: 1px solid #6EE7B7; color: var(--foreground); }
+    .flip .fl-mark { font-weight: 800; margin-right: 8px; }
+    .flip.yes b { color: #15803D; font-weight: 800; }
+
+    /* 3 pitch-uri table */
+    .pitch-table { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .pitch-table th { padding: 14px 20px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: #fff; background: var(--primary); border: none; }
+    .pitch-table td { padding: 18px 20px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.45; }
+    .pitch-table tr:last-child td { border-bottom: none; }
+    .pitch-who { display: flex; align-items: center; gap: 12px; }
+    .pitch-emoji { font-size: 32px; line-height: 1; }
+    .pitch-name { font-size: 19px; font-weight: 800; color: var(--foreground); }
+    .pitch-msg { font-size: 17px; color: var(--foreground); line-height: 1.45; font-style: italic; } .pitch-msg b { font-weight: 800; font-style: normal; color: var(--primary); }
+
+    /* MISTAKES list (3 greșeli de pitch) */
+    .mistakes { display: flex; flex-direction: column; gap: 14px; flex: 1; justify-content: center; }
+    .mk-row { display: grid; grid-template-columns: 240px 1fr; gap: 18px; align-items: stretch; }
+    .mk-head { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; justify-content: center; }
+    .mk-head .mk-n { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: #B91C1C; letter-spacing: 0.04em; text-transform: uppercase; }
+    .mk-head .mk-n .mk-dot { width: 22px; height: 22px; border-radius: 50%; background: var(--destructive); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    .mk-head .mk-t { font-size: 19px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+    .mk-body { display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+    .mk-bad { background: #FEF2F2; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 15px; color: #B91C1C; font-style: italic; line-height: 1.35; }
+    .mk-good { background: #ECFDF5; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 15px; color: var(--foreground); line-height: 1.35; } .mk-good b { color: #15803D; font-weight: 800; }
+    .mk-bad .m, .mk-good .m { font-weight: 800; font-style: normal; margin-right: 6px; }
+
+    /* EMOTION hook (cârligul emoțional) */
+    .emo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .emo-card { border-radius: var(--radius); padding: 16px 16px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; min-height: 0; overflow: hidden; }
+    .emo-card.s { background: var(--pastel-mint); border-color: #86EFAC; }
+    .emo-card.m { background: var(--pastel-peach); border-color: #FED7AA; }
+    .emo-card.u { background: var(--pastel-rose); border-color: #F9A8D4; }
+    .emo-card.a { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .emo-ico { font-size: 30px; line-height: 1; }
+    .emo-name { font-size: 17px; font-weight: 800; color: var(--foreground); }
+    .emo-sub { font-size: 13px; color: var(--muted); line-height: 1.35; }
+    .emo-ex { font-size: 13px; color: var(--foreground); line-height: 1.4; font-style: italic; margin-top: auto; padding-top: 6px; }
+    .ds-box { margin-top: 16px; display: flex; align-items: stretch; gap: 14px; }
+    .ds-half { flex: 1; border-radius: var(--radius); padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+    .ds-half.pain { background: #FEF2F2; border: 1px solid #FECACA; }
+    .ds-half.fix { background: #ECFDF5; border: 1px solid #6EE7B7; }
+    .ds-lbl { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+    .ds-half.pain .ds-lbl { color: #B91C1C; } .ds-half.fix .ds-lbl { color: #15803D; }
+    .ds-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .ds-txt b { font-weight: 800; }
+    .ds-arrow { display: flex; align-items: center; font-size: 28px; color: var(--practice); font-weight: 800; }
+
+    /* exercise banner + form */
+    .ex-banner { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #0EA371, #0891B2); color: #fff; border-radius: var(--radius); padding: 14px 22px; margin-bottom: 18px; }
+    .ex-banner .ex-ico { font-size: 26px; }
+    .ex-banner .ex-txt { font-size: 17px; font-weight: 600; line-height: 1.4; } .ex-banner .ex-txt b { font-weight: 800; }
+    .ex-banner .ex-time { margin-left: auto; font-size: 15px; font-weight: 800; background: rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+
+    .pitch-sheet { display: flex; flex-direction: column; gap: 12px; }
+    .ps-line { background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 16px 22px; display: flex; align-items: center; gap: 16px; }
+    .ps-word { font-size: 22px; font-weight: 800; color: var(--practice); white-space: nowrap; }
+    .ps-fill { flex: 1; border-bottom: 1.5px dashed #CBD5E1; height: 1px; align-self: flex-end; margin-bottom: 6px; }
+    .ps-tag { font-size: 13px; font-weight: 800; color: var(--muted); background: #ECFDF5; border-radius: 100px; padding: 5px 13px; white-space: nowrap; }
+    .test-strip { display: flex; gap: 10px; margin-top: 14px; }
+    .test-item { flex: 1; display: flex; align-items: center; gap: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 14px; font-size: 14px; line-height: 1.3; color: var(--foreground); }
+    .test-item .tb { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--practice); flex-shrink: 0; }
+    .test-item b { font-weight: 800; }
+
+    /* OBJECTION BANK (cartonașe sceptice, 3 coloane) */
+    .obj-bank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+    .ob-col { border-radius: var(--radius); padding: 16px 16px; display: flex; flex-direction: column; gap: 9px; border: 1px solid var(--border); overflow: hidden; }
+    .ob-col.p { background: #FEF2F2; border-color: #FECACA; }
+    .ob-col.c { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .ob-col.a { background: var(--pastel-mint); border-color: #86EFAC; }
+    .ob-title { display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 800; color: var(--foreground); margin-bottom: 2px; }
+    .ob-title .oe { font-size: 22px; }
+    .ob-card { background: #fff; border-radius: var(--radius-sm); padding: 10px 12px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+    .ob-q { font-size: 14px; font-weight: 700; color: var(--foreground); line-height: 1.35; font-style: italic; }
+    .ob-a { font-size: 12.5px; color: var(--muted); line-height: 1.35; margin-top: 5px; } .ob-a b { color: var(--practice); font-weight: 800; font-style: normal; }
+    .ob-a .arr { color: var(--practice); font-weight: 800; margin-right: 4px; }
+
+    /* ROLE-PLAY */
+    .rp-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; flex: 1; }
+    .rp-steps { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .rp-step { display: flex; align-items: flex-start; gap: 14px; }
+    .rp-num { width: 34px; height: 34px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .rp-text { font-size: 17px; color: var(--foreground); line-height: 1.4; padding-top: 4px; } .rp-text b { font-weight: 800; color: var(--practice); }
+    .rp-pane { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .rp-pane .rp-head { display: flex; align-items: center; gap: 12px; }
+    .rp-pane .rp-emoji { font-size: 38px; }
+    .rp-pane .rp-title { font-size: 19px; font-weight: 800; color: #B91C1C; line-height: 1.2; }
+    .obj { font-size: 16px; color: var(--foreground); line-height: 1.4; background: #fff; border-left: 4px solid var(--destructive); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 14px; font-style: italic; }
+    .rp-debrief { margin-top: auto; font-size: 15px; color: var(--muted); line-height: 1.5; } .rp-debrief b { color: var(--foreground); }
+
+    /* PRESENT + RETRO */
+    .pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 1; }
+    .pr-pane { border-radius: var(--radius); padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; }
+    .pr-pane.present { background: var(--pastel-peach); border-color: #FED7AA; }
+    .pr-pane.retro { background: var(--primary-ultra-light); border-color: #C7D2FE; }
+    .pr-tag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 100px; }
+    .pr-pane.present .pr-tag { background: #FB923C; color: #fff; } .pr-pane.retro .pr-tag { background: var(--primary); color: #fff; }
+    .pr-title { font-size: 21px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+    .pr-line { display: flex; align-items: flex-start; gap: 11px; font-size: 16px; color: var(--foreground); line-height: 1.5; } .pr-line .pb { font-weight: 800; color: var(--primary); flex-shrink: 0; } .pr-pane.present .pr-line .pb { color: #C2410C; }
+    .retro-fill { background: #fff; border-radius: var(--radius-sm); padding: 16px 18px; font-size: 16px; color: var(--foreground); line-height: 1.7; font-style: italic; border: 1px dashed #C7D2FE; }
+    .retro-fill .blank { display: inline-block; min-width: 110px; border-bottom: 2px solid var(--primary); }
+
+    /* RULE + CHECKLIST */
+    .rule-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 28px; flex: 1; align-items: stretch; }
+    .rule-pane { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 32px; color: #fff; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+    .rule-pane::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .rule-badge { position: relative; z-index: 2; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 800; letter-spacing: 0.08em; margin-bottom: 22px; }
+    .rule-badge .rb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--primary-light); }
+    .rule-text { position: relative; z-index: 2; font-size: 28px; font-weight: 800; line-height: 1.28; letter-spacing: -0.01em; } .rule-text .hl { color: var(--primary-light); }
+    .check-pane { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 30px; display: flex; flex-direction: column; }
+    .check-head { font-size: 15px; font-weight: 800; color: var(--practice); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
+    .check-item { display: flex; align-items: flex-start; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--practice); flex-shrink: 0; margin-top: 1px; }
+    .check-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .check-txt b { font-weight: 800; }
+
+    /* TRANSITION */
+    .slide-transition { padding: 0; overflow: hidden; background: #1E3A8A; position: relative; justify-content: center; align-items: center; display: flex; }
+    .slide-transition::before { display: none; }
+
+    /* COPYWRITING FORMULAS */
+    .cw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; flex: 1; }
+    .cw-card { border-radius: var(--radius); padding: 20px 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+    .cw-card.a { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .cw-card.p { background: var(--pastel-peach); border-color: #FED7AA; }
+    .cw-head { display: flex; align-items: baseline; gap: 10px; }
+    .cw-acr { font-size: 26px; font-weight: 800; letter-spacing: 0.02em; } .cw-card.a .cw-acr { color: #0284C7; } .cw-card.p .cw-acr { color: #C2410C; }
+    .cw-acr small { font-size: 14px; font-weight: 700; color: var(--muted); letter-spacing: 0; }
+    .cw-steps { display: flex; flex-direction: column; gap: 5px; }
+    .cw-step { font-size: 14.5px; color: var(--foreground); line-height: 1.35; } .cw-step b { font-weight: 800; }
+    .cw-ex { margin-top: auto; background: #fff; border-radius: var(--radius-sm); padding: 11px 14px; font-size: 14px; color: var(--foreground); line-height: 1.4; font-style: italic; border-left: 3px solid var(--primary); } .cw-ex b { font-weight: 800; font-style: normal; color: var(--primary); }
+    .cw-note { margin-top: 14px; }
+
+    /* TONE OF VOICE */
+    .tov-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .tov-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+    .tov-ico { font-size: 30px; line-height: 1; }
+    .tov-name { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .tov-name small { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 2px; }
+    .tov-bad { font-size: 14px; color: #B91C1C; font-style: italic; line-height: 1.35; } .tov-bad .m { font-weight: 800; font-style: normal; margin-right: 5px; }
+    .tov-good { font-size: 14.5px; color: var(--foreground); line-height: 1.4; } .tov-good .m { color: #15803D; font-weight: 800; margin-right: 5px; } .tov-good b { font-weight: 800; color: #15803D; }
+    .tov-rule { margin-top: 16px; display: flex; align-items: center; gap: 14px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 14px 20px; }
+    .tov-rule .tre { font-size: 28px; } .tov-rule .trt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .tov-rule .trt b { font-weight: 800; color: var(--primary); }
+
+    /* ============ COMPONENTE NOI (din modulele 2/3) ============ */
+
+    /* TOOLS MAP */
+    .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .tool-card { border-radius: var(--radius); padding: 24px 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; overflow: hidden; position: relative; }
+    .tool-card.t1 { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .tool-card.t2 { background: var(--pastel-lavender); border-color: #DDD6FE; }
+    .tool-card.t3 { background: var(--pastel-peach); border-color: #FED7AA; }
+    .tool-ico { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: #fff; box-shadow: 0 2px 8px rgba(15,23,42,0.08); }
+    .tool-name { font-size: 22px; font-weight: 800; color: var(--foreground); line-height: 1.15; }
+    .tool-name small { display: block; font-size: 14px; font-weight: 600; color: var(--muted); margin-top: 4px; }
+    .tool-q { font-size: 15px; color: var(--foreground); line-height: 1.4; font-style: italic; background: #fff; border-radius: var(--radius-sm); padding: 11px 14px; }
+    .tool-where { margin-top: auto; font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: 0.02em; }
+    .tool-where b { color: var(--foreground); }
+
+    /* GENERIC GRID TABLE */
+    .gt { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .gt th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .gt td { padding: 15px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.42; color: var(--foreground); }
+    .gt tr:last-child td { border-bottom: none; }
+    .gt tr:nth-child(even) td { background: var(--bg); }
+    .gt .lead { font-weight: 800; color: var(--foreground); }
+    .gt .lead .em { font-size: 20px; margin-right: 6px; }
+    .gt .why { color: var(--muted); font-size: 15px; }
+    .gt b { font-weight: 800; }
+    .gt .quoted { font-style: italic; }
+
+    /* BIG STATEMENT pane */
+    .stmt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .stmt-card { border-radius: var(--radius); padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px; border: 1px solid var(--border); }
+    .stmt-card.cold { background: #FEF2F2; border-color: #FECACA; }
+    .stmt-card.warm { background: #ECFDF5; border-color: #6EE7B7; }
+    .stmt-ico { font-size: 34px; line-height: 1; flex-shrink: 0; }
+    .stmt-txt { font-size: 17px; line-height: 1.45; color: var(--foreground); } .stmt-txt b { font-weight: 800; }
+    .stmt-card.cold .stmt-txt b { color: #B91C1C; } .stmt-card.warm .stmt-txt b { color: #15803D; }
+    .stmt-hero { margin-top: 18px; background: linear-gradient(135deg, #0B1120, #1E3A8A 70%, #3B2F8F); border-radius: var(--radius); padding: 22px 28px; color: #fff; font-size: 22px; font-weight: 800; line-height: 1.35; text-align: center; position: relative; overflow: hidden; }
+    .stmt-hero .hl { color: var(--primary-light); }
+
+    /* USP SOURCES matrix */
+    .usp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; }
+    .usp-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; display: flex; gap: 16px; align-items: flex-start; }
+    .usp-ico { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; }
+    .usp-card.s1 .usp-ico { background: var(--pastel-sky); } .usp-card.s2 .usp-ico { background: var(--pastel-mint); }
+    .usp-card.s3 .usp-ico { background: var(--pastel-peach); } .usp-card.s4 .usp-ico { background: var(--pastel-lavender); }
+    .usp-body { display: flex; flex-direction: column; gap: 6px; }
+    .usp-name { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .usp-q { font-size: 14px; color: var(--muted); font-style: italic; line-height: 1.35; }
+    .usp-ex { font-size: 14.5px; color: var(--foreground); line-height: 1.4; background: var(--bg); border-radius: var(--radius-sm); padding: 8px 12px; border-left: 3px solid var(--primary); }
+    .usp-ex b { font-weight: 800; color: var(--primary); }
+
+    /* PROFILE BANK — code-style cards */
+    .prof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; }
+    .prof-grid.six { grid-template-columns: 1fr 1fr 1fr; }
+    .prof-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 17px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .prof-head { display: flex; align-items: center; gap: 10px; }
+    .prof-em { font-size: 24px; line-height: 1; }
+    .prof-label { font-size: 13px; font-weight: 800; color: var(--foreground); letter-spacing: 0.01em; text-transform: uppercase; line-height: 1.15; }
+    .prof-label small { display: block; text-transform: none; font-weight: 600; color: var(--muted); font-size: 11.5px; margin-top: 2px; letter-spacing: 0; }
+    .prof-quote { font-size: 14px; color: var(--foreground); line-height: 1.42; font-style: italic; }
+    .prof-grid.six .prof-quote { font-size: 13px; line-height: 1.38; }
+    .prof-quote b { font-weight: 800; font-style: normal; color: var(--primary); }
+
+    /* GAME board */
+    .game-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; flex: 1; }
+    .game-steps { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .game-step { display: flex; align-items: flex-start; gap: 14px; }
+    .game-num { width: 34px; height: 34px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .game-text { font-size: 16px; color: var(--foreground); line-height: 1.42; padding-top: 4px; } .game-text b { font-weight: 800; color: var(--practice); }
+    .game-board { background: var(--pastel-lavender); border: 1px solid #DDD6FE; border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 14px; }
+    .game-board-head { display: flex; align-items: center; gap: 12px; font-size: 19px; font-weight: 800; color: #6D28D9; }
+    .game-board-head .gbe { font-size: 30px; }
+    .score-row { display: flex; align-items: center; gap: 14px; background: #fff; border-radius: var(--radius-sm); padding: 13px 16px; }
+    .score-row.fail { border-left: 4px solid var(--destructive); }
+    .score-row.win { border-left: 4px solid var(--practice); }
+    .score-pts { font-size: 26px; font-weight: 800; flex-shrink: 0; min-width: 56px; }
+    .score-row.fail .score-pts { color: var(--destructive); }
+    .score-row.win .score-pts { color: var(--practice); }
+    .score-txt { font-size: 14.5px; color: var(--foreground); line-height: 1.4; } .score-txt b { font-weight: 800; }
+    .game-board .gb-note { margin-top: auto; font-size: 14px; color: #6D28D9; line-height: 1.45; font-style: italic; }
+
+    /* FILL sheet */
+    .usp-sheet { display: flex; flex-direction: column; gap: 14px; }
+    .uf-block { background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 16px 22px; }
+    .uf-lbl { font-size: 14px; font-weight: 800; color: var(--practice); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
+    .uf-fill { border-bottom: 1.5px dashed #CBD5E1; height: 22px; margin-bottom: 8px; }
+    .uf-fill:last-child { margin-bottom: 0; }
+    .uf-frame { font-size: 18px; color: var(--foreground); line-height: 1.6; }
+    .uf-frame .uf-blank { display: inline-block; min-width: 120px; border-bottom: 1.5px dashed #94A3B8; }
+    .uf-test { display: flex; align-items: center; gap: 12px; background: var(--primary-ultra-light); border: 1px dashed #C7D2FE; border-radius: var(--radius); padding: 14px 20px; }
+    .uf-test .ute { font-size: 24px; flex-shrink: 0; }
+    .uf-test .utt { font-size: 15px; color: var(--foreground); line-height: 1.4; } .uf-test .utt b { font-weight: 800; color: var(--primary); }
+    .uf-test .utt .opt { font-weight: 800; } .uf-test .utt .opt.no { color: var(--practice); } .uf-test .utt .opt.yes { color: var(--destructive); }
+
+    /* ============ COMPONENTE NOI (M4 — PÂLNIA) ============ */
+
+    /* FUNNEL — pâlnia cu 3 etape (slide 4.1b), zone colorate sus-larg/jos-îngust */
+    .funnel-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; width: 100%; }
+    .funnel-stage { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: #fff; box-sizing: border-box; }
+    .funnel-stage .fs-eyebrow { font-size: 13px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.95; }
+    .funnel-stage .fs-name { font-size: 30px; font-weight: 800; line-height: 1.1; letter-spacing: -0.01em; margin-top: 2px; }
+    .funnel-stage .fs-meta { font-size: 14px; font-weight: 600; opacity: 0.95; margin-top: 4px; }
+    .funnel-stage.see { width: 100%; padding: 22px 24px; background: linear-gradient(135deg, #60A5FA, #3B82F6); clip-path: polygon(0 0, 100% 0, 87% 100%, 13% 100%); }
+    .funnel-stage.believe { width: 74%; padding: 22px 24px; background: linear-gradient(135deg, #FBBF24, #F59E0B); color: #422006; clip-path: polygon(13% 0, 87% 0, 70% 100%, 30% 100%); }
+    .funnel-stage.believe .fs-eyebrow, .funnel-stage.believe .fs-meta { color: #7C2D12; opacity: 1; }
+    .funnel-stage.choose { width: 51%; padding: 20px 24px 24px; background: linear-gradient(135deg, #34D399, #10B981); clip-path: polygon(30% 0, 70% 0, 58% 100%, 42% 100%); }
+
+    /* FUNNEL Q — listă cu 3 întrebări colorate pe etape (slide 4.2) */
+    .funnel-side { display: grid; grid-template-columns: 1fr; gap: 12px; align-content: center; }
+    .funnel-q { background: #fff; border: 1px solid var(--border); border-left-width: 5px; border-radius: var(--radius); padding: 14px 18px; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .funnel-q.see { border-left-color: #3B82F6; }
+    .funnel-q.believe { border-left-color: #F59E0B; }
+    .funnel-q.choose { border-left-color: #10B981; }
+    .funnel-q .fq-top { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .funnel-q .fq-em { font-size: 22px; }
+    .funnel-q .fq-name { font-size: 16px; font-weight: 800; color: var(--foreground); }
+    .funnel-q .fq-pct { margin-left: auto; font-size: 14px; font-weight: 800; padding: 3px 11px; border-radius: 100px; }
+    .funnel-q.see .fq-pct { background: #DBEAFE; color: #1D4ED8; }
+    .funnel-q.believe .fq-pct { background: #FEF3C7; color: #B45309; }
+    .funnel-q.choose .fq-pct { background: #D1FAE5; color: #047857; }
+    .funnel-q .fq-txt { font-size: 14.5px; color: var(--muted); line-height: 1.4; font-style: italic; }
+
+    /* DUAL TABLE — tabel dublu tineri | produse (slide 4.3/4.5/4.6/4.7) */
+    .dt { width: 100%; border-collapse: collapse; font-size: 16px; }
+    .dt th { padding: 12px 16px; text-align: left; font-size: 14px; font-weight: 800; border: none; vertical-align: middle; }
+    .dt th.col-lbl { background: var(--foreground); color: #fff; width: 20%; }
+    .dt th.col-youth { background: #1E3A8A; color: #fff; }
+    .dt th.col-prod { background: #6D28D9; color: #fff; }
+    .dt th .th-em { font-size: 18px; margin-right: 6px; }
+    .dt td { padding: 13px 16px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.4; color: var(--foreground); }
+    .dt tr:last-child td { border-bottom: none; }
+    .dt td.rl { font-weight: 800; color: var(--foreground); background: var(--bg); font-size: 15px; }
+    .dt td.youth { background: #F5F8FF; }
+    .dt td.prod { background: #FAF5FF; }
+    .dt b { font-weight: 800; }
+    .dt .qt { font-style: italic; }
+    .dt tr.keyrow td.youth, .dt tr.keyrow td.prod { background: #ECFDF5; }
+    .dt tr.keyrow td.rl { background: #D1FAE5; color: #047857; }
+
+    /* LEAKY BUCKET (slide 4.4) — găleata găurită */
+    .leak-grid { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 26px; flex: 1; align-items: stretch; }
+    .leak-visual { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 30px; color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; position: relative; overflow: hidden; text-align: center; }
+    .leak-visual::after { content: ''; position: absolute; top: -90px; right: -70px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .leak-emoji { font-size: 78px; line-height: 1; position: relative; z-index: 2; }
+    .leak-cap { position: relative; z-index: 2; font-size: 20px; font-weight: 800; line-height: 1.3; } .leak-cap .hl { color: var(--primary-light); }
+    .leak-sub { position: relative; z-index: 2; font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+    .leak-pts { display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+    .leak-pt { display: flex; gap: 16px; align-items: flex-start; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .leak-pt .lp-em { font-size: 30px; line-height: 1; flex-shrink: 0; }
+    .leak-pt .lp-txt { font-size: 16px; color: var(--foreground); line-height: 1.45; } .leak-pt .lp-txt b { font-weight: 800; color: var(--primary); }
+
+    /* VALUE LADDER (slide 4.8) — scara de valoare, 3 trepte */
+    .ladder { display: flex; flex-direction: column; gap: 0; }
+    .ladder-step { display: flex; align-items: center; gap: 18px; border-radius: var(--radius); padding: 14px 22px; color: #fff; position: relative; }
+    .ladder-step .ls-n { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.22); display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 800; flex-shrink: 0; }
+    .ladder-step .ls-body { flex: 1; }
+    .ladder-step .ls-name { font-size: 19px; font-weight: 800; line-height: 1.15; }
+    .ladder-step .ls-desc { font-size: 14px; opacity: 0.92; line-height: 1.4; margin-top: 3px; }
+    .ladder-step.s1 { background: linear-gradient(135deg, #94A3B8, #64748B); margin-left: 0; width: 70%; }
+    .ladder-step.s2 { background: linear-gradient(135deg, #5B7CF7, #2D52D4); margin-left: 12%; width: 80%; }
+    .ladder-step.s3 { background: linear-gradient(135deg, #10B981, #059669); margin-left: 0; width: 100%; }
+    .ladder-step .ls-tag { font-size: 12px; font-weight: 800; background: rgba(255,255,255,0.22); border-radius: 100px; padding: 4px 12px; white-space: nowrap; }
+    .ladder-arrows { display: flex; justify-content: center; color: var(--muted); font-size: 18px; margin: 2px 0; }
+
+    /* LOOP banner (slide 4.10 referral) */
+    .loop-banner { display: flex; align-items: center; gap: 14px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 14px 22px; margin-top: 16px; }
+    .loop-banner .lb-em { font-size: 28px; } .loop-banner .lb-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .loop-banner .lb-txt b { font-weight: 800; color: var(--primary); }
+
+    /* FUNNEL FILL sheet (slide 4.11) — completezi pâlnia */
+    .ff-sheet { display: flex; flex-direction: column; gap: 11px; }
+    .ff-goal { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 12px 20px; font-size: 16px; color: var(--foreground); }
+    .ff-goal b { color: var(--practice); font-weight: 800; }
+    .ff-goal .ff-box { width: 20px; height: 20px; border-radius: 5px; border: 2px solid var(--practice); display: inline-block; margin-right: 7px; vertical-align: -3px; }
+    .ff-row { display: flex; align-items: stretch; gap: 14px; background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 11px 18px; }
+    .ff-stage { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; width: 130px; flex-shrink: 0; border-radius: var(--radius-sm); padding: 6px; }
+    .ff-stage.see { background: #DBEAFE; } .ff-stage.believe { background: #FEF3C7; } .ff-stage.choose { background: #D1FAE5; }
+    .ff-stage .ffs-em { font-size: 22px; } .ff-stage .ffs-n { font-size: 13px; font-weight: 800; letter-spacing: 0.04em; }
+    .ff-stage.see .ffs-n { color: #1D4ED8; } .ff-stage.believe .ffs-n { color: #B45309; } .ff-stage.choose .ffs-n { color: #047857; }
+    .ff-prompt { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+    .ff-prompt .ffp-q { font-size: 13.5px; color: var(--muted); font-weight: 600; }
+    .ff-prompt .ffp-line { border-bottom: 1.5px dashed #CBD5E1; height: 16px; }
+    .ff-loss { display: flex; align-items: center; gap: 14px; background: var(--primary-ultra-light); border: 1px dashed #C7D2FE; border-radius: var(--radius); padding: 12px 20px; }
+    .ff-loss .ffl-em { font-size: 24px; flex-shrink: 0; }
+    .ff-loss .ffl-txt { font-size: 14.5px; color: var(--foreground); line-height: 1.4; } .ff-loss .ffl-txt b { font-weight: 800; color: var(--primary); }
+    .ff-loss .ffl-opts { font-weight: 800; color: var(--practice); }
+
+    /* DIAGNOSIS CASES (slide 4.12) — unde se sparge pâlnia */
+    .diag-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .diag-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .diag-case { font-size: 15px; font-weight: 700; color: var(--foreground); font-style: italic; line-height: 1.4; }
+    .diag-ans { margin-top: auto; display: flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--muted); line-height: 1.4; background: var(--bg); border-radius: var(--radius-sm); padding: 9px 12px; }
+    .diag-pill { font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
+    .diag-pill.see { background: #DBEAFE; color: #1D4ED8; }
+    .diag-pill.believe { background: #FEF3C7; color: #B45309; }
+    .diag-pill.choose { background: #D1FAE5; color: #047857; }
+    /* audit CX — bloc grilă */
+    .code-block { background: #0F172A; border-radius: var(--radius); padding: 18px 22px; font-family: 'SF Mono', 'Menlo', monospace; }
+    .code-block .cb-line { font-size: 15px; line-height: 1.9; color: #E2E8F0; }
+    .code-block .cb-line b { color: #fff; }
+    .code-block .cb-k { color: #6EE7B7; font-weight: 700; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- SLIDE 4.1 — COVER / TITLU -->
+    <section data-notes="Deschidere Modul 4 (70 min) — ăsta e CADRUL care unifică toată ziua: PÂLNIA. Nimeni nu cumpără din prima — nici un tânăr nu se înscrie, nici o cafenea nu comandă, de la prima atingere. Trec printr-o pâlnie: Te văd → Te cred → Te aleg. Dacă le ceri să cumpere prea devreme, îi pierzi. Ritm: cadru+teorie 18 → cele 3 etape cu activări 20 → completezi pâlnia 12 → joc diagnoză + scrie anunțul 16 → prezinți+retro 8 → regulă+checklist 5. Output în Foaia de drum: pâlnia mea pe 3 etape + unde pierd cei mai mulți oameni acum. Se sprijină pe M3 (AIDA + canale). Desenează pâlnia pe tablă și revino la ea tot modulul.">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 4 · De la atelier la piață — vânzări &amp; marketing digital</div>
+          <h1>Pâlnia: cum atragi<br>tineri și vinzi produse</h1>
+          <div class="cover-bait">👀 🤝 ✅</div>
+          <p class="subtitle">Nimeni nu cumpără din prima. Nici un tânăr nu se înscrie, nici o cafenea nu comandă, de la prima atingere. Sunt 3 etape.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">70 min</span>
+            <span class="cover-chip">Pâlnia: Te văd → Te cred → Te aleg</span>
+            <span class="cover-chip">Pleci cu pâlnia ta pe 3 etape</span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.1b — PÂLNIA VIZUALĂ (din *Vizual* slide 4.1) -->
+    <section data-notes="Imaginea de reținut a întregului modul: pâlnia cu 3 zone. Sus larg — TE VĂD: te descoperă mulți (atragere). Mijloc — TE CRED: rămân câțiva, cu care construiești încredere (încălzire). Jos îngust — TE ALEG: cei care decid (conversie). Cu cât cobori, cu atât mai puțini — dar mai calzi. Mesaj-cheie: un singur mesaj nu duce omul din vârf direct în jos. Cârlig mentor: «Dacă le ceri să cumpere când abia te-au văzut, îi pierzi. Pâlnia există ca să nu sari etape.»">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · imaginea de reținut</div>
+          <h2 class="slide-title">Drumul de la „te-a văzut" la <span class="hl">„te-a ales"</span></h2>
+          <p class="slide-subtitle">Cu cât cobori în pâlnie, cu atât mai <b>puțini oameni</b> — dar mai <b>calzi</b>. Un singur mesaj nu duce omul din vârf direct în jos.</p>
+        </div>
+        <div class="funnel-wrap" style="flex:1;justify-content:center;margin-top:6px;">
+          <div class="funnel-stage see">
+            <span class="fs-eyebrow">👀 Atragere · ~70% efort</span>
+            <span class="fs-name">TE VĂD</span>
+            <span class="fs-meta">te descoperă oameni care nici nu știau de tine</span>
+          </div>
+          <div class="funnel-stage believe">
+            <span class="fs-eyebrow">🤝 Încălzire · ~20% efort</span>
+            <span class="fs-name">TE CRED</span>
+            <span class="fs-meta">câștigi încrederea + îi iei contactul</span>
+          </div>
+          <div class="funnel-stage choose">
+            <span class="fs-eyebrow">✅ Conversie · ~10%</span>
+            <span class="fs-name">TE ALEG</span>
+            <span class="fs-meta">decide: se înscrie / comandă</span>
+          </div>
+        </div>
+        <div class="slide-num">02 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.2 — Ce înveți azi (harta modulului) -->
+    <section data-notes="Harta modulului: un singur cadru care le explică pe toate — PÂLNIA. Cele 3 etape cu întrebarea ei și efortul: TE VĂD (~70%) «Cum mă descoperă oameni care nici nu știau de mine?»; TE CRED (~20%) «Cum câștig încrederea + îi iau contactul?»; TE ALEG (~10%) «Cum îl ajut să decidă — să se înscrie / să comande?». Cârlig mentor: «Cei mai mulți sar de la «am postat» (te văd) direct la «de ce nu s-a înscris?» (te aleg). Lipsește mijlocul — și acolo se pierd oamenii.» Anunță harta clar.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Ce înveți azi · harta modulului</div>
+          <h2 class="slide-title">Un singur cadru le explică pe toate: <span class="hl">PÂLNIA</span></h2>
+          <p class="slide-subtitle">3 etape, fiecare cu întrebarea ei și cu cât efort pui acolo. Mesaj: nu înveți 3 lucruri — înveți <b>un drum</b>.</p>
+        </div>
+        <div class="funnel-side" style="flex:1;">
+          <div class="funnel-q see">
+            <div class="fq-top"><span class="fq-em">👀</span><span class="fq-name">TE VĂD · atragere</span><span class="fq-pct">~70%</span></div>
+            <div class="fq-txt">„Cum mă descoperă oameni care nici nu știau de mine?"</div>
+          </div>
+          <div class="funnel-q believe">
+            <div class="fq-top"><span class="fq-em">🤝</span><span class="fq-name">TE CRED · încălzire</span><span class="fq-pct">~20%</span></div>
+            <div class="fq-txt">„Cum câștig încrederea + îi iau contactul?"</div>
+          </div>
+          <div class="funnel-q choose">
+            <div class="fq-top"><span class="fq-em">✅</span><span class="fq-name">TE ALEG · conversie</span><span class="fq-pct">~10%</span></div>
+            <div class="fq-txt">„Cum îl ajut să decidă — să se înscrie / să comande?"</div>
+          </div>
+        </div>
+        <div class="cw-note"><div class="quote-block warn"><strong>Cârlig:</strong> cei mai mulți sar de la „am postat" (te văd) direct la „de ce nu s-a înscris?" (te aleg). Lipsește mijlocul — și acolo se pierd oamenii.</div></div>
+        <div class="slide-num">03 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.3 — Cadru: aceeași pâlnie, două scopuri -->
+    <section data-notes="Mesaj cheie: nu înveți 2 sisteme. Înveți UNUL — pâlnia — și-l aplici pe amândouă: atras TINERI și vândut PRODUSE din atelier. La fiecare etapă arăt ce faci pentru fiecare scop. Diferă cine intră sus (adolescenți/părinți vs familii/vecini/firme mici locale), ce «cumpără» la final (o înscriere vs o comandă/abonament), dar drumul e identic: te văd → te cred → decizia. Asta îi liniștește: un singur cadru de învățat.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · o pâlnie, două scopuri</div>
+          <h2 class="slide-title">Aceeași pâlnie — <span class="hl">și ca să atragi tineri, și ca să vinzi produse</span></h2>
+          <p class="slide-subtitle">Nu înveți 2 sisteme. Înveți <b>unul</b> — și-l aplici pe amândouă. La fiecare etapă îți arăt ce faci pentru fiecare scop.</p>
+        </div>
+        <table class="dt" style="font-size:17px;flex:1;">
+          <thead>
+            <tr>
+              <th class="col-lbl"></th>
+              <th class="col-youth"><span class="th-em">🎓</span>Atragi TINERI / elevi</th>
+              <th class="col-prod"><span class="th-em">🛠️</span>Vinzi PRODUSE din atelier</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="rl">Cine intră sus</td>
+              <td class="youth">adolescenți, părinți</td>
+              <td class="prod">familii, vecini, <b>firme mici locale</b></td>
+            </tr>
+            <tr>
+              <td class="rl">Ce „cumpără" la final</td>
+              <td class="youth">o înscriere</td>
+              <td class="prod">o comandă / un abonament</td>
+            </tr>
+            <tr>
+              <td class="rl">Drumul</td>
+              <td class="youth qt">te văd → te cred → se înscriu</td>
+              <td class="prod qt">te văd → te cred → comandă</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="slide-num">04 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.4 — Cadru: găleata găurită -->
+    <section data-notes="INIMA cadrului. De ce mijlocul (TE CRED) e etapa pe care o sar toți: e «găleata găurită». Mulți postează (te văd) și se miră că nu se înscrie nimeni (te aleg). Adevărul: între «te-a văzut» și «te-a ales» e un drum de încredere — și de obicei mai multe atingeri (regula: ~7 contacte până decide). O decizie mare (un copil care alege o școală) durează LUNI, cu părintele co-decident. Un singur mesaj n-o închide niciodată. Cârlig mentor: «Degeaba torni apă în găleată (postezi mult) dacă fundul e găurit (nu prinzi pe nimeni la mijloc). Azi astupăm fundul.» Petrece timp aici.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · de ce se sare etapa de mijloc</div>
+          <h2 class="slide-title">„Te văd" → ??? → „te aleg". <span class="hl">Aici e găleata găurită.</span></h2>
+          <p class="slide-subtitle">Mulți postează (te văd) și se miră că nu se înscrie nimeni (te aleg). Între ele e un drum de <b>încredere</b> — care se sare cel mai des.</p>
+        </div>
+        <div class="leak-grid">
+          <div class="leak-visual">
+            <span class="leak-emoji">🪣</span>
+            <div class="leak-cap">Torni apă, dar <span class="hl">fundul e găurit</span></div>
+            <div class="leak-sub">Postezi mult (TE VĂD), dar nu prinzi pe nimeni la mijloc (TE CRED). Tot ce torni se scurge.</div>
+          </div>
+          <div class="leak-pts">
+            <div class="leak-pt"><span class="lp-em">🔁</span><div class="lp-txt">Între „te-a văzut" și „te-a ales" e nevoie de <b>mai multe atingeri</b> — regula: ~7 contacte până decide.</div></div>
+            <div class="leak-pt"><span class="lp-em">⏳</span><div class="lp-txt">O decizie mare — un copil care alege o școală — durează <b>luni</b>, cu părintele co-decident. Un singur mesaj n-o închide.</div></div>
+            <div class="leak-pt"><span class="lp-em">🔧</span><div class="lp-txt">Soluția nu e „postează mai mult". E <b>să astupi fundul</b>: construiește încredere și ia contactul la TE CRED.</div></div>
+          </div>
+        </div>
+        <div class="cw-note"><div class="quote-block warn"><strong>Cârlig:</strong> degeaba torni apă în găleată (postezi mult) dacă fundul e găurit (nu prinzi pe nimeni la mijloc). <strong>Azi astupăm fundul.</strong></div></div>
+        <div class="slide-num">05 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.5 — ETAPA 1 · TE VĂD -->
+    <section data-notes="ETAPA 1 · TE VĂD (~70% din efort). Scop: te descoperă oameni care nici nu știau de tine. NU vinzi încă. Tineri: video proces/satisfying (sudură, glazură, lemn), «cât câștigă meseria X»; curiozitate + transformare, ZERO «înscrie-te»; pe TikTok, Reels, grup Facebook raion; NU ceri înscrierea. Produse: poză frumoasă cu produsul finit, video din atelier; «uite ce iese din atelierul nostru» — fără preț; pe Instagram, Facebook local, Marketplace, 999.md; NU ceri comanda din prima poză. Exemplu tineri: absolvent care intra timid și azi e în service cu prima leafă, hook «Acum un an nu voia la liceu». Exemplu produs: cofetăria postează 10 sec cu glazura curgând, «Comenzi pentru evenimente». Regula etapei: la TE VĂD faci umbră, nu vânzare.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Etapa 1 · TE VĂD <span style="background:#DBEAFE;color:#1D4ED8;padding:2px 10px;border-radius:100px;margin-left:8px;font-size:11px;">👀 ATRAGERE · ~70%</span></div>
+          <h2 class="slide-title">Te descoperă oameni care <span class="hl">nici nu știau de tine</span></h2>
+          <p class="slide-subtitle">Scop: să fii descoperit. <b>NU vinzi încă.</b> La TE VĂD faci umbră, nu vânzare.</p>
+        </div>
+        <table class="dt" style="flex:1;">
+          <thead>
+            <tr>
+              <th class="col-lbl"></th>
+              <th class="col-youth"><span class="th-em">🎓</span>Atragi tineri</th>
+              <th class="col-prod"><span class="th-em">🛠️</span>Vinzi produse</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="rl">Activarea</td>
+              <td class="youth">video „proces / satisfying" (sudură, glazură, lemn); „cât câștigă meseria X"</td>
+              <td class="prod">poză frumoasă cu produsul finit; video din atelier</td>
+            </tr>
+            <tr>
+              <td class="rl">Mesajul</td>
+              <td class="youth">curiozitate + transformare, <b>ZERO „înscrie-te"</b></td>
+              <td class="prod">„uite ce iese din atelierul nostru" — <b>fără preț încă</b></td>
+            </tr>
+            <tr>
+              <td class="rl">Unde</td>
+              <td class="youth">TikTok, Reels, grup Facebook raion</td>
+              <td class="prod">Instagram, Facebook local, Marketplace, 999.md</td>
+            </tr>
+            <tr>
+              <td class="rl">Ce NU faci</td>
+              <td class="youth qt">nu ceri înscrierea</td>
+              <td class="prod qt">nu ceri comanda din prima poză</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block"><strong>Exemple:</strong> video cu un absolvent care intra timid și azi e în service — „<strong>Acum un an nu voia la liceu</strong>." &nbsp;·&nbsp; o cofetărie postează 10 sec cu glazura curgând: „<strong>Comenzi pentru evenimente 👀</strong>". Atrage, nu vinde.</div></div>
+        <div class="slide-num">06 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.6 — ETAPA 2 · TE CRED (cheie) -->
+    <section data-notes="ETAPA 2 · TE CRED (~20%) — ETAPA-CHEIE, inima modulului. Scop: cineva e interesat dar nu convins. Construiești ÎNCREDERE + îi iei CONTACTUL. Tineri: răspunzi la comentariu/privat, inviți la ziua porților deschise / o vizită; dovadă = mărturie absolvent angajat, poză de la job, «6 din 10 s-au angajat»; colectezi numele + telefon/Messenger (Lista caldă); 2-3 contacte pe 1-2 săptămâni, nu unul. Produse: duci o MOSTRĂ, arăți alte comenzi livrate, trimiți poze pe WhatsApp; dovadă = «12 mese livrate anul ăsta», o recenzie, «comandat deja de [cafenea]»; colectezi contactul firmei + ce-i trebuie + când; mostră → urmărire la 3 zile → ofertă. De ce funcționează (psihologie): mostra/vizita gratuită creează o mică obligație (reciprocitate); dovada cu absolvenți/comenzi = încredere socială; un pas mic face următorul pas mai ușor. AICI E INIMA — tot drumul se rupe dacă sari de la «te-a văzut» direct la «cumpără».">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Etapa 2 · TE CRED <span style="background:#FEF3C7;color:#B45309;padding:2px 10px;border-radius:100px;margin-left:8px;font-size:11px;">🤝 ÎNCĂLZIRE · ~20% · ETAPA-CHEIE</span></div>
+          <h2 class="slide-title">Construiești <span class="hl">încredere</span> + îi iei <span class="hl">contactul</span></h2>
+          <p class="slide-subtitle">E interesat, dar nu convins. <b>Aici e inima modulului</b> — tot drumul se rupe dacă sari de la „te-a văzut" direct la „cumpără".</p>
+        </div>
+        <table class="dt" style="flex:1;">
+          <thead>
+            <tr>
+              <th class="col-lbl"></th>
+              <th class="col-youth"><span class="th-em">🎓</span>Atragi tineri</th>
+              <th class="col-prod"><span class="th-em">🛠️</span>Vinzi produse</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="rl">Activarea</td>
+              <td class="youth">răspunzi la comentariu/privat; inviți la ziua porților deschise / o vizită în atelier</td>
+              <td class="prod">duci o <b>mostră</b>; arăți alte comenzi livrate; trimiți poze pe WhatsApp</td>
+            </tr>
+            <tr class="keyrow">
+              <td class="rl">Dovada (cheie)</td>
+              <td class="youth">mărturie absolvent angajat, poză de la job, „6 din 10 s-au angajat"</td>
+              <td class="prod">„12 mese livrate anul ăsta", o recenzie, „comandat deja de [cafenea]"</td>
+            </tr>
+            <tr>
+              <td class="rl">Ce colectezi</td>
+              <td class="youth">numele + telefonul / Messenger → <b>„Lista caldă"</b></td>
+              <td class="prod">contactul firmei + ce-i trebuie + când</td>
+            </tr>
+            <tr>
+              <td class="rl">Câte atingeri</td>
+              <td class="youth qt">2–3 contacte pe 1–2 săptămâni, nu unul</td>
+              <td class="prod qt">mostră → urmărire la 3 zile → ofertă</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block"><strong>De ce funcționează:</strong> mostra/vizita gratuită creează o mică obligație <strong>(reciprocitate)</strong>; dovada cu absolvenți/comenzi = <strong>încredere socială</strong>; un pas mic face următorul pas mai ușor.</div></div>
+        <div class="slide-num">07 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.7 — ETAPA 3 · TE ALEG -->
+    <section data-notes="ETAPA 3 · TE ALEG (~10%). Scop: e cald, gata să decidă. Acum aplici ce știi deja din M2-M3: pitch, preț, chemare, urgență. Tineri: «mai sunt 4 locuri în grupă», «admiterea se închide pe [dată]», «vino cu actele joi»; pârghia = locuri limitate REALE + «locul tău nu te așteaptă»; închide profesorul, față în față, cu părintele de față. Produse: ofertă pe 3 opțiuni (M6), abonament, «prima comandă -10%»; pârghia = bundle/abonament la preț fix; închizi tu, cu mostra deja gustată în spate. Și DUPĂ: clientul mulțumit → referral (4.10); absolventul angajat → mărturie → hrănește din nou TE VĂD. Așa pâlnia se închide în cerc. Regula etapei: la TE ALEG ești scurt și clar — tot greul (încrederea) l-ai făcut la TE CRED.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Etapa 3 · TE ALEG <span style="background:#D1FAE5;color:#047857;padding:2px 10px;border-radius:100px;margin-left:8px;font-size:11px;">✅ CONVERSIE · ~10%</span></div>
+          <h2 class="slide-title">E cald, gata să decidă. <span class="hl">Acum închizi — scurt și clar.</span></h2>
+          <p class="slide-subtitle">Aplici ce știi deja: pitch, preț, chemare, urgență. <b>Tot greul (încrederea) l-ai făcut la TE CRED.</b></p>
+        </div>
+        <table class="dt" style="flex:1;">
+          <thead>
+            <tr>
+              <th class="col-lbl"></th>
+              <th class="col-youth"><span class="th-em">🎓</span>Atragi tineri</th>
+              <th class="col-prod"><span class="th-em">🛠️</span>Vinzi produse</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="rl">Activarea</td>
+              <td class="youth">„mai sunt 4 locuri în grupă"; „admiterea se închide pe [dată]"; „vino cu actele joi"</td>
+              <td class="prod">ofertă pe 3 opțiuni (M6); abonament; „prima comandă −10%"</td>
+            </tr>
+            <tr>
+              <td class="rl">Pârghia</td>
+              <td class="youth">locuri limitate <b>REALE</b> + „locul tău nu te așteaptă"</td>
+              <td class="prod">bundle / abonament la <b>preț fix</b></td>
+            </tr>
+            <tr>
+              <td class="rl">Cine închide</td>
+              <td class="youth qt">profesorul, față în față, cu părintele de față</td>
+              <td class="prod qt">tu, cu mostra deja gustată în spate</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block"><strong>Pâlnia se închide în cerc:</strong> clientul mulțumit → îți aduce alții (referral, 4.10). Absolventul angajat → mărturie → hrănește din nou etapa <strong>TE VĂD</strong>.</div></div>
+        <div class="slide-num">08 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.8 — Scara de valoare + Long Tail -->
+    <section data-notes="Instrument pentru produse, subordonat pâlniei. Nu cere comanda mare din prima — urcă clientul în 3 trepte: 1. MOSTRA/PROBA (gratis, creează încrederea — e etapa TE CRED); 2. PRIMA COMANDĂ (plătită, de probă); 3. CLIENT REPETABIL (abonament / comandă lunară — cel mai valoros). Venitul care se repetă (Long Tail): 1 client care cumpără 50 de săptămâni > 50 de clienți o singură dată. Exemplu: 1 tort la o nuntă = 500 lei o dată, alergi mereu după clienți noi VS 1 cafenea, abonament 500 lei/săpt = 26.000 lei/an, clientul vine singur. Cârlig mentor: «Nu căuta nunta. Caută cafeneaua mică, dar care comandă în fiecare luni. Aia ține atelierul în viață.»">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Instrument · scara de valoare + venit repetabil</div>
+          <h2 class="slide-title">Nu cere comanda mare din prima. <span class="hl">Urcă clientul în 3 trepte.</span></h2>
+          <p class="slide-subtitle">Treapta 1 = mostra (etapa TE CRED). Apoi prima comandă. Apoi clientul repetabil — <b>cel mai valoros</b>.</p>
+        </div>
+        <div class="ladder" style="margin-bottom:18px;">
+          <div class="ladder-step s1"><span class="ls-n">1</span><div class="ls-body"><div class="ls-name">Mostra / proba</div><div class="ls-desc">gratis, creează încrederea (etapa TE CRED)</div></div><span class="ls-tag">gratis</span></div>
+          <div class="ladder-arrows">↑</div>
+          <div class="ladder-step s2"><span class="ls-n">2</span><div class="ls-body"><div class="ls-name">Prima comandă</div><div class="ls-desc">plătită, de probă</div></div><span class="ls-tag">plătită</span></div>
+          <div class="ladder-arrows">↑</div>
+          <div class="ladder-step s3"><span class="ls-n">3</span><div class="ls-body"><div class="ls-name">Client repetabil</div><div class="ls-desc">abonament / comandă lunară</div></div><span class="ls-tag">cel mai valoros</span></div>
+        </div>
+        <table class="vs-table" style="font-size:16px">
+          <thead>
+            <tr><th class="col-bad" style="width:50%">❌ Vânzare la întâmplare</th><th class="col-good" style="width:50%">✅ Venit repetabil (Long Tail)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="bad-cell">1 tort la o nuntă = 500 lei, o dată</td><td class="good-cell">1 cafenea, abonament 500 lei/săpt = <b>26.000 lei/an</b></td></tr>
+            <tr><td class="bad-cell">alergi mereu după clienți noi</td><td class="good-cell">clientul vine singur, săptămână de săptămână</td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block warn"><strong>Cârlig:</strong> nu căuta nunta. Caută <strong>cafeneaua mică, dar care comandă în fiecare luni</strong>. Aia ține atelierul în viață.</div></div>
+        <div class="slide-num">09 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.9 — Cui vinzi produsul: firma mică locală -->
+    <section data-notes="Mini-how-to: cui vinzi produsul. Clientul tău nu e Dräxlmaier (corporația). E firma de pe strada ta — micro-firma locală. Pentru o școală dintr-un raion ăsta e clientul real de produs. Cofetărie → cafeneaua, pensiunea, firma de catering. Mobilă → firma de amenajări cu 5 oameni, o pensiune, un birou. Metal/sudură → atelierul auto local, o fermă, o firmă de construcții mică. Horticultură → piața locală, restaurante mici, vecinii. Cum o abordezi în 4 pași: 1. deschide cu PROBLEMA LOR («Am văzut că aveți cafenea. Vă pot livra prăjituri proaspete, fără să angajați cofetar»); 2. oferă o MOSTRĂ, nu o promisiune (TE CRED); 3. propune un pas mic («vă las un platou de probă joi»); 4. stabilește următorul pas («vă sun luni să vedem dacă mergem pe o comandă săptămânală»). Cârlig: «Nu pierde timp visând la Linella. Cucerește cele 4 firme de pe strada ta — alea îți răspund la telefon.» Minimizează corporația — asta îi face să simtă că e fezabil.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Mini-how-to · cui vinzi produsul</div>
+          <h2 class="slide-title">Clientul tău nu e corporația. <span class="hl">E firma de pe strada ta.</span></h2>
+          <p class="slide-subtitle">Pentru o școală dintr-un raion, clientul real de produs e <b>micro-firma locală</b> — nu corporația.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:0.92fr 1.08fr;gap:24px;flex:1;">
+          <table class="gt" style="font-size:16px;align-self:start;">
+            <thead>
+              <tr><th style="width:42%">Produsul tău</th><th style="width:58%">Firma mică de lângă tine</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="lead"><span class="em">🍰</span>cofetărie</td><td class="why">cafeneaua, pensiunea, firma de catering din oraș</td></tr>
+              <tr><td class="lead"><span class="em">🪑</span>mobilă</td><td class="why">firma de amenajări cu 5 oameni, o pensiune, un birou</td></tr>
+              <tr><td class="lead"><span class="em">🔧</span>metal / sudură</td><td class="why">atelierul auto local, o fermă, o firmă de construcții mică</td></tr>
+              <tr><td class="lead"><span class="em">🌱</span>horticultură</td><td class="why">piața locală, restaurante mici, vecinii</td></tr>
+            </tbody>
+          </table>
+          <div style="display:flex;flex-direction:column;gap:11px;justify-content:center;">
+            <div style="font-size:13px;font-weight:800;color:var(--practice);text-transform:uppercase;letter-spacing:0.04em;">Cum o abordezi · în 4 pași</div>
+            <div class="rp-step"><div class="rp-num">1</div><div class="rp-text">Deschide cu <b>problema LOR</b>: „Am văzut că aveți cafenea. Vă pot livra prăjituri proaspete, fără să angajați cofetar."</div></div>
+            <div class="rp-step"><div class="rp-num">2</div><div class="rp-text">Oferă o <b>MOSTRĂ</b>, nu o promisiune (etapa TE CRED).</div></div>
+            <div class="rp-step"><div class="rp-num">3</div><div class="rp-text">Propune un <b>pas mic</b>: „vă las un platou de probă joi."</div></div>
+            <div class="rp-step"><div class="rp-num">4</div><div class="rp-text">Stabilește <b>următorul pas</b>: „vă sun luni să vedem dacă mergem pe o comandă săptămânală."</div></div>
+          </div>
+        </div>
+        <div class="cw-note"><div class="quote-block warn"><strong>Cârlig:</strong> nu pierde timp visând la Linella. Cucerește <strong>cele 4 firme de pe strada ta</strong> — alea îți răspund la telefon.</div></div>
+        <div class="slide-num">10 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.10 — Referral: pâlnia se închide în cerc -->
+    <section data-notes="Bonus: pâlnia se închide în cerc (referral). Clientul mulțumit îți aduce următorii — gratis. Dar trebuie să-i ceri. Gura-lumii e canalul #1, dar nu vine singur — îl declanșezi tu, la momentul «aha». Părinte mulțumit → după ce copilul lui s-a angajat → «cunoști alt părinte îngrijorat? spune-i să mă sune». Absolvent angajat → la primul salariu → o mențiune publică / «ambasador» + ceri o mărturie. Firmă mulțumită → după a 2-a comandă bună → «cunoașteți altă cafenea care ar avea nevoie?». Regula: recomandarea cea mai puternică e PĂRINTE → PĂRINTE la poarta liceului. Bate orice afiș. Singurul efort: să o ceri, fix la momentul bun. Leagă de M7 (planul).">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Bonus · pâlnia se închide în cerc</div>
+          <h2 class="slide-title">Clientul mulțumit îți aduce următorii — gratis. <span class="hl">Dar trebuie să-i ceri.</span></h2>
+          <p class="slide-subtitle">Gura-lumii e canalul #1. Dar nu vine singur — îl <b>declanșezi tu</b>, la momentul „aha".</p>
+        </div>
+        <table class="gt" style="flex:1;">
+          <thead>
+            <tr><th style="width:26%">Cine recomandă</th><th style="width:42%">Când îi ceri (momentul „aha")</th><th style="width:32%">Ce-i oferi</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="lead"><span class="em">👪</span>Părinte mulțumit</td><td>după ce copilul lui s-a angajat</td><td class="why quoted">„cunoști alt părinte îngrijorat? spune-i să mă sune"</td></tr>
+            <tr><td class="lead"><span class="em">🎓</span>Absolvent angajat</td><td>la primul salariu</td><td class="why">o mențiune publică / „ambasador" + ceri o mărturie</td></tr>
+            <tr><td class="lead"><span class="em">🛠️</span>Firmă mulțumită</td><td>după a 2-a comandă bună</td><td class="why quoted">„cunoașteți altă cafenea care ar avea nevoie?"</td></tr>
+          </tbody>
+        </table>
+        <div class="loop-banner"><span class="lb-em">🔄</span><div class="lb-txt">Regula: recomandarea cea mai puternică e <b>părinte → părinte</b> la poarta liceului. Bate orice afiș. Singurul efort: să o ceri, fix la momentul bun.</div></div>
+        <div class="slide-num">11 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.11 — COMPLETEZI: Pâlnia mea -->
+    <section data-notes="COMPLETEZI — 12 min · pâlnia mea pe 3 etape, în Foaia de drum (partea 4). Instrucțiune: alege UN scop — atrag tineri SAU vând un produs. Completează ce faci la fiecare etapă: TE VĂD (ce postez/fac ca să mă descopere?), TE CRED (ce dovadă arăt + ce contact colectez?), TE ALEG (ce ofer + ce termen/limită pun?). Apoi întrebarea-cheie: UNDE pierd cei mai mulți oameni acum? Bifează 1: nu mă vede nimeni (TE VĂD) / mă văd dar nu mă cred / nu-i prind (TE CRED) / mă cred dar nu se decid (TE ALEG). Acolo îmi pun efortul. Mentorul trece: ultima întrebare e cea mai importantă — acolo e gâtul de sticlă, acolo lucrezi, nu peste tot.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Completezi · Foaia mea de drum 4</div>
+          <h2 class="slide-title">Pâlnia mea pe 3 etape <span style="font-size:24px;color:var(--muted);font-weight:600">— și unde pierd cei mai mulți</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">🔻</span>
+          <span class="ex-txt">Alege <b>UN scop</b>: atrag tineri SAU vând un produs. Completează ce faci la fiecare etapă — apoi bifează unde pierzi.</span>
+          <span class="ex-time">⏱ 12 min</span>
+        </div>
+        <div class="ff-sheet">
+          <div class="ff-goal"><span><span class="ff-box"></span><b>atrag tineri/elevi</b></span><span><span class="ff-box"></span><b>vând un produs</b></span><span style="color:var(--muted);">CE anume: ________________________</span></div>
+          <div class="ff-row">
+            <div class="ff-stage see"><span class="ffs-em">👀</span><span class="ffs-n">TE VĂD</span></div>
+            <div class="ff-prompt"><span class="ffp-q">ce postez / fac ca să mă descopere?</span><span class="ffp-line"></span></div>
+          </div>
+          <div class="ff-row">
+            <div class="ff-stage believe"><span class="ffs-em">🤝</span><span class="ffs-n">TE CRED</span></div>
+            <div class="ff-prompt"><span class="ffp-q">ce dovadă arăt + ce contact colectez?</span><span class="ffp-line"></span></div>
+          </div>
+          <div class="ff-row">
+            <div class="ff-stage choose"><span class="ffs-em">✅</span><span class="ffs-n">TE ALEG</span></div>
+            <div class="ff-prompt"><span class="ffp-q">ce ofer + ce termen / limită pun?</span><span class="ffp-line"></span></div>
+          </div>
+          <div class="ff-loss"><span class="ffl-em">🎯</span><div class="ffl-txt">UNDE pierd cei mai mulți oameni acum? (bifează 1) &nbsp;<span class="ffl-opts">☐ TE VĂD &nbsp; ☐ TE CRED &nbsp; ☐ TE ALEG</span>&nbsp; → <b>ACOLO îmi pun efortul.</b></div></div>
+        </div>
+        <div class="slide-num">12 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.12 — JOC: unde se sparge pâlnia + scrie anunțul -->
+    <section data-notes="JOC — 16 min · «Unde se sparge pâlnia» + scrie anunțul. Partea A — Diagnoză (8 min, pe grupe): fiecare grup primește un caz (o școală/un atelier cu o problemă). Grupul stabilește: unde se sparge pâlnia (TE VĂD / TE CRED / TE ALEG)? Și ce ar schimba? Cazuri (cartonașe): «Mii de vizualizări pe TikTok, zero înscrieri» → se sparge la TE CRED (n-are dovadă, n-are follow-up); «Vine lume la ușa deschisă, dar nu se înscriu» → se sparge la TE ALEG (n-are chemare/urgență); «Are cei mai buni absolvenți, dar nimeni nu știe de școală» → se sparge la TE VĂD (invizibil). Partea B — Practică (8 min, individual): scrie un anunț/postare pentru produsul sau cursul tău, gândit pentru etapa unde pierzi cei mai mulți oameni. Citește-l colegului: «la ce etapă lucrează postarea ta?»">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Joc · diagnoză + practică</div>
+          <h2 class="slide-title">Unde se sparge pâlnia? <span style="font-size:24px;color:var(--muted);font-weight:600">— apoi scrie anunțul</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">🔍</span>
+          <span class="ex-txt"><b>A · Diagnoză</b> (grupe, 8 min): la ce etapă se sparge cazul? &nbsp;·&nbsp; <b>B · Practică</b> (individual, 8 min): scrie anunțul pentru etapa unde pierzi.</span>
+          <span class="ex-time">⏱ 16 min</span>
+        </div>
+        <div style="font-size:13px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:10px;">A · Cazuri pe cartonașe — unde se sparge?</div>
+        <div class="diag-grid" style="margin-bottom:16px;">
+          <div class="diag-card">
+            <div class="diag-case">„Mii de vizualizări pe TikTok, zero înscrieri."</div>
+            <div class="diag-ans"><span class="diag-pill believe">🤝 TE CRED</span> n-are dovadă, n-are follow-up</div>
+          </div>
+          <div class="diag-card">
+            <div class="diag-case">„Vine lume la ușa deschisă, dar nu se înscriu."</div>
+            <div class="diag-ans"><span class="diag-pill choose">✅ TE ALEG</span> n-are chemare / urgență</div>
+          </div>
+          <div class="diag-card">
+            <div class="diag-case">„Are cei mai buni absolvenți, dar nimeni nu știe de școală."</div>
+            <div class="diag-ans"><span class="diag-pill see">👀 TE VĂD</span> e invizibil</div>
+          </div>
+        </div>
+        <div class="uf-test"><span class="ute">✍️</span><div class="utt"><b>B · Practică:</b> scrie un anunț/postare pentru produsul sau cursul tău, gândit pentru <b>etapa unde pierzi</b>. Citește-l colegului: „la ce etapă lucrează postarea ta?"</div></div>
+        <div class="slide-num">13 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.12b — PRACTICĂ: Auditul propriei pâlnii (experiența clientului) -->
+    <section data-notes="PRACTICĂ 14 min, individual pe telefon/laptop. Cea mai bună diagnoză e să devii TU clientul tău: deschide site-ul / pagina de Facebook/Instagram a școlii și parcurge-o ca un părinte care vrea să înscrie copilul. Cei 5 pași: 1) te găsesc ușor? 2) înțeleg în 10 sec ce oferiți? 3) am dovezi de încredere (absolvenți, mărturii)? 4) pot lăsa contactul ușor — câte click-uri? 5) ce simt la final? Output: 3 recomandări concrete de schimbat luni. De ce funcționează: majoritatea nu și-au privit NICIODATĂ propriul canal cu ochii clientului — aha-ul vine instant. Dacă cineva n-are site, face auditul pe pagina de Facebook/Instagram. Asta e exact etapa Te cred / Te aleg, pe canalul lor real.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">✍️ Practică · auditul propriei pâlnii</div>
+          <h2 class="slide-title">Intră ACUM pe site-ul tău și mergi pe <span class="hl">urmele unui client</span></h2>
+          <p class="slide-subtitle">Deschide pagina școlii tale (site / Facebook / Instagram) și parcurge-o ca un <b>părinte care vrea să-și înscrie copilul</b>. Notează la fiecare pas.</p>
+        </div>
+        <div class="ex-banner"><span class="ex-ico">🔎</span><span class="ex-txt">Cea mai bună diagnoză: devii TU clientul tău. <b>5 pași + 3 recomandări</b></span><span class="ex-time">14 min</span></div>
+        <div class="code-block" style="margin-top:6px">
+          <div class="cb-line"><b>GRILA MEA DE AUDIT</b> — notează DA / NU / „așa și așa"</div>
+          <div class="cb-line">□ Mă <span class="cb-k">găsesc ușor</span> (apar în căutare, poză, info clar) ______</div>
+          <div class="cb-line">□ Înțeleg în <span class="cb-k">10 secunde</span> ce oferiți și pentru cine ______</div>
+          <div class="cb-line">□ Am <span class="cb-k">dovezi de încredere</span> (absolvenți angajați, mărturii) ______</div>
+          <div class="cb-line">□ Pot lăsa <span class="cb-k">contactul ușor</span> (1-2 click-uri, buton clar) ______</div>
+          <div class="cb-line">□ Plec cu o <span class="cb-k">impresie bună</span> (aș avea încredere) ______</div>
+        </div>
+        <div class="quote-block" style="margin-top:14px">La final, scrie pe Foaia ta de drum <strong>3 recomandări concrete</strong> — ce schimbi luni dimineață ca experiența clientului să fie mai ușoară. <strong>Aha-ul tipic:</strong> „nici eu nu găsesc unde să las un mesaj" — exact acolo se sparge pâlnia.</div>
+        <div class="slide-num">14 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.13 — Studiu de caz: idei din sistem -->
+    <section data-notes="Studiu de caz — idei din sistem, de menționat scurt (inspirație, nu rețete). CEVVC Stăuceni — și-a făcut un produs propriu (vin cu marcă) din atelierul didactic. CEHTA Țaul — produse horticole din sere și grădini didactice, vândute local. Colegii agrare — produse din ferme didactice, vânzare în comunitate. Ce e comun: fiecare a transformat ceva ce deja PRODUCEA în ceva ce VINDE. Atelierul vostru produce deja — întrebarea e doar cum îl duceți prin pâlnie. Numele firmelor/școlilor stau în brand-chip.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Studiu de caz · idei din sistem</div>
+          <h2 class="slide-title">Au transformat ce <span class="hl">deja produceau</span> în ceva ce vinde</h2>
+          <p class="slide-subtitle">Lucruri faine văzute pe teren — <b>inspirație, nu rețete</b>. Atelierul vostru produce deja; întrebarea e doar cum îl duceți prin pâlnie.</p>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px;">
+          <span class="brand-chip"><span class="dot" style="background:#7C3AED;"></span>CEVVC Stăuceni</span>
+          <span class="brand-chip"><span class="dot" style="background:#10B981;"></span>CEHTA Țaul</span>
+          <span class="brand-chip"><span class="dot" style="background:#F59E0B;"></span>Colegii agrare</span>
+        </div>
+        <table class="gt" style="flex:1;">
+          <thead>
+            <tr><th style="width:32%">Școala</th><th style="width:68%">Ce idee a încercat</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="lead">CEVVC Stăuceni</td><td>și-a făcut un <b>produs propriu (vin cu marcă)</b> din atelierul didactic</td></tr>
+            <tr><td class="lead">CEHTA Țaul</td><td>produse horticole din sere și grădini didactice, <b>vândute local</b></td></tr>
+            <tr><td class="lead">Colegii agrare</td><td>produse din ferme didactice, <b>vânzare în comunitate</b></td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block"><strong>Ce e comun:</strong> fiecare a transformat ceva ce deja <strong>PRODUCEA</strong> în ceva ce <strong>VINDE</strong>. Voi produceți deja — întrebarea e doar pâlnia.</div></div>
+        <div class="slide-num">15 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.14 — Prezinți + Retro -->
+    <section data-notes="Prezinți + retro — 8 min. 2-3 voluntari: scopul lor + unde se sparge pâlnia + ce schimbă. Grupul: «E clar pe ce etapă trebuie să lucreze?» Apoi retrospectiva pe Foaia de drum: «Pâlnia mea se sparge cel mai tare la etapa ______. De acum, primul lucru pe care-l repar acolo e ______.» Dacă rămâi fără timp, taie de aici, nu din joc.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Prezinți + retrospectivă</div>
+          <h2 class="slide-title">Pâlnia mea, în fața grupului</h2>
+          <p class="slide-subtitle">2–3 voluntari arată unde se sparge pâlnia lor — și ce repară primul acolo.</p>
+        </div>
+        <div class="pr-grid">
+          <div class="pr-pane present">
+            <span class="pr-tag">🎤 Prezentări rapide</span>
+            <div class="pr-title">2–3 voluntari · scopul + unde se sparge</div>
+            <div class="pr-line"><span class="pb">→</span><div>Spun <b>scopul lor</b> + la ce etapă se sparge pâlnia + ce schimbă.</div></div>
+            <div class="pr-line"><span class="pb">→</span><div>Grupul verifică: <b>„E clar pe ce etapă trebuie să lucreze?"</b></div></div>
+          </div>
+          <div class="pr-pane retro">
+            <span class="pr-tag">📝 Retrospectiva modulului</span>
+            <div class="pr-title">Scrii pe Foaia ta de drum</div>
+            <div class="retro-fill">
+              „Pâlnia mea se sparge cel mai tare la etapa <span class="blank"></span>.<br>
+              De acum, primul lucru pe care-l repar acolo e <span class="blank" style="min-width:150px"></span>."
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">16 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.15 — REGULA 4 + CHECKLIST -->
+    <section data-notes="REGULA 4 — de luat acasă, badge mare: «Nimeni nu cumpără din prima. Te văd → te cred → te aleg. Repară etapa unde pierzi, nu posta mai mult la întâmplare.» Checklist — pâlnia mea: știu ce fac la TE VĂD (cum mă descoperă oameni noi); știu ce fac la TE CRED (ce dovadă arăt + ce contact colectez) ← cel mai des lipsește; știu ce fac la TE ALEG (ce ofer + ce termen pun); știu UNDE se sparge pâlnia mea acum — și acolo pun efortul; pentru produs: am o treaptă de «mostră» + țintesc venit repetabil (abonament); cer recomandări la momentul «aha» (absolvent angajat / client mulțumit). Recapitulează regula la final de zi — e aplicarea concretă a AIDA (M3).">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Regula modulului · de luat acasă</div>
+          <h2 class="slide-title">Regula 4 + checklist <span class="hl">(pâlnia mea)</span></h2>
+        </div>
+        <div class="rule-grid">
+          <div class="rule-pane">
+            <div class="rule-badge"><span class="rb-dot"></span> REGULA 4</div>
+            <div class="rule-text">„Nimeni nu cumpără din prima. <span class="hl">Te văd → te cred → te aleg.</span> Repară etapa unde pierzi, nu posta mai mult la întâmplare."</div>
+          </div>
+          <div class="check-pane">
+            <div class="check-head">✓ Checklist — pâlnia mea</div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Știu ce fac la <b>TE VĂD</b> (cum mă descoperă oameni noi).</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Știu ce fac la <b>TE CRED</b> (ce dovadă + ce contact colectez) <span style="color:var(--destructive);font-weight:800;">← cel mai des lipsește</span>.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Știu ce fac la <b>TE ALEG</b> (ce ofer + ce termen pun).</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Știu <b>UNDE se sparge</b> pâlnia mea acum — și acolo pun efortul.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Pentru produs: am o treaptă de „mostră" + țintesc <b>venit repetabil</b>.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Cer <b>recomandări</b> la momentul „aha" (absolvent / client mulțumit).</div></div>
+          </div>
+        </div>
+        <div class="slide-num">17 / 17</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4.16 — TRANZIȚIE -->
+    <section data-notes="Tranziție spre modulul de conținut digital. Avem pâlnia (te văd → te cred → te aleg). Urmează: cum facem etapa TE VĂD să explodeze pe TikTok și Instagram — cum filmezi, ce postezi, și analizăm împreună conturi reale de școli. Ține firul roșu: avem cadrul, acum umplem vârful pâlniei.">
+      <div class="slide slide-transition">
+        <div class="cover-bg"></div><div class="cover-accent"></div>
+        <div style="position:relative;z-index:2;text-align:center;padding:0 90px;max-width:1000px;">
+          <div class="cover-kicker" style="margin-bottom:26px"><span class="dot"></span> Urmează · conținut digital</div>
+          <div style="font-size:76px;margin-bottom:18px">📱</div>
+          <h2 style="font-size:44px;font-weight:800;color:#fff;line-height:1.12;letter-spacing:-0.02em;margin:0 0 18px;">Avem pâlnia. Acum: cum facem etapa <span style="color:var(--primary-light)">TE VĂD să explodeze</span> pe TikTok și Instagram?</h2>
+          <p style="font-size:20px;color:rgba(255,255,255,0.72);line-height:1.55;margin:0">Urmează <b style="color:#fff;font-weight:600">conținutul digital</b> — cum filmezi, ce postezi, și analizăm împreună conturi reale de școli.</p>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">— fin —</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

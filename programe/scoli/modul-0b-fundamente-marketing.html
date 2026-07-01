@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fundamente de marketing — De la atelier la piață</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #0EA371;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 54px 66px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #0EA371 0%, #0891B2 100%); }
+
+    .slide-header { margin-bottom: 24px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #D1FAE5; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-title .hl { color: var(--primary); }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 960px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0 0 40px; max-width: 740px; line-height: 1.5; }
+    .cover-bait { font-size: 70px; margin: 6px 0 34px; letter-spacing: 8px; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+    .quote-block.warn { border-color: var(--warning); background: #FFFBEB; } .quote-block.warn strong { color: #B45309; }
+
+    /* brand chips */
+    .brand-chip { display: inline-flex; align-items: center; font-size: 14px; font-weight: 700; color: var(--foreground); background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 5px 13px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+    .brand-chip .dot { width: 7px; height: 7px; border-radius: 50%; margin-right: 7px; flex-shrink: 0; }
+
+    /* VS table — ce spune școala vs ce aude clientul */
+    .vs-table { width: 100%; border-collapse: collapse; font-size: 19px; }
+    .vs-table th { padding: 14px 20px; text-align: left; font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: #fff; border: none; }
+    .vs-table th.col-bad { background: #B91C1C; }
+    .vs-table th.col-good { background: #15803D; }
+    .vs-table td { padding: 18px 20px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.4; }
+    .vs-table tr:last-child td { border-bottom: none; }
+    .vs-table td.bad-cell { color: #B91C1C; font-style: italic; }
+    .vs-table td.good-cell { background: #F0FDF4; font-weight: 700; color: #15803D; }
+    .vs-table td b { font-weight: 800; }
+
+    /* drill analogy */
+    .drill-row { display: flex; align-items: stretch; gap: 18px; margin-top: 4px; }
+    .drill-card { flex: 1; border-radius: var(--radius); padding: 22px 26px; display: flex; align-items: center; gap: 18px; }
+    .drill-card.no { background: #FEF2F2; border: 1px solid #FECACA; }
+    .drill-card.yes { background: #ECFDF5; border: 1px solid #6EE7B7; }
+    .drill-emoji { font-size: 46px; line-height: 1; flex-shrink: 0; }
+    .drill-txt { font-size: 18px; line-height: 1.4; color: var(--foreground); } .drill-txt b { font-weight: 800; }
+    .drill-card.no .drill-lbl { color: #B91C1C; } .drill-card.yes .drill-lbl { color: #15803D; }
+    .drill-lbl { font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+    .drill-arrow { display: flex; align-items: center; font-size: 30px; color: var(--muted); }
+
+    /* FORMULA */
+    .formula-box { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 34px 40px; color: #fff; position: relative; overflow: hidden; }
+    .formula-box::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .formula-line { position: relative; z-index: 2; font-size: 30px; font-weight: 700; line-height: 1.5; }
+    .formula-line .slot { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); border-radius: 8px; padding: 2px 14px; font-weight: 800; margin: 0 2px; }
+    .formula-line .slot.who { color: #93C5FD; } .formula-line .slot.res { color: #6EE7B7; } .formula-line .slot.dif { color: #FCD34D; }
+    .formula-line .slot.prob { color: #FCA5A5; }
+    .ex-flip { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+    .flip { border-radius: var(--radius-sm); padding: 16px 20px; font-size: 18px; line-height: 1.45; }
+    .flip.no { background: #FEF2F2; border: 1px solid #FECACA; color: #B91C1C; }
+    .flip.yes { background: #ECFDF5; border: 1px solid #6EE7B7; color: var(--foreground); }
+    .flip .fl-mark { font-weight: 800; margin-right: 8px; }
+    .flip.yes b { color: #15803D; font-weight: 800; }
+
+    /* 3 pitch-uri table */
+    .pitch-table { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .pitch-table th { padding: 14px 20px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: #fff; background: var(--primary); border: none; }
+    .pitch-table td { padding: 18px 20px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.45; }
+    .pitch-table tr:last-child td { border-bottom: none; }
+    .pitch-who { display: flex; align-items: center; gap: 12px; }
+    .pitch-emoji { font-size: 32px; line-height: 1; }
+    .pitch-name { font-size: 19px; font-weight: 800; color: var(--foreground); }
+    .pitch-msg { font-size: 17px; color: var(--foreground); line-height: 1.45; font-style: italic; } .pitch-msg b { font-weight: 800; font-style: normal; color: var(--primary); }
+
+    /* MISTAKES list (3 greșeli de pitch) */
+    .mistakes { display: flex; flex-direction: column; gap: 14px; flex: 1; justify-content: center; }
+    .mk-row { display: grid; grid-template-columns: 240px 1fr; gap: 18px; align-items: stretch; }
+    .mk-head { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; justify-content: center; }
+    .mk-head .mk-n { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: #B91C1C; letter-spacing: 0.04em; text-transform: uppercase; }
+    .mk-head .mk-n .mk-dot { width: 22px; height: 22px; border-radius: 50%; background: var(--destructive); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    .mk-head .mk-t { font-size: 19px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+    .mk-body { display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+    .mk-bad { background: #FEF2F2; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 15px; color: #B91C1C; font-style: italic; line-height: 1.35; }
+    .mk-good { background: #ECFDF5; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 15px; color: var(--foreground); line-height: 1.35; } .mk-good b { color: #15803D; font-weight: 800; }
+    .mk-bad .m, .mk-good .m { font-weight: 800; font-style: normal; margin-right: 6px; }
+
+    /* EMOTION hook (cârligul emoțional) */
+    .emo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .emo-card { border-radius: var(--radius); padding: 16px 16px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; min-height: 0; overflow: hidden; }
+    .emo-card.s { background: var(--pastel-mint); border-color: #86EFAC; }
+    .emo-card.m { background: var(--pastel-peach); border-color: #FED7AA; }
+    .emo-card.u { background: var(--pastel-rose); border-color: #F9A8D4; }
+    .emo-card.a { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .emo-ico { font-size: 30px; line-height: 1; }
+    .emo-name { font-size: 17px; font-weight: 800; color: var(--foreground); }
+    .emo-sub { font-size: 13px; color: var(--muted); line-height: 1.35; }
+    .emo-ex { font-size: 13px; color: var(--foreground); line-height: 1.4; font-style: italic; margin-top: auto; padding-top: 6px; }
+    .ds-box { margin-top: 16px; display: flex; align-items: stretch; gap: 14px; }
+    .ds-half { flex: 1; border-radius: var(--radius); padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+    .ds-half.pain { background: #FEF2F2; border: 1px solid #FECACA; }
+    .ds-half.fix { background: #ECFDF5; border: 1px solid #6EE7B7; }
+    .ds-lbl { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+    .ds-half.pain .ds-lbl { color: #B91C1C; } .ds-half.fix .ds-lbl { color: #15803D; }
+    .ds-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .ds-txt b { font-weight: 800; }
+    .ds-arrow { display: flex; align-items: center; font-size: 28px; color: var(--practice); font-weight: 800; }
+
+    /* exercise banner + form */
+    .ex-banner { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #0EA371, #0891B2); color: #fff; border-radius: var(--radius); padding: 14px 22px; margin-bottom: 18px; }
+    .ex-banner .ex-ico { font-size: 26px; }
+    .ex-banner .ex-txt { font-size: 17px; font-weight: 600; line-height: 1.4; } .ex-banner .ex-txt b { font-weight: 800; }
+    .ex-banner .ex-time { margin-left: auto; font-size: 15px; font-weight: 800; background: rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+
+    .pitch-sheet { display: flex; flex-direction: column; gap: 12px; }
+    .ps-line { background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 16px 22px; display: flex; align-items: center; gap: 16px; }
+    .ps-word { font-size: 22px; font-weight: 800; color: var(--practice); white-space: nowrap; }
+    .ps-fill { flex: 1; border-bottom: 1.5px dashed #CBD5E1; height: 1px; align-self: flex-end; margin-bottom: 6px; }
+    .ps-tag { font-size: 13px; font-weight: 800; color: var(--muted); background: #ECFDF5; border-radius: 100px; padding: 5px 13px; white-space: nowrap; }
+    .test-strip { display: flex; gap: 10px; margin-top: 14px; }
+    .test-item { flex: 1; display: flex; align-items: center; gap: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 14px; font-size: 14px; line-height: 1.3; color: var(--foreground); }
+    .test-item .tb { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--practice); flex-shrink: 0; }
+    .test-item b { font-weight: 800; }
+
+    /* OBJECTION BANK (cartonașe sceptice, 3 coloane) */
+    .obj-bank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+    .ob-col { border-radius: var(--radius); padding: 16px 16px; display: flex; flex-direction: column; gap: 9px; border: 1px solid var(--border); overflow: hidden; }
+    .ob-col.p { background: #FEF2F2; border-color: #FECACA; }
+    .ob-col.c { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .ob-col.a { background: var(--pastel-mint); border-color: #86EFAC; }
+    .ob-title { display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 800; color: var(--foreground); margin-bottom: 2px; }
+    .ob-title .oe { font-size: 22px; }
+    .ob-card { background: #fff; border-radius: var(--radius-sm); padding: 10px 12px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+    .ob-q { font-size: 14px; font-weight: 700; color: var(--foreground); line-height: 1.35; font-style: italic; }
+    .ob-a { font-size: 12.5px; color: var(--muted); line-height: 1.35; margin-top: 5px; } .ob-a b { color: var(--practice); font-weight: 800; font-style: normal; }
+    .ob-a .arr { color: var(--practice); font-weight: 800; margin-right: 4px; }
+
+    /* ROLE-PLAY */
+    .rp-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; flex: 1; }
+    .rp-steps { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .rp-step { display: flex; align-items: flex-start; gap: 14px; }
+    .rp-num { width: 34px; height: 34px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .rp-text { font-size: 17px; color: var(--foreground); line-height: 1.4; padding-top: 4px; } .rp-text b { font-weight: 800; color: var(--practice); }
+    .rp-pane { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .rp-pane .rp-head { display: flex; align-items: center; gap: 12px; }
+    .rp-pane .rp-emoji { font-size: 38px; }
+    .rp-pane .rp-title { font-size: 19px; font-weight: 800; color: #B91C1C; line-height: 1.2; }
+    .obj { font-size: 16px; color: var(--foreground); line-height: 1.4; background: #fff; border-left: 4px solid var(--destructive); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 14px; font-style: italic; }
+    .rp-debrief { margin-top: auto; font-size: 15px; color: var(--muted); line-height: 1.5; } .rp-debrief b { color: var(--foreground); }
+
+    /* PRESENT + RETRO */
+    .pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 1; }
+    .pr-pane { border-radius: var(--radius); padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; }
+    .pr-pane.present { background: var(--pastel-peach); border-color: #FED7AA; }
+    .pr-pane.retro { background: var(--primary-ultra-light); border-color: #C7D2FE; }
+    .pr-tag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 100px; }
+    .pr-pane.present .pr-tag { background: #FB923C; color: #fff; } .pr-pane.retro .pr-tag { background: var(--primary); color: #fff; }
+    .pr-title { font-size: 21px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+    .pr-line { display: flex; align-items: flex-start; gap: 11px; font-size: 16px; color: var(--foreground); line-height: 1.5; } .pr-line .pb { font-weight: 800; color: var(--primary); flex-shrink: 0; } .pr-pane.present .pr-line .pb { color: #C2410C; }
+    .retro-fill { background: #fff; border-radius: var(--radius-sm); padding: 16px 18px; font-size: 16px; color: var(--foreground); line-height: 1.7; font-style: italic; border: 1px dashed #C7D2FE; }
+    .retro-fill .blank { display: inline-block; min-width: 110px; border-bottom: 2px solid var(--primary); }
+
+    /* RULE + CHECKLIST */
+    .rule-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 28px; flex: 1; align-items: stretch; }
+    .rule-pane { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 32px; color: #fff; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+    .rule-pane::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .rule-badge { position: relative; z-index: 2; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 800; letter-spacing: 0.08em; margin-bottom: 22px; }
+    .rule-badge .rb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--primary-light); }
+    .rule-text { position: relative; z-index: 2; font-size: 28px; font-weight: 800; line-height: 1.28; letter-spacing: -0.01em; } .rule-text .hl { color: var(--primary-light); }
+    .check-pane { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 30px; display: flex; flex-direction: column; }
+    .check-head { font-size: 15px; font-weight: 800; color: var(--practice); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
+    .check-item { display: flex; align-items: flex-start; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--practice); flex-shrink: 0; margin-top: 1px; }
+    .check-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .check-txt b { font-weight: 800; }
+
+    /* TRANSITION */
+    .slide-transition { padding: 0; overflow: hidden; background: #1E3A8A; position: relative; justify-content: center; align-items: center; display: flex; }
+    .slide-transition::before { display: none; }
+
+    /* COPYWRITING FORMULAS */
+    .cw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; flex: 1; }
+    .cw-card { border-radius: var(--radius); padding: 20px 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+    .cw-card.a { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .cw-card.p { background: var(--pastel-peach); border-color: #FED7AA; }
+    .cw-head { display: flex; align-items: baseline; gap: 10px; }
+    .cw-acr { font-size: 26px; font-weight: 800; letter-spacing: 0.02em; } .cw-card.a .cw-acr { color: #0284C7; } .cw-card.p .cw-acr { color: #C2410C; }
+    .cw-acr small { font-size: 14px; font-weight: 700; color: var(--muted); letter-spacing: 0; }
+    .cw-steps { display: flex; flex-direction: column; gap: 5px; }
+    .cw-step { font-size: 14.5px; color: var(--foreground); line-height: 1.35; } .cw-step b { font-weight: 800; }
+    .cw-ex { margin-top: auto; background: #fff; border-radius: var(--radius-sm); padding: 11px 14px; font-size: 14px; color: var(--foreground); line-height: 1.4; font-style: italic; border-left: 3px solid var(--primary); } .cw-ex b { font-weight: 800; font-style: normal; color: var(--primary); }
+    .cw-note { margin-top: 14px; }
+
+    /* TONE OF VOICE */
+    .tov-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .tov-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+    .tov-ico { font-size: 30px; line-height: 1; }
+    .tov-name { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .tov-name small { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 2px; }
+    .tov-bad { font-size: 14px; color: #B91C1C; font-style: italic; line-height: 1.35; } .tov-bad .m { font-weight: 800; font-style: normal; margin-right: 5px; }
+    .tov-good { font-size: 14.5px; color: var(--foreground); line-height: 1.4; } .tov-good .m { color: #15803D; font-weight: 800; margin-right: 5px; } .tov-good b { font-weight: 800; color: #15803D; }
+    .tov-rule { margin-top: 16px; display: flex; align-items: center; gap: 14px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 14px 20px; }
+    .tov-rule .tre { font-size: 28px; } .tov-rule .trt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .tov-rule .trt b { font-weight: 800; color: var(--primary); }
+
+    /* ============ GENERIC GRID TABLE (din modul 2 — reutilizat) ============ */
+    .gt { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .gt th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .gt td { padding: 15px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.42; color: var(--foreground); }
+    .gt tr:last-child td { border-bottom: none; }
+    .gt tr:nth-child(even) td { background: var(--bg); }
+    .gt .lead { font-weight: 800; color: var(--foreground); }
+    .gt .lead .em { font-size: 20px; margin-right: 6px; }
+    .gt .why { color: var(--muted); font-size: 15px; }
+    .gt b { font-weight: 800; }
+    .gt .quoted { font-style: italic; }
+
+    /* generic card grid (din modul 2 — reutilizat pt gherilă) */
+    .prof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; }
+    .prof-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 17px; display: flex; flex-direction: column; gap: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .prof-head { display: flex; align-items: center; gap: 10px; }
+    .prof-em { font-size: 24px; line-height: 1; }
+    .prof-label { font-size: 13px; font-weight: 800; color: var(--foreground); letter-spacing: 0.01em; text-transform: uppercase; line-height: 1.15; }
+    .prof-label small { display: block; text-transform: none; font-weight: 600; color: var(--muted); font-size: 11.5px; margin-top: 2px; letter-spacing: 0; }
+    .prof-quote { font-size: 14px; color: var(--foreground); line-height: 1.42; } .prof-quote b { font-weight: 800; color: var(--primary); }
+
+    /* ============================================================= */
+    /* ====== COMPONENTE NOI (M0.5) — în limbajul vizual existent ==== */
+    /* ============================================================= */
+
+    /* --- 7P MIX: 7 cercuri/carduri colorate (slide 0.5.3) --- */
+    .mix7-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; flex: 1; align-content: start; }
+    .mix-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 16px 18px; display: flex; flex-direction: column; gap: 9px; position: relative; box-shadow: 0 1px 3px rgba(15,23,42,0.05); overflow: hidden; }
+    .mix-card .mix-bubble { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #fff; flex-shrink: 0; box-shadow: 0 4px 12px -2px rgba(15,23,42,0.18); }
+    .mix-card .mix-name { font-size: 17px; font-weight: 800; color: var(--foreground); line-height: 1.1; }
+    .mix-card .mix-what { font-size: 12.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
+    .mix-card .mix-school { font-size: 13.5px; color: var(--foreground); line-height: 1.38; margin-top: 2px; }
+    /* paleta celor 7P */
+    .mix-card.p-produs   .mix-bubble { background: #EAB308; }   /* galben */
+    .mix-card.p-pret     .mix-bubble { background: #F97316; }   /* portocaliu */
+    .mix-card.p-plasament .mix-bubble { background: #14B8A6; }  /* verde-menta */
+    .mix-card.p-promovare .mix-bubble { background: #EF4444; }  /* roșu */
+    .mix-card.p-persoane .mix-bubble { background: #16A34A; }   /* verde */
+    .mix-card.p-procese  .mix-bubble { background: #2563EB; }   /* albastru */
+    .mix-card.p-dovada   .mix-bubble { background: #334155; }   /* gri-închis */
+    /* cardul evidențiat: Persoane = profesorii */
+    .mix-card.featured { border: 2px solid #16A34A; background: #F0FDF4; box-shadow: 0 6px 20px -6px rgba(22,163,74,0.35); }
+    .mix-card.featured .mix-name { color: #15803D; }
+    .mix-card .mix-star { position: absolute; top: 10px; right: 12px; font-size: 14px; font-weight: 800; color: #16A34A; background: #DCFCE7; border-radius: 100px; padding: 2px 9px; letter-spacing: 0.03em; }
+    .mix-letter { position: absolute; bottom: -14px; right: -6px; font-size: 64px; font-weight: 800; color: rgba(15,23,42,0.05); line-height: 1; pointer-events: none; }
+
+    /* --- BRAIN: 2 emisfere rațiune | emoție (slide 0.5.4) --- */
+    .brain-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; flex: 1; }
+    .brain-half { border-radius: var(--radius); padding: 20px 22px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--border); overflow: hidden; }
+    .brain-half.reason { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .brain-half.emotion { background: #FFF7ED; border-color: #FDE68A; }
+    .brain-head { display: flex; align-items: center; gap: 12px; }
+    .brain-ico { width: 52px; height: 52px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; background: #fff; box-shadow: 0 2px 8px rgba(15,23,42,0.08); }
+    .brain-title { font-size: 20px; font-weight: 800; line-height: 1.1; }
+    .brain-half.reason .brain-title { color: #0369A1; }
+    .brain-half.emotion .brain-title { color: #B45309; }
+    .brain-title small { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 3px; }
+    .brain-list { display: flex; flex-direction: column; gap: 7px; }
+    .brain-item { display: flex; align-items: flex-start; gap: 9px; background: #fff; border-radius: var(--radius-sm); padding: 8px 12px; font-size: 14px; color: var(--foreground); line-height: 1.35; }
+    .brain-item .be { font-size: 17px; line-height: 1.2; flex-shrink: 0; }
+    .brain-band { margin-top: 16px; display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #0B1120, #1E3A8A 70%, #3B2F8F); border-radius: var(--radius); padding: 16px 24px; color: #fff; position: relative; overflow: hidden; }
+    .brain-band .bbe { font-size: 28px; flex-shrink: 0; }
+    .brain-band .bbt { font-size: 17px; line-height: 1.4; } .brain-band .bbt b { font-weight: 800; }
+    .brain-band .bbt .em-hl { color: #FCD34D; font-weight: 800; } .brain-band .bbt .re-hl { color: #93C5FD; font-weight: 800; }
+
+    /* --- PRODUCT LIFE-CYCLE: curba etapelor (slide 0.5.7) --- */
+    .plc-wrap { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 26px 16px; position: relative; overflow: hidden; }
+    .plc-stage-row { display: flex; align-items: stretch; gap: 0; position: relative; z-index: 2; }
+    .plc-stage { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; position: relative; padding: 0 6px; }
+    .plc-stage:not(:last-child)::after { content: '→'; position: absolute; right: -9px; top: 30px; font-size: 22px; color: var(--muted); font-weight: 800; z-index: 3; }
+    .plc-dot { width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 26px; color: #fff; box-shadow: 0 4px 12px -2px rgba(15,23,42,0.2); }
+    .plc-stage.s-launch .plc-dot { background: #2563EB; }
+    .plc-stage.s-growth .plc-dot { background: #16A34A; }
+    .plc-stage.s-mature .plc-dot { background: #EAB308; }
+    .plc-stage.s-decline .plc-dot { background: #94A3B8; }
+    .plc-stage.s-extend .plc-dot { background: var(--practice); box-shadow: 0 6px 18px -2px rgba(14,163,113,0.5); }
+    .plc-name { font-size: 16px; font-weight: 800; color: var(--foreground); line-height: 1.1; }
+    .plc-sub { font-size: 12.5px; color: var(--muted); line-height: 1.3; }
+    .plc-stage.s-extend .plc-name { color: var(--practice); }
+    .plc-extend-tag { position: relative; z-index: 2; margin-top: 14px; display: inline-flex; align-self: flex-end; align-items: center; gap: 8px; background: #ECFDF5; border: 1px solid #6EE7B7; border-radius: 100px; padding: 7px 16px; font-size: 14px; font-weight: 700; color: var(--practice); }
+    .plc-curve { position: absolute; left: 0; right: 0; top: 0; height: 100%; z-index: 1; opacity: 0.5; }
+    .plc-bemol { margin-top: 16px; display: flex; align-items: center; gap: 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 22px; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .plc-bemol .pb-ico { font-size: 34px; flex-shrink: 0; }
+    .plc-bemol .pb-flow { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .plc-bemol .pb-from { font-size: 15px; color: var(--muted); background: var(--bg); border-radius: 100px; padding: 5px 14px; font-weight: 700; }
+    .plc-bemol .pb-arr { font-size: 18px; color: var(--practice); font-weight: 800; }
+    .plc-bemol .pb-to { font-size: 15px; color: var(--foreground); background: #ECFDF5; border: 1px solid #6EE7B7; border-radius: 100px; padding: 5px 14px; font-weight: 800; }
+    .plc-bemol .pb-txt { font-size: 14px; color: var(--muted); line-height: 1.4; } .plc-bemol .pb-txt b { color: var(--foreground); font-weight: 800; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- SLIDE 0.5.1 — COVER / TITLU -->
+    <section data-notes="Deschidere Modul 0.5 (50 min) — modulul de «vocabular comun». Locul în zi: după M0 (deschidere + de ce) și înainte de M1 (clientul). Aici dăm panorama: ce e marketingul, de fapt — câteva idei-busolă cu nume pe care le recunoaște orice marketer. Ritm ALERT: fiecare concept = o idee + un exemplu + 1 întrebare scurtă pentru sală. NU exerciții lungi — sunt cadre + discuții; aplicarea vine în modulele următoare. Output în Foaia de drum: notițe libere — care concept m-a surprins cel mai tare. Cel mai important slide e 0.5.2 (oamenii cumpără de la oameni) — leagă direct de «profesorul e inima școlii» din M0.">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 0.5 · De la atelier la piață — vânzări &amp; marketing digital</div>
+          <h1>Fundamente<br>de marketing</h1>
+          <div class="cover-bait">🧭</div>
+          <p class="subtitle">Câteva idei mari care explică TOT ce facem azi. Le punem pe masă acum — apoi le aplicăm toată ziua.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">50 min</span>
+            <span class="cover-chip">Panorama de marketing</span>
+            <span class="cover-chip">Vocabular comun · 7 idei-busolă</span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 11</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.5.2 — Oamenii cumpără de la OAMENI -->
+    <section data-notes="Cel mai important slide al modulului. Leagă direct de «profesorul e inima școlii» din M0 — apasă pe el, schimbă cum se văd profesorii pe ei înșiși. Mesaj: nu cumperi de la o instituție, cumperi de la un om în care ai încredere. Un părinte nu «înscrie copilul la o școală» — îl înscrie pentru că a vorbit cu un profesor care i-a inspirat încredere. O firmă nu «colaborează cu o instituție» — lucrează cu un om care i-a rezolvat o problemă. De-aia fața școlii contează mai mult decât logo-ul: tu, profesorul, ești marca vie. Cârlig: «Oamenii uită ce le-ai zis, dar țin minte cum i-ai făcut să se simtă. Și cumpără de la cineva, nu de la ceva. Acel cineva ești tu.»">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cea mai importantă idee</div>
+          <h2 class="slide-title">Nu cumperi de la o instituție. <span class="hl">Cumperi de la un om în care ai încredere.</span></h2>
+          <p class="slide-subtitle">De-aia <b>fața</b> școlii contează mai mult decât logo-ul: tu, profesorul, ești <b>marca vie</b>. Un părinte nu „înscrie copilul la o școală" — îl înscrie pentru că a vorbit cu un OM care i-a inspirat încredere.</p>
+        </div>
+        <table class="vs-table" style="font-size:17px">
+          <thead>
+            <tr><th class="col-bad" style="width:42%">❌ Instituția rece</th><th class="col-good" style="width:58%">✅ Omul cald</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="bad-cell">„Instituția anunță admiterea…"</td><td class="good-cell">„Sunt [nume], maistru aici. Hai să-ți povestesc <b>ce poate face copilul tău</b>."</td></tr>
+            <tr><td class="bad-cell">un cont de Facebook fără chip</td><td class="good-cell">un profesor care răspunde la mesaje, <b>cu numele lui</b></td></tr>
+            <tr><td class="bad-cell">o broșură</td><td class="good-cell">o poveste spusă de <b>un om real</b></td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block"><strong>Cârlig:</strong> „Oamenii uită ce le-ai zis, dar țin minte cum i-ai făcut să se simtă. Și cumpără de la <strong>cineva</strong>, nu de la ceva. Acel cineva ești tu."</div></div>
+        <div class="slide-num">02 / 11</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.5.3 — Mixul de marketing: cei 7P -->
+    <section data-notes="Scopul: să vadă că marketingul NU e doar «Promovare» — sunt 7 pârghii și «reclama» e doar una. Cadrul clasic 7P, pentru o școală toate cele 7 contează: Produs (ce oferi), Preț (cât ceri), Plasament (unde te găsește), Promovare (cum afli de tine), Persoane (cine livrează = PROFESORII, cea mai importantă pârghie), Procese (cum decurge înscrierea/practica), Dovadă fizică (atelierul, produsele, diploma). Cârlig: «Mulți cred că marketing = Promovare. Dar dacă atelierul arată rău (Dovadă fizică) sau înscrierea e un chin (Procese), nicio reclamă nu te salvează.» Discuția «la care P stai bine/prost» (2 min) e mai valoroasă decât teoria — pune întrebarea sălii.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Mixul de marketing · cei 7P</div>
+          <h2 class="slide-title">Marketingul nu e doar reclamă. <span class="hl">Sunt 7 pârghii — „reclama" e doar una.</span></h2>
+          <p class="slide-subtitle">Cadrul clasic de marketing. Pentru o școală, <b>toate cele 7 contează</b> — iar cea mai puternică ești TU.</p>
+        </div>
+        <div class="mix7-grid">
+          <div class="mix-card p-produs">
+            <div class="mix-bubble">🧰</div>
+            <div class="mix-name">Produs</div>
+            <div class="mix-what">ce oferi</div>
+            <div class="mix-school">meserii, cursuri, produse din atelier</div>
+            <span class="mix-letter">P</span>
+          </div>
+          <div class="mix-card p-pret">
+            <div class="mix-bubble">🏷️</div>
+            <div class="mix-name">Preț</div>
+            <div class="mix-what">cât ceri</div>
+            <div class="mix-school">taxă, gratuit prin voucher, prețul produselor</div>
+            <span class="mix-letter">P</span>
+          </div>
+          <div class="mix-card p-plasament">
+            <div class="mix-bubble">📍</div>
+            <div class="mix-name">Plasament</div>
+            <div class="mix-what">unde te găsește</div>
+            <div class="mix-school">unde înveți, unde livrezi, unde ești prezent</div>
+            <span class="mix-letter">P</span>
+          </div>
+          <div class="mix-card p-promovare">
+            <div class="mix-bubble">📣</div>
+            <div class="mix-name">Promovare</div>
+            <div class="mix-what">cum afli de tine</div>
+            <div class="mix-school">postări, gura-lumii, ziua porților deschise</div>
+            <span class="mix-letter">P</span>
+          </div>
+          <div class="mix-card p-persoane featured">
+            <span class="mix-star">★ tu</span>
+            <div class="mix-bubble">👩‍🏫</div>
+            <div class="mix-name">Persoane</div>
+            <div class="mix-what">cine livrează</div>
+            <div class="mix-school"><b>PROFESORII</b> — cea mai importantă pârghie a ta</div>
+            <span class="mix-letter">P</span>
+          </div>
+          <div class="mix-card p-procese">
+            <div class="mix-bubble">🔁</div>
+            <div class="mix-name">Procese</div>
+            <div class="mix-what">cum decurge</div>
+            <div class="mix-school">înscrierea, practica, comunicarea — ușoare sau greoaie?</div>
+            <span class="mix-letter">P</span>
+          </div>
+          <div class="mix-card p-dovada">
+            <div class="mix-bubble">🏗️</div>
+            <div class="mix-name">Dovadă fizică</div>
+            <div class="mix-what">ce se vede / atinge</div>
+            <div class="mix-school">atelierul, produsele, diploma, poza cu absolvenți</div>
+            <span class="mix-letter">P</span>
+          </div>
+          <div class="mix-card" style="background:var(--primary-ultra-light);border-color:#C7D2FE;justify-content:center;">
+            <div style="font-size:14px;font-weight:800;color:var(--primary);text-transform:uppercase;letter-spacing:0.04em;margin-bottom:8px;">Discuție · 2 min</div>
+            <div style="font-size:14px;color:var(--foreground);line-height:1.42;">La care din cei <b>7P</b> stă cel mai bine școala ta? La care cel mai <b>prost</b>?</div>
+          </div>
+        </div>
+        <div class="slide-num">03 / 11</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.5.4 — Rațiune ȘI emoție -->
+    <section data-notes="Aha mare: orice decizie de cumpărare are 2 jumătăți de creier — trebuie să le atingi pe amândouă. Oamenii își JUSTIFICĂ decizia cu rațiunea, dar o IAU cu emoția. Rațiunea: banii/costul, riscul, potrivirea, actele/diploma, timpul. Emoția: speranțe & frici («o să se descurce copilul meu?»), mândria & ego-ul, experiența așteptată, convingerile, ce zice lumea. Tehnica: deschide cu emoția (frica părintelui, visul tânărului) → închide cu rațiunea (cifra, diploma, salariul). DEMONSTREAZ-O citind același mesaj în 2 feluri — sec/rațional vs cald/emoțional. Diferența se simte. Cârlig: «Dacă vorbești doar de acte și durate, atingi jumătate de creier. Cealaltă jumătate — frica și mândria — decide de fapt.»">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">De ce cumpără oamenii</div>
+          <h2 class="slide-title">Orice decizie are <span class="hl">2 jumătăți de creier.</span> Atinge-le pe amândouă.</h2>
+          <p class="slide-subtitle">Oamenii își <b>justifică</b> decizia cu rațiunea — dar o <b>iau</b> cu emoția. La o școală, ambele contează.</p>
+        </div>
+        <div class="brain-grid">
+          <div class="brain-half reason">
+            <div class="brain-head">
+              <div class="brain-ico">🧠</div>
+              <div class="brain-title">Rațiunea<small>de ce e logic</small></div>
+            </div>
+            <div class="brain-list">
+              <div class="brain-item"><span class="be">💰</span><span>banii / costul (gratuit, salariu după)</span></div>
+              <div class="brain-item"><span class="be">🎲</span><span>riscul (e sigur? mă angajez?)</span></div>
+              <div class="brain-item"><span class="be">🧩</span><span>potrivirea (mi se potrivește?)</span></div>
+              <div class="brain-item"><span class="be">🏛️</span><span>actele / diploma recunoscută</span></div>
+              <div class="brain-item"><span class="be">⏱️</span><span>timpul (cât durează)</span></div>
+            </div>
+          </div>
+          <div class="brain-half emotion">
+            <div class="brain-head">
+              <div class="brain-ico">❤️</div>
+              <div class="brain-title">Emoția<small>de ce vreau cu adevărat</small></div>
+            </div>
+            <div class="brain-list">
+              <div class="brain-item"><span class="be">😟</span><span>speranțe &amp; frici („o să se descurce copilul meu?")</span></div>
+              <div class="brain-item"><span class="be">🏅</span><span>mândria &amp; ego-ul („o meserie cu care mă respect")</span></div>
+              <div class="brain-item"><span class="be">👁️</span><span>experiența așteptată („cum o să fie?")</span></div>
+              <div class="brain-item"><span class="be">🧠</span><span>convingerile („meseriile sunt pentru cei slabi?")</span></div>
+              <div class="brain-item"><span class="be">👥</span><span>ce zice lumea (social)</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="brain-band">
+          <span class="bbe">🎯</span>
+          <div class="bbt">Tehnica: <b>deschide cu <span class="em-hl">emoția</span></b> (frica părintelui, visul tânărului) → <b>închide cu <span class="re-hl">rațiunea</span></b> (cifra, diploma, salariul).</div>
+        </div>
+        <div class="slide-num">04 / 11</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.5.5 — Vinde rezultatul, nu caracteristica -->
+    <section data-notes="Cea mai des încălcată regulă de marketing. Nimeni nu vrea «atelier dotat» — toți vor «un viitor pentru copil». Compară: caracteristica (despre TINE) vs rezultatul (despre EL). «Avem laborator de sudură cu 12 posturi» → «Fiul tău iese cu o meserie căutată». «Curs autorizat de 720 de ore» → «În 4 luni ai un job nou». «Profesori cu 20 de ani experiență» → «Te învață oameni care au lucrat în meserie». Exemplul de manual: Apple nu vinde «12 megapixeli», vinde «Shot on iPhone» — o poză frumoasă, o amintire. Concurentul listează specificații; Apple vinde rezultatul. Cârlig: «Clientul nu cumpără burghiul. Cumpără gaura din perete. Tu ce gaură vinzi?» — revenim pe larg în M2.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Regula cel mai des încălcată</div>
+          <h2 class="slide-title">Vinde <span class="hl">REZULTATUL</span>, nu caracteristica.</h2>
+          <p class="slide-subtitle">Nimeni nu vrea „atelier dotat". Toți vor „un viitor pentru copil". Caracteristica e despre <b>tine</b>; rezultatul e despre <b>el</b>.</p>
+        </div>
+        <table class="vs-table" style="font-size:17px">
+          <thead>
+            <tr><th class="col-bad" style="width:50%">❌ Caracteristica (despre tine)</th><th class="col-good" style="width:50%">✅ Rezultatul (despre el)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="bad-cell">„Avem laborator de sudură cu 12 posturi"</td><td class="good-cell">„Fiul tău iese cu <b>o meserie căutată</b>"</td></tr>
+            <tr><td class="bad-cell">„Curs autorizat de 720 de ore"</td><td class="good-cell">„În <b>4 luni</b> ai un job nou"</td></tr>
+            <tr><td class="bad-cell">„Profesori cu 20 de ani experiență"</td><td class="good-cell">„Te învață oameni care au <b>lucrat în meserie</b>"</td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block"><strong>Exemplu de manual:</strong> <span class="brand-chip"><span class="dot" style="background:#0F172A"></span>Apple</span> nu vinde „12 megapixeli". Vinde <strong>„Shot on iPhone"</strong> — o poză frumoasă, o amintire. Concurentul listează specificații; Apple vinde rezultatul. &nbsp; „Clientul nu cumpără burghiul — cumpără <strong>gaura din perete</strong>." <span style="color:var(--muted);font-style:normal">(pe larg în M2)</span></div></div>
+        <div class="slide-num">05 / 11</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.5.6 — USP: exemple de branduri -->
+    <section data-notes="USP = Unique Selling Proposition = promisiunea ta unică. Fiecare brand puternic are un motiv clar pentru care-l alegi. Folosește branduri pe care TOȚI le știu și cere-le să GHICEASCĂ USP-ul, nu-l da gata. Lavazza = cafea italiană autentică, tradiție din 1895. Tucano Coffee = atmosferă, experiență, un loc «de stat», nu doar cafea. Viorica = cosmetice locale, naturale, moldovenești — «de la noi». MoonGlow = K-beauty, produse coreene pe care nu le găsești oriunde. Discuție (3 min): pentru fiecare brand, care e motivul pentru care alegi anume pe el? Acela e USP-ul. Cârlig: «Niciunul nu zice suntem de calitate. Fiecare are un motiv concret. Școala ta care-l are?» — construim USP-ul tău în M2.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">USP · de ce TINE, nu pe altul</div>
+          <h2 class="slide-title">Fiecare brand puternic are un motiv clar <span class="hl">pentru care-l alegi.</span></h2>
+          <p class="slide-subtitle">USP = promisiunea ta unică. Ghicim împreună USP-ul unor branduri pe care le știm cu toții — <b>motivul concret</b> pentru care alegi anume pe el.</p>
+        </div>
+        <table class="gt">
+          <thead>
+            <tr><th style="width:34%">Brandul</th><th style="width:66%">Care e USP-ul lui? (discutăm)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="lead"><span class="em">☕</span><span class="brand-chip"><span class="dot" style="background:#7C3A1D"></span>Lavazza</span></td><td>cafea italiană autentică, <b>tradiție din 1895</b></td></tr>
+            <tr><td class="lead"><span class="em">🦜</span><span class="brand-chip"><span class="dot" style="background:#16A34A"></span>Tucano Coffee</span></td><td><b>atmosferă, experiență</b>, un loc „de stat" — nu doar cafea</td></tr>
+            <tr><td class="lead"><span class="em">🌸</span><span class="brand-chip"><span class="dot" style="background:#EC4899"></span>Viorica</span></td><td>cosmetice locale, naturale, moldovenești — <b>„de la noi"</b></td></tr>
+            <tr><td class="lead"><span class="em">🌙</span><span class="brand-chip"><span class="dot" style="background:#6366F1"></span>MoonGlow</span></td><td><b>K-beauty</b>, produse coreene pe care nu le găsești oriunde</td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block warn"><strong>Cârlig:</strong> niciunul nu zice „suntem de calitate". Fiecare are un motiv concret. <strong>Școala ta care-l are?</strong> <span style="color:var(--muted);font-style:normal">(construim USP-ul tău în M2)</span></div></div>
+        <div class="slide-num">06 / 11</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.5.7 — Ciclul de viață al produsului -->
+    <section data-notes="Orice produs / curs / meserie are un ciclu: Lansare → Creștere → Maturitate → Declin. Important e să-l REÎNNOIEȘTI înainte să moară. Un curs popular acum (un meșteșug vechi) poate intra în declin dacă cererea scade. Extinderea produsului = îi dai o viață nouă: o variantă modernă, un public nou, o combinație. Bemol e exemplul local PERFECT de extindere — toți îl știu: «de la benzină la cafenea». Benzinăriile au extins de la «doar combustibil» la cafenea + spălătorie + loc de socializat — același spațiu, valoare nouă, un produs matur transformat în centru socio-economic. Pentru școli: dacă o meserie intră în declin, ce variantă nouă, modernă, îi pot da? (ex: de la electrician la instalator de fotovoltaice). Discuție: ce extindere ai putea da unei meserii / unui curs vechi de la voi?">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Ciclul de viață al produsului</div>
+          <h2 class="slide-title">Orice produs are un ciclu. <span class="hl">Reînnoiește-l înainte să moară.</span></h2>
+          <p class="slide-subtitle">Un curs popular acum poate intra în declin dacă cererea scade. <b>Extinderea</b> = îi dai o viață nouă: o variantă modernă, un public nou, o combinație.</p>
+        </div>
+        <div class="plc-wrap">
+          <svg class="plc-curve" viewBox="0 0 1000 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 40 110 C 150 105, 200 50, 320 38 C 430 28, 520 24, 620 30 C 720 36, 800 70, 880 110" fill="none" stroke="#CBD5E1" stroke-width="3" stroke-linecap="round"/>
+            <path d="M 620 30 C 720 26, 800 14, 940 8" fill="none" stroke="#0EA371" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 7"/>
+          </svg>
+          <div class="plc-stage-row">
+            <div class="plc-stage s-launch">
+              <div class="plc-dot">🚀</div>
+              <div class="plc-name">Lansare</div>
+              <div class="plc-sub">abia pornit</div>
+            </div>
+            <div class="plc-stage s-growth">
+              <div class="plc-dot">📈</div>
+              <div class="plc-name">Creștere</div>
+              <div class="plc-sub">tot mai cerut</div>
+            </div>
+            <div class="plc-stage s-mature">
+              <div class="plc-dot">⛰️</div>
+              <div class="plc-name">Maturitate</div>
+              <div class="plc-sub">la apogeu</div>
+            </div>
+            <div class="plc-stage s-decline">
+              <div class="plc-dot">📉</div>
+              <div class="plc-name">Declin</div>
+              <div class="plc-sub">cererea scade</div>
+            </div>
+            <div class="plc-stage s-extend">
+              <div class="plc-dot">♻️</div>
+              <div class="plc-name">Extindere</div>
+              <div class="plc-sub">îl reinventezi</div>
+            </div>
+          </div>
+          <div class="plc-extend-tag">↗ sau îi dai o viață nouă, înainte de declin</div>
+        </div>
+        <div class="plc-bemol">
+          <span class="pb-ico">⛽</span>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div class="pb-flow">
+              <span class="brand-chip"><span class="dot" style="background:#EAB308"></span>Bemol</span>
+              <span class="pb-from">doar combustibil</span>
+              <span class="pb-arr">→</span>
+              <span class="pb-to">cafenea + spălătorie + loc de socializat ☕</span>
+            </div>
+            <div class="pb-txt">Un produs matur transformat într-un <b>centru socio-economic</b>. Același spațiu, valoare nouă. &nbsp;Pentru școli: de la „electrician" la <b>„instalator de fotovoltaice"</b>.</div>
+          </div>
+        </div>
+        <div class="slide-num">07 / 11</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.5.8 — Marketing de gherilă -->
+    <section data-notes="Scopul: să-i dezvețe de «n-am buget». Creativitatea e gratis. «Guerilla marketing» = atragi atenția cu creativitate, nu cu bani — perfect pentru școli cu buget zero. Faber-Castell a pus un panou unde o fetiță «desenează cerul» cu creionul — produsul devine magie, nu un creion. Nike a transformat coșuri de gunoi în panouri de baschet — «aruncă, ca un campion» — zero buget de media, doar o idee. Idei de gherilă pentru o școală profesională: expoziție surpriză cu produsele atelierului în piața din oraș / la un eveniment local; un «flash» la ziua porților deschise — elevii fac demonstrație live în centru (sudură, cofetărie); un panou simplu lângă liceu — «Nu te vezi la facultate? Vino să vezi ce faci cu mâinile tale.» Cere-le 1 idee de gherilă pentru școala lor. Cârlig: «O idee bună, văzută de 1.000 de oameni, bate o reclamă plătită pe care n-o vede nimeni. Creativitatea e gratis.»">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Marketing de gherilă</div>
+          <h2 class="slide-title">Idei mari, buget mic. <span class="hl">Nu-ți trebuie bani — îți trebuie o idee care surprinde.</span></h2>
+          <p class="slide-subtitle">„Guerilla marketing" = atragi atenția cu creativitate, nu cu bani. <b>Perfect pentru școli cu buget zero.</b></p>
+        </div>
+        <div class="prof-grid">
+          <div class="prof-card" style="background:var(--pastel-peach);border-color:#FED7AA;">
+            <div class="prof-head"><span class="prof-em">✏️</span><span class="prof-label"><span class="brand-chip"><span class="dot" style="background:#16A34A"></span>Faber-Castell</span></span></div>
+            <div class="prof-quote">Un panou unde o fetiță „desenează cerul" cu creionul — produsul devine <b>magie</b>, nu un creion.</div>
+          </div>
+          <div class="prof-card" style="background:var(--pastel-peach);border-color:#FED7AA;">
+            <div class="prof-head"><span class="prof-em">🏀</span><span class="prof-label"><span class="brand-chip"><span class="dot" style="background:#0F172A"></span>Nike</span></span></div>
+            <div class="prof-quote">A transformat coșuri de gunoi în panouri de baschet — „aruncă, ca un campion". <b>Zero buget de media, doar o idee.</b></div>
+          </div>
+          <div class="prof-card" style="grid-column: span 2; background:var(--pastel-mint); border-color:#86EFAC;">
+            <div class="prof-head"><span class="prof-em">💡</span><span class="prof-label">Idei de gherilă pentru o școală profesională (buget mic)</span></div>
+            <div class="prof-quote" style="display:flex; flex-direction:column; gap:7px;">
+              <span>• expoziție surpriză cu <b>produsele atelierului</b> în piața din oraș / la un eveniment local</span>
+              <span>• un „flash" la ziua porților deschise: elevii fac o <b>demonstrație live</b> în centru (sudură, cofetărie)</span>
+              <span>• un panou simplu lângă liceu: <b>„Nu te vezi la facultate? Vino să vezi ce faci cu mâinile tale."</b></span>
+            </div>
+          </div>
+        </div>
+        <div class="cw-note"><div class="quote-block"><strong>Cârlig:</strong> o idee bună, văzută de 1.000 de oameni, bate o reclamă plătită pe care n-o vede nimeni. <strong>Creativitatea e gratis.</strong></div></div>
+        <div class="slide-num">08 / 11</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.5.9 — CRM simplu -->
+    <section data-notes="Ține-l SIMPLU: «un caiet, nu un program». CRM sună complicat, dar pentru voi e doar un loc unde notezi fiecare om interesat — ca să nu uiți de el. Un caiet, un Excel, un grup. Nu te costă nimic. Ce notezi și de ce: cine a sunat/scris/venit (ca să nu-l uiți peste o săptămână); ce l-a interesat (ca să-i vorbești pe limba lui data viitoare); cine NU a mai răspuns (ca să-l recontactezi, nu să-l abandonezi); următorul contact / data (ca să revii înainte să se răcească). Adevărul dureros: cei mai mulți oameni interesați se pierd NU pentru că au zis nu — ci pentru că nimeni nu i-a notat și nu i-a recontactat. Cârlig: «Memoria mea e bună — nu. Peste 2 săptămâni, cu 30 de oameni, ai uitat. Scrie-i. Cine e notat, e urmărit. Cine e urmărit, se înscrie.» Instrumentul concret (Lista caldă + cele 3 atingeri) îl construim în M7. Aici reține: notează tot, nu te baza pe memorie.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Un „CRM" simplu · un caiet, nu un program</div>
+          <h2 class="slide-title">Notează cine sună și cine nu. <span class="hl">Altfel pierzi jumătate din oameni fără să-ți dai seama.</span></h2>
+          <p class="slide-subtitle">CRM sună complicat, dar pentru voi e doar: <b>un loc unde notezi fiecare om interesat</b> — un caiet, un Excel, un grup. Nu te costă nimic.</p>
+        </div>
+        <table class="gt">
+          <thead>
+            <tr><th style="width:42%">Ce notezi</th><th style="width:58%">De ce contează</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="lead"><span class="em">📞</span>Cine a sunat / a scris / a venit</td><td class="why">ca să nu-l uiți peste o săptămână</td></tr>
+            <tr><td class="lead"><span class="em">🎯</span>Ce l-a interesat</td><td class="why">ca să-i vorbești pe limba lui data viitoare</td></tr>
+            <tr><td class="lead"><span class="em">🤐</span>Cine NU a mai răspuns</td><td class="why">ca să-l recontactezi, nu să-l abandonezi</td></tr>
+            <tr><td class="lead"><span class="em">📅</span>Următorul contact (data)</td><td class="why">ca să revii înainte să se răcească</td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block warn"><strong>Adevărul dureros:</strong> cei mai mulți oameni interesați se pierd nu pentru că au zis nu — ci pentru că <strong>nimeni nu i-a notat și nu i-a recontactat</strong>. Cine e notat, e urmărit. Cine e urmărit, se înscrie. <span style="color:var(--muted);font-style:normal">(instrumentul concret — Lista caldă + cele 3 atingeri — în M7)</span></div></div>
+        <div class="slide-num">09 / 11</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.5.10 — Recapitulare: busola de marketing -->
+    <section data-notes="Recapitularea celor 7 idei-busolă pe care le ducem mai departe. Treci rapid prin ele — sunt firul roșu al întregii zile. 1) Oamenii cumpără de la oameni — tu ești marca vie. 2) Marketingul = 7P, nu doar reclamă (atenție la Persoane + Procese + Dovadă fizică). 3) Decizia are 2 jumătăți: rațiune + emoție. 4) Vinde rezultatul, nu caracteristica. 5) Ai un USP — un motiv concret pentru care ești ales. 6) Produsele au un ciclu — reînnoiește înainte de declin. 7) Creativitatea bate bugetul (gherilă) — și notează pe toți cei interesați. Output în Foaia de drum: care concept m-a surprins cel mai tare.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Recapitulare · busola de marketing</div>
+          <h2 class="slide-title">Cele 7 idei pe care <span class="hl">le ducem mai departe</span></h2>
+        </div>
+        <div class="mix7-grid" style="grid-template-columns: repeat(2, 1fr); gap:14px; align-content:start;">
+          <div class="prof-card" style="flex-direction:row; align-items:flex-start; gap:14px;">
+            <span class="prof-em">👥</span>
+            <div class="prof-quote" style="font-size:15px;">Oamenii cumpără de la <b>oameni</b> — tu ești marca vie a școlii.</div>
+          </div>
+          <div class="prof-card" style="flex-direction:row; align-items:flex-start; gap:14px;">
+            <span class="prof-em">🎯</span>
+            <div class="prof-quote" style="font-size:15px;">Marketingul = <b>7P</b>, nu doar reclamă (atenție la Persoane + Procese + Dovadă fizică).</div>
+          </div>
+          <div class="prof-card" style="flex-direction:row; align-items:flex-start; gap:14px;">
+            <span class="prof-em">🧠❤️</span>
+            <div class="prof-quote" style="font-size:15px;">Decizia are 2 jumătăți: <b>rațiune + emoție</b> — atinge-le pe amândouă.</div>
+          </div>
+          <div class="prof-card" style="flex-direction:row; align-items:flex-start; gap:14px;">
+            <span class="prof-em">🎁</span>
+            <div class="prof-quote" style="font-size:15px;">Vinde <b>rezultatul</b>, nu caracteristica.</div>
+          </div>
+          <div class="prof-card" style="flex-direction:row; align-items:flex-start; gap:14px;">
+            <span class="prof-em">⭐</span>
+            <div class="prof-quote" style="font-size:15px;">Ai un <b>USP</b> — un motiv concret pentru care ești ales.</div>
+          </div>
+          <div class="prof-card" style="flex-direction:row; align-items:flex-start; gap:14px;">
+            <span class="prof-em">🔄</span>
+            <div class="prof-quote" style="font-size:15px;">Produsele au un <b>ciclu</b> — reînnoiește înainte de declin.</div>
+          </div>
+          <div class="prof-card" style="flex-direction:row; align-items:flex-start; gap:14px; grid-column: span 2; background:var(--primary-ultra-light); border-color:#C7D2FE;">
+            <span class="prof-em">💡</span>
+            <div class="prof-quote" style="font-size:15px;"><b>Creativitatea</b> bate bugetul (gherilă) — și <b>notează</b> pe toți cei interesați.</div>
+          </div>
+        </div>
+        <div class="slide-num">10 / 11</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.5.11 — TRANZIȚIE -->
+    <section data-notes="Tranziție spre M1 (clientul). Avem busola — cele 7 idei mari de marketing. Toate aceste idei pornesc de la UN lucru: să-ți cunoști clientul. Pe el îl descoperim în modulul următor — cine, exact, e omul căruia îi vorbim. Ține firul roșu: am vocabularul comun și busola, acum coborâm la primul lucru concret — avatarul clientului.">
+      <div class="slide slide-transition">
+        <div class="cover-bg"></div><div class="cover-accent"></div>
+        <div style="position:relative;z-index:2;text-align:center;padding:0 90px;max-width:1000px;">
+          <div class="cover-kicker" style="margin-bottom:26px"><span class="dot"></span> Urmează · clientul</div>
+          <div style="font-size:76px;margin-bottom:18px">🧭</div>
+          <h2 style="font-size:44px;font-weight:800;color:#fff;line-height:1.12;letter-spacing:-0.02em;margin:0 0 18px;">Avem busola. Acum: <span style="color:var(--primary-light)">cine, exact, e omul căruia îi vorbim?</span></h2>
+          <p style="font-size:20px;color:rgba(255,255,255,0.72);line-height:1.55;margin:0">Toate aceste idei pornesc de la UN lucru: <b style="color:#fff;font-weight:600">să-ți cunoști clientul</b>. Pe el îl descoperim în modulul următor.</p>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">11 / 11</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

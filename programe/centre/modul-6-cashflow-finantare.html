@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modul 6: Cashflow &amp; Surse de Finanțare · ToT Antreprenoriat</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #0EA371;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 54px 66px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #0EA371 0%, #0891B2 100%); }
+
+    .slide-header { margin-bottom: 22px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #D1FAE5; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-title .hl { color: var(--primary); }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 980px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 54px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 21px; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0 0 36px; max-width: 760px; line-height: 1.5; }
+    .slide-cover .subtitle b { color: #fff; }
+    .cover-bait { font-size: 64px; margin: 6px 0 32px; letter-spacing: 8px; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+    .quote-block.warn { border-color: var(--warning); background: #FFFBEB; } .quote-block.warn strong { color: #B45309; }
+
+    /* brand chips */
+    .brand-chip { display: inline-flex; align-items: center; font-size: 14px; font-weight: 700; color: var(--foreground); background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 6px 14px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+    .brand-chip .dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; flex-shrink: 0; }
+
+    /* exercise banner */
+    .ex-banner { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #0EA371, #0891B2); color: #fff; border-radius: var(--radius); padding: 14px 22px; margin-bottom: 18px; }
+    .ex-banner .ex-ico { font-size: 26px; }
+    .ex-banner .ex-txt { font-size: 17px; font-weight: 600; line-height: 1.4; } .ex-banner .ex-txt b { font-weight: 800; }
+    .ex-banner .ex-time { margin-left: auto; font-size: 15px; font-weight: 800; background: rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+
+    /* GENERIC GRID TABLE */
+    .gt { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .gt th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .gt td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.42; color: var(--foreground); }
+    .gt tr:last-child td { border-bottom: none; }
+    .gt tr:nth-child(even) td { background: var(--bg); }
+    .gt .lead { font-weight: 800; color: var(--foreground); }
+    .gt b { font-weight: 800; }
+
+    /* TRANSITION */
+    .slide-transition { padding: 0 !important; overflow: hidden; background: #F2C94C; position: relative; display: flex; justify-content: center; align-items: center; }
+    .slide-transition::before { display: none; }
+    .trans-content { position: relative; z-index: 2; text-align: center; color: var(--foreground); }
+    .trans-title { font-size: 50px; font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; }
+    .trans-sub { font-size: 20px; color: var(--foreground); opacity: 0.78; margin-top: 16px; }
+    .trans-arrow { font-size: 56px; margin-top: 22px; }
+
+    /* ============ COMPONENTE MODUL 6 ============ */
+
+    /* HOOK SPLIT — number hero vs collapse */
+    .hook-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; align-items: stretch; }
+    .hook-pane { border-radius: var(--radius); padding: 28px 30px; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
+    .hook-pane.up { background: linear-gradient(150deg, #064E3B 0%, #047857 70%, #059669 100%); color: #fff; position: relative; overflow: hidden; }
+    .hook-pane.up::after { content: ''; position: absolute; top: -80px; right: -60px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, rgba(110,231,183,0.35) 0%, transparent 70%); }
+    .hook-pane.down { background: linear-gradient(150deg, #450A0A 0%, #991B1B 70%, #B91C1C 100%); color: #fff; position: relative; overflow: hidden; }
+    .hook-pane.down::after { content: ''; position: absolute; top: -80px; right: -60px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, rgba(252,165,165,0.30) 0%, transparent 70%); }
+    .hook-lbl { position: relative; z-index: 2; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.85; }
+    .hook-num { position: relative; z-index: 2; font-size: 62px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; }
+    .hook-num small { font-size: 24px; font-weight: 700; }
+    .hook-txt { position: relative; z-index: 2; font-size: 16px; line-height: 1.45; opacity: 0.92; } .hook-txt b { font-weight: 800; }
+    .hook-brand { position: relative; z-index: 2; display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 5px 14px; font-size: 14px; font-weight: 800; }
+
+    /* STAT ROWS — statistici cu separatoare */
+    .stat-rows { display: flex; flex-direction: column; flex: 1; justify-content: center; }
+    .stat-row { display: flex; align-items: center; gap: 28px; padding: 22px 8px; border-bottom: 1px solid var(--border); }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-big { font-size: 64px; font-weight: 800; line-height: 1; letter-spacing: -0.02em; color: var(--primary); min-width: 180px; flex-shrink: 0; }
+    .stat-big.red { color: var(--destructive); }
+    .stat-body { display: flex; flex-direction: column; gap: 5px; }
+    .stat-head { font-size: 20px; font-weight: 800; color: var(--foreground); line-height: 1.3; }
+    .stat-src { font-size: 14px; color: var(--muted); font-weight: 600; }
+
+    /* PROFIT VS CASH — two ledger panes */
+    .pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .pc-pane { border-radius: var(--radius); padding: 24px 28px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; }
+    .pc-pane.paper { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .pc-pane.bank { background: #FEF2F2; border-color: #FECACA; }
+    .pc-lbl { font-size: 14px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+    .pc-pane.paper .pc-lbl { color: #0369A1; } .pc-pane.bank .pc-lbl { color: #B91C1C; }
+    .pc-line { display: flex; justify-content: space-between; align-items: baseline; font-size: 16px; color: var(--foreground); padding: 6px 0; border-bottom: 1px dashed rgba(15,23,42,0.12); }
+    .pc-line:last-of-type { border-bottom: none; }
+    .pc-line .pcv { font-weight: 700; }
+    .pc-result { margin-top: auto; font-size: 34px; font-weight: 800; line-height: 1; }
+    .pc-pane.paper .pc-result { color: #15803D; } .pc-pane.bank .pc-result { color: #B91C1C; }
+    .pc-result small { display: block; font-size: 13px; font-weight: 700; color: var(--muted); margin-top: 5px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .pc-rule { margin-top: 18px; display: flex; align-items: center; gap: 16px; background: linear-gradient(135deg, #0B1120, #1E3A8A 70%, #3B2F8F); border-radius: var(--radius); padding: 18px 26px; color: #fff; }
+    .pc-rule .pcr-em { font-size: 32px; } .pc-rule .pcr-t { font-size: 18px; font-weight: 700; line-height: 1.4; } .pc-rule .pcr-t b { color: var(--primary-light); font-weight: 800; }
+
+    /* ALARM — mini cashflow table + 3 signs */
+    .alarm-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 24px; flex: 1; align-items: stretch; }
+    .cf-table { width: 100%; border-collapse: collapse; font-size: 18px; align-self: center; }
+    .cf-table th { padding: 12px 14px; text-align: center; font-size: 13px; font-weight: 800; letter-spacing: 0.03em; color: #fff; background: var(--foreground); }
+    .cf-table th:first-child { text-align: left; background: #1E293B; }
+    .cf-table td { padding: 13px 14px; border-bottom: 1px solid var(--border); text-align: center; font-weight: 700; }
+    .cf-table td:first-child { text-align: left; font-weight: 600; color: var(--muted); font-size: 14px; }
+    .cf-table tr:last-child td { border-bottom: none; }
+    .cf-table .cf-neg { color: var(--destructive); font-weight: 800; background: #FEF2F2; }
+    .cf-table .cf-pos { color: #15803D; }
+    .signs { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .sign { display: flex; align-items: flex-start; gap: 14px; background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 14px 18px; }
+    .sign-n { width: 32px; height: 32px; border-radius: 50%; background: var(--destructive); color: #fff; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .sign-txt { font-size: 16px; color: var(--foreground); line-height: 1.42; } .sign-txt b { font-weight: 800; color: #B91C1C; }
+
+    /* METRIC SLIDE — formula box + benchmark + example */
+    .metric-formula { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 26px 34px; color: #fff; position: relative; overflow: hidden; margin-bottom: 18px; }
+    .metric-formula::after { content: ''; position: absolute; top: -90px; right: -70px; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .mf-eq { position: relative; z-index: 2; font-size: 30px; font-weight: 800; line-height: 1.3; letter-spacing: -0.01em; }
+    .mf-eq .slot { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); border-radius: 8px; padding: 2px 12px; margin: 0 2px; }
+    .mf-eq .slot.a { color: #93C5FD; } .mf-eq .slot.b { color: #6EE7B7; } .mf-eq .slot.c { color: #FCD34D; }
+    .mf-mean { position: relative; z-index: 2; font-size: 16px; color: rgba(255,255,255,0.82); margin-top: 12px; line-height: 1.45; }
+    .metric-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; align-items: stretch; }
+    .metric-ex { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 26px; display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .me-brand { display: flex; align-items: center; gap: 10px; }
+    .me-calc { font-size: 17px; color: var(--foreground); line-height: 1.55; } .me-calc b { font-weight: 800; }
+    .me-result { font-size: 40px; font-weight: 800; color: var(--primary); line-height: 1; }
+    .me-result small { font-size: 18px; font-weight: 700; color: var(--muted); }
+    .bench { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .bench-row { display: flex; align-items: center; gap: 16px; border-radius: var(--radius); padding: 16px 20px; }
+    .bench-row.g { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .bench-row.y { background: #FFFBEB; border: 1px solid #FDE68A; }
+    .bench-row.r { background: #FEF2F2; border: 1px solid #FECACA; }
+    .bench-dot { font-size: 22px; flex-shrink: 0; }
+    .bench-range { font-size: 20px; font-weight: 800; min-width: 130px; flex-shrink: 0; }
+    .bench-row.g .bench-range { color: #15803D; } .bench-row.y .bench-range { color: #B45309; } .bench-row.r .bench-range { color: #B91C1C; }
+    .bench-txt { font-size: 15px; color: var(--foreground); line-height: 1.4; }
+    .metric-challenge { margin-top: 18px; display: flex; align-items: center; gap: 16px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 16px 24px; }
+    .metric-challenge .mc-em { font-size: 30px; } .metric-challenge .mc-t { font-size: 17px; color: var(--foreground); line-height: 1.42; } .metric-challenge .mc-t b { font-weight: 800; color: var(--primary); }
+
+    /* CCC TRACK — DIO + DSO - DPO visual */
+    .ccc-track { display: flex; align-items: stretch; gap: 0; margin: 6px 0 18px; }
+    .ccc-block { flex: 1; padding: 20px 18px; display: flex; flex-direction: column; gap: 8px; color: #fff; position: relative; }
+    .ccc-block.dio { background: #3B82F6; border-radius: var(--radius) 0 0 var(--radius); }
+    .ccc-block.dso { background: #7C3AED; }
+    .ccc-block.dpo { background: #DC2626; border-radius: 0 var(--radius) var(--radius) 0; }
+    .ccc-op { display: flex; align-items: center; justify-content: center; width: 44px; background: var(--bg); color: var(--foreground); font-size: 34px; font-weight: 800; flex-shrink: 0; }
+    .ccc-code { font-size: 22px; font-weight: 800; } .ccc-block small { font-size: 13px; opacity: 0.9; line-height: 1.35; }
+
+    /* STRATEGY ROWS */
+    .strat-rows { display: flex; flex-direction: column; gap: 14px; flex: 1; justify-content: center; }
+    .strat-row { display: grid; grid-template-columns: 56px 1fr 1.05fr; gap: 18px; align-items: center; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .strat-n { width: 48px; height: 48px; border-radius: 14px; background: var(--primary); color: #fff; font-size: 22px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+    .strat-row.s2 .strat-n { background: #7C3AED; } .strat-row.s3 .strat-n { background: #0891B2; }
+    .strat-what { font-size: 18px; font-weight: 800; color: var(--foreground); line-height: 1.3; }
+    .strat-what small { display: block; font-size: 14px; font-weight: 600; color: var(--muted); margin-top: 3px; }
+    .strat-ex { font-size: 15px; color: var(--foreground); line-height: 1.42; background: var(--bg); border-radius: var(--radius-sm); padding: 11px 14px; border-left: 3px solid var(--primary); }
+    .strat-ex b { font-weight: 800; color: var(--primary); }
+
+    /* PRACTICE WORKSHOP */
+    .ws-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 26px; flex: 1; align-items: stretch; }
+    .ws-case { background: var(--foreground); border-radius: var(--radius); padding: 22px 26px; color: #fff; display: flex; flex-direction: column; gap: 10px; position: relative; overflow: hidden; }
+    .ws-case::after { content: ''; position: absolute; bottom: -70px; left: -50px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.28) 0%, transparent 70%); }
+    .ws-case-head { position: relative; z-index: 2; display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+    .ws-case-name { font-size: 22px; font-weight: 800; }
+    .ws-case-row { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: baseline; font-size: 15px; padding: 7px 0; border-bottom: 1px dashed rgba(255,255,255,0.16); }
+    .ws-case-row:last-child { border-bottom: none; }
+    .ws-case-row .wk { color: rgba(255,255,255,0.7); } .ws-case-row .wv { font-weight: 800; }
+    .ws-case-row .wv.warn { color: #FCA5A5; }
+    .ws-tasks { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .ws-task { display: flex; align-items: flex-start; gap: 14px; }
+    .ws-task-n { width: 32px; height: 32px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ws-task-txt { font-size: 17px; color: var(--foreground); line-height: 1.4; padding-top: 3px; } .ws-task-txt b { font-weight: 800; }
+    .ws-task-txt .wt-time { font-size: 13px; font-weight: 800; color: var(--practice); }
+    .ws-deliver { margin-top: 16px; display: flex; align-items: center; gap: 14px; background: #D1FAE5; border: 1px solid #86EFAC; border-radius: var(--radius); padding: 14px 22px; }
+    .ws-deliver .wd-em { font-size: 26px; } .ws-deliver .wd-t { font-size: 16px; color: var(--foreground); line-height: 1.4; } .ws-deliver .wd-t b { font-weight: 800; color: #047857; }
+
+    /* SEPARATOR / BREAK SLIDE */
+    .slide-break { padding: 0 !important; overflow: hidden; position: relative; display: flex; justify-content: center; align-items: center; background: #0B1120; }
+    .slide-break::before { display: none; }
+    .break-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 60%, #3B2F8F 100%); }
+    .break-glow { position: absolute; top: -120px; right: -100px; width: 480px; height: 480px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.32) 0%, transparent 70%); }
+    .break-content { position: relative; z-index: 2; text-align: center; color: #fff; }
+    .break-em { font-size: 80px; margin-bottom: 18px; }
+    .break-title { font-size: 50px; font-weight: 800; letter-spacing: -0.02em; }
+    .break-sub { font-size: 21px; color: rgba(255,255,255,0.72); margin-top: 14px; }
+    .break-time { display: inline-block; margin-top: 26px; font-size: 18px; font-weight: 800; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 10px 26px; }
+
+    /* SOURCES MAP TABLE + filter */
+    .src-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; flex: 1; align-items: stretch; }
+    .src-table { width: 100%; border-collapse: collapse; font-size: 16px; align-self: center; }
+    .src-table th { padding: 12px 14px; text-align: left; font-size: 13px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); }
+    .src-table td { padding: 13px 14px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.35; }
+    .src-table tr:last-child td { border-bottom: none; }
+    .src-table tr:nth-child(even) td { background: var(--bg); }
+    .src-table .src-name { font-weight: 800; color: var(--foreground); font-size: 16px; }
+    .src-table .src-cost { font-weight: 800; color: var(--primary); white-space: nowrap; }
+    .src-table .src-stage { color: var(--muted); font-size: 14px; }
+    .filter-pane { background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; }
+    .filter-head { font-size: 15px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.04em; }
+    .filter-q { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: var(--foreground); line-height: 1.35; }
+    .filter-q .fq-i { color: var(--primary); font-weight: 800; flex-shrink: 0; }
+    .filter-map { margin-top: auto; display: flex; flex-direction: column; gap: 7px; }
+    .filter-route { font-size: 13.5px; color: var(--foreground); background: #fff; border-radius: var(--radius-sm); padding: 8px 12px; line-height: 1.35; }
+    .filter-route b { font-weight: 800; color: var(--primary); }
+
+    /* COST TABLE — bar chart cost comparison */
+    .cost-rows { display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: center; }
+    .cost-row { display: flex; align-items: center; gap: 16px; }
+    .cost-name { width: 230px; flex-shrink: 0; display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; color: var(--foreground); }
+    .cost-bar-wrap { flex: 1; height: 40px; background: var(--bg); border-radius: 8px; position: relative; overflow: hidden; }
+    .cost-bar { height: 100%; border-radius: 8px; display: flex; align-items: center; justify-content: flex-end; padding-right: 14px; color: #fff; font-size: 17px; font-weight: 800; }
+    .cost-bar.green { background: linear-gradient(135deg, #34D399, #059669); }
+    .cost-bar.blue { background: linear-gradient(135deg, #5B7CF7, #2D52D4); }
+    .cost-bar.amber { background: linear-gradient(135deg, #FBBF24, #D97706); }
+    .cost-bar.red { background: linear-gradient(135deg, #F87171, #DC2626); }
+    .cost-impact { margin-top: 16px; display: flex; align-items: center; gap: 16px; background: linear-gradient(135deg, #0B1120, #1E3A8A 70%, #3B2F8F); border-radius: var(--radius); padding: 16px 26px; color: #fff; }
+    .cost-impact .ci-em { font-size: 30px; } .cost-impact .ci-t { font-size: 17px; line-height: 1.42; } .cost-impact .ci-t b { font-weight: 800; color: #FCD34D; }
+
+    /* PROGRAMS LIST */
+    .prog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; }
+    .prog-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 18px; display: flex; gap: 14px; align-items: flex-start; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .prog-ico { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; background: var(--primary-ultra-light); }
+    .prog-card.p2 .prog-ico { background: var(--pastel-mint); } .prog-card.p3 .prog-ico { background: var(--pastel-rose); }
+    .prog-card.p4 .prog-ico { background: var(--pastel-sky); } .prog-card.p5 .prog-ico { background: var(--pastel-peach); }
+    .prog-body { display: flex; flex-direction: column; gap: 4px; }
+    .prog-name { font-size: 16px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+    .prog-detail { font-size: 14px; color: var(--foreground); line-height: 1.4; } .prog-detail b { font-weight: 800; color: var(--primary); }
+    .prog-foot { margin-top: 14px; display: flex; align-items: center; gap: 14px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 13px 22px; }
+    .prog-foot .pf-em { font-size: 26px; } .prog-foot .pf-t { font-size: 16px; color: var(--foreground); line-height: 1.4; } .prog-foot .pf-t b { font-weight: 800; color: var(--primary); }
+
+    /* STAGE LADDER */
+    .stage-ladder { display: flex; flex-direction: column; gap: 4px; flex: 1; justify-content: center; }
+    .stage-step { display: flex; align-items: center; gap: 18px; border-radius: var(--radius); padding: 16px 22px; color: #fff; }
+    .stage-step .ss-n { width: 40px; height: 40px; border-radius: 12px; background: rgba(255,255,255,0.22); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; flex-shrink: 0; }
+    .stage-step .ss-body { flex: 1; }
+    .stage-step .ss-name { font-size: 18px; font-weight: 800; line-height: 1.2; }
+    .stage-step .ss-name small { font-weight: 600; opacity: 0.9; font-size: 14px; }
+    .stage-step .ss-src { font-size: 15px; font-weight: 800; background: rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+    .stage-step.st0 { background: linear-gradient(135deg, #94A3B8, #64748B); width: 64%; }
+    .stage-step.st1 { background: linear-gradient(135deg, #5B7CF7, #2D52D4); width: 76%; margin-left: 8%; }
+    .stage-step.st2 { background: linear-gradient(135deg, #34D399, #059669); width: 88%; margin-left: 12%; }
+    .stage-step.st3 { background: linear-gradient(135deg, #A78BFA, #7C3AED); width: 100%; }
+    .stage-warn { margin-top: 16px; display: flex; align-items: center; gap: 14px; background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 14px 22px; }
+    .stage-warn .sw-em { font-size: 26px; } .stage-warn .sw-t { font-size: 17px; color: var(--foreground); line-height: 1.4; } .stage-warn .sw-t b { font-weight: 800; color: #B91C1C; }
+
+    /* 3-CASE PRACTICE */
+    .case3-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+    .case3-card { border-radius: var(--radius); padding: 18px 18px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 9px; overflow: hidden; }
+    .case3-card.a { background: var(--pastel-peach); border-color: #FED7AA; }
+    .case3-card.b { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .case3-card.c { background: var(--pastel-rose); border-color: #FBCFE8; }
+    .case3-head { display: flex; align-items: center; gap: 10px; }
+    .case3-letter { width: 30px; height: 30px; border-radius: 9px; background: var(--foreground); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .case3-name { font-size: 17px; font-weight: 800; color: var(--foreground); line-height: 1.1; }
+    .case3-line { font-size: 13.5px; color: var(--foreground); line-height: 1.4; display: flex; gap: 7px; }
+    .case3-line .c3i { flex-shrink: 0; }
+    .case3-line b { font-weight: 800; }
+    .case3-ask { margin-top: auto; padding-top: 8px; font-size: 13px; font-weight: 800; color: var(--primary); }
+
+    /* RULE 6 final */
+    .rule6-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; flex: 1; align-items: stretch; }
+    .rule6-pane { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 32px; color: #fff; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+    .rule6-pane::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .rule6-badge { position: relative; z-index: 2; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 800; letter-spacing: 0.06em; margin-bottom: 22px; }
+    .rule6-badge .rb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--primary-light); }
+    .rule6-line { position: relative; z-index: 2; font-size: 22px; font-weight: 800; line-height: 1.4; letter-spacing: -0.01em; margin-bottom: 14px; } .rule6-line:last-child { margin-bottom: 0; } .rule6-line .hl { color: var(--primary-light); }
+    .next-pane { background: #FFFBEB; border: 1px solid #FDE68A; border-radius: var(--radius); padding: 30px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+    .next-em { font-size: 56px; }
+    .next-q { font-size: 24px; font-weight: 800; color: var(--foreground); line-height: 1.3; }
+    .next-sub { font-size: 17px; color: var(--muted); line-height: 1.5; } .next-sub b { color: var(--foreground); font-weight: 700; }
+    .next-tag { display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; background: #FB923C; color: #fff; border-radius: 100px; padding: 7px 16px; font-size: 13px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ================================================================ -->
+    <!-- 6.1 — COVER M6a -->
+    <!-- ================================================================ -->
+    <section data-notes="Deschidere Modul 6a — Cashflow. 60 min (10:30–11:30). Scopul: la final fiecare formator are un instrument simplu de citit cashflow-ul unei afaceri (profit vs cash, DSO/DPO/CCC) + un workshop gata de predat. Legătura cu M5: storytelling-ul aduce vânzări — dar dacă banii care intră vs ies nu sunt controlați, vinzi degeaba. Ton: de la egal la egal. Mesajul-ancoră: 'Profit ≠ cash. Afaceri profitabile mor din lipsă de lichiditate.' Aici nu predăm contabilitate — predăm un mod de gândire pe care îl iau și-l predau mâine.">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 6a · 10:30–11:30</div>
+          <h1>Cashflow —<br>câți bani ai de fapt?</h1>
+          <div class="cover-bait">💸 📊 🔴</div>
+          <p class="subtitle"><b>Profit ≠ cash.</b> Afaceri profitabile mor din lipsă de lichiditate. Învățăm să citim banii care intră vs. cei care ies — și cum se redresează.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">Profit vs. Cash</span>
+            <span class="cover-chip">3 semne de alarmă</span>
+            <span class="cover-chip">DSO · DPO · CCC</span>
+            <span class="cover-chip">Strategii de redresare</span>
+            <span class="cover-chip">Workshop</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.2 — HOOK: $751M profit + faliment -->
+    <!-- ================================================================ -->
+    <section data-notes="HOOK — 5 min. Întrebare retorică, lansată ÎNAINTE de a arăta răspunsul: 'Cum e posibil să fii cel mai profitabil retailer de jucării din SUA și să dai faliment la 3 luni?' Lasă sala să ghicească 20-30 sec. Apoi dezvălui: Toys R Us, 2017 — EBITDA pozitiv 751M$, dar 5 miliarde datorii și cash-ul zilnic care intra era mai mic decât ce ieșea (dobânzi + furnizori). Profitabil pe hârtie, fără lichiditate în realitate. Legătura cu M5: storytelling-ul vinde, dar dacă nu controlezi banii care intră vs ies, vinzi degeaba. Acesta e cârligul emoțional care deschide tot modulul.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Hook · paradoxul falimentului profitabil</div>
+          <h2 class="slide-title">Cum poți face <span class="hl">$751M profit</span> și să dai faliment în 3 luni?</h2>
+          <p class="slide-subtitle">2017 — <b>Toys R Us</b>, cel mai mare retailer de jucării din SUA. EBITDA pozitiv. Trei luni mai târziu: faliment (Chapter 11).</p>
+        </div>
+        <div class="hook-grid">
+          <div class="hook-pane up">
+            <div class="hook-brand">🧸 Toys R Us · pe hârtie</div>
+            <div class="hook-lbl">Profit operațional (EBITDA)</div>
+            <div class="hook-num">+$751<small>M</small></div>
+            <div class="hook-txt">Pe hârtie, afacerea arăta <b>sănătoasă și profitabilă</b>. Vânzările acopereau costurile.</div>
+          </div>
+          <div class="hook-pane down">
+            <div class="hook-brand">🏦 Toys R Us · în realitate</div>
+            <div class="hook-lbl">Datorii &amp; cash care iese</div>
+            <div class="hook-num">−$5<small>MLD</small></div>
+            <div class="hook-txt"><b>Cash-ul care intra zilnic era mai mic decât ce ieșea</b> — dobânzi + furnizori. Lichiditatea s-a uscat. Faliment.</div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:18px;font-size:16px">Storytelling-ul vinde — l-am văzut la Modulul 5. <strong>Dar dacă nu controlezi banii care intră vs. cei care ies, vinzi degeaba.</strong></div>
+        <div class="slide-num">02 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.3 — STATISTICA -->
+    <!-- ================================================================ -->
+    <section data-notes="3 min. Statisticile cu separatoare între ele — citește-le rar, lasă cifra să respire. 82% = nu lipsa de clienți omoară afacerile mici, ci cashflow-ul prost gestionat (U.S. Bank Study). 44% = aproape jumătate din IMM-uri au ratat o plată într-un an din lipsă de cash (Fed Reserve 2024). Mecanismul ascuns, de subliniat: profitabil pe hârtie ≠ solvabil în bancă. Decalajul dintre 'am vândut' și 'am banii în cont' e cel care omoară. Aici NU dramatizăm — prezentăm cifrele neutru, ca pe o realitate pe care formatorul o poate arăta cursanților lui.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Statistica care schimbă regulile</div>
+          <h2 class="slide-title">Nu lipsa de clienți omoară afacerile mici. <span class="hl">E cashflow-ul.</span></h2>
+        </div>
+        <div class="stat-rows">
+          <div class="stat-row">
+            <div class="stat-big red">82%</div>
+            <div class="stat-body">
+              <div class="stat-head">din afacerile mici care eșuează — cauza principală e cashflow-ul prost gestionat.</div>
+              <div class="stat-src">Sursă: U.S. Bank Study</div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-big red">44%</div>
+            <div class="stat-body">
+              <div class="stat-head">din IMM-uri au ratat o plată în ultimele 12 luni — din lipsă de cash, nu de profit.</div>
+              <div class="stat-src">Sursă: Federal Reserve, 2024</div>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-big">⚠️</div>
+            <div class="stat-body">
+              <div class="stat-head">Mecanismul ascuns: profitabil pe hârtie ≠ solvabil în bancă.</div>
+              <div class="stat-src">Decalajul dintre „am vândut" și „am banii în cont" te omoară.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">03 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.4 — Profit vs Cash mecanismul -->
+    <!-- ================================================================ -->
+    <section data-notes="5 min — conceptul central al modulului. Exemplu numeric simplu: vinzi marfă de 200.000 MDL pe care ai produs-o cu 170.000. CONTABIL ai +30.000 profit AZI. Dar dacă furnizorul vrea cash AZI și clientul plătește peste 60 zile, în BANCĂ ai −170.000 AZI. Profitul e real, dar e blocat în timp. Dialog interactiv: 'Câți dintre voi (sau dintre cursanții voștri) au fost în situația: profit pe hârtie, cont roșu în bancă?' — mâini sus, normalizează. Regula de luat acasă: Profit contabil = vândut − cost. Cash azi = ce ai efectiv în cont. 'Profitul îl mănânci cu plăcere. Cash-ul te salvează de foame.'">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Mecanismul exact</div>
+          <h2 class="slide-title">Profit pe hârtie, <span class="hl">cont roșu în bancă</span> — în aceeași zi.</h2>
+          <p class="slide-subtitle">Vinzi marfă de <b>200.000 MDL</b> (cost de producție 170.000). Aceeași tranzacție arată complet diferit pe cele două coloane.</p>
+        </div>
+        <div class="pc-grid">
+          <div class="pc-pane paper">
+            <div class="pc-lbl">📊 Profit contabil · AZI</div>
+            <div class="pc-line"><span>Vânzare facturată</span><span class="pcv">+200.000</span></div>
+            <div class="pc-line"><span>Cost de producție</span><span class="pcv">−170.000</span></div>
+            <div class="pc-result">+30.000 MDL<small>Profit pe hârtie</small></div>
+          </div>
+          <div class="pc-pane bank">
+            <div class="pc-lbl">🏦 Cash în cont · AZI</div>
+            <div class="pc-line"><span>Furnizorul vrea cash AZI</span><span class="pcv">−170.000</span></div>
+            <div class="pc-line"><span>Clientul plătește în 60 zile</span><span class="pcv">+0</span></div>
+            <div class="pc-result">−170.000 MDL<small>Cash efectiv azi</small></div>
+          </div>
+        </div>
+        <div class="pc-rule">
+          <span class="pcr-em">🍽️</span>
+          <div class="pcr-t">Profit contabil = vândut − cost. Cash azi = ce ai efectiv în cont. <b>Profitul îl mănânci cu plăcere. Cash-ul te salvează de foame.</b></div>
+        </div>
+        <div class="slide-num">04 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.5 — Diagnostic rapid: 3 semne -->
+    <!-- ================================================================ -->
+    <section data-notes="5 min — gamificare. Arată tabelul mini-cashflow pe 3 luni FĂRĂ să comentezi. Întrebare grup: 'Aveți 30 de secunde. Ce vedeți roșu aici?' Lasă-i să observe că toate 3 lunile sunt negative la cash din operațiuni. Apoi dezvălui cele 3 semne de alarmă pe care le poate verifica oricine, fără contabil: (1) Cash din operațiuni negativ 2 luni la rând = STOP, ceva e structural greșit. (2) DSO crește lună de lună = clienții te plătesc tot mai încet. (3) Cash în bancă acoperă mai puțin de 3 luni de cheltuieli = ALERTĂ, ești pe muchie. Acesta e un instrument de diagnostic simplu pe care formatorul îl predă direct.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Diagnostic rapid · 3 semne de alarmă</div>
+          <h2 class="slide-title">30 de secunde. <span class="hl">Ce vedeți roșu?</span></h2>
+          <p class="slide-subtitle">Cash din operațiuni pe ultimele 3 luni. Trei semnale pe care le verifici fără contabil.</p>
+        </div>
+        <div class="alarm-grid">
+          <table class="cf-table">
+            <tr><th>Lună</th><th>Cash operațiuni</th></tr>
+            <tr><td>Martie</td><td class="cf-neg">−40.000</td></tr>
+            <tr><td>Aprilie</td><td class="cf-neg">−45.000</td></tr>
+            <tr><td>Mai</td><td class="cf-neg">−40.000</td></tr>
+          </table>
+          <div class="signs">
+            <div class="sign">
+              <div class="sign-n">1</div>
+              <div class="sign-txt">Cash din operațiuni <b>negativ 2 luni la rând</b> = STOP. Ceva e structural greșit, nu o lună slabă.</div>
+            </div>
+            <div class="sign">
+              <div class="sign-n">2</div>
+              <div class="sign-txt"><b>DSO crește lună de lună</b> = clienții te plătesc tot mai încet. Banii tăi stau la ei.</div>
+            </div>
+            <div class="sign">
+              <div class="sign-n">3</div>
+              <div class="sign-txt">Cash în bancă / cheltuieli lunare <b>sub 3 luni</b> = ALERTĂ. Ești pe muchie la primul șoc.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">05 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.6a — DSO -->
+    <!-- ================================================================ -->
+    <section data-notes="4 min. DSO = Days Sales Outstanding = câte zile trec, în medie, de la factură până când banul intră efectiv în cont. Formula: (Creanțe / Vânzări) × 365. Exemplu real Moldova — Purcari (vin): vânzări 800M MDL/an, creanțe 130M MDL → DSO ≈ 59 zile. Adică în medie clientul plătește la ~2 luni. Benchmark practic: verde <30 zile (sănătos), galben 30–60 zile (atenție), roșu >60 zile = renegociezi termenele sau riști falimentul. DE CE contează: fiecare zi de DSO = bani blocați la client în loc să fie în contul tău. Cu cât e mai mare, cu atât mai mult finanțezi tu clientul, gratis.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Indicator · DSO</div>
+          <h2 class="slide-title">DSO — în câte zile <span class="hl">banul ajunge în cont</span> după factură.</h2>
+        </div>
+        <div class="metric-formula">
+          <div class="mf-eq">DSO = <span class="slot a">Creanțe</span> ÷ <span class="slot b">Vânzări</span> × 365</div>
+          <div class="mf-mean">Câte zile, în medie, între factura emisă și banul efectiv în cont. Cu cât mai mare — cu atât mai mult îți finanțezi clientul gratis.</div>
+        </div>
+        <div class="metric-cols">
+          <div class="metric-ex">
+            <div class="me-brand"><span class="brand-chip"><span class="dot" style="background:#7C2D12"></span>Purcari</span></div>
+            <div class="me-calc">Vânzări <b>800M MDL/an</b> · creanțe <b>130M MDL</b><br>130 ÷ 800 × 365 =</div>
+            <div class="me-result">59 <small>zile</small></div>
+            <div class="me-calc" style="font-size:14px;color:var(--muted)">Clientul plătește, în medie, la ~2 luni de la factură.</div>
+          </div>
+          <div class="bench">
+            <div class="bench-row g"><span class="bench-dot">🟢</span><span class="bench-range">&lt; 30 zile</span><span class="bench-txt">Sănătos. Banii intră repede.</span></div>
+            <div class="bench-row y"><span class="bench-dot">🟡</span><span class="bench-range">30–60 zile</span><span class="bench-txt">Atenție. Monitorizezi lunar.</span></div>
+            <div class="bench-row r"><span class="bench-dot">🔴</span><span class="bench-range">&gt; 60 zile</span><span class="bench-txt">Renegociezi termenele — sau riști falimentul.</span></div>
+          </div>
+        </div>
+        <div class="slide-num">06 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.6b — DPO -->
+    <!-- ================================================================ -->
+    <section data-notes="4 min. DPO = Days Payable Outstanding = câte zile reții cash-ul înainte să-ți plătești furnizorii. Formula: (Datorii furnizori / Costuri) × 365. Oglinda DSO-ului. Exemplu: Andy's Pizza, DPO ≈ 55 zile — furnizorul devine practic o bancă fără dobândă, fiindcă tu folosești marfa lui ~2 luni înainte să-l plătești. Provocare logică pentru sală: 'Dacă furnizorul tău cere plată la 30 de zile, dar tu îi ceri clientului 60... cine finanțează diferența de 30 de zile?' (răspuns: TU, din buzunarul tău). Acesta e punctul care leagă DSO + DPO și pregătește CCC pe slide-ul următor. DPO mare = bun pentru cash, dar nu abuza — relația cu furnizorul contează.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Indicator · DPO</div>
+          <h2 class="slide-title">DPO — câte zile <span class="hl">ții cash-ul</span> înainte să plătești furnizorii.</h2>
+        </div>
+        <div class="metric-formula">
+          <div class="mf-eq">DPO = <span class="slot a">Datorii furnizori</span> ÷ <span class="slot b">Costuri</span> × 365</div>
+          <div class="mf-mean">Oglinda DSO-ului. Cu cât mai mare — cu atât mai mult lucrezi cu banii furnizorului, nu cu ai tăi.</div>
+        </div>
+        <div class="metric-cols">
+          <div class="metric-ex">
+            <div class="me-brand"><span class="brand-chip"><span class="dot" style="background:#DC2626"></span>Andy's Pizza</span></div>
+            <div class="me-result">55 <small>zile</small></div>
+            <div class="me-calc">Folosește marfa furnizorului ~2 luni înainte să plătească. <b>Furnizorul = bancă fără dobândă.</b></div>
+          </div>
+          <div class="metric-ex" style="background:#FEF2F2;border-color:#FECACA">
+            <div class="me-calc" style="font-size:18px"><b>Provocare logică:</b></div>
+            <div class="me-calc" style="line-height:1.6">Furnizorul îți cere plată la <b>30 zile</b>.<br>Tu îi ceri clientului <b>60 zile</b>.</div>
+            <div class="me-result" style="color:#B91C1C;font-size:26px;line-height:1.3">Cine finanțează<br>diferența de 30 zile?</div>
+            <div class="me-calc" style="font-size:14px;color:#B91C1C;font-weight:700">→ Tu. Din buzunarul tău.</div>
+          </div>
+        </div>
+        <div class="slide-num">07 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.6c — CCC -->
+    <!-- ================================================================ -->
+    <section data-notes="5 min — instrumentul-vârf. CCC = Cash Conversion Cycle = câte zile sunt banii tăi 'blocați' în business între momentul în care plătești și momentul în care încasezi. Formula: CCC = DIO (zile stoc) + DSO (zile încasare) − DPO (zile plată furnizori). Cu cât mai mic, cu atât mai bine. Exemplul aha: Walmart CCC ≈ −1 zi, Apple CCC ≈ −30 zile — adică vând produsul ÎNAINTE să plătească furnizorul. Banii clientului le finanțează operațiunile. Întrebare provocatoare: 'Noi facem opusul — plătim AZI, așteptăm 75 de zile. Cine-i mai isteț?' Nu e o critică, e o invitație să gândești invers: cum poți scurta ciclul. Asta pregătește cele 3 strategii de pe slide-ul următor.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Indicator · CCC</div>
+          <h2 class="slide-title">CCC — câte zile <span class="hl">banii tăi sunt blocați</span> în business.</h2>
+        </div>
+        <div class="ccc-track">
+          <div class="ccc-block dio"><div class="ccc-code">DIO</div><small>Zile cât stă stocul nevândut</small></div>
+          <div class="ccc-op">+</div>
+          <div class="ccc-block dso"><div class="ccc-code">DSO</div><small>Zile până încasezi de la client</small></div>
+          <div class="ccc-op">−</div>
+          <div class="ccc-block dpo"><div class="ccc-code">DPO</div><small>Zile cât amâni plata furnizorului</small></div>
+        </div>
+        <div class="metric-cols">
+          <div class="metric-ex" style="flex-direction:row;align-items:center;gap:24px;justify-content:space-around">
+            <div style="text-align:center"><div class="me-brand" style="justify-content:center;margin-bottom:8px"><span class="brand-chip"><span class="dot" style="background:#0071CE"></span>Walmart</span></div><div class="me-result" style="color:#15803D">−1 <small>zi</small></div></div>
+            <div style="text-align:center"><div class="me-brand" style="justify-content:center;margin-bottom:8px"><span class="brand-chip"><span class="dot" style="background:#0F172A"></span>Apple</span></div><div class="me-result" style="color:#15803D">−30 <small>zile</small></div></div>
+          </div>
+          <div class="metric-ex" style="background:var(--primary-ultra-light);border-color:#C7D2FE;justify-content:center">
+            <div class="me-calc" style="font-size:18px;line-height:1.5">Ei <b>vând înainte să plătească furnizorul</b> — banii clientului le finanțează operațiunile.</div>
+            <div class="me-calc" style="font-size:16px;color:var(--primary);font-weight:800;line-height:1.5">Noi facem opusul: plătim AZI, așteptăm 75 zile. Cine-i mai isteț?</div>
+          </div>
+        </div>
+        <div class="slide-num">08 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.6d — RETRIEVAL: Ce tai primul? (30 sec, înainte de strategii) -->
+    <!-- ================================================================ -->
+    <section data-notes="Retrieval rapid — 30 secunde, înainte să arăți soluțiile. Pune întrebarea de pe slide și lasă sala să răspundă înainte să dezvălui strategiile. Scopul: testing effect — creierul care încearcă să recupereze informația o reține mai bine decât creierul care o primește pasiv. Răspunsuri corecte: DSO 72 zile (roșu, mult prea mare) și DPO 18 zile (roșu, mult prea mic). Dacă cineva zice 'cresc vânzările' — notează, nu infirma acum, revii la debrief-ul workshop-ului (slide 10). Tranziție: 'Exact. Sunt 3 mișcări concrete — le vedem acum, cu cifre din piața Moldovei.'">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Retrieval · 30 secunde</div>
+          <h2 class="slide-title">Înainte de soluții — <span class="hl">tu ce ai tăia primul?</span></h2>
+          <p class="slide-subtitle">Ai văzut DSO, DPO și CCC. La o afacere cu cont roșu și CCC mare — <b>de unde începi?</b></p>
+        </div>
+        <div style="display:flex;gap:18px;flex:1;align-items:center;">
+          <div style="flex:1;background:#FEF2F2;border:2px solid #FECACA;border-radius:var(--radius);padding:28px 32px;display:flex;flex-direction:column;gap:12px;">
+            <div style="font-size:14px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:#B91C1C;">Opțiunea A</div>
+            <div style="font-size:26px;font-weight:800;color:var(--foreground);">Scurtez DSO</div>
+            <div style="font-size:16px;color:var(--muted);line-height:1.5;">Cer clienților să plătească mai repede — reducere, penalizări, alt termen.</div>
+          </div>
+          <div style="flex:1;background:var(--primary-ultra-light);border:2px solid #C7D2FE;border-radius:var(--radius);padding:28px 32px;display:flex;flex-direction:column;gap:12px;">
+            <div style="font-size:14px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:var(--primary);">Opțiunea B</div>
+            <div style="font-size:26px;font-weight:800;color:var(--foreground);">Lungesc DPO</div>
+            <div style="font-size:16px;color:var(--muted);line-height:1.5;">Renegociez cu furnizorii — plătesc mai târziu, păstrez cash mai mult.</div>
+          </div>
+          <div style="flex:1;background:var(--pastel-peach);border:2px solid #FED7AA;border-radius:var(--radius);padding:28px 32px;display:flex;flex-direction:column;gap:12px;">
+            <div style="font-size:14px;font-weight:800;letter-spacing:0.05em;text-transform:uppercase;color:#C2410C;">Opțiunea C</div>
+            <div style="font-size:26px;font-weight:800;color:var(--foreground);">Reduc stocul</div>
+            <div style="font-size:16px;color:var(--muted);line-height:1.5;">Tai produsele care stau pe raft — eliberez cash blocat în marfă nevândută.</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;background:var(--foreground);border-radius:var(--radius);padding:16px 24px;color:#fff;font-size:16px;font-weight:600;text-align:center;">
+          💬 30 de secunde — ce zice sala? Toate trei sunt corecte. Depinde de unde e mai mare decalajul.
+        </div>
+        <div class="slide-num">09 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.7 — 3 strategii de redresare -->
+    <!-- ================================================================ -->
+    <section data-notes="5 min. Cele 3 pârghii care scurtează CCC, fiecare cu o cifră reală din piața Moldovei. (1) Scurtează DSO: oferă discount 2% pentru plată în 10 zile — clientul plătește mai repede, tu pierzi 2% dar câștigi lichiditate. Exemplu: Wolt MD plătește restaurantele săptămânal (DSO mic pentru restaurant). (2) Lungește DPO: renegociază termene cu furnizorii de la 30 la 60 zile. Exemplu: Kaufland MD, datorită volumului, obține ~90 zile. (3) Reduce stocul: taie SKU-urile slow-moving (care stau pe raft). Exemplu: Dodo Pizza MD a redus stocul de la 24 la 10 zile și a eliberat ~8M MDL cash. Mesajul: cashflow-ul se îmbunătățește prin termene, nu doar prin vânzări mai mari.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Redresare · 3 pârghii cu cifre reale</div>
+          <h2 class="slide-title">Scurtezi ciclul prin <span class="hl">termene, nu prin vânzări mai mari.</span></h2>
+        </div>
+        <div class="strat-rows">
+          <div class="strat-row s1">
+            <div class="strat-n">1</div>
+            <div class="strat-what">Scurtează DSO<small>Încasezi mai repede de la clienți</small></div>
+            <div class="strat-ex">Discount <b>2% pentru plată în 10 zile</b>. <span class="brand-chip" style="font-size:12px;padding:3px 9px"><span class="dot" style="background:#00C2E8"></span>Wolt MD</span> plătește restaurantele săptămânal.</div>
+          </div>
+          <div class="strat-row s2">
+            <div class="strat-n">2</div>
+            <div class="strat-what">Lungește DPO<small>Amâni legal plata către furnizori</small></div>
+            <div class="strat-ex">Renegociezi termene <b>30 → 60 zile</b>. <span class="brand-chip" style="font-size:12px;padding:3px 9px"><span class="dot" style="background:#E10915"></span>Kaufland MD</span> obține până la 90 zile prin volum.</div>
+          </div>
+          <div class="strat-row s3">
+            <div class="strat-n">3</div>
+            <div class="strat-what">Reduce stocul<small>Tai produsele care stau pe raft</small></div>
+            <div class="strat-ex">Tai SKU-uri slow-moving. <span class="brand-chip" style="font-size:12px;padding:3px 9px"><span class="dot" style="background:#FF6900"></span>Dodo Pizza MD</span>: stoc <b>24 → 10 zile</b>, ~8M MDL cash eliberat.</div>
+          </div>
+        </div>
+        <div class="slide-num">10 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.8 — PRACTICĂ Workshop -->
+    <!-- ================================================================ -->
+    <section data-notes="PRACTICĂ — 20 min. Workshop de redresare, echipe de 4-5 persoane. Cazul 'La Plăcinte Express': profitabilă (10% profit) dar cu cashflow blocat — DSO 72 zile la clienți corporate, DPO doar 18 zile, stoc imobilizat 792K, doar 85K cash în bancă, iar salariile de 240K vin în 14 zile. Sarcini: (1) Calculează CCC actual ≈ DIO+72−18 (dacă luăm stoc ~mediu pe costuri, orientativ) — important e logica, nu precizia contabilă. (2) Identifică TOP 2 indicatori roșii (DSO 72 + cash sub salarii). (3) Propune 3 acțiuni concrete cu cifră-țintă (ex: DSO 72→45 prin discount, DPO 18→45 renegociere, lichidare stoc slow). Livrabil: fiecare echipă prezintă 90 sec — CCC nou + acțiuni + impact cash în 60 zile. Debrief cheie: 'Creșterea vânzărilor NU e soluție de cashflow pe termen scurt' — mai multe vânzări la DSO 72 înseamnă MAI MULȚI bani blocați. Ca formator: lasă-i să greșească spre 'creștem vânzările' și apoi întoarce întrebarea.">
+      <div class="slide practice">
+        <div class="ex-banner">
+          <span class="ex-ico">🛠️</span>
+          <div class="ex-txt"><b>Workshop redresare · „La Plăcinte Express"</b> — echipe de 4-5, salvați afacerea profitabilă fără cash.</div>
+          <span class="ex-time">⏱ 20 min</span>
+        </div>
+        <div class="ws-grid">
+          <div class="ws-case">
+            <div class="ws-case-head"><span style="font-size:30px">🥟</span><div class="ws-case-name">La Plăcinte Express</div></div>
+            <div class="ws-case-row"><span class="wk">Venituri</span><span class="wv">1.200.000 MDL/lună</span></div>
+            <div class="ws-case-row"><span class="wk">Profit</span><span class="wv">10%</span></div>
+            <div class="ws-case-row"><span class="wk">DSO clienți corporate</span><span class="wv warn">72 zile</span></div>
+            <div class="ws-case-row"><span class="wk">DPO furnizori</span><span class="wv warn">18 zile</span></div>
+            <div class="ws-case-row"><span class="wk">Stoc mediu</span><span class="wv">792.000 MDL</span></div>
+            <div class="ws-case-row"><span class="wk">Cash în bancă</span><span class="wv warn">85.000 MDL</span></div>
+            <div class="ws-case-row"><span class="wk">Salarii în 14 zile</span><span class="wv warn">240.000 MDL</span></div>
+          </div>
+          <div class="ws-tasks">
+            <div class="ws-task"><div class="ws-task-n">1</div><div class="ws-task-txt">Calculează <b>CCC actual</b>. <span class="wt-time">5 min</span></div></div>
+            <div class="ws-task"><div class="ws-task-n">2</div><div class="ws-task-txt">Identifică <b>TOP 2 indicatori roșii</b>. <span class="wt-time">5 min</span></div></div>
+            <div class="ws-task"><div class="ws-task-n">3</div><div class="ws-task-txt">Propune <b>3 acțiuni concrete cu cifră-țintă</b>. <span class="wt-time">10 min</span></div></div>
+            <div class="ws-deliver"><span class="wd-em">🎤</span><div class="wd-t">Fiecare echipă prezintă <b>90 sec</b>: CCC nou + acțiuni + impact cash în 60 zile.</div></div>
+          </div>
+        </div>
+        <div class="slide-num">11 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- ☕ SEPARATOR — Pauză de cafea -->
+    <!-- ================================================================ -->
+    <section data-notes="Pauză de cafea 11:30–11:45 (15 min). Slide-separator simplu, fără conținut. Lasă-i să se ridice, să se miște, să se decompreseze. Debrief-ul workshop-ului poate continua informal la cafea. La revenire intrăm în Modul 6b — surse de finanțare.">
+      <div class="slide slide-break">
+        <div class="break-bg"></div><div class="break-glow"></div>
+        <div class="break-content">
+          <div class="break-em">☕</div>
+          <div class="break-title">Pauză de cafea</div>
+          <div class="break-sub">Ne mișcăm, respirăm, schimbăm o vorbă. Revenim la surse de finanțare.</div>
+          <div class="break-time">11:30 – 11:45 · 15 min</div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.5)">12 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.9 — COVER M6b + HOOK -->
+    <!-- ================================================================ -->
+    <section data-notes="Deschidere Modul 6b — Surse de finanțare Moldova. 45 min (11:45–12:30). HOOK puternic la intrare: pune întrebarea 'Dacă azi primeai 500.000 lei, ce faci luni dimineață?' și ține 10 secunde de tăcere reală — lasă-i să simtă golul. Apoi: 'Dacă răspunsul e «nu știu exact» — nu ești gata să ceri banii.' Mesajul: finanțarea nu se cere din disperare, se cere cu un plan. Exemplu Moldova: un boutique hotel din Chișinău a cerut credit la 6 luni de la deschidere — respins de 3 bănci (fără istoric, fără tracțiune). La 2 ani, cu ocuparea 75% demonstrată, a fost aprobat de Victoriabank în 5 zile. Singurul lucru care s-a schimbat: TIMING-ul. Acesta e firul roșu al M6b — sursa se alege pe stadiu, nu pe disperare.">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 6b · 11:45–12:30</div>
+          <h1>De unde iei cash<br>dacă nu-l generezi intern?</h1>
+          <div class="cover-bait">🏦 📋 🎯</div>
+          <p class="subtitle">„Dacă azi primeai 500.000 lei, ce faci luni dimineață?" <b>Dacă răspunsul e «nu știu exact» — nu ești gata să ceri.</b></p>
+          <div class="cover-logos">
+            <span class="cover-chip">4 surse de finanțare</span>
+            <span class="cover-chip">Costul real</span>
+            <span class="cover-chip">Programe stat &amp; granturi MD</span>
+            <span class="cover-chip">Sursa pe stadiu</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.9b — HOOK timing (boutique hotel) -->
+    <!-- ================================================================ -->
+    <section data-notes="3 min. Ilustrarea concretă a hook-ului: același business, aceeași cerere, rezultat opus — diferența e doar timing-ul. Un boutique hotel din Chișinău cere credit la 6 luni de la deschidere: respins de 3 bănci (n-are istoric financiar, n-are tracțiune dovedită). La 2 ani, cu ocuparea de 75% demonstrabilă în extrase, e aprobat de Victoriabank în 5 zile. Lecția: nu te-ai schimbat tu, s-a schimbat momentul. Asta pregătește 'sursa pe stadiu'. Folosește Victoriabank ca brand-chip, e o bancă reală din MD.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Hook · timing-ul e tot</div>
+          <h2 class="slide-title">Același business, aceeași cerere — <span class="hl">rezultat opus.</span></h2>
+          <p class="slide-subtitle">Un boutique hotel din Chișinău. Singurul lucru care s-a schimbat între cele două momente: <b>timing-ul</b>.</p>
+        </div>
+        <div class="hook-grid">
+          <div class="hook-pane down">
+            <div class="hook-brand">⏳ La 6 luni de la deschidere</div>
+            <div class="hook-lbl">Cerere de credit</div>
+            <div class="hook-num" style="font-size:46px">Respins de<br>3 bănci</div>
+            <div class="hook-txt">Fără istoric financiar, fără ocupare dovedită. Banca nu are pe ce să se bazeze.</div>
+          </div>
+          <div class="hook-pane up">
+            <div class="hook-brand">📈 La 2 ani · ocupare 75%</div>
+            <div class="hook-lbl">Aceeași cerere</div>
+            <div class="hook-num" style="font-size:46px">Aprobat<br>în 5 zile</div>
+            <div class="hook-txt"><span style="display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,0.18);border-radius:100px;padding:3px 12px;font-weight:800;font-size:13px">🏦 Victoriabank</span> a aprobat pe baza tracțiunii dovedite în extrase.</div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:18px;font-size:16px">Nu te-ai schimbat tu — <strong>s-a schimbat momentul.</strong> Sursa de finanțare se alege pe stadiu, nu pe disperare.</div>
+        <div class="slide-num">13 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.10 — Harta 4 surse + filtrul de 3 întrebări -->
+    <!-- ================================================================ -->
+    <section data-notes="6 min. Harta celor 4 surse de finanțare, cu cost tipic și stadiul potrivit — tabel vizual curat. Bootstrapping (0%, idee→lansare), bănci comerciale Maib/Victoriabank (7–10%/an, afacere stabilă 2+ ani), programe stat ca Programul 373 / ODA (3–7%/an, IMM cu plan), VC + angeli ca Mozaic / BAM (cedezi 10–30% equity, scalare tech). Apoi filtrul de 3 întrebări — retrieval interactiv, pune-le sălii și lasă-i să voteze pe combinație: 'Ai 2+ ani istoric financiar?' / 'Ai gaj — imobil, utilaj?' / 'Ești dispus să cedezi din equity?'. Combinațiile: DA-DA-NU → Bancă. NU-NU-NU → Bootstrapping / Grant. NU-NU-DA → Angel/VC. Acesta e instrumentul pe care formatorul îl predă: nu memorezi surse, aplici filtrul.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Harta surselor + filtrul de 3 întrebări</div>
+          <h2 class="slide-title">4 surse. <span class="hl">3 întrebări</span> te duc direct la a ta.</h2>
+        </div>
+        <div class="src-grid">
+          <table class="src-table">
+            <tr><th>Sursă</th><th>Cost tipic</th><th>Pentru stadiu</th></tr>
+            <tr><td class="src-name">Bootstrapping</td><td class="src-cost">0%</td><td class="src-stage">Idee → lansare</td></tr>
+            <tr><td class="src-name">Bănci comerciale<br><span style="font-weight:600;font-size:13px;color:var(--muted)">Maib, Victoriabank</span></td><td class="src-cost">7–10% / an</td><td class="src-stage">Stabilă, 2+ ani</td></tr>
+            <tr><td class="src-name">Programe stat<br><span style="font-weight:600;font-size:13px;color:var(--muted)">Programul 373, ODA</span></td><td class="src-cost">3–7% / an</td><td class="src-stage">IMM cu plan</td></tr>
+            <tr><td class="src-name">VC + Angeli<br><span style="font-weight:600;font-size:13px;color:var(--muted)">Mozaic, BAM</span></td><td class="src-cost">equity 10–30%</td><td class="src-stage">Scalare tech</td></tr>
+          </table>
+          <div class="filter-pane">
+            <div class="filter-head">🎯 Filtrul de 3 întrebări</div>
+            <div class="filter-q"><span class="fq-i">1.</span> Ai <b style="font-weight:800">2+ ani</b> istoric financiar?</div>
+            <div class="filter-q"><span class="fq-i">2.</span> Ai <b style="font-weight:800">gaj</b> (imobil, utilaj)?</div>
+            <div class="filter-q"><span class="fq-i">3.</span> Ești dispus să <b style="font-weight:800">cedezi din equity</b>?</div>
+            <div class="filter-map">
+              <div class="filter-route"><b>DA · DA · NU</b> → Bancă</div>
+              <div class="filter-route"><b>NU · NU · NU</b> → Bootstrapping / Grant</div>
+              <div class="filter-route"><b>NU · NU · DA</b> → Angel / VC</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">14 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.11 — Costul real -->
+    <!-- ================================================================ -->
+    <section data-notes="5 min. Costul real anual pentru 100.000 lei, ca bar chart — vizual, ca să sară diferența în ochi. Programul 373 ~7,5%, Victoriabank Impuls IMM ~8,5%, Maib investițional ~10,5%, Microinvest (fără gaj) 31%. Cifra de impact: 31% vs 7% = de 4 ori mai scump. Microinvest e scump fiindcă nu cere gaj — plătești comoditatea prin dobândă. Concretizare ROI: pentru 200K lei împrumutați, Maib la 8,5% = 17.000 lei dobândă/an; Microinvest la 31% = 62.000 lei/an. Diferența de 45.000 lei = aproximativ salariul anual plin (net + impozite + contribuții) al unei angajate. Mesajul: alegerea sursei nu e despre cât de repede iei banii, ci cât te costă să-i ții. Brand-chips: Programul 373, Victoriabank, Maib, Microinvest — toate reale în MD.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Costul real · pentru 100.000 lei / an</div>
+          <h2 class="slide-title">Aceeași sumă. <span class="hl">De 4 ori diferență</span> de cost.</h2>
+        </div>
+        <div class="cost-rows">
+          <div class="cost-row">
+            <div class="cost-name"><span class="brand-chip" style="font-size:13px"><span class="dot" style="background:#15803D"></span>Programul 373</span></div>
+            <div class="cost-bar-wrap"><div class="cost-bar green" style="width:24%">~7,5%</div></div>
+          </div>
+          <div class="cost-row">
+            <div class="cost-name"><span class="brand-chip" style="font-size:13px"><span class="dot" style="background:#E30613"></span>Victoriabank Impuls IMM</span></div>
+            <div class="cost-bar-wrap"><div class="cost-bar blue" style="width:27%">~8,5%</div></div>
+          </div>
+          <div class="cost-row">
+            <div class="cost-name"><span class="brand-chip" style="font-size:13px"><span class="dot" style="background:#00529B"></span>Maib investițional</span></div>
+            <div class="cost-bar-wrap"><div class="cost-bar amber" style="width:34%">~10,5%</div></div>
+          </div>
+          <div class="cost-row">
+            <div class="cost-name"><span class="brand-chip" style="font-size:13px"><span class="dot" style="background:#7C3AED"></span>Microinvest (fără gaj)</span></div>
+            <div class="cost-bar-wrap"><div class="cost-bar red" style="width:100%">31%</div></div>
+          </div>
+        </div>
+        <div class="cost-impact">
+          <span class="ci-em">💡</span>
+          <div class="ci-t">200K lei: Maib 8,5% = <b>17K lei/an</b>. Microinvest 31% = <b>62K lei/an</b>. Diferența ≈ <b>o angajată cu salariu plin</b>.</div>
+        </div>
+        <div class="slide-num">15 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.12 — Programe stat &amp; granturi -->
+    <!-- ================================================================ -->
+    <section data-notes="6 min. Harta programelor de stat și granturilor disponibile în Moldova 2025–2026 — informație concretă, acționabilă, pe care formatorul o transmite direct cursanților. Programul 373: până la 15M lei, dobândă 7% MDL / 3% EUR, peste 979 antreprenori l-au accesat deja. Start pentru Tineri (ODA): grant 200K lei pentru 18–35 ani. Femei în Afaceri (ODA): grant 600K lei, contribuție proprie 20%. EU4Business: credit + grant 10–15% rambursabil la final, prin Maib/Victoriabank/ProCredit. Fondul de Garantare ODA: acoperă până la 80% din credit dacă n-ai gaj, comision doar 1%/an — soluția pentru cei fără garanție. Context 2024: EU4Business Moldova a canalizat 166M EUR către 5.594 IMM-uri. Mesajul: banii există și sunt accesibili — întrebarea e dacă ai un plan care îi merită.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Programe stat &amp; granturi · Moldova 2025–2026</div>
+          <h2 class="slide-title">Banii există. <span class="hl">Și nu toți sunt împrumut.</span></h2>
+        </div>
+        <div class="prog-grid">
+          <div class="prog-card p1">
+            <div class="prog-ico">📋</div>
+            <div class="prog-body">
+              <div class="prog-name">Programul 373</div>
+              <div class="prog-detail">Până la <b>15M lei</b> · 7% MDL / 3% EUR · 979+ antreprenori l-au accesat.</div>
+            </div>
+          </div>
+          <div class="prog-card p2">
+            <div class="prog-ico">🚀</div>
+            <div class="prog-body">
+              <div class="prog-name">Start pentru Tineri (ODA)</div>
+              <div class="prog-detail">Grant <b>200K lei</b> · pentru 18–35 ani.</div>
+            </div>
+          </div>
+          <div class="prog-card p3">
+            <div class="prog-ico">👩‍💼</div>
+            <div class="prog-body">
+              <div class="prog-name">Femei în Afaceri (ODA)</div>
+              <div class="prog-detail">Grant <b>600K lei</b> · contribuție proprie 20%.</div>
+            </div>
+          </div>
+          <div class="prog-card p4">
+            <div class="prog-ico">🇪🇺</div>
+            <div class="prog-body">
+              <div class="prog-name">EU4Business</div>
+              <div class="prog-detail">Credit + grant <b>10–15% rambursabil</b> la final · prin Maib, Victoriabank, ProCredit.</div>
+            </div>
+          </div>
+          <div class="prog-card p5">
+            <div class="prog-ico">🛡️</div>
+            <div class="prog-body">
+              <div class="prog-name">Fondul de Garantare ODA</div>
+              <div class="prog-detail">Acoperă până la <b>80% din credit</b> dacă n-ai gaj · comision 1%/an.</div>
+            </div>
+          </div>
+          <div class="prog-card p1" style="background:var(--foreground);border-color:var(--foreground)">
+            <div class="prog-ico" style="background:rgba(255,255,255,0.12)">📊</div>
+            <div class="prog-body">
+              <div class="prog-name" style="color:#fff">EU4Business MD · 2024</div>
+              <div class="prog-detail" style="color:rgba(255,255,255,0.85)"><b style="color:#FCD34D">166M EUR</b> către <b style="color:#FCD34D">5.594 IMM</b> beneficiari.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">16 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.13 — Paradoxul stadiilor -->
+    <!-- ================================================================ -->
+    <section data-notes="4 min. Sursa de finanțare se potrivește stadiului afacerii — nu există 'cea mai bună sursă' în absolut. Scara: Stadiu 0 (idee) → bootstrapping + familie/prieteni (singurii care pariază pe tine fără date). Stadiu 1 (primii clienți, dar fără istoric bancabil) → grant ODA / Programul 373 (banii nerambursabili sau ieftini de la stat). Stadiu 2 (2 ani, profit, gaj) → banca (cel mai IEFTIN cost al capitalului). Stadiu 3 (scalare 10×, model dovedit) → angel / VC (capital mare în schimbul equity). Greșeala #1, de subliniat: sări peste stadii — ceri bancă în stadiul 0 (te refuză, ca hotelul) sau ceri VC când n-ai ce scala. Legătura cu hook-ul boutique hotel: el era în stadiul greșit prima dată. Instrument de predat: întâi îți poziționezi stadiul, apoi alegi sursa.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Paradoxul stadiilor</div>
+          <h2 class="slide-title">Combini surse <span class="hl">pe etape</span> — nu există „cea mai bună".</h2>
+        </div>
+        <div class="stage-ladder">
+          <div class="stage-step st0">
+            <div class="ss-n">0</div>
+            <div class="ss-body"><div class="ss-name">Idee <small>· încă nu ai clienți</small></div></div>
+            <div class="ss-src">Bootstrapping + familie</div>
+          </div>
+          <div class="stage-step st1">
+            <div class="ss-n">1</div>
+            <div class="ss-body"><div class="ss-name">Primii clienți <small>· fără istoric bancabil</small></div></div>
+            <div class="ss-src">Grant ODA / Programul 373</div>
+          </div>
+          <div class="stage-step st2">
+            <div class="ss-n">2</div>
+            <div class="ss-body"><div class="ss-name">2 ani, profit <small>· ai gaj</small></div></div>
+            <div class="ss-src">Bancă (cel mai ieftin)</div>
+          </div>
+          <div class="stage-step st3">
+            <div class="ss-n">3</div>
+            <div class="ss-body"><div class="ss-name">Scalare 10× <small>· model dovedit</small></div></div>
+            <div class="ss-src">Angel / VC</div>
+          </div>
+        </div>
+        <div class="stage-warn">
+          <span class="sw-em">⚠️</span>
+          <div class="sw-t"><b>Greșeala #1: sari peste stadii.</b> Nu ceri bancă în stadiul 0 — te refuză, exact ca boutique hotelul.</div>
+        </div>
+        <div class="slide-num">17 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.14 — PRACTICĂ 3 afaceri, 3 surse -->
+    <!-- ================================================================ -->
+    <section data-notes="PRACTICĂ — 15 min. Echipe de 4-5, fiecare echipă rezolvă TOATE 3 cazurile. Pentru fiecare caz completează template-ul: Sursă aleasă · Cost/dobândă · Risc principal. Cazurile sunt construite să forțeze aplicarea filtrului + stadiilor. Răspunsuri-ghid (pentru trainer, NU pe slide): A — Aurora Bakery (18 luni, profit 25K/lună, utilaj-gaj ~250K, vrea 400K) → are istoric + gaj → Programul 373 (~7%), cel mai ieftin. B — MedScan AI (startup tech, 8 luni, zero venituri, 3 spitale pilot gratuit, vrea 80K EUR) → NU bancabil (zero venituri, zero gaj) → Angel/Mozaic + grant UE digital; banca îl refuză garantat. C — Verde Garden (femeie 32 ani, magazin online plante, 14 luni, profit 12K/lună, vrea 350K) → se califică perfect pentru Femei în Afaceri ODA (grant 600K, contribuție 20%) — bani nerambursabili. Debrief: nu există un răspuns 'corect' unic, dar există potriviri evident greșite (bancă pentru MedScan). Întreabă fiecare echipă DE CE, nu doar CE.">
+      <div class="slide practice">
+        <div class="ex-banner">
+          <span class="ex-ico">🎯</span>
+          <div class="ex-txt"><b>3 afaceri, 3 surse</b> — echipe de 4-5, fiecare rezolvă toate cazurile. Sursă · Cost · Risc principal.</div>
+          <span class="ex-time">⏱ 15 min</span>
+        </div>
+        <div class="case3-grid">
+          <div class="case3-card a">
+            <div class="case3-head"><div class="case3-letter">A</div><div class="case3-name">Aurora Bakery</div></div>
+            <div class="case3-line"><span class="c3i">🥖</span><span>Brutărie, <b>18 luni</b></span></div>
+            <div class="case3-line"><span class="c3i">💰</span><span>Profit <b>25K lei/lună</b></span></div>
+            <div class="case3-line"><span class="c3i">🎯</span><span>Vrea <b>400K lei</b> — cuptor + spațiu</span></div>
+            <div class="case3-line"><span class="c3i">🏭</span><span>Are utilaj-gaj <b>~250K lei</b></span></div>
+            <div class="case3-ask">→ Ce sursă? De ce?</div>
+          </div>
+          <div class="case3-card b">
+            <div class="case3-head"><div class="case3-letter">B</div><div class="case3-name">MedScan AI</div></div>
+            <div class="case3-line"><span class="c3i">🤖</span><span>Startup tech, <b>8 luni</b></span></div>
+            <div class="case3-line"><span class="c3i">🏥</span><span><b>3 spitale</b> pilot gratuit</span></div>
+            <div class="case3-line"><span class="c3i">📉</span><span><b>Zero venituri</b> deocamdată</span></div>
+            <div class="case3-line"><span class="c3i">🎯</span><span>Vrea <b>80K EUR</b></span></div>
+            <div class="case3-ask">→ Ce sursă? De ce?</div>
+          </div>
+          <div class="case3-card c">
+            <div class="case3-head"><div class="case3-letter">C</div><div class="case3-name">Verde Garden</div></div>
+            <div class="case3-line"><span class="c3i">🌿</span><span>Magazin online plante, <b>14 luni</b></span></div>
+            <div class="case3-line"><span class="c3i">👩</span><span>Fondatoare <b>32 ani</b></span></div>
+            <div class="case3-line"><span class="c3i">💰</span><span>Profit <b>12K lei/lună</b></span></div>
+            <div class="case3-line"><span class="c3i">🎯</span><span>Vrea <b>350K lei</b> — depozit</span></div>
+            <div class="case3-ask">→ Ce sursă? De ce?</div>
+          </div>
+        </div>
+        <div class="slide-num">18 / 20</div>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <!-- 6.15 — REGULA 6 + tranziție M7 -->
+    <!-- ================================================================ -->
+    <section data-notes="ÎNCHIDERE Modul 6 + tranziție spre Modul 7. Regula 6 = ancora de luat acasă, trei propoziții: (1) Nu cheltuielile te omoară — termenii de plată te omoară (DSO/DPO/CCC). (2) Cashflow-ul se planifică, nu se ghicește (cele 3 semne, redresarea pe termene). (3) Sursa de finanțare se alege pe stadiu, nu pe disperare (filtrul + scara stadiilor + hook-ul boutique hotel). Tranziția: 'Ai modelul (M1-M4), ai mesajul (M5), ai banii (M6). Acum: cum îi GĂSEȘTI pe clienți și cum MĂSORI că funcționează?' → Modul 7 e despre canale + metrici. Pauză între module dacă e cazul. Ton: încheiere energizantă, de la egal la egal — au plecat cu un kit, nu cu o lecție.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Regula 6 + ce urmează</div>
+          <h2 class="slide-title">Ce iei acasă din <span class="hl">Modulul 6.</span></h2>
+        </div>
+        <div class="rule6-grid">
+          <div class="rule6-pane">
+            <div class="rule6-badge"><span class="rb-dot"></span>REGULA 6</div>
+            <div class="rule6-line">Nu cheltuielile te omoară — <span class="hl">termenii de plată</span> te omoară.</div>
+            <div class="rule6-line">Cashflow-ul se <span class="hl">planifică</span>, nu se ghicește.</div>
+            <div class="rule6-line">Sursa de finanțare se alege pe <span class="hl">stadiu</span>, nu pe disperare.</div>
+          </div>
+          <div class="next-pane">
+            <span class="next-tag">Urmează · Modul 7</span>
+            <div class="next-em">📊</div>
+            <div class="next-q">Ai modelul. Ai banii. Acum: cum îi găsești pe clienți — și cum măsori că funcționează?</div>
+            <div class="next-sub">Trecem de la <b>cât ai în cont</b> la <b>canale de achiziție + metrici</b> care îți spun dacă afacerea crește cu adevărat.</div>
+          </div>
+        </div>
+        <div class="slide-num">19 / 20</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modul 3: Oceanul Albastru — ToT Antreprenoriat</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #0EA371;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 54px 66px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #0EA371 0%, #0891B2 100%); }
+
+    .slide-header { margin-bottom: 24px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #D1FAE5; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-title .hl { color: var(--primary); }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 960px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0 0 40px; max-width: 740px; line-height: 1.5; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+
+    /* GENERIC GRID TABLE */
+    .gt { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .gt th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .gt td { padding: 15px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.42; color: var(--foreground); }
+    .gt tr:last-child td { border-bottom: none; }
+    .gt tr:nth-child(even) td { background: var(--bg); }
+    .gt .lead { font-weight: 800; color: var(--foreground); }
+    .gt .lead .em { font-size: 20px; margin-right: 6px; }
+    .gt b { font-weight: 800; }
+
+    /* PRESENT + RETRO */
+    .pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 1; }
+    .pr-pane { border-radius: var(--radius); padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; }
+    .pr-pane.present { background: var(--pastel-peach); border-color: #FED7AA; }
+    .pr-pane.retro { background: var(--primary-ultra-light); border-color: #C7D2FE; }
+    .pr-tag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 100px; }
+    .pr-pane.present .pr-tag { background: #FB923C; color: #fff; } .pr-pane.retro .pr-tag { background: var(--primary); color: #fff; }
+    .pr-title { font-size: 21px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+    .pr-line { display: flex; align-items: flex-start; gap: 11px; font-size: 16px; color: var(--foreground); line-height: 1.5; } .pr-line .pb { font-weight: 800; color: var(--primary); flex-shrink: 0; } .pr-pane.present .pr-line .pb { color: #C2410C; }
+
+    /* RULE + CHECKLIST */
+    .rule-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 28px; flex: 1; align-items: stretch; }
+    .rule-pane { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 32px; color: #fff; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+    .rule-pane::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .rule-badge { position: relative; z-index: 2; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 800; letter-spacing: 0.08em; margin-bottom: 22px; }
+    .rule-badge .rb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--primary-light); }
+    .rule-text { position: relative; z-index: 2; font-size: 26px; font-weight: 800; line-height: 1.28; letter-spacing: -0.01em; } .rule-text .hl { color: var(--primary-light); }
+    .check-pane { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 30px; display: flex; flex-direction: column; }
+    .check-head { font-size: 15px; font-weight: 800; color: var(--practice); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
+    .check-item { display: flex; align-items: flex-start; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--practice); flex-shrink: 0; margin-top: 1px; }
+    .check-txt { font-size: 15px; color: var(--foreground); line-height: 1.4; } .check-txt b { font-weight: 800; }
+
+    /* SCHEMA / VISUAL-HERO PANEL (înlocuiește pozele stock) */
+    .schema-split { display: grid; grid-template-columns: 1fr 1fr; height: 100%; }
+    .pt-pane { padding: 54px 48px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+    .pt-tag { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); }
+    .pt-big { font-size: 34px; font-weight: 800; line-height: 1.15; color: var(--foreground); }
+    .pt-sub { font-size: 16px; color: var(--muted); line-height: 1.6; }
+    .pt-stat { font-size: 14px; color: var(--foreground); background: var(--primary-ultra-light); border-left: 3px solid var(--primary); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 10px 14px; line-height: 1.5; }
+    .pt-stat b { font-weight: 800; color: var(--primary); }
+
+    /* Panou gradient albastru pe partea vizuală */
+    .schema-panel { position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 20px; padding: 48px; color: #fff; }
+    .schema-panel.blue { background: linear-gradient(140deg, #0B1120 0%, #1E3A8A 60%, #2D52D4 100%); }
+    .schema-panel.teal { background: linear-gradient(140deg, #064E3B 0%, #0F766E 60%, #0EA371 100%); }
+    .schema-panel.slate { background: linear-gradient(140deg, #0F172A 0%, #334155 60%, #475569 100%); }
+    .schema-panel::after { content: ''; position: absolute; top: -120px; right: -100px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.16) 0%, transparent 70%); }
+    .schema-emoji { font-size: 110px; line-height: 1; position: relative; z-index: 2; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.35)); }
+    .schema-stat { position: relative; z-index: 2; text-align: center; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.20); border-radius: var(--radius); padding: 18px 26px; max-width: 360px; }
+    .schema-stat .big { font-size: 40px; font-weight: 800; line-height: 1; margin-bottom: 8px; }
+    .schema-stat .cap { font-size: 14px; color: rgba(255,255,255,0.82); line-height: 1.45; }
+    /* mini-schema cu carduri în panou */
+    .schema-flow { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 380px; }
+    .schema-node { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); border-radius: var(--radius-sm); padding: 13px 16px; display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600; }
+    .schema-node .ico { font-size: 22px; flex-shrink: 0; }
+    .schema-node.accent { background: rgba(245,158,11,0.22); border-color: rgba(245,158,11,0.5); }
+    .schema-arrow-v { text-align: center; font-size: 18px; opacity: 0.6; line-height: 0.4; position: relative; z-index: 2; }
+
+    /* WORDMARK TILES (brand-uri reale, fără poze stock) */
+    .brand-wm { display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:8px; font-weight:800; font-size:16px; letter-spacing:0.01em; }
+    .brand-wm.blockbuster { background:#0A3EA1; color:#FFD200; }
+    .brand-wm.netflix { background:#000; color:#E50914; }
+    .brand-wm.carturesti { background:#F5EFE6; color:#6B4423; border:1px solid #D9C7AE; }
+    .brand-wm.diverta { background:#C8102E; color:#fff; }
+    .brand-wm.bemol { background:#00843D; color:#fff; }
+    .brand-wm .bb-ticket { width:14px; height:10px; border-radius:3px; background:#FFD200; display:inline-block; }
+    .brand-wm svg { width:20px; height:20px; display:block; }
+    .story-brand { margin-bottom: 4px; }
+
+    /* OCEAN SPLIT */
+    .ocean-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .ocean-pane { border-radius: var(--radius); padding: 24px 26px; display: flex; flex-direction: column; gap: 14px; }
+    .ocean-pane.red { background: #FEF2F2; border: 1px solid #FECACA; }
+    .ocean-pane.blue { background: #EFF6FF; border: 1px solid #BFDBFE; }
+    .ocean-head { font-size: 26px; font-weight: 800; letter-spacing: -0.01em; display: flex; align-items: center; gap: 12px; }
+    .ocean-pane.red .ocean-head { color: #DC2626; }
+    .ocean-pane.blue .ocean-head { color: var(--primary); }
+    .ocean-list { display: flex; flex-direction: column; gap: 9px; margin-top: 6px; }
+    .ocean-item { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.7); border-radius: var(--radius-sm); padding: 9px 12px; font-size: 15px; color: var(--foreground); font-weight: 500; }
+
+    /* STORY FLOW (3 pași) */
+    .story-flow-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; flex: 1; align-items: stretch; }
+    .story-step { padding: 24px 20px; display: flex; flex-direction: column; gap: 12px; position: relative; justify-content: center; }
+    .story-step::after { content: '→'; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); font-size: 24px; color: var(--primary); font-weight: 700; z-index: 3; }
+    .story-step:last-child::after { display: none; }
+    .story-step.s-red { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius) 0 0 var(--radius); }
+    .story-step.s-mid { background: var(--pastel-peach); border: 1px solid #FED7AA; }
+    .story-step.s-blue { background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 0 var(--radius) var(--radius) 0; }
+    .story-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .story-step.s-red .story-lbl { color: #DC2626; }
+    .story-step.s-mid .story-lbl { color: #C2410C; }
+    .story-step.s-blue .story-lbl { color: var(--primary); }
+    .story-title-s { font-size: 17px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+    .story-txt { font-size: 13.5px; color: var(--foreground); line-height: 1.5; } .story-txt b { font-weight: 700; }
+    .story-stat { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+    /* ERRC CARDS */
+    .errc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; }
+    .errc-card { border-radius: var(--radius); padding: 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; }
+    .errc-card.e { background: #FEF2F2; border-color: #FECACA; }
+    .errc-card.r { background: var(--pastel-peach); border-color: #FED7AA; }
+    .errc-card.ri { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .errc-card.c { background: var(--pastel-mint); border-color: #86EFAC; }
+    .errc-icon { font-size: 36px; }
+    .errc-title { font-size: 20px; font-weight: 800; color: var(--foreground); }
+    .errc-desc { font-size: 14px; color: var(--muted); line-height: 1.45; }
+    .errc-ex { font-size: 14px; color: var(--foreground); line-height: 1.4; background: rgba(255,255,255,0.7); border-radius: var(--radius-sm); padding: 8px 12px; }
+
+    /* STRATEGY CANVAS */
+    .canvas-wrap { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+    .canvas-chart { flex: 1; position: relative; border: 1px solid var(--border); border-radius: var(--radius); background: #FAFBFF; padding: 16px 24px 36px 36px; overflow: hidden; }
+    .canvas-legend { display: flex; gap: 22px; align-items: center; }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--foreground); }
+    .legend-line { width: 28px; height: 4px; border-radius: 2px; }
+    .legend-line.comp { background: #DC2626; }
+    .legend-line.you { background: var(--primary); }
+
+    /* PRODUCT LIFE CYCLE */
+    .plc-wrap { flex:1; display:flex; flex-direction:column; gap:14px; justify-content:center; }
+    .plc-chart { border: 1px solid var(--border); border-radius: var(--radius); background: #FAFBFF; padding: 14px 18px 8px; }
+    .plc-examples { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .plc-ex-card { border-radius: var(--radius); padding: 14px 18px; display: flex; flex-direction: column; gap: 8px; }
+    .plc-ex-card.bemol { background: #FEF2F2; border: 1px solid #FECACA; }
+    .plc-ex-card.carturesti { background: var(--pastel-mint); border: 1px solid #86EFAC; }
+    .plc-ex-head { display: flex; align-items: center; gap: 12px; }
+    .plc-ex-phase { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+    .plc-ex-card.bemol .plc-ex-phase { color: #B91C1C; }
+    .plc-ex-card.carturesti .plc-ex-phase { color: #15803D; }
+    .plc-ex-txt { font-size: 14px; color: var(--foreground); line-height: 1.45; }
+    .plc-ex-txt b { font-weight: 800; }
+
+    /* PRACTICE */
+    .timer-pill { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 700; color: #92400E; }
+    .practice-grid { display: flex; flex-direction: column; gap: 14px; flex: 1; }
+    .pg-row { background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius); padding: 16px 22px; display: flex; flex-direction: column; gap: 8px; }
+    .pg-row.active { border-color: var(--practice); background: #F0FDF4; }
+    .pg-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+    .pg-row.active .pg-label { color: var(--practice); }
+    .pg-fill { font-size: 16px; color: var(--foreground); line-height: 1.5; }
+    .pg-fill .blank { display: inline-block; min-width: 200px; border-bottom: 2px dashed #94A3B8; }
+    .errc-mini { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 4px; }
+    .errc-mini-item { border-radius: var(--radius-sm); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; }
+    .errc-mini-item.em-e { background: #FEF2F2; }
+    .errc-mini-item.em-r { background: var(--pastel-peach); }
+    .errc-mini-item.em-ri { background: var(--pastel-sky); }
+    .errc-mini-item.em-c { background: var(--pastel-mint); }
+    .errc-mini-lbl { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+    .errc-mini-fill { border-bottom: 1.5px dashed #94A3B8; min-height: 22px; margin-top: 6px; }
+
+    /* SLIDE TRANSITION */
+    .slide-transition { padding: 0 !important; overflow: hidden; position: relative; display: flex; justify-content: center; align-items: center; }
+    .slide-transition::before { display: none; }
+    .trans-content { position: relative; z-index: 2; text-align: center; color: var(--foreground); padding: 60px; }
+    .trans-eyebrow { display: inline-flex; align-items: center; gap: 9px; background: rgba(0,0,0,0.08); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 700; color: rgba(0,0,0,0.55); margin-bottom: 28px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .trans-title { font-size: 52px; font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; color: var(--foreground); }
+    .trans-sub { font-size: 20px; color: var(--foreground); opacity: 0.7; margin-top: 18px; line-height: 1.5; }
+    .trans-arrow { font-size: 40px; margin-top: 24px; opacity: 0.45; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 01 — COVER -->
+    <!-- ============================================================ -->
+    <section data-notes="Bun venit la Modul 3. Timp total: ~75 min. Înainte de a porni: întreabă grupul — 'Cine a auzit de Strategia Oceanului Albastru?' — 2-3 mâini, de regulă. E ok. Modulul e self-contained. Mesajul principal: competiția pe preț e o capcană. Există o alternativă strategică, structurată, pe care o poți preda mâine cursanților tăi. Deschide cu energie ridicată — contrastul Ocean Roșu vs Albastru e WOW vizual și emoțional. Pace: slide 2 trebuie să facă 'aha moment' imediat. Conexiune cu modulele anterioare: M1 = problema, M2 = clientul + USP (diferit de competiție). M3 duce diferențierea mai departe: nu doar diferit, ci într-un spațiu unde competiția devine irelevantă — ca să ai MAI PUȚINĂ competiție.">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div>
+        <div class="cover-accent"></div>
+        <div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> ToT Antreprenoriat &middot; Centrele de Excelență</div>
+          <h1>Modul 3: Oceanul Albastru<br>&mdash; Ieși din Competiție</h1>
+          <p class="subtitle">Cum creezi un spațiu de piață propriu unde regulile le stabilești tu &mdash; nu competiția.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">🌊 Blue Ocean Strategy</span>
+            <span class="cover-chip">📈 Product Life Cycle</span>
+            <span class="cover-chip">🗺️ Strategy Canvas</span>
+            <span class="cover-chip">⏱ ~75 min</span>
+          </div>
+        </div>
+        <div class="slide-num">01 / 11</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 02 — TEORIE: Red Ocean vs Blue Ocean -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide fundamental. Durată: 5-7 min. Explică split-ul vizual: stânga = situația în care se află 90% din afacerile mici — competiție pe preț, pe aceiași clienți, cu aceleași produse. Dreapta = alternativa strategică. Cuvântul-cheie: 'sângerează' — imaginea e puternică și rămâne în minte. DE CE predăm asta: ca să ai MAI PUȚINĂ competiție — în loc să te bați pe preț, creezi un spațiu unde ești singurul. Leagă de M2: USP-ul ne face diferiți; Oceanul Albastru ne scoate complet din luptă. Quote: citește-l rar, lasă-l să aterizeze. Întrebare de activare după slide: 'În ce ocean e afacerea pe care o vei folosi ca studiu de caz azi?' Lasă 60 de secunde de reflecție silențioasă. Urmează schema (slide 3) — tranziție naturală.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Teorie &mdash; Concepte Fundamentale</span>
+          <h2 class="slide-title">Două oceane, două lumi complet diferite</h2>
+          <p class="slide-subtitle">Treci în Oceanul Albastru ca să ai <b>mai puțină competiție</b> &mdash; în loc să te bați pe preț, creezi un spațiu unde ești singurul.</p>
+        </div>
+        <div class="ocean-grid">
+          <div class="ocean-pane red">
+            <div class="ocean-head">🦈 Oceanul Roșu</div>
+            <div class="ocean-list">
+              <div class="ocean-item">⚔️ Aceiași clienți, aceleași produse</div>
+              <div class="ocean-item">💸 Competiție agresivă pe preț</div>
+              <div class="ocean-item">📉 Marje tot mai mici an după an</div>
+              <div class="ocean-item">😤 Toată lumea sângerează</div>
+              <div class="ocean-item">🔄 Regulile le dictează industria, nu tu</div>
+            </div>
+          </div>
+          <div class="ocean-pane blue">
+            <div class="ocean-head">🌊 Oceanul Albastru</div>
+            <div class="ocean-list">
+              <div class="ocean-item">🗺️ Spațiu nou de piață creat de tine</div>
+              <div class="ocean-item">🚀 Competiția devine irelevantă</div>
+              <div class="ocean-item">💎 Valoare unică &mdash; prețuri mai bune</div>
+              <div class="ocean-item">🧭 Tu stabilești regulile jocului</div>
+              <div class="ocean-item">🌱 Creștere fără să lupți pentru fiecare client</div>
+            </div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:16px;">
+          <strong>&bdquo;Cel mai bun concurent e cel pe care l-ai evitat.&rdquo;</strong> &mdash; Kim &amp; Mauborgne, Blue Ocean Strategy
+        </div>
+        <div class="slide-num">02 / 11</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 03 — SCHEMA: viziunea strategică (fără poză) -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide de respiro vizual — panou schematic, NU poză. Citește statistica cu voce tare: '86% din profit din 14% din lansări'. Asta e contraintuitiv și stârnește curiozitate. Explică: Blue Ocean nu înseamnă să inventezi ceva nou din zero — înseamnă să recombini ceea ce există astfel încât să creezi o piață nouă. Exemplul următor (Netflix) va ilustra perfect. Dacă grupul e activ: 'Cine poate da un exemplu de Ocean Albastru pe care îl cunoașteți?' — 2-3 răspunsuri, nu mai mult.">
+      <div class="slide" style="padding:0;overflow:hidden;">
+        <div class="schema-split">
+          <div class="pt-pane">
+            <span class="pt-tag">🌊 Viziunea Strategică</span>
+            <div class="pt-big">Nu lupta pentru clienți &mdash; creează o piață unde ești singurul jucător</div>
+            <p class="pt-sub">Oceanul Albastru nu e un loc magic. E o alegere strategică, replicabilă, cu instrumente clare.</p>
+            <div class="pt-stat"><b>86%</b> din profitul total generat de Blue Oceans vine din doar <b>14%</b> din lansările de produs &mdash; studiu Kim &amp; Mauborgne pe 150 de mutări strategice în 30 de industrii</div>
+          </div>
+          <div class="schema-panel blue">
+            <div class="schema-emoji">🌊</div>
+            <div class="schema-stat">
+              <div class="big">86% / 14%</div>
+              <div class="cap"><b>86%</b> din profit vine din doar <b>14%</b> din lansări &mdash; cele care creează un Ocean Albastru</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.7);">03 / 11</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 04 — EXEMPLU: Netflix vs Blockbuster -->
+    <!-- ============================================================ -->
+    <section data-notes="Exemplul clasic — dar rămâne cel mai puternic. Durată: 4-5 min. Accent pe pasul 2 (momentul de insight): Netflix nu a inventat filmele, a înțeles frustrarea clientului. Întreabă grupul: 'Cine a avut vreodată taxă de penalizare la un DVD?' — râsete garantate, creare de conexiune emoțională. Cifra $6B → faliment e dramatică: Blockbuster a refuzat să cumpere Netflix în 2000 pentru $50M. Azi Netflix valorează $250B. Mesaj esențial: asta e exact ce cursanții lor trebuie să înțeleagă — nu competiția pe prețuri, ci înțelegerea frustrărilor nerezolvate ale clientului.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Exemplu &mdash; Studiu de Caz Real</span>
+          <h2 class="slide-title">Netflix vs Blockbuster &mdash; Cum dispare un gigant</h2>
+          <p class="slide-subtitle">Blockbuster nu a pierdut în fața unui competitor &mdash; a pierdut în fața unui Ocean Albastru.</p>
+        </div>
+        <div class="story-flow-3">
+          <div class="story-step s-red">
+            <span class="story-lbl">Ocean Roșu</span>
+            <div class="story-brand"><span class="brand-wm blockbuster"><span class="bb-ticket"></span> BLOCKBUSTER</span></div>
+            <div class="story-title-s">9.000+ magazine fizice</div>
+            <div class="story-txt">
+              Competiție pe prețuri cu alte lanțuri de rental<br><br>
+              <b>Taxe de penalizare</b> pentru filmele returnate târziu<br><br>
+              Deplasare obligatorie la magazin<br><br>
+              <b>Venituri: $6 miliarde</b> în 2004
+            </div>
+            <div class="story-stat">&rarr; Faliment declarat în 2010</div>
+          </div>
+          <div class="story-step s-mid">
+            <span class="story-lbl">Momentul de Schimbare</span>
+            <div class="story-title-s">Netflix înțelege frustrarea reală</div>
+            <div class="story-txt">
+              Reed Hastings a plătit <b>$40 taxă de penalizare</b> pentru filmul Apollo 13<br><br>
+              Întrebarea cheie: <em>&bdquo;De ce trebuie să merg la magazin și să plătesc penalizări?&rdquo;</em><br><br>
+              Clientul nu vrea DVD &mdash; vrea <b>comoditate și control</b>
+            </div>
+          </div>
+          <div class="story-step s-blue">
+            <span class="story-lbl">Ocean Albastru</span>
+            <div class="story-brand"><span class="brand-wm netflix"><svg viewBox="0 0 24 24" fill="#E50914"><path d="m5.398 0 8.348 23.602c2.346.059 4.856.398 4.856.398L10.113 0H5.398zm8.489 0v9.172l4.715 13.33V0h-4.715zM5.398 1.5V24c1.873-.225 2.81-.312 4.715-.398V14.83L5.398 1.5z"/></svg> NETFLIX</span></div>
+            <div class="story-title-s">Piață complet nouă</div>
+            <div class="story-txt">
+              <b>Abonament lunar</b> &mdash; fără taxe de penalizare<br><br>
+              Streaming la domiciliu, oricând, orice<br><br>
+              Nu compete cu Blockbuster &mdash; <b>face Blockbuster irelevant</b><br><br>
+              <b>Capitalizare bursieră: $250 miliarde</b>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">04 / 11</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 05 — EXEMPLU: Cărturești vs Diverta -->
+    <!-- ============================================================ -->
+    <section data-notes="Exemplul local — mai relevant cultural pentru participanți. Durată: 3-4 min. Diverta = librărie clasică, compete pe preț cu alte librării. Cărturești a schimbat întrebarea: nu 'de ce să cumpere cărți de la noi?' ci 'cum facem timpul liber mai valoros?'. Asta i-a scos din competiția cu librăriile și i-a adus în competiție cu cafenelele, galeriile, experiențele. Quote: citește-l lent — e puternic. Întrebare de debriefing: 'Cunoașteți exemple similare din Moldova?' — deschide conversație de 2 min. Acceptă orice exemplu relevant.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Exemplu &mdash; Context Regional</span>
+          <h2 class="slide-title">Cărturești vs Diverta &mdash; Vinde cărți sau vinde timp de calitate?</h2>
+          <p class="slide-subtitle">Aceeași industrie, strategii complet diferite &mdash; rezultate complet diferite.</p>
+        </div>
+        <div class="story-flow-3">
+          <div class="story-step s-red">
+            <span class="story-lbl">Ocean Roșu</span>
+            <div class="story-brand"><span class="brand-wm diverta">Diverta</span></div>
+            <div class="story-title-s">Librărie tradițională</div>
+            <div class="story-txt">
+              Compete pe preț cu alte librării și hipermarketuri<br><br>
+              Raft cu cărți + papetărie<br><br>
+              Clientul intră, cumpără, pleacă<br><br>
+              <b>Concurenți:</b> alte librării, supermarketuri, Amazon
+            </div>
+            <div class="story-stat">&rarr; Presiune continuă pe marje</div>
+          </div>
+          <div class="story-step s-mid">
+            <span class="story-lbl">Schimbarea Perspectivei</span>
+            <div class="story-title-s">O întrebare complet diferită</div>
+            <div class="story-txt">
+              Nu: <em>&bdquo;Cum vindem mai multe cărți?&rdquo;</em><br><br>
+              Ci: <em>&bdquo;Cum facem <b>timpul liber al clientului</b> mai valoros și mai plăcut?&rdquo;</em><br><br>
+              Librăria devine <b>destinație</b>, nu punct de cumpărare
+            </div>
+          </div>
+          <div class="story-step s-blue">
+            <span class="story-lbl">Ocean Albastru</span>
+            <div class="story-brand"><span class="brand-wm carturesti">Cărturești</span></div>
+            <div class="story-title-s">Experiență, nu produs</div>
+            <div class="story-txt">
+              Librărie + cafenea + galerie de artă<br><br>
+              Oamenii vin să <b>petreacă timp</b>, nu doar să cumpere<br><br>
+              Compete cu cafenelele și muzeele &mdash; <b>nu cu librăriile</b><br><br>
+              Prețuri premium justificate de experiență unică
+            </div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:14px;">
+          <strong>&bdquo;Diverta vinde cărți. Cărturești vinde timp de calitate.&rdquo;</strong> &mdash; și asta face toată diferența strategică.
+        </div>
+        <div class="slide-num">05 / 11</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 06 — SCHEMA: experiența vs prețul (fără poză) -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide de respiro vizual + exemplu local concret — panou schematic, NU poză stock. Citește exemplul cu cafeneaua: 'O cafenea normală compete cu alte cafenele pe preț și locație. O cafenea care oferă cursuri de barista + coworking nu mai compete cu cafenelele — compete cu școlile de barista și spațiile de coworking.' Schema din dreapta arată exact mutarea: de la cafenea simplă la cafenea-coworking, și cum se schimbă cu cine concurezi. Întreabă: 'Cunoașteți un exemplu similar în Moldova sau România?' Așteptați 2-3 răspunsuri. Asta activează gândirea aplicată. Tranziție: 'Acum vedem cum piețele evoluează și de ce e important să te miști înainte de Declin.'">
+      <div class="slide" style="padding:0;overflow:hidden;">
+        <div class="schema-split">
+          <div class="pt-pane">
+            <span class="pt-tag">🏪 Exemplu de Aplicare</span>
+            <div class="pt-big">Clientul nu compară prețul &mdash; compară experiența</div>
+            <p class="pt-sub">Când schimbi <em>ce oferi</em>, schimbi <em>cu cine competi</em> &mdash; fără să te muți din același spațiu fizic.</p>
+            <div class="pt-stat">O cafenea cu cursuri de barista + coworking space nu compete cu cafenelele obișnuite &mdash; compete cu școlile profesionale și hub-urile de freelanceri. <b>Piața s-a schimbat fără să se mute locația.</b></div>
+          </div>
+          <div class="schema-panel teal">
+            <div class="schema-flow">
+              <div class="schema-node"><span class="ico">☕</span> Cafenea obișnuită &mdash; compete cu alte cafenele pe preț</div>
+              <div class="schema-arrow-v">▼</div>
+              <div class="schema-node accent"><span class="ico">💼</span> Cafenea-coworking &mdash; abonament, WiFi, comunitate</div>
+              <div class="schema-arrow-v">▼</div>
+              <div class="schema-node"><span class="ico">🎯</span> Acum competi cu hub-urile &amp; școlile de barista &mdash; nu cu cafenelele</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.7);">06 / 11</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 07 — TEORIE: Harta Strategică (Strategy Canvas) -->
+    <!-- ============================================================ -->
+    <section data-notes="Harta Strategică e mai avansată — durată recomandată: 5-6 min. Explică: pe axa X = factorii de competiție din industrie (preț, locație, serviciu, varietate etc.). Pe axa Y = nivelul de investiție/ofertă pentru fiecare factor. Dacă curba ta arată identic cu curba competiției → ești în Ocean Roșu. Dacă curba ta diverge clar → ai început să construiești un Ocean Albastru. Cheie: nu e nevoie să fii mai bun pe toți factorii — ci să fii DIFERIT pe câțiva și să elimini alții complet. Arată graficul: curba roșie e uniformă, aproape plată — toți fac același lucru. Curba albastră diverge puternic pe 'Abonament' și 'Comunitate' (factori noi) și scade pe 'Meniu' și 'Decor'.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Instrument Strategic &mdash; Strategy Canvas</span>
+          <h2 class="slide-title">Harta Strategică &mdash; Vizualizezi diferența față de competiție</h2>
+          <p class="slide-subtitle">Dacă curbele arată la fel &mdash; ești în Ocean Roșu. <b>Divergența curbelor = Ocean Albastru.</b></p>
+        </div>
+        <div class="canvas-wrap">
+          <div class="canvas-chart">
+            <svg viewBox="0 0 830 220" style="display:block;width:100%;height:100%;min-height:160px;">
+              <!-- Y axis label -->
+              <text x="12" y="110" text-anchor="middle" font-size="10" fill="#94A3B8" font-family="Onest,sans-serif" transform="rotate(-90,12,110)">Nivel ofertă &uarr;</text>
+              <!-- Grid lines -->
+              <line x1="30" y1="30" x2="820" y2="30" stroke="#E2E8F0" stroke-width="1"/>
+              <line x1="30" y1="70" x2="820" y2="70" stroke="#E2E8F0" stroke-width="1"/>
+              <line x1="30" y1="110" x2="820" y2="110" stroke="#E2E8F0" stroke-width="1"/>
+              <line x1="30" y1="150" x2="820" y2="150" stroke="#E2E8F0" stroke-width="1"/>
+              <line x1="30" y1="190" x2="820" y2="190" stroke="#E2E8F0" stroke-width="1"/>
+              <!-- X axis -->
+              <line x1="30" y1="190" x2="820" y2="190" stroke="#CBD5E1" stroke-width="1.5"/>
+              <!-- Curba competiției (roșie) — uniformă, la nivel mediu -->
+              <polyline points="85,90 205,85 325,95 445,80 565,88 685,82 780,86" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+              <!-- Puncte roșii -->
+              <circle cx="85" cy="90" r="5" fill="#DC2626"/>
+              <circle cx="205" cy="85" r="5" fill="#DC2626"/>
+              <circle cx="325" cy="95" r="5" fill="#DC2626"/>
+              <circle cx="445" cy="80" r="5" fill="#DC2626"/>
+              <circle cx="565" cy="88" r="5" fill="#DC2626"/>
+              <circle cx="685" cy="82" r="5" fill="#DC2626"/>
+              <circle cx="780" cy="86" r="5" fill="#DC2626"/>
+              <!-- Curba noastră (albastră) — divergentă -->
+              <polyline points="85,155 205,160 325,45 445,170 565,35 685,175 780,38" fill="none" stroke="#2D52D4" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+              <!-- Puncte albastre -->
+              <circle cx="85" cy="155" r="6" fill="#2D52D4"/>
+              <circle cx="205" cy="160" r="6" fill="#2D52D4"/>
+              <circle cx="325" cy="45" r="6" fill="#2D52D4"/>
+              <circle cx="445" cy="170" r="6" fill="#2D52D4"/>
+              <circle cx="565" cy="35" r="6" fill="#2D52D4"/>
+              <circle cx="685" cy="175" r="6" fill="#2D52D4"/>
+              <circle cx="780" cy="38" r="6" fill="#2D52D4"/>
+              <!-- Etichete factori pe axa X -->
+              <text x="85"  y="210" text-anchor="middle" font-size="11" fill="#64748B" font-family="Onest,sans-serif">Preț</text>
+              <text x="205" y="210" text-anchor="middle" font-size="11" fill="#64748B" font-family="Onest,sans-serif">Locație</text>
+              <text x="325" y="210" text-anchor="middle" font-size="11" fill="#64748B" font-family="Onest,sans-serif">WiFi</text>
+              <text x="445" y="210" text-anchor="middle" font-size="11" fill="#64748B" font-family="Onest,sans-serif">Meniu</text>
+              <text x="565" y="210" text-anchor="middle" font-size="11" fill="#64748B" font-family="Onest,sans-serif">Abonament</text>
+              <text x="685" y="210" text-anchor="middle" font-size="11" fill="#64748B" font-family="Onest,sans-serif">Decor</text>
+              <text x="780" y="210" text-anchor="middle" font-size="11" fill="#64748B" font-family="Onest,sans-serif">Comunitate</text>
+            </svg>
+          </div>
+          <div class="canvas-legend">
+            <div class="legend-item"><div class="legend-line comp"></div> Competiția (cafenele clasice) &mdash; curbă uniformă</div>
+            <div class="legend-item"><div class="legend-line you"></div> Cafeneaua-Coworking &mdash; curbă divergentă = Ocean Albastru</div>
+          </div>
+        </div>
+        <div class="slide-num">07 / 11</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 11 — TEORIE: Product Life Cycle (CHART REAL cu curba) -->
+    <!-- ============================================================ -->
+    <section data-notes="Product Life Cycle explică DE CE piețele devin roșii și când să te miști: orice piață ajunge la Maturity și apoi Decline. Blue Ocean = extensia pe care o faci înainte să ajungi la Decline. Durată: 5-6 min. ARATĂ CURBA: crește lent (Introducere), urcă abrupt (Creștere), plafonează (Maturitate), scade (Declin); linia portocalie punctată = extensia/relansarea care te readuce în sus. Exemplele: BEMOL a adăugat cafeteria și spălătoria/centrul comercial — extensie reactivă din Decline. Cărturești a adăugat café-ul când librăria era în Maturity — extensie proactivă, mult mai profitabilă. Întreabă grupul: 'În ce fază credeți că sunt librăriile tradiționale acum?' — răspuns aproape universal: Decline. Mesaj: extensia proactivă (din Maturity) e mult mai ușoară decât cea reactivă (din Decline). Cursanții lor trebuie să facă extensia ACUM, nu după ce intră în Decline.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Instrument Strategic &mdash; Ciclul de Viață al Produsului</span>
+          <h2 class="slide-title">Orice piață trece prin 4 faze &mdash; știi în care ești acum?</h2>
+          <p class="slide-subtitle">Ocean Albastru = extensia pe care o faci <b>înainte</b> să ajungi la Declin. Cu cât mai devreme, cu atât mai ușor.</p>
+        </div>
+        <div class="plc-wrap">
+          <div class="plc-chart">
+            <svg viewBox="0 0 1000 380" style="width:100%;height:auto">
+              <!-- benzi faze -->
+              <rect x="0" y="0" width="180" height="340" fill="#F1F5F9"/>
+              <rect x="180" y="0" width="280" height="340" fill="#E0F2FE"/>
+              <rect x="460" y="0" width="280" height="340" fill="#DCFCE7"/>
+              <rect x="740" y="0" width="260" height="340" fill="#FEE2E2"/>
+              <!-- linii separatoare faze -->
+              <line x1="180" y1="0" x2="180" y2="340" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="4 5"/>
+              <line x1="460" y1="0" x2="460" y2="340" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="4 5"/>
+              <line x1="740" y1="0" x2="740" y2="340" stroke="#CBD5E1" stroke-width="1" stroke-dasharray="4 5"/>
+              <!-- axa Y label -->
+              <text x="22" y="170" text-anchor="middle" font-size="20" font-weight="700" fill="#475569" transform="rotate(-90,22,170)">Vânzări &uarr;</text>
+              <!-- axa X -->
+              <line x1="0" y1="340" x2="1000" y2="340" stroke="#94A3B8" stroke-width="2"/>
+              <!-- curba vanzari -->
+              <path d="M0,330 C120,325 150,300 180,290 C300,250 380,120 460,90 C560,55 650,70 740,80 C820,90 880,160 920,240 C940,280 960,310 1000,330" fill="none" stroke="#2D52D4" stroke-width="4"/>
+              <!-- extensie punctata (relansare) -->
+              <path d="M880,200 C920,150 960,140 1000,120" fill="none" stroke="#F59E0B" stroke-width="4" stroke-dasharray="8 6"/>
+              <!-- marker extensie -->
+              <circle cx="880" cy="200" r="6" fill="#F59E0B"/>
+              <text x="868" y="186" text-anchor="end" font-size="16" font-weight="700" fill="#B45309">Extensie</text>
+              <!-- etichete faze -->
+              <text x="90" y="368" text-anchor="middle" font-size="20" font-weight="700" fill="#475569">Introducere</text>
+              <text x="320" y="368" text-anchor="middle" font-size="20" font-weight="700" fill="#0369A1">Creștere</text>
+              <text x="600" y="368" text-anchor="middle" font-size="20" font-weight="700" fill="#15803D">Maturitate</text>
+              <text x="870" y="368" text-anchor="middle" font-size="20" font-weight="700" fill="#B91C1C">Declin</text>
+            </svg>
+          </div>
+          <div class="plc-examples">
+            <div class="plc-ex-card carturesti">
+              <div class="plc-ex-head">
+                <span class="brand-wm carturesti">Cărturești</span>
+                <span class="plc-ex-phase">Maturitate &rarr; Extensie proactivă</span>
+              </div>
+              <div class="plc-ex-txt">Librărie matură care adaugă <b>café + galerie</b> înainte de declin. Extensie făcută la timp &mdash; mai ușoară și mai profitabilă.</div>
+            </div>
+            <div class="plc-ex-card bemol">
+              <div class="plc-ex-head">
+                <span class="brand-wm bemol">BEMOL</span>
+                <span class="plc-ex-phase">Declin &rarr; Extensie reactivă</span>
+              </div>
+              <div class="plc-ex-txt">Benzinării sub presiune care adaugă <b>cafenea, spălătorie, mini-market</b> &mdash; reinventare din declin. Funcționează, dar e mai grea.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">08 / 11</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 09 — SCHEMA: maturity sau dispari (fără poză) -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide de impact — panou schematic, NU poză stock. Citește textul: 'Orice piață ajunge la Maturity. Singura ieșire: inovezi sau dispari.' Pauză 3 secunde. Schema din dreapta arată cele două drumuri din Maturity: jos = competiție pe preț → declin; sus = extensie / Ocean Albastru. Durată: 1-2 min — e un slide de tranziție spre exercițiu. Anunță că urmează exercițiu individual.">
+      <div class="slide" style="padding:0;overflow:hidden;">
+        <div class="schema-split">
+          <div class="schema-panel slate" style="order:-1;">
+            <div class="schema-flow">
+              <div class="schema-node"><span class="ico">⏳</span> Piață ajunsă la <b>Maturitate</b> &mdash; saturată</div>
+              <div class="schema-arrow-v">▼ două drumuri ▼</div>
+              <div class="schema-node" style="background:rgba(220,38,38,0.22);border-color:rgba(220,38,38,0.5);"><span class="ico">📉</span> Competiție pe preț &rarr; <b>Declin &rarr; dispari</b></div>
+              <div class="schema-node accent"><span class="ico">🌊</span> Extensie &rarr; <b>Ocean Albastru</b></div>
+            </div>
+          </div>
+          <div class="pt-pane">
+            <span class="pt-tag">⏳ Realitatea Oricărei Piețe</span>
+            <div class="pt-big">Orice piață ajunge la Maturity. Singura ieșire: inovezi sau dispari.</div>
+            <p class="pt-sub">Maturitate înseamnă: toți vând cam același lucru, toți scad prețul, toți pierd. Asta e Ocean Roșu pur.</p>
+            <div class="pt-stat">Întrebarea nu e <em>dacă</em> piața ta va ajunge la Maturity &mdash; ci <b>cât de devreme ești pregătit să construiești extensia</b> care te duce în Ocean Albastru.</div>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.7);">09 / 11</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 10 — REGULĂ + CHECKLIST -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide de consolidare — citește regula cu voce tare, rar. DE CE Ocean Albastru: ca să ai mai puțină competiție — în loc să te bați pe preț, ești singurul pe spațiul tău. Accent pe ultima propoziție: 'Cel mai periculos lucru e să fii la fel ca toți ceilalți, dar mai ieftin.' Lasă 3 secunde de tăcere după asta. Parcurge checklist-ul cu grupul: 'Mâna sus cine poate bifa toate 4 puncte acum.'">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Regulă + Checklist de Ieșire</span>
+          <h2 class="slide-title">Regula Oceanului Albastru</h2>
+          <p class="slide-subtitle">De ce o aplici: ca să ai <b>mai puțină competiție</b> &mdash; în loc să te bați pe preț, devii singurul pe spațiul tău.</p>
+        </div>
+        <div class="rule-grid">
+          <div class="rule-pane">
+            <div class="rule-badge"><span class="rb-dot"></span> REGULA DE AUR</div>
+            <div class="rule-text">
+              Nu copia competiția &mdash;<br>
+              <span class="hl">studiaz-o ca să știi<br>ce să faci DIFERIT.</span><br><br>
+              Cel mai periculos lucru e<br>să fii la fel ca toți ceilalți,<br>dar <span class="hl">mai ieftin</span>.
+            </div>
+          </div>
+          <div class="check-pane">
+            <div class="check-head">✅ Checklist &mdash; Modul 3</div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-txt">Am identificat <b>ce face toată industria</b> &mdash; și urmam același tipar fără să întreb de ce</div>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-txt">Clientul meu poate <b>simți diferența imediat</b> &mdash; nu e doar marketing</div>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-txt">Nu mai sunt pe <b>aceeași hartă strategică</b> cu competiția principală</div>
+            </div>
+            <div class="check-item">
+              <div class="check-box"></div>
+              <div class="check-txt">Știu în ce fază de <b>Product Life Cycle</b> se află afacerea mea și când să extind</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">10 / 11</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 11 — TRANZIȚIE spre Modul 4 -->
+    <!-- ============================================================ -->
+    <section data-notes="Tranziție energică spre Modul 4 — MVP. Mesaj: acum au toate elementele strategice — problema (M1), clientul și poziționarea (M2), spațiul de piață unic (M3). Modulul 4 = construim prima versiune reală: MVP-ul. Anunță pauza dacă e cazul (10 min recomandată între module). Energie ridicată: 'Ați construit o strategie. Modulul următor o testăm în realitate — cu costuri minime.'">
+      <div class="slide slide-transition">
+        <div style="position:absolute;inset:0;background:linear-gradient(135deg,#F59E0B 0%,#F2C94C 55%,#FDE68A 100%);"></div>
+        <div style="position:absolute;top:-100px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.22) 0%,transparent 70%);"></div>
+        <div style="position:absolute;bottom:-80px;left:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(0,0,0,0.05) 0%,transparent 70%);"></div>
+        <div class="trans-content">
+          <div class="trans-eyebrow">Urmează &middot; Modul 4</div>
+          <div class="trans-title">Ai problema, clientul,<br>mesajul, poziționarea &mdash;</div>
+          <div class="trans-sub">Acum construiești prima versiune reală a soluției:<br><strong>MVP-ul.</strong> Lansezi &mdash; și afli dacă piața e de acord cu tine.</div>
+          <div class="trans-arrow">&rarr;</div>
+        </div>
+        <div class="slide-num" style="color:rgba(0,0,0,0.35);">11 / 11</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    controls: true,
+    progress: true,
+    center: false,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    width: 1280,
+    height: 720,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0
+  });
+</script>
+</body>
+</html>

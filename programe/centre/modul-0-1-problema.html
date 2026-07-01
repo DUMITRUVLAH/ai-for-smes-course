@@ -1,0 +1,2920 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ziua 1 — Deschidere &amp; Problema · ToT Antreprenoriat</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #0EA371;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 54px 66px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #0EA371 0%, #0891B2 100%); }
+
+    .slide-header { margin-bottom: 24px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #D1FAE5; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-title .hl { color: var(--primary); }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 960px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0 0 40px; max-width: 740px; line-height: 1.5; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+
+    /* exercise banner */
+    .ex-banner { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #0EA371, #0891B2); color: #fff; border-radius: var(--radius); padding: 14px 22px; margin-bottom: 18px; }
+    .ex-banner .ex-ico { font-size: 26px; }
+    .ex-banner .ex-txt { font-size: 17px; font-weight: 600; line-height: 1.4; } .ex-banner .ex-txt b { font-weight: 800; }
+    .ex-banner .ex-time { margin-left: auto; font-size: 15px; font-weight: 800; background: rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+
+    /* RULE + CHECKLIST */
+    .rule-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 28px; flex: 1; align-items: stretch; }
+    .rule-pane { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 32px; color: #fff; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+    .rule-pane::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .rule-badge { position: relative; z-index: 2; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 800; letter-spacing: 0.08em; margin-bottom: 22px; }
+    .rule-badge .rb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--primary-light); }
+    .rule-text { position: relative; z-index: 2; font-size: 28px; font-weight: 800; line-height: 1.28; letter-spacing: -0.01em; } .rule-text .hl { color: var(--primary-light); }
+    .check-pane { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 30px; display: flex; flex-direction: column; }
+    .check-head { font-size: 15px; font-weight: 800; color: var(--practice); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
+    .check-item { display: flex; align-items: flex-start; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--practice); flex-shrink: 0; margin-top: 1px; }
+    .check-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .check-txt b { font-weight: 800; }
+
+    /* PHOTO SLIDE */
+    .photo-split { display: grid; grid-template-columns: 1fr 1fr; height: 100%; }
+    .pt-pane { padding: 54px 48px; display: flex; flex-direction: column; justify-content: center; gap: 18px; }
+    .pt-tag { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); }
+    .pt-big { font-size: 34px; font-weight: 800; line-height: 1.15; color: var(--foreground); }
+    .pt-sub { font-size: 16px; color: var(--muted); line-height: 1.6; }
+    .pt-img { position: relative; overflow: hidden; }
+    .pt-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* CARDS */
+    .cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; }
+    .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+    .cards-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; flex: 1; }
+    .card { border-radius: var(--radius); padding: 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; }
+    .card.mint { background: var(--pastel-mint); border-color: #86EFAC; }
+    .card.sky { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .card.peach { background: var(--pastel-peach); border-color: #FED7AA; }
+    .card.lavender { background: var(--pastel-lavender); border-color: #DDD6FE; }
+    .card.rose { background: var(--pastel-rose); border-color: #FBCFE8; }
+    .card-icon { font-size: 36px; line-height: 1; }
+    .card-title { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .card-body { font-size: 15px; color: var(--foreground); line-height: 1.5; }
+    .card-body b { font-weight: 800; }
+    .card-num { width: 38px; height: 38px; border-radius: 10px; background: var(--primary); color: #fff; font-size: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* STORY FLOW */
+    .story-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; flex: 1; align-items: stretch; }
+    .story-step { padding: 22px 18px; display: flex; flex-direction: column; gap: 10px; position: relative; justify-content: center; }
+    .story-step::after { content: '\2192'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); font-size: 22px; color: var(--primary); font-weight: 700; z-index: 3; }
+    .story-step:last-child::after { display: none; }
+    .story-step.s1 { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius) 0 0 var(--radius); }
+    .story-step.s2 { background: var(--pastel-peach); border: 1px solid #FED7AA; }
+    .story-step.s3 { background: var(--pastel-lavender); border: 1px solid #DDD6FE; }
+    .story-step.s4 { background: var(--pastel-sky); border: 1px solid #BAE6FD; }
+    .story-step.s5 { background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 0 var(--radius) var(--radius) 0; }
+    .story-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    .story-title { font-size: 17px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+    .story-sub { font-size: 14px; color: var(--muted); line-height: 1.4; }
+
+    /* NUMBERED STEPS */
+    .nstep-list { display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: center; }
+    .nstep { display: flex; align-items: flex-start; gap: 14px; }
+    .nstep-num { width: 34px; height: 34px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .nstep-txt { font-size: 17px; color: var(--foreground); line-height: 1.4; padding-top: 4px; }
+    .nstep-txt b { font-weight: 800; color: var(--primary); }
+
+    /* CHECKLIST VISUAL */
+    .clist { display: flex; flex-direction: column; gap: 10px; }
+    .cl-item { display: flex; align-items: flex-start; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 16px; }
+    .cl-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--primary); flex-shrink: 0; margin-top: 2px; }
+    .cl-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; }
+    .cl-txt b { font-weight: 800; }
+
+    /* PRACTICE */
+    .practice-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; flex: 1; align-items: center; }
+    .timer-pill { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 700; color: #92400E; }
+
+    /* TRANSITION */
+    .slide-transition { padding: 0; overflow: hidden; background: #F2C94C; position: relative; display: flex; justify-content: center; align-items: center; }
+    .slide-transition::before { display: none; }
+    .trans-content { position: relative; z-index: 2; text-align: center; color: var(--foreground); }
+    .trans-num { font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.7; margin-bottom: 16px; }
+    .trans-title { font-size: 54px; font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; }
+    .trans-sub { font-size: 20px; color: var(--foreground); opacity: 0.75; margin-top: 16px; }
+
+    /* CASEBOOK CARDS */
+    .casebook-note { font-size: 14px; color: var(--muted); font-style: italic; margin-top: 10px; text-align: center; }
+  
+
+    /* ================================================================
+     * MODUL 1 — De la Problemă la Avatarul de client (styles)
+     * ================================================================ */
+:root {
+  --primary: #2D52D4;
+  --primary-light: #5B7CF7;
+  --primary-ultra-light: #EEF2FF;
+  --foreground: #0F172A;
+  --muted: #64748B;
+  --bg: #F8FAFC;
+  --border: #E2E8F0;
+  --card: #FFFFFF;
+  --success: #22C55E;
+  --destructive: #EF4444;
+  --warning: #F59E0B;
+  --practice: #0EA371;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.07);
+  --pastel-mint: #DCFCE7;
+  --pastel-sky: #E0F2FE;
+  --pastel-peach: #FEF3C7;
+  --pastel-lavender: #EDE9FE;
+  --pastel-rose: #FCE7F3;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body, .reveal { font-family: 'Onest', sans-serif; }
+
+.reveal .slides section { text-align: left; }
+
+/* SLIDE LAYOUT BASE */
+.slide {
+  padding: 48px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+  box-sizing: border-box;
+  background: var(--bg);
+  position: relative;
+  font-family: 'Onest', sans-serif;
+}
+/* .slide::before removed in merged file */
+.slide-header { display: flex; flex-direction: column; gap: 6px; }
+.slide-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+}
+.slide-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--foreground);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.slide-sub {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.slide.practice { background: #F0FDF4; }
+.slide.practice .slide-tag { color: #15803D; }
+
+/* slide-subtitle (folosit de slide-urile portate) */
+.slide-subtitle {
+  font-size: 16px;
+  color: var(--muted);
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 920px;
+}
+.slide-subtitle b { color: var(--foreground); font-weight: 600; }
+
+/* slide-num (numerotare jos-dreapta, folosit de slide-urile portate) */
+.slide-num {
+  position: absolute;
+  bottom: 20px;
+  right: 90px;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* PHOTO SLIDE */
+.photo-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+}
+.pt-pane {
+  padding: 54px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+}
+.pt-tag {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+}
+.pt-big {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--foreground);
+}
+.pt-sub {
+  font-size: 16px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.pt-img { position: relative; overflow: hidden; }
+.pt-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* CARDS */
+.cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; }
+.cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+.cards-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; flex: 1; }
+.card {
+  border-radius: var(--radius);
+  padding: 22px;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card.mint { background: var(--pastel-mint); border-color: #86EFAC; }
+.card.sky { background: var(--pastel-sky); border-color: #BAE6FD; }
+.card.peach { background: var(--pastel-peach); border-color: #FED7AA; }
+.card.lavender { background: var(--pastel-lavender); border-color: #DDD6FE; }
+.card.rose { background: var(--pastel-rose); border-color: #FBCFE8; }
+.card-icon { font-size: 36px; line-height: 1; }
+.card-title { font-size: 18px; font-weight: 800; color: var(--foreground); }
+.card-body { font-size: 15px; color: var(--foreground); line-height: 1.5; }
+.card-body b { font-weight: 800; }
+.card-num {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* STORY FLOW (3 coloane) */
+.story-flow-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  flex: 1;
+  align-items: stretch;
+}
+.story-step {
+  padding: 26px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  justify-content: center;
+}
+.story-step::after {
+  content: '→';
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 26px;
+  color: var(--primary);
+  font-weight: 700;
+  z-index: 3;
+}
+.story-step:last-child::after { display: none; }
+.story-step.problem {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+.story-step.idea {
+  background: var(--pastel-peach);
+  border: 1px solid #FED7AA;
+}
+.story-step.company {
+  background: #F0FDF4;
+  border: 1px solid #86EFAC;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.story-lbl {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.story-step.problem .story-lbl { color: #DC2626; }
+.story-step.idea .story-lbl { color: #C2410C; }
+.story-step.company .story-lbl { color: #16A34A; }
+.story-txt { font-size: 15px; color: var(--foreground); line-height: 1.5; }
+.story-txt b { font-weight: 700; }
+
+/* STORY FLOW (variantă portată — cartea Netflix, o coloană) */
+.story-flow { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; flex: 1; align-items: stretch; }
+
+/* DRILL TEKWILL */
+.drill-grid-tek {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 28px;
+  flex: 1;
+  align-items: center;
+}
+.drill-card-tek {
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  border: 1px solid var(--border);
+}
+.drill-card-tek.no { background: #FEF2F2; border-color: #FECACA; }
+.drill-card-tek.yes { background: #F0FDF4; border-color: #86EFAC; }
+.dtek-emoji { font-size: 64px; line-height: 1; }
+.dtek-lbl {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.drill-card-tek.no .dtek-lbl { color: #DC2626; }
+.drill-card-tek.yes .dtek-lbl { color: #16A34A; }
+.dtek-big { font-size: 24px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+.dtek-sub { font-size: 15px; color: var(--muted); line-height: 1.45; }
+.dtek-arrow { font-size: 42px; color: var(--primary); font-weight: 700; text-align: center; }
+
+/* MASLOW */
+.maslow-grid { display: flex; gap: 34px; flex: 1; align-items: center; }
+.pyramid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  width: 400px;
+}
+.pyr-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  border-radius: 6px;
+  padding: 11px 12px;
+  text-align: center;
+  line-height: 1.2;
+}
+.pyr-row.l5 { width: 44%; background: #7C3AED; }
+.pyr-row.l4 { width: 58%; background: #2D52D4; }
+.pyr-row.l3 { width: 72%; background: #0EA5E9; }
+.pyr-row.l2 { width: 86%; background: #16A34A; }
+.pyr-row.l1 { width: 100%; background: #F59E0B; }
+.maslow-side { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.maslow-row {
+  font-size: 15px;
+  color: var(--foreground);
+  line-height: 1.4;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.maslow-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* 5 WHYS */
+.why-ladder { display: flex; flex-direction: column; gap: 8px; flex: 1; justify-content: center; }
+.why-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 11px 16px;
+}
+.why-q {
+  width: 60px;
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--primary);
+  padding-top: 2px;
+}
+.why-q.final { color: #16A34A; }
+.why-row.final { background: #F0FDF4; border-color: #86EFAC; }
+.why-txt { font-size: 15px; color: var(--foreground); line-height: 1.4; }
+.why-txt b { font-weight: 800; color: var(--primary); }
+
+/* CHECKLIST VISUAL */
+.clist { display: flex; flex-direction: column; gap: 10px; }
+.cl-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+}
+.cl-box {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  border: 2px solid var(--primary);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.cl-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; }
+.cl-txt b { font-weight: 800; }
+
+/* PRACTICE */
+.timer-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: #FEF3C7;
+  border: 1px solid #FDE68A;
+  border-radius: 100px;
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #92400E;
+}
+.mode-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: #DCFCE7;
+  border: 1px solid #86EFAC;
+  border-radius: 100px;
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #15803D;
+}
+.pills-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* OBJ GRID */
+.obj-grid-v2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px 24px;
+  flex: 1;
+  align-content: center;
+}
+.obj-item-v2 { display: flex; align-items: flex-start; gap: 14px; }
+.obj-n {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.obj-text {
+  font-size: 16px;
+  color: var(--foreground);
+  line-height: 1.4;
+  font-weight: 500;
+  padding-top: 4px;
+}
+.obj-text b { font-weight: 800; color: var(--primary); }
+
+/* EX CARDS */
+.ex-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; }
+.ex-card-v2 {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  box-shadow: var(--shadow);
+}
+.ex-head-v2 { display: flex; align-items: center; gap: 11px; }
+.ex-ico-v2 { font-size: 24px; flex-shrink: 0; }
+.ex-name-v2 { font-size: 18px; font-weight: 800; color: var(--foreground); }
+.ex-tag-p {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #DC2626;
+}
+.ex-tag-s {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #16A34A;
+}
+.ex-prob-t { font-size: 15px; color: #B91C1C; line-height: 1.4; }
+.ex-sol-t { font-size: 15px; color: var(--foreground); line-height: 1.4; }
+
+/* INTER TRANSITION */
+.inter-trans {
+  background: var(--primary);
+  border-radius: var(--radius);
+  padding: 28px 32px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+  justify-content: center;
+  align-items: flex-start;
+}
+.inter-trans .it-pre {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+.inter-trans .it-big { font-size: 40px; font-weight: 800; line-height: 1.1; }
+.inter-trans .it-sub { font-size: 17px; opacity: 0.85; line-height: 1.5; }
+
+/* RULE GRID */
+.rule-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  flex: 1;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.rule-pane {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+}
+.rule-pane.dark { background: var(--foreground); color: #fff; }
+.rule-pane.light { background: #fff; }
+.rule-quote { font-size: 22px; font-weight: 700; line-height: 1.4; }
+.check-pane {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+.check-title {
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+/* SLIDE TRANSITION (final) */
+.slide-transition {
+  padding: 0 !important;
+  overflow: hidden;
+  background: #F2C94C;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.slide-transition::before { display: none; }
+.trans-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--foreground);
+}
+.trans-num {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: 16px;
+}
+.trans-title {
+  font-size: 54px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+.trans-sub {
+  font-size: 20px;
+  color: var(--foreground);
+  opacity: 0.75;
+  margin-top: 16px;
+}
+
+/* CP CARD */
+.cp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  flex: 1;
+  align-items: center;
+}
+.cp-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--shadow);
+}
+.cp-id-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+.cp-id-ico { font-size: 32px; }
+.cp-id-name { font-size: 20px; font-weight: 800; color: var(--foreground); }
+.cp-id-sub { font-size: 14px; color: var(--muted); }
+.cp-row { display: flex; gap: 10px; align-items: flex-start; padding: 6px 0; }
+.cp-row-ico { font-size: 18px; flex-shrink: 0; width: 24px; text-align: center; }
+.cp-row-txt { font-size: 15px; color: var(--foreground); line-height: 1.4; }
+.cp-row-txt b { font-weight: 800; }
+.cp-quote {
+  background: var(--pastel-sky);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 20px;
+  font-size: 16px;
+  color: var(--foreground);
+  line-height: 1.6;
+  font-style: italic;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+}
+.cp-quote-attr {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  font-style: normal;
+}
+
+/* JTBD */
+.jtbd-grid { display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: center; }
+.jtbd-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: center;
+}
+.jtbd-no {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #B91C1C;
+}
+.jtbd-yes {
+  background: #F0FDF4;
+  border: 1px solid #86EFAC;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 15px;
+  color: #15803D;
+  font-weight: 600;
+}
+.jtbd-arrow {
+  font-size: 22px;
+  color: var(--primary);
+  font-weight: 700;
+  text-align: center;
+}
+
+/* PRACTICE EXERCISE GRID */
+.ex-fill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; flex: 1; }
+.ex-fill-5 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; flex: 1; }
+.ex-fill-box {
+  background: #fff;
+  border: 2px dashed #BAE6FD;
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ex-fill-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+}
+.ex-fill-line {
+  height: 2px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: auto;
+}
+.ex-fill-lines { display: flex; flex-direction: column; gap: 10px; padding-top: 12px; }
+.ex-fill-sub { font-size: 12px; color: var(--muted); }
+.ex-fill-icon { font-size: 28px; }
+
+/* WHY FILL */
+.why-fill-grid { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.why-fill-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  background: #fff;
+  border: 1px dashed #BAE6FD;
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+}
+.why-fill-row.final-row {
+  background: #F0FDF4;
+  border: 1px solid #86EFAC;
+}
+.why-fill-q {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--primary);
+  flex-shrink: 0;
+  width: 100px;
+}
+.why-fill-q.final { color: #16A34A; }
+.why-fill-line { flex: 1; height: 2px; background: var(--border); border-radius: 2px; }
+
+/* COVER SPECIAL */
+.cover-slide {
+  padding: 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--bg);
+}
+.cover-left {
+  padding: 60px 56px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  background: var(--foreground);
+  color: #fff;
+}
+.cover-module-tag {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #94A3B8;
+}
+.cover-title {
+  font-size: 42px;
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.cover-sub {
+  font-size: 16px;
+  color: #94A3B8;
+  line-height: 1.5;
+}
+.cover-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  background: var(--primary);
+  color: #fff;
+  border-radius: 100px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.cover-right {
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.cover-big-num {
+  font-size: 220px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.12);
+  line-height: 1;
+  position: absolute;
+  bottom: -20px;
+  right: 20px;
+  letter-spacing: -0.05em;
+}
+.cover-icon-big {
+  font-size: 100px;
+  position: relative;
+  z-index: 2;
+}
+
+/* QUOTE BOX */
+.quote-box {
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 15px;
+  color: var(--foreground);
+  line-height: 1.5;
+}
+
+/* STAT BOX */
+.stat-box {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+.stat-big {
+  font-size: 42px;
+  font-weight: 900;
+  color: #DC2626;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.stat-txt {
+  font-size: 15px;
+  color: var(--foreground);
+  line-height: 1.5;
+  padding-top: 4px;
+}
+
+/* VISUAL HERO PANEL (înlocuiește pozele stock) */
+.vhero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  color: #fff;
+  padding: 40px;
+  text-align: center;
+  border-radius: var(--radius);
+  flex: 1;
+}
+.vhero-emoji { font-size: 90px; line-height: 1; }
+.vhero-stat { font-size: 130px; font-weight: 900; line-height: 1; letter-spacing: -0.03em; }
+.vhero-cap { font-size: 24px; font-weight: 700; line-height: 1.35; max-width: 760px; }
+.vhero-sub { font-size: 16px; font-weight: 500; opacity: 0.9; line-height: 1.5; max-width: 700px; }
+
+/* TAG PILLS */
+.tag-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.tag-pill {
+  background: var(--pastel-sky);
+  border: 1px solid #BAE6FD;
+  border-radius: 100px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0369A1;
+}
+
+/* NUMBERED STEPS */
+.steps-list { display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: center; }
+.step-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+}
+.step-num {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.step-txt { font-size: 15px; color: var(--foreground); line-height: 1.4; padding-top: 2px; }
+.step-txt b { font-weight: 800; }
+
+/* JTBD INTRO BOX */
+.jtbd-intro {
+  background: var(--pastel-sky);
+  border-radius: var(--radius-sm);
+  padding: 14px 20px;
+  margin-bottom: 4px;
+  font-size: 15px;
+  color: var(--foreground);
+  line-height: 1.5;
+}
+
+/* TWO COL MANUAL */
+.two-col-manual {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  flex: 1;
+}
+.col-card {
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.col-card.rational { background: #EFF6FF; border: 1px solid #BFDBFE; }
+.col-card.emotional { background: #FFF1F2; border: 1px solid #FECDD3; }
+.col-header { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; color: var(--foreground); }
+.col-header .col-ico { font-size: 24px; }
+
+/* MINI WHY (for example slide) */
+.mini-why { display: flex; flex-direction: column; gap: 6px; }
+.mini-why-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+.mini-why-q {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--primary);
+  flex-shrink: 0;
+  width: 65px;
+  padding-top: 1px;
+}
+.mini-why-q.final { color: #16A34A; }
+.mini-why-row.final { background: #F0FDF4; border-color: #86EFAC; }
+.mini-why-txt { font-size: 15px; color: var(--foreground); line-height: 1.4; }
+.mini-why-txt b { font-weight: 800; color: var(--primary); }
+
+/* JTBD EXAMPLE CARD */
+.jtbd-ex-card {
+  background: var(--pastel-mint);
+  border: 1px solid #86EFAC;
+  border-radius: var(--radius);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.jtbd-job-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.jtbd-job-stmt {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--foreground);
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* NOTE BOX */
+.note-box {
+  background: var(--pastel-peach);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  font-size: 14px;
+  color: var(--foreground);
+  line-height: 1.5;
+}
+.note-italic { font-style: italic; font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+/* JTBD FORMULA */
+.jtbd-formula {
+  background: #fff;
+  border: 1px dashed #BAE6FD;
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  font-size: 15px;
+  color: var(--foreground);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* ===== CLASE PORTATE DIN TEKWILL ===== */
+
+/* QUOTE BLOCK (carte Netflix, 4 surse) */
+.quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 16px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+.quote-block strong { font-style: normal; color: var(--primary); }
+
+/* TWO-COL generic (interviuri, mom test) */
+.twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; flex: 1; align-items: center; }
+.lead-block { display: flex; flex-direction: column; gap: 18px; }
+.lead-big { font-size: 30px; font-weight: 800; color: var(--foreground); line-height: 1.2; letter-spacing: -0.01em; }
+.lead-big .hl { color: var(--primary); }
+.lead-body { font-size: 18px; color: var(--muted); line-height: 1.6; }
+.lead-body b { color: var(--foreground); }
+.visual-pane { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+
+/* REVIEW slide — review-card / extract */
+.review-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 30px; flex: 1; align-items: center; }
+.review-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.review-top { display: flex; align-items: center; gap: 12px; padding: 16px 22px; border-bottom: 1px solid var(--border); }
+.review-stars { font-size: 20px; color: #F59E0B; letter-spacing: 2px; }
+.review-tag { margin-left: auto; font-size: 12px; font-weight: 700; color: #DC2626; background: #FEE2E2; padding: 3px 10px; border-radius: 100px; }
+.review-body { padding: 22px; font-size: 18px; color: var(--foreground); line-height: 1.55; font-style: italic; }
+.review-body .hl { background: #FEF08A; font-style: normal; font-weight: 700; padding: 1px 4px; border-radius: 3px; }
+.extract-flow { display: flex; flex-direction: column; gap: 14px; }
+.extract-row { display: flex; align-items: flex-start; gap: 14px; }
+.extract-n { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.extract-text { font-size: 16px; color: var(--foreground); line-height: 1.45; padding-top: 4px; }
+.extract-text b { font-weight: 800; color: var(--primary); }
+
+/* PRACTICE layout — practice-layout / pstep */
+.practice-layout { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 30px; flex: 1; align-items: stretch; }
+.practice-steps { display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.pstep { display: flex; align-items: flex-start; gap: 14px; }
+.pstep-num { width: 30px; height: 30px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.pstep-text { font-size: 16px; color: var(--foreground); line-height: 1.45; padding-top: 3px; }
+.pstep-text b { font-weight: 800; }
+.practice-pane { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 14px; justify-content: center; }
+.practice-prompt { background: var(--bg); border-left: 4px solid var(--practice); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 16px 18px; font-size: 16px; color: var(--foreground); line-height: 1.5; }
+.practice-prompt .lbl { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--practice); display: block; margin-bottom: 6px; }
+.slide.practice .practice-prompt { background: #fff; }
+.slide.practice .practice-pane { background: #fff; }
+
+/* MOM TEST rules — rules-grid / rule-card */
+.rules-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.rule-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px; }
+.rule-n { width: 34px; height: 34px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.rule-title { font-size: 17px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+.rule-desc { font-size: 15px; color: var(--muted); line-height: 1.5; }
+.rule-desc b { color: var(--foreground); }
+
+/* Q COMPARE — Mom Test întrebări */
+.qcompare { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+.qcol { border-radius: var(--radius); padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+.qcol.bad { background: #FEF2F2; border: 1px solid #FECACA; }
+.qcol.good { background: #F0FDF4; border: 1px solid #86EFAC; }
+.qcol-head { font-size: 16px; font-weight: 800; padding-bottom: 4px; }
+.qcol-head.bad { color: #DC2626; }
+.qcol-head.good { color: #16A34A; }
+.qrow { background: rgba(255,255,255,0.8); border-radius: var(--radius-sm); padding: 11px 15px; font-size: 15px; font-style: italic; line-height: 1.4; color: var(--foreground); }
+.qcol.bad .qrow { border-left: 3px solid #FCA5A5; }
+.qcol.good .qrow { border-left: 3px solid #86EFAC; }
+.qcol-note { margin-top: auto; font-size: 14px; font-weight: 700; padding-top: 6px; }
+.qcol-note.bad { color: #B91C1C; }
+.qcol-note.good { color: #15803D; }
+
+/* BOOK COVER (cărți: Netflix, Mom Test) */
+.book-cover { width: 190px; height: 270px; border-radius: 6px 12px 12px 6px; background: linear-gradient(150deg, #2D52D4 0%, #1E3A8A 100%); box-shadow: 0 14px 36px -6px rgba(30,58,138,0.55); position: relative; display: flex; flex-direction: column; padding: 26px 22px; color: #fff; overflow: hidden; border-left: 7px solid rgba(0,0,0,0.25); }
+.book-cover::after { content: ''; position: absolute; top: -40px; right: -40px; width: 140px; height: 140px; border-radius: 50%; background: rgba(255,255,255,0.10); }
+.book-kicker { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; }
+.book-title { font-size: 34px; font-weight: 800; line-height: 1.05; margin-top: 14px; letter-spacing: -0.01em; }
+.book-author { font-size: 14px; font-weight: 600; opacity: 0.85; margin-top: auto; position: relative; z-index: 2; }
+.book-emoji { position: absolute; bottom: 60px; right: 18px; font-size: 50px; opacity: 0.9; }
+.book-cover.netflix { background: linear-gradient(150deg, #E50914 0%, #8B0000 100%); box-shadow: 0 14px 36px -6px rgba(229,9,20,0.5); }
+
+/* DEEP RESEARCH flow — dr-flow / dr-node */
+.dr-flow { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 16px; flex: none; align-items: stretch; margin-bottom: 18px; }
+.dr-node { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+.dr-node.start { background: var(--primary-ultra-light); border-color: #C7D2FE; }
+.dr-node.mid { background: var(--pastel-lavender); border-color: #C4B5FD; }
+.dr-node.end { background: var(--pastel-mint); border-color: #86EFAC; }
+.dr-ico { font-size: 34px; }
+.dr-node-title { font-size: 18px; font-weight: 800; color: var(--foreground); }
+.dr-node-desc { font-size: 15px; color: var(--muted); line-height: 1.45; }
+.dr-arrow { display: flex; align-items: center; justify-content: center; font-size: 28px; color: var(--primary); font-weight: 700; }
+.dr-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.dr-tools .lbl { font-size: 13px; font-weight: 700; color: var(--muted); }
+
+/* BRAND TILE (logo inline) */
+.brand-tile { display: inline-flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 9px 18px 9px 14px; box-shadow: var(--shadow); font-size: 17px; font-weight: 700; color: var(--foreground); }
+.brand-tile .bt-logo { width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; }
+.brand-tile .bt-logo svg { width: 100%; height: 100%; }
+
+/* RESEARCH sources — src-grid / src-item / src-feature */
+.src-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; flex: 1; align-items: center; }
+.src-list { display: flex; flex-direction: column; gap: 14px; }
+.src-item { display: flex; align-items: flex-start; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); }
+.src-ico { font-size: 28px; flex-shrink: 0; }
+.src-name { font-size: 17px; font-weight: 800; color: var(--foreground); }
+.src-name .url { font-size: 13px; font-weight: 700; color: var(--primary); margin-left: 8px; }
+.src-desc { font-size: 15px; color: var(--muted); line-height: 1.45; margin-top: 2px; }
+.src-feature { background: linear-gradient(160deg, #2D52D4, #7C3AED); border-radius: var(--radius); padding: 28px; color: #fff; display: flex; flex-direction: column; gap: 14px; }
+.src-feature .sf-lbl { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.85; }
+.src-feature .sf-name { font-size: 30px; font-weight: 800; letter-spacing: -0.01em; }
+.src-feature .sf-url { font-size: 16px; font-weight: 600; background: rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 16px; align-self: flex-start; }
+.src-feature .sf-desc { font-size: 15px; line-height: 1.55; opacity: 0.95; }
+
+/* Reveal overrides */
+.reveal .slides { text-align: left; }
+.reveal section { height: 720px; }
+</style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ============================================================ -->
+    <!-- 01 — COVER                                                   -->
+    <!-- ============================================================ -->
+    <section data-notes="Deschidere. Lăsați slide-ul să lucreze 10–15 secunde înainte să vorbiți. Prima frază: 'Bun venit — azi nu venim să vă explicăm ce e antreprenoriatul. Veniți cu experiență și competență; plecăm împreună cu instrumente structurate gata de predat mâine.' Subliniate că ziua are un fir roșu: o afacere generală dusă prin 5 module complete. La final toată lumea are o hartă completă — de la problemă la MVP. Timing: 5 minute pentru slide-ul de deschidere + prezentare proprie.">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div>
+        <div class="cover-accent"></div>
+        <div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker">
+            <span class="dot"></span>
+            Ziua 1 · ToT Antreprenoriat · Centre de Excelență Moldova
+          </div>
+          <h1>Bun venit<br>Ziua 1: Antreprenoriatul de la Zero</h1>
+          <p class="subtitle">Construim împreună un kit complet pe care îl predai mâine dimineață.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">4 module</span>
+            <span class="cover-chip">Mult exercițiu</span>
+            <span class="cover-chip">Kit gata de predat</span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 12</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 02 — Obiectivele zilei                                        -->
+    <!-- ============================================================ -->
+    <section data-notes="Citiți pe scurt fiecare obiectiv — 30 de secunde. Nu explicați conținutul, asta urmează. Scopul acestui slide e să seteze așteptările: la final de zi au 5 module complete, o foaie de drum și 4 afaceri-model de referință. Subliniați că 'Kit gata de predat' înseamnă literal: pot deschide prezentările mâine și le preda.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Ziua 1</span>
+          <h2 class="slide-title">Ce construim azi</h2>
+          <p class="slide-subtitle">Patru obiective concrete — la final de zi le bifăm pe toate.</p>
+        </div>
+
+        <div class="cards-2">
+          <div class="card sky">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div class="card-num">1</div>
+              <div class="card-title">Înțelegem firul roșu</div>
+            </div>
+            <div class="card-body">De la <b>problemă</b> la <b>MVP</b> — fiecare modul adaugă un bloc pe foaia de drum a afacerii.</div>
+          </div>
+          <div class="card peach">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div class="card-num">2</div>
+              <div class="card-title">Aplicăm fiecare instrument</div>
+            </div>
+            <div class="card-body">Nu teorie — <b>fiecare concept e exersat</b> pe o afacere concretă, în același ritm fix.</div>
+          </div>
+          <div class="card mint">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div class="card-num">3</div>
+              <div class="card-title">Primim kitul complet</div>
+            </div>
+            <div class="card-body"><b>5 module, fișe, casebook</b> — materiale cu drept de utilizare nelimitat pentru clasele voastre.</div>
+          </div>
+          <div class="card lavender">
+            <div style="display:flex; align-items:center; gap:14px;">
+              <div class="card-num">4</div>
+              <div class="card-title">Plecăm cu o hartă</div>
+            </div>
+            <div class="card-body">La final știm exact <b>cum predăm fiecare modul</b> — timing, exercițiu, capcanele tipice.</div>
+          </div>
+        </div>
+
+        <div class="slide-num">02 / 12</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 03 — FOTO: Cine suntem azi?                                  -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide de cunoaștere — ritmul trebuie să fie rapid. Rugați fiecare participant să spună: (1) numele, (2) ce materie sau modul predă, (3) o afacere pe care ar vrea s-o folosească drept caz de studiu azi. 20 de secunde per persoană, nu mai mult. Notați pe flipchart afacerile — o să le refolosiți la exerciții. Nu faceți presiune pe nimeni să răspundă 'corect' — orice afacere merge. Dacă cineva nu are una în minte, oferiți-i una din casebook (slide 11).">
+      <div class="slide" style="padding:0;overflow:hidden;position:relative">
+        <div class="photo-split" style="height:100%">
+          <div class="pt-pane">
+            <div class="pt-tag">Cunoaștere · 5 min</div>
+            <div class="pt-big">Cine suntem azi?</div>
+            <div class="pt-sub">Fiecare spune: numele, ce predă și o afacere pe care ar vrea s-o ducă prin modulele de azi.</div>
+            <div class="quote-block" style="margin-top:8px"><strong>20 secunde per persoană</strong> — ritmul contează.</div>
+          </div>
+          <div class="pt-img" style="background:linear-gradient(150deg,#1E3A8A,#3B2F8F);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#fff;padding:48px;text-align:center">
+            <span style="font-size:96px">👋</span>
+            <div style="font-size:22px;font-weight:700;line-height:1.4">Cine ești · ce predai · ce afacere ai în minte</div>
+          </div>
+        </div>
+        <div class="slide-num" style="bottom:20px;right:34px;z-index:10">03 / 12</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 04 — Ritmul fix: 5 bătăi per modul                          -->
+    <!-- ============================================================ -->
+    <section data-notes="Explicați ritmul fix înainte de orice modul — asta le permite participanților să se orienteze singuri pe parcursul zilei. Ritmul e: Teorie (concept, 10 min) → Model completat (exemplu gata, 5 min) → Exercițiu propriu (15–20 min) → Prezentăm în grup (5 min) → Regulă de reținut (2 min). Sublinați că 'Modelul completat' e esențial pentru formatori — când predați, arătați un exemplu finalizat ÎNAINTE să cereți exercițiul. 'Arată, nu descrie.'">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Structura zilei</span>
+          <h2 class="slide-title">Cum funcționează un modul</h2>
+          <p class="slide-subtitle">Același ritm fix pentru fiecare din cele 4 module ale zilei.</p>
+        </div>
+
+        <div class="cards-3" style="gap:12px; margin-bottom:14px;">
+          <div class="card sky">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="card-num" style="font-size:16px;">1</div>
+              <div class="card-title">Teorie</div>
+            </div>
+            <div class="card-body">Conceptul explicat simplu — <b>ce este și de ce contează</b> pentru o afacere reală.</div>
+          </div>
+          <div class="card lavender">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="card-num" style="font-size:16px;">2</div>
+              <div class="card-title">Model</div>
+            </div>
+            <div class="card-body">Un exemplu <b>complet și completat</b> — vedeți cum arată înainte să îl faceți voi.</div>
+          </div>
+          <div class="card mint">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="card-num" style="font-size:16px;">3</div>
+              <div class="card-title">Exercițiu</div>
+            </div>
+            <div class="card-body">Aplicați pe afacerea voastră — <b>individual sau în perechi</b>, 15–20 de minute.</div>
+          </div>
+        </div>
+
+        <div class="cards-2" style="gap:12px;">
+          <div class="card peach">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="card-num" style="font-size:16px;">4</div>
+              <div class="card-title">Prezentăm</div>
+            </div>
+            <div class="card-body">2–3 persoane share în grup — <b>feedback rapid</b>, ce a mers, ce poate fi mai clar.</div>
+          </div>
+          <div class="card rose">
+            <div style="display:flex; align-items:center; gap:12px;">
+              <div class="card-num" style="font-size:16px;">5</div>
+              <div class="card-title">Regulă</div>
+            </div>
+            <div class="card-body">O propoziție de reținut — <b>esența modulului</b> în 15 cuvinte.</div>
+          </div>
+        </div>
+
+        <div class="slide-num">04 / 12</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 05 — Kit-ul formatorului                                     -->
+    <!-- ============================================================ -->
+    <section data-notes="Arătați fizic materialele dacă le aveți tipărite sau deschideți folderul. Firul scurt: 'Tot ce vedeți azi pe ecran — e al vostru. Îl puteți deschide luni în clasa voastră.' Cele 5 module = slide-uri complete. Fișele = exercițiile din fiecare modul, printabile. Casebook-ul = 4 afaceri fictive cu care lucrăm azi și pe care le duc ca referință la cursanți. Nu intrați în detalii — urmează.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Livrabile</span>
+          <h2 class="slide-title">Kit-ul formatorului</h2>
+          <p class="slide-subtitle">Ce primiți azi — gata de utilizat în propriile clase.</p>
+        </div>
+
+        <div class="cards-3">
+          <div class="card sky" style="align-items:flex-start;">
+            <div class="card-icon">📊</div>
+            <div class="card-title">5 module complete</div>
+            <div class="card-body">Prezentări reveal.js cu design profesional — drepturi de utilizare <b>nelimitate</b> pentru cursanții voștri.</div>
+          </div>
+          <div class="card mint" style="align-items:flex-start;">
+            <div class="card-icon">📝</div>
+            <div class="card-title">Fișe de exerciții</div>
+            <div class="card-body">Câte o fișă de lucru per modul — <b>printabilă</b>, gata de distribuit în sală.</div>
+          </div>
+          <div class="card peach" style="align-items:flex-start;">
+            <div class="card-icon">📋</div>
+            <div class="card-title">Casebook cu exemple</div>
+            <div class="card-body">4 afaceri fictive cu care lucrăm azi — le puteți folosi <b>drept studii de caz</b> în clasele voastre.</div>
+          </div>
+        </div>
+
+        <div class="quote-block" style="margin-top:18px;"><strong>Azi lucrăm cu kitul</strong> — la final de zi știți cum să îl predați pas cu pas.</div>
+
+        <div class="slide-num">05 / 12</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 06 — FOTO: Construim împreună                                -->
+    <!-- ============================================================ -->
+    <section data-notes="Pauza scurtă de context după prezentarea kitului. Folosiți acest slide pentru a seta tonul colaborativ: 'Nu e un curs magistral. E un atelier. Fiecare modul se construiește împreună.' Dacă simțiți că energia e scăzută sau că participanții sunt rezervați, puteți adăuga: 'Cel mai bun feedback pe care îl pot da cursanții voștri vine din experiența voastră de azi — ce a funcționat, ce nu.'">
+      <div class="slide" style="padding:0;overflow:hidden;position:relative">
+        <div class="photo-split" style="height:100%">
+          <div class="pt-pane">
+            <div class="pt-tag">Spiritul zilei</div>
+            <div class="pt-big">Construim împreună — fiecare modul e gata de predat mâine dimineață</div>
+            <div class="pt-sub">Nu predăm despre antreprenoriat. Facem antreprenoriat — și după facem predarea.</div>
+            <div class="quote-block" style="margin-top:8px"><strong>Ții minte:</strong> cursantul reține ce a <em>făcut</em>, nu ce a auzit.</div>
+          </div>
+          <div class="pt-img" style="background:linear-gradient(150deg,#0EA371,#0891B2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#fff;padding:48px;text-align:center">
+            <span style="font-size:96px">🤝</span>
+          </div>
+        </div>
+        <div class="slide-num" style="bottom:20px;right:34px;z-index:10">06 / 12</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 07 — Contractul de grup                                      -->
+    <!-- ============================================================ -->
+    <section data-notes="Citiți regulile împreună, nu singur. Întrebați: 'Mai adăugăm ceva?' — de regulă nu, dar gestul validează că e un acord, nu o impunere. Regula 3 (întrebările oricând) e esențială pentru un grup de formatori — ei sunt obișnuiți să răspundă, nu să întrebe; creați permisiunea explicit. Regula 4 (plecăm cu ceva concret) e promisiunea voastră față de ei — nu uitați de ea la final.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Contractul grupului</span>
+          <h2 class="slide-title">4 reguli simple pentru azi</h2>
+          <p class="slide-subtitle">Le stabilim împreună la început — și le respectăm tot drumul.</p>
+        </div>
+
+        <div class="clist" style="flex:1; justify-content:center; display:flex; flex-direction:column; gap:14px;">
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div class="cl-txt"><b>1 — Vorbim pe rând.</b> Un om vorbește, restul ascultă. Calitatea ideilor bate cantitatea vocilor.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div class="cl-txt"><b>2 — Telefoane pe silențios.</b> Exercițiile au timere scurte — merită atenția completă.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div class="cl-txt"><b>3 — Întrebările sunt binevenite oricând.</b> Nu există întrebare prea simplă. Dacă o ai tu, o mai are cineva.</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div class="cl-txt"><b>4 — Plecăm cu ceva concret.</b> La final de zi, fiecare are un livrabl aplicabil — nu doar note.</div>
+          </div>
+        </div>
+
+        <div class="slide-num">07 / 12</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 08 — Firul Roșu: Foaia de Drum a Afacerii                   -->
+    <!-- ============================================================ -->
+    <section data-notes="Acesta e slide-ul de ancorare pentru toată ziua. Foaia de Drum a Afacerii = instrumentul cumulativ: la fiecare modul, participanții completează un bloc nou. La final au o hartă completă a afacerii pe care au ales-o. Subliniați ordinea: nu pornim de la produs sau idee — pornim de la PROBLEMĂ. Asta e fundamentul. Arătați că săgețile merg de la stânga la dreapta — fiecare pas devine input pentru cel următor. Dacă cineva întreabă 'de ce nu facem direct MVPul' — răspunsul e pe slide: fără Client și Mesaj, MVPul e un produs fără piață.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Firul Roșu</span>
+          <h2 class="slide-title">Foaia de Drum a Afacerii</h2>
+          <p class="slide-subtitle">Fiecare modul adaugă un bloc. La final ai harta completă a afacerii tale.</p>
+        </div>
+
+        <div class="story-flow">
+          <div class="story-step s1">
+            <div class="story-lbl">Modul 1</div>
+            <div class="story-title">Problemă → Client</div>
+            <div class="story-sub">Ce doare? Cine o are? Profilul de client + 5 Whys.</div>
+          </div>
+          <div class="story-step s2">
+            <div class="story-lbl">Modul 2</div>
+            <div class="story-title">USP — Mesajul</div>
+            <div class="story-sub">De ce TU? Diferențierea față de alternativele existente.</div>
+          </div>
+          <div class="story-step s3">
+            <div class="story-lbl">Modul 3</div>
+            <div class="story-title">Piața</div>
+            <div class="story-sub">Ocean Albastru vs Roșu — unde intri și de ce.</div>
+          </div>
+          <div class="story-step s5">
+            <div class="story-lbl">Modul 4</div>
+            <div class="story-title">MVP + BMC</div>
+            <div class="story-sub">Modelul de afaceri — testabil, rapid, fără risc.</div>
+          </div>
+        </div>
+
+        <div class="quote-block" style="margin-top:18px;">Afacerile <strong>nu pornesc dintr-o idee de produs</strong> — pornesc dintr-o problemă pe care nimeni nu a rezolvat-o bine.</div>
+
+        <div class="slide-num">08 / 12</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 09 — FOTO: Afacerea pornește din problemă                   -->
+    <!-- ============================================================ -->
+    <section data-notes="Moment de ancorare emoțională înainte de exercițiul de ice-breaker. Lăsați citatul să respire 5–7 secunde. Puteți adăuga un exemplu rapid: 'Uber nu a pornit din ideea de aplicație de taxi — a pornit din frustrarea că nu găsești un taxi în ploaie la ora 23:00 în San Francisco.' Sau mai aproape: 'ContaClar din casebook-ul nostru a pornit din problema că antreprenorii nu înțeleg rapoartele contabile primite de la contabilul lor.' Nu intrați în detalii — e o plantare de mindset pentru Modulul 1.">
+      <div class="slide" style="padding:0;overflow:hidden;position:relative">
+        <div class="photo-split" style="height:100%">
+          <div class="pt-pane">
+            <div class="pt-tag">Mindset · Modul 1</div>
+            <div class="pt-big">Afacerea nu pornește dintr-o idee de produs — pornește dintr-o problemă reală</div>
+            <div class="pt-sub">Problema e totul. Produsul e soluția. Ordinea contează.</div>
+          </div>
+          <div class="pt-img" style="background:linear-gradient(150deg,#1E3A8A,#3B2F8F);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#fff;padding:48px;text-align:center">
+            <span style="font-size:96px">💡</span>
+          </div>
+        </div>
+        <div class="slide-num" style="bottom:20px;right:34px;z-index:10">09 / 12</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 10 — Ice-breaker: afacerea preferată de predat              -->
+    <!-- ============================================================ -->
+    <section class="practice" data-notes="Exercițiu de dezghețat grupul ȘI de setat modul de gândire problem-first. Rulați timerul (5 min). Fiecare participant se gândește la 1 problemă reală pe care a observat-o — nu la o soluție. Colectați răspunsurile pe flipchart: ce probleme apar? Observați diversitatea. La final, arătați că TOATE modulele de azi îi ajută să identifice, valideze și rezolve astfel de probleme. Scopul: participanții intră în training cu o problemă concretă în cap — nu cu o companie abstractă.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <span class="slide-tag practice-tag">Ice-breaker · Exercițiu</span>
+          <h2 class="slide-title">Gândește-te la ceva care te-a enervat recent</h2>
+          <p class="slide-subtitle">Un serviciu prost, un produs care nu merge, un proces complicat. Nu soluția — <b>problema</b>.</p>
+        </div>
+
+        <div class="practice-layout">
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="timer-pill">⏱ 5 minute</div>
+            <div class="nstep-list" style="flex:none;">
+              <div class="nstep">
+                <div class="nstep-num">1</div>
+                <div class="nstep-txt">Gândește-te la <b>1 problemă reală</b> pe care ai observat-o — un serviciu prost, ceva care nu merge, ceva care enervează oamenii.</div>
+              </div>
+              <div class="nstep">
+                <div class="nstep-num">2</div>
+                <div class="nstep-txt">Spune-ne: <b>ce problemă e</b>, <b>cine o are</b> și <b>cum știi că e reală</b> (ai văzut-o, ai trăit-o, ai auzit plângeri).</div>
+              </div>
+              <div class="nstep">
+                <div class="nstep-num">3</div>
+                <div class="nstep-txt">20 de secunde per persoană — rapid, fără explicații lungi.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div class="card sky">
+              <div class="card-icon">🔍</div>
+              <div class="card-title">Nu îți vine nimic?</div>
+              <div class="card-body">Gândește-te la ultima <b>recenzie negativă</b> citită, sau la ceva ce ai spus „asta e o prostie" în ultima lună.</div>
+            </div>
+            <div class="quote-block">Problema pe care o identifici azi <strong>o urmărim prin toate modulele</strong> — la final știi dacă merită un produs.</div>
+          </div>
+        </div>
+
+        <div class="slide-num">10 / 12</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 11 — Casebook: cele 4 afaceri ale zilei                     -->
+    <!-- ============================================================ -->
+    <section data-notes="Prezentați cele 4 afaceri fictive rapid — 30 de secunde per card. Scopul nu e să le memoreze acum, ci să vadă diversitatea: produs fizic (FreshBox), serviciu B2B (Rezervo), cosmetice (NaturaLab) și serviciu profesional (ContaClar). Vor apărea ca exemple-model în fiecare modul. Dacă un participant nu are o afacere proprie, îi oferiți una din cele 4. Puteți întreba grupul: 'Ce alte afaceri ați mai adăuga voi?' — nu e obligatoriu, dar activează implicarea.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Casebook</span>
+          <h2 class="slide-title">Afacerile care ne însoțesc toată ziua</h2>
+          <p class="slide-subtitle">4 afaceri fictive, generale — le folosim drept modele și studii de caz la fiecare exercițiu.</p>
+        </div>
+
+        <div class="cards-2">
+          <div class="card mint">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:4px;">
+              <span style="font-size:28px;">🌿</span>
+              <div class="card-title">NaturaLab</div>
+            </div>
+            <div class="card-body"><b>Cosmetice naturale</b> — produse handmade din ingrediente locale (uleiuri, creme, săpunuri). Vinde online și prin târguri.</div>
+          </div>
+          <div class="card sky">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:4px;">
+              <span style="font-size:28px;">📅</span>
+              <div class="card-title">Rezervo</div>
+            </div>
+            <div class="card-body"><b>App de programări B2B</b> — soluție SaaS pentru saloane, clinici și ateliere care vor să automatizeze programările clienților.</div>
+          </div>
+          <div class="card peach">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:4px;">
+              <span style="font-size:28px;">🥨</span>
+              <div class="card-title">FreshBox</div>
+            </div>
+            <div class="card-body"><b>Snackuri artizanale</b> — gustări locale cu ingrediente naturale. Vinde prin magazine mici, cafenele și abonamente lunare.</div>
+          </div>
+          <div class="card lavender">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:4px;">
+              <span style="font-size:28px;">📊</span>
+              <div class="card-title">ContaClar</div>
+            </div>
+            <div class="card-body"><b>Contabilitate pentru antreprenori mici</b> — serviciu care simplifică raportarea financiară și o explică în termeni non-tehnici.</div>
+          </div>
+        </div>
+
+        <div class="casebook-note">Fiecare afacere va apărea ca exemplu completat înainte de exercițiu — arătăm, nu doar descriem.</div>
+
+        <div class="slide-num">11 / 12</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- 12 — TRANZIȚIE → Modul 1                                     -->
+    <!-- ============================================================ -->
+    <section data-notes="Tranziție spre Modulul 1 — Problema și Clientul. Înainte să navigați, construiți anticipare: 'Prima întrebare a oricărei afaceri nu e ce vindem, ci cine are o problemă nesoluționată — și cât de tare o simte.' Lăsați slide-ul galben câteva secunde. Modulul 1 durează aproximativ 75 de minute: 20 min teorie + model, 30 min exercițiu (Avatar + 5 Whys), 15 min prezentare în grup, 10 min regulă + debrief.">
+      <div class="slide slide-transition">
+        <div class="trans-content">
+          <div class="trans-num">Urmează · Modul 1</div>
+          <div class="trans-title">De la Problemă<br>la Client</div>
+          <div class="trans-sub">Unde se nasc afacerile reale</div>
+        </div>
+        <div class="slide-num" style="color:rgba(0,0,0,0.3)">12 / 12</div>
+      </div>
+    </section>
+
+  
+
+    <!-- ================================================================
+         MODUL 1 — De la Problemă la Avatarul de client · 35 slide-uri
+         ================================================================ -->
+
+
+<!-- ============ BLOC A — PROBLEMA (1-7) ============ -->
+
+<!-- SLIDE 01 — COVER -->
+<section data-notes="Bun venit la Modul 1 din ToT Antreprenoriat. Acesta e kitul gata de predat pe care îl iei și-l folosești cu cursanții tăi. Înainte să vorbim despre produse, clienți sau bani — pornim de la problemă. Durata totală: ~110 min. Ai 35 de slide-uri, 5 exerciții practice și 4 tranziții de bloc. Asigură-te că toți participanții au fișa de lucru pregătită. Reamintește framingul: construim împreună un instrument structurat, peste experiența pe care o ai deja.">
+  <div class="cover-slide">
+    <div class="cover-left">
+      <div class="cover-module-tag">Modul 1 · ToT Antreprenoriat · Centre de Excelență</div>
+      <div class="cover-title">De la Problemă<br>la Profilul<br>de Client</div>
+      <div class="cover-sub">Training of Trainers · Antreprenoriat · IPT Moldova</div>
+      <div class="cover-badge">Bloc A: Ce este o problemă reală</div>
+    </div>
+    <div class="cover-right">
+      <div class="cover-big-num">1</div>
+      <div class="cover-icon-big">🔍</div>
+    </div>
+  </div>
+</section>
+
+<!-- SLIDE 02 — OBIECTIVE -->
+<section data-notes="2-3 min. Prezintă obiectivele rapid, fără să le explici. Zici: 'La finalul acestui modul vom putea preda 6 lucruri cursanților noștri. Hai să le deschidem pe rând.' Nu sta pe slide — treci imediat la slide 3. Framing: fiecare obiectiv e un instrument concret pe care îl pot lua și folosi.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">La finalul acestui modul</div>
+      <div class="slide-title">Ce vei putea face</div>
+    </div>
+    <div class="obj-grid-v2">
+      <div class="obj-item-v2">
+        <div class="obj-n">1</div>
+        <div class="obj-text">Distinge o <b>problemă reală</b> de o idee de produs</div>
+      </div>
+      <div class="obj-item-v2">
+        <div class="obj-n">2</div>
+        <div class="obj-text">Găsi probleme din <b>4 surse</b>: tu, alții, interviuri, recenzii</div>
+      </div>
+      <div class="obj-item-v2">
+        <div class="obj-n">3</div>
+        <div class="obj-text">Construi un <b>Avatar de client</b> complet</div>
+      </div>
+      <div class="obj-item-v2">
+        <div class="obj-n">4</div>
+        <div class="obj-text">Aplica metoda <b>5 Whys</b> pentru cauza rădăcină</div>
+      </div>
+      <div class="obj-item-v2">
+        <div class="obj-n">5</div>
+        <div class="obj-text">Formula un <b>Jobs-to-be-Done</b> clar</div>
+      </div>
+      <div class="obj-item-v2">
+        <div class="obj-n">6</div>
+        <div class="obj-text">Valida că o problemă <b>merită rezolvată</b></div>
+      </div>
+    </div>
+  
+  <div class="slide-num">02 / 38</div>
+</div>
+</section>
+
+<!-- SLIDE 03 — TEORIE Drill -->
+<section data-notes="5 min. Întreabă sala: 'Când cursanții voștri vin cu o idee de afacere — pleacă de la o idee de produs sau de la o problemă?' Lasă 2-3 răspunsuri. Abia apoi arăți slide-ul. Ideea de bază: gândirea de produs duce la a construi ceva ce nimeni nu vrea; gândirea de problemă rezolvă ceva real. Contrastul ❌/✅ e despre CONCEPT (produs vs problemă), nu despre cineva din sală. Quote-ul e cheia modulului.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Mindsetul antreprenorului</div>
+      <div class="slide-title">Antreprenorii văd probleme, nu produse</div>
+    </div>
+    <div class="drill-grid-tek">
+      <div class="drill-card-tek no">
+        <div class="dtek-emoji">💡</div>
+        <div class="dtek-lbl">Gândire de produs</div>
+        <div class="dtek-big">Am o idee de produs</div>
+        <div class="dtek-sub">Vreau să fac o aplicație de rețete rapide</div>
+      </div>
+      <div class="dtek-arrow">→</div>
+      <div class="drill-card-tek yes">
+        <div class="dtek-emoji">🔍</div>
+        <div class="dtek-lbl">Gândire de problemă</div>
+        <div class="dtek-big">Am găsit o problemă reală</div>
+        <div class="dtek-sub">Oamenii ocupați nu știu ce să gătească rapid și sănătos în zilele de lucru</div>
+      </div>
+    </div>
+    <div class="quote-box" style="background: var(--pastel-lavender); border: 1px solid #DDD6FE;">
+      <span style="font-size:20px; flex-shrink:0;">❝</span>
+      <span style="font-size:15px; color: var(--foreground); font-style:italic; line-height:1.5;">"Oamenii nu cumpără produse — cumpără o rezolvare."</span>
+    </div>
+  
+  <div class="slide-num">03 / 38</div>
+</div>
+</section>
+
+<!-- SLIDE 04 — VISUAL HERO 90% -->
+<section data-notes="3 min. Stat-ul e cheia întregului bloc. Întreabă: 'De ce credeți că eșuează cele mai multe afaceri noi?' Lasă câteva răspunsuri. Apoi arăți panoul cu 90%. Lași câteva secunde de tăcere. Zici: 'Nu din lipsă de muncă. Ci pentru că rezolvă o problemă pe care oamenii nu o au sau nu ar plăti s-o rezolve.' Asta justifică de ce pornim de la problemă, nu de la produs.">
+  <div class="slide" style="padding:0;">
+    <div class="vhero" style="background:linear-gradient(150deg,#7F1D1D,#DC2626);">
+      <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.85;">De ce contează</div>
+      <div class="vhero-stat">90%</div>
+      <div class="vhero-cap">din afacerile noi mor pentru că rezolvă o problemă inexistentă</div>
+      <div class="vhero-sub">Nu execuția le omoară — ci alegerea problemei. De aceea pornim mereu de la problemă, nu de la produs.</div>
+    </div>
+  
+    <div class="slide-num" style="color:rgba(255,255,255,0.45)">04 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 05 — TEORIE Cards (3 criterii) -->
+<section data-notes="5 min. Cele 3 criterii sunt filtrul de bază pe care îl vor preda cursanților. Exercițiu rapid: ia o problemă banală (ex: 'nu găsesc loc de parcare în centru') și treci prin cele 3 criterii cu sala. Îi pui să gândească, nu le dai răspunsul. Dacă o problemă trece de toate 3, merită investigată. Spune DE CE: filtrul îi ferește pe cursanți să investească în probleme prea mici sau imaginare.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Criteriile problemei reale</div>
+      <div class="slide-title">Ce înseamnă o problemă REALĂ?</div>
+      <div class="slide-sub">Verifici cu 3 întrebări simple</div>
+    </div>
+    <div class="cards-3">
+      <div class="card sky">
+        <div class="card-num">1</div>
+        <div class="card-icon">👥</div>
+        <div class="card-title">O simt mulți oameni</div>
+        <div class="card-body">Nu e o problemă personală sau de nișă ultra-mică. <b>Cel puțin 100 de persoane</b> dintr-un oraș o au.</div>
+      </div>
+      <div class="card mint">
+        <div class="card-num">2</div>
+        <div class="card-icon">🔄</div>
+        <div class="card-title">O simt frecvent</div>
+        <div class="card-body">Nu o dată pe an. <b>Zilnic, săptămânal, lunar.</b> Cu cât mai frecventă, cu atât mai valoroasă.</div>
+      </div>
+      <div class="card peach">
+        <div class="card-num">3</div>
+        <div class="card-icon">💰</div>
+        <div class="card-title">Ar plăti să dispară</div>
+        <div class="card-body">Testul suprem. Dacă nu plătesc, problema nu e suficient de dureroasă. <b>Durerea = valoare.</b></div>
+      </div>
+    </div>
+  
+  <div class="slide-num">05 / 38</div>
+</div>
+</section>
+
+<!-- SLIDE 05b — Painkiller / Vitamin / Candy -->
+<section data-notes="3 min. Nu toate problemele sunt la fel de valoroase. Painkiller = durere acută imediată — oamenii plătesc imediat și mult, nu amână. Vitamina = bine pe termen lung, dar nu urgent — greu de vândut, clienții tot amână. Candy = plăcere momentană, nu rezolvă nimic real. Legătură cu criteriul 3 de pe slide-ul anterior: dacă oamenii ar plăti acum să dispară problema → ești pe painkiller. Exercițiu rapid (1 min): fiecare participant identifică ce tip e problema lui din ice-breaker — Painkiller, Vitamin sau Candy?">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Framework · Prioritizare</div>
+      <div class="slide-title">Painkiller, Vitamin sau Candy?</div>
+      <div class="slide-sub">Construiești <b>Painkiller</b> — nu Vitamin. Durerea face vânzarea.</div>
+    </div>
+    <div class="cards-3" style="flex:1;">
+      <div class="card" style="background:#FEF2F2;border:1px solid #FECACA;border-top:4px solid #DC2626;display:flex;flex-direction:column;gap:12px;">
+        <div style="font-size:32px;line-height:1;">💊</div>
+        <div style="font-size:17px;font-weight:700;color:#DC2626;">Painkiller</div>
+        <div style="font-size:15px;color:var(--foreground);line-height:1.55;"><b>Rezolvă o durere acută.</b> Oamenii plătesc imediat și mult — au nevoie ACUM, nu mâine.<br><br><span style="color:var(--muted);">Ex: Uber în ploaie fără taxi. Aspirina cu migrenă. Contabilul la termen fiscal.</span></div>
+      </div>
+      <div class="card" style="background:#F0FDF4;border:1px solid #86EFAC;border-top:4px solid #16A34A;display:flex;flex-direction:column;gap:12px;">
+        <div style="font-size:32px;line-height:1;">🍊</div>
+        <div style="font-size:17px;font-weight:700;color:#15803D;">Vitamin</div>
+        <div style="font-size:15px;color:var(--foreground);line-height:1.55;"><b>Îmbunătățește, dar nu e urgent.</b> Clienții spun „interesant" — și amână mereu.<br><br><span style="color:var(--muted);">Ex: Aplicație de meditație. Supliment zilnic. Curs opțional de productivitate.</span></div>
+      </div>
+      <div class="card" style="background:#FFFBEB;border:1px solid #FDE68A;border-top:4px solid #D97706;display:flex;flex-direction:column;gap:12px;">
+        <div style="font-size:32px;line-height:1;">🍬</div>
+        <div style="font-size:17px;font-weight:700;color:#B45309;">Candy</div>
+        <div style="font-size:15px;color:var(--foreground);line-height:1.55;"><b>Plăcere momentană.</b> Nu rezolvă nimic real. Greu de monetizat durabil.<br><br><span style="color:var(--muted);">Ex: Joc casual pe mobil. Filter Instagram. Entertainment pur.</span></div>
+      </div>
+    </div>
+    <div class="slide-num">06 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 06 — EXEMPLU Story Flow Netflix + LOGO -->
+<section data-notes="4 min. Povestea Netflix e cunoscută de toți, dar puțini știu originea. Reed Hastings a plătit 40$ penalizare pentru un film returnat târziu și s-a enervat — asta a fost problema. Nu a pornit cu 'vreau să fac streaming'. Pune întrebarea: 'Cunoașteți afaceri din Moldova care au pornit de la o problemă personală a fondatorului?' Lasă 2 răspunsuri. Logo-ul Netflix e în story-head ca ancoră vizuală reală.">
+  <div class="slide">
+    <div class="slide-header" style="display:flex;flex-direction:row;align-items:center;gap:20px;justify-content:space-between;">
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div class="slide-tag">Exemplu real</div>
+        <div class="slide-title" style="font-size:28px;">De la o problemă la 260 de milioane de abonați</div>
+      </div>
+      <svg viewBox="0 0 24 24" width="68" height="68" fill="#E50914" style="flex-shrink:0;"><path d="m5.398 0 8.348 23.602c2.346.059 4.856.398 4.856.398L10.113 0H5.398zm8.489 0v9.172l4.715 13.33V0h-4.715zM5.398 1.5V24c1.873-.225 2.81-.312 4.715-.398V14.83L5.398 1.5z"/></svg>
+    </div>
+    <div class="story-flow-3" style="flex:1;">
+      <div class="story-step problem">
+        <div class="story-lbl" style="font-size:13px;">Problema</div>
+        <div class="story-txt" style="font-size:18px;">Taxa de <b>40$</b> pentru filme returnate cu întârziere. Drumuri repetate la magazinul video. Titluri epuizate mereu.</div>
+      </div>
+      <div class="story-step idea">
+        <div class="story-lbl" style="font-size:13px;">Ideea</div>
+        <div class="story-txt" style="font-size:18px;">Trimitem DVD-urile <b>acasă prin poștă,</b> fără taxe de întârziere. Abonament lunar fix.</div>
+      </div>
+      <div class="story-step company">
+        <div class="story-lbl" style="font-size:13px;">Compania azi</div>
+        <div class="story-txt" style="font-size:18px;"><b>260 milioane</b> abonați streaming. Netflix a pornit dintr-o problemă — nu dintr-un produs.</div>
+      </div>
+    </div>
+
+    <div class="quote-block" style="margin:0;border-left:4px solid var(--primary);">Nu ai nevoie de o idee genială. Ai nevoie de o <b>problemă reală</b> pe care oamenii simt urgent să o rezolve.
+    </div>
+  <div class="slide-num">07 / 38</div>
+</div>
+</section>
+
+<!-- SLIDE 07 — PORT: Cartea That Will Never Work -->
+<section data-notes="3 min. Slide-ul aduce lecția emoțională după storyflow-ul Netflix. Marc Randolph, co-fondatorul, a auzit constant 'asta nu va funcționa niciodată'. Lecția pentru cursanți: aproape oricine cu o idee bună aude scepticism; dacă pornești de la o problemă reală și o validezi, mergi mai departe. Întrebarea roșie e un mic moment de interacțiune — lasă 2-3 exemple din sală (avionul, telefonul, internetul). Recomandă cartea ca lectură.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">O carte de citit 📖</div>
+      <div class="slide-title">„That Will Never Work" — povestea Netflix</div>
+      <div class="slide-subtitle">Toți i-au spus fondatorului că ideea <b>nu va funcționa niciodată</b>. Cartea arată cum a pornit dintr-o problemă reală și a ajuns uriaș.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:36px;flex:1;align-items:center">
+      <div class="book-cover netflix">
+        <div class="book-kicker">The book</div>
+        <div class="book-title">THAT<br>WILL<br>NEVER<br>WORK</div>
+        <span class="book-emoji">🎬</span>
+        <div class="book-author">Marc Randolph<br><span style="opacity:0.8">co-fondator Netflix</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="story-flow" style="grid-template-columns:1fr">
+          <div class="story-step problem" style="border-radius:var(--radius)"><span class="story-lbl">Problema</span><div class="story-txt">Penalizări scumpe și drumuri la magazin ca să închiriezi un film. Enervant pentru toată lumea.</div></div>
+        </div>
+        <div class="quote-block" style="margin:0"><strong>Lecția:</strong> aproape oricine cu o idee bună aude „n-o să meargă niciodată". Dacă pornești de la o <b>problemă reală</b> și o validezi — mergi mai departe, chiar dacă alții se îndoiesc. 💪</div>
+        <div class="quote-block" style="margin:0;background:#FEF2F2;border-color:#FECACA"><strong>🎯 Întrebare:</strong> ce idei au considerat oamenii „imposibile" și totuși au reușit? (avionul, telefonul, internetul…)</div>
+      </div>
+    </div>
+    <div class="slide-num">08 / 38</div>
+  </div>
+</section>
+
+<!-- ============ BLOC B — SURSE DE PROBLEME (8-11) ============ -->
+
+<!-- SLIDE 08 — PORT: Cele 4 surse -->
+<section data-notes="5 min. Cele 4 surse formează harta pe care cursanții o vor folosi ca să caute probleme sistematic, nu să aștepte inspirația. Trece pe rând prin fiecare. Sursa 4 (recenzii negative) e cea mai subestimată și o detaliem imediat. Trucul cel mai puternic: combini sursele — o problemă pe care o ai TU, confirmată la ALȚII. Spune DE CE: fără surse, cursantul rămâne blocat la 'nu am idei'.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Blocul B · De unde iei idei</div>
+      <div class="slide-title">Cele 4 surse de probleme reale 🔍</div>
+      <div class="slide-subtitle">Nu aștepți inspirația. Problemele bune se caută sistematic — din patru locuri. Le luăm pe rând.</div>
+    </div>
+    <div class="cards-4">
+      <div class="card sky"><div class="card-num">1</div><div class="card-icon">🙋</div><div class="card-title">Tu însuți</div><div class="card-body">Ce te enervează <b>pe tine</b>. Avantaj: înțelegi problema din interior.</div></div>
+      <div class="card mint"><div class="card-num">2</div><div class="card-icon">👀</div><div class="card-title">Observi alții</div><div class="card-body">Familie, prieteni, colegi. Ce îi încurcă pe <b>ei</b>?</div></div>
+      <div class="card lavender"><div class="card-num">3</div><div class="card-icon">🎤</div><div class="card-title">Întrebi oameni</div><div class="card-body">Vorbești direct cu ei. <b>Nu ghicești — întrebi.</b></div></div>
+      <div class="card peach"><div class="card-num">4</div><div class="card-icon">⭐</div><div class="card-title">Recenzii negative</div><div class="card-body">Google Maps, eMAG, App Store. Oamenii scriu <b>exact</b> ce nu le place.</div></div>
+    </div>
+    <div class="quote-block"><strong>Cel mai tare truc:</strong> combini sursele — o problemă pe care o ai TU + o confirmi la ALȚII. 🤝</div>
+    <div class="slide-num">09 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 09 — PORT: Recenzii de 1 stea = aur -->
+<section data-notes="4 min. Recenziile negative îți spun gratis ce nu funcționează — sunt probleme deja formulate de clienți reali. Treci prin flow-ul de 4 pași: citești plângerea ca sursă, subliniezi ce nu merge, reformulezi ca problemă, ai deja o problemă validată (cineva a scris-o real). DE CE: e cea mai ieftină mină de aur de idei. Dacă ai internet live, deschide Google Maps și citește o recenzie reală cu voce tare.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Sursa 4 din 4</div>
+      <div class="slide-title">⭐ Recenziile de 1 stea = aur curat</div>
+      <div class="slide-subtitle">Oamenii îți spun gratis ce nu funcționează. Tot ce faci e să <b>extragi problema</b> din plângere.</div>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="review-top"><span class="review-stars">★☆☆☆☆</span><span class="review-tag">1 stea · App de livrare</span></div>
+        <div class="review-body">„Comand mereu, dar <span class="hl">nu știu niciodată când ajunge curierul</span>. Stau cu telefonul în mână 40 de minute. <span class="hl">Aplicația nu arată nimic în timp real.</span>"</div>
+      </div>
+      <div class="extract-flow">
+        <div class="extract-row"><div class="extract-n">1</div><div class="extract-text">Citește plângerea ca pe <b>o sursă</b>, nu ca pe o critică</div></div>
+        <div class="extract-row"><div class="extract-n">2</div><div class="extract-text">Subliniază <b>ce nu merge</b>: „nu știe când ajunge", „pierde 40 min"</div></div>
+        <div class="extract-row"><div class="extract-n">3</div><div class="extract-text">Reformulează ca problemă: <b>clienții nu văd în timp real unde e livrarea</b></div></div>
+        <div class="extract-row"><div class="extract-n">4</div><div class="extract-text">Gata validată — <b>cineva a scris-o real</b>, n-ai inventat-o tu</div></div>
+      </div>
+    </div>
+    <div class="slide-num">10 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 10 — PORT: Exercițiu live căutăm recenzii -->
+<section data-notes="10-15 min. Exercițiu live pe ecran, împreună cu sala. Alegi câteva companii cunoscute, filtrezi recenziile de 1-2 stele, le citești cu voce tare și extrageți problema reală din fiecare. Întrebarea cheie: 'Dacă ar fi afacerea ta, ce ai schimba mâine ca recenzia aia de 1 stea să devină 5 stele?' E unul dintre cele mai impactante momente — sala vede live cum dintr-o plângere apare o oportunitate. Tu conduci căutarea; ei propun soluțiile.">
+  <div class="slide practice">
+    <div class="slide-header">
+      <div class="slide-tag">🛠️ Exercițiu live · Împreună</div>
+      <div class="slide-title">Intrăm și căutăm recenzii reale 🔎</div>
+      <div class="slide-subtitle">Alegem câteva companii cunoscute, citim recenziile de 1–2 stele și ne gândim <b>cum am rezolva noi problema</b>.</div>
+    </div>
+    <div class="practice-layout">
+      <div class="practice-steps">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4px"><span class="mode-pill">🖥️ Pe ecran, împreună</span><span class="timer-pill">⏱ 10–15 min</span></div>
+        <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Alegem o companie (un local, o app, un magazin) pe <b>Google Maps / App Store / Play Store</b></div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Filtrăm recenziile de <b>1–2 stele</b> și citim 3–4 cu voce tare</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Extragem <b>problema reală</b> din fiecare plângere</div></div>
+        <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Brainstorm: <b>cum am îmbunătăți noi</b> ca să dispară plângerea?</div></div>
+      </div>
+      <div class="practice-pane">
+        <div class="practice-prompt"><span class="lbl">Unde căutăm</span>🗺️ Google Maps · 📱 App Store · ▶️ Google Play · 🛒 marketplace-uri</div>
+        <div class="practice-prompt" style="border-color:var(--primary)"><span class="lbl" style="color:var(--primary)">Întrebarea cheie</span>Dacă ai conduce-o tu — <b>ce ai schimba mâine</b> ca recenzia aia de 1 stea să devină 5 stele? ⭐</div>
+      </div>
+    </div>
+    <div class="slide-num">11 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 11 — EXEMPLU 4 recenzii → 4 idei -->
+<section data-notes="5 min. Exemple inspirate din recenzii reale. Poți cere participanților să contribuie cu exemple din experiența lor. Întrebare de debriefing: 'Care din aceste 4 idei credeți că are cel mai mare potențial în Moldova? De ce?' Lasă 2-3 răspunsuri. Nu dai tu răspunsul — sala îl descoperă. Leagă de slide-ul anterior: fiecare card e o recenzie reformulată ca problemă + idee.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Recenzii negative → Idei de afaceri</div>
+      <div class="slide-title">De la 1 stea la o afacere</div>
+      <div class="slide-sub">4 exemple recognoscibile din Moldova</div>
+    </div>
+    <div class="ex-grid-2">
+      <div class="ex-card-v2">
+        <div class="ex-head-v2">
+          <div class="ex-ico-v2">🍕</div>
+          <div class="ex-name-v2">Pizzerie</div>
+        </div>
+        <div class="ex-tag-p">Recenzie 1 stea</div>
+        <div class="ex-prob-t">Nu știu unde e comanda mea. Au trecut 2 ore și nimeni nu răspunde la telefon.</div>
+        <div class="ex-tag-s">Ideea de afaceri</div>
+        <div class="ex-sol-t">App de tracking livrare în timp real cu notificări automate și ETA precis.</div>
+      </div>
+      <div class="ex-card-v2">
+        <div class="ex-head-v2">
+          <div class="ex-ico-v2">🚗</div>
+          <div class="ex-name-v2">Centru comercial</div>
+        </div>
+        <div class="ex-tag-p">Recenzie 1 stea</div>
+        <div class="ex-prob-t">Nu există niciodată loc de parcare. Am pierdut 30 de minute și am întârziat la întâlnire.</div>
+        <div class="ex-tag-s">Ideea de afaceri</div>
+        <div class="ex-sol-t">App rezervări parcare cu plată online și loc garantat înainte să pleci de acasă.</div>
+      </div>
+      <div class="ex-card-v2">
+        <div class="ex-head-v2">
+          <div class="ex-ico-v2">✂️</div>
+          <div class="ex-name-v2">Salon de frumusețe</div>
+        </div>
+        <div class="ex-tag-p">Recenzie 2 stele</div>
+        <div class="ex-prob-t">Coafeza întârzie mereu. Am așteptat 45 de minute fără nicio notificare.</div>
+        <div class="ex-tag-s">Ideea de afaceri</div>
+        <div class="ex-sol-t">App de programări cu confirmare automată + notificare dacă coafeza întârzie.</div>
+      </div>
+      <div class="ex-card-v2">
+        <div class="ex-head-v2">
+          <div class="ex-ico-v2">🔧</div>
+          <div class="ex-name-v2">Service auto</div>
+        </div>
+        <div class="ex-tag-p">Recenzie 1 stea</div>
+        <div class="ex-prob-t">Nu știam cât costă înainte. La final mi-au spus un preț dublu față de ce mi s-a zis la telefon.</div>
+        <div class="ex-tag-s">Ideea de afaceri</div>
+        <div class="ex-sol-t">Platformă transparentă: prețuri afișate public, oferte detaliate, plată confirmată dinainte.</div>
+      </div>
+    </div>
+  
+  <div class="slide-num">12 / 38</div>
+</div>
+</section>
+
+<!-- ============ BLOC C — INTERVIURI + MOM TEST (12-16) ============ -->
+
+<!-- SLIDE 12 — PORT: User interviews intro -->
+<section data-notes="3 min. Cea mai puternică sursă de probleme = vorbești direct cu oameni reali. Un user interview e doar o discuție în care afli cum trăiește omul și ce îl încurcă. Atenție majoră: oamenii te mint cu cele mai bune intenții (urmează Mom Test). Regula de aur, scrisă în visual-pane: asculți mai mult decât vorbești. DE CE: așa afli adevărul, nu presupunerile din capul tău. Pregătește tranziția spre Mom Test.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Blocul C · Sursa 3 din 4</div>
+      <div class="slide-title">🎤 Întreabă direct oamenii (user interviews)</div>
+      <div class="slide-subtitle">Cea mai puternică sursă: <b>vorbești cu oameni reali</b> care ar putea avea problema. Nu ghicești — întrebi.</div>
+    </div>
+    <div class="twocol">
+      <div class="lead-block">
+        <div class="lead-big">Adevărul nu e în capul tău — <span class="hl">e la oameni.</span></div>
+        <div class="lead-body">Un „user interview" e doar o discuție în care afli <b>cum trăiește omul</b> și ce îl încurcă cu adevărat.</div>
+        <div class="lead-body">Atenție: oamenii te mint cu cele mai bune intenții. Imediat vedem <b>cum să întrebi corect</b> ca să afli adevărul.</div>
+      </div>
+      <div class="visual-pane" style="background:var(--pastel-lavender);border-color:#C4B5FD">
+        <span style="font-size:60px">🗣️👂</span>
+        <div style="font-size:18px;font-weight:600;color:#5B21B6;line-height:1.5;text-align:center">Regula de aur a interviului: <b>asculți mai mult decât vorbești.</b></div>
+      </div>
+    </div>
+    <div class="quote-block"><strong>Urmează:</strong> ghidul de întrebări + un truc numit „The Mom Test" 👇</div>
+    <div class="slide-num">13 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 13 — PORT: Mom Test, de ce complimentele mint -->
+<section data-notes="3 min. Intro la Mom Test. Când întrebi 'Ți-ar plăcea ideea mea?', oricine spune 'da, super' — oamenii vor să fie politicoși. Visual-pane roșu spune totul: 10 oameni întrebați → 10 'da' → 0 cumpărători la lansare. Soluția: nu mai întreba despre ideea ta, întreabă despre viața lor. DE CE: complimentele te trimit cu încredere falsă într-o idee care nu rezolvă nimic real.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Cum afli adevărul</div>
+      <div class="slide-title">De ce complimentele te mint 🤥</div>
+      <div class="slide-subtitle">Când întrebi „Ți-ar plăcea ideea mea?", aproape oricine spune „da, super!"</div>
+    </div>
+    <div class="twocol">
+      <div class="lead-block">
+        <div class="lead-big">„Da, super idee!" <span class="hl">nu</span> e o validare.</div>
+        <div class="lead-body">Oamenii vor să fie politicoși. Te <b>laudă ca să nu te supere</b> — și pleci convins de o idee care nu rezolvă nimic real.</div>
+        <div class="lead-body">Soluția: nu mai întreba despre <b>ideea ta</b>. Întreabă despre <b>viața lor</b>.</div>
+      </div>
+      <div class="visual-pane" style="background:#FEF2F2;border-color:#FECACA">
+        <span style="font-size:64px">🤥</span>
+        <div style="font-size:19px;font-weight:600;color:#7F1D1D;line-height:1.5;text-align:center">Întrebi 10 oameni dacă le place ideea ta → <b>10 „da"</b>.<br>Lansezi → <b>0 cumpărători.</b></div>
+      </div>
+    </div>
+    <div class="slide-num">14 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 14 — PORT: Mom Test ghid 3 reguli + carte -->
+<section data-notes="4 min. Cele 3 reguli ale Mom Test, cu coperta cărții lui Rob Fitzpatrick ca ancoră. Regula 1: întreabă despre trecut concret ('Când ai avut ultima oară problema asta? Ce ai făcut?'), nu despre viitor ipotetic. Regula 2: nu pomeni ideea ta deloc. Regula 3: taci și ascultă — aurul vine în tăceri. DE CE: aceste 3 reguli transformă un interviu inutil într-unul care scoate adevărul. Recomandă cartea ca lectură scurtă și practică.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Ghid de întrebări · The Mom Test</div>
+      <div class="slide-title">Cum pui întrebări ca să afli adevărul</div>
+      <div class="slide-subtitle">Întrebi despre <b>viața lor</b>, nu despre ideea ta — și afli ce fac de fapt, nu ce zic că ar face.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:auto 1fr;gap:34px;flex:1;align-items:center">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:10px">
+        <div class="book-cover">
+          <div class="book-kicker">The book</div>
+          <div class="book-title">THE<br>MOM<br>TEST</div>
+          <span class="book-emoji">👩</span>
+          <div class="book-author">Rob Fitzpatrick</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="rules-grid" style="grid-template-columns:1fr">
+          <div class="rule-card" style="flex-direction:row;align-items:center;padding:16px 20px"><div class="rule-n">1</div><div><div class="rule-title">Întreabă despre trecut concret</div><div class="rule-desc">„Când ai avut <b>ultima oară</b> problema asta? Ce ai făcut?" — nu „Ai folosi…?"</div></div></div>
+          <div class="rule-card" style="flex-direction:row;align-items:center;padding:16px 20px"><div class="rule-n">2</div><div><div class="rule-title">Nu pomeni ideea ta deloc</div><div class="rule-desc">Vorbește despre <b>viața lor</b>. Dacă afli ideea, afli doar complimente.</div></div></div>
+          <div class="rule-card" style="flex-direction:row;align-items:center;padding:16px 20px"><div class="rule-n">3</div><div><div class="rule-title">Taci și ascultă</div><div class="rule-desc">Ascultă <b>mai mult decât vorbești.</b> Aurul vine în tăcerile pe care le lași.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">15 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 15 — PORT: Mom Test întrebări bune vs rele -->
+<section data-notes="4 min. Aceeași curiozitate, formulată diferit. Stânga (despre idee/viitor) primești complimente; dreapta (despre trecut concret) primești adevărul. Parcurge 1-2 perechi cu sala: citește o întrebare rea, întreabă 'de ce nu merge?', apoi citește varianta bună. DE CE: e diferența practică dintre un interviu care îți confirmă iluzia și unul care îți dă fapte reale. Acest slide e referința pe care cursanții o pun pe perete când fac interviuri.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">The Mom Test · Întrebări</div>
+      <div class="slide-title">Întrebări greșite vs. întrebări bune</div>
+      <div class="slide-subtitle">Aceeași curiozitate, formulată diferit. Stânga primești complimente, dreapta primești <b>adevărul</b>.</div>
+    </div>
+    <div class="qcompare">
+      <div class="qcol bad">
+        <div class="qcol-head bad">❌ Greșit — întrebi despre idee / viitor</div>
+        <div class="qrow">„Ți-ar plăcea o app care te ajută cu asta?"</div>
+        <div class="qrow">„Ai cumpăra produsul ăsta?"</div>
+        <div class="qrow">„Cât ai plăti pentru asta?"</div>
+        <div class="qrow">„Nu crezi că e o idee bună?"</div>
+        <div class="qrow">„Ai folosi o astfel de soluție?"</div>
+        <div class="qcol-note bad">→ Primești „da, super!" — păreri politicoase, nu fapte.</div>
+      </div>
+      <div class="qcol good">
+        <div class="qcol-head good">✅ Bine — întrebi despre trecut concret</div>
+        <div class="qrow">„Când ai avut ultima oară problema asta? Cum a fost?"</div>
+        <div class="qrow">„Ce ai cumpărat ultima dată ca să rezolvi asta?"</div>
+        <div class="qrow">„Cât ai cheltuit până acum pe problema asta?"</div>
+        <div class="qrow">„Povestește-mi ultima dată când ți-a fost greu să…"</div>
+        <div class="qrow">„Ce faci acum când apare problema asta?"</div>
+        <div class="qcol-note good">→ Afli ce face omul de fapt — fapte reale, nu păreri.</div>
+      </div>
+    </div>
+    <div class="slide-num">16 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 16 — PORT: Exercițiu interviu în perechi -->
+<section data-notes="15 min. Role-play live, nu teorie. Participanții lucrează în perechi: unul e cercetător, celălalt clientul. Cercetătorul pune 3-5 întrebări despre trecut concret, fără să-și menționeze ideea. Apoi schimbă rolurile și debrief. Cele 3 reguli rămân vizibile pe perete (din slide-ul anterior). Semnul de succes: ai aflat o problemă reală fără ca celălalt să ghicească vreo idee. Circulă prin sală, ascultă, corectează blând întrebările de viitor în întrebări de trecut.">
+  <div class="slide practice">
+    <div class="slide-header">
+      <div class="slide-tag">🛠️ Exercițiu · În perechi</div>
+      <div class="slide-title">Interviu în perechi 🎭</div>
+      <div class="slide-subtitle">Pe perechi: fiecare pune <b>3–5 întrebări</b> celuilalt despre o problemă reală, aplicând regulile Mom Test.</div>
+    </div>
+    <div class="practice-layout">
+      <div class="practice-steps">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:4px"><span class="mode-pill">🎭 În perechi</span><span class="timer-pill">⏱ 15 min</span></div>
+        <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Unul e <b>„cercetător"</b>, celălalt e <b>„clientul"</b> (omul cu problema)</div></div>
+        <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Cercetătorul pune <b>3–5 întrebări despre trecut concret</b> — fără să-și menționeze vreo idee</div></div>
+        <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Schimbați rolurile. Apoi <b>debrief:</b> cine a aflat ceva adevărat?</div></div>
+      </div>
+      <div class="practice-pane">
+        <div class="practice-prompt"><span class="lbl">Cele 3 reguli pe perete</span>1. Trecut concret · 2. Nu pomeni ideea · 3. Taci și ascultă</div>
+        <div class="practice-prompt" style="border-color:var(--primary)"><span class="lbl" style="color:var(--primary)">Semn de succes ✅</span>Ai aflat o problemă reală <b>fără</b> ca celălalt să ghicească vreo idee — ai reușit!</div>
+      </div>
+    </div>
+    <div class="slide-num">17 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 16b — Van Westendorp PSM: 4 întrebări -->
+<section data-notes="4 min. Price Sensitivity Meter (van Westendorp, 1976) = 4 întrebări simple care îți arată range-ul de preț acceptat de clienți. Se folosește DUPĂ ce ai validat că problema e reală — clienții trebuie să cunoască conceptul de produs. Pui 4 întrebări unui grup de 20-50 potențiali clienți (Google Forms, 10 minute). Urmează un slide cu cum interpretezi graficul.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Tehnica de prețuri · Van Westendorp PSM</div>
+      <div class="slide-title">Cât ar plăti oamenii? 4 întrebări care îți arată range-ul</div>
+      <div class="slide-sub">Sondaj de 20-50 persoane → 4 cifre → range-ul acceptabil de preț</div>
+    </div>
+    <div class="cards-2" style="flex:1;">
+      <div class="card" style="background:#FEF2F2;border-left:4px solid #DC2626;">
+        <div style="font-size:13px;font-weight:700;color:#DC2626;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">1 · Prea ieftin</div>
+        <div style="font-size:16px;color:var(--foreground);line-height:1.55;">„La ce preț ai considera produsul <b>PREA IEFTIN</b> și te-ai îndoi de calitatea lui?"</div>
+      </div>
+      <div class="card" style="background:#F0FDF4;border-left:4px solid #16A34A;">
+        <div style="font-size:13px;font-weight:700;color:#16A34A;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">2 · Chilipir</div>
+        <div style="font-size:16px;color:var(--foreground);line-height:1.55;">„La ce preț ai considera produsul un <b>CHILIPIR</b> — ieftin, dar de calitate?"</div>
+      </div>
+      <div class="card" style="background:#FFFBEB;border-left:4px solid #D97706;">
+        <div style="font-size:13px;font-weight:700;color:#B45309;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">3 · Scump, dar acceptabil</div>
+        <div style="font-size:16px;color:var(--foreground);line-height:1.55;">„La ce preț ai considera produsul <b>SCUMP</b>, dar tot l-ai cumpăra?"</div>
+      </div>
+      <div class="card" style="background:#F5F3FF;border-left:4px solid #7C3AED;">
+        <div style="font-size:13px;font-weight:700;color:#7C3AED;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px;">4 · Prea scump</div>
+        <div style="font-size:16px;color:var(--foreground);line-height:1.55;">„La ce preț ai considera produsul <b>PREA SCUMP</b> și nu l-ai mai cumpăra?"</div>
+      </div>
+    </div>
+    <div class="slide-num">18 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 16c — Van Westendorp: grafic PSM cu axe -->
+<section data-notes="3 min. Graficul PSM: cele 4 curbe se intersectează creând zone clare. PMC (limita inferioară) = unde 'Prea ieftin' taie 'Scump acceptabil'. PME (limita superioară) = unde 'Chilipir' taie 'Prea scump'. OPP = intersecția 'Prea ieftin' cu 'Prea scump' — prețul cu cea mai mică rezistență. Zona verde = Acceptable Price Range = unde trebuie să fii. Practic: Google Forms cu 4 întrebări → 20-50 răspunsuri → Excel → grafic. Durează 2-3 ore.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Van Westendorp PSM · Grafic</div>
+      <div class="slide-title">Citești graficul după <span class="hl">intersecțiile curbelor</span></div>
+      <div class="slide-sub">Unde se taie cele 4 linii → îți dau limitele de preț și prețul optim</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr auto;gap:16px;flex:1;align-items:center;">
+      <!-- PSM Chart SVG -->
+      <div style="position:relative;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:14px 16px 20px 16px;">
+        <svg viewBox="0 0 580 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <!-- Shaded acceptable range zone -->
+          <rect x="196" y="12" width="196" height="206" fill="#D1FAE5" fill-opacity="0.5"/>
+          <!-- Grid lines -->
+          <line x1="55" y1="218" x2="565" y2="218" stroke="#CBD5E1" stroke-width="1"/>
+          <line x1="55" y1="12" x2="55" y2="218" stroke="#CBD5E1" stroke-width="1"/>
+          <line x1="55" y1="168" x2="565" y2="168" stroke="#E2E8F0" stroke-width="0.8" stroke-dasharray="4"/>
+          <line x1="55" y1="118" x2="565" y2="118" stroke="#E2E8F0" stroke-width="0.8" stroke-dasharray="4"/>
+          <line x1="55" y1="68" x2="565" y2="68" stroke="#E2E8F0" stroke-width="0.8" stroke-dasharray="4"/>
+          <!-- Y axis labels -->
+          <text x="48" y="22" text-anchor="end" font-size="10" fill="#94A3B8" font-family="Onest,sans-serif">100%</text>
+          <text x="48" y="72" text-anchor="end" font-size="10" fill="#94A3B8" font-family="Onest,sans-serif">75%</text>
+          <text x="48" y="122" text-anchor="end" font-size="10" fill="#94A3B8" font-family="Onest,sans-serif">50%</text>
+          <text x="48" y="172" text-anchor="end" font-size="10" fill="#94A3B8" font-family="Onest,sans-serif">25%</text>
+          <text x="48" y="222" text-anchor="end" font-size="10" fill="#94A3B8" font-family="Onest,sans-serif">0%</text>
+          <!-- X axis labels (price) -->
+          <text x="55" y="232" text-anchor="middle" font-size="10" fill="#94A3B8" font-family="Onest,sans-serif">50</text>
+          <text x="153" y="232" text-anchor="middle" font-size="10" fill="#94A3B8" font-family="Onest,sans-serif">150</text>
+          <text x="251" y="232" text-anchor="middle" font-size="10" fill="#94A3B8" font-family="Onest,sans-serif">250</text>
+          <text x="349" y="232" text-anchor="middle" font-size="10" fill="#94A3B8" font-family="Onest,sans-serif">350</text>
+          <text x="447" y="232" text-anchor="middle" font-size="10" fill="#94A3B8" font-family="Onest,sans-serif">450</text>
+          <text x="565" y="232" text-anchor="middle" font-size="10" fill="#94A3B8" font-family="Onest,sans-serif">lei</text>
+          <!-- Axis labels -->
+          <text x="16" y="120" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="Onest,sans-serif" transform="rotate(-90,16,120)">% respondenți</text>
+          <text x="310" y="244" text-anchor="middle" font-size="9" fill="#94A3B8" font-family="Onest,sans-serif">Prețul produsului</text>
+
+          <!-- CURVE 1: "Prea ieftin" (red) — decreasing sigmoid -->
+          <path d="M 60,16 C 90,17 130,25 170,62 C 210,100 250,155 310,188 C 360,210 420,218 565,220" fill="none" stroke="#DC2626" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- CURVE 2: "Prea scump" (purple) — increasing sigmoid -->
+          <path d="M 60,220 C 140,218 200,210 260,188 C 320,162 370,110 420,65 C 460,30 500,18 565,16" fill="none" stroke="#7C3AED" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- CURVE 3: "Chilipir" (green) — decreasing (cumulative from right end) -->
+          <path d="M 60,28 C 80,25 110,22 150,35 C 190,52 210,80 240,110 C 270,140 320,175 390,200 C 440,212 510,218 565,220" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- CURVE 4: "Scump acceptabil" (amber) — increasing (cumulative from left) -->
+          <path d="M 60,220 C 120,218 175,210 230,195 C 275,180 310,150 345,110 C 375,76 400,48 440,30 C 480,18 520,16 565,17" fill="none" stroke="#D97706" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- Intersection markers -->
+          <!-- PMC: Prea ieftin ∩ Scump acceptabil ≈ x=196, y=127 -->
+          <circle cx="196" cy="127" r="6" fill="white" stroke="#DC2626" stroke-width="2"/>
+          <circle cx="196" cy="127" r="3" fill="#DC2626"/>
+          <line x1="196" y1="127" x2="196" y2="218" stroke="#16A34A" stroke-width="1" stroke-dasharray="3"/>
+          <text x="192" y="212" text-anchor="middle" font-size="9" font-weight="700" fill="#16A34A" font-family="Onest,sans-serif">PMC</text>
+
+          <!-- OPP: Prea ieftin ∩ Prea scump ≈ x=316, y=145 -->
+          <circle cx="316" cy="145" r="7" fill="white" stroke="#2D52D4" stroke-width="2.5"/>
+          <circle cx="316" cy="145" r="3.5" fill="#2D52D4"/>
+          <line x1="316" y1="145" x2="316" y2="218" stroke="#2D52D4" stroke-width="1.5" stroke-dasharray="3"/>
+          <text x="316" y="210" text-anchor="middle" font-size="9" font-weight="800" fill="#2D52D4" font-family="Onest,sans-serif">OPP</text>
+          <!-- OPP label above -->
+          <rect x="296" y="126" width="44" height="16" rx="3" fill="#2D52D4"/>
+          <text x="318" y="138" text-anchor="middle" font-size="9" font-weight="800" fill="white" font-family="Onest,sans-serif">OPTIM</text>
+
+          <!-- PME: Chilipir ∩ Prea scump ≈ x=392, y=130 -->
+          <circle cx="392" cy="130" r="6" fill="white" stroke="#7C3AED" stroke-width="2"/>
+          <circle cx="392" cy="130" r="3" fill="#7C3AED"/>
+          <line x1="392" y1="130" x2="392" y2="218" stroke="#DC2626" stroke-width="1" stroke-dasharray="3"/>
+          <text x="392" y="210" text-anchor="middle" font-size="9" font-weight="700" fill="#DC2626" font-family="Onest,sans-serif">PME</text>
+
+          <!-- Acceptable range label -->
+          <text x="294" y="28" text-anchor="middle" font-size="10" font-weight="700" fill="#15803D" font-family="Onest,sans-serif">✓ Zona acceptabilă</text>
+        </svg>
+      </div>
+      <!-- Legend + explanation -->
+      <div style="display:flex;flex-direction:column;gap:10px;width:185px;flex-shrink:0;">
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:24px;height:3px;background:#DC2626;border-radius:2px;flex-shrink:0;"></div><span style="font-size:12px;color:var(--foreground);">„Prea ieftin" ↘</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:24px;height:3px;background:#16A34A;border-radius:2px;flex-shrink:0;"></div><span style="font-size:12px;color:var(--foreground);">„Chilipir" ↘</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:24px;height:3px;background:#D97706;border-radius:2px;flex-shrink:0;"></div><span style="font-size:12px;color:var(--foreground);">„Scump, ok" ↗</span></div>
+          <div style="display:flex;align-items:center;gap:8px;"><div style="width:24px;height:3px;background:#7C3AED;border-radius:2px;flex-shrink:0;"></div><span style="font-size:12px;color:var(--foreground);">„Prea scump" ↗</span></div>
+        </div>
+        <div style="background:var(--primary-ultra-light);border:1px solid var(--primary);border-radius:8px;padding:10px 12px;">
+          <div style="font-size:11px;font-weight:800;color:var(--primary);margin-bottom:4px;">🎯 OPP — Prețul Optim</div>
+          <div style="font-size:12px;color:var(--foreground);line-height:1.4;">Intersecția ↘ „Prea ieftin" cu ↗ „Prea scump" — cel mai mic punct de rezistență</div>
+        </div>
+        <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:10px 12px;">
+          <div style="font-size:11px;font-weight:800;color:#16A34A;margin-bottom:4px;">✅ Range acceptabil</div>
+          <div style="font-size:12px;color:var(--foreground);line-height:1.4;">Zona verde între PMC și PME — prețurile pe care le acceptă piața</div>
+        </div>
+        <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:10px 12px;">
+          <div style="font-size:11px;font-weight:800;color:#D97706;margin-bottom:4px;">📋 Cum faci</div>
+          <div style="font-size:12px;color:var(--foreground);line-height:1.4;">Google Forms → 20-50 răspunsuri → Excel → grafic în 2 ore</div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">19 / 38</div>
+  </div>
+</section>
+
+<!-- ============ BLOC D — RESEARCH (17-18) ============ -->
+
+<!-- SLIDE 17 — PORT: Deep Research AI -->
+<section data-notes="4 min. Deep Research cu AI = super-putere pentru research de piață. Îi dai AI-ului o problemă, el citește zeci de surse și îți face un raport: cât e de mare piața, cine o rezolvă deja, ce nișă e liberă. Treci prin flow-ul de 3 noduri. La 'Disponibil în' arăți tool-urile cu logo-uri reale (ChatGPT, Gemini, Perplexity). DE CE: o problemă poate fi reală dar prea mică — research-ul îți spune dacă merită. Demonstrează live dacă ai acces.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Blocul D · Super-putere · AI</div>
+      <div class="slide-title">Deep Research — cercetezi o piață în 5 minute 🤖</div>
+      <div class="slide-subtitle">Îi dai AI-ului o problemă, el citește <b>zeci de surse</b> și îți face un raport: cât e de mare, cine o mai rezolvă.</div>
+    </div>
+    <div class="dr-flow">
+      <div class="dr-node start"><span class="dr-ico">🎯</span><div class="dr-node-title">Tema ta</div><div class="dr-node-desc">„Cât de mare e problema X? Cine o rezolvă deja în Moldova?"</div></div>
+      <div class="dr-arrow">→</div>
+      <div class="dr-node mid"><span class="dr-ico">🔎</span><div class="dr-node-title">AI caută</div><div class="dr-node-desc">Citește zeci–sute de surse online în câteva minute</div></div>
+      <div class="dr-arrow">→</div>
+      <div class="dr-node end"><span class="dr-ico">📊</span><div class="dr-node-title">Raport cu surse</div><div class="dr-node-desc">Cât valorează piața, ce concurenți există, ce nișă e liberă</div></div>
+    </div>
+    <div class="twocol" style="flex:none;align-items:stretch">
+      <div class="visual-pane" style="background:var(--bg);align-items:flex-start;text-align:left;gap:10px;padding:22px 26px">
+        <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--muted)">La ce te ajută</div>
+        <div style="font-size:16px;color:var(--foreground);line-height:1.55">✓ Afli <b>cât de mare</b> e problema<br>✓ Vezi <b>cine o mai rezolvă</b> (concurența)<br>✓ Descoperi <b>nișa liberă</b> — oceanul albastru</div>
+      </div>
+      <div class="visual-pane" style="background:var(--primary-ultra-light);border-color:#C7D2FE;gap:12px">
+        <div class="dr-tools"><span class="lbl">Disponibil în:</span>
+          <span class="brand-tile" style="font-size:14px;padding:6px 14px"><span class="bt-logo" style="width:20px;height:20px"><svg viewBox="0 0 24 24" fill="#10A37F"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg></span>ChatGPT</span>
+          <span class="brand-tile" style="font-size:14px;padding:6px 14px"><span class="bt-logo" style="width:20px;height:20px"><svg viewBox="0 0 24 24" fill="#4285F4"><path d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.96 4.68-.93 2.19-2.55 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.96 2.19.93 3.81 2.55t2.55 3.81"/></svg></span>Gemini</span>
+          <span class="brand-tile" style="font-size:14px;padding:6px 14px"><span class="bt-logo" style="width:20px;height:20px;font-size:16px">🔍</span>Perplexity</span>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">20 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 18 — PORT: Unde cauți cifrele (src-grid + SiriusB2B) -->
+<section data-notes="4 min. Ca să știi dacă o problemă merită, afli cât valorează piața și cine sunt jucătorii reali. Treci prin cele 3 surse: directoare de companii, statistici online &amp; Google, prieteni &amp; familie din domeniu. Feature-ul SiriusB2B (siriusb2b.md) e directorul B2B din Moldova — util pentru research local. DE CE: o problemă poate fi reală dar prea mică; research-ul îți spune dacă merită construit o afacere pe ea.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Research · Cifrele reale</div>
+      <div class="slide-title">Unde cauți cât valorează o piață 💰</div>
+      <div class="slide-subtitle">Ca să știi dacă o problemă merită — afli cât valorează piața și cine sunt jucătorii reali.</div>
+    </div>
+    <div class="src-grid">
+      <div class="src-list">
+        <div class="src-item"><span class="src-ico">🗂️</span><div><div class="src-name">Directoare de companii</div><div class="src-desc">Liste de firme reale, pe domenii. Vezi cine activează deja în nișa ta.</div></div></div>
+        <div class="src-item"><span class="src-ico">🌐</span><div><div class="src-name">Statistici online &amp; Google</div><div class="src-desc">Caută „cât valorează piața de [X]" — vei găsi cifre și rapoarte.</div></div></div>
+        <div class="src-item"><span class="src-ico">👨‍👩‍👧</span><div><div class="src-name">Prieteni &amp; familie</div><div class="src-desc">Întrebi oameni care lucrează în domeniu — ei știu cifrele din interior.</div></div></div>
+      </div>
+      <div class="src-feature">
+        <div class="sf-lbl">Pentru Moldova 🇲🇩</div>
+        <div class="sf-name">SiriusB2B</div>
+        <div class="sf-url">siriusb2b.md</div>
+        <div class="sf-desc">Un director B2B din Moldova: cauți companii pe domenii, vezi cine activează deja, descoperi concurenții și nișele libere de la noi.</div>
+      </div>
+    </div>
+    <div class="quote-block"><strong>De ce contează:</strong> o problemă poate fi reală, dar prea mică. Research-ul îți spune dacă merită să construiești o afacere pe ea. 📈</div>
+    <div class="slide-num">21 / 38</div>
+  </div>
+</section>
+
+<!-- ============ BLOC E — EXERCIȚIU (19) ============ -->
+
+<!-- SLIDE 19 — PRACTICĂ Exercițiu 1 -->
+<section data-notes="10 min exercițiu + 5 min debriefing. Circulă prin sală în timp ce participanții scriu. Ajută pe cei blocați cu întrebări: 'Ce te-a enervat azi dimineață?' / 'Ce ai vrut să existe și nu există?' / 'Pentru ce ai plăti mâine dacă ar apărea?'. Debriefing: cere 3-4 voluntari să prezinte. Întreabă sala: trece prin cele 3 criterii? Validează cu întrebări, nu judeca. Acesta e primul caz din 'Foaia de drum a afacerii' — îl ducem prin tot modulul.">
+  <div class="slide practice">
+    <div class="slide-header">
+      <div class="slide-tag">Blocul E · Exercițiu practic</div>
+      <div class="slide-title">Găsește 3 probleme reale</div>
+    </div>
+    <div class="pills-row">
+      <div class="timer-pill">⏱ 10 minute</div>
+      <div class="mode-pill">✍️ Individual</div>
+    </div>
+    <div class="steps-list" style="flex:0; gap:8px;">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-txt">Gândește-te la <b>3 lucruri care frustrează</b> în viața de zi cu zi (la muncă, acasă, în oraș)</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-txt">Pentru fiecare problemă, scrie <b>CE anume frustrează</b> (nu soluția!)</div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-txt">Estimează: <b>câți oameni crezi că au aceeași problemă?</b></div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-txt">Verifică cu cele <b>3 criterii:</b> mulți oameni? frecvent? ar plăti?</div>
+      </div>
+    </div>
+    <div class="ex-fill-5">
+      <div class="ex-fill-box">
+        <div class="ex-fill-label">Problema 1</div>
+        <div class="ex-fill-lines">
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+        </div>
+      </div>
+      <div class="ex-fill-box">
+        <div class="ex-fill-label">Problema 2</div>
+        <div class="ex-fill-lines">
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+        </div>
+      </div>
+      <div class="ex-fill-box">
+        <div class="ex-fill-label">Problema 3</div>
+        <div class="ex-fill-lines">
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+        </div>
+      </div>
+    </div>
+  
+  <div class="slide-num">22 / 38</div>
+</div>
+</section>
+
+<!-- ============ BLOC F — PROFILUL DE CLIENT (20-26) ============ -->
+
+<!-- SLIDE 20 — TRANZIȚIE BLOC -->
+<section data-notes="1 min. Slide de tranziție. Zici simplu: 'Știm ce problemă rezolvăm. Acum trebuie să știm exact cine o are. Dacă spunem că clientul e toată lumea — nu vom vinde nimănui.' Treci imediat la slide următor.">
+  <div class="slide" style="justify-content: center;">
+    <div class="inter-trans">
+      <div class="it-pre">Am identificat problema. Acum urmează:</div>
+      <div class="it-big">Dar cine anume o are?</div>
+      <div class="it-sub">Avatarul de client e persoana specifică cu problema specifică — nu „toată lumea".</div>
+    </div>
+  
+  <div class="slide-num">23 / 38</div>
+</div>
+</section>
+
+<!-- SLIDE 21 — VISUAL HERO profilul de client -->
+<section data-notes="3 min. Întrebare pentru sală: 'Cine e clientul unui salon de frumusețe?' Răspunsul tipic: femei. Continuă: 'Ce vârstă? Ce venituri? Din ce cartier? Ce preferințe?' Ajuți sala să vadă că 'femei' e prea vag. Un profil bun e o persoană concretă, cu nume, vârstă, ocupație și frustrare specifică. Panoul ține un mesaj-cheie; exemplul detaliat vine pe slide-urile următoare. Citatul Seth Godin pune punctul.">
+  <div class="slide" style="padding:0;">
+    <div class="vhero" style="background:linear-gradient(150deg,#1E3A8A,#3B2F8F);">
+      <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.85;">Avatarul de client</div>
+      <span class="vhero-emoji">🎯</span>
+      <div class="vhero-cap">Profilul de client nu e „toată lumea" — e o persoană specifică</div>
+      <div class="vhero-sub">„Dacă produsul tău e pentru toată lumea, nu e pentru nimeni." — Seth Godin</div>
+    </div>
+  
+    <div class="slide-num" style="color:rgba(255,255,255,0.45)">24 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 22 — TEORIE Checklist 5 dimensiuni -->
+<section data-notes="4 min. Cele 5 dimensiuni formează un portret complet. Sublinezi că dimensiunile 3 și 4 (frustrare + aspirații) sunt cele mai importante pentru marketing și vânzări. Un antreprenor care știe ce frustrează clientul poate scrie un mesaj care îl atinge direct. Exercițiu rapid oral: pentru o cafenea din Chișinău — cine e clientul? Trece cu sala prin cele 5 dimensiuni. DE CE: ca să nu vorbești cu 'toată lumea' (= nimeni).">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Ce este Avatarul de client?</div>
+      <div class="slide-title">5 dimensiuni ale unui Avatar complet</div>
+      <div class="slide-sub">Răspunde la aceste 5 întrebări și ai profilul</div>
+    </div>
+    <div class="clist" style="flex:1; justify-content:center; display:flex; flex-direction:column;">
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div class="cl-txt"><b>Cine e</b> — vârstă, ocupație, locație, nivel de venituri</div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div class="cl-txt"><b>Ce face zilnic</b> — rutina, obiceiurile, cu ce petrece timp</div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div class="cl-txt"><b>Ce îl frustrează</b> — problemele, fricile, ce îl ține noaptea treaz</div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div class="cl-txt"><b>Ce vrea să realizeze</b> — obiectivele, aspirațiile, cum vrea să se simtă</div>
+      </div>
+      <div class="cl-item">
+        <div class="cl-box"></div>
+        <div class="cl-txt"><b>Unde caută soluții</b> — Google, Facebook, recomandări, Instagram</div>
+      </div>
+    </div>
+    <div class="note-italic">Avatarul de client nu e doar demografic — e comportamental și emoțional.</div>
+  
+  <div class="slide-num">25 / 38</div>
+</div>
+</section>
+
+<!-- SLIDE 23 — EXEMPLU Avatar Complet — Rezervo -->
+<section data-notes="5 min. Avatarul Andreei e un exemplu bun pentru că e specific și emoțional. Quote-ul din dreapta e ceea ce auzi într-un interviu de client real. Pune întrebarea: 'Ce problemă rezolvăm dacă construim Rezervo pentru Andreea?' Răspunsul: nu haosul de programări — ci stresul și pierderea de timp. Diferența e importantă pentru marketing. Leagă de exercițiul de CP care urmează.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Exemplu complet</div>
+      <div class="slide-title">Avatarul de client — Rezervo</div>
+      <div class="slide-sub">App de programări pentru saloane de frumusețe</div>
+    </div>
+    <div class="cp-grid">
+      <div class="cp-card">
+        <div class="cp-id-row">
+          <div class="cp-id-ico">💇‍♀️</div>
+          <div>
+            <div class="cp-id-name">Andreea</div>
+            <div class="cp-id-sub">Proprietar salon, 34 ani, Chișinău</div>
+          </div>
+        </div>
+        <div class="cp-row">
+          <div class="cp-row-ico">📅</div>
+          <div class="cp-row-txt"><b>Zilnic:</b> Gestionează 3-4 angajate, răspunde la 40+ mesaje WhatsApp, face programări manual în agendă</div>
+        </div>
+        <div class="cp-row">
+          <div class="cp-row-ico">😤</div>
+          <div class="cp-row-txt"><b>Frustrare:</b> Clienți care nu se prezintă, programări duble, haos total în agendă, pierde ore din zi</div>
+        </div>
+        <div class="cp-row">
+          <div class="cp-row-ico">🎯</div>
+          <div class="cp-row-txt"><b>Vrea:</b> Mai multă ordine, mai puțin stres, venituri previzibile, timp liber la weekend</div>
+        </div>
+        <div class="cp-row">
+          <div class="cp-row-ico">🔍</div>
+          <div class="cp-row-txt"><b>Caută soluții:</b> Grupuri de Facebook pentru patroni saloane, recomandări de la colege, tutoriale business pe YouTube</div>
+        </div>
+      </div>
+      <div class="cp-quote">
+        „Știi ce e cel mai greu? Să ai 5 mesaje pe WhatsApp în același timp, să răspunzi la telefon și să ai clientă în scaun. Îmi pierd mintea. Dacă ar exista ceva care să facă asta automat…"
+        <div class="cp-quote-attr">— Andreea, 34 ani, proprietar salon Chișinău</div>
+      </div>
+    </div>
+  
+  <div class="slide-num">26 / 38</div>
+</div>
+</section>
+
+<!-- SLIDE 24 — TEORIE Maslow -->
+<section data-notes="5 min. Piramida lui Maslow e un framework puternic pentru a înțelege motivația de cumpărare. Exemplu practic: de ce cumpără oamenii iPhone? Nu pentru că e cel mai bun telefon tehnic (nevoi de bază) — ci pentru statut și apartenență (nivelele 4 și 3). Întrebare pentru sală: 'La ce nivel din piramidă se află afacerea sau ideea de lucru?' DE CE: ca să știi ce nevoie emoțională satisfaci, nu doar ce funcție vinzi.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">De ce cumpărăm?</div>
+      <div class="slide-title">Piramida lui Maslow aplicată la afaceri</div>
+      <div class="slide-sub">Orice afacere de succes satisface un nivel din piramidă</div>
+    </div>
+    <div class="maslow-grid">
+      <div class="pyramid">
+        <div class="pyr-row l5">Realizare personală</div>
+        <div class="pyr-row l4">Stimă &amp; Statut</div>
+        <div class="pyr-row l3">Apartenența la grup</div>
+        <div class="pyr-row l2">Siguranță &amp; Stabilitate</div>
+        <div class="pyr-row l1">Nevoi de bază</div>
+      </div>
+      <div class="maslow-side">
+        <div class="maslow-row">
+          <div class="maslow-dot" style="background:#F59E0B;"></div>
+          <div><b>Nevoi de bază</b> — mâncare, apă, somn, transport. Ex: livrare mâncare, taxi, farmacie</div>
+        </div>
+        <div class="maslow-row">
+          <div class="maslow-dot" style="background:#16A34A;"></div>
+          <div><b>Siguranță &amp; Stabilitate</b> — sănătate, venituri, asigurări. Ex: asigurări, contabilitate, economii</div>
+        </div>
+        <div class="maslow-row">
+          <div class="maslow-dot" style="background:#0EA5E9;"></div>
+          <div><b>Apartenența la grup</b> — familie, prieteni, comunitate. Ex: cluburi, rețele sociale, petreceri</div>
+        </div>
+        <div class="maslow-row">
+          <div class="maslow-dot" style="background:#2D52D4;"></div>
+          <div><b>Stimă &amp; Statut</b> — recunoaștere, imagine, succes. Ex: BMW, haine brand, restaurante premium</div>
+        </div>
+        <div class="maslow-row">
+          <div class="maslow-dot" style="background:#7C3AED;"></div>
+          <div><b>Realizare personală</b> — sens, scop, creativitate. Ex: cursuri, coaching, artă, voluntariat</div>
+        </div>
+      </div>
+    </div>
+  
+  <div class="slide-num">27 / 38</div>
+</div>
+</section>
+
+<!-- SLIDE 25 — VISUAL HERO o versiune mai bună a lor -->
+<section data-notes="3 min. Slide emoțional. Exemplu: omul care merge la salon nu cumpără o tunsoare — cumpără încredere pentru întâlnirea de mâine. Cel care cumpără un BMW nu cumpără un motor — cumpără imaginea de om de succes. Dacă înțelegi ce cumpără clientul de fapt, poți vinde mult mai eficient. Citatul Simon Sinek consolidează ideea. Treci la slide-ul rațional vs emoțional.">
+  <div class="slide" style="padding:0;">
+    <div class="vhero" style="background:linear-gradient(150deg,#065F46,#0EA371);">
+      <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.85;">Motivația de cumpărare</div>
+      <span class="vhero-emoji">✨</span>
+      <div class="vhero-cap">Clienții cumpără o versiune mai bună a lor înșiși</div>
+      <div class="vhero-sub">Nu cumpără produse. Cumpără ce simt că devin când folosesc produsul. „Oamenii nu cumpără ceea ce faci — cumpără de ce o faci." — Simon Sinek</div>
+    </div>
+  
+    <div class="slide-num" style="color:rgba(255,255,255,0.45)">28 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 26 — TEORIE Split Rațional vs Emoțional -->
+<section data-notes="5 min. Una dintre lecțiile cele mai importante: 95% din deciziile de cumpărare sunt emoționale. Raționalul vine după, ca justificare. Implicație pentru antreprenori: mesajul de vânzare trebuie să atingă emoțiile, nu doar să listeze specificații. Exercițiu oral rapid: 'Gândiți-vă la ultima cumpărătură importantă. Ce v-a convins de fapt?' Lasă 2-3 răspunsuri. DE CE: ca să-și construiască cursanții un mesaj care vinde, nu o fișă tehnică.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Psihologia cumpărătorului</div>
+      <div class="slide-title">De ce cumpărăm cu adevărat?</div>
+      <div class="slide-sub">Avem 2 emisfere cerebrale — una decide, alta justifică</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:16px;flex:1;align-items:center;">
+      <!-- Left hemisphere — Rational -->
+      <div style="border:2px solid #2563EB;border-radius:14px;padding:18px 20px;background:#EFF6FF;display:flex;flex-direction:column;gap:10px;height:100%;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+          <div style="width:36px;height:36px;background:#2563EB;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🧠</div>
+          <div>
+            <div style="font-size:15px;font-weight:800;color:#1D4ED8;">Emisfera STÂNGĂ</div>
+            <div style="font-size:12px;color:#3B82F6;font-weight:600;">Rațional · Logic · Analitic</div>
+          </div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:#1D4ED8;text-transform:uppercase;letter-spacing:0.06em;">Ce credem că ne convinge</div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="padding:7px 12px;background:white;border-left:3px solid #2563EB;border-radius:4px;font-size:14px;">💰 Preț &amp; raport calitate-preț</div>
+          <div style="padding:7px 12px;background:white;border-left:3px solid #2563EB;border-radius:4px;font-size:14px;">⚙️ Funcționalitate &amp; specificații</div>
+          <div style="padding:7px 12px;background:white;border-left:3px solid #2563EB;border-radius:4px;font-size:14px;">🛡️ Garanție &amp; risc scăzut</div>
+          <div style="padding:7px 12px;background:white;border-left:3px solid #2563EB;border-radius:4px;font-size:14px;">📊 Comparații &amp; recenzii</div>
+        </div>
+        <div style="margin-top:auto;padding:8px 12px;background:#DBEAFE;border-radius:6px;font-size:13px;font-style:italic;color:#1D4ED8;">„E calitate și la un preț bun."</div>
+      </div>
+      <!-- Brain SVG center -->
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+        <svg width="90" height="120" viewBox="0 0 90 120" xmlns="http://www.w3.org/2000/svg">
+          <!-- Left hemisphere (blue) -->
+          <path d="M 45,15 C 20,15 8,30 8,50 C 8,72 18,88 30,96 C 36,100 42,102 45,102 L 45,15 Z" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
+          <!-- Right hemisphere (red) -->
+          <path d="M 45,15 C 70,15 82,30 82,50 C 82,72 72,88 60,96 C 54,100 48,102 45,102 L 45,15 Z" fill="#FEE2E2" stroke="#E11D48" stroke-width="2"/>
+          <!-- Center dividing line -->
+          <line x1="45" y1="12" x2="45" y2="104" stroke="#94A3B8" stroke-width="1.5" stroke-dasharray="4"/>
+          <!-- Labels -->
+          <text x="26" y="110" text-anchor="middle" font-size="9" font-weight="700" fill="#1D4ED8" font-family="Onest,sans-serif">STÂNGĂ</text>
+          <text x="64" y="110" text-anchor="middle" font-size="9" font-weight="700" fill="#BE123C" font-family="Onest,sans-serif">DREAPTĂ</text>
+          <!-- Wrinkle lines for brain look -->
+          <path d="M 22,40 C 26,36 30,38 28,44" fill="none" stroke="#93C5FD" stroke-width="1.2"/>
+          <path d="M 18,58 C 24,54 28,57 24,63" fill="none" stroke="#93C5FD" stroke-width="1.2"/>
+          <path d="M 25,72 C 30,68 34,71 30,76" fill="none" stroke="#93C5FD" stroke-width="1.2"/>
+          <path d="M 62,38 C 66,34 70,37 66,43" fill="none" stroke="#FECACA" stroke-width="1.2"/>
+          <path d="M 60,56 C 65,52 69,55 65,61" fill="none" stroke="#FECACA" stroke-width="1.2"/>
+          <path d="M 55,74 C 60,70 64,73 60,78" fill="none" stroke="#FECACA" stroke-width="1.2"/>
+        </svg>
+        <div style="background:#F1F5F9;border-radius:8px;padding:8px 12px;text-align:center;">
+          <div style="font-size:20px;font-weight:900;color:#DC2626;">95%</div>
+          <div style="font-size:10px;color:var(--muted);font-weight:600;line-height:1.3;">decizii<br>EMOȚIONALE</div>
+        </div>
+        <div style="font-size:10px;color:var(--muted);text-align:center;line-height:1.3;">justificate<br>rațional</div>
+      </div>
+      <!-- Right hemisphere — Emotional -->
+      <div style="border:2px solid #E11D48;border-radius:14px;padding:18px 20px;background:#FEF2F2;display:flex;flex-direction:column;gap:10px;height:100%;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+          <div style="width:36px;height:36px;background:#E11D48;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">❤️</div>
+          <div>
+            <div style="font-size:15px;font-weight:800;color:#BE123C;">Emisfera DREAPTĂ</div>
+            <div style="font-size:12px;color:#E11D48;font-weight:600;">Emoțional · Intuitiv · Social</div>
+          </div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:#BE123C;text-transform:uppercase;letter-spacing:0.06em;">Ce NE CONVINGE cu adevărat</div>
+        <div style="display:flex;flex-direction:column;gap:7px;">
+          <div style="padding:7px 12px;background:white;border-left:3px solid #E11D48;border-radius:4px;font-size:14px;">😨 Frică de a pierde (FOMO)</div>
+          <div style="padding:7px 12px;background:white;border-left:3px solid #E11D48;border-radius:4px;font-size:14px;">👑 Statut social &amp; identitate</div>
+          <div style="padding:7px 12px;background:white;border-left:3px solid #E11D48;border-radius:4px;font-size:14px;">🤝 Apartenența la un grup</div>
+          <div style="padding:7px 12px;background:white;border-left:3px solid #E11D48;border-radius:4px;font-size:14px;">✨ Aspirații &amp; versiunea mai bună</div>
+        </div>
+        <div style="margin-top:auto;padding:8px 12px;background:#FFE4E6;border-radius:6px;font-size:13px;font-style:italic;color:#BE123C;">„Mă simt cineva când îl port."</div>
+      </div>
+    </div>
+    <div class="note-box" style="margin:0;">
+      <strong>BMW:</strong> Rațional spunem „e calitate și durabilitate." Emoțional simțim „vreau să fiu văzut ca om de succes." Mesajul BMW nu vinde motoare — vinde <b>statul de conducere al unui om de succes</b>.
+    </div>
+  <div class="slide-num">29 / 38</div>
+</div>
+</section>
+
+<!-- ============ BLOC G — EXERCIȚIU Avatar (27) ============ -->
+
+<!-- SLIDE 27 — PRACTICĂ Exercițiu 2 -->
+<section data-notes="12 min exercițiu + 5 min debriefing. Circulă activ. Ajuți pe cei care scriu prea vag. Dacă cineva scrie 'oameni tineri' la Cine e? — îl întrebi: ce vârstă exact? angajat sau student? din ce oraș? cu ce transport vine? Debriefing: cere 2-3 voluntari să prezinte profilul. Sala pune întrebări: e suficient de specific? Știi unde îl găsești? Folosesc problema din Exercițiul 1.">
+  <div class="slide practice">
+    <div class="slide-header">
+      <div class="slide-tag">Blocul G · Exercițiu practic</div>
+      <div class="slide-title">Construiește Avatarul tău de client</div>
+      <div class="slide-sub">Alege problema identificată în Exercițiul 1 și completează:</div>
+    </div>
+    <div class="pills-row">
+      <div class="timer-pill">⏱ 12 minute</div>
+      <div class="mode-pill">✍️ Individual sau perechi</div>
+    </div>
+    <div class="ex-fill-5">
+      <div class="ex-fill-box">
+        <div class="ex-fill-label">Cine e?</div>
+        <div class="ex-fill-icon">👤</div>
+        <div class="ex-fill-lines">
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+        </div>
+        <div class="ex-fill-sub">vârstă, ocupație, locație</div>
+      </div>
+      <div class="ex-fill-box">
+        <div class="ex-fill-label">Ce face zilnic?</div>
+        <div class="ex-fill-icon">📅</div>
+        <div class="ex-fill-lines">
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+        </div>
+        <div class="ex-fill-sub">rutina, obiceiuri</div>
+      </div>
+      <div class="ex-fill-box">
+        <div class="ex-fill-label">Ce îl frustrează?</div>
+        <div class="ex-fill-icon">😤</div>
+        <div class="ex-fill-lines">
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+        </div>
+        <div class="ex-fill-sub">probleme, frici</div>
+      </div>
+      <div class="ex-fill-box">
+        <div class="ex-fill-label">Ce vrea?</div>
+        <div class="ex-fill-icon">🎯</div>
+        <div class="ex-fill-lines">
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+        </div>
+        <div class="ex-fill-sub">obiective, aspirații</div>
+      </div>
+      <div class="ex-fill-box">
+        <div class="ex-fill-label">Unde caută?</div>
+        <div class="ex-fill-icon">🔍</div>
+        <div class="ex-fill-lines">
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+          <div class="ex-fill-line"></div>
+        </div>
+        <div class="ex-fill-sub">Google, Facebook, etc.</div>
+      </div>
+    </div>
+  
+  <div class="slide-num">30 / 38</div>
+</div>
+</section>
+
+<!-- ============ BLOC H — 5 WHYS &amp; JTBD (28-32) ============ -->
+
+<!-- SLIDE 28 — TRANZIȚIE BLOC -->
+<section data-notes="1 min. Tranziție rapidă. Zici: 'Știm cine e clientul. Dar dacă rezolvăm simptomul și nu cauza, problema revine. Toyota a inventat o metodă simplă ca să ajungem la cauza rădăcină — se numește 5 Whys.' Treci direct.">
+  <div class="slide" style="justify-content: center;">
+    <div class="inter-trans">
+      <div class="it-pre">Știm cine are problema. Acum:</div>
+      <div class="it-big">De ce o are?</div>
+      <div class="it-sub">Metoda 5 Whys ne duce de la simptom la cauza rădăcină — locul unde o afacere poate face diferența reală.</div>
+    </div>
+  
+  <div class="slide-num">31 / 38</div>
+</div>
+</section>
+
+<!-- SLIDE 29 — PORT layout: 5 Whys why-ladder (exemplu salon) -->
+<section data-notes="6 min. Prezinți exemplul rând cu rând, nu tot odată. La fiecare 'De ce?' faci pauză și întrebi sala: 'Ce credeți că urmează?' Îi faci să ghicească. Când ajungi la cauza rădăcină, subliniezi: salonul care rezolvă simptomul va face promoții; salonul care rezolvă cauza va instrui coafezele și va crea un ritual de consultare. Diferența e enormă. DE CE: ca să rezolvi cauza, nu simptomul — acolo e valoarea reală.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Metoda 5 Whys</div>
+      <div class="slide-title">De la simptom la cauza rădăcină</div>
+      <div class="slide-subtitle">Pui întrebarea „De ce?" de 5 ori. De fiecare dată mergi mai adânc.</div>
+    </div>
+    <div class="why-ladder">
+      <div class="why-row">
+        <div class="why-q">Simptom</div>
+        <div class="why-txt"><b>Clienții nu se mai întorc la salon</b> după prima vizită</div>
+      </div>
+      <div class="why-row">
+        <div class="why-q">De ce? 1</div>
+        <div class="why-txt">Sunt nemulțumiți de experiența din salon</div>
+      </div>
+      <div class="why-row">
+        <div class="why-q">De ce? 2</div>
+        <div class="why-txt">Nu s-au simțit ascultați și înțeleși de coafeză</div>
+      </div>
+      <div class="why-row">
+        <div class="why-q">De ce? 3</div>
+        <div class="why-txt">Coafeza nu a întrebat ce vor și nu a explicat ce face</div>
+      </div>
+      <div class="why-row">
+        <div class="why-q">De ce? 4</div>
+        <div class="why-txt">Nu există niciun proces de consultare la începutul vizitei</div>
+      </div>
+      <div class="why-row final">
+        <div class="why-q final">🎯 Cauza</div>
+        <div class="why-txt"><b>Lipsa unui proces de onboarding al clientului</b> — nicio consultare, nicio așteptare setată</div>
+      </div>
+    </div>
+    <div class="slide-num">32 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 30 — VISUAL HERO 90% simptom -->
+<section data-notes="2 min. Slide de consolidare emoțională după teoria 5 Whys. Nu sta mult — treci la JTBD. Poți adăuga: 'Dacă un salon face promoții ca să aducă clienți înapoi, a rezolvat simptomul. Dacă introduce un ritual de consultare și antrenează echipa, a rezolvat cauza rădăcină. Care credeți că e mai rentabil pe termen lung?'">
+  <div class="slide" style="padding:0;">
+    <div class="vhero" style="background:linear-gradient(150deg,#7F1D1D,#B91C1C);">
+      <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.85;">Simptom vs cauză</div>
+      <div class="vhero-stat">90%</div>
+      <div class="vhero-cap">din afaceri rezolvă simptomul, nu cauza</div>
+      <div class="vhero-sub">Simptomul e vizibil. Cauza rădăcină e unde afacerea ta poate face diferența reală.</div>
+    </div>
+  
+    <div class="slide-num" style="color:rgba(255,255,255,0.45)">33 / 38</div>
+  </div>
+</section>
+
+<!-- SLIDE 31 — TEORIE JTBD -->
+<section data-notes="6 min. JTBD schimbă complet cum gândim despre produse. Christensen a dat exemplul celebru al milkshake-ului McDonald's: vânzările au crescut când au înțeles că oamenii îl 'angajau' dimineața ca tovarăș de drum lung la birou — nu erau înfometați, erau plictisiți în trafic. Exercițiu oral: 'Ce job angajezi când cumperi o cafea?' Lasă 2-3 răspunsuri. DE CE: ca să știi ce job angajează clientul, nu doar ce produs cumpără.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Jobs-to-be-Done (JTBD)</div>
+      <div class="slide-title">Oamenii angajează produse să facă un JOB</div>
+      <div class="slide-sub">Nu cumpărăm produse — angajăm produse să rezolve ceva pentru noi</div>
+    </div>
+    <div class="jtbd-intro">
+      Concept creat de <strong>Clayton Christensen.</strong> Oamenii „angajează" un produs sau serviciu când au un job de făcut și nu au altă soluție mai bună.
+    </div>
+    <div class="jtbd-grid">
+      <div class="jtbd-row">
+        <div class="jtbd-no">Omul cumpără o cafea dimineața</div>
+        <div class="jtbd-arrow">→</div>
+        <div class="jtbd-yes">Omul angajează cafeaua să-l ajute să se trezească și să se concentreze pentru o zi productivă</div>
+      </div>
+      <div class="jtbd-row">
+        <div class="jtbd-no">Clientul cumpără o cremă de față</div>
+        <div class="jtbd-arrow">→</div>
+        <div class="jtbd-yes">Angajează crema să-l facă să simtă că are grijă de el și că arată bine la 40 de ani</div>
+      </div>
+      <div class="jtbd-row">
+        <div class="jtbd-no">Restaurantul cumpără Rezervo</div>
+        <div class="jtbd-arrow">→</div>
+        <div class="jtbd-yes">Angajează Rezervo să elimine haosul și să transforme dezorganizarea în ordine și timp liber</div>
+      </div>
+    </div>
+  
+  <div class="slide-num">34 / 38</div>
+</div>
+</section>
+
+<!-- SLIDE 32 — EXEMPLU 5 Whys + JTBD pe FreshBox -->
+<section data-notes="5 min. Exemplul FreshBox combină un serviciu de livrare cu ambele frameworks. Subliniezi: 5 Whys a identificat cauza rădăcină (lipsă de opțiuni sănătoase rapide la birou). JTBD a identificat motivul emoțional real (nu e vorba de mâncare — e despre control și energie). Dacă FreshBox își construiește mesajul în jurul JTBD-ului, nu al ingredientelor — va vinde mult mai mult. Aceasta e diferența dintre un antreprenor tehnic și unul care înțelege clientul.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Exemplu complet</div>
+      <div class="slide-title">5 Whys + JTBD pe FreshBox</div>
+      <div class="slide-sub">Livrare de prânz sănătos pentru birouri</div>
+    </div>
+    <div class="cards-2">
+      <div class="card" style="background: #fff; border: 1px solid var(--border);">
+        <div style="font-size:18px; font-weight:800; color: var(--primary); margin-bottom:4px;">5 Whys — FreshBox</div>
+        <div class="mini-why">
+          <div class="mini-why-row">
+            <div class="mini-why-q">Simptom:</div>
+            <div class="mini-why-txt">Angajații mănâncă nesănătos sau stresant la prânz</div>
+          </div>
+          <div class="mini-why-row">
+            <div class="mini-why-q">De ce?</div>
+            <div class="mini-why-txt">Nu au timp să iasă sau restaurantele din jur sunt scumpe</div>
+          </div>
+          <div class="mini-why-row">
+            <div class="mini-why-q">De ce?</div>
+            <div class="mini-why-txt">Pauza de prânz e scurtă și imprevizibilă</div>
+          </div>
+          <div class="mini-why-row">
+            <div class="mini-why-q">De ce?</div>
+            <div class="mini-why-txt">Nu există o opțiune livrată rapid și sănătoasă la prețul unui prânz normal</div>
+          </div>
+          <div class="mini-why-row">
+            <div class="mini-why-q">De ce?</div>
+            <div class="mini-why-txt">Serviciile de catering sunt pentru evenimente, nu prânz individual zilnic</div>
+          </div>
+          <div class="mini-why-row final">
+            <div class="mini-why-q final">Cauza:</div>
+            <div class="mini-why-txt"><b>Lipsa unui serviciu de prânz sănătos, individual, livrat la birou în 30 de minute</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="jtbd-ex-card">
+        <div class="jtbd-job-title">JTBD — FreshBox</div>
+        <div class="jtbd-job-stmt">
+          „Angajez FreshBox să-mi facă prânzul mai simplu și mai bun — ca să am energie după-amiaza și să nu pierd 40 de minute la coadă. Fără să mă gândesc ce mănânc și fără să mă simt vinovat că am mâncat prost."
+        </div>
+        <div class="tag-pills">
+          <div class="tag-pill">⏱ Timp economisit</div>
+          <div class="tag-pill">🥗 Fără vinovăție</div>
+          <div class="tag-pill">⚡ Energie după-amiaza</div>
+        </div>
+      </div>
+    </div>
+  
+  <div class="slide-num">35 / 38</div>
+</div>
+</section>
+
+<!-- ============ BLOC I — EXERCIȚIU + REGULĂ (33-35) ============ -->
+
+<!-- SLIDE 33 — PRACTICĂ Exercițiu 3 -->
+<section data-notes="8 min exercițiu + 5 min debriefing. E normal ca unii participanți să se blocheze la al 3-lea 'De ce?'. Ajuți cu: 'De ce credeți că se întâmplă asta?' sau 'Ce ar spune un client dacă l-ai întreba?'. Dacă nu ajung la nivel 5, e ok — și 3-4 niveluri adânc e mai bine decât simptomul. Debriefing: 2-3 voluntari prezintă cauza rădăcină. Sala validează: e cauza reală sau tot un simptom? Folosesc problema din Exercițiul 1.">
+  <div class="slide practice">
+    <div class="slide-header">
+      <div class="slide-tag">Blocul I · Exercițiu practic</div>
+      <div class="slide-title">Aplică 5 Whys pe problema ta</div>
+      <div class="slide-sub">Alege problema din Exercițiul 1 și coboară până la cauza rădăcină:</div>
+    </div>
+    <div class="pills-row">
+      <div class="timer-pill">⏱ 8 minute</div>
+      <div class="mode-pill">✍️ Individual</div>
+    </div>
+    <div class="why-fill-grid">
+      <div class="why-fill-row">
+        <div class="why-fill-q">Simptom:</div>
+        <div class="why-fill-line"></div>
+      </div>
+      <div class="why-fill-row">
+        <div class="why-fill-q">De ce? (1)</div>
+        <div class="why-fill-line"></div>
+      </div>
+      <div class="why-fill-row">
+        <div class="why-fill-q">De ce? (2)</div>
+        <div class="why-fill-line"></div>
+      </div>
+      <div class="why-fill-row">
+        <div class="why-fill-q">De ce? (3)</div>
+        <div class="why-fill-line"></div>
+      </div>
+      <div class="why-fill-row">
+        <div class="why-fill-q">De ce? (4)</div>
+        <div class="why-fill-line"></div>
+      </div>
+      <div class="why-fill-row final-row">
+        <div class="why-fill-q final">Cauza rădăcină ✓</div>
+        <div class="why-fill-line"></div>
+      </div>
+    </div>
+    <div class="jtbd-formula">
+      Formulează și JTBD-ul tău: <em>Clientul meu angajează __________ să __________ atunci când __________, fără să __________.</em>
+    </div>
+  
+  <div class="slide-num">36 / 38</div>
+</div>
+</section>
+
+<!-- SLIDE 34 — REGULĂ + CHECKLIST -->
+<section data-notes="5 min. Slide important — nu trece repede. Citești principiul cu voce tare, lent. Dai 30 de secunde de tăcere. Apoi treceți prin checklist: 'Cine poate bifa toate 4?' Dacă cineva nu poate bifa toate — e normal, Modul 1 e primul pas. Modulele următoare vor adăuga claritate. Dacă nu bifezi primele 2 — întoarce-te la exercițiu înainte de a merge mai departe. Acesta e criteriul de trecere spre Modul 2.">
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Regula Modulului 1</div>
+      <div class="slide-title">Înainte să treci mai departe</div>
+    </div>
+    <div class="rule-grid">
+      <div class="rule-pane dark">
+        <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; opacity:0.6;">Principiul fundamental</div>
+        <div class="rule-quote">
+          „Nicio afacere nu pornește dintr-un produs. Pornește dintr-o durere pe care cineva o simte și e dispus să plătească s-o facă să dispară."
+        </div>
+        <div style="font-size:13px; opacity:0.65;">— Modul 1, ToT Antreprenoriat</div>
+      </div>
+      <div class="check-pane">
+        <div class="check-title">✓ Checklist înainte de Modul 2</div>
+        <div class="clist">
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div class="cl-txt">Am o problemă clară, validată de cel puțin <b>5 oameni reali</b></div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div class="cl-txt">Știu exact <b>cine are problema</b> (vârstă, ocupație, comportament specific)</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div class="cl-txt">Am identificat <b>cauza rădăcină</b> cu metoda 5 Whys</div>
+          </div>
+          <div class="cl-item">
+            <div class="cl-box"></div>
+            <div class="cl-txt">Știu ce <b>job angajează clientul</b> când cumpără soluția</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  <div class="slide-num">37 / 38</div>
+</div>
+</section>
+
+<!-- SLIDE 35 — TRANZIȚIE SPRE MODUL 2 -->
+<section data-notes="1 min. Slide de final. Zici: 'Am câștigat dreptul să construim un mesaj. Știm problema. Știm clientul. Știm de ce cumpără. Modulul 2 ne va arăta cum punem toate astea în 2 propoziții care vând.' Pauză de 10 minute înainte de Modul 2." class="slide-transition" style="height:100%;">
+  <div class="trans-content">
+    <div class="trans-num">Urmează → Modul 2</div>
+    <div class="trans-title">Mesajul care<br>convinge</div>
+    <div class="trans-sub">Acum că știm problema și clientul — construim mesajul<br>care îl face să zică „asta e exact ce căutam"</div>
+  </div>
+  <div class="slide-num" style="position:absolute;bottom:20px;right:90px;color:rgba(0,0,0,0.35)">38 / 38</div>
+</section>
+
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', width: 1280, height: 720, margin: 0 });
+</script>
+</body>
+</html>

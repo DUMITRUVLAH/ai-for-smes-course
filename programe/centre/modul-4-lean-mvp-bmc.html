@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modul 4: De la Idee la Prima Versiune Reală — ToT Antreprenoriat</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #0EA371;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 54px 66px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #0EA371 0%, #0891B2 100%); }
+
+    .slide-header { margin-bottom: 24px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #D1FAE5; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-title .hl { color: var(--primary); }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 960px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0 0 40px; max-width: 740px; line-height: 1.5; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+    .cover-footbar { position: absolute; bottom: 0; left: 0; right: 0; z-index: 2; padding: 15px 66px; background: rgba(0,0,0,0.28); border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.72); letter-spacing: 0.03em; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+
+    /* GENERIC GRID TABLE */
+    .gt { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .gt th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .gt td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.42; color: var(--foreground); font-size: 14px; }
+    .gt tr:last-child td { border-bottom: none; }
+    .gt tr:nth-child(even) td { background: var(--bg); }
+    .gt .lead { font-weight: 800; color: var(--foreground); }
+    .gt b { font-weight: 800; }
+
+    /* VISUAL HERO PANEL (înlocuiește pozele stock) */
+    .vhero { flex: 1; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .vhero-text { padding: 44px 46px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+    .vhero-tag { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--primary); }
+    .vhero-big { font-size: 34px; font-weight: 800; line-height: 1.16; color: var(--foreground); }
+    .vhero-sub { font-size: 16px; color: var(--muted); line-height: 1.6; }
+    .vhero-sub b { color: var(--foreground); font-weight: 600; }
+    .vhero-stat { font-size: 14px; color: var(--foreground); background: #fff; border-left: 3px solid var(--primary); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 15px; line-height: 1.5; }
+    .vhero-stat b { font-weight: 800; color: var(--primary); }
+    .vhero-art { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 34px; color: #fff; text-align: center; overflow: hidden; }
+    .vhero-art.blue { background: linear-gradient(150deg, #1E3A8A 0%, #2D52D4 55%, #5B7CF7 100%); }
+    .vhero-art.violet { background: linear-gradient(150deg, #312E81 0%, #5B21B6 55%, #7C3AED 100%); }
+    .vhero-art.teal { background: linear-gradient(150deg, #0F766E 0%, #0891B2 55%, #06B6D4 100%); }
+    .vhero-art::after { content: ''; position: absolute; top: -60px; right: -50px; width: 260px; height: 260px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 70%); }
+    .vhero-emoji { font-size: 76px; line-height: 1; position: relative; z-index: 2; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.25)); }
+    .vhero-num { font-size: 58px; font-weight: 800; line-height: 1; position: relative; z-index: 2; letter-spacing: -0.02em; }
+    .vhero-cap { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); position: relative; z-index: 2; line-height: 1.4; max-width: 240px; }
+    .vhero-pills { display: flex; flex-direction: column; gap: 8px; position: relative; z-index: 2; width: 100%; max-width: 250px; }
+    .vhero-pill { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22); border-radius: 100px; padding: 8px 14px; font-size: 13px; font-weight: 700; color: #fff; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .vhero-pill b { font-weight: 800; }
+
+    /* CARDS */
+    .cards-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; }
+    .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+    .cards-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; flex: 1; }
+    .cards-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; flex: 1; }
+    .card { border-radius: var(--radius); padding: 22px; border: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; gap: 10px; min-height: 0; overflow: hidden; }
+    .card.mint { background: var(--pastel-mint); border-color: #86EFAC; }
+    .card.sky { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .card.peach { background: var(--pastel-peach); border-color: #FED7AA; }
+    .card.lavender { background: var(--pastel-lavender); border-color: #DDD6FE; }
+    .card.rose { background: var(--pastel-rose); border-color: #FBCFE8; }
+    .card-icon { font-size: 34px; line-height: 1; }
+    .card-title { font-size: 18px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+    .card-body { font-size: 15px; color: var(--foreground); line-height: 1.48; }
+    .card-body b { font-weight: 800; }
+    .card-sub { font-size: 13px; color: var(--muted); line-height: 1.4; }
+    .card-sub b { font-weight: 700; color: var(--foreground); }
+    /* compact variant for 4-5 text-heavy cards on one row */
+    .cards-compact .card { padding: 18px 16px; gap: 7px; }
+    .cards-compact .card-icon { font-size: 28px; }
+    .cards-compact .card-title { font-size: 16px; }
+    .cards-compact .card-body { font-size: 13.5px; line-height: 1.4; }
+    .cards-compact .card-sub { font-size: 12px; }
+
+    .mini-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: 100px; padding: 9px 20px; font-size: 15px; font-weight: 700; color: var(--primary); margin-top: 16px; }
+    .mini-badge.amber { background: #FEF3C7; border-color: #FDE68A; color: #92400E; }
+
+    /* DRILL TEKWILL — no vs yes */
+    .drill-grid-tek { display: grid; grid-template-columns: 1fr auto 1fr; gap: 28px; align-items: center; }
+    .drill-card-tek { border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; border: 1px solid var(--border); }
+    .drill-card-tek.no { background: #FEF2F2; border-color: #FECACA; }
+    .drill-card-tek.yes { background: #F0FDF4; border-color: #86EFAC; }
+    .dtek-emoji { font-size: 52px; line-height: 1; }
+    .dtek-lbl { font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; }
+    .drill-card-tek.no .dtek-lbl { color: #DC2626; }
+    .drill-card-tek.yes .dtek-lbl { color: #16A34A; }
+    .dtek-big { font-size: 22px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+    .dtek-sub { font-size: 14px; color: var(--muted); line-height: 1.45; }
+    .dtek-arrow { font-size: 34px; color: var(--primary); font-weight: 800; text-align: center; }
+
+    /* BML LOOP — Build-Measure-Learn ca buclă */
+    .bml-loop { display:flex; align-items:center; justify-content:center; gap:14px; flex:1; }
+    .bml-node { border-radius:var(--radius); padding:22px; text-align:center; display:flex; flex-direction:column; gap:8px; align-items:center; min-width:180px; border:1px solid var(--border); }
+    .bml-node.build{background:var(--pastel-sky);border-color:#BAE6FD;} .bml-node.measure{background:var(--pastel-peach);border-color:#FED7AA;} .bml-node.learn{background:var(--pastel-mint);border-color:#86EFAC;}
+    .bml-emoji{font-size:42px;} .bml-name{font-size:18px;font-weight:800;color:var(--foreground);letter-spacing:0.04em;} .bml-desc{font-size:13px;color:var(--muted);line-height:1.4;}
+    .bml-arrow{font-size:30px;color:var(--primary);font-weight:700;}
+    .bml-center{margin-top:16px;text-align:center;font-size:18px;font-weight:800;color:var(--primary);background:var(--primary-ultra-light);border:1px solid #C7D2FE;border-radius:100px;padding:10px 24px;align-self:center;}
+
+    /* MVP ROWS — schema cu straturi */
+    .mvp-rows{display:flex;flex-direction:column;gap:22px;flex:1;justify-content:center;}
+    .mvp-row{display:flex;align-items:center;gap:10px;padding:18px 22px;border-radius:var(--radius);}
+    .mvp-row.wrong{background:#FEF2F2;border:1px solid #FECACA;} .mvp-row.right{background:#F0FDF4;border:1px solid #86EFAC;}
+    .mvp-row-lbl{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:0.04em;min-width:90px;} .mvp-row.wrong .mvp-row-lbl{color:#DC2626;} .mvp-row.right .mvp-row-lbl{color:#16A34A;}
+    .mvp-step{display:flex;flex-direction:column;align-items:center;gap:4px;}
+    .mvp-emoji{font-size:38px;} .mvp-cap{font-size:12px;color:var(--muted);font-weight:600;}
+    .mvp-arrow{font-size:22px;color:var(--muted);}
+
+    /* STORY FLOW 3 */
+    .story-flow-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; flex: 1; align-items: stretch; }
+    .story-step { padding: 26px 22px; display: flex; flex-direction: column; gap: 12px; position: relative; justify-content: center; }
+    .story-step::after { content: '→'; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); font-size: 24px; color: var(--primary); font-weight: 700; z-index: 3; }
+    .story-step:last-child::after { display: none; }
+    .story-step.problem { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius) 0 0 var(--radius); }
+    .story-step.idea { background: var(--pastel-peach); border: 1px solid #FED7AA; }
+    .story-step.company { background: #F0FDF4; border: 1px solid #86EFAC; border-radius: 0 var(--radius) var(--radius) 0; }
+    .story-lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .story-step.problem .story-lbl { color: #DC2626; }
+    .story-step.idea .story-lbl { color: #C2410C; }
+    .story-step.company .story-lbl { color: #16A34A; }
+    .story-title-s { font-size: 19px; font-weight: 800; color: var(--foreground); line-height: 1.22; }
+    .story-txt { font-size: 14px; color: var(--foreground); line-height: 1.5; }
+    .story-txt b { font-weight: 700; }
+
+    /* BRAND LOGO BADGE (SVG) */
+    .brand-badge { display: inline-flex; align-items: center; gap: 11px; align-self: flex-start; background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 8px 18px 8px 12px; box-shadow: var(--shadow); }
+    .brand-badge svg { width: 26px; height: 26px; display: block; }
+    .brand-badge .bn { font-size: 16px; font-weight: 800; color: var(--foreground); letter-spacing: -0.01em; }
+
+    /* BMC CANVAS — full-screen */
+    .bmc-canvas { display:grid; grid-template-columns:repeat(5,1fr); grid-template-rows:1fr 1fr 0.85fr; gap:6px; flex:1; }
+    .bmc-block { border:1px solid var(--border); border-radius:8px; padding:12px 14px; display:flex; flex-direction:column; gap:6px; background:#fff; overflow:hidden; }
+    .bmc-block .bh { font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.03em; color:var(--primary); display:flex; gap:6px; align-items:center; }
+    .bmc-block .bi { font-size:12.5px; color:var(--foreground); line-height:1.38; }
+    .bmc-block .bi b { font-weight:800; }
+    .bmc-block .bhint { font-size:11px; color:var(--muted); line-height:1.32; font-style:italic; }
+    .b-kp{grid-column:1;grid-row:1/3;} .b-ka{grid-column:2;grid-row:1;} .b-kr{grid-column:2;grid-row:2;}
+    .b-vp{grid-column:3;grid-row:1/3;background:var(--primary-ultra-light);border-color:#C7D2FE;}
+    .b-vp .bi{font-size:13px;}
+    .b-cr{grid-column:4;grid-row:1;} .b-ch{grid-column:4;grid-row:2;} .b-cs{grid-column:5;grid-row:1/3;}
+    .b-co{grid-column:1/4;grid-row:3;background:#FEF2F2;border-color:#FECACA;} .b-co .bh{color:#DC2626;}
+    .b-rev{grid-column:4/6;grid-row:3;background:#F0FDF4;border-color:#86EFAC;} .b-rev .bh{color:#16A34A;}
+
+    /* BMC explain (two-col) */
+    .bmc-explain { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 28px; flex: 1; align-items: center; }
+    .bmc-points { display: flex; flex-direction: column; gap: 14px; }
+    .bmc-point { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; }
+    .bmc-point .bp-num { width: 42px; height: 42px; border-radius: 11px; background: var(--primary); color: #fff; font-size: 17px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .bmc-point .bp-txt { font-size: 16px; font-weight: 600; color: var(--foreground); line-height: 1.35; }
+    .bmc-point .bp-txt b { font-weight: 800; color: var(--primary); }
+    /* mini canvas preview (intro slide) */
+    .bmc-mini { display:grid; grid-template-columns:repeat(5,1fr); grid-template-rows:1fr 1fr auto; gap:5px; }
+    .bmc-mini-cell { background:#F0F9FF; border:1px solid #BAE6FD; border-radius:7px; padding:9px 10px; display:flex; align-items:center; }
+    .bmc-mini-cell.vp { background:var(--primary-ultra-light); border-color:#C7D2FE; grid-row:span 2; }
+    .bmc-mini-cell.cost { background:#FEF2F2; border-color:#FECACA; grid-column:span 2; }
+    .bmc-mini-cell.rev { background:#F0FDF4; border-color:#86EFAC; grid-column:span 3; }
+    .bmc-mini-n { font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:0.03em; color:var(--primary); line-height:1.2; }
+    .bmc-mini-cell.cost .bmc-mini-n { color:#DC2626; }
+    .bmc-mini-cell.rev .bmc-mini-n { color:#16A34A; }
+
+    /* STORY FLOW 5 (recap) */
+    .story-flow-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; flex: none; }
+    .sf5-step { padding: 18px 14px; display: flex; flex-direction: column; gap: 7px; position: relative; border: 1px solid var(--border); }
+    .sf5-step::after { content: '→'; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); font-size: 18px; color: var(--primary); font-weight: 700; z-index: 3; }
+    .sf5-step:last-child::after { display: none; }
+    .sf5-step.s1 { background: #FEF2F2; border-color: #FECACA; border-radius: var(--radius) 0 0 var(--radius); }
+    .sf5-step.s2 { background: var(--pastel-peach); border-color: #FED7AA; }
+    .sf5-step.s3 { background: #EFF6FF; border-color: #BFDBFE; }
+    .sf5-step.s4 { background: var(--pastel-lavender); border-color: #DDD6FE; }
+    .sf5-step.s5 { background: var(--pastel-mint); border-color: #86EFAC; border-radius: 0 var(--radius) var(--radius) 0; }
+    .sf5-num { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+    .sf5-title { font-size: 17px; font-weight: 800; color: var(--foreground); line-height: 1.18; }
+    .sf5-sub { font-size: 12px; color: var(--muted); line-height: 1.35; }
+
+    /* CHECKLIST VISUAL */
+    .clist { display: flex; flex-direction: column; gap: 9px; }
+    .cl-item { display: flex; align-items: flex-start; gap: 14px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 16px; }
+    .cl-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--practice); flex-shrink: 0; margin-top: 1px; }
+    .cl-txt { font-size: 15px; color: var(--foreground); line-height: 1.4; }
+    .cl-txt b { font-weight: 800; }
+
+    /* PRACTICE */
+    .timer-pill { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 700; color: #92400E; }
+    .mode-pill { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; background: #DCFCE7; border: 1px solid #86EFAC; border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 700; color: #15803D; }
+    .practice-meta { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; flex-wrap: wrap; }
+
+    /* PITCH FORM LINES */
+    .pitch-sheet { display: flex; flex-direction: column; gap: 14px; flex: 1; justify-content: center; }
+    .ps-line { background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 16px 22px; display: flex; align-items: center; gap: 18px; }
+    .ps-word { font-size: 16px; font-weight: 800; color: var(--practice); white-space: nowrap; }
+    .ps-fill { flex: 1; border-bottom: 1.5px dashed #94A3B8; height: 1px; align-self: flex-end; margin-bottom: 6px; }
+
+    /* BMC PRACTICE GRID */
+    .bmc-practice { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; flex: 1; }
+    .bmc-pr-cell { background: #fff; border: 2px solid #BBF7D0; border-radius: var(--radius-sm); padding: 12px 14px; display: flex; flex-direction: column; gap: 7px; justify-content: center; }
+    .bmc-pr-n { font-size: 12px; font-weight: 800; color: var(--practice); text-transform: uppercase; letter-spacing: 0.04em; }
+    .bmc-pr-fill { border-bottom: 1.5px dashed #94A3B8; min-height: 18px; }
+
+    /* PRESENT + RETRO */
+    .pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 1; }
+    .pr-pane { border-radius: var(--radius); padding: 28px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 13px; justify-content: center; }
+    .pr-pane.present { background: var(--pastel-mint); border-color: #86EFAC; }
+    .pr-pane.retro { background: var(--pastel-lavender); border-color: #DDD6FE; }
+    .pr-tag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 100px; }
+    .pr-pane.present .pr-tag { background: #16A34A; color: #fff; }
+    .pr-pane.retro .pr-tag { background: #7C3AED; color: #fff; }
+    .pr-sub { font-size: 15px; color: var(--muted); line-height: 1.5; }
+    .pr-sub b { font-weight: 700; color: var(--foreground); }
+    .pr-line { display: flex; align-items: flex-start; gap: 11px; font-size: 16px; color: var(--foreground); line-height: 1.5; }
+    .pr-line .pb { font-weight: 800; color: #7C3AED; flex-shrink: 0; }
+    .pr-pane.present .pr-line .pb { color: #16A34A; }
+
+    /* CLOSING DARK */
+    .slide-dark { background: #0F172A !important; justify-content: center; align-items: center; }
+    .slide-dark::before { display: none; }
+    .dark-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E293B 55%, #312E81 100%); }
+    .dark-accent { position: absolute; top: -120px; right: -100px; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.32) 0%, transparent 70%); }
+    .dark-content { position: relative; z-index: 2; text-align: center; max-width: 1010px; }
+    .dark-badge { display: inline-flex; align-items: center; gap: 8px; background: #FDE68A; color: #92400E; border-radius: 100px; padding: 7px 20px; font-size: 14px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 22px; }
+    .dark-title { font-size: 46px; font-weight: 800; color: #fff; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .dark-sub { font-size: 18px; color: rgba(255,255,255,0.72); margin-bottom: 28px; }
+    .hw-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .hw-card { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 12px; padding: 22px 20px; display: flex; flex-direction: column; gap: 10px; text-align: left; }
+    .hw-icon { font-size: 30px; }
+    .hw-txt { font-size: 15px; color: rgba(255,255,255,0.9); line-height: 1.45; }
+    .hw-txt b { font-weight: 800; color: #fff; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 01 — COVER -->
+    <!-- ============================================================ -->
+    <section data-notes="Bun venit la Modul 4 — ultimul modul al Zilei 1. Timp total estimat: ~90 min. Mesajul-cadru: până acum am construit STRATEGIA (problema, clientul, USP, oceanul albastru). Acum trecem la EXECUȚIE — cum testezi ideea în realitate cu cost minim. Trei piese: Lean Startup (filozofia), MVP (instrumentul concret), Business Model Canvas (logica completă a afacerii pe o pagină). Deschide cu energie: 'Strategia fără execuție rămâne un PowerPoint. Azi învățăm să o punem în mișcare ieftin.' Anunță că modulul are 2 exerciții practice + prezentări la final.">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div>
+        <div class="cover-accent"></div>
+        <div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 4 &middot; ToT Antreprenoriat</div>
+          <h1>De la Idee la<br>Prima Versiune Reală</h1>
+          <p class="subtitle">Cum testezi o afacere în realitate, cu cost minim &mdash; înainte să investești luni de muncă.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">🚀 Lean Startup</span>
+            <span class="cover-chip">🔨 MVP</span>
+            <span class="cover-chip">🗂️ Business Model Canvas</span>
+            <span class="cover-chip">⏱ ~90 min</span>
+          </div>
+        </div>
+        <div class="cover-footbar">ToT Antreprenoriat &middot; Centre de Excelență Moldova &middot; 2025</div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.6);">01 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 02 — TEORIE: De ce Lean? -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide fundamental al blocului Lean. Durată: 5-6 min. Explică split-ul: stânga = abordarea pe care o predau majoritatea cărților vechi de business — planifici totul, construiești 2 ani, lansezi 'perfect'. Problema: ai investit tot înainte să afli dacă cineva vrea produsul. Dreapta = Lean: lansezi rapid ceva imperfect, înveți din reacția reală, iterezi. Accent: Lean NU înseamnă 'ieftin' sau 'de mântuială' — înseamnă 'inteligent cu resursele'. DE CE predăm asta: ca să validezi ieftin înainte să investești ani și bani într-o presupunere. Quote Reid Hoffman: citește-l rar, e contraintuitiv și provoacă zâmbete. Întrebare de activare: 'Câți dintre voi ați amânat lansarea a ceva pentru că nu era încă perfect?' — aproape toate mâinile.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Teorie &mdash; De ce Lean?</span>
+          <h2 class="slide-title">Două feluri de a porni o afacere</h2>
+          <p class="slide-subtitle">Diferența nu e în efort &mdash; e în <b>momentul în care afli dacă piața te vrea</b>. Validezi ieftin, înainte să investești.</p>
+        </div>
+        <div class="drill-grid-tek" style="flex:1;">
+          <div class="drill-card-tek no">
+            <div class="dtek-emoji">🐢</div>
+            <div class="dtek-lbl">Abordarea Clasică</div>
+            <div class="dtek-big">Construiești 2 ani, lansezi perfect</div>
+            <div class="dtek-sub">Ai investit tot &mdash; timp, bani, energie. Apoi descoperi că nimeni nu vrea produsul.</div>
+          </div>
+          <div class="dtek-arrow">VS</div>
+          <div class="drill-card-tek yes">
+            <div class="dtek-emoji">🚀</div>
+            <div class="dtek-lbl">Abordarea Lean</div>
+            <div class="dtek-big">Lansezi rapid imperfect, înveți, iterezi</div>
+            <div class="dtek-sub">Clienții reali îți arată ce să construiești &mdash; înainte să cheltui tot bugetul.</div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:18px;">
+          <strong>&bdquo;Dacă nu ți-e puțin rușine de prima versiune, ai lansat-o prea târziu.&rdquo;</strong> &mdash; Reid Hoffman, fondator LinkedIn
+        </div>
+        <div class="slide-num">02 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 03 — TEORIE: Build-Measure-Learn ca BUCLĂ -->
+    <!-- ============================================================ -->
+    <section data-notes="Inima metodei Lean — ciclul Build-Measure-Learn. Durată: 5 min. Cheie: e o BUCLĂ, nu o linie dreaptă. Construiești → măsori → înveți → și o iei de la capăt cu ce ai învățat. Arată săgețile: ultima săgeată (↩) se întoarce la BUILD — asta face din ea un ciclu închis, nu un drum. Accent pe MEASURE: măsori CE FAC clienții, nu ce SPUN că ar face — oamenii mint politicos în interviuri, dar plătesc doar pentru ce contează cu adevărat. Badge-ul din centru (Pivot sau Persevere) e decizia care urmează fiecărei bucle: Persevere = mergi mai departe pe aceeași direcție; Pivot = schimbi direcția păstrând ce ai învățat. Întrebare: 'Care e cel mai greu pas pentru un antreprenor — să construiască, sau să recunoască că trebuie să schimbe direcția?' Aproape toți spun: Pivot.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Teorie &mdash; Metoda Lean Startup</span>
+          <h2 class="slide-title">Ciclul Lean: o buclă, nu un drum drept</h2>
+          <p class="slide-subtitle">Build &rarr; Measure &rarr; Learn &mdash; o repeți până când piața îți confirmă direcția.</p>
+        </div>
+        <div class="bml-loop">
+          <div class="bml-node build"><span class="bml-emoji">🔨</span><div class="bml-name">BUILD</div><div class="bml-desc">Construiești ceva testabil, minim</div></div>
+          <div class="bml-arrow a1">→</div>
+          <div class="bml-node measure"><span class="bml-emoji">📊</span><div class="bml-name">MEASURE</div><div class="bml-desc">Măsori reacția reală a clienților</div></div>
+          <div class="bml-arrow a2">→</div>
+          <div class="bml-node learn"><span class="bml-emoji">💡</span><div class="bml-name">LEARN</div><div class="bml-desc">Înveți ce să schimbi &mdash; și o iei de la capăt</div></div>
+          <div class="bml-arrow a3" style="font-size:34px;">↩</div>
+        </div>
+        <div class="bml-center">↻ Pivot sau Persevere &mdash; decizia se ia pe date reale, nu pe intuiție</div>
+        <div class="slide-num">03 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 04 — SCHEMA HERO: eșecul ca date -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide de respiro vizual — 1-2 min. Citește titlul cu voce tare, apoi adaugă: 'Fiecare companie pe care o admiri azi a avut o primă versiune jenantă. Diferența dintre cei care reușesc și cei care abandonează nu e că primii n-au eșuat — e că au tratat eșecul ca DATE, nu ca pe o sentință personală.' Pauză. 'Lean nu e despre a fi ieftin. E despre a fi inteligent: să afli devreme și ieftin ce ai fi aflat oricum târziu și scump.' Tranziție spre Dropbox: 'Hai să vedem cel mai elegant exemplu de validare ieftină din istorie.'">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Lean în Practică</span>
+          <h2 class="slide-title">Prima versiune e un experiment, nu un verdict</h2>
+        </div>
+        <div class="vhero">
+          <div class="vhero-text">
+            <span class="vhero-tag">🚀 Mentalitatea Lean</span>
+            <div class="vhero-big">Fiecare startup de succes a eșuat la prima versiune</div>
+            <p class="vhero-sub">&mdash; și a folosit eșecul ca <b>date</b>, nu ca scuze. Lean nu înseamnă ieftin &mdash; înseamnă inteligent cu resursele.</p>
+            <div class="vhero-stat">Diferența dintre cei care reușesc și cei care renunță: primii tratează prima versiune ca pe <b>un experiment</b>, nu ca pe un verdict final.</div>
+          </div>
+          <div class="vhero-art violet">
+            <span class="vhero-emoji">🧪</span>
+            <div class="vhero-cap">Eșecul = DATE care îmbunătățesc următoarea decizie</div>
+            <div class="vhero-pills">
+              <div class="vhero-pill"><span>v1 jenantă</span><b>→ înveți</b></div>
+              <div class="vhero-pill"><span>v2 mai bună</span><b>→ înveți</b></div>
+              <div class="vhero-pill"><span>v3 funcționează</span><b>✓</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">04 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 05 — EXEMPLU: Dropbox MVP -->
+    <!-- ============================================================ -->
+    <section data-notes="Exemplul model al validării fără cod. Durată: 4-5 min. Povestea: Dropbox avea o problemă tehnică greu de construit (sincronizare de fișiere). În loc să petreacă luni codând ceva ce poate nimeni nu voia, fondatorul Drew Houston a filmat un VIDEO de 3 minute care arăta cum AR funcționa produsul — fără ca produsul să existe efectiv. A pus videoul online. Rezultatul: lista de așteptare a sărit de la 5.000 la 75.000 de oameni peste noapte. Lecția: a validat cererea în 24h, cu cost aproape zero, înainte să construiască. Întrebare de debriefing: 'Ce ar fi pierdut Dropbox dacă ar fi construit 2 ani și apoi nimeni nu venea?' — luni de muncă și bani. Tranziție: 'Asta nu e doar pentru tech — funcționează pentru orice afacere.'">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Exemplu &mdash; Validare fără Cod</span>
+          <h2 class="slide-title">Dropbox: cum validezi fără să construiești</h2>
+          <p class="slide-subtitle">Cea mai elegantă lecție Lean &mdash; au vândut o demonstrație, nu un produs.</p>
+        </div>
+        <div class="brand-badge" style="margin-bottom:18px;">
+          <svg viewBox="0 0 24 24" fill="#0061FF"><path d="M6 1.807 0 5.629l6 3.822 6-3.822zm12 0-6 3.822 6 3.822 6-3.822zM0 13.274l6 3.822 6-3.822-6-3.822zm18-3.822-6 3.822 6 3.822 6-3.822zM6 18.371l6 3.822 6-3.822-6-3.822z"/></svg>
+          <span class="bn">Dropbox</span>
+        </div>
+        <div class="story-flow-3">
+          <div class="story-step problem">
+            <span class="story-lbl">Problema</span>
+            <div class="story-title-s">Sincronizarea fișierelor era groaznică</div>
+            <div class="story-txt">Oamenii pierdeau fișiere, trimiteau emailuri cu atașamente uriașe, rătăceau USB-uri. O durere reală &mdash; dar greu și scump de rezolvat tehnic.</div>
+          </div>
+          <div class="story-step idea">
+            <span class="story-lbl">MVP-ul</span>
+            <div class="story-title-s">Un video de 3 minute</div>
+            <div class="story-txt"><b>NU produsul real.</b> O simplă demonstrație filmată care arăta <b>CUM AR FUNCȚIONA</b> &mdash; pusă online, gratuit.</div>
+          </div>
+          <div class="story-step company">
+            <span class="story-lbl">Rezultatul</span>
+            <div class="story-title-s">70.000 înscrieri overnight</div>
+            <div class="story-txt">Lista de așteptare a sărit de la 5.000 la 75.000. Au validat <b>în 24h</b> ce altfel ar fi durat 2 ani de dezvoltare.</div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:16px;">
+          <strong>N-au codat nimic.</strong> Au filmat o demonstrație. Și au validat în 24h ce altfel ar fi durat 2 ani.
+        </div>
+        <div class="slide-num">05 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 06 — SCHEMA HERO: validează înainte să construiești -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide de consolidare a principiului Lean — 2 min. Citește titlul: 'Validează înainte să construiești.' Apoi exemplul Amazon: chiar și o companie gigant testează peste 1000 de idei pe an. Din ele supraviețuiesc ~10. Restul 'eșuează' — dar fiecare eșec e date care îmbunătățesc deciziile următoare. Mesajul pentru formatori: cursanții lor trebuie să iasă din mentalitatea 'o singură idee, o singură șansă, trebuie să fie perfectă'. Realitatea: cei mai buni antreprenori testează mult, eșuează ieftin, învață rapid. Întrebare: 'Cum schimbă asta felul în care le predați cursanților despre eșec?' — discuție scurtă, 1-2 min.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Principiul Lean</span>
+          <h2 class="slide-title">Validează înainte să construiești</h2>
+        </div>
+        <div class="vhero">
+          <div class="vhero-text">
+            <span class="vhero-tag">🧭 Testează mult, eșuează ieftin</span>
+            <div class="vhero-big">Amazon testează 1000+ idei pe an</div>
+            <p class="vhero-sub">Supraviețuiesc ~10. Restul nu sunt &bdquo;eșecuri&rdquo; &mdash; sunt <b>date valoroase</b> care fac următoarele idei mai bune.</p>
+            <div class="vhero-stat">Ieși din mentalitatea &bdquo;o singură idee, o singură șansă, trebuie să fie perfectă&rdquo;. Antreprenorul testează rapid și ieftin.</div>
+          </div>
+          <div class="vhero-art blue">
+            <span class="vhero-num">1000+</span>
+            <div class="vhero-cap">idei testate într-un an</div>
+            <div class="vhero-pills">
+              <div class="vhero-pill"><span>✓ Supraviețuiesc</span><b>~10</b></div>
+              <div class="vhero-pill"><span>↻ Date din eșec</span><b>~990</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">06 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 07 — SCHEMA: MVP pe straturi (skateboard → mașină) -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide-cheie al blocului MVP — analogia clasică a lui Henrik Kniberg. Durată: 5-6 min. Asta corectează cea mai mare confuzie despre MVP. Rândul GREȘIT (roșu): construiești roata, apoi șasiul, apoi caroseria, apoi mașina. Problema: până la ULTIMUL pas, clientul nu are NIMIC pe care să-l poată folosi — o roată nu te duce nicăieri. Dacă rămâi fără bani la pasul 3, ai un cadou inutil. Rândul CORECT (verde): skateboard → trotinetă → bicicletă → motocicletă → mașină. Fiecare versiune e DEJA utilizabilă — te duce din punctul A în punctul B chiar de la primul pas, doar mai bine cu fiecare iterație. Mesajul de aur: MVP nu e o BUCATĂ dintr-un produs, e cel mai SIMPLU produs care REZOLVĂ DEJA problema. Întrebare: 'În afacerea voastră de lucru, care e <skateboard-ul> — cea mai simplă formă care deja rezolvă problema clientului?'">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Teorie &mdash; Schema MVP</span>
+          <h2 class="slide-title">MVP = un produs întreg, nu o bucată</h2>
+          <p class="slide-subtitle">Fiecare versiune trebuie să <b>rezolve deja problema</b> &mdash; nu să fie o piesă care nu folosește la nimic singură.</p>
+        </div>
+        <div class="mvp-rows">
+          <div class="mvp-row wrong">
+            <span class="mvp-row-lbl">❌ Greșit</span>
+            <div class="mvp-step"><span class="mvp-emoji">🛞</span><span class="mvp-cap">roată</span></div>
+            <span class="mvp-arrow">→</span>
+            <div class="mvp-step"><span class="mvp-emoji">🔩</span><span class="mvp-cap">șasiu</span></div>
+            <span class="mvp-arrow">→</span>
+            <div class="mvp-step"><span class="mvp-emoji">🚙</span><span class="mvp-cap">caroserie</span></div>
+            <span class="mvp-arrow">→</span>
+            <div class="mvp-step"><span class="mvp-emoji">🚗</span><span class="mvp-cap">mașina</span></div>
+            <span style="font-size:13px;color:#DC2626;font-weight:700;margin-left:8px;line-height:1.3;">Nimic utilizabil<br>până la final</span>
+          </div>
+          <div class="mvp-row right">
+            <span class="mvp-row-lbl">✅ Corect</span>
+            <div class="mvp-step"><span class="mvp-emoji">🛹</span><span class="mvp-cap">skateboard</span></div>
+            <span class="mvp-arrow">→</span>
+            <div class="mvp-step"><span class="mvp-emoji">🛴</span><span class="mvp-cap">trotinetă</span></div>
+            <span class="mvp-arrow">→</span>
+            <div class="mvp-step"><span class="mvp-emoji">🚲</span><span class="mvp-cap">bicicletă</span></div>
+            <span class="mvp-arrow">→</span>
+            <div class="mvp-step"><span class="mvp-emoji">🏍️</span><span class="mvp-cap">motocicletă</span></div>
+            <span class="mvp-arrow">→</span>
+            <div class="mvp-step"><span class="mvp-emoji">🚗</span><span class="mvp-cap">mașina</span></div>
+            <span style="font-size:13px;color:#16A34A;font-weight:700;margin-left:8px;line-height:1.3;">Fiecare versiune<br>te duce din A în B</span>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:18px;">
+          <strong>MVP =</strong> cel mai simplu produs care <strong>REZOLVĂ deja problema</strong> &mdash; nu o bucată dintr-un produs.
+        </div>
+        <div class="slide-num">07 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 08 — TEORIE: 5 tipuri de MVP -->
+    <!-- ============================================================ -->
+    <section data-notes="Tipuri de MVP. Durată: 6-7 min. Mesajul-cheie: MVP nu înseamnă 'o aplicație'. Sunt mai multe feluri de a testa o idee, în funcție de ce vrei să afli și de cât de tehnic e produsul. Parcurge cele 5 tipuri: 1) Demo Video (Dropbox) — arăți cum ar fi; 2) Landing Page — colectezi emailuri/precomenzi înainte să existe produsul; 3) Concierge — faci totul manual, cu mâna, pentru primii clienți (Zapier a început așa); 4) Wizard of Oz — clientul crede că e automat, dar în spate e om; 5) Produs Fizic Minimal — o singură variantă, fără opțiuni. Accent: alegi tipul în funcție de RISCUL pe care vrei să-l elimini. Întrebare: 'Care tip credeți că e cel mai potrivit pentru o afacere de produse fizice?' — de obicei Landing Page sau Produs Minimal.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Teorie &mdash; Tipuri de MVP</span>
+          <h2 class="slide-title">5 Tipuri de MVP &mdash; alege-l pe al tău</h2>
+          <p class="slide-subtitle">MVP nu înseamnă neapărat o aplicație. Alegi tipul în funcție de <b>riscul pe care vrei să-l elimini</b>.</p>
+        </div>
+        <div class="cards-5 cards-compact">
+          <div class="card sky">
+            <div class="card-icon">🎬</div>
+            <div class="card-title">Demo Video</div>
+            <div class="card-body">Arăți cum ar funcționa &mdash; fără să construiești.</div>
+            <div class="card-sub"><b>Ex:</b> Dropbox</div>
+          </div>
+          <div class="card mint">
+            <div class="card-icon">📄</div>
+            <div class="card-title">Landing Page</div>
+            <div class="card-body">Colectezi emailuri / precomenzi înainte să existe produsul.</div>
+            <div class="card-sub"><b>Ex:</b> Buffer</div>
+          </div>
+          <div class="card peach">
+            <div class="card-icon">🤝</div>
+            <div class="card-title">Concierge</div>
+            <div class="card-body">Faci manual ce va face mai târziu softul, pentru primii clienți.</div>
+            <div class="card-sub"><b>Ex:</b> Zapier</div>
+          </div>
+          <div class="card lavender">
+            <div class="card-icon">🧪</div>
+            <div class="card-title">Wizard of Oz</div>
+            <div class="card-body">Clientul crede că e automat &mdash; tu faci totul manual în spate.</div>
+            <div class="card-sub"><b>Ex:</b> Amazon la început</div>
+          </div>
+          <div class="card rose">
+            <div class="card-icon">🛍️</div>
+            <div class="card-title">Produs Fizic Minimal</div>
+            <div class="card-body">O singură variantă, fără customizare. Testezi cererea reală.</div>
+            <div class="card-sub"><b>Ex:</b> prima ofertă Zappos</div>
+          </div>
+        </div>
+        <div class="slide-num">08 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 09 — EXEMPLU: MVP din casebook -->
+    <!-- ============================================================ -->
+    <section data-notes="MVP aplicat pe afacerile din casebook — face conceptul concret. Durată: 4-5 min. Parcurge tabelul rând cu rând. NaturaLab: în loc de site complet cu coș de cumpărături, au făcut o pagină simplă + comandă pe WhatsApp, procesate manual. Au validat că oamenii chiar comandă — 50 de comenzi în prima săptămână — fără să investească în magazin online. Rezervo: în loc să construiască aplicația de programări, au gestionat totul cu Excel + WhatsApp manual, ca să afle dacă saloanele chiar plătesc pentru rezolvarea problemei. PixelStudio: un singur proiect gratuit ca portofoliu — MVP-ul unei firme de servicii e adesea primul client real. Mesaj: toate trei au eliminat riscul cel mai mare ÎNAINTE să investească. Întrebare: 'Ce risc a eliminat fiecare?' — răspuns: cererea reală a clientului.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Exemplu &mdash; MVP în Practică</span>
+          <h2 class="slide-title">MVP în practică: 3 afaceri locale</h2>
+          <p class="slide-subtitle">Toate trei au testat <b>cel mai mare risc</b> &mdash; cererea reală &mdash; înainte să investească.</p>
+        </div>
+        <table class="gt" style="flex:1;">
+          <thead>
+            <tr>
+              <th style="width:130px;">Afacere</th>
+              <th>Problema</th>
+              <th>MVP ales</th>
+              <th>Ce au validat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="lead">NaturaLab</span><br><span style="font-size:12px;color:var(--muted);">cosmetice naturale</span></td>
+              <td>Clienții nu știu ce conțin cosmeticele pe care le cumpără</td>
+              <td>Landing page simplu + comandă pe <b>WhatsApp</b>, procesată manual</td>
+              <td><b>50 de comenzi</b> în prima săptămână &mdash; fără magazin online real</td>
+            </tr>
+            <tr>
+              <td><span class="lead">Rezervo</span><br><span style="font-size:12px;color:var(--muted);">app programări</span></td>
+              <td>Programările saloanelor se pierd prin telefon și mesaje</td>
+              <td><b>Excel + WhatsApp</b>, totul manual &mdash; fără aplicație construită</td>
+              <td><b>10 saloane</b> dispuse să plătească pentru soluție</td>
+            </tr>
+            <tr>
+              <td><span class="lead">PixelStudio</span><br><span style="font-size:12px;color:var(--muted);">video B2B</span></td>
+              <td>Nu există un portofoliu video B2B local la care să se uite clienții</td>
+              <td><b>1 client, 1 proiect gratuit</b> &mdash; portofoliu-MVP</td>
+              <td>Primul client plătitor <b>convertit în 3 luni</b></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="slide-num">09 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 10 — SCHEMA HERO: MVP bun = cineva PLĂTEȘTE -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide de clarificare conceptuală — corectează cea mai frecventă confuzie despre MVP. Durată: 2 min. Mulți cred greșit că MVP = 'versiunea cea mai ieftină / cea mai mică a produsului'. Greșit. MVP bun = 'cea mai rapidă cale de a afla dacă cineva PLĂTEȘTE pentru asta'. Diferența e crucială: un MVP prost-înțeles risipește bani construind ceva mic dar inutil; un MVP bine-înțeles economisește bani aflând adevărul devreme. Subliniază cuvântul PLĂTEȘTE — interesul nu validează, banii validează. Întrebare: 'Care e diferența dintre cineva care spune <îmi place> și cineva care scoate cardul?' — totul.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Definiția Corectă</span>
+          <h2 class="slide-title">Un MVP bun îți arată dacă cineva plătește</h2>
+        </div>
+        <div class="vhero">
+          <div class="vhero-text">
+            <span class="vhero-tag">🎯 Interesul nu validează. Banii validează.</span>
+            <div class="vhero-big">Nu &bdquo;cel mai ieftin produs&rdquo; &mdash; cea mai rapidă cale spre adevăr</div>
+            <p class="vhero-sub">MVP bun = cea mai rapidă cale de a afla dacă cineva <b>plătește</b> pentru asta. Nu &bdquo;cel mai mic produs posibil&rdquo;.</p>
+            <div class="vhero-stat"><b>Diferența:</b> un MVP prost-înțeles risipește bani pe ceva mic și inutil. Unul bine-înțeles îți economisește bani aflând adevărul devreme.</div>
+          </div>
+          <div class="vhero-art teal">
+            <span class="vhero-emoji">💳</span>
+            <div class="vhero-cap">Întrebarea pe care o testezi:</div>
+            <div class="vhero-pills">
+              <div class="vhero-pill"><span>&bdquo;Îmi place&rdquo;</span><b>≠ validare</b></div>
+              <div class="vhero-pill"><span>Scoate cardul</span><b>= validare</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">10 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 11 — PRACTICĂ: Exercițiu MVP -->
+    <!-- ============================================================ -->
+    <section data-notes="Primul exercițiu practic al modulului. Durată: 12 min lucru + share. Instrucțiuni de facilitare: 1) Fiecare alege o afacere concretă (a lor sau un caz pe care îl creează acum). 2) Cel mai important câmp: 'Cel mai mare risc' — ce NU știu dacă funcționează. Aici e cheia: MVP-ul testează acel risc, nu altceva. 3) Tipul de MVP ales trebuie să se potrivească riscului. 4) 'Cum măsor succesul' trebuie să fie un NUMĂR concret (ex: 20 de precomenzi, 5 clienți plătitori) — nu 'oamenii sunt interesați'. Timer vizibil. La 8 min anunță 4 minute rămase. La final: share în perechi, 2 min fiecare. Capcana tipică: aleg un MVP prea complex. Reamintește: cel mai simplu lucru care răspunde la întrebarea ta (skateboard-ul, nu mașina).">
+      <div class="slide practice">
+        <div class="slide-header">
+          <span class="slide-tag practice-tag">✍️ Practică Individuală</span>
+          <h2 class="slide-title">Ce ar fi MVP-ul tău?</h2>
+          <p class="slide-subtitle">Alegi o afacere concretă și definești cel mai simplu test care îți arată dacă cineva plătește.</p>
+        </div>
+        <div class="practice-meta">
+          <div class="timer-pill">⏱ 12 minute</div>
+          <div class="mode-pill">👤 Individual &rarr; 👥 Share în perechi</div>
+        </div>
+        <div class="pitch-sheet">
+          <div class="ps-line"><span class="ps-word">Afacerea mea este:</span><span class="ps-fill"></span></div>
+          <div class="ps-line"><span class="ps-word">Cel mai mare risc (ce nu știu dacă funcționează):</span><span class="ps-fill"></span></div>
+          <div class="ps-line"><span class="ps-word">Tipul de MVP ales:</span><span class="ps-fill"></span></div>
+          <div class="ps-line"><span class="ps-word">Cum măsor succesul? (număr concret):</span><span class="ps-fill"></span></div>
+        </div>
+        <div class="slide-num">11 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 12 — TEORIE: Ce e BMC? -->
+    <!-- ============================================================ -->
+    <section data-notes="Începe blocul Business Model Canvas. Durată: 5-6 min. Mesajul-cadru: până acum am lucrat pe bucăți (problema, clientul, MVP). BMC adună TOATĂ logica afacerii pe o singură pagină — 9 blocuri. DE CE predăm asta: ca să vezi toată logica afacerii dintr-o privire și să testezi ipotezele una câte una. E mult mai ușor de predat și de completat decât un business plan de 50 de pagini pe care nimeni nu-l citește și care e oricum greșit la lansare. Arată mini-canvasul din dreapta: explică structura — partea dreaptă = clientul (valoare, segmente, canale, relații), partea stângă = infrastructura (resurse, activități, parteneri), jos = banii (costuri vs venituri), centru = propunerea de valoare care leagă totul. NU intra în detalii acum — slide-ul următor arată canvasul mare; apoi îl descompunem. Întrebare: 'Câți ați completat vreodată un business plan clasic? Cât a durat? Cât de repede s-a învechit?'">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Teorie &mdash; Business Model Canvas</span>
+          <h2 class="slide-title">Logica afacerii pe o singură pagină</h2>
+          <p class="slide-subtitle">9 blocuri care răspund la: <b>cum creează, livrează și încasează valoare</b> această afacere? Vezi tot &mdash; și testezi ipotezele.</p>
+        </div>
+        <div class="bmc-explain">
+          <div class="bmc-points">
+            <div class="bmc-point"><div class="bp-num">9</div><div class="bp-txt"><b>9 blocuri</b> &mdash; toată logica, nimic în plus</div></div>
+            <div class="bmc-point"><div class="bp-num">1</div><div class="bp-txt"><b>1 foaie de hârtie</b> &mdash; o vezi toată dintr-o privire</div></div>
+            <div class="bmc-point"><div class="bp-num">30</div><div class="bp-txt"><b>30 de minute</b> &mdash; nu 50 de pagini de plan</div></div>
+          </div>
+          <div class="bmc-mini">
+            <div class="bmc-mini-cell"><div class="bmc-mini-n">🤝 Parteneri Cheie</div></div>
+            <div class="bmc-mini-cell"><div class="bmc-mini-n">⚙️ Activități Cheie</div></div>
+            <div class="bmc-mini-cell vp"><div class="bmc-mini-n">💎 Propunere de Valoare</div></div>
+            <div class="bmc-mini-cell"><div class="bmc-mini-n">❤️ Relații Clienți</div></div>
+            <div class="bmc-mini-cell"><div class="bmc-mini-n">👥 Segmente Clienți</div></div>
+            <div class="bmc-mini-cell"><div class="bmc-mini-n">🔑 Resurse Cheie</div></div>
+            <div class="bmc-mini-cell"><div class="bmc-mini-n">📢 Canale</div></div>
+            <div class="bmc-mini-cell cost"><div class="bmc-mini-n">💸 Structura Costurilor</div></div>
+            <div class="bmc-mini-cell rev"><div class="bmc-mini-n">💰 Fluxuri de Venituri</div></div>
+          </div>
+        </div>
+        <div class="slide-num">12 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 13 — BMC FULL-SCREEN (canvasul gol, etichetat) -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide-ul vizual mare cerut explicit — CANVASUL BMC pe tot ecranul, gol, etichetat. Durată: 4-5 min. Acesta e ANATOMIA canvasului: arată unde stă fiecare bloc și ce întrebare răspunde. Citește harta spațial: CENTRU = Propunerea de Valoare (inima, ce leagă totul). DREAPTA de centru = totul despre CLIENT (segmente, canale, relații) — aici e piața. STÂNGA de centru = INFRASTRUCTURA care livrează valoarea (resurse, activități, parteneri). JOS = BANII: roșu stânga (costurile, ce cheltui), verde dreapta (veniturile, ce încasezi). Mesaj: dacă veniturile (verde) nu acoperă costurile (roșu), modelul nu e viabil oricât de frumoasă e propunerea de valoare. NU completa nimic aici — următoarele 2 slide-uri explică blocurile, iar slide 16 arată un canvas COMPLET. Întrebare: 'Vă uitați la o pagină goală — care bloc ați completa primul?' De obicei: Segmente sau Propunerea de Valoare. Corect: pornește de la client.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Schema &mdash; Canvasul Complet</span>
+          <h2 class="slide-title">Cele 9 blocuri &mdash; harta întreagă</h2>
+          <p class="slide-subtitle">Dreapta = clientul &middot; Stânga = infrastructura &middot; Centru = valoarea &middot; Jos = banii (costuri vs venituri).</p>
+        </div>
+        <div class="bmc-canvas">
+          <div class="bmc-block b-kp">
+            <div class="bh">🤝 Parteneri Cheie</div>
+            <div class="bhint">Cu cine colaborezi strategic?</div>
+            <div class="bi">Furnizori, distribuitori, aliați care fac afacerea posibilă.</div>
+          </div>
+          <div class="bmc-block b-ka">
+            <div class="bh">⚙️ Activități Cheie</div>
+            <div class="bhint">Ce faci zilnic ca să meargă?</div>
+            <div class="bi">Producție, vânzări, livrare, conținut.</div>
+          </div>
+          <div class="bmc-block b-kr">
+            <div class="bh">🔑 Resurse Cheie</div>
+            <div class="bhint">Ce nu poți face fără?</div>
+            <div class="bi">Talent, echipament, bani, audiență, IP.</div>
+          </div>
+          <div class="bmc-block b-vp">
+            <div class="bh">💎 Propunere de Valoare</div>
+            <div class="bhint">Ce problemă rezolvi? Care e USP-ul?</div>
+            <div class="bi">Inima canvasului &mdash; motivul pentru care clientul te alege pe tine.</div>
+          </div>
+          <div class="bmc-block b-cr">
+            <div class="bh">❤️ Relații Clienți</div>
+            <div class="bhint">Cât de personală e legătura?</div>
+            <div class="bi">Comunitate, consultanță, self-service.</div>
+          </div>
+          <div class="bmc-block b-ch">
+            <div class="bh">📢 Canale</div>
+            <div class="bhint">Cum ajungi la ei?</div>
+            <div class="bi">Online, offline, parteneri.</div>
+          </div>
+          <div class="bmc-block b-cs">
+            <div class="bh">👥 Segmente Clienți</div>
+            <div class="bhint">Cine sunt, concret?</div>
+            <div class="bi">Nu &bdquo;toată lumea&rdquo; &mdash; un grup specific cu o durere comună.</div>
+          </div>
+          <div class="bmc-block b-co">
+            <div class="bh">💸 Structura Costurilor</div>
+            <div class="bi">Principalele cheltuieli &mdash; fixe vs variabile. <b>Ce te costă să creezi și să livrezi valoarea.</b></div>
+          </div>
+          <div class="bmc-block b-rev">
+            <div class="bh">💰 Fluxuri de Venituri</div>
+            <div class="bi">Cum faci bani concret &mdash; vânzare, abonament, comision. <b>Veniturile trebuie să acopere costurile.</b></div>
+          </div>
+        </div>
+        <div class="slide-num">13 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 14 — TEORIE: BMC Blocurile 1-4 (clienți) -->
+    <!-- ============================================================ -->
+    <section data-notes="Jumătatea dreaptă a BMC — totul despre client. Durată: 5-6 min. Acum descompunem canvasul pe care tocmai l-ați văzut mare. Parcurge cele 4 blocuri din DREAPTA: 1) Segmente de Clienți — CINE? Cel mai des greșit: 'toată lumea'. Forțează specificitate (femei 25-45, urban). 2) Propunerea de Valoare — CE problemă rezolvi, care e USP-ul (legătură directă cu Modul 2). 3) Canale — CUM ajungi la ei (Instagram, WhatsApp, parteneri). 4) Relații — cât de personală e legătura (comunitate vs tranzacție rece). Folosește NaturaLab ca fir roșu în exemplele din carduri — aceeași afacere apare completă pe slide 16. Întrebare: 'Care din cele 4 e cel mai des sărit sau tratat superficial de antreprenori?' — de obicei Segmente (toți zic <toată lumea>).">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Teorie &mdash; BMC Jumătatea Dreaptă</span>
+          <h2 class="slide-title">Jumătatea Dreaptă &mdash; Clienții tăi</h2>
+          <p class="slide-subtitle">Cine sunt, ce le oferi, cum ajungi la ei și cum le vorbești.</p>
+        </div>
+        <div class="cards-4 cards-compact">
+          <div class="card sky">
+            <div class="card-icon">👥</div>
+            <div class="card-title">1. Segmente de Clienți</div>
+            <div class="card-body"><b>CINE</b> sunt clienții tăi? Definește-i concret, nu &bdquo;toată lumea&rdquo;.</div>
+            <div class="card-sub"><b>Ex:</b> femei 25&ndash;45, urban, preocupate de ingrediente</div>
+          </div>
+          <div class="card peach">
+            <div class="card-icon">💎</div>
+            <div class="card-title">2. Propunerea de Valoare</div>
+            <div class="card-body"><b>CE</b> problemă rezolvi? Care e USP-ul tău?</div>
+            <div class="card-sub"><b>Ex:</b> cosmetice 100% naturale, livrare în 24h</div>
+          </div>
+          <div class="card mint">
+            <div class="card-icon">📢</div>
+            <div class="card-title">3. Canale</div>
+            <div class="card-body"><b>CUM</b> ajungi la clienți? Online, offline, parteneri?</div>
+            <div class="card-sub"><b>Ex:</b> Instagram organic + WhatsApp</div>
+          </div>
+          <div class="card lavender">
+            <div class="card-icon">❤️</div>
+            <div class="card-title">4. Relații cu Clienții</div>
+            <div class="card-body"><b>CUM</b> comunici? Cât de personală e relația?</div>
+            <div class="card-sub"><b>Ex:</b> comunitate, newsletter, consultanță</div>
+          </div>
+        </div>
+        <div class="slide-num">14 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 15 — TEORIE: BMC Blocurile 5-9 (infrastructură) -->
+    <!-- ============================================================ -->
+    <section data-notes="Jumătatea stângă + baza financiară a BMC — cum FUNCȚIONEAZĂ afacerea. Durată: 5-6 min. Parcurge: 5) Fluxuri de Venituri — cum faci bani CONCRET (vânzare, abonament, comision, licență). 6) Resurse Cheie — ce nu poți face fără (talent, echipament, bani, proprietate intelectuală). 7) Activități Cheie — ce faci zilnic ca afacerea să meargă. 8) Parteneri Cheie — cu cine colaborezi strategic (furnizori, distribuitori). 9) Structura Costurilor — cheltuielile principale, fixe vs variabile. Accent pe blocurile 5 și 9 (banii): mulți antreprenori sar peste partea financiară. Subliniază: dacă veniturile nu acoperă costurile, modelul nu e viabil oricât de frumoasă e propunerea de valoare. Întrebare: 'Care bloc e cel mai des ignorat de antreprenori la început?' — de obicei Structura Costurilor.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Teorie &mdash; BMC Jumătatea Stângă</span>
+          <h2 class="slide-title">Jumătatea Stângă &mdash; Cum funcționezi</h2>
+          <p class="slide-subtitle">Resursele, activitățile, partenerii și banii care fac afacerea să meargă.</p>
+        </div>
+        <div class="cards-5 cards-compact">
+          <div class="card rose">
+            <div class="card-icon">💰</div>
+            <div class="card-title">5. Fluxuri Venituri</div>
+            <div class="card-body">Vânzare, abonament, comision, licență.</div>
+            <div class="card-sub"><b>Cum faci bani concret?</b></div>
+          </div>
+          <div class="card sky">
+            <div class="card-icon">🔑</div>
+            <div class="card-title">6. Resurse Cheie</div>
+            <div class="card-body">Talent, echipament, bani, proprietate intelectuală.</div>
+            <div class="card-sub"><b>Ce nu poți face fără?</b></div>
+          </div>
+          <div class="card mint">
+            <div class="card-icon">⚙️</div>
+            <div class="card-title">7. Activități Cheie</div>
+            <div class="card-body">Ce faci zilnic ca afacerea să funcționeze?</div>
+            <div class="card-sub"><b>Producție, vânzări, livrare</b></div>
+          </div>
+          <div class="card peach">
+            <div class="card-icon">🤝</div>
+            <div class="card-title">8. Parteneri Cheie</div>
+            <div class="card-body">Cu cine colaborezi strategic?</div>
+            <div class="card-sub"><b>Furnizori, distribuitori, aliați</b></div>
+          </div>
+          <div class="card lavender">
+            <div class="card-icon">💸</div>
+            <div class="card-title">9. Structura Costurilor</div>
+            <div class="card-body">Care sunt principalele cheltuieli?</div>
+            <div class="card-sub"><b>Fixe vs. variabile</b></div>
+          </div>
+        </div>
+        <div class="slide-num">15 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 16 — BMC COMPLET NaturaLab (full-screen) -->
+    <!-- ============================================================ -->
+    <section data-notes="Exemplul-MODEL complet — BMC NaturaLab completat integral pe canvasul mare. Durată: 5-6 min. Acesta e slide-ul 'arată, nu descrie': cursanții văd cum arată un BMC complet ÎNAINTE să-l facă singuri, pe ACELAȘI canvas mare pe care l-au văzut gol la slide 13. Parcurge fiecare bloc rapid, leagă-le între ele: Segmentul (femei 25-45 urban, preocupate de ingrediente) e servit de Propunerea de Valoare (cosmetice naturale, livrare 24h), ajuns prin Canale (Instagram + WhatsApp), cu Relații de comunitate și consultanță. Susținut de Resurse (formule unice, audiență IG), Activități (producție mică, conținut), Parteneri (furnizori, curier). Banii: Costuri dominate de materie primă + ambalaje + ads, Venituri din vânzare directă + seturi cadou. Întrebare: 'Vedeți cum fiecare bloc se sprijină pe celelalte? Dacă schimbi segmentul, ce alte blocuri se schimbă?' — aproape toate. Asta e puterea privirii de ansamblu. Pregătește exercițiul de pe slide 18.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Exemplu Model &mdash; BMC Complet</span>
+          <h2 class="slide-title">BMC NaturaLab &mdash; canvasul completat integral</h2>
+          <p class="slide-subtitle">Așa arată cele 9 blocuri completate &mdash; fiecare se sprijină pe celelalte.</p>
+        </div>
+        <div class="bmc-canvas">
+          <div class="bmc-block b-kp">
+            <div class="bh">🤝 Parteneri Cheie</div>
+            <div class="bi">Furnizori ingrediente bio &middot; Curier rapid &middot; Influenceri de nișă</div>
+          </div>
+          <div class="bmc-block b-ka">
+            <div class="bh">⚙️ Activități Cheie</div>
+            <div class="bi">Producție mică &middot; Conținut Instagram</div>
+          </div>
+          <div class="bmc-block b-kr">
+            <div class="bh">🔑 Resurse Cheie</div>
+            <div class="bi">Formule unice &middot; Audiență Instagram (15k)</div>
+          </div>
+          <div class="bmc-block b-vp">
+            <div class="bh">💎 Propunere de Valoare</div>
+            <div class="bi">Cosmetice <b>100% naturale</b>, fără parabeni &middot; Transparență totală a ingredientelor &middot; <b>Livrare în 24h</b></div>
+          </div>
+          <div class="bmc-block b-cr">
+            <div class="bh">❤️ Relații Clienți</div>
+            <div class="bi">Comunitate &middot; Consultanță personalizată</div>
+          </div>
+          <div class="bmc-block b-ch">
+            <div class="bh">📢 Canale</div>
+            <div class="bi">Instagram &middot; WhatsApp</div>
+          </div>
+          <div class="bmc-block b-cs">
+            <div class="bh">👥 Segmente Clienți</div>
+            <div class="bi">Femei 25&ndash;45, urban, preocupate de ingrediente</div>
+          </div>
+          <div class="bmc-block b-co">
+            <div class="bh">💸 Structura Costurilor</div>
+            <div class="bi">Materie primă bio &middot; Ambalaje eco &middot; Instagram ads</div>
+          </div>
+          <div class="bmc-block b-rev">
+            <div class="bh">💰 Fluxuri de Venituri</div>
+            <div class="bi">Vânzare directă &middot; Seturi cadou</div>
+          </div>
+        </div>
+        <div class="slide-num">16 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 17 — TEORIE: AI Tools pentru Startup -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide bonus — instrumente AI care fac MVP-ul de azi de 10x mai rapid și ieftin decât acum 3 ani. Durată: 4-5 min. Context pentru formatori: cursanții lor (tineri) sunt nativi digitali — aceste tool-uri le permit să construiască un MVP real într-o zi. Lovable: descrii în chat ce app vrei, AI-ul o construiește — perfect pentru un MVP de tip aplicație fără cod. Nano Banana (Gemini): generare de content vizual, analiză, automatizări. Veo / Google Flow: video AI profesional pentru marketing fără echipă de filmare. Mesaj: aceste tool-uri pot fi ELE ÎNSELE MVP-ul — un landing page făcut în Lovable + un video de demo făcut cu Veo = validare în câteva ore. Toate au variantă gratuită sau trial. NU intra în demo live aici (depinde de conexiune/planuri) — menționează ca resurse. Întrebare: 'Câți dintre cursanții voștri ar putea construi ceva într-o zi cu astea?'">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Teorie &mdash; Instrumente AI 2025</span>
+          <h2 class="slide-title">AI Tools pentru antreprenori</h2>
+          <p class="slide-subtitle">Fac MVP-ul de azi de 10x mai rapid și mai ieftin &mdash; pot fi ele însele MVP-ul tău.</p>
+        </div>
+        <div class="cards-3">
+          <div class="card sky">
+            <div class="card-icon">🛠️</div>
+            <div class="card-title">Lovable</div>
+            <div class="card-body">Construiești aplicații web <b>fără cod</b>, prin chat cu AI. Ideal pentru un MVP rapid.</div>
+            <div class="card-sub">lovable.dev &middot; De la idee la app în ore, nu luni</div>
+          </div>
+          <div class="card peach">
+            <div class="card-icon">🍌</div>
+            <div class="card-title">Nano Banana</div>
+            <div class="card-body">AI generativ bazat pe Gemini pentru content vizual și automatizări.</div>
+            <div class="card-sub">nanobananai.com &middot; Content, analiză, automatizări</div>
+          </div>
+          <div class="card mint">
+            <div class="card-icon">🎬</div>
+            <div class="card-title">Veo / Google Flow</div>
+            <div class="card-body">Generare <b>video AI</b> pentru marketing și prezentări de produs.</div>
+            <div class="card-sub">labs.google.com/flow &middot; Video profesional fără echipă</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:center;">
+          <div class="mini-badge amber">⚡ Toate au variantă gratuită sau trial &mdash; pot fi MVP-ul tău de mâine</div>
+        </div>
+        <div class="slide-num">17 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 18 — PRACTICĂ: Completează BMC-ul tău -->
+    <!-- ============================================================ -->
+    <section data-notes="Al doilea exercițiu practic — completarea propriului BMC. Durată: 15 min individual. Instrucțiuni de facilitare: 1) Folosesc afacerea cu care au lucrat la exercițiul MVP (slide 11) — continuitate. 2) Completează toate 9 blocuri pe fișa distribuită. 3) Reamintește: fiecare bloc = o ipoteză, nu un adevăr. 4) Nu există răspuns greșit acum — important e să gândească tot modelul, nu să-l facă perfect. Timer vizibil. La 10 min anunță 5 min rămase. Capcane tipice: (a) sar peste blocurile de bani — insistă să completeze 5 și 9; (b) scriu 'toată lumea' la segmente — provoacă specificitate. Dacă cineva termină devreme: 'Care bloc ești cel mai puțin sigur? Acela e prima ta ipoteză de testat.' Pregătire pentru slide 19: anunță că vor prezenta BMC-ul în 3 min.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <span class="slide-tag practice-tag">✍️ Practică Individuală</span>
+          <h2 class="slide-title">Completează BMC-ul tău</h2>
+          <p class="slide-subtitle">Aceeași afacere de la exercițiul MVP &mdash; acum toată logica ei pe o pagină.</p>
+        </div>
+        <div class="practice-meta">
+          <div class="timer-pill">⏱ 15 minute</div>
+          <div class="mode-pill">👤 Individual</div>
+        </div>
+        <div class="bmc-practice">
+          <div class="bmc-pr-cell"><div class="bmc-pr-n">1. Segmente de Clienți</div><div class="bmc-pr-fill"></div></div>
+          <div class="bmc-pr-cell"><div class="bmc-pr-n">2. Propunere de Valoare</div><div class="bmc-pr-fill"></div></div>
+          <div class="bmc-pr-cell"><div class="bmc-pr-n">3. Canale</div><div class="bmc-pr-fill"></div></div>
+          <div class="bmc-pr-cell"><div class="bmc-pr-n">4. Relații Clienți</div><div class="bmc-pr-fill"></div></div>
+          <div class="bmc-pr-cell"><div class="bmc-pr-n">5. Fluxuri Venituri</div><div class="bmc-pr-fill"></div></div>
+          <div class="bmc-pr-cell"><div class="bmc-pr-n">6. Resurse Cheie</div><div class="bmc-pr-fill"></div></div>
+          <div class="bmc-pr-cell"><div class="bmc-pr-n">7. Activități Cheie</div><div class="bmc-pr-fill"></div></div>
+          <div class="bmc-pr-cell"><div class="bmc-pr-n">8. Parteneri Cheie</div><div class="bmc-pr-fill"></div></div>
+          <div class="bmc-pr-cell"><div class="bmc-pr-n">9. Structura Costurilor</div><div class="bmc-pr-fill"></div></div>
+        </div>
+        <div style="display:flex;justify-content:center;">
+          <div class="mini-badge">📋 Folosește fișa distribuită &middot; Fiecare bloc = o ipoteză &middot; Nu există răspuns greșit acum</div>
+        </div>
+        <div class="slide-num">18 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 19 — TEORIE/MINDSET: BMC = ipoteze de testat -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide de mindset — corectează cea mai importantă greșeală de abordare a BMC, și leagă tot modulul. Durată: 2-3 min. Mulți completează BMC ca pe o DESCRIERE a ce fac deja sau ce cred că vor face. Greșit. BMC bun = un set de IPOTEZE pe care urmează să le testezi una câte una. Fiecare bloc = o întrebare la care nu știi încă răspunsul cu certitudine: 'cred că clientul meu e X' — ipoteză; 'cred că ajung la el prin Instagram' — ipoteză. Leagă direct de Lean (începutul modulului): BMC îți spune CE să testezi, MVP-ul e CUM testezi. Împreună = metoda Lean completă. Mesaj pentru formatori: învățați cursanții să trateze fiecare bloc ca pe ceva ce trebuie verificat în realitate, nu ca pe un adevăr declarat. Asta e diferența dintre un visător și un antreprenor. Acesta închide bucla: ne-am întors la Lean (slide 3) după ce am completat BMC-ul (slide 18).">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Mindset &mdash; Cum citești BMC-ul</span>
+          <h2 class="slide-title">Fiecare bloc e o ipoteză, nu un adevăr</h2>
+        </div>
+        <div class="vhero">
+          <div class="vhero-text">
+            <span class="vhero-tag">🧠 Așa închidem bucla Lean</span>
+            <div class="vhero-big">BMC nu descrie ce faci &mdash; spune ce ai de testat</div>
+            <p class="vhero-sub">Fiecare bloc = o întrebare la care nu știi încă răspunsul. &bdquo;Cred că clientul meu e X&rdquo;, &bdquo;cred că ajung la el prin Instagram&rdquo; &mdash; <b>ipoteze</b>, nu certitudini.</p>
+            <div class="vhero-stat"><b>BMC</b> îți spune CE să testezi. <b>MVP-ul</b> e CUM testezi. Împreună &mdash; metoda Lean completă.</div>
+          </div>
+          <div class="vhero-art violet">
+            <span class="vhero-emoji">🔬</span>
+            <div class="vhero-cap">Visătorul declară. Antreprenorul verifică.</div>
+            <div class="vhero-pills">
+              <div class="vhero-pill"><span>BMC</span><b>CE testezi</b></div>
+              <div class="vhero-pill"><span>MVP</span><b>CUM testezi</b></div>
+              <div class="vhero-pill"><span>↻ Build-Measure-Learn</span><b>↩</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">19 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 20 — PREZENTARE + RETRO -->
+    <!-- ============================================================ -->
+    <section data-notes="Prezentare BMC + retrospectivă de zi. Durată: 20-25 min (3 min/persoană prezentare + debrief retro). Stânga — prezentarea: 3-4 voluntari prezintă BMC-ul lor acoperind 3 puncte esențiale (cine e clientul, ce problemă rezolvă, cum face bani). Restul grupului ascultă activ. Dreapta — retrospectiva: după prezentări, pune cele 3 întrebări de reflecție întregului grup. Acestea sunt cele mai importante pentru un ToT: nu doar 'ce ați învățat' ci 'ce schimbă asta în cum PREDAȚI antreprenoriatul' și 'ce veți face diferit cu cursanții MÂINE'. Lasă fiecare întrebare să respire — notează 2-3 răspunsuri pe flipchart. Acesta e momentul în care formatorii internalizează valoarea zilei. Ton cald, de la egal la egal: ei sunt experți în predare, le-am dat un instrument nou.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Prezentare + Retrospectivă</span>
+          <h2 class="slide-title">Prezintă &amp; Reflectează</h2>
+          <p class="slide-subtitle">Câțiva prezintă BMC-ul &mdash; apoi reflectăm împreună asupra întregii zile.</p>
+        </div>
+        <div class="pr-grid">
+          <div class="pr-pane present">
+            <div class="pr-tag">🎤 Prezintă BMC-ul tău</div>
+            <div class="timer-pill" style="background:#fff;border-color:#86EFAC;color:#15803D;">⏱ 3 min / persoană</div>
+            <div class="pr-sub" style="margin-top:4px;"><b>Acoperă pe scurt:</b></div>
+            <div class="pr-line"><span class="pb">&rarr;</span> Cine e clientul tău</div>
+            <div class="pr-line"><span class="pb">&rarr;</span> Ce problemă rezolvi</div>
+            <div class="pr-line"><span class="pb">&rarr;</span> Cum faci bani</div>
+          </div>
+          <div class="pr-pane retro">
+            <div class="pr-tag">💬 3 Întrebări Retro</div>
+            <div class="pr-line"><span class="pb">1.</span> Ce a fost cea mai mare revelație de azi?</div>
+            <div class="pr-line"><span class="pb">2.</span> Ce schimbă asta în <b>cum predai antreprenoriatul</b>?</div>
+            <div class="pr-line"><span class="pb">3.</span> Ce vei face diferit cu cursanții tăi mâine?</div>
+          </div>
+        </div>
+        <div class="slide-num">20 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 21 — SCHEMA HERO: Azi ați construit fundația -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide de recapitulare emoțională a Zilei 1. Durată: 2 min. Citește titlul rar: 'Azi ați construit fundația.' Apoi enumeră ce au construit, conectând modulele: problema (M1), clientul (M1), mesajul și poziționarea (M2), oceanul albastru (M3), MVP-ul și modelul de business (M4). Mesajul de fond: nu au învățat concepte izolate — au construit un sistem complet de gândire antreprenorială, gata de predat. Ultima propoziție e pentru EI ca formatori: 'Formatorii care înțeleg asta predau altfel de mâine.' Ton de respect și încredere — ei sunt experți, le-am dat un kit. Pregătește recapitularea structurată de pe slide 22.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Ziua 1 Completă</span>
+          <h2 class="slide-title">Azi ați construit fundația</h2>
+        </div>
+        <div class="vhero">
+          <div class="vhero-text">
+            <span class="vhero-tag">🎯 Un sistem, nu concepte izolate</span>
+            <div class="vhero-big">Problema &middot; Clientul &middot; Mesajul &middot; Poziționarea &middot; MVP &middot; Modelul de business</div>
+            <p class="vhero-sub">Nu concepte izolate &mdash; <b>un sistem complet de gândire antreprenorială</b>, gata de predat mâine.</p>
+            <div class="vhero-stat">Formatorii care înțeleg întreg lanțul &mdash; de la problemă la model de business &mdash; predau altfel de mâine.</div>
+          </div>
+          <div class="vhero-art blue">
+            <span class="vhero-emoji">🏗️</span>
+            <div class="vhero-cap">5 module &rarr; o singură logică de afacere</div>
+            <div class="vhero-pills">
+              <div class="vhero-pill"><span>Strategie</span><b>M1&ndash;M3</b></div>
+              <div class="vhero-pill"><span>Execuție</span><b>M4</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">21 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 22 — RECAP ZIUA 1: Foaia de Drum -->
+    <!-- ============================================================ -->
+    <section data-notes="Recapitulare structurată a întregii Zile 1 — harta completă. Durată: 4-5 min. Parcurge flow-ul de 5 pași stânga-dreapta, arătând cum fiecare modul a adăugat un bloc: M1 Problema → M2 USP → M3 Oceanul Albastru → M4 MVP → M4b BMC. Asta e 'foaia de drum a afacerii' — firul roșu al întregii zile. Apoi checklist-ul de livrabile: ce ar trebui să aibă fiecare participant completat la finalul zilei. Folosește-l ca auto-evaluare: 'Bifați mental câte aveți complete.' E normal ca unele să fie schițe — important e că au structura. Mesaj pentru formatori: acest flow + checklist e exact ce pot da cursanților lor ca fir conducător al unui curs de antreprenoriat. Tranziție spre slide final.">
+      <div class="slide">
+        <div class="slide-header">
+          <span class="slide-tag">Recapitulare &mdash; Ziua 1</span>
+          <h2 class="slide-title">Foaia de Drum &mdash; ce am construit azi</h2>
+          <p class="slide-subtitle">Fiecare modul a adăugat un bloc &mdash; împreună formează logica completă a unei afaceri.</p>
+        </div>
+        <div class="story-flow-5">
+          <div class="sf5-step s1"><div class="sf5-num">M1</div><div class="sf5-title">Problema</div><div class="sf5-sub">Ce durere reală adresezi?</div></div>
+          <div class="sf5-step s2"><div class="sf5-num">M2</div><div class="sf5-title">USP</div><div class="sf5-sub">De ce tu, nu concurentul?</div></div>
+          <div class="sf5-step s3"><div class="sf5-num">M3</div><div class="sf5-title">Oceanul Albastru</div><div class="sf5-sub">Spațiu necontestat de piață?</div></div>
+          <div class="sf5-step s4"><div class="sf5-num">M4</div><div class="sf5-title">MVP</div><div class="sf5-sub">Prima versiune testabilă</div></div>
+          <div class="sf5-step s5"><div class="sf5-num">M4b</div><div class="sf5-title">BMC</div><div class="sf5-sub">Logica completă a afacerii</div></div>
+        </div>
+        <div class="clist" style="margin-top:20px;">
+          <div class="cl-item"><div class="cl-box"></div><div class="cl-txt"><b>Problema validată</b> cu date reale, nu cu presupuneri</div></div>
+          <div class="cl-item"><div class="cl-box"></div><div class="cl-txt"><b>USP</b> formulat în maxim 2 propoziții</div></div>
+          <div class="cl-item"><div class="cl-box"></div><div class="cl-txt"><b>Harta Oceanului Albastru</b> completată (matricea ERRC)</div></div>
+          <div class="cl-item"><div class="cl-box"></div><div class="cl-txt"><b>Tipul de MVP</b> ales și planificat</div></div>
+          <div class="cl-item"><div class="cl-box"></div><div class="cl-txt"><b>BMC</b> completat cu toate 9 blocurile</div></div>
+        </div>
+        <div class="slide-num">22 / 23</div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SLIDE 23 — TRANZIȚIE: Closing -->
+    <!-- ============================================================ -->
+    <section data-notes="Slide final al Zilei 1 — închidere caldă + teme pentru acasă. Durată: 3-4 min. Energie pozitivă: 'Ați construit azi fundația unei afaceri și a unui curs pe care îl puteți preda. Mulțumesc pentru implicare.' Apoi cele 3 teme pentru acasă, care pregătesc Ziua 2: 1) Validează problema cu 3 oameni REALI (non-familie — familia te minte din amabilitate); 2) Completează Profilul Clientului complet (CP din M1); 3) Schițează prima versiune scrisă a USP-ului. Mesaj: aceste teme nu sunt birocrație — sunt exact ce le veți cere cursanților voștri, deci le faceți o dată ca formatori ca să știți cum se simte. Anunță ora și locul Zilei 2. Închide cu energie: 'Ne vedem mâine — construim mai departe.' Verifică timing total Modul 4: ~90 min.">
+      <div class="slide slide-dark">
+        <div class="dark-bg"></div>
+        <div class="dark-accent"></div>
+        <div class="dark-content">
+          <div class="dark-badge">Ziua 1</div>
+          <div class="dark-title">Mulțumim! Ne vedem la Ziua 2.</div>
+          <div class="dark-sub">Trei teme pentru acasă &mdash; exact ce le veți cere și cursanților voștri:</div>
+          <div class="hw-cards">
+            <div class="hw-card">
+              <div class="hw-icon">🗣️</div>
+              <div class="hw-txt"><b>Validează problema</b> cu 3 oameni reali (non-familie &mdash; familia te minte din amabilitate)</div>
+            </div>
+            <div class="hw-card">
+              <div class="hw-icon">📋</div>
+              <div class="hw-txt"><b>Completează Profilul Clientului</b> (CP) complet, pe afacerea ta de lucru</div>
+            </div>
+            <div class="hw-card">
+              <div class="hw-icon">✏️</div>
+              <div class="hw-txt"><b>Schițează prima versiune</b> scrisă a USP-ului tău</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.4);">23 / 23</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    controls: true,
+    progress: true,
+    center: false,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    width: 1280,
+    height: 720,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0
+  });
+</script>
+</body>
+</html>

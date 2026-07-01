@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Canale concrete Moldova — De la atelier la piață</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #0EA371;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 54px 66px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #0EA371 0%, #0891B2 100%); }
+
+    .slide-header { margin-bottom: 24px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #D1FAE5; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-title .hl { color: var(--primary); }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 960px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0 0 40px; max-width: 740px; line-height: 1.5; }
+    .cover-bait { font-size: 70px; margin: 6px 0 34px; letter-spacing: 8px; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+    .quote-block.warn { border-color: var(--warning); background: #FFFBEB; } .quote-block.warn strong { color: #B45309; }
+
+    /* brand chips */
+    .brand-chip { display: inline-flex; align-items: center; font-size: 14px; font-weight: 700; color: var(--foreground); background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 5px 13px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+    .brand-chip .dot { width: 7px; height: 7px; border-radius: 50%; margin-right: 7px; flex-shrink: 0; }
+
+    /* VS table — ce spune școala vs ce aude clientul */
+    .vs-table { width: 100%; border-collapse: collapse; font-size: 19px; }
+    .vs-table th { padding: 14px 20px; text-align: left; font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: #fff; border: none; }
+    .vs-table th.col-bad { background: #B91C1C; }
+    .vs-table th.col-good { background: #15803D; }
+    .vs-table td { padding: 18px 20px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.4; }
+    .vs-table tr:last-child td { border-bottom: none; }
+    .vs-table td.bad-cell { color: #B91C1C; font-style: italic; }
+    .vs-table td.good-cell { background: #F0FDF4; font-weight: 700; color: #15803D; }
+    .vs-table td b { font-weight: 800; }
+
+    /* drill analogy */
+    .drill-row { display: flex; align-items: stretch; gap: 18px; margin-top: 4px; }
+    .drill-card { flex: 1; border-radius: var(--radius); padding: 22px 26px; display: flex; align-items: center; gap: 18px; }
+    .drill-card.no { background: #FEF2F2; border: 1px solid #FECACA; }
+    .drill-card.yes { background: #ECFDF5; border: 1px solid #6EE7B7; }
+    .drill-emoji { font-size: 46px; line-height: 1; flex-shrink: 0; }
+    .drill-txt { font-size: 18px; line-height: 1.4; color: var(--foreground); } .drill-txt b { font-weight: 800; }
+    .drill-card.no .drill-lbl { color: #B91C1C; } .drill-card.yes .drill-lbl { color: #15803D; }
+    .drill-lbl { font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+    .drill-arrow { display: flex; align-items: center; font-size: 30px; color: var(--muted); }
+
+    /* FORMULA */
+    .formula-box { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 34px 40px; color: #fff; position: relative; overflow: hidden; }
+    .formula-box::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .formula-line { position: relative; z-index: 2; font-size: 30px; font-weight: 700; line-height: 1.5; }
+    .formula-line .slot { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); border-radius: 8px; padding: 2px 14px; font-weight: 800; margin: 0 2px; }
+    .formula-line .slot.who { color: #93C5FD; } .formula-line .slot.res { color: #6EE7B7; } .formula-line .slot.dif { color: #FCD34D; }
+    .formula-line .slot.prob { color: #FCA5A5; }
+    .ex-flip { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+    .flip { border-radius: var(--radius-sm); padding: 16px 20px; font-size: 18px; line-height: 1.45; }
+    .flip.no { background: #FEF2F2; border: 1px solid #FECACA; color: #B91C1C; }
+    .flip.yes { background: #ECFDF5; border: 1px solid #6EE7B7; color: var(--foreground); }
+    .flip .fl-mark { font-weight: 800; margin-right: 8px; }
+    .flip.yes b { color: #15803D; font-weight: 800; }
+
+    /* 3 pitch-uri table */
+    .pitch-table { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .pitch-table th { padding: 14px 20px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: #fff; background: var(--primary); border: none; }
+    .pitch-table td { padding: 18px 20px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.45; }
+    .pitch-table tr:last-child td { border-bottom: none; }
+    .pitch-who { display: flex; align-items: center; gap: 12px; }
+    .pitch-emoji { font-size: 32px; line-height: 1; }
+    .pitch-name { font-size: 19px; font-weight: 800; color: var(--foreground); }
+    .pitch-msg { font-size: 17px; color: var(--foreground); line-height: 1.45; font-style: italic; } .pitch-msg b { font-weight: 800; font-style: normal; color: var(--primary); }
+
+    /* MISTAKES list (3 greșeli de pitch) */
+    .mistakes { display: flex; flex-direction: column; gap: 14px; flex: 1; justify-content: center; }
+    .mk-row { display: grid; grid-template-columns: 240px 1fr; gap: 18px; align-items: stretch; }
+    .mk-head { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; justify-content: center; }
+    .mk-head .mk-n { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: #B91C1C; letter-spacing: 0.04em; text-transform: uppercase; }
+    .mk-head .mk-n .mk-dot { width: 22px; height: 22px; border-radius: 50%; background: var(--destructive); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    .mk-head .mk-t { font-size: 19px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+    .mk-body { display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+    .mk-bad { background: #FEF2F2; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 15px; color: #B91C1C; font-style: italic; line-height: 1.35; }
+    .mk-good { background: #ECFDF5; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 15px; color: var(--foreground); line-height: 1.35; } .mk-good b { color: #15803D; font-weight: 800; }
+    .mk-bad .m, .mk-good .m { font-weight: 800; font-style: normal; margin-right: 6px; }
+
+    /* EMOTION hook (cârligul emoțional) */
+    .emo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .emo-card { border-radius: var(--radius); padding: 16px 16px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; min-height: 0; overflow: hidden; }
+    .emo-card.s { background: var(--pastel-mint); border-color: #86EFAC; }
+    .emo-card.m { background: var(--pastel-peach); border-color: #FED7AA; }
+    .emo-card.u { background: var(--pastel-rose); border-color: #F9A8D4; }
+    .emo-card.a { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .emo-ico { font-size: 30px; line-height: 1; }
+    .emo-name { font-size: 17px; font-weight: 800; color: var(--foreground); }
+    .emo-sub { font-size: 13px; color: var(--muted); line-height: 1.35; }
+    .emo-ex { font-size: 13px; color: var(--foreground); line-height: 1.4; font-style: italic; margin-top: auto; padding-top: 6px; }
+    .ds-box { margin-top: 16px; display: flex; align-items: stretch; gap: 14px; }
+    .ds-half { flex: 1; border-radius: var(--radius); padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+    .ds-half.pain { background: #FEF2F2; border: 1px solid #FECACA; }
+    .ds-half.fix { background: #ECFDF5; border: 1px solid #6EE7B7; }
+    .ds-lbl { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+    .ds-half.pain .ds-lbl { color: #B91C1C; } .ds-half.fix .ds-lbl { color: #15803D; }
+    .ds-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .ds-txt b { font-weight: 800; }
+    .ds-arrow { display: flex; align-items: center; font-size: 28px; color: var(--practice); font-weight: 800; }
+
+    /* exercise banner + form */
+    .ex-banner { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #0EA371, #0891B2); color: #fff; border-radius: var(--radius); padding: 14px 22px; margin-bottom: 18px; }
+    .ex-banner .ex-ico { font-size: 26px; }
+    .ex-banner .ex-txt { font-size: 17px; font-weight: 600; line-height: 1.4; } .ex-banner .ex-txt b { font-weight: 800; }
+    .ex-banner .ex-time { margin-left: auto; font-size: 15px; font-weight: 800; background: rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+
+    .pitch-sheet { display: flex; flex-direction: column; gap: 12px; }
+    .ps-line { background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 16px 22px; display: flex; align-items: center; gap: 16px; }
+    .ps-word { font-size: 22px; font-weight: 800; color: var(--practice); white-space: nowrap; }
+    .ps-fill { flex: 1; border-bottom: 1.5px dashed #CBD5E1; height: 1px; align-self: flex-end; margin-bottom: 6px; }
+    .ps-tag { font-size: 13px; font-weight: 800; color: var(--muted); background: #ECFDF5; border-radius: 100px; padding: 5px 13px; white-space: nowrap; }
+    .test-strip { display: flex; gap: 10px; margin-top: 14px; }
+    .test-item { flex: 1; display: flex; align-items: center; gap: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 14px; font-size: 14px; line-height: 1.3; color: var(--foreground); }
+    .test-item .tb { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--practice); flex-shrink: 0; }
+    .test-item b { font-weight: 800; }
+
+    /* OBJECTION BANK (cartonașe sceptice, 3 coloane) */
+    .obj-bank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+    .ob-col { border-radius: var(--radius); padding: 16px 16px; display: flex; flex-direction: column; gap: 9px; border: 1px solid var(--border); overflow: hidden; }
+    .ob-col.p { background: #FEF2F2; border-color: #FECACA; }
+    .ob-col.c { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .ob-col.a { background: var(--pastel-mint); border-color: #86EFAC; }
+    .ob-title { display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 800; color: var(--foreground); margin-bottom: 2px; }
+    .ob-title .oe { font-size: 22px; }
+    .ob-card { background: #fff; border-radius: var(--radius-sm); padding: 10px 12px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+    .ob-q { font-size: 14px; font-weight: 700; color: var(--foreground); line-height: 1.35; font-style: italic; }
+    .ob-a { font-size: 12.5px; color: var(--muted); line-height: 1.35; margin-top: 5px; } .ob-a b { color: var(--practice); font-weight: 800; font-style: normal; }
+    .ob-a .arr { color: var(--practice); font-weight: 800; margin-right: 4px; }
+
+    /* ROLE-PLAY */
+    .rp-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; flex: 1; }
+    .rp-steps { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .rp-step { display: flex; align-items: flex-start; gap: 14px; }
+    .rp-num { width: 34px; height: 34px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .rp-text { font-size: 17px; color: var(--foreground); line-height: 1.4; padding-top: 4px; } .rp-text b { font-weight: 800; color: var(--practice); }
+    .rp-pane { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .rp-pane .rp-head { display: flex; align-items: center; gap: 12px; }
+    .rp-pane .rp-emoji { font-size: 38px; }
+    .rp-pane .rp-title { font-size: 19px; font-weight: 800; color: #B91C1C; line-height: 1.2; }
+    .obj { font-size: 16px; color: var(--foreground); line-height: 1.4; background: #fff; border-left: 4px solid var(--destructive); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 14px; font-style: italic; }
+    .obj .ans { display: block; font-style: normal; color: var(--practice); font-weight: 700; margin-top: 5px; font-size: 14px; }
+    .rp-debrief { margin-top: auto; font-size: 15px; color: var(--muted); line-height: 1.5; } .rp-debrief b { color: var(--foreground); }
+
+    /* PRESENT + RETRO */
+    .pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 1; }
+    .pr-pane { border-radius: var(--radius); padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; }
+    .pr-pane.present { background: var(--pastel-peach); border-color: #FED7AA; }
+    .pr-pane.retro { background: var(--primary-ultra-light); border-color: #C7D2FE; }
+    .pr-tag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 100px; }
+    .pr-pane.present .pr-tag { background: #FB923C; color: #fff; } .pr-pane.retro .pr-tag { background: var(--primary); color: #fff; }
+    .pr-title { font-size: 21px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+    .pr-line { display: flex; align-items: flex-start; gap: 11px; font-size: 16px; color: var(--foreground); line-height: 1.5; } .pr-line .pb { font-weight: 800; color: var(--primary); flex-shrink: 0; } .pr-pane.present .pr-line .pb { color: #C2410C; }
+    .retro-fill { background: #fff; border-radius: var(--radius-sm); padding: 16px 18px; font-size: 16px; color: var(--foreground); line-height: 1.7; font-style: italic; border: 1px dashed #C7D2FE; }
+    .retro-fill .blank { display: inline-block; min-width: 110px; border-bottom: 2px solid var(--primary); }
+
+    /* RULE + CHECKLIST */
+    .rule-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 28px; flex: 1; align-items: stretch; }
+    .rule-pane { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 32px; color: #fff; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+    .rule-pane::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .rule-badge { position: relative; z-index: 2; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 800; letter-spacing: 0.08em; margin-bottom: 22px; }
+    .rule-badge .rb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--primary-light); }
+    .rule-text { position: relative; z-index: 2; font-size: 26px; font-weight: 800; line-height: 1.28; letter-spacing: -0.01em; } .rule-text .hl { color: var(--primary-light); }
+    .check-pane { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 30px; display: flex; flex-direction: column; }
+    .check-head { font-size: 15px; font-weight: 800; color: var(--practice); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
+    .check-item { display: flex; align-items: flex-start; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--practice); flex-shrink: 0; margin-top: 1px; }
+    .check-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .check-txt b { font-weight: 800; }
+
+    /* TRANSITION */
+    .slide-transition { padding: 0; overflow: hidden; background: #1E3A8A; position: relative; justify-content: center; align-items: center; display: flex; }
+    .slide-transition::before { display: none; }
+
+    /* COPYWRITING FORMULAS */
+    .cw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; flex: 1; }
+    .cw-card { border-radius: var(--radius); padding: 20px 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+    .cw-card.a { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .cw-card.p { background: var(--pastel-peach); border-color: #FED7AA; }
+    .cw-head { display: flex; align-items: baseline; gap: 10px; }
+    .cw-acr { font-size: 26px; font-weight: 800; letter-spacing: 0.02em; } .cw-card.a .cw-acr { color: #0284C7; } .cw-card.p .cw-acr { color: #C2410C; }
+    .cw-acr small { font-size: 14px; font-weight: 700; color: var(--muted); letter-spacing: 0; }
+    .cw-steps { display: flex; flex-direction: column; gap: 5px; }
+    .cw-step { font-size: 14.5px; color: var(--foreground); line-height: 1.35; } .cw-step b { font-weight: 800; }
+    .cw-ex { margin-top: auto; background: #fff; border-radius: var(--radius-sm); padding: 11px 14px; font-size: 14px; color: var(--foreground); line-height: 1.4; font-style: italic; border-left: 3px solid var(--primary); } .cw-ex b { font-weight: 800; font-style: normal; color: var(--primary); }
+    .cw-note { margin-top: 14px; }
+
+    /* TONE OF VOICE */
+    .tov-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .tov-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+    .tov-ico { font-size: 30px; line-height: 1; }
+    .tov-name { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .tov-name small { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 2px; }
+    .tov-bad { font-size: 14px; color: #B91C1C; font-style: italic; line-height: 1.35; } .tov-bad .m { font-weight: 800; font-style: normal; margin-right: 5px; }
+    .tov-good { font-size: 14.5px; color: var(--foreground); line-height: 1.4; } .tov-good .m { color: #15803D; font-weight: 800; margin-right: 5px; } .tov-good b { font-weight: 800; color: #15803D; }
+    .tov-rule { margin-top: 16px; display: flex; align-items: center; gap: 14px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 14px 20px; }
+    .tov-rule .tre { font-size: 28px; } .tov-rule .trt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .tov-rule .trt b { font-weight: 800; color: var(--primary); }
+
+    /* ============ COMPONENTE NOI (v3) ============ */
+
+    /* TOOLS MAP — 3 instrumente */
+    .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .tool-card { border-radius: var(--radius); padding: 24px 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; overflow: hidden; position: relative; }
+    .tool-card.t1 { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .tool-card.t2 { background: var(--pastel-lavender); border-color: #DDD6FE; }
+    .tool-card.t3 { background: var(--pastel-peach); border-color: #FED7AA; }
+    .tool-ico { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: #fff; box-shadow: 0 2px 8px rgba(15,23,42,0.08); }
+    .tool-name { font-size: 22px; font-weight: 800; color: var(--foreground); line-height: 1.15; }
+    .tool-name small { display: block; font-size: 14px; font-weight: 600; color: var(--muted); margin-top: 4px; }
+    .tool-q { font-size: 15px; color: var(--foreground); line-height: 1.4; font-style: italic; background: #fff; border-radius: var(--radius-sm); padding: 11px 14px; }
+    .tool-where { margin-top: auto; font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: 0.02em; }
+    .tool-where b { color: var(--foreground); }
+
+    /* GENERIC GRID TABLE */
+    .gt { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .gt th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .gt td { padding: 15px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.42; color: var(--foreground); }
+    .gt tr:last-child td { border-bottom: none; }
+    .gt tr:nth-child(even) td { background: var(--bg); }
+    .gt .lead { font-weight: 800; color: var(--foreground); }
+    .gt .lead .em { font-size: 20px; margin-right: 6px; }
+    .gt .why { color: var(--muted); font-size: 15px; }
+    .gt b { font-weight: 800; }
+    .gt .quoted { font-style: italic; }
+
+    /* USP PROFILE BANK / code-style cards */
+    .prof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; }
+    .prof-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+    .prof-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .prof-head { display: flex; align-items: center; gap: 10px; }
+    .prof-em { font-size: 26px; line-height: 1; }
+    .prof-label { font-size: 14px; font-weight: 800; color: var(--foreground); letter-spacing: 0.01em; line-height: 1.15; }
+    .prof-label small { display: block; font-weight: 600; color: var(--muted); font-size: 12px; margin-top: 2px; letter-spacing: 0; }
+    .prof-quote { font-size: 14.5px; color: var(--foreground); line-height: 1.45; font-style: italic; }
+    .prof-grid.three .prof-quote { font-size: 13.5px; line-height: 1.4; }
+    .prof-quote b { font-weight: 800; font-style: normal; color: var(--primary); }
+
+    /* AIDA STAIRCASE */
+    .aida-stairs { display: flex; align-items: flex-end; gap: 14px; flex: 1; margin-top: 4px; }
+    .aida-step { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; border-radius: var(--radius) var(--radius) 0 0; padding: 18px 18px 20px; color: #fff; position: relative; overflow: hidden; box-shadow: 0 4px 14px -4px rgba(15,23,42,0.18); }
+    .aida-step.a1 { background: linear-gradient(160deg, #93C5FD, #60A5FA); min-height: 150px; }
+    .aida-step.a2 { background: linear-gradient(160deg, #60A5FA, #3B82F6); min-height: 215px; }
+    .aida-step.a3 { background: linear-gradient(160deg, #3B82F6, #2D52D4); min-height: 280px; }
+    .aida-step.a4 { background: linear-gradient(160deg, #2D52D4, #1E3A8A); min-height: 345px; }
+    .aida-letter { font-size: 46px; font-weight: 800; line-height: 1; opacity: 0.9; }
+    .aida-name { font-size: 20px; font-weight: 800; margin-top: 8px; letter-spacing: 0.01em; }
+    .aida-arrow-row { font-size: 13px; color: rgba(255,255,255,0.92); font-weight: 600; }
+    .aida-need { font-size: 13.5px; line-height: 1.4; margin-top: 10px; background: rgba(255,255,255,0.16); border-radius: var(--radius-sm); padding: 9px 11px; }
+    .aida-need b { font-weight: 800; }
+    .aida-chan { font-size: 12px; color: rgba(255,255,255,0.85); margin-top: 8px; line-height: 1.35; }
+    .aida-chan b { color: #fff; font-weight: 700; }
+    .aida-num { position: absolute; top: 12px; right: 14px; width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; }
+
+    /* FUNNEL */
+    .funnel-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 28px; flex: 1; align-items: center; }
+    .funnel { display: flex; flex-direction: column; align-items: center; gap: 9px; }
+    .funnel-row { display: flex; align-items: center; gap: 16px; width: 100%; }
+    .funnel-bar { color: #fff; border-radius: 10px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 12px -4px rgba(15,23,42,0.2); }
+    .funnel-bar .fn-num { font-size: 30px; font-weight: 800; line-height: 1; }
+    .funnel-bar .fn-lbl { font-size: 14px; font-weight: 700; text-align: right; line-height: 1.25; }
+    .fn-r1 .funnel-bar { width: 100%; background: linear-gradient(135deg, #93C5FD, #60A5FA); }
+    .fn-r2 .funnel-bar { width: 74%; background: linear-gradient(135deg, #60A5FA, #3B82F6); }
+    .fn-r3 .funnel-bar { width: 50%; background: linear-gradient(135deg, #3B82F6, #2D52D4); }
+    .fn-r4 .funnel-bar { width: 30%; background: linear-gradient(135deg, #2D52D4, #1E3A8A); }
+    .fn-stage { font-size: 12px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; width: 78px; text-align: right; flex-shrink: 0; }
+    .funnel-side { display: flex; flex-direction: column; gap: 12px; }
+    .fn-point { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; font-size: 15px; line-height: 1.4; color: var(--foreground); }
+    .fn-point.bad { background: #FEF2F2; border-color: #FECACA; } .fn-point.bad .fnp-lbl { color: #B91C1C; }
+    .fn-point.truth { background: #ECFDF5; border-color: #6EE7B7; } .fn-point.truth .fnp-lbl { color: #15803D; }
+    .fn-point.lever { background: var(--primary-ultra-light); border-color: #C7D2FE; } .fn-point.lever .fnp-lbl { color: var(--primary); }
+    .fnp-lbl { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+    .fn-point b { font-weight: 800; }
+
+    /* CHANNEL TYPES */
+    .chan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .chan-card { border-radius: var(--radius); padding: 22px 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; overflow: hidden; position: relative; }
+    .chan-card.c1 { background: var(--pastel-mint); border-color: #86EFAC; }
+    .chan-card.c2 { background: var(--pastel-peach); border-color: #FED7AA; }
+    .chan-card.c3 { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .chan-ico { width: 54px; height: 54px; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 28px; background: #fff; box-shadow: 0 2px 8px rgba(15,23,42,0.08); }
+    .chan-name { font-size: 21px; font-weight: 800; color: var(--foreground); line-height: 1.15; }
+    .chan-name small { display: block; font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 4px; }
+    .chan-list { font-size: 14.5px; color: var(--foreground); line-height: 1.5; background: #fff; border-radius: var(--radius-sm); padding: 11px 14px; }
+    .chan-list b { font-weight: 800; }
+    .chan-foot { margin-top: auto; font-size: 13px; font-weight: 700; }
+    .chan-card.c1 .chan-foot { color: #15803D; } .chan-card.c2 .chan-foot { color: #C2410C; } .chan-card.c3 .chan-foot { color: #0284C7; }
+
+    /* HOW-TO numbered steps */
+    .howto-list { display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: center; }
+    .howto-step { display: grid; grid-template-columns: 44px 1fr; gap: 16px; align-items: stretch; }
+    .howto-n { width: 44px; height: 44px; border-radius: 12px; background: var(--primary); color: #fff; font-size: 20px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+    .howto-body { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 18px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .howto-head { font-size: 17px; font-weight: 800; color: var(--foreground); line-height: 1.3; }
+    .howto-flip { display: flex; gap: 10px; flex-wrap: wrap; }
+    .ht-no { font-size: 14px; color: #B91C1C; font-style: italic; line-height: 1.35; background: #FEF2F2; border-radius: 6px; padding: 6px 10px; flex: 1; min-width: 240px; }
+    .ht-yes { font-size: 14px; color: var(--foreground); line-height: 1.35; background: #ECFDF5; border-radius: 6px; padding: 6px 10px; flex: 1; min-width: 240px; }
+    .ht-no .m, .ht-yes .m { font-weight: 800; font-style: normal; margin-right: 5px; }
+    .ht-yes b { color: #15803D; font-weight: 800; }
+    .howto-sub { font-size: 15px; color: var(--muted); line-height: 1.4; } .howto-sub b { color: var(--foreground); font-weight: 700; }
+
+    /* GREEN how-to variant (canalul ignorat) */
+    .howto-list.green .howto-n { background: var(--practice); }
+    .howto-list.green .howto-body { border-color: #BBF7D0; }
+
+    /* CODE block — template email B2B / mesaje canale */
+    .codeblock { background: #0B1120; border-radius: var(--radius); padding: 22px 26px; color: #E2E8F0; font-family: 'Onest', monospace; font-size: 15.5px; line-height: 1.62; position: relative; overflow: hidden; white-space: pre-wrap; }
+    .codeblock .ck-bar { display: flex; gap: 7px; margin-bottom: 16px; }
+    .codeblock .ck-bar span { width: 11px; height: 11px; border-radius: 50%; }
+    .codeblock .ck-bar .r { background: #EF4444; } .codeblock .ck-bar .y { background: #F59E0B; } .codeblock .ck-bar .g { background: #22C55E; }
+    .codeblock .slot { color: #FCD34D; font-weight: 700; }
+    .codeblock .subj { color: #6EE7B7; font-weight: 700; }
+    .codeblock .lbl { display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #93C5FD; background: rgba(147,197,253,0.14); border-radius: 6px; padding: 2px 9px; margin-bottom: 10px; }
+    .code-foot { margin-top: 14px; display: flex; align-items: center; gap: 12px; background: var(--primary-ultra-light); border: 1px dashed #C7D2FE; border-radius: var(--radius); padding: 13px 18px; }
+    .code-foot .cfe { font-size: 22px; flex-shrink: 0; }
+    .code-foot .cft { font-size: 15px; color: var(--foreground); line-height: 1.4; } .code-foot .cft b { font-weight: 800; color: var(--primary); }
+
+    /* AIDA practice — green code blocks (3.4b) */
+    .aida-ex-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; align-items: stretch; }
+    .aida-ex-col { display: flex; flex-direction: column; gap: 8px; min-height: 0; }
+    .aida-ex-lbl { font-size: 13px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+    .aida-ex-lbl.model { color: var(--primary); } .aida-ex-lbl.fill { color: var(--practice); }
+    .codeblock.model-code { font-size: 14px; line-height: 1.55; padding: 18px 20px; flex: 1; }
+    .codeblock.model-code .aida-k { color: #6EE7B7; font-weight: 800; }
+    .codeblock.model-code .aida-t { color: #FCD34D; font-weight: 700; }
+    .codeblock.fill-code { background: #fff; border: 2px dashed var(--practice); color: var(--foreground); font-size: 14.5px; line-height: 1.7; padding: 18px 20px; flex: 1; }
+    .codeblock.fill-code .aida-k { color: var(--practice); font-weight: 800; }
+    .codeblock.fill-code .aida-hint { color: var(--muted); font-style: italic; }
+    .codeblock.fill-code .aida-blank { color: #CBD5E1; letter-spacing: 1px; }
+    .aida-pair { margin-top: 16px; display: flex; align-items: center; gap: 12px; background: #ECFDF5; border: 1px solid #6EE7B7; border-radius: var(--radius); padding: 13px 20px; }
+    .aida-pair .ape { font-size: 24px; flex-shrink: 0; }
+    .aida-pair .apt { font-size: 15px; color: var(--foreground); line-height: 1.4; } .aida-pair .apt b { font-weight: 800; color: var(--practice); }
+
+    /* CHANNEL MESSAGES — 3 mesaje pe 3 canale */
+    .msg3-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; flex: 1; }
+    .msg3-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .msg3-head { display: flex; align-items: center; gap: 9px; }
+    .msg3-em { font-size: 24px; }
+    .msg3-label { font-size: 13px; font-weight: 800; color: var(--foreground); line-height: 1.18; }
+    .msg3-label small { display: block; font-weight: 600; color: var(--muted); font-size: 11.5px; margin-top: 2px; }
+    .msg3-q { font-size: 13.5px; color: var(--foreground); line-height: 1.42; font-style: italic; } .msg3-q b { font-weight: 800; font-style: normal; color: var(--primary); }
+
+    /* MATCH-GAME cards */
+    .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .match-col { border-radius: var(--radius); padding: 16px 18px; border: 1px solid var(--border); }
+    .match-col.obj { background: var(--pastel-peach); border-color: #FED7AA; }
+    .match-col.chan { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .match-col-head { font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 11px; display: flex; align-items: center; gap: 8px; }
+    .match-col.obj .match-col-head { color: #C2410C; } .match-col.chan .match-col-head { color: #0284C7; }
+    .chip-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+    .gchip { font-size: 13.5px; font-weight: 700; color: var(--foreground); background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 6px 13px; box-shadow: 0 1px 2px rgba(15,23,42,0.05); }
+    .trap-strip { margin-top: 16px; display: flex; align-items: center; gap: 14px; background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 13px 20px; }
+    .trap-strip .tre { font-size: 24px; flex-shrink: 0; }
+    .trap-strip .trt { font-size: 15px; color: var(--foreground); line-height: 1.45; } .trap-strip .trt b { font-weight: 800; color: #B91C1C; } .trap-strip .trt .x { color: #B91C1C; font-weight: 800; }
+
+    /* FILL sheet (3.11) */
+    .fill-sheet { display: flex; flex-direction: column; gap: 14px; }
+    .fs-block { background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 16px 22px; }
+    .fs-lbl { font-size: 14px; font-weight: 800; color: var(--practice); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
+    .fs-cloud { display: flex; flex-wrap: wrap; gap: 10px; }
+    .fs-check { display: inline-flex; align-items: center; gap: 9px; font-size: 15px; color: var(--foreground); background: var(--bg); border: 1px solid var(--border); border-radius: 100px; padding: 7px 15px; }
+    .fs-check .cb { width: 18px; height: 18px; border-radius: 5px; border: 2px solid var(--practice); flex-shrink: 0; }
+    .fs-rows { display: flex; flex-direction: column; gap: 10px; }
+    .fs-row { display: flex; align-items: center; gap: 12px; font-size: 16px; color: var(--foreground); }
+    .fs-row .fs-n { width: 26px; height: 26px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .fs-row .fs-fill { flex: 1; border-bottom: 1.5px dashed #CBD5E1; height: 22px; }
+    .fs-row .fs-arrow { font-size: 14px; color: var(--muted); font-weight: 700; white-space: nowrap; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- SLIDE 3.1 — COVER / TITLU -->
+    <section data-notes="Deschidere Modul 3 (65 min) — modulul de CANALE: pe unde, exact, ajunge mesajul la fiecare client. Se sprijină pe M1 (cine e clientul) și M2 (ce mesaj + ce voce). Ritm: Cadru+teorie 20 (AIDA + pâlnia + 3 tipuri de canale) → mini-how-to B2B + canalul ignorat 14 → Completezi: alegi canalele 10 → Joc: potrivire + telefonul la rece 16 → Prezinți+retro 10 → Regulă+checklist 5. Output în Foaia de drum: TOP 3 canale + primul pas pe fiecare. Firul roșu: «Ai peștele (M1) și momeala (M2). Degeaba, dacă arunci undița în locul greșit.» Cele 2 instrumente noi — AIDA și pâlnia de conversie — sunt ancorele teoretice; desenează-le pe tablă, te întorci la ele tot modulul. NOU în v3: după teoria AIDA (3.4) urmează un exercițiu de scriere pe formula AIDA (3.4b) — sala scrie efectiv un text, nu doar ascultă.">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 3 · De la atelier la piață — vânzări &amp; marketing digital</div>
+          <h1>Pe ce canal<br>arunci undița?</h1>
+          <div class="cover-bait">🎣 🗺️ 📞</div>
+          <p class="subtitle">Ai peștele (M1) și momeala (M2). Degeaba, dacă arunci undița în locul greșit.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">65 min</span>
+            <span class="cover-chip">AIDA + Pâlnia de conversie</span>
+            <span class="cover-chip">Pleci cu TOP 3 canale + primul pas</span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.2 — Ce înveți azi (harta modulului) -->
+    <section data-notes="Cârlig mentor: «Cel mai bun mesaj din lume, strigat în pădure, nu aduce pe nimeni. Azi învățăm UNDE să-l strigi.» Anunță cele 2 instrumente de canal + harta Moldova. AIDA răspunde «cum duc omul de la nu-te-știu la m-am-înscris»; pâlnia răspunde «de ce nu se înscrie nimeni din prima»; harta canalelor răspunde «ce canal, exact, pentru ce client». Spune clar unde mergem — sala trebuie să aibă harta în cap.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Ce înveți azi · harta modulului</div>
+          <h2 class="slide-title">2 instrumente de canal <span class="hl">+ harta Moldova</span></h2>
+          <p class="slide-subtitle">Cel mai bun mesaj din lume, strigat în pădure, nu aduce pe nimeni. Azi înveți <b>UNDE să-l strigi</b>.</p>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card t1">
+            <div class="tool-ico">📣</div>
+            <div class="tool-name">AIDA<small>drumul spre înscriere</small></div>
+            <div class="tool-q">„Cum duc omul de la «nu te știu» la «m-am înscris»?"</div>
+            <div class="tool-where">Răspunde · <b>treptele pe care le urcă omul</b></div>
+          </div>
+          <div class="tool-card t2">
+            <div class="tool-ico">🫗</div>
+            <div class="tool-name">Pâlnia de conversie<small>de ce-ți trebuie mulți sus</small></div>
+            <div class="tool-q">„De ce nu se înscrie nimeni din prima? Câți îmi trebuie sus?"</div>
+            <div class="tool-where">Răspunde · <b>de câtă lume ai nevoie</b></div>
+          </div>
+          <div class="tool-card t3">
+            <div class="tool-ico">🗺️</div>
+            <div class="tool-name">Harta canalelor MD<small>fiecare client, alt loc</small></div>
+            <div class="tool-q">„Ce canal, exact, pentru ce client?"</div>
+            <div class="tool-where">Răspunde · <b>unde e DE FAPT fiecare</b></div>
+          </div>
+        </div>
+        <div class="slide-num">02 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.3 — Cadru: canalul potrivit pentru fiecare client -->
+    <section data-notes="Cadru-ancoră: fiecare client e în alt lac, nu-i cauți pe toți în același loc. Elev/părinte → Facebook (grupuri raion), TikTok, prin alți elevi, ziua porților deschise. Companie (dual/B2B) → telefon direct, vizită, email, Camera de Comerț, târguri de joburi. Adult (curs) → ANOFM, grupuri Facebook «caut de lucru», 999.md / rabota.md. Regula lacului: nu există «canalul bun», există canalul bun PENTRU clientul ăsta. Leagă de M1 — fiecare avatar are lacul lui; aici punem lacul pe hartă.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · canalul potrivit fiecărui client</div>
+          <h2 class="slide-title">Fiecare client e în alt lac. <span class="hl">Nu-i cauți pe toți în același loc.</span></h2>
+          <p class="slide-subtitle">Nu există „canalul bun". Există canalul bun <b>pentru clientul ăsta</b>.</p>
+        </div>
+        <table class="gt">
+          <thead>
+            <tr><th style="width:30%">Clientul</th><th style="width:70%">Unde e DE FAPT (canalul)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="lead"><span class="em">👦</span>Elev / părinte</td><td><b>Facebook</b> (grupuri raion), TikTok, prin alți elevi, ziua porților deschise</td></tr>
+            <tr><td class="lead"><span class="em">🏢</span>Companie<br><span class="why">dual / B2B</span></td><td><b>telefon direct</b>, vizită, email, Camera de Comerț, târguri de joburi</td></tr>
+            <tr><td class="lead"><span class="em">👷</span>Adult<br><span class="why">curs / reconversie</span></td><td><b>ANOFM</b>, grupuri Facebook „caut de lucru", 999.md / rabota.md</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:16px"><div class="quote-block"><strong>Regula lacului:</strong> nu există „canalul bun". Există canalul bun <strong>pentru clientul ăsta</strong>.</div></div>
+        <div class="slide-num">03 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.4 — TEORIE 1: modelul AIDA -->
+    <section data-notes="AIDA e ancora teoretică a modulului — desen-o pe tablă, 4 trepte, te întorci la ea: «pe ce treaptă e omul când vede asta?». AIDA = cel mai vechi și mai folosit model din marketing. 4 trepte, în ordine: Atenție (te observă — un cârlig, o postare, un afiș), Interes (vrea să afle mai mult — intră pe pagină, citește), Dorință (își dorește — vede dovada, se vede pe el acolo), Acțiune (face pasul — scrie, sună, vine, semnează). Pe fiecare treaptă, alt canal: Atenție→TikTok/Facebook/afiș/gura-lumii; Interes→pagina ta, ziua porților deschise; Dorință→postări cu absolvenți, video; Acțiune→mesaj privat, telefon, formular. Cârlig mentor: «Dacă ceri Acțiunea (înscrierea) când omul e abia la Atenție, îl pierzi. Fiecare canal are treapta lui.» Mulți cer Acțiunea prea devreme — ăsta e mesajul-cheie. ANUNȚĂ: acum urmează exercițiul — vor scrie ei un text pe formula asta.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie 1 · modelul AIDA</div>
+          <h2 class="slide-title">De la „nu te știu" la „m-am înscris" — <span class="hl">sunt 4 trepte, în ordine</span></h2>
+          <p class="slide-subtitle">Cel mai vechi model din marketing. Nimeni nu sare direct sus. Fiecare treaptă are <b>ce-i trebuie</b> și <b>canalul ei</b>.</p>
+        </div>
+        <div class="aida-stairs">
+          <div class="aida-step a1">
+            <div class="aida-num">1</div>
+            <div class="aida-letter">A</div>
+            <div class="aida-name">Atenție</div>
+            <div class="aida-arrow-row">te observă</div>
+            <div class="aida-need">Îți trebuie: <b>un CÂRLIG</b> (M2)</div>
+            <div class="aida-chan"><b>Canal:</b> TikTok, Facebook, afiș, gura-lumii</div>
+          </div>
+          <div class="aida-step a2">
+            <div class="aida-num">2</div>
+            <div class="aida-letter">I</div>
+            <div class="aida-name">Interes</div>
+            <div class="aida-arrow-row">vrea să afle mai mult</div>
+            <div class="aida-need">Îți trebuie: <b>conținut, dovezi</b></div>
+            <div class="aida-chan"><b>Canal:</b> pagina ta, ziua porților deschise</div>
+          </div>
+          <div class="aida-step a3">
+            <div class="aida-num">3</div>
+            <div class="aida-letter">D</div>
+            <div class="aida-name">Dorință</div>
+            <div class="aida-arrow-row">se vede pe el acolo</div>
+            <div class="aida-need">Îți trebuie: <b>povești, testimoniale</b></div>
+            <div class="aida-chan"><b>Canal:</b> postări cu absolvenți, video</div>
+          </div>
+          <div class="aida-step a4">
+            <div class="aida-num">4</div>
+            <div class="aida-letter">A</div>
+            <div class="aida-name">Acțiune</div>
+            <div class="aida-arrow-row">face pasul</div>
+            <div class="aida-need">Îți trebuie: <b>o CHEMARE clară</b></div>
+            <div class="aida-chan"><b>Canal:</b> mesaj privat, telefon, formular</div>
+          </div>
+        </div>
+        <div class="slide-num">04 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.4b — PRACTICĂ: Scrie un text pe formula AIDA (NOU v3) -->
+    <section data-notes="PRACTICĂ — 12 min · Scrie un text pe formula AIDA (individual, apoi în perechi). Mesaj-cheie: AIDA nu e doar de citit, e o REȚETĂ de scris. Ia avatarul tău (M1) și scrie un mesaj/postare de 4-5 rânduri care trece prin cele 4 trepte. Pe ecran, stânga: un MODEL completat (profil curs adulți, pe Facebook) — A: «Fără job și crezi că e prea târziu pentru o meserie?»; I: «În 4 luni poți deveni instalator de fotovoltaice — un domeniu unde firmele caută oameni chiar acum»; D: «Maria a făcut cursul anul trecut. Azi are contract și salariu. (poză de la job)»; A: «Locurile sunt limitate. Scrie-ne în privat până vineri.» Dreapta: template-ul cu cele 4 trepte goale, pe care îl completează pentru avatarul lor. În perechi: citește textul colegului, el bifează — are toate 4 treptele? Unde se simte «rupt» (sare o treaptă)? De ce funcționează: scris pe formulă, până și cineva care «nu se pricepe la scris» produce un text care funcționează — formula face munca grea. Treci pe la perechi; prinde textele unde lipsește D (dovada) sau A finală (chemarea + termenul) — cele mai sărite.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Practică · scrie un text pe formula AIDA</div>
+          <h2 class="slide-title">AIDA nu e de citit. <span class="hl" style="color:var(--practice)">E o rețetă de scris.</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">✍️</span>
+          <span class="ex-txt">Ia avatarul tău (M1) și scrie un mesaj/postare de 4–5 rânduri care <b>trece prin toate 4 treptele</b>. Individual, apoi în perechi.</span>
+          <span class="ex-time">⏱ 12 min</span>
+        </div>
+        <div class="aida-ex-grid">
+          <div class="aida-ex-col">
+            <div class="aida-ex-lbl model">📘 Model completat · profil curs adulți (Facebook)</div>
+            <div class="codeblock model-code"><div class="ck-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="aida-k">A — ATENȚIE:</span>  „Fără job și crezi că e prea
+            târziu pentru o meserie?" 🔧
+
+<span class="aida-k">I — INTERES:</span>  „În 4 luni poți deveni instalator
+            de fotovoltaice — un domeniu unde
+            firmele caută oameni chiar acum."
+
+<span class="aida-k">D — DORINȚĂ:</span>  „Maria a făcut cursul anul trecut.
+            Azi are contract și salariu.
+            <span class="aida-t">(poză de la job)</span>"
+
+<span class="aida-k">A — ACȚIUNE:</span>  „Locurile sunt limitate. Scrie-ne
+            în privat până vineri."</div>
+          </div>
+          <div class="aida-ex-col">
+            <div class="aida-ex-lbl fill">✏️ Acum tu · completează pentru avatarul tău</div>
+            <div class="codeblock fill-code"><span class="aida-k">A — ATENȚIE</span> <span class="aida-hint">(cârligul, prima frază)</span>
+<span class="aida-blank">______________________________</span>
+
+<span class="aida-k">I — INTERES</span> <span class="aida-hint">(ce afli mai mult, de ce contează)</span>
+<span class="aida-blank">______________________________</span>
+
+<span class="aida-k">D — DORINȚĂ</span> <span class="aida-hint">(o dovadă: poveste / cifră / poză)</span>
+<span class="aida-blank">______________________________</span>
+
+<span class="aida-k">A — ACȚIUNE</span> <span class="aida-hint">(chemarea + un termen)</span>
+<span class="aida-blank">______________________________</span></div>
+          </div>
+        </div>
+        <div class="aida-pair">
+          <span class="ape">👥</span>
+          <div class="apt">În perechi: citește textul colegului. El bifează — <b>are toate 4 treptele?</b> Unde se simte „rupt" (sare o treaptă)?</div>
+        </div>
+        <div class="slide-num">05 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.5 — TEORIE 2: pâlnia de conversie -->
+    <section data-notes="Pâlnia dezarmează frustrarea «am postat și n-a sunat nimeni». 100 te văd → 2 se înscriu, și ăsta e un rezultat BUN. De ce contează: dacă aștepți ca un om să sune din prima postare, te dezamăgești; pâlnia explică de ce. Greșeala #1: vrei înscriere direct din treapta 1 — nu funcționează. Adevărul: ai nevoie de MULȚI oameni sus, ca să curgă câțiva jos. Vrei mai multe înscrieri? 2 opțiuni: lărgești gura pâlniei (mai mulți te văd) SAU astupi găurile (pierzi mai puțini pe drum). Întrebare de discuție (2 min): pe care treaptă pierzi tu cei mai mulți oameni acum? — pune-o efectiv, lasă 2-3 răspunsuri.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie 2 · pâlnia de conversie</div>
+          <h2 class="slide-title">100 te văd → 2 se înscriu. <span class="hl">Și ăsta e un rezultat BUN.</span></h2>
+          <p class="slide-subtitle">Dacă aștepți ca un om să sune din prima postare, te dezamăgești. Pâlnia explică <b>de ce ai nevoie de mulți sus</b>.</p>
+        </div>
+        <div class="funnel-grid">
+          <div class="funnel">
+            <div class="funnel-row fn-r1"><span class="fn-stage">Atenție</span><div class="funnel-bar"><span class="fn-num">100</span><span class="fn-lbl">TE VĂD</span></div></div>
+            <div class="funnel-row fn-r2"><span class="fn-stage">Interes</span><div class="funnel-bar"><span class="fn-num">20</span><span class="fn-lbl">TE CUNOSC</span></div></div>
+            <div class="funnel-row fn-r3"><span class="fn-stage">Dorință</span><div class="funnel-bar"><span class="fn-num">5</span><span class="fn-lbl">TE CONTACTEAZĂ</span></div></div>
+            <div class="funnel-row fn-r4"><span class="fn-stage">Acțiune</span><div class="funnel-bar"><span class="fn-num">2</span><span class="fn-lbl">SE ÎNSCRIU</span></div></div>
+          </div>
+          <div class="funnel-side">
+            <div class="fn-point bad"><div class="fnp-lbl">Greșeala #1</div>Vrei înscriere <b>direct din treapta 1</b>. Nu funcționează.</div>
+            <div class="fn-point truth"><div class="fnp-lbl">Adevărul</div>Ai nevoie de <b>MULȚI oameni sus</b>, ca să curgă câțiva jos.</div>
+            <div class="fn-point lever"><div class="fnp-lbl">2 pârghii</div><b>Lărgești gura</b> (mai mulți te văd) SAU <b>astupi găurile</b> (pierzi mai puțini).</div>
+          </div>
+        </div>
+        <div class="slide-num">06 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.6 — Cadru: cele 3 tipuri de canale -->
+    <section data-notes="Cele 3 feluri de a ajunge la oameni, fiecare cu rolul lui. GRATUITE/organice: Facebook, TikTok, grupuri, recomandări de la absolvenți — lent, dar fără bani. DIRECTE/la rece: telefon, vizită, email către companii — cel mai rapid pentru B2B (parteneri). INSTITUȚIONALE: ANOFM, Camera de Comerț, târguri, primărie — gratuit, dar trebuie să bați la ușă. Cârlig mentor: «Nu-ți trebuie toate. Îți trebuie 2-3 făcute CONSTANT. Mai bine 2 canale bine, decât 6 prost.» Cel mai mare risc al modulului: «hai să fim peste tot» — combate-l constant.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · cele 3 tipuri de canale</div>
+          <h2 class="slide-title">3 feluri de a ajunge la oameni — <span class="hl">fiecare cu rolul lui</span></h2>
+          <p class="slide-subtitle">Nu-ți trebuie toate. Îți trebuie <b>2–3 făcute constant</b>. Mai bine 2 canale bine, decât 6 prost.</p>
+        </div>
+        <div class="chan-grid">
+          <div class="chan-card c1">
+            <div class="chan-ico">🌱</div>
+            <div class="chan-name">Gratuite / organice<small>lent, dar fără bani</small></div>
+            <div class="chan-list">Facebook, TikTok, grupuri, <b>recomandări de la absolvenți</b></div>
+            <div class="chan-foot">Pentru · elevi, părinți, notorietate</div>
+          </div>
+          <div class="chan-card c2">
+            <div class="chan-ico">📞</div>
+            <div class="chan-name">Directe / la rece<small>cel mai rapid pentru B2B</small></div>
+            <div class="chan-list"><b>Telefon, vizită, email</b> către companii</div>
+            <div class="chan-foot">Pentru · parteneri, dual, angajatori</div>
+          </div>
+          <div class="chan-card c3">
+            <div class="chan-ico">🏛️</div>
+            <div class="chan-name">Instituționale<small>gratuit, dar bați la ușă</small></div>
+            <div class="chan-list">ANOFM, Camera de Comerț, <b>târguri, primărie</b></div>
+            <div class="chan-foot">Pentru · adulți, legături cu firme</div>
+          </div>
+        </div>
+        <div class="slide-num">07 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.7 — Cadru: exemple reale Moldova -->
+    <section data-notes="Canale care chiar au mers, din sistemul IPT. Educația duală a crescut de la 73 la 230+ companii — prin contact DIRECT școală↔firmă, nu reclame. CESPA Bălți (alimentație, turism, cosmetică) ajunge la hoteluri și firme de catering prin vizită + târguri. Colegiile agrare vând produsele din ferme prin relații locale directe + piețe. Camera de Comerț și Industrie — canal instituțional care leagă școlile de firme (monitorizează practica duală). Facebook e mai activ decât site-urile la majoritatea — acolo sunt părinții. Lecția: companii → canal DIRECT; adulți → ANOFM; elevi → Facebook + recomandări. B2B = canal direct, insistă: companiile NU vin de pe reclame, vin de pe telefon și vizită. Contraintuitiv pentru mulți. Exemple noi (CESPA Bălți/hoteluri, Camera de Comerț, catering) — nu se repetă cu M1/M2.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · exemple reale Moldova</div>
+          <h2 class="slide-title">Canale care chiar au mers, <span class="hl">din sistemul IPT</span></h2>
+          <p class="slide-subtitle">Companii → canal DIRECT. Adulți → ANOFM. Elevi → Facebook + recomandări. <b>Fiecare client, alt canal.</b></p>
+        </div>
+        <div class="prof-grid">
+          <div class="prof-card">
+            <div class="prof-head"><span class="prof-em">🤝</span><span class="prof-label">Educația duală<small>contact direct școală↔firmă</small></span></div>
+            <div class="prof-quote">A crescut <b>de la 73 la 230+ companii</b> — prin contact DIRECT, nu reclame.</div>
+          </div>
+          <div class="prof-card">
+            <div class="prof-head"><span class="prof-em">🍽️</span><span class="prof-label">CESPA Bălți<small>alimentație, turism, cosmetică</small></span></div>
+            <div class="prof-quote">Ajunge la <b>hoteluri și firme de catering</b> prin vizită + târguri.</div>
+          </div>
+          <div class="prof-card">
+            <div class="prof-head"><span class="prof-em">🌾</span><span class="prof-label">Colegiile agrare<small>produse din ferme</small></span></div>
+            <div class="prof-quote">Vând produsele din ferme prin <b>relații locale directe + piețe</b>.</div>
+          </div>
+          <div class="prof-card">
+            <div class="prof-head"><span class="prof-em">🏛️</span><span class="prof-label">Camera de Comerț și Industrie<small>canal instituțional</small></span></div>
+            <div class="prof-quote">Leagă școlile de firme — <b>monitorizează practica duală</b>.</div>
+          </div>
+          <div class="prof-card">
+            <div class="prof-head"><span class="prof-em">📘</span><span class="prof-label">Facebook<small>vs site-urile școlilor</small></span></div>
+            <div class="prof-quote">E mai activ decât site-urile la majoritatea — <b>acolo sunt părinții</b>.</div>
+          </div>
+          <div class="prof-card" style="background:var(--primary-ultra-light);border-color:#C7D2FE">
+            <div class="prof-head"><span class="prof-em">🎯</span><span class="prof-label">Lecția<small>din toate exemplele</small></span></div>
+            <div class="prof-quote">Companii → <b>canal DIRECT</b>. Adulți → <b>ANOFM</b>. Elevi → <b>Facebook + recomandări</b>.</div>
+          </div>
+        </div>
+        <div class="slide-num">08 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.8 — Mini-how-to: mesajul la rece către o firmă (B2B) -->
+    <section data-notes="B2B = canal direct și cel mai temut. Rețeta ca să nu pari că «cerșești», în 4 pași. 1. DESCHIDE cu ceva despre EI, nu despre tine (❌ «suntem școala X și…» / ✅ «am văzut că angajați constant — vă pot trimite 3 absolvenți pregătiți»). 2. OFERĂ, nu cere — tu rezolvi o problemă a lor (deficitul de personal), nu cerși un favor. 3. PROPUNE un pas mic — nu «un parteneriat», ci «o vizită de 20 de minute» sau «3 CV-uri». 4. STABILEȘTE următorul pas înainte să închizi: «Vă sun joi să confirmăm?». Regula de aur B2B: firma nu te ajută pe tine — tu îi rezolvi o durere (nu găsește oameni calificați). Insistă: companiile NU vin de pe reclame, vin de pe telefon și vizită.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Mini-how-to · mesajul la rece B2B</div>
+          <h2 class="slide-title">Cum suni / scrii unei firme pe care n-o cunoști — <span class="hl">în 4 pași</span></h2>
+          <p class="slide-subtitle">B2B-ul e cel mai rapid canal, dar cel mai temut. Rețeta ca să <b>nu pari că „cerșești"</b>.</p>
+        </div>
+        <div class="howto-list">
+          <div class="howto-step">
+            <div class="howto-n">1</div>
+            <div class="howto-body">
+              <div class="howto-head">DESCHIDE cu ceva despre EI, nu despre tine</div>
+              <div class="howto-flip">
+                <div class="ht-no"><span class="m">✕</span>„Bună ziua, suntem școala profesională X și…"</div>
+                <div class="ht-yes"><span class="m">✓</span>„Am văzut că angajați constant — vă pot trimite <b>3 absolvenți pregătiți</b>."</div>
+              </div>
+            </div>
+          </div>
+          <div class="howto-step">
+            <div class="howto-n">2</div>
+            <div class="howto-body">
+              <div class="howto-head">OFERĂ, nu cere</div>
+              <div class="howto-sub">Tu rezolvi o problemă a lor (<b>deficitul de personal</b>), nu cerși un favor.</div>
+            </div>
+          </div>
+          <div class="howto-step">
+            <div class="howto-n">3</div>
+            <div class="howto-body">
+              <div class="howto-head">PROPUNE un pas mic</div>
+              <div class="howto-sub">Nu „un parteneriat", ci <b>„o vizită de 20 de minute"</b> sau „3 CV-uri".</div>
+            </div>
+          </div>
+          <div class="howto-step">
+            <div class="howto-n">4</div>
+            <div class="howto-body">
+              <div class="howto-head">STABILEȘTE următorul pas înainte să închizi</div>
+              <div class="howto-sub">„<b>Vă sun joi să confirmăm?</b>"</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px"><div class="quote-block"><strong>Regula de aur B2B:</strong> firma nu te ajută pe tine — <strong>tu îi rezolvi o durere</strong> (nu găsește oameni calificați).</div></div>
+        <div class="slide-num">09 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.9 — Template: email/mesaj B2B la rece -->
+    <section data-notes="Template gata — copiază, completează cele 3 spații, trimite. 3 spații de personalizat: meseria · firma · luna. Trimite 5 pe săptămână, nu 1 — volumul face diferența (vezi pâlnia: ai nevoie de mulți sus). De ce merge: scurt, despre EI, pas mic, cu termen — atinge toate treptele AIDA într-un singur mesaj. Arată cum fiecare bucată din mesaj corespunde unei trepte AIDA. Pune-i să-l personalizeze pe loc cu firma lor.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Template · email/mesaj B2B la rece</div>
+          <h2 class="slide-title">Copiază, completează cele 3 spații, <span class="hl">trimite</span></h2>
+        </div>
+        <div class="codeblock"><div class="ck-bar"><span class="r"></span><span class="y"></span><span class="g"></span></div><span class="subj">Subiect: 3 <span class="slot">[finisori/operatori/electricieni]</span> pregătiți pentru <span class="slot">[FIRMA]</span></span>
+
+Bună ziua, <span class="slot">[Nume]</span>,
+
+Am văzut că <span class="slot">[firma]</span> caută <span class="slot">[meseria]</span>. La școala noastră
+pregătim exact acest profil — în sistem dual, pe utilaje reale.
+
+Vă propun un pas simplu: o vizită de 20 de minute la noi,
+ca să vedeți atelierul și 3 elevi care termină în <span class="slot">[lună]</span>.
+Statul acoperă trainerul și indemnizația — voi primiți om gata format.
+
+Vă sun <span class="slot">[zi]</span> să stabilim. Vă mulțumesc!
+<span class="slot">[Nume, funcție, telefon]</span></div>
+        <div class="code-foot">
+          <span class="cfe">📨</span>
+          <div class="cft">3 spații de personalizat: <b>meseria · firma · luna</b>. Trimite <b>5 pe săptămână</b>, nu 1. Scurt, despre EI, pas mic, cu termen — atinge toate treptele AIDA într-un mesaj.</div>
+        </div>
+        <div class="slide-num">10 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.10 — Mini-how-to: recomandările de la absolvenți (canalul ignorat) -->
+    <section data-notes="Cel mai ieftin canal din lume — și aproape nimeni nu-l folosește sistematic. Absolventul mulțumit, care lucrează deja, e cea mai bună reclamă: e gratis, e credibil — dar trebuie să-l ceri, nu vine singur. Cum îl pui la treabă, în 3 pași: 1. Sună 5 absolvenți angajați și pune o singură întrebare: «cunoști pe cineva care caută o meserie?». 2. Cere o mărturie scurtă (2 rânduri + o poză de la job) → o postezi pe Facebook/TikTok. 3. Oferă ceva mic în schimb — o mențiune publică, un certificat «ambasador», o vorbă bună. De ce funcționează: oamenii cred un absolvent real mult mai mult decât un afiș; un singur testimonial bun, distribuit, poate aduce mai mulți elevi decât o lună de postări despre școală. Regula: e GRATIS și e cel mai credibil canal — singurul efort e să-l ceri. (ANOFM s-a discutat deja ca exemplu la 3.7 — aici NU-l mai repetăm.)">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Mini-how-to · canalul ignorat</div>
+          <h2 class="slide-title">Recomandările de la absolvenți — <span class="hl">cel mai ieftin canal din lume</span></h2>
+          <p class="slide-subtitle">Absolventul mulțumit, care lucrează deja, e cea mai bună reclamă. E gratis, e credibil — dar <b>trebuie să-l ceri, nu vine singur</b>.</p>
+        </div>
+        <div class="howto-list green">
+          <div class="howto-step">
+            <div class="howto-n">1</div>
+            <div class="howto-body">
+              <div class="howto-head">Sună 5 absolvenți angajați</div>
+              <div class="howto-sub">O singură întrebare: <b>„cunoști pe cineva care caută o meserie?"</b></div>
+            </div>
+          </div>
+          <div class="howto-step">
+            <div class="howto-n">2</div>
+            <div class="howto-body">
+              <div class="howto-head">Cere o mărturie scurtă</div>
+              <div class="howto-sub">2 rânduri + o poză de la job → <b>o postezi pe Facebook/TikTok</b>.</div>
+            </div>
+          </div>
+          <div class="howto-step">
+            <div class="howto-n">3</div>
+            <div class="howto-body">
+              <div class="howto-head">Oferă ceva mic în schimb</div>
+              <div class="howto-sub">O mențiune publică, un <b>certificat „ambasador"</b>, o vorbă bună.</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:16px"><div class="quote-block"><strong>Regula:</strong> oamenii cred un absolvent real mult mai mult decât un afiș. E GRATIS și e cel mai credibil canal — <strong>singurul efort e să-l ceri</strong>.</div></div>
+        <div class="slide-num">11 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.11 — COMPLETEZI: Alegi canalele tale -->
+    <section data-notes="COMPLETEZI — 10 min · Foaia de drum partea 3: canalele mele. Pentru clientul tău principal (din M1), bifează unde-l găsești și scrie primul pas. Forțează max 3 canale — dacă bifează 6, e exact greșeala «hai să fim peste tot». Output: TOP 3 canale + primul pas pe fiecare (primul pas trebuie să fie concret și fezabil luni). Treci pe la fiecare; oprește orice listă de 6 canale și cere prioritizare. Leagă de M1: cine era clientul principal? Acolo trebuie să-l caute.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Completezi · Foaia mea de drum 3</div>
+          <h2 class="slide-title">Canalele mele <span style="font-size:24px;color:var(--muted);font-weight:600">— pentru clientul meu principal (M1)</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">🗺️</span>
+          <span class="ex-txt">Pentru clientul tău principal, bifează <b>unde-l găsești (max 3)</b> și scrie primul pas pe fiecare.</span>
+          <span class="ex-time">⏱ 10 min</span>
+        </div>
+        <div class="fill-sheet">
+          <div class="fs-block">
+            <div class="fs-lbl">Clientul meu principal (din M1): ______</div>
+            <div class="fs-cloud">
+              <span class="fs-check"><span class="cb"></span> Facebook (ce grup?)</span>
+              <span class="fs-check"><span class="cb"></span> TikTok</span>
+              <span class="fs-check"><span class="cb"></span> Telefon / vizită directă</span>
+              <span class="fs-check"><span class="cb"></span> Email</span>
+              <span class="fs-check"><span class="cb"></span> ANOFM</span>
+              <span class="fs-check"><span class="cb"></span> Camera de Comerț / târguri</span>
+              <span class="fs-check"><span class="cb"></span> Recomandări de la absolvenți</span>
+              <span class="fs-check"><span class="cb"></span> Altul</span>
+            </div>
+          </div>
+          <div class="fs-block">
+            <div class="fs-lbl">Top 3 canale + primul pas pe fiecare</div>
+            <div class="fs-rows">
+              <div class="fs-row"><span class="fs-n">1</span><span class="fs-fill"></span><span class="fs-arrow">→ primul pas:</span><span class="fs-fill"></span></div>
+              <div class="fs-row"><span class="fs-n">2</span><span class="fs-fill"></span><span class="fs-arrow">→ primul pas:</span><span class="fs-fill"></span></div>
+              <div class="fs-row"><span class="fs-n">3</span><span class="fs-fill"></span><span class="fs-arrow">→ primul pas:</span><span class="fs-fill"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">12 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.12 — JOC 1: Potrivește canalul cu clientul + capcane -->
+    <section data-notes="JOC 1 — 16 min · «Potrivește canalul cu clientul» + capcane, joc de cartonașe pe grupuri. Pas cu pas: grupe de 3-4; cartonașe — pe unele un CLIENT/OBIECTIV, pe altele un CANAL; potriviți ce canal pentru ce obiectiv (ex: «atrag o firmă de catering» ↔ «vizită + târg»); CAPCANĂ intenționată — unele potriviri sunt greșite-evident (ex: «atrag părinți» ↔ «Camera de Comerț»), grupul le prinde și explică de ce nu merg; galerie — fiecare grup arată o potrivire bună și una respinsă. Pregătește cartonașele TIPĂRITE. Capcanele (potriviri greșite) sunt partea cea mai valoroasă — NU le sări; le învață să respingă canale nepotrivite. De ce funcționează: îi forțează să gândească «client→canal», nu «hai să fim peste tot».">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Joc 1 · potrivește canalul cu clientul</div>
+          <h2 class="slide-title">Ce canal pentru ce obiectiv? <span style="font-size:24px;color:var(--muted);font-weight:600">— joc de cartonașe, pe grupuri</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">🃏</span>
+          <span class="ex-txt">Grupe de 3–4. Potriviți <b>obiectiv ↔ canal</b>. Galerie: o potrivire bună + una respinsă.</span>
+          <span class="ex-time">⏱ 16 min</span>
+        </div>
+        <div class="match-grid">
+          <div class="match-col obj">
+            <div class="match-col-head">🎯 Cartonașe OBIECTIV</div>
+            <div class="chip-cloud">
+              <span class="gchip">atrag elevi din raion</span>
+              <span class="gchip">găsesc firmă de catering</span>
+              <span class="gchip">umplu o grupă de adulți</span>
+              <span class="gchip">aduc înapoi un absolvent ambasador</span>
+              <span class="gchip">umplu ziua porților deschise</span>
+              <span class="gchip">găsesc parteneri pentru practică</span>
+            </div>
+          </div>
+          <div class="match-col chan">
+            <div class="match-col-head">📡 Cartonașe CANAL</div>
+            <div class="chip-cloud">
+              <span class="gchip">grup Facebook părinți</span>
+              <span class="gchip">vizită + târg</span>
+              <span class="gchip">voucher ANOFM</span>
+              <span class="gchip">TikTok cu elevi</span>
+              <span class="gchip">Camera de Comerț</span>
+              <span class="gchip">recomandare de la absolvent</span>
+              <span class="gchip">afiș la primărie</span>
+              <span class="gchip">mesaj la rece B2B</span>
+            </div>
+          </div>
+        </div>
+        <div class="trap-strip">
+          <span class="tre">⚠️</span>
+          <div class="trt"><b>Capcane intenționate:</b> „atrag elevi" <span class="x">↔</span> „Camera de Comerț" (acolo-s firme) · „găsesc firmă" <span class="x">↔</span> „TikTok cu elevi". Grupul le prinde și explică de ce NU merg.</div>
+        </div>
+        <div class="slide-num">13 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.13 — JOC 2: Telefonul la rece — simulare live -->
+    <section data-notes="JOC 2 (în cadrul jocului) · «Telefonul la rece» — simulare live, perechi, role-play scurt. Cel mai temut canal B2B — îl exersăm în siguranță. Pas cu pas: unul e ȘCOALA, celălalt e ADMINISTRATORUL firmei (ocupat, grăbit); școala sună și are 30 sec să-l țină pe fir (rețeta de la 3.8: deschide cu EI → oferă → pas mic); «administratorul» încearcă să închidă politicos, școala trebuie să prindă un «da» la pasul mic (vizită 20 min / 3 CV-uri); schimbați rolurile. Replici «administrator ocupat» pe ecran cu răspunsul-direcție. De ce funcționează: frica de telefon dispare după primul, fie și în joc — cine exersează aici, sună pe bune luni. Încurajează «administratorii» să fie duri (cu zâmbet).">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Joc 2 · telefonul la rece (simulare live)</div>
+          <h2 class="slide-title">Cel mai temut canal B2B 📞 <span style="font-size:24px;color:var(--muted);font-weight:600">— îl exersăm în siguranță</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">🎭</span>
+          <span class="ex-txt">Perechi, role-play scurt. Frica de telefon dispare după primul — fie și în joc. Cine exersează aici, <b>sună pe bune luni</b>.</span>
+          <span class="ex-time">⏱ în cadrul jocului</span>
+        </div>
+        <div class="rp-grid">
+          <div class="rp-steps">
+            <div class="rp-step"><div class="rp-num">1</div><div class="rp-text">Unul e <b>ȘCOALA</b>, celălalt e <b>ADMINISTRATORUL</b> firmei (ocupat, grăbit).</div></div>
+            <div class="rp-step"><div class="rp-num">2</div><div class="rp-text">Școala sună și are <b>30 sec să-l țină pe fir</b> (rețeta 3.8: deschide cu EI → oferă → pas mic).</div></div>
+            <div class="rp-step"><div class="rp-num">3</div><div class="rp-text">„Administratorul" încearcă să închidă politicos. Școala prinde un <b>„da" la pasul mic</b> (vizită 20 min / 3 CV-uri).</div></div>
+            <div class="rp-step"><div class="rp-num">4</div><div class="rp-text">Schimbați rolurile.</div></div>
+          </div>
+          <div class="rp-pane">
+            <div class="rp-head"><span class="rp-emoji">😤</span><div class="rp-title">Replici<br>„administrator ocupat"</div></div>
+            <div class="obj">„Acum n-am timp."<span class="ans">→ „doar 20 de secunde — apoi închid eu"</span></div>
+            <div class="obj">„Trimiteți mail."<span class="ans">→ „trimit azi, dar vă sun joi să confirm"</span></div>
+            <div class="obj">„N-avem nevoie acum."<span class="ans">→ „când veți avea, vreau să fiu primul — pot trece să las datele?"</span></div>
+          </div>
+        </div>
+        <div class="slide-num">14 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.14 — EXEMPLE: 3 mesaje gata, pe 3 canale diferite -->
+    <section data-notes="3 mesaje gata, pe 3 canale diferite — arată cum sună mesajul corect pe fiecare canal. Leagă de M2 (tone of voice): fiecare canal are alt «ton». Pe Facebook vorbești cu părintele (cald), prin email cu firma (concis, despre EI), la ANOFM ești direct (ofertă clară). A) Grupul Facebook «Părinți raion X» — elevi. B) Email scurt către un hotel — companie, profil HoReCa. C) Afiș/mesaj ANOFM — adulți. Citește toate 3 cu voci DIFERITE ca să se audă schimbarea de ton, nu doar textul. Exemple noi: hoteluri/HoReCa, nu repetăm M1/M2. Leagă de exercițiul AIDA de la 3.4b: fiecare din aceste 3 mesaje urcă, în felul lui, toate treptele AIDA.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Exemple · 3 mesaje pe 3 canale</div>
+          <h2 class="slide-title">Cum sună mesajul corect <span class="hl">pe fiecare canal</span></h2>
+          <p class="slide-subtitle">Fiecare canal are alt „ton" (M2). Pe Facebook vorbești cu <b>părintele</b>, prin email cu <b>firma</b>, la ANOFM ești <b>direct</b>.</p>
+        </div>
+        <div class="msg3-grid">
+          <div class="msg3-card">
+            <div class="msg3-head"><span class="msg3-em">📘</span><div class="msg3-label">Grup Facebook „Părinți raion X"<small>→ elevi · cald</small></div></div>
+            <div class="msg3-q">„Părinți de copii în clasa a 9-a din [raion] 👋 Dacă nu se vede la liceul teoretic, există variantă: meserie + practică plătită + job la final. <b>6 din 10 absolvenți s-au angajat în primul an.</b> Ușa deschisă pe [dată]. Scrieți-mi în privat. 👇"</div>
+          </div>
+          <div class="msg3-card">
+            <div class="msg3-head"><span class="msg3-em">📧</span><div class="msg3-label">Email scurt către un hotel<small>→ companie · HoReCa · concis</small></div></div>
+            <div class="msg3-q">„Bună ziua, am văzut că aveți restaurant. Vă pot trimite <b>bucătari și ospătari formați, gata de tură</b> — îi cunoașteți înainte să-i angajați. O vizită de 20 min săptămâna asta?"</div>
+          </div>
+          <div class="msg3-card">
+            <div class="msg3-head"><span class="msg3-em">📢</span><div class="msg3-label">Afiș / mesaj ANOFM<small>→ adulți · direct</small></div></div>
+            <div class="msg3-q">„FĂRĂ JOB? În 4 luni devii [meserie] — <b>GRATUIT, prin voucher ANOFM</b>. + indemnizație. Meserie cu angajare imediată. Detalii la [școală]."</div>
+          </div>
+        </div>
+        <div class="slide-num">15 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.15 — Prezinți + Retro -->
+    <section data-notes="Prezinți + retro — 10 min. Fiecare grup prezintă o potrivire câștigătoare + capcana prinsă. 2-3 voluntari citesc Top 3 canale + primul pas. Apoi retrospectiva pe Foaia de drum: «Canalul pe care îl ignoram și pe care îl voi încerca este ____. Primul pas pe el: ____. Pe treapta AIDA unde pierd cei mai mulți oameni e ____.» Insistă pe primul pas concret — fără el, intenția se evaporă. Leagă AIDA: pe ce treaptă pierd cei mai mulți? — întrebarea care a fost pusă la pâlnie (3.5) se închide aici.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Prezinți + retrospectivă</div>
+          <h2 class="slide-title">Top 3 canale + retrospectivă</h2>
+          <p class="slide-subtitle">Arătăm potrivirile câștigătoare, citim Top 3 canale — și fixăm canalul ignorat + treapta AIDA unde pierdem cel mai mult.</p>
+        </div>
+        <div class="pr-grid">
+          <div class="pr-pane present">
+            <span class="pr-tag">🎤 Prezentări rapide</span>
+            <div class="pr-title">Fiecare grup + 2–3 voluntari</div>
+            <div class="pr-line"><span class="pb">→</span><div>Fiecare grup: o <b>potrivire câștigătoare</b> + capcana prinsă.</div></div>
+            <div class="pr-line"><span class="pb">→</span><div>2–3 voluntari citesc <b>Top 3 canale</b> + primul pas.</div></div>
+          </div>
+          <div class="pr-pane retro">
+            <span class="pr-tag">📝 Retrospectiva (Foaia ta de drum)</span>
+            <div class="pr-title">Scrii pe Foaia ta de drum</div>
+            <div class="retro-fill">
+              „Canalul pe care îl ignoram și pe care îl voi încerca este <span class="blank"></span>.<br>
+              Primul pas pe el: <span class="blank" style="min-width:140px"></span>.<br>
+              Pe treapta AIDA unde pierd cei mai mulți oameni e <span class="blank"></span>."
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">16 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.16 — REGULA 3 + CHECKLIST -->
+    <section data-notes="REGULA 3 — de luat acasă, badge mare. «2-3 canale făcute constant bat 6 canale făcute prost. Și fiecare client are canalul LUI.» Combate cel mai mare risc al modulului («hai să fim peste tot»). Checklist-ul de alege-ți canalele (10 min, îl fac singuri): pentru fiecare din cei 3 clienți 1 canal principal; verifică e canalul unde clientul e DE FAPT (nu unde-mi e mie comod); max 3 canale pe care le pot face SĂPTĂMÂNAL; pe fiecare 1 prim pas pe care-l fac luni; știu pe ce treaptă AIDA lucrează fiecare canal. Recapitulează regula clar la final.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Regula modulului · 3</div>
+          <h2 class="slide-title">Regula 3 + checklist <span class="hl">(canale)</span></h2>
+        </div>
+        <div class="rule-grid">
+          <div class="rule-pane">
+            <div class="rule-badge"><span class="rb-dot"></span> REGULA 3</div>
+            <div class="rule-text">„<span class="hl">2–3 canale</span> făcute constant bat <span class="hl">6 canale</span> făcute prost. Și fiecare client are <span class="hl">canalul LUI</span>."</div>
+          </div>
+          <div class="check-pane">
+            <div class="check-head">✓ Checklist — alege-ți canalele</div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Pentru fiecare din cei <b>3 clienți</b>, am scris 1 canal principal.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">E canalul unde clientul e <b>DE FAPT</b> (nu unde-mi e mie comod).</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Am ales <b>max 3 canale</b> pe care le pot face SĂPTĂMÂNAL.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Pe fiecare, am <b>1 prim pas</b> pe care-l fac luni.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Știu pe ce <b>treaptă AIDA</b> lucrează fiecare canal.</div></div>
+          </div>
+        </div>
+        <div class="slide-num">17 / 18</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3.17 — TRANZIȚIE -->
+    <section data-notes="Tranziție spre M4. Am ales canalele — acum le aplicăm pe ceva concret: produsul din atelier. M4: atelierul produce deja valoare (mobilă, piese, vin, prăjituri); învățăm s-o vindem, B2B și B2C, pe canalele alese acum. Ține firul roșu: am momeala (M2) și apa (M3), acum vindem ce iese din atelier.">
+      <div class="slide slide-transition">
+        <div class="cover-bg"></div><div class="cover-accent"></div>
+        <div style="position:relative;z-index:2;text-align:center;padding:0 90px;max-width:1000px;">
+          <div class="cover-kicker" style="margin-bottom:26px"><span class="dot"></span> Urmează · produsul din atelier</div>
+          <div style="font-size:76px;margin-bottom:18px">🪵</div>
+          <h2 style="font-size:44px;font-weight:800;color:#fff;line-height:1.12;letter-spacing:-0.02em;margin:0 0 18px;">Am ales canalele.<br>Acum: <span style="color:var(--primary-light)">hai să le aplicăm pe ceva concret</span></h2>
+          <p style="font-size:20px;color:rgba(255,255,255,0.72);line-height:1.55;margin:0">Modulul următor (M4): atelierul produce deja valoare — <b style="color:#fff;font-weight:600">mobilă, piese, vin, prăjituri</b>. Învățăm s-o vindem, B2B și B2C, pe canalele alese acum.</p>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">18 / 18</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deschidere — De la atelier la piață</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #0EA371;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 54px 66px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #0EA371 0%, #0891B2 100%); }
+
+    .slide-header { margin-bottom: 24px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #D1FAE5; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-title .hl { color: var(--primary); }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 960px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0 0 40px; max-width: 740px; line-height: 1.5; }
+    .cover-bait { font-size: 70px; margin: 6px 0 34px; letter-spacing: 8px; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+    .quote-block.warn { border-color: var(--warning); background: #FFFBEB; } .quote-block.warn strong { color: #B45309; }
+
+    /* brand chips */
+    .brand-chip { display: inline-flex; align-items: center; font-size: 14px; font-weight: 700; color: var(--foreground); background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 5px 13px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+    .brand-chip .dot { width: 7px; height: 7px; border-radius: 50%; margin-right: 7px; flex-shrink: 0; }
+
+    /* VS table */
+    .vs-table { width: 100%; border-collapse: collapse; font-size: 19px; }
+    .vs-table th { padding: 14px 20px; text-align: left; font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: #fff; border: none; }
+    .vs-table th.col-bad { background: #B91C1C; }
+    .vs-table th.col-good { background: #15803D; }
+    .vs-table td { padding: 18px 20px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.4; }
+    .vs-table tr:last-child td { border-bottom: none; }
+    .vs-table td.bad-cell { color: #B91C1C; font-style: italic; }
+    .vs-table td.good-cell { background: #F0FDF4; font-weight: 700; color: #15803D; }
+    .vs-table td b { font-weight: 800; }
+
+    /* FORMULA */
+    .formula-box { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 34px 40px; color: #fff; position: relative; overflow: hidden; }
+    .formula-box::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .formula-line { position: relative; z-index: 2; font-size: 30px; font-weight: 700; line-height: 1.5; }
+    .ex-flip { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+    .flip { border-radius: var(--radius-sm); padding: 16px 20px; font-size: 18px; line-height: 1.45; }
+    .flip.no { background: #FEF2F2; border: 1px solid #FECACA; color: #B91C1C; }
+    .flip.yes { background: #ECFDF5; border: 1px solid #6EE7B7; color: var(--foreground); }
+    .flip .fl-mark { font-weight: 800; margin-right: 8px; }
+    .flip.yes b { color: #15803D; font-weight: 800; }
+
+    /* exercise banner */
+    .ex-banner { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #0EA371, #0891B2); color: #fff; border-radius: var(--radius); padding: 14px 22px; margin-bottom: 18px; }
+    .ex-banner .ex-ico { font-size: 26px; }
+    .ex-banner .ex-txt { font-size: 17px; font-weight: 600; line-height: 1.4; } .ex-banner .ex-txt b { font-weight: 800; }
+    .ex-banner .ex-time { margin-left: auto; font-size: 15px; font-weight: 800; background: rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+
+    /* GENERIC GRID TABLE */
+    .gt { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .gt th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .gt td { padding: 15px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.42; color: var(--foreground); }
+    .gt tr:last-child td { border-bottom: none; }
+    .gt tr:nth-child(even) td { background: var(--bg); }
+    .gt .lead { font-weight: 800; color: var(--foreground); }
+    .gt .lead .em { font-size: 20px; margin-right: 6px; }
+    .gt .why { color: var(--muted); font-size: 15px; }
+    .gt b { font-weight: 800; }
+    .gt .quoted { font-style: italic; }
+    .gt .tagcell { font-weight: 800; color: var(--primary); white-space: nowrap; }
+
+    /* COMPETITORS table (0.6b) — promite vs ușa ta */
+    .gt.comp th.col-promise { background: #B45309; }
+    .gt.comp th.col-door { background: var(--practice); }
+    .gt.comp td.promise { color: #B45309; font-style: italic; font-size: 16px; }
+    .gt.comp td.door { background: #ECFDF5; color: #166534; font-size: 16px; line-height: 1.4; }
+    .gt.comp td.door b { color: #15803D; font-weight: 800; }
+    .gt.comp .lead .em { font-size: 22px; }
+
+    /* TOOLS / CARD GRID */
+    .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .tool-card { border-radius: var(--radius); padding: 24px 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; overflow: hidden; position: relative; }
+    .tool-card.t1 { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .tool-card.t2 { background: var(--pastel-lavender); border-color: #DDD6FE; }
+    .tool-card.t3 { background: var(--pastel-peach); border-color: #FED7AA; }
+    .tool-ico { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: #fff; box-shadow: 0 2px 8px rgba(15,23,42,0.08); }
+    .tool-name { font-size: 22px; font-weight: 800; color: var(--foreground); line-height: 1.15; }
+    .tool-name small { display: block; font-size: 14px; font-weight: 600; color: var(--muted); margin-top: 4px; }
+    .tool-q { font-size: 15px; color: var(--foreground); line-height: 1.4; font-style: italic; background: #fff; border-radius: var(--radius-sm); padding: 11px 14px; }
+    .tool-where { margin-top: auto; font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: 0.02em; }
+    .tool-where b { color: var(--foreground); }
+
+    /* BIG STATEMENT */
+    .stmt-hero { margin-top: 18px; background: linear-gradient(135deg, #0B1120, #1E3A8A 70%, #3B2F8F); border-radius: var(--radius); padding: 22px 28px; color: #fff; font-size: 22px; font-weight: 800; line-height: 1.35; text-align: center; position: relative; overflow: hidden; }
+    .stmt-hero .hl { color: var(--primary-light); }
+
+    /* ROLE-PLAY / GAME steps */
+    .rp-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; flex: 1; }
+    .rp-steps { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .rp-step { display: flex; align-items: flex-start; gap: 14px; }
+    .rp-num { width: 34px; height: 34px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .rp-text { font-size: 17px; color: var(--foreground); line-height: 1.4; padding-top: 4px; } .rp-text b { font-weight: 800; color: var(--practice); }
+    .rp-pane { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .rp-pane.persona { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .rp-pane .rp-head { display: flex; align-items: center; gap: 12px; }
+    .rp-pane .rp-emoji { font-size: 38px; }
+    .rp-pane .rp-title { font-size: 19px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+    .rp-pane.persona .rp-title { color: #0369A1; }
+    .persona-quote { font-size: 16px; color: var(--foreground); line-height: 1.45; background: #fff; border-left: 4px solid var(--primary); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 12px 15px; font-style: italic; }
+    .persona-quote b { font-weight: 800; font-style: normal; color: var(--primary); }
+    .persona-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+    .persona-tag { font-size: 13px; font-weight: 700; color: #0369A1; background: #fff; border: 1px solid #BAE6FD; border-radius: 100px; padding: 5px 12px; }
+    .rp-debrief { margin-top: auto; font-size: 14.5px; color: var(--muted); line-height: 1.45; } .rp-debrief b { color: var(--foreground); }
+
+    /* RULE + CHECKLIST */
+    .rule-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 28px; flex: 1; align-items: stretch; }
+    .rule-pane { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 32px; color: #fff; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+    .rule-pane::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .rule-badge { position: relative; z-index: 2; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 800; letter-spacing: 0.08em; margin-bottom: 22px; }
+    .rule-badge .rb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--primary-light); }
+    .rule-text { position: relative; z-index: 2; font-size: 26px; font-weight: 800; line-height: 1.28; letter-spacing: -0.01em; } .rule-text .hl { color: var(--primary-light); }
+    .check-pane { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 30px; display: flex; flex-direction: column; }
+    .check-head { font-size: 15px; font-weight: 800; color: var(--practice); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 9px; }
+    .check-item { display: flex; align-items: flex-start; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border); }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--practice); flex-shrink: 0; margin-top: 1px; }
+    .check-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .check-txt b { font-weight: 800; }
+
+    /* TRANSITION */
+    .slide-transition { padding: 0; overflow: hidden; background: #1E3A8A; position: relative; justify-content: center; align-items: center; display: flex; }
+    .slide-transition::before { display: none; }
+
+    /* ============ COMPONENTE NOI (M0) — același limbaj vizual ============ */
+
+    /* ABOUT-ME list (0.1b) — icon-led credibility rows */
+    .cred-list { display: flex; flex-direction: column; gap: 14px; flex: 1; justify-content: center; }
+    .cred-row { display: flex; align-items: center; gap: 18px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 22px; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .cred-ico { width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 27px; flex-shrink: 0; }
+    .cred-row.c1 .cred-ico { background: var(--pastel-sky); }
+    .cred-row.c2 .cred-ico { background: var(--pastel-peach); }
+    .cred-row.c3 .cred-ico { background: var(--pastel-mint); }
+    .cred-row.c4 .cred-ico { background: var(--pastel-lavender); }
+    .cred-txt { font-size: 19px; color: var(--foreground); line-height: 1.4; } .cred-txt b { font-weight: 800; color: var(--primary); }
+
+    /* EMPATHY — softer, warmer rows (0.1c) */
+    .warm-list { display: flex; flex-direction: column; gap: 16px; flex: 1; justify-content: center; }
+    .warm-row { display: flex; align-items: center; gap: 18px; background: var(--pastel-peach); border: 1px solid #FED7AA; border-radius: var(--radius); padding: 18px 24px; }
+    .warm-emo { font-size: 34px; line-height: 1; flex-shrink: 0; }
+    .warm-txt { font-size: 20px; color: var(--foreground); line-height: 1.42; } .warm-txt b { font-weight: 800; color: #C2410C; }
+
+    /* GOLDEN CIRCLE — concentric rings (0.8) */
+    .gc-grid { display: grid; grid-template-columns: 360px 1fr; gap: 34px; flex: 1; align-items: center; }
+    .gc-rings { position: relative; width: 320px; height: 320px; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
+    .gc-ring { position: absolute; border-radius: 50%; display: flex; align-items: flex-start; justify-content: center; font-weight: 800; letter-spacing: 0.04em; box-sizing: border-box; }
+    .gc-why  { width: 320px; height: 320px; background: var(--primary); color: #fff; padding-top: 16px; font-size: 19px; }
+    .gc-how  { width: 215px; height: 215px; background: var(--primary-light); color: #fff; padding-top: 14px; font-size: 17px; }
+    .gc-what { width: 115px; height: 115px; background: #fff; color: var(--foreground); padding-top: 16px; font-size: 15px; box-shadow: 0 2px 10px rgba(15,23,42,0.18); }
+    .gc-legend { display: flex; flex-direction: column; gap: 12px; }
+    .gc-item { display: flex; gap: 14px; align-items: flex-start; }
+    .gc-dot { width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0; margin-top: 3px; }
+    .gc-dot.w { background: var(--primary); } .gc-dot.h { background: var(--primary-light); } .gc-dot.t { background: #94A3B8; }
+    .gc-line { font-size: 16px; line-height: 1.4; color: var(--foreground); } .gc-line b { font-weight: 800; }
+    .gc-line .ex { display: block; font-size: 13.5px; color: var(--muted); font-style: italic; margin-top: 2px; }
+    .gc-flip { margin-top: 12px; display: grid; grid-template-columns: 1fr; gap: 9px; }
+    .gc-flip .flip { font-size: 14.5px; padding: 12px 16px; }
+
+    /* INSPIRATION cards (0.7, 0.12) — blue-ocean / mention examples */
+    .insp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+    .insp-card { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .insp-head { display: flex; align-items: center; gap: 10px; }
+    .insp-flag { font-size: 22px; }
+    .insp-name { font-size: 17px; font-weight: 800; color: var(--foreground); line-height: 1.15; }
+    .insp-name small { display: block; font-size: 12.5px; font-weight: 600; color: var(--muted); margin-top: 2px; }
+    .insp-body { font-size: 15px; color: var(--foreground); line-height: 1.42; } .insp-body b { font-weight: 800; color: var(--primary); }
+
+    /* MOVEMENT GAME statements (0.3) */
+    .move-list { display: flex; flex-direction: column; gap: 11px; flex: 1; justify-content: center; }
+    .move-row { display: flex; align-items: center; gap: 16px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 20px; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .move-n { width: 32px; height: 32px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .move-txt { font-size: 17px; color: var(--foreground); line-height: 1.35; font-style: italic; }
+
+    /* WORKSHEET (0.14) — fill rows */
+    .ws-sheet { display: flex; flex-direction: column; gap: 11px; flex: 1; justify-content: center; }
+    .ws-row { display: flex; align-items: center; gap: 16px; background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 13px 20px; }
+    .ws-q { font-size: 16px; color: var(--foreground); line-height: 1.35; flex: 1; } .ws-q b { font-weight: 800; color: var(--practice); }
+    .ws-fill { flex: 1; border-bottom: 1.5px dashed #CBD5E1; height: 1px; align-self: flex-end; margin-bottom: 7px; min-width: 120px; }
+    .ws-n { width: 30px; height: 30px; border-radius: 8px; background: #ECFDF5; color: var(--practice); font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+    /* RECAP cards (0.17) */
+    .recap-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .recap-card { border-radius: var(--radius); padding: 24px 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; }
+    .recap-card.r1 { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .recap-card.r2 { background: var(--pastel-lavender); border-color: #DDD6FE; }
+    .recap-card.r3 { background: var(--pastel-mint); border-color: #86EFAC; }
+    .recap-num { width: 42px; height: 42px; border-radius: 12px; background: #fff; display: flex; align-items: center; justify-content: center; font-size: 22px; box-shadow: 0 2px 8px rgba(15,23,42,0.08); }
+    .recap-name { font-size: 21px; font-weight: 800; color: var(--foreground); }
+    .recap-txt { font-size: 15.5px; color: var(--foreground); line-height: 1.45; } .recap-txt b { font-weight: 800; color: var(--primary); }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- SLIDE 0.1 — COVER / TITLU -->
+    <section data-notes="Deschiderea zilei (55 min). Energia e totul aici — dacă deschizi cu PowerPoint plictisitor, ai pierdut sala pe toată ziua. Ritm: despre trainer + empatie → deschidere cu mișcare → prezentare echipe → date (neutru) → 2 cadre de teorie (Blue Ocean + Golden Circle) → exemple de menționat → joc → auto-evaluare → regulă. Output în «Foaia mea de drum»: Tabloul de bord al școlii mele + oceanul în care înot acum. TON — regula de aur (feedback Dima): NEUTRU, nu învinui audiența. Profesorii sunt target-ul, nu vinovații. Vizual coperta: split — stânga o școală cu coadă la ușă (plină), dreapta o sală goală, aceeași clădire — ce le desparte?">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 0 · De la atelier la piață — vânzări &amp; marketing digital</div>
+          <h1>De la atelier<br>la piață</h1>
+          <div class="cover-bait">🏫 ❓ 🚪</div>
+          <p class="subtitle">De ce unele școli se umplu de elevi și companii — iar altele, la fel de bune, se golesc.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">55 min · deschidere</span>
+            <span class="cover-chip">Blue Ocean + Golden Circle</span>
+            <span class="cover-chip">[ numele tău ] · Vector Academy</span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.1b — Despre mine (trainer) -->
+    <section data-notes="Despre mine — stabilește credibilitate ÎNAINTE de orice. Cârlig mentor: «Nu vă vorbesc din cărți. Am făcut exact ce vă propun azi — am atras oameni, i-am convins să învețe, și am ținut o instituție plină. De-aia sunt aici.» Spune-le cu căldură, nu cu trufie: cifrele sunt acolo ca să-i liniștească, nu ca să te lauzi. Deschiderea caldă câștigă sala.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cine vă vorbește azi</div>
+          <h2 class="slide-title">Nu vă vorbesc din cărți — <span class="hl">am făcut exact ce vă propun</span></h2>
+          <p class="slide-subtitle">Am atras oameni, i-am convins să învețe și am ținut o instituție plină. De-aia sunt aici.</p>
+        </div>
+        <div class="cred-list">
+          <div class="cred-row c1">
+            <div class="cred-ico">🎓</div>
+            <div class="cred-txt">În sectorul <b>educație și reconversie profesională din 2020</b>.</div>
+          </div>
+          <div class="cred-row c2">
+            <div class="cred-ico">🏆</div>
+            <div class="cred-txt">Am organizat <b>cel mai mare IT Career Expo</b> — peste <b>2.000 de studenți într-o singură zi</b>.</div>
+          </div>
+          <div class="cred-row c3">
+            <div class="cred-ico">📈</div>
+            <div class="cred-txt">Am condus o academie cu o cifră de afaceri de <b>~6 milioane MDL pe an</b>.</div>
+          </div>
+          <div class="cred-row c4">
+            <div class="cred-ico">🤝</div>
+            <div class="cred-txt">Am lucrat direct cu oameni care își caută un drum — știu pe pielea mea cum se atrag și se păstrează.</div>
+          </div>
+        </div>
+        <div class="slide-num">02 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.1c — Vă înțeleg cu adevărat -->
+    <section data-notes="Empatie — stabilește o legătură umană înainte de date și teorie. Cârlig mentor: «Nu vin să vă spun că faceți ceva greșit. Vin să vă dau niște unelte care să facă munca asta grea un pic mai ușoară — și mai vizibilă.» Ton cald, fără cifre, fără verdicte. Aici recunoști greutatea muncii lor — asta deschide sala emoțional. Privește-i în ochi, lasă o pauză după ultima linie.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Vă înțeleg cu adevărat</div>
+          <h2 class="slide-title">Știu cât e de greu <span class="hl">ce faceți voi</span></h2>
+          <p class="slide-subtitle">Nu vin să vă spun că faceți ceva greșit. Vin să vă dau unelte care fac munca asta grea un pic mai ușoară — și mai vizibilă.</p>
+        </div>
+        <div class="warm-list">
+          <div class="warm-row">
+            <span class="warm-emo">🧭</span>
+            <div class="warm-txt">Să motivezi un tânăr să învețe o meserie, când el visează să plece — <b>e greu</b>.</div>
+          </div>
+          <div class="warm-row">
+            <span class="warm-emo">💭</span>
+            <div class="warm-txt">Să-l faci să se gândească serios la viitorul lui, când nimeni din jur nu o face — <b>e și mai greu</b>.</div>
+          </div>
+          <div class="warm-row">
+            <span class="warm-emo">❤️</span>
+            <div class="warm-txt">Voi faceți asta zilnic, de ani de zile, deseori <b>fără să vă spună nimeni „mulțumesc"</b>.</div>
+          </div>
+        </div>
+        <div class="slide-num">03 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.1d — Cine sunteți voi (prezentare pe echipe) · PRACTICE -->
+    <section data-notes="Prezentare pe echipe — 8 min. De ce începem așa: voi, profesorii și maiștrii, sunteți punctul de contact cu toată lumea — elevi, părinți, firme. Sunteți cei mai de încredere oameni din școală. Azi construim pe asta. Fiecare școală/echipă se prezintă scurt, cu voce: nume+instituție, ce «produc», ce rol au. Ascultă activ, notează-ți «mândriile» și produsele — le folosești în jocuri și la M2. Energie caldă, nu interogatoriu.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Să ne cunoaștem · pe echipe / instituții</div>
+          <h2 class="slide-title">Înainte să începem — <span style="font-size:24px;color:var(--muted);font-weight:600">cine sunteți voi</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">👋</span>
+          <span class="ex-txt">Fiecare școală / echipă se prezintă scurt, <b>cu voce</b>. 3 lucruri, atât.</span>
+          <span class="ex-time">⏱ 8 min</span>
+        </div>
+        <div class="rp-grid" style="grid-template-columns: 1fr;">
+          <div class="rp-steps">
+            <div class="rp-step"><div class="rp-num">1</div><div class="rp-text"><b>Numele + instituția</b> — cine sunteți și de unde veniți.</div></div>
+            <div class="rp-step"><div class="rp-num">2</div><div class="rp-text"><b>Ce „produceți"</b> — ce meserii, cursuri, produse din ateliere aveți.</div></div>
+            <div class="rp-step"><div class="rp-num">3</div><div class="rp-text"><b>Ce rol aveți</b> — cu cine vorbiți voi în școală (elevi? părinți? firme?), unde sunteți „inima" relației.</div></div>
+          </div>
+        </div>
+        <div class="quote-block"><strong>De ce începem așa:</strong> sunteți punctul de contact cu toată lumea — elevi, părinți, firme. Cei mai de încredere oameni din școală. Azi construim pe asta.</div>
+        <div class="slide-num">04 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.2 — Ce înveți azi (promisiunea zilei) -->
+    <section data-notes="Promisiunea zilei. Cârlig mentor: «Azi nu vă fac «mai motivați». Vă dau instrumente. Seara plecați cu un plan scris, nu cu un sentiment.» Anunță harta clar — sala trebuie să știe că pleacă cu ceva concret (Foaia de drum), nu cu notițe. Citește tabelul rapid, accentuează ultima linie (M7 = un prim pas pe 7 zile).">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Ce înveți azi · promisiunea zilei</div>
+          <h2 class="slide-title">Pleci cu un plan, <span class="hl">nu cu notițe</span></h2>
+          <p class="slide-subtitle">Azi nu te fac „mai motivat". Îți dau instrumente. Seara pleci cu un plan scris, nu cu un sentiment.</p>
+        </div>
+        <table class="gt">
+          <thead>
+            <tr><th style="width:78%">La final de zi vei avea</th><th style="width:22%">Modulul</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Știi în ce „ocean" înoți și cum ieși din înghesuială</td><td class="tagcell">azi (M0)</td></tr>
+            <tr><td>Cunoști exact clientul care spune DA</td><td class="tagcell">M1</td></tr>
+            <tr><td>Ai mesajul + USP-ul + vocea școlii tale</td><td class="tagcell">M2</td></tr>
+            <tr><td>Știi pe ce canale ajungi la el</td><td class="tagcell">M3</td></tr>
+            <tr><td>Vinzi și produsele din atelier (B2B + B2C)</td><td class="tagcell">M4</td></tr>
+            <tr><td>Faci TikTok / Instagram care aduce oameni</td><td class="tagcell">M5</td></tr>
+            <tr><td>Pui prețuri și pachete care aduc bani</td><td class="tagcell">M6</td></tr>
+            <tr><td>Pleci cu un prim pas concret pe 7 zile</td><td class="tagcell">M7</td></tr>
+          </tbody>
+        </table>
+        <div class="slide-num">05 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.3 — Un pas în față (activitate cu mișcare) · PRACTICE -->
+    <section data-notes="Activitate de deschidere CU MIȘCARE — 8 min. Toți stau în picioare pe o linie. Citești o afirmație: dacă e adevărată pentru școala lor, fac un pas în față; dacă nu, rămân pe loc. De ce funcționează: în 8 minute, fără cuvinte, fiecare vede unde stă — și că nu e singur. Mișcare, energie, fără să se simtă nimeni judecat. Afirmația 4 deschide Blue Ocean; afirmația 5 deschide tema rolului profesorului. TON: NU comenta „cine n-a făcut un pas". Doar observă împreună „uite, la asta mai avem de lucrat ca sistem".">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Joc cu mișcare · nimeni nu scrie</div>
+          <h2 class="slide-title">„Un pas în față" <span style="font-size:24px;color:var(--muted);font-weight:600">— facem un pas, nu o notiță</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">👣</span>
+          <span class="ex-txt">Toți în picioare pe o linie. E adevărat pentru școala ta? <b>Un pas în față.</b> Dacă nu — rămâi pe loc.</span>
+          <span class="ex-time">⏱ 8 min</span>
+        </div>
+        <div class="move-list">
+          <div class="move-row"><div class="move-n">1</div><div class="move-txt">„Școala noastră are mai mulți elevi decât acum 3 ani."</div></div>
+          <div class="move-row"><div class="move-n">2</div><div class="move-txt">„Știm cam câți bani aduce atelierul nostru pe lună."</div></div>
+          <div class="move-row"><div class="move-n">3</div><div class="move-txt">„Avem cel puțin o companie parteneră pentru practică."</div></div>
+          <div class="move-row"><div class="move-n">4</div><div class="move-txt">„Putem spune în 10 secunde cu ce suntem DIFERIȚI de școala vecină."</div></div>
+          <div class="move-row"><div class="move-n">5</div><div class="move-txt">„Cred că marketingul școlii e și treaba mea, nu doar a conducerii."</div></div>
+        </div>
+        <div class="quote-block warn" style="margin-top:14px"><strong>Ton:</strong> nu comentăm „cine n-a făcut un pas". Doar observăm împreună: „uite, la asta mai avem de lucrat ca sistem".</div>
+        <div class="slide-num">06 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.4 — Cu ce mă mândresc (perechi) · PRACTICE -->
+    <section data-notes="A doua spargere a gheții — 5 min, în perechi. Pereche cu vecinul. Fiecare are 60 sec să spună UN lucru concret cu care se mândrește (un atelier, un absolvent reușit, un partener, o tradiție). Celălalt ascultă, apoi spune al lui. Debrief rapid: 2-3 voluntari spun mândria COLEGULUI (nu a lor). De ce funcționează: ridică energia pozitivă înainte de cifre. Și e prima sămânță de USP (M2) — exact mândria asta poate deveni diferențiatorul. Păstrează ce auzi, refolosești la 0.13 și la M2.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Spargem gheața · în perechi</div>
+          <h2 class="slide-title">„Cu ce mă mândresc <span class="hl">la școala mea</span>"</h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">🤝</span>
+          <span class="ex-txt">Pereche cu vecinul. <b>60 sec fiecare:</b> UN lucru concret cu care te mândrești. Celălalt ascultă, apoi spune al lui.</span>
+          <span class="ex-time">⏱ 5 min</span>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card t1">
+            <div class="tool-ico">🏭</div>
+            <div class="tool-name">Un atelier<small>ceva ce ai și alții n-au</small></div>
+            <div class="tool-q">„utilajul / laboratorul / linia de care suntem mândri"</div>
+          </div>
+          <div class="tool-card t2">
+            <div class="tool-ico">🎓</div>
+            <div class="tool-name">Un absolvent<small>o poveste reușită</small></div>
+            <div class="tool-q">„cineva care a plecat de la noi și azi e cineva"</div>
+          </div>
+          <div class="tool-card t3">
+            <div class="tool-ico">🏅</div>
+            <div class="tool-name">Un partener / o tradiție<small>ceva al vostru</small></div>
+            <div class="tool-q">„firma cu care lucrăm de ani / obiceiul care ne definește"</div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:16px"><strong>Debrief:</strong> 2–3 voluntari spun mândria <strong>COLEGULUI</strong> (nu a lor). E prima sămânță de USP — mândria asta poate deveni diferențiatorul tău.</div>
+        <div class="slide-num">07 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.5 — Câteva cifre despre sistemul nostru -->
+    <section data-notes="Datele — context + oportunitate, NU pedeapsă. Spune clar: „sunt statistici publice (IPT/MECC), nu despre cineva anume — e contextul în care lucrăm cu toții". 230+ companii = ușa deschisă; 26/77 = de ce merită efortul. Cârlig mentor: «Vestea bună: există și elevi, și companii. Întrebarea care ne unește azi e — cum facem ca ele să ne găsească mai ușor?» Nu lăsa sala să simtă acuzație în cifre.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Context · 3 date publice</div>
+          <h2 class="slide-title">3 date la care merită să ne uităm <span class="hl">împreună</span></h2>
+          <p class="slide-subtitle">Cifre din statisticile oficiale (IPT/MECC). Nu sunt despre cineva anume — sunt <b>contextul în care lucrăm cu toții</b>.</p>
+        </div>
+        <table class="gt">
+          <thead>
+            <tr><th style="width:20%">Cifra</th><th style="width:80%">Ce ne spune</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="lead">~50.000</td><td>elevi în tot sistemul IPT — o piață mare, pe care o împărțim toți</td></tr>
+            <tr><td class="lead">26 / 77</td><td>26 de instituții din 77 ating pragul de elevi; pentru restul, <b>vizibilitatea contează mult</b></td></tr>
+            <tr><td class="lead">230+</td><td>companii partenere în dual (erau 73 în 2021) — <b>cererea de absolvenți e în creștere</b></td></tr>
+          </tbody>
+        </table>
+        <div class="quote-block"><strong>Cârlig:</strong> vestea bună — există și elevi, și companii. Întrebarea care ne unește azi e: cum facem ca ele să ne găsească mai ușor?</div>
+        <div class="slide-num">08 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.6 — TEORIE 1: Blue Ocean -->
+    <section data-notes="TEORIE 1 — Blue Ocean. Una dintre ancorele intelectuale ale zilei. Fă-o cu desene pe tablă, nu doar pe slide — te întorci la „roșu/albastru" toată ziua. BLUE OCEAN NU înseamnă «fii cel mai bun». Înseamnă «fii singurul care face X lângă tine». Repetă asta — mulți confundă „calitate" cu „diferență". Cârlig mentor: «Nu te bate să fii «cea mai bună școală de bucătari din Moldova». Fii «singura care scoate cofetari angajați în 8 luni din raionul tău». Aia e apă albastră.» Pregătește terenul pentru slide-ul următor (0.6b): «dar ca să găsești apa albastră, trebuie să știi cu CINE te bați de fapt».">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie 1 · Blue Ocean</div>
+          <h2 class="slide-title">Te bați în înghesuială (roșu) sau <span class="hl">înoți unde nu e nimeni (albastru)?</span></h2>
+          <p class="slide-subtitle">Cea mai utilă idee de strategie din lume, în 2 imagini. Reține-o pentru toată ziua.</p>
+        </div>
+        <table class="vs-table" style="font-size:17px">
+          <thead>
+            <tr><th class="col-bad" style="width:50%">🟥 OCEANUL ROȘU</th><th class="col-good" style="width:50%">🟦 OCEANUL ALBASTRU</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="bad-cell">toți se bat pe aceiași clienți</td><td class="good-cell">tu rezolvi ceva ce nimeni nu rezolvă</td></tr>
+            <tr><td class="bad-cell">„suntem și noi o școală de meserii"</td><td class="good-cell">„singura școală din raion cu <b>X</b>"</td></tr>
+            <tr><td class="bad-cell">concurezi pe PREȚ și te epuizezi</td><td class="good-cell">concurezi pe <b>DIFERENȚĂ</b> și respiri</td></tr>
+            <tr><td class="bad-cell">rechinii se mușcă → apa se înroșește</td><td class="good-cell">apă curată, doar a ta</td></tr>
+          </tbody>
+        </table>
+        <div class="quote-block warn" style="margin-top:14px"><strong>Întrebarea Blue Ocean:</strong> „Ce nevoie reală din zona mea nu o rezolvă încă nimeni — sau o rezolvă prost?" Nu trebuie să fii cea mai bună din țară. Trebuie să fii <strong>singura care face un lucru</strong> de care e nevoie lângă tine.</div>
+        <div class="slide-num">09 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.6b — Cu CINE te bați de fapt (concurența reală) · NOU -->
+    <section data-notes="SLIDE NOU — re-cadrarea cheie a zilei. Mesaj: tânărul NU alege între școala ta și școala vecină. Alege între 4 DRUMURI DE VIAȚĂ. Concurentul tău real nu e altă școală profesională — e ce-i trece prin cap unui tânăr de 15-16 ani când se gândește „ce fac mai departe". Cele 4: liceul teoretic, plecatul peste hotare, munca la negru, armata/amânarea. Pentru fiecare: ce-i PROMITE (de ce e atractiv) + unde e SLAB (acolo e ușa ta). Întrebarea Blue Ocean reformulată: „Ce le dau eu, ce niciuna din cele 4 nu le dă?" Răspunsul tipic: meserie cu acte + bani relativ repede + ACASĂ + un drum care nu se închide. ACELA e oceanul tău albastru real. Cârlig mentor: «Dacă mesajul vostru spune doar «suntem mai buni ca alte școli», ați pierdut deja — pentru că tânărul nici nu se gândea la alte școli. Se gândea dacă să plece în Italia.» TON: neutru, fără să demonizezi plecatul/munca la negru — sunt opțiuni reale; doar arăți unde e slăbiciunea fiecăreia. Ăsta e setup-ul pentru jocul de la 0.13 (Bătălia pentru un tânăr real).">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Re-cadrare · concurența reală</div>
+          <h2 class="slide-title">Tânărul nu alege între tine și școala vecină. <span class="hl">Alege între 4 drumuri de viață.</span></h2>
+          <p class="slide-subtitle">Concurentul tău real nu e altă școală profesională — e ce-i trece prin cap unui tânăr de 15–16 ani când se gândește „ce fac mai departe". Asta schimbă totul.</p>
+        </div>
+        <table class="gt comp">
+          <thead>
+            <tr>
+              <th style="width:24%">Concurentul real</th>
+              <th class="col-promise" style="width:32%">Ce-i promite el tânărului</th>
+              <th class="col-door" style="width:44%">Unde e SLAB — ușa ta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="lead"><span class="em">🎓</span>Liceul teoretic</td>
+              <td class="promise">„statut, drum spre facultate"</td>
+              <td class="door">4 ani + facultate, tot <b>fără meserie și fără bani</b>; mulți abandonează</td>
+            </tr>
+            <tr>
+              <td class="lead"><span class="em">✈️</span>Plecatul peste hotare</td>
+              <td class="promise">„bani imediat, mai mulți"</td>
+              <td class="door">muncă deseori <b>la negru, departe de casă</b>, fără un viitor construit</td>
+            </tr>
+            <tr>
+              <td class="lead"><span class="em">🔨</span>Munca la negru, acum</td>
+              <td class="promise">„bani azi, fără bătaie de cap"</td>
+              <td class="door">fără contract, fără siguranță, <b>primul concediat</b>, plafonat pe viață</td>
+            </tr>
+            <tr>
+              <td class="lead"><span class="em">🪖</span>Armata / amânarea</td>
+              <td class="promise">„mai văd eu"</td>
+              <td class="door">un an pierdut, <b>tot de la zero</b> după</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="quote-block" style="margin-top:14px"><strong>Întrebarea Blue Ocean reformulată:</strong> „Ce le dau eu, ce <strong>niciuna din cele 4</strong> nu le dă?" Răspunsul tipic: <strong>meserie cu acte + bani relativ repede + ACASĂ + un drum care nu se închide</strong>. Acela e oceanul tău albastru real.</div>
+        <div class="slide-num">10 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.7 — Blue Ocean aplicat (de menționat) -->
+    <section data-notes="Blue Ocean aplicat — exemple de menționat, NU verdicte. Formula: „asta am găsit, ideea mi se pare faină, nu știu exact cum a mers fiecare în detaliu". Nu pune alte școli în lumină proastă, nu comenta financiarele lor. Lecția: fiecare și-a găsit un colț unde NU se bate cu toți. Întrebarea pentru ei: tu care ți-l găsești? (revenim la asta în jocul de la 0.13). Exemple folosite aici: SP nr.2, CEITI, colegii agrare Țaul/Brătușeni — de NU repetat ca exemplu central în alte module.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Blue Ocean aplicat · exemple de inspirație</div>
+          <h2 class="slide-title">Nu e teorie de carte — <span class="hl">uite cum ar putea arăta</span></h2>
+          <p class="slide-subtitle">Exemple de menționat, nu verdicte. Fiecare și-a găsit un colț unde <b>nu se bate cu toți</b>.</p>
+        </div>
+        <div class="insp-grid">
+          <div class="insp-card">
+            <div class="insp-head"><span class="insp-flag">🟦</span><span class="brand-chip"><span class="dot" style="background:var(--primary)"></span>SP nr. 2 Chișinău</span></div>
+            <div class="insp-body"><small style="color:var(--muted);font-weight:600">cea mai veche SP din RM</small><br>În loc să fie „încă o școală de bucătari", și-a făcut oceanul din <b>practica la unități reale</b> (Metro, Fidesco, Panilino) — ieși cu experiență, nu doar diplomă.</div>
+          </div>
+          <div class="insp-card">
+            <div class="insp-head"><span class="insp-flag">🟦</span><span class="brand-chip"><span class="dot" style="background:var(--primary)"></span>CEITI</span></div>
+            <div class="insp-body"><small style="color:var(--muted);font-weight:600">IT</small><br>Nu concurează pe „învățăm calculatoare". Oceanul lui = <b>certificări internaționale</b> (Certiport) + parteneri tari (Endava, Orange) — un absolvent „gata de angajare".</div>
+          </div>
+          <div class="insp-card">
+            <div class="insp-head"><span class="insp-flag">🟦</span><span class="brand-chip"><span class="dot" style="background:var(--primary)"></span>Colegiile agrare</span></div>
+            <div class="insp-body"><small style="color:var(--muted);font-weight:600">Țaul, Brătușeni</small><br>Oceanul lor = nu doar „înveți agricultură", ci <b>„produci și VINZI real"</b> — ferme și sere didactice care scot produse pe piață.</div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:16px"><strong>Lecția:</strong> fiecare și-a găsit un colț unde NU se bate cu toți. Tu care ți-l găsești? (revenim la asta în jocul de la 0.13)</div>
+        <div class="slide-num">11 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.8 — TEORIE 2: Golden Circle -->
+    <section data-notes="TEORIE 2 — Golden Circle (Simon Sinek). A doua ancoră intelectuală a zilei. Demonstreaz-o citind 2 versiuni ale aceluiași anunț (din afară vs dinăuntru) — diferența de energie se simte în sală. Majoritatea școlilor comunică pe dos: încep cu CE (avem curs de bucătar, înscrieri deschise). Școala care vinde începe cu DE CE (misiunea). Cârlig mentor: «Începe cu DE CE și ai inima omului. Începe cu CE și ai un pliant pe care nu-l citește nimeni.» Te întorci la „de ce/cum/ce" toată ziua. Leagă DE CE de re-cadrarea de la 0.6b: misiunea ta răspunde exact la ce nu-i dau cele 4 drumuri.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie 2 · Golden Circle (Simon Sinek)</div>
+          <h2 class="slide-title">Oamenii nu cumpără CE faci. <span class="hl">Cumpără DE CE o faci.</span></h2>
+          <p class="slide-subtitle">A doua idee mare a zilei. Majoritatea școlilor comunică pe dos — din afară spre interior.</p>
+        </div>
+        <div class="gc-grid">
+          <div class="gc-rings">
+            <div class="gc-ring gc-why">DE CE</div>
+            <div class="gc-ring gc-how">CUM</div>
+            <div class="gc-ring gc-what">CE</div>
+          </div>
+          <div class="gc-legend">
+            <div class="gc-item"><span class="gc-dot w"></span><div class="gc-line"><b>DE CE</b> — misiunea ta (de ce există școala asta?)<span class="ex">„ca tinerii din raion să aibă un viitor aici, acasă"</span></div></div>
+            <div class="gc-item"><span class="gc-dot h"></span><div class="gc-line"><b>CUM</b> — cum o faci diferit (USP-ul de mâine)<span class="ex">„prin meserii reale + practică la firme adevărate"</span></div></div>
+            <div class="gc-item"><span class="gc-dot t"></span><div class="gc-line"><b>CE</b> — ce vinzi (cursuri, meserii)<span class="ex">„curs de sudură, cofetar, electrician"</span></div></div>
+            <div class="gc-flip">
+              <div class="flip no"><span class="fl-mark">✕</span>Școala obișnuită (afară → înăuntru): „Avem curs de bucătar. Înscrieri deschise."</div>
+              <div class="flip yes"><span class="fl-mark">✓</span>Școala care vinde (dinăuntru → afară): „Credem că un tânăr nu trebuie să plece din țară ca să aibă o meserie <b>(DE CE)</b>. De-aia pregătim meseriași pe firme reale <b>(CUM)</b>. Înscrie-te la cofetar <b>(CE)</b>."</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">12 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.9 — Cadru: profesorul e inima școlii -->
+    <section data-notes="Reframe-ul cheie al modulului. NU „te fac agent de vânzări". Ei sunt deja inima de încredere a școlii — doar o punem în lumină. Ca un fondator cu personal branding: profesorul e omul de încredere, are contact cu toți. Cârlig mentor: «Azi nu vă transform în agenți de vânzări. Doar punem în lumină ceva ce faceți deja zilnic — sunteți inima cu care școala vorbește cu lumea.» O școală plină le ajută munca: au pe cine preda, resurse, un viitor pentru elevi.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · profesorul e inima școlii</div>
+          <h2 class="slide-title">Voi „vindeți" încrederea — <span class="hl">chiar dacă nu-i spuneți așa</span></h2>
+          <p class="slide-subtitle">Ca un fondator cu personal branding: profesorul e <b>omul de încredere</b> al școlii.</p>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card t1">
+            <div class="tool-ico">🫶</div>
+            <div class="tool-name">Omul de încredere<small>contact cu toți</small></div>
+            <div class="tool-q">Aveți contact cu toți — elevi, părinți, firme. Sunteți puntea instituției.</div>
+          </div>
+          <div class="tool-card t2">
+            <div class="tool-ico">📖</div>
+            <div class="tool-name">Storytellerul<small>experiență + poveste</small></div>
+            <div class="tool-q">Voi dați experiență, know-how și o poveste. Nimeni nu cunoaște elevii și firmele mai bine ca voi.</div>
+          </div>
+          <div class="tool-card t3">
+            <div class="tool-ico">🏫</div>
+            <div class="tool-name">Sprijin pentru munca voastră<small>o școală plină</small></div>
+            <div class="tool-q">Aveți pe cine preda, resurse, un viitor pentru elevi. Vizibilitatea = sprijin pentru ce faceți deja.</div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:16px"><strong>Cârlig:</strong> azi nu vă transform în agenți de vânzări. Doar punem în lumină ceva ce faceți deja zilnic — sunteți <strong>inima cu care școala vorbește cu lumea</strong>.</div>
+        <div class="slide-num">13 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.10 — „vindem" deja, doar nu-i spunem așa -->
+    <section data-notes="Aprofundare a reframe-ului. Mesaj cheie: marketingul nu e ceva NOU peste munca voastră. E ce faceți deja — făcut conștient, constant și pe limba omului din față. Cele 3 exemple sunt acțiuni pe care le fac toți zilnic, doar că nu le numesc „vânzare". Liniștește-i: nu adăugăm muncă, doar facem mai vizibil și mai intenționat ce există deja.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Aprofundare · „vindem" deja</div>
+          <h2 class="slide-title">3 lucruri pe care le facem deja — <span class="hl">fără să le numim vânzare</span></h2>
+        </div>
+        <table class="gt">
+          <thead>
+            <tr><th style="width:42%">Ce facem deja</th><th style="width:22%">Cui</th><th style="width:36%">= de fapt oferim</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Vorbim cu un părinte la ușa deschisă</td><td class="why">părintelui</td><td class="lead">un viitor</td></tr>
+            <tr><td>Sunăm o firmă să primească elevi la practică</td><td class="why">companiei</td><td class="lead">forță de muncă pregătită</td></tr>
+            <tr><td>Postăm o poză cu absolvenți angajați</td><td class="why">tuturor</td><td class="lead">încredere / dovadă</td></tr>
+          </tbody>
+        </table>
+        <div class="stmt-hero">Marketingul nu e ceva NOU peste munca voastră. E ce faceți deja — făcut <span class="hl">conștient, constant și pe limba omului din față</span>.</div>
+        <div class="slide-num">14 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.11 — Ce NU e marketing (4 mituri) -->
+    <section data-notes="4 mituri care blochează. Scopul: scoatem fricile din cale înainte de „cum". Cârlig mentor: «Dacă v-ați regăsit într-un mit, e perfect — le luăm pe rând, împreună.» Ton blând, fără să-i facă să se simtă proști că au crezut mitul. Accentuează ultimul mit (calitate ≠ vizibilitate) — e cel care pregătește toată ziua.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · ce NU e marketing</div>
+          <h2 class="slide-title">Înainte de „cum", <span class="hl">scăpăm de 4 mituri</span></h2>
+        </div>
+        <table class="vs-table" style="font-size:16px">
+          <thead>
+            <tr><th class="col-bad" style="width:40%">❌ Mitul</th><th class="col-good" style="width:60%">✅ Realitatea</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="bad-cell">„Marketing = bani mulți pe reclame"</td><td class="good-cell">Multe lucruri care aduc oameni se fac <b>cu buget mic sau zero</b> (o postare, un telefon, o recomandare)</td></tr>
+            <tr><td class="bad-cell">„Marketing = să te lauzi / să minți"</td><td class="good-cell">Marketingul bun = <b>adevărul vostru</b>, spus clar, pe limba omului</td></tr>
+            <tr><td class="bad-cell">„E treaba unui specialist, nu a mea"</td><td class="good-cell">Voi cunoașteți elevul și firma cel mai bine — <b>mesajul vostru e cel mai autentic</b></td></tr>
+            <tr><td class="bad-cell">„Avem calitate, n-avem nevoie"</td><td class="good-cell">O școală bună dar <b>invizibilă</b> e greu de ales — pentru că lumea n-o vede</td></tr>
+          </tbody>
+        </table>
+        <div class="quote-block" style="margin-top:14px"><strong>Cârlig:</strong> dacă v-ați regăsit într-un mit, e perfect — le luăm pe rând, împreună.</div>
+        <div class="slide-num">15 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.12 — Idei de menționat: ce am văzut prin sistem -->
+    <section data-notes="Exemple de menționat — NU verdicte. Spune clar: „astea-s exemple pe care le-am găsit (presă, site-uri, povești din sistem). Nu știu exact cum a mers fiecare în detaliu — dar ideea de diversificare mi se pare de luat în seamă." Ce e comun și inspirational: fiecare a încercat ceva diferit, nu doar „mai mult din același lucru". Asta putem împrumuta cu toții. Exemple: SP nr.3 fotovoltaice, CEVVC vin, CEITI — de NU repetat ca exemplu central în alte module.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Inspirație · ce am văzut prin sistem</div>
+          <h2 class="slide-title">Lucruri faine pe care le-am observat — <span class="hl">nu rețete, ci inspirație</span></h2>
+          <p class="slide-subtitle">Exemple găsite (presă, site-uri, povești). Nu știu exact cum a mers fiecare — dar <b>ideea de diversificare</b> mi se pare de luat în seamă.</p>
+        </div>
+        <div class="insp-grid">
+          <div class="insp-card">
+            <div class="insp-head"><span class="insp-flag">💡</span><span class="brand-chip"><span class="dot" style="background:var(--primary)"></span>SP nr. 3 Chișinău</span></div>
+            <div class="insp-body">A introdus o meserie nouă, căutată (<b>instalator fotovoltaice</b>) + cursuri pentru adulți.</div>
+          </div>
+          <div class="insp-card">
+            <div class="insp-head"><span class="insp-flag">💡</span><span class="brand-chip"><span class="dot" style="background:var(--primary)"></span>CEVVC Stăuceni</span></div>
+            <div class="insp-body">Și-a făcut un <b>produs propriu</b> (vin cu marcă) din atelierul didactic.</div>
+          </div>
+          <div class="insp-card">
+            <div class="insp-head"><span class="insp-flag">💡</span><span class="brand-chip"><span class="dot" style="background:var(--primary)"></span>CEITI</span></div>
+            <div class="insp-body">A mizat pe <b>certificări internaționale</b> + parteneri din industrie.</div>
+          </div>
+        </div>
+        <div class="quote-block" style="margin-top:16px"><strong>Ce e comun și inspirational:</strong> fiecare a încercat <strong>ceva diferit</strong>, nu doar „mai mult din același lucru". Asta putem împrumuta cu toții.</div>
+        <div class="slide-num">16 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.13 — JOC: Bătălia pentru un tânăr real · PRACTICE · NOU -->
+    <section data-notes="JOC NOU — «Bătălia pentru un tânăr real», 12 min, grupe de 3-4. Înlocuiește vechiul „Oceanul tău". Mesaj: aplicăm Blue Ocean PE VIU, dar pe concurenții ADEVĂRAȚI (cele 4 drumuri de la 0.6b), nu pe școala vecină. Scoate profesorii din «competiția între școli» (greșită) și-i pune în lupta reală — pentru atenția și viitorul unui tânăr. Pas cu pas: 1) fiecare grup primește un tânăr real — «Ion, 16 ani, note medii, tatăl plecat în Italia, vrea bani»; 2) pe flipchart scriu cele 4 alternative care concurează pentru Ion (liceu / plecare / muncă la negru / armata-nimic); 3) pentru fiecare: ce-i PROMITE + unde e SLABĂ; 4) formulează mesajul care arată că școala lor îi dă ce niciuna nu-i dă; 5) galerie — 2-3 grupuri prezintă. Întrebare de debrief: «Mesajul vostru se bate cu liceul vecin — sau cu Italia?» Mesajul găsit aici devine USP-ul de la M2 — PĂSTREAZĂ flipchart-urile. Treci pe la grupe, împinge spre concret — „suntem mai buni" e răspuns greșit; răspunsul bun arată ce le dă, ce nu le dau cele 4.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Joc · „Bătălia pentru un tânăr real" · grupe de 3–4</div>
+          <h2 class="slide-title">Concurența nu e școala vecină — <span class="hl">sunt cele 4 drumuri. Hai să le batem.</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">⚔️</span>
+          <span class="ex-txt">Aplicăm Blue Ocean <b>PE VIU</b>, pe concurenții ADEVĂRAȚI (de la slide 0.6b). Mesajul găsit aici = USP-ul de la M2.</span>
+          <span class="ex-time">⏱ 12 min</span>
+        </div>
+        <div class="rp-grid">
+          <div class="rp-steps">
+            <div class="rp-step"><div class="rp-num">1</div><div class="rp-text">Fiecare grup primește <b>un tânăr real</b> (vezi cartonașul →).</div></div>
+            <div class="rp-step"><div class="rp-num">2</div><div class="rp-text">Pe flipchart, scrieți <b>cele 4 alternative</b> care „concurează" pentru el: liceu / plecare / muncă la negru / armata-nimic.</div></div>
+            <div class="rp-step"><div class="rp-num">3</div><div class="rp-text">Pentru fiecare: <b>ce-i PROMITE + unde e SLABĂ</b>.</div></div>
+            <div class="rp-step"><div class="rp-num">4</div><div class="rp-text">Formulați <b>mesajul</b> care arată că școala voastră îi dă ceea ce niciuna nu-i dă.</div></div>
+            <div class="rp-step"><div class="rp-num">5</div><div class="rp-text"><b>Galerie:</b> 2–3 grupuri prezintă.</div></div>
+          </div>
+          <div class="rp-pane persona">
+            <div class="rp-head"><span class="rp-emoji">🧑</span><div class="rp-title">Tânărul vostru<br>de azi</div></div>
+            <div class="persona-quote">„<b>Ion, 16 ani.</b> Note medii. Tatăl e plecat în <b>Italia</b>. Vrea bani."</div>
+            <div class="persona-tags">
+              <span class="persona-tag">🎓 liceu</span>
+              <span class="persona-tag">✈️ plecare</span>
+              <span class="persona-tag">🔨 negru</span>
+              <span class="persona-tag">🪖 armata</span>
+            </div>
+            <div class="rp-debrief"><b>Debrief:</b> „Mesajul vostru se bate cu liceul vecin — sau cu Italia?"</div>
+          </div>
+        </div>
+        <div class="slide-num">17 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.14 — Tabloul de bord (completezi) · PRACTICE -->
+    <section data-notes="COMPLETEZI · Tabloul de bord — 10 min, în Foaia de drum. Completează sincer. Nu e notă, e o radiografie. La final de zi vezi cât ai avansat. Punctul 5 (oceanul albastru) vine direct din jocul de la 0.13 (Bătălia) — e mesajul care-l câștigă pe Ion în fața celor 4 drumuri. Liniștește-i: estimările sunt ok, important e să plece cu un punct de pornire scris. Ăsta e output-ul-cheie al modulului — asigură-te că toți completează.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Completezi · Foaia mea de drum 0</div>
+          <h2 class="slide-title">Tabloul de bord al școlii mele <span style="font-size:24px;color:var(--muted);font-weight:600">— de unde plec azi</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">📋</span>
+          <span class="ex-txt">Completează sincer. <b>Nu e notă, e o radiografie.</b> La final de zi vezi cât ai avansat.</span>
+          <span class="ex-time">⏱ 10 min</span>
+        </div>
+        <div class="ws-sheet">
+          <div class="ws-row"><div class="ws-n">1</div><div class="ws-q"><b>Ce vinde școala mea acum?</b> (cursuri / produse / locuri de practică)</div><div class="ws-fill"></div></div>
+          <div class="ws-row"><div class="ws-n">2</div><div class="ws-q"><b>Câți clienți/elevi noi</b> aducem pe an? (estimare)</div><div class="ws-fill" style="max-width:120px"></div></div>
+          <div class="ws-row"><div class="ws-n">3</div><div class="ws-q"><b>Câte companii partenere</b> avem?</div><div class="ws-fill" style="max-width:120px"></div></div>
+          <div class="ws-row"><div class="ws-n">4</div><div class="ws-q"><b>Pe ce canale</b> suntem prezenți? (Facebook / TikTok / site / nimic)</div><div class="ws-fill"></div></div>
+          <div class="ws-row"><div class="ws-n">5</div><div class="ws-q"><b>OCEANUL meu albastru</b> (din jocul de la 0.13 — Bătălia)</div><div class="ws-fill"></div></div>
+          <div class="ws-row"><div class="ws-n">6</div><div class="ws-q"><b>Cea mai mare problemă</b> a mea acum</div><div class="ws-fill"></div></div>
+        </div>
+        <div class="slide-num">18 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.15 — Harta zilei (firul roșu) -->
+    <section data-notes="Harta zilei — firul roșu. 8 pași, de la „de ce" la primul rezultat. La fiecare pas: o regulă de memorat + ceva de făcut. La final: Foaia ta de drum completă. Folosește-o ca busolă — te întorci la ea la începutul fiecărui modul, ca sala să știe mereu unde e pe drum.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Harta zilei · firul roșu</div>
+          <h2 class="slide-title">8 pași, de la „de ce" <span class="hl">la primul rezultat</span></h2>
+          <p class="slide-subtitle">La fiecare pas: o regulă de memorat + ceva de făcut. La final: <b>Foaia ta de drum completă</b>.</p>
+        </div>
+        <table class="gt">
+          <tbody>
+            <tr><td class="lead" style="width:8%">1</td><td><b>Oceanul</b> tău (azi) — unde nu te bate nimeni</td></tr>
+            <tr><td class="lead">2</td><td><b>Cine</b> cumpără de la noi (avatarul)</td></tr>
+            <tr><td class="lead">3</td><td><b>Ce mesaj</b> îi vinde (USP + pitch)</td></tr>
+            <tr><td class="lead">4</td><td><b>Pe ce canale</b> îl găsim (Moldova concret)</td></tr>
+            <tr><td class="lead">5</td><td><b>Produsele</b> din atelier — și ele se vând</td></tr>
+            <tr><td class="lead">6</td><td><b>TikTok / Instagram</b> care aduce oameni</td></tr>
+            <tr><td class="lead">7</td><td><b>Cât cerem</b> (prețuri &amp; pachete)</td></tr>
+            <tr><td class="lead">8</td><td><b>Planul de 7 zile</b> — pleci cu un prim pas</td></tr>
+          </tbody>
+        </table>
+        <div class="slide-num">19 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.16 — REGULA 0 + CHECKLIST -->
+    <section data-notes="REGULA 0 — prima lecție de luat acasă, badge mare. «O școală bună, dar invizibilă, pierde în fața uneia medii, dar vizibile. Iar una DIFERITĂ le bate pe amândouă.» Recapitulează clar. Checklist-ul = ce fac singuri la școală (5 min) ca să-și fixeze punctul de pornire. Leagă punctul 4 (oceanul albastru) de jocul 0.13 (Bătălia) și de tabloul 0.14.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Regula modulului · 0</div>
+          <h2 class="slide-title">Regula 0 + checklist</h2>
+        </div>
+        <div class="rule-grid">
+          <div class="rule-pane">
+            <div class="rule-badge"><span class="rb-dot"></span> REGULA 0</div>
+            <div class="rule-text">„O școală bună, dar <span class="hl">invizibilă</span>, pierde în fața uneia medii, dar vizibile. Iar una <span class="hl">DIFERITĂ</span> le bate pe amândouă."</div>
+          </div>
+          <div class="check-pane">
+            <div class="check-head">✓ Checklist — fă-l singur la școală (5 min)</div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Scrie <b>ce vinde</b> școala ta (elevi / parteneri / cursuri-produse).</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Notează o <b>cifră reală</b>: câți elevi/clienți noi pe an.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Notează pe ce <b>canale</b> ești prezent ACUM.</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Scrie 1 lucru pe care <b>DOAR școala ta</b> îl poate spune (oceanul albastru).</div></div>
+          </div>
+        </div>
+        <div class="slide-num">20 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.17 — Recapitulare: 3 idei mari -->
+    <section data-notes="Recapitulare — pleci cu 3 idei mari. Cele 2 teorii (Blue Ocean + Golden Circle) sunt ancorele intelectuale; a treia (SE POATE) e ancora emoțională. Repetă: Blue Ocean NU înseamnă „fii cel mai bun", ci „fii singurul care face X lângă tine" — și ține minte cu CINE te bați de fapt (cele 4 drumuri, nu școala vecină). Golden Circle: începe cu DE CE. SE POATE: am văzut idei reale din sistem care merg, multe cu buget mic. Diferența + claritatea contează mai mult ca banii.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Recapitulare · ce duci mai departe</div>
+          <h2 class="slide-title">Pleci cu <span class="hl">3 idei mari</span></h2>
+        </div>
+        <div class="recap-grid">
+          <div class="recap-card r1">
+            <div class="recap-num">🌊</div>
+            <div class="recap-name">Blue Ocean</div>
+            <div class="recap-txt">Nu te bate în înghesuială (roșu). <b>Găsește-ți colțul tău</b> (albastru). Și ține minte: te bați cu <b>cele 4 drumuri</b>, nu cu școala vecină.</div>
+          </div>
+          <div class="recap-card r2">
+            <div class="recap-num">🎯</div>
+            <div class="recap-name">Golden Circle</div>
+            <div class="recap-txt">Comunică <b>DE CE</b>, nu doar CE. Inima înainte de pliant.</div>
+          </div>
+          <div class="recap-card r3">
+            <div class="recap-num">✅</div>
+            <div class="recap-name">SE POATE</div>
+            <div class="recap-txt">Am văzut idei reale din sistem care merg, multe cu buget mic. <b>Diferența + claritatea</b> contează mai mult ca banii.</div>
+          </div>
+        </div>
+        <div class="slide-num">21 / 22</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 0.18 — TRANZIȚIE -->
+    <section data-notes="Tranziție spre M1. Știm în ce ocean înotăm și cu cine ne batem (cele 4 drumuri). Acum: cine, exact, e peștele care spune DA? Nu vinzi „o școală". Vinzi unei persoane concrete, cu o problemă concretă — pe ea o descoperim acum. Ține firul roșu: am ales apa (oceanul), acum identificăm peștele (avatarul).">
+      <div class="slide slide-transition">
+        <div class="cover-bg"></div><div class="cover-accent"></div>
+        <div style="position:relative;z-index:2;text-align:center;padding:0 90px;max-width:1000px;">
+          <div class="cover-kicker" style="margin-bottom:26px"><span class="dot"></span> Urmează · cine cumpără de la noi</div>
+          <div style="font-size:76px;margin-bottom:18px">🐟</div>
+          <h2 style="font-size:44px;font-weight:800;color:#fff;line-height:1.12;letter-spacing:-0.02em;margin:0 0 18px;">Știm în ce ocean înotăm.<br>Acum: <span style="color:var(--primary-light)">cine, exact, e peștele care spune DA?</span></h2>
+          <p style="font-size:20px;color:rgba(255,255,255,0.72);line-height:1.55;margin:0">Nu vinzi „o școală". Vinzi unei <b style="color:#fff;font-weight:600">persoane concrete, cu o problemă concretă</b> — pe ea o descoperim acum.</p>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">22 / 22</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

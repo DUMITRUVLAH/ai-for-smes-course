@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prețuri, pachete &amp; strategii — De la atelier la piață</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #0EA371;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 54px 66px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #0EA371 0%, #0891B2 100%); }
+
+    .slide-header { margin-bottom: 24px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #D1FAE5; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-title .hl { color: var(--primary); }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 960px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 56px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 22px; font-weight: 400; color: rgba(255,255,255,0.72); margin: 0 0 40px; max-width: 740px; line-height: 1.5; }
+    .cover-bait { font-size: 70px; margin: 6px 0 34px; letter-spacing: 8px; }
+    .cover-logos { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+    .quote-block.warn { border-color: var(--warning); background: #FFFBEB; } .quote-block.warn strong { color: #B45309; }
+
+    /* brand chips */
+    .brand-chip { display: inline-flex; align-items: center; font-size: 14px; font-weight: 700; color: var(--foreground); background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 5px 13px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+    .brand-chip .dot { width: 7px; height: 7px; border-radius: 50%; margin-right: 7px; flex-shrink: 0; }
+
+    /* VS table */
+    .vs-table { width: 100%; border-collapse: collapse; font-size: 19px; }
+    .vs-table th { padding: 14px 20px; text-align: left; font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: #fff; border: none; }
+    .vs-table th.col-bad { background: #B91C1C; }
+    .vs-table th.col-good { background: #15803D; }
+    .vs-table td { padding: 18px 20px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.4; }
+    .vs-table tr:last-child td { border-bottom: none; }
+    .vs-table td.bad-cell { color: #B91C1C; font-style: italic; }
+    .vs-table td.good-cell { background: #F0FDF4; font-weight: 700; color: #15803D; }
+    .vs-table td b { font-weight: 800; }
+
+    /* drill analogy */
+    .drill-row { display: flex; align-items: stretch; gap: 18px; margin-top: 4px; }
+    .drill-card { flex: 1; border-radius: var(--radius); padding: 22px 26px; display: flex; align-items: center; gap: 18px; }
+    .drill-card.no { background: #FEF2F2; border: 1px solid #FECACA; }
+    .drill-card.yes { background: #ECFDF5; border: 1px solid #6EE7B7; }
+    .drill-emoji { font-size: 46px; line-height: 1; flex-shrink: 0; }
+    .drill-txt { font-size: 18px; line-height: 1.4; color: var(--foreground); } .drill-txt b { font-weight: 800; }
+    .drill-card.no .drill-lbl { color: #B91C1C; } .drill-card.yes .drill-lbl { color: #15803D; }
+    .drill-lbl { font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+    .drill-arrow { display: flex; align-items: center; font-size: 30px; color: var(--muted); }
+
+    /* FORMULA */
+    .formula-box { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 34px 40px; color: #fff; position: relative; overflow: hidden; }
+    .formula-box::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .formula-line { position: relative; z-index: 2; font-size: 30px; font-weight: 700; line-height: 1.5; }
+    .formula-line .slot { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.28); border-radius: 8px; padding: 2px 14px; font-weight: 800; margin: 0 2px; }
+    .formula-line .slot.who { color: #93C5FD; } .formula-line .slot.res { color: #6EE7B7; } .formula-line .slot.dif { color: #FCD34D; }
+    .formula-line .slot.prob { color: #FCA5A5; }
+    .ex-flip { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 20px; }
+    .flip { border-radius: var(--radius-sm); padding: 16px 20px; font-size: 18px; line-height: 1.45; }
+    .flip.no { background: #FEF2F2; border: 1px solid #FECACA; color: #B91C1C; }
+    .flip.yes { background: #ECFDF5; border: 1px solid #6EE7B7; color: var(--foreground); }
+    .flip .fl-mark { font-weight: 800; margin-right: 8px; }
+    .flip.yes b { color: #15803D; font-weight: 800; }
+
+    /* MISTAKES list */
+    .mistakes { display: flex; flex-direction: column; gap: 14px; flex: 1; justify-content: center; }
+    .mk-row { display: grid; grid-template-columns: 240px 1fr; gap: 18px; align-items: stretch; }
+    .mk-head { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; justify-content: center; }
+    .mk-head .mk-n { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 800; color: #B91C1C; letter-spacing: 0.04em; text-transform: uppercase; }
+    .mk-head .mk-n .mk-dot { width: 22px; height: 22px; border-radius: 50%; background: var(--destructive); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    .mk-head .mk-t { font-size: 19px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+    .mk-body { display: flex; flex-direction: column; gap: 8px; justify-content: center; }
+    .mk-bad { background: #FEF2F2; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 15px; color: #B91C1C; font-style: italic; line-height: 1.35; }
+    .mk-good { background: #ECFDF5; border-radius: var(--radius-sm); padding: 9px 14px; font-size: 15px; color: var(--foreground); line-height: 1.35; } .mk-good b { color: #15803D; font-weight: 800; }
+    .mk-bad .m, .mk-good .m { font-weight: 800; font-style: normal; margin-right: 6px; }
+
+    /* EMOTION hook */
+    .emo-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .emo-card { border-radius: var(--radius); padding: 16px 16px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; min-height: 0; overflow: hidden; }
+    .emo-card.s { background: var(--pastel-mint); border-color: #86EFAC; }
+    .emo-card.m { background: var(--pastel-peach); border-color: #FED7AA; }
+    .emo-card.u { background: var(--pastel-rose); border-color: #F9A8D4; }
+    .emo-card.a { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .emo-ico { font-size: 30px; line-height: 1; }
+    .emo-name { font-size: 17px; font-weight: 800; color: var(--foreground); }
+    .emo-sub { font-size: 13px; color: var(--muted); line-height: 1.35; }
+    .emo-ex { font-size: 13px; color: var(--foreground); line-height: 1.4; font-style: italic; margin-top: auto; padding-top: 6px; }
+    .ds-box { margin-top: 16px; display: flex; align-items: stretch; gap: 14px; }
+    .ds-half { flex: 1; border-radius: var(--radius); padding: 16px 20px; display: flex; align-items: center; gap: 14px; }
+    .ds-half.pain { background: #FEF2F2; border: 1px solid #FECACA; }
+    .ds-half.fix { background: #ECFDF5; border: 1px solid #6EE7B7; }
+    .ds-lbl { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px; }
+    .ds-half.pain .ds-lbl { color: #B91C1C; } .ds-half.fix .ds-lbl { color: #15803D; }
+    .ds-txt { font-size: 16px; color: var(--foreground); line-height: 1.4; } .ds-txt b { font-weight: 800; }
+    .ds-arrow { display: flex; align-items: center; font-size: 28px; color: var(--practice); font-weight: 800; }
+
+    /* exercise banner + form */
+    .ex-banner { display: flex; align-items: center; gap: 14px; background: linear-gradient(135deg, #0EA371, #0891B2); color: #fff; border-radius: var(--radius); padding: 14px 22px; margin-bottom: 18px; }
+    .ex-banner .ex-ico { font-size: 26px; }
+    .ex-banner .ex-txt { font-size: 17px; font-weight: 600; line-height: 1.4; } .ex-banner .ex-txt b { font-weight: 800; }
+    .ex-banner .ex-time { margin-left: auto; font-size: 15px; font-weight: 800; background: rgba(255,255,255,0.2); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+
+    .pitch-sheet { display: flex; flex-direction: column; gap: 12px; }
+    .ps-line { background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 16px 22px; display: flex; align-items: center; gap: 16px; }
+    .ps-word { font-size: 22px; font-weight: 800; color: var(--practice); white-space: nowrap; }
+    .ps-fill { flex: 1; border-bottom: 1.5px dashed #CBD5E1; height: 1px; align-self: flex-end; margin-bottom: 6px; }
+    .ps-tag { font-size: 13px; font-weight: 800; color: var(--muted); background: #ECFDF5; border-radius: 100px; padding: 5px 13px; white-space: nowrap; }
+    .test-strip { display: flex; gap: 10px; margin-top: 14px; }
+    .test-item { flex: 1; display: flex; align-items: center; gap: 10px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 14px; font-size: 14px; line-height: 1.3; color: var(--foreground); }
+    .test-item .tb { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--practice); flex-shrink: 0; }
+    .test-item b { font-weight: 800; }
+
+    /* OBJECTION BANK */
+    .obj-bank { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+    .ob-col { border-radius: var(--radius); padding: 16px 16px; display: flex; flex-direction: column; gap: 9px; border: 1px solid var(--border); overflow: hidden; }
+    .ob-col.p { background: #FEF2F2; border-color: #FECACA; }
+    .ob-col.c { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .ob-col.a { background: var(--pastel-mint); border-color: #86EFAC; }
+    .ob-title { display: flex; align-items: center; gap: 9px; font-size: 16px; font-weight: 800; color: var(--foreground); margin-bottom: 2px; }
+    .ob-title .oe { font-size: 22px; }
+    .ob-card { background: #fff; border-radius: var(--radius-sm); padding: 10px 12px; box-shadow: 0 1px 3px rgba(15,23,42,0.06); }
+    .ob-q { font-size: 14px; font-weight: 700; color: var(--foreground); line-height: 1.35; font-style: italic; }
+    .ob-a { font-size: 12.5px; color: var(--muted); line-height: 1.35; margin-top: 5px; } .ob-a b { color: var(--practice); font-weight: 800; font-style: normal; }
+    .ob-a .arr { color: var(--practice); font-weight: 800; margin-right: 4px; }
+
+    /* ROLE-PLAY / GAME steps */
+    .rp-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 24px; flex: 1; }
+    .rp-steps { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .rp-step { display: flex; align-items: flex-start; gap: 14px; }
+    .rp-num { width: 34px; height: 34px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .rp-text { font-size: 17px; color: var(--foreground); line-height: 1.4; padding-top: 4px; } .rp-text b { font-weight: 800; color: var(--practice); }
+    .rp-pane { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .rp-pane .rp-head { display: flex; align-items: center; gap: 12px; }
+    .rp-pane .rp-emoji { font-size: 38px; }
+    .rp-pane .rp-title { font-size: 19px; font-weight: 800; color: #B91C1C; line-height: 1.2; }
+    .obj { font-size: 16px; color: var(--foreground); line-height: 1.4; background: #fff; border-left: 4px solid var(--destructive); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 11px 14px; font-style: italic; }
+    .rp-debrief { margin-top: auto; font-size: 15px; color: var(--muted); line-height: 1.5; } .rp-debrief b { color: var(--foreground); }
+
+    /* PRESENT + RETRO */
+    .pr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 1; }
+    .pr-pane { border-radius: var(--radius); padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; }
+    .pr-pane.present { background: var(--pastel-peach); border-color: #FED7AA; }
+    .pr-pane.retro { background: var(--primary-ultra-light); border-color: #C7D2FE; }
+    .pr-tag { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; font-weight: 800; padding: 6px 14px; border-radius: 100px; }
+    .pr-pane.present .pr-tag { background: #FB923C; color: #fff; } .pr-pane.retro .pr-tag { background: var(--primary); color: #fff; }
+    .pr-title { font-size: 21px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+    .pr-line { display: flex; align-items: flex-start; gap: 11px; font-size: 16px; color: var(--foreground); line-height: 1.5; } .pr-line .pb { font-weight: 800; color: var(--primary); flex-shrink: 0; } .pr-pane.present .pr-line .pb { color: #C2410C; }
+    .retro-fill { background: #fff; border-radius: var(--radius-sm); padding: 16px 18px; font-size: 16px; color: var(--foreground); line-height: 1.7; font-style: italic; border: 1px dashed #C7D2FE; }
+    .retro-fill .blank { display: inline-block; min-width: 110px; border-bottom: 2px solid var(--primary); }
+
+    /* RULE + CHECKLIST */
+    .rule-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 28px; flex: 1; align-items: stretch; }
+    .rule-pane { background: linear-gradient(150deg, #0B1120 0%, #1E3A8A 70%, #3B2F8F 100%); border-radius: var(--radius); padding: 32px; color: #fff; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+    .rule-pane::after { content: ''; position: absolute; top: -90px; right: -70px; width: 300px; height: 300px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.4) 0%, transparent 70%); }
+    .rule-badge { position: relative; z-index: 2; display: inline-flex; align-self: flex-start; align-items: center; gap: 10px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 100px; padding: 8px 18px; font-size: 15px; font-weight: 800; letter-spacing: 0.08em; margin-bottom: 22px; }
+    .rule-badge .rb-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--primary-light); }
+    .rule-text { position: relative; z-index: 2; font-size: 28px; font-weight: 800; line-height: 1.28; letter-spacing: -0.01em; } .rule-text .hl { color: var(--primary-light); }
+    .check-pane { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 28px; display: flex; flex-direction: column; }
+    .check-head { font-size: 15px; font-weight: 800; color: var(--practice); letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 9px; }
+    .check-item { display: flex; align-items: flex-start; gap: 14px; padding: 9px 0; border-bottom: 1px solid var(--border); }
+    .check-item:last-child { border-bottom: none; }
+    .check-box { width: 22px; height: 22px; border-radius: 7px; border: 2px solid var(--practice); flex-shrink: 0; margin-top: 1px; }
+    .check-txt { font-size: 15px; color: var(--foreground); line-height: 1.38; } .check-txt b { font-weight: 800; }
+
+    /* TRANSITION */
+    .slide-transition { padding: 0; overflow: hidden; background: #1E3A8A; position: relative; justify-content: center; align-items: center; display: flex; }
+    .slide-transition::before { display: none; }
+
+    /* note helper */
+    .cw-note { margin-top: 14px; }
+
+    /* TOOLS MAP */
+    .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .tool-card { border-radius: var(--radius); padding: 24px 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; overflow: hidden; position: relative; }
+    .tool-card.t1 { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .tool-card.t2 { background: var(--pastel-lavender); border-color: #DDD6FE; }
+    .tool-card.t3 { background: var(--pastel-peach); border-color: #FED7AA; }
+    .tool-ico { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: #fff; box-shadow: 0 2px 8px rgba(15,23,42,0.08); }
+    .tool-name { font-size: 22px; font-weight: 800; color: var(--foreground); line-height: 1.15; }
+    .tool-name small { display: block; font-size: 14px; font-weight: 600; color: var(--muted); margin-top: 4px; }
+    .tool-q { font-size: 15px; color: var(--foreground); line-height: 1.4; font-style: italic; background: #fff; border-radius: var(--radius-sm); padding: 11px 14px; }
+    .tool-where { margin-top: auto; font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: 0.02em; }
+    .tool-where b { color: var(--foreground); }
+
+    /* GENERIC GRID TABLE */
+    .gt { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .gt th { padding: 13px 18px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; background: var(--primary); border: none; }
+    .gt td { padding: 15px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.42; color: var(--foreground); }
+    .gt tr:last-child td { border-bottom: none; }
+    .gt tr:nth-child(even) td { background: var(--bg); }
+    .gt .lead { font-weight: 800; color: var(--foreground); }
+    .gt .lead .em { font-size: 20px; margin-right: 6px; }
+    .gt .why { color: var(--muted); font-size: 15px; }
+    .gt b { font-weight: 800; }
+    .gt .quoted { font-style: italic; }
+
+    /* BIG STATEMENT pane */
+    .stmt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .stmt-card { border-radius: var(--radius); padding: 20px 24px; display: flex; align-items: flex-start; gap: 16px; border: 1px solid var(--border); }
+    .stmt-card.cold { background: #FEF2F2; border-color: #FECACA; }
+    .stmt-card.warm { background: #ECFDF5; border-color: #6EE7B7; }
+    .stmt-ico { font-size: 34px; line-height: 1; flex-shrink: 0; }
+    .stmt-txt { font-size: 17px; line-height: 1.45; color: var(--foreground); } .stmt-txt b { font-weight: 800; }
+    .stmt-card.cold .stmt-txt b { color: #B91C1C; } .stmt-card.warm .stmt-txt b { color: #15803D; }
+    .stmt-hero { margin-top: 18px; background: linear-gradient(135deg, #0B1120, #1E3A8A 70%, #3B2F8F); border-radius: var(--radius); padding: 22px 28px; color: #fff; font-size: 22px; font-weight: 800; line-height: 1.35; text-align: center; position: relative; overflow: hidden; }
+    .stmt-hero .hl { color: var(--primary-light); }
+
+    /* USP SOURCES matrix (reused as 2-col grid) */
+    .usp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; flex: 1; }
+
+    /* ============ COMPONENTE NOI (M6 — prețuri) ============ */
+
+    /* PRICE-CALC table — calcul preț pas cu pas (slide 6.5) */
+    .calc-wrap { display: flex; gap: 22px; align-items: stretch; flex: 1; }
+    .calc-table { flex: 1; border-collapse: collapse; font-size: 18px; align-self: flex-start; }
+    .calc-table td { padding: 13px 18px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.35; }
+    .calc-table .ct-step { display: flex; align-items: center; gap: 12px; }
+    .calc-table .ct-n { width: 28px; height: 28px; border-radius: 50%; background: var(--primary-ultra-light); color: var(--primary); font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .calc-table .ct-what { font-weight: 800; color: var(--foreground); font-size: 17px; }
+    .calc-table .ct-sub { display: block; font-size: 13px; font-weight: 500; color: var(--muted); margin-top: 2px; }
+    .calc-table .ct-val { text-align: right; font-size: 22px; font-weight: 800; color: var(--foreground); white-space: nowrap; }
+    .calc-table tr.ct-cost td { background: var(--bg); }
+    .calc-table tr.ct-cost .ct-val { color: var(--muted); }
+    .calc-table tr.ct-total td { background: linear-gradient(135deg, #0B1120, #1E3A8A 80%); border-bottom: none; }
+    .calc-table tr.ct-total .ct-what, .calc-table tr.ct-total .ct-sub { color: #fff; }
+    .calc-table tr.ct-total .ct-sub { color: rgba(255,255,255,0.7); }
+    .calc-table tr.ct-total .ct-n { background: rgba(255,255,255,0.15); color: #fff; }
+    .calc-table tr.ct-total .ct-val { color: #6EE7B7; font-size: 26px; }
+    .calc-side { width: 246px; flex-shrink: 0; display: flex; flex-direction: column; gap: 14px; }
+    .calc-prod { background: var(--pastel-peach); border: 1px solid #FED7AA; border-radius: var(--radius); padding: 18px 20px; }
+    .calc-prod .cp-em { font-size: 34px; line-height: 1; }
+    .calc-prod .cp-t { font-size: 17px; font-weight: 800; color: var(--foreground); margin-top: 8px; line-height: 1.25; }
+    .calc-prod .cp-s { font-size: 13.5px; color: var(--muted); line-height: 1.4; margin-top: 5px; }
+    .calc-lesson { background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius); padding: 16px 18px; margin-top: auto; }
+    .calc-lesson .cl-lbl { font-size: 12px; font-weight: 800; color: #B91C1C; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+    .calc-lesson .cl-t { font-size: 14.5px; color: var(--foreground); line-height: 1.45; } .calc-lesson .cl-t b { font-weight: 800; color: #B91C1C; }
+
+    /* ANCHORING — înainte / după (slide 6.6) */
+    .anchor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .anchor-card { border-radius: var(--radius); padding: 22px 24px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 14px; }
+    .anchor-card.no { background: #FEF2F2; border-color: #FECACA; }
+    .anchor-card.yes { background: #ECFDF5; border-color: #6EE7B7; }
+    .anchor-lbl { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; font-size: 13px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; border-radius: 100px; padding: 5px 13px; }
+    .anchor-card.no .anchor-lbl { background: #FEE2E2; color: #B91C1C; }
+    .anchor-card.yes .anchor-lbl { background: #D1FAE5; color: #15803D; }
+    .anchor-say { font-size: 18px; color: var(--foreground); line-height: 1.45; }
+    .anchor-say .ghost { color: var(--muted); text-decoration: line-through; opacity: 0.7; }
+    .anchor-say .real { font-weight: 800; color: var(--foreground); }
+    .anchor-card.yes .anchor-say .real { color: #15803D; }
+    .anchor-feel { margin-top: auto; font-size: 15px; font-weight: 800; padding: 10px 14px; border-radius: var(--radius-sm); background: #fff; }
+    .anchor-card.no .anchor-feel { color: #B91C1C; } .anchor-card.yes .anchor-feel { color: #15803D; }
+    .anchor-rule-row { display: flex; gap: 18px; margin-top: 16px; }
+    .anchor-mini { flex: 1; display: flex; align-items: center; gap: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 18px; font-size: 15px; line-height: 1.4; color: var(--foreground); }
+    .anchor-mini .am-em { font-size: 26px; flex-shrink: 0; } .anchor-mini b { font-weight: 800; color: var(--primary); }
+
+    /* GOOD-BETTER-BEST — 3 coloane preț, mijloc evidențiat (slide 6.7) */
+    .gbb-grid { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 16px; align-items: stretch; margin-top: 8px; }
+    .gbb-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 22px 24px; display: flex; flex-direction: column; gap: 10px; position: relative; }
+    .gbb-card.best { background: linear-gradient(155deg, #1E3A8A 0%, #2D52D4 65%, #3B2F8F 100%); border: none; box-shadow: 0 14px 34px -10px rgba(45,82,212,0.55); transform: translateY(-6px); }
+    .gbb-flag { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--practice); color: #fff; font-size: 12px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; padding: 6px 16px; border-radius: 100px; white-space: nowrap; box-shadow: 0 4px 12px rgba(14,163,113,0.4); }
+    .gbb-tier { font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+    .gbb-card.best .gbb-tier { color: rgba(255,255,255,0.78); }
+    .gbb-price { font-size: 40px; font-weight: 800; color: var(--foreground); line-height: 1; letter-spacing: -0.02em; }
+    .gbb-price small { font-size: 16px; font-weight: 700; color: var(--muted); margin-left: 4px; }
+    .gbb-card.best .gbb-price { color: #fff; } .gbb-card.best .gbb-price small { color: rgba(255,255,255,0.7); }
+    .gbb-what { font-size: 15px; color: var(--foreground); line-height: 1.45; padding-top: 8px; border-top: 1px solid var(--border); margin-top: 2px; }
+    .gbb-card.best .gbb-what { color: rgba(255,255,255,0.92); border-top-color: rgba(255,255,255,0.2); }
+    .gbb-role { margin-top: auto; font-size: 13.5px; font-style: italic; color: var(--muted); line-height: 1.4; padding-top: 8px; }
+    .gbb-card.best .gbb-role { color: #6EE7B7; font-style: normal; font-weight: 700; }
+    .decoy-box { margin-top: 18px; display: flex; align-items: center; gap: 16px; background: var(--pastel-lavender); border: 1px solid #DDD6FE; border-radius: var(--radius); padding: 14px 22px; }
+    .decoy-box .de-em { font-size: 30px; flex-shrink: 0; }
+    .decoy-box .de-t { font-size: 15.5px; color: var(--foreground); line-height: 1.45; } .decoy-box .de-t b { font-weight: 800; color: #6D28D9; }
+
+    /* STRATEGII — cross / up / bundle (slide 6.8) */
+    .strat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .strat-card { border-radius: var(--radius); padding: 22px 22px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; overflow: hidden; }
+    .strat-card.cross { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .strat-card.up { background: var(--pastel-mint); border-color: #86EFAC; }
+    .strat-card.bundle { background: var(--pastel-peach); border-color: #FED7AA; }
+    .strat-ico { width: 54px; height: 54px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; background: #fff; box-shadow: 0 2px 8px rgba(15,23,42,0.08); }
+    .strat-name { font-size: 21px; font-weight: 800; color: var(--foreground); line-height: 1.15; }
+    .strat-name small { display: block; font-size: 14px; font-weight: 600; color: var(--muted); margin-top: 4px; }
+    .strat-q { font-size: 14.5px; color: var(--foreground); line-height: 1.4; font-style: italic; background: #fff; border-radius: var(--radius-sm); padding: 11px 14px; margin-top: auto; }
+    .strat-q .sq-lbl { display: block; font-size: 11px; font-weight: 800; font-style: normal; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+
+    /* CODE-STYLE example blocks (slide 6.9) */
+    .code-grid { display: grid; grid-template-columns: 1fr; gap: 12px; flex: 1; }
+    .code-block { border-radius: var(--radius); padding: 14px 20px; border: 1px solid var(--border); display: flex; gap: 14px; align-items: stretch; }
+    .code-block.cross { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .code-block.up { background: var(--pastel-mint); border-color: #86EFAC; }
+    .code-block.bundle { background: var(--pastel-peach); border-color: #FED7AA; }
+    .code-tag { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 120px; flex-shrink: 0; }
+    .code-tag .ct-em { font-size: 26px; }
+    .code-tag .ct-name { font-size: 12.5px; font-weight: 800; letter-spacing: 0.03em; text-transform: uppercase; text-align: center; line-height: 1.2; }
+    .code-block.cross .ct-name { color: #0284C7; } .code-block.up .ct-name { color: #15803D; } .code-block.bundle .ct-name { color: #C2410C; }
+    .code-lines { display: flex; flex-direction: column; gap: 6px; flex: 1; padding-left: 16px; border-left: 1px solid rgba(15,23,42,0.1); justify-content: center; }
+    .code-line { font-size: 14.5px; color: var(--foreground); line-height: 1.4; }
+    .code-line .from { color: var(--muted); } .code-line .arr { color: var(--foreground); font-weight: 800; margin: 0 7px; } .code-line .to { font-weight: 700; }
+    .code-block.cross .code-line .to { color: #0369A1; } .code-block.up .code-line .to { color: #15803D; } .code-block.bundle .code-line .to { color: #C2410C; }
+
+    /* PACKAGE table — de la ofertă seacă la pachet (slide 6.10) */
+    .pack-table { width: 100%; border-collapse: collapse; font-size: 18px; }
+    .pack-table th { padding: 13px 20px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.03em; color: #fff; border: none; }
+    .pack-table th.col-from { background: #64748B; }
+    .pack-table th.col-to { background: #15803D; }
+    .pack-table td { padding: 16px 20px; border-bottom: 1px solid var(--border); vertical-align: middle; line-height: 1.4; }
+    .pack-table tr:last-child td { border-bottom: none; }
+    .pack-table td.from-cell { color: var(--muted); font-style: italic; }
+    .pack-table td.to-cell { background: #F0FDF4; color: var(--foreground); font-weight: 600; }
+    .pack-table td.to-cell b { font-weight: 800; color: #15803D; }
+    .pack-table td .arr-mid { color: var(--practice); font-weight: 800; margin-right: 8px; }
+
+    /* PRICE FILL sheet — completezi preț + pachet (slide 6.11) */
+    .price-sheet { display: flex; flex-direction: column; gap: 12px; }
+    .pf-block { background: #fff; border: 2px solid var(--practice); border-radius: var(--radius); padding: 14px 20px; }
+    .pf-lbl { font-size: 13px; font-weight: 800; color: var(--practice); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px; }
+    .pf-row { display: flex; align-items: center; gap: 12px; font-size: 16px; color: var(--foreground); line-height: 1.5; flex-wrap: wrap; }
+    .pf-row + .pf-row { margin-top: 8px; }
+    .pf-blank { flex: 1; min-width: 60px; border-bottom: 1.5px dashed #CBD5E1; height: 22px; align-self: flex-end; margin-bottom: 4px; }
+    .pf-blank.short { flex: none; width: 110px; }
+    .pf-tag { font-size: 12.5px; font-weight: 800; color: var(--muted); background: #ECFDF5; border-radius: 100px; padding: 4px 11px; white-space: nowrap; }
+    .gbb-mini { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .gbb-mini-card { border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: 10px 12px; display: flex; flex-direction: column; gap: 7px; }
+    .gbb-mini-card.mid { border-color: var(--practice); background: #ECFDF5; }
+    .gbb-mini-card .gm-tier { font-size: 13px; font-weight: 800; color: var(--foreground); }
+    .gbb-mini-card.mid .gm-tier { color: var(--practice); }
+    .gbb-mini-card .gm-blank { border-bottom: 1.5px dashed #CBD5E1; height: 17px; }
+    .pf-strat { display: flex; gap: 10px; }
+    .pf-strat-item { flex: 1; display: flex; align-items: center; gap: 9px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 12px; font-size: 13.5px; line-height: 1.3; color: var(--foreground); }
+    .pf-strat-item .pb { width: 20px; height: 20px; border-radius: 5px; border: 2px solid var(--practice); flex-shrink: 0; }
+    .pf-strat-item b { font-weight: 800; }
+
+    /* CASE CARDS — cartonașul de preț (slide 6.13) */
+    .case-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .case-card { background: #fff; border: 1px solid var(--border); border-left: 4px solid var(--primary); border-radius: var(--radius); padding: 14px 18px; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 1px 3px rgba(15,23,42,0.05); }
+    .case-card .cc-head { display: flex; align-items: center; gap: 10px; }
+    .case-card .cc-em { font-size: 22px; }
+    .case-card .cc-title { font-size: 16px; font-weight: 800; color: var(--foreground); }
+    .case-card .cc-data { font-size: 14px; color: var(--foreground); line-height: 1.4; } .case-card .cc-data b { font-weight: 800; color: var(--primary); }
+    .case-card .cc-hint { font-size: 13px; color: var(--muted); font-style: italic; line-height: 1.35; margin-top: 2px; }
+    .case-card .cc-hint .arr { color: var(--destructive); font-weight: 800; font-style: normal; margin-right: 4px; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- SLIDE 6.1 — COVER / TITLU -->
+    <section data-notes="Deschidere Modul 6 (70 min) — modulul de BANI. Aici primesc instrumentele concrete: cost+marjă, Anchoring, Decoy, Good-Better-Best, cross/up/bundle. Ritm: Cadru+teorie preț 16 → Psihologia prețului 12 → Cadru cross/up/bundle 12 → Completezi preț+pachet 10 → Joc construiește bundle + cartonașul de preț 14 → Regulă+retro 6. Output în Foaia de drum: 1 preț pe 3 opțiuni (Good-Better-Best) + 1 strategie de creștere (cross/up/bundle). Se sprijină pe M4 (produsul) și M2 (valoarea). Cârlig de deschidere: «Două școli cu același curs. Una cere din burtă și pierde bani. Cealaltă știe 3 trucuri și câștigă dublu de la fiecare client. Azi devii a doua.» Frica de preț e reală la acest public (oameni din buget) — validează-o, apoi împinge blând spre mediu și spre pachet.">
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Modul 6 · De la atelier la piață — vânzări &amp; marketing digital</div>
+          <h1>Cât cerem și cum<br>vindem mai mult?</h1>
+          <div class="cover-bait">🏷️ ⚖️ 📦</div>
+          <p class="subtitle">Prețul nu e doar o cifră. E un mesaj despre cât valorezi — și o pârghie de creștere.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">70 min</span>
+            <span class="cover-chip">Anchoring + Decoy + cross/up/bundle</span>
+            <span class="cover-chip">Pleci cu preț pe 3 opțiuni + 1 strategie</span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.2 — Ce înveți azi (harta modulului) -->
+    <section data-notes="Cârlig mentor: «Două școli cu același curs. Una cere din burtă și pierde bani. Cealaltă știe 3 trucuri și câștigă dublu de la fiecare client. Azi devii a doua.» Anunță cele 3 grupe de instrumente clar: cum PUI prețul (cost+marjă, prețul pieței), cum îl PREZINȚI (Anchoring, Decoy, Good-Better-Best), cum CREȘTI vânzarea (cross/up/bundle). Sala trebuie să știe că pleacă cu instrumente de bani, nu cu teorie.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Ce înveți azi · harta modulului</div>
+          <h2 class="slide-title">3 grupe de instrumente — <span class="hl">cum pui, cum prezinți, cum crești</span></h2>
+          <p class="slide-subtitle">Nu căuta doar clienți noi. Învață să pui prețul corect <b>și</b> să vinzi mai mult fiecărui client pe care-l ai deja.</p>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-card t1">
+            <div class="tool-ico">💰</div>
+            <div class="tool-name">Cum pui prețul<small>fundația — fără frică</small></div>
+            <div class="tool-q">„Cât mă costă, cât cer alții — cât cer eu?"</div>
+            <div class="tool-where">Instrumente · <b>cost+marjă · prețul pieței</b></div>
+          </div>
+          <div class="tool-card t2">
+            <div class="tool-ico">🧠</div>
+            <div class="tool-name">Cum îl prezinți<small>psihologia prețului</small></div>
+            <div class="tool-q">„Față de ce vede clientul prețul meu?"</div>
+            <div class="tool-where">Instrumente · <b>Anchoring · Decoy · Good-Better-Best</b></div>
+          </div>
+          <div class="tool-card t3">
+            <div class="tool-ico">📈</div>
+            <div class="tool-name">Cum crești vânzarea<small>mai mult / client</small></div>
+            <div class="tool-q">„Ce altceva îi mai pot vinde aceluiași om?"</div>
+            <div class="tool-where">Instrumente · <b>cross-sell · up-sell · bundle</b></div>
+          </div>
+        </div>
+        <div class="slide-num">02 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.3 — Cadru: cele 2 greșeli de preț -->
+    <section data-notes="Cadru-ancoră. Aproape toată lumea greșește în 2 feluri: prea ieftin (din frică) sau din burtă (fără să știe costul real). Cârlig mentor: «Prețul mic nu aduce mai mulți clienți. Aduce ALȚI clienți — pe cei care caută ieftin, nu valoare.» Validează frica de preț (public din buget), apoi arată că ieftin = pari slab, nu acoperi costurile, atragi clienți care oricum pleacă. Pregătește terenul pentru calculul de la 6.5.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · cele 2 greșeli de preț</div>
+          <h2 class="slide-title">Aproape toată lumea greșește <span class="hl">în 2 feluri</span></h2>
+          <p class="slide-subtitle">Înainte să înveți trucurile de preț, recunoaște capcanele în care cad majoritatea școlilor.</p>
+        </div>
+        <div class="mistakes">
+          <div class="mk-row">
+            <div class="mk-head">
+              <span class="mk-n"><span class="mk-dot">1</span> Greșeala</span>
+              <span class="mk-t">Prea ieftin</span>
+            </div>
+            <div class="mk-body">
+              <div class="mk-bad"><span class="m">✕</span>„Pun preț mic ca să nu sperii lumea."</div>
+              <div class="mk-good"><span class="m">→</span>Rezultat: <b>pari slab</b>, nu acoperi costurile, atragi clienți care oricum pleacă la următorul mai ieftin.</div>
+            </div>
+          </div>
+          <div class="mk-row">
+            <div class="mk-head">
+              <span class="mk-n"><span class="mk-dot">2</span> Greșeala</span>
+              <span class="mk-t">Preț „din burtă"</span>
+            </div>
+            <div class="mk-body">
+              <div class="mk-bad"><span class="m">✕</span>„Pun un preț fără să știu costul real."</div>
+              <div class="mk-good"><span class="m">→</span>Rezultat: <b>ori pierzi bani</b> (sub cost), ori ceri aiurea și sperii clientul corect.</div>
+            </div>
+          </div>
+        </div>
+        <div class="cw-note"><div class="quote-block warn"><strong>Cârlig:</strong> prețul mic nu aduce mai mulți clienți. Aduce <strong>alți clienți</strong> — pe cei care caută ieftin, nu valoare.</div></div>
+        <div class="slide-num">03 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.4 — Cadru: 2 moduri simple de a pune un preț -->
+    <section data-notes="Nu le trebuie contabilitate — doar 2 întrebări. Cost+marjă pentru produse din atelier («cât mă costă?» + 30-50%). Prețul pieței pentru cursuri/servicii («cât cer alții?» → te poziționezi). Mesaj important pentru Moldova: pentru cursuri prin VOUCHER ANOFM prețul e acoperit de stat — acolo nu vinzi prețul, vinzi valoarea către adult + către ANOFM. Ține-l simplu, e doar adunare; calculul concret vine la 6.5.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · cum pui un preț</div>
+          <h2 class="slide-title">Nu-ți trebuie contabilitate. <span class="hl">Două întrebări.</span></h2>
+          <p class="slide-subtitle">Alegi metoda după ce vinzi: un produs din atelier sau un curs/serviciu.</p>
+        </div>
+        <div class="usp-grid">
+          <div class="tool-card" style="background:var(--pastel-sky);border-color:#BAE6FD">
+            <div class="tool-ico">🧮</div>
+            <div class="tool-name">Costul + marja<small>pentru produse din atelier</small></div>
+            <div class="tool-q">„Cât mă costă?" + adaugi <b>30–50%</b> → prețul tău.</div>
+            <div class="tool-where">Ex · <b>platou catering, masă, grilaj metalic</b></div>
+          </div>
+          <div class="tool-card" style="background:var(--pastel-mint);border-color:#86EFAC">
+            <div class="tool-ico">📊</div>
+            <div class="tool-name">Prețul pieței<small>pentru cursuri / servicii</small></div>
+            <div class="tool-q">„Cât cer alții pe ceva asemănător?" → te poziționezi față de ei.</div>
+            <div class="tool-where">Ex · <b>curs cosmetică, lecție de conducere</b></div>
+          </div>
+        </div>
+        <div class="cw-note"><div class="quote-block"><strong>Voucher ANOFM:</strong> la cursurile acoperite de stat, clientul nu plătește prețul — statul îl plătește. Acolo „vinzi" <strong>valoarea</strong> către adult și către ANOFM, nu cifra.</div></div>
+        <div class="slide-num">04 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.5 — Calcul pas cu pas (catering — platou aperitive) -->
+    <section data-notes="Fă-l LIVE pe tablă, cu cifre rotunde — e doar adunare, nu Excel. Produsul: un platou de aperitive pentru un eveniment (50 porții), făcut în atelierul de alimentație. Pas cu pas: materiale 300 + munca 200 = costul real 500, apoi +marja 40% (200) = prețul 700. Lecția grea: dacă vindeai din burtă la 450, pierdeai 250 lei la FIECARE platou. Costul mai întâi, prețul după. Lasă-i să simtă cât pierdeau înainte. Exemplu nou (catering), nu se repetă cu alte module.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Calcul pas cu pas · exemplu nou</div>
+          <h2 class="slide-title">Punem un preț împreună — <span class="hl">fără Excel, doar adunare</span></h2>
+          <p class="slide-subtitle">Metoda <b>cost + marjă</b> aplicată pe un produs real din atelierul de alimentație.</p>
+        </div>
+        <div class="calc-wrap">
+          <table class="calc-table">
+            <tbody>
+              <tr>
+                <td><div class="ct-step"><span class="ct-n">1</span><span><span class="ct-what">Materiale</span><span class="ct-sub">ingrediente + ambalaj</span></span></div></td>
+                <td class="ct-val">300 lei</td>
+              </tr>
+              <tr>
+                <td><div class="ct-step"><span class="ct-n">2</span><span><span class="ct-what">+ Munca</span><span class="ct-sub">4 ore × 50 lei/oră (elevi + maistru)</span></span></div></td>
+                <td class="ct-val">+ 200 lei</td>
+              </tr>
+              <tr class="ct-cost">
+                <td><div class="ct-step"><span class="ct-n">3</span><span><span class="ct-what">= Costul real</span><span class="ct-sub">NU prețul — doar cât m-a costat</span></span></div></td>
+                <td class="ct-val">= 500 lei</td>
+              </tr>
+              <tr>
+                <td><div class="ct-step"><span class="ct-n">4</span><span><span class="ct-what">+ Marja 40%</span><span class="ct-sub">ca să rămână și pentru școală</span></span></div></td>
+                <td class="ct-val">+ 200 lei</td>
+              </tr>
+              <tr class="ct-total">
+                <td><div class="ct-step"><span class="ct-n">5</span><span><span class="ct-what">= PREȚUL</span><span class="ct-sub">atât ceri, fără frică</span></span></div></td>
+                <td class="ct-val">≈ 700 lei</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="calc-side">
+            <div class="calc-prod">
+              <div class="cp-em">🥗</div>
+              <div class="cp-t">Platou de aperitive</div>
+              <div class="cp-s">50 porții, pentru un eveniment — făcut în atelierul de alimentație.</div>
+            </div>
+            <div class="calc-lesson">
+              <div class="cl-lbl">⚠ Lecția</div>
+              <div class="cl-t">Vindeai „din burtă" la 450 lei? <b>Pierdeai 250 lei la fiecare platou.</b> Costul mai întâi, prețul după.</div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">05 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.6 — TEORIE 1: Anchoring (ancorarea) -->
+    <section data-notes="Cel mai ușor «aha» din modul — demonstrează-l live. Oamenii nu judecă prețul singur, îl judecă FAȚĂ DE altceva: primul preț devine rigla. Arăți întâi scumpul → restul par ieftine; arăți întâi ieftinul → bunul pare scump. Demonstrația de aur: «un curs privat costă 4.000 lei. La noi: 1.500.» — sala simte instant cum se schimbă percepția. Cârlig: «Niciun preț nu e mare sau mic singur. E mare sau mic față de ce-i arăți înainte. TU controlezi rigla.»">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie 1 · Anchoring (ancorarea)</div>
+          <h2 class="slide-title">Primul preț pe care-l vede clientul <span class="hl">devine rigla</span></h2>
+          <p class="slide-subtitle">Oamenii nu judecă prețul singur. Îl judecă <b>față de altceva</b> — efect psihologic clasic. Tu alegi față de ce.</p>
+        </div>
+        <div class="anchor-grid">
+          <div class="anchor-card no">
+            <span class="anchor-lbl">✕ Fără ancoră</span>
+            <div class="anchor-say"><span class="real">„Cursul costă 1.500 lei."</span></div>
+            <div class="anchor-feel">→ pare MULT</div>
+          </div>
+          <div class="anchor-card yes">
+            <span class="anchor-lbl">✓ Cu ancoră</span>
+            <div class="anchor-say">„Un curs privat costă <span class="ghost">4.000 lei</span>. La noi: <span class="real">1.500.</span>"</div>
+            <div class="anchor-feel">→ pare PUȚIN</div>
+          </div>
+        </div>
+        <div class="anchor-rule-row">
+          <div class="anchor-mini"><span class="am-em">⬆️</span><div>Arăți întâi opțiunea <b>scumpă</b> → restul par ieftine pe lângă ea.</div></div>
+          <div class="anchor-mini"><span class="am-em">⬇️</span><div>Arăți întâi opțiunea <b>ieftină</b> → cea bună pare scumpă.</div></div>
+        </div>
+        <div class="cw-note"><div class="quote-block warn"><strong>Cârlig:</strong> niciun preț nu e „mare" sau „mic" singur. E mare sau mic față de ce-i arăți înainte. <strong>Tu controlezi rigla.</strong></div></div>
+        <div class="slide-num">06 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.7 — TEORIE 2: Good-Better-Best + Decoy -->
+    <section data-notes="Instrumentul-VEDETĂ al modulului. Când dai 3 variante, oamenii evită extremele (frica de prea ieftin/zgârcit și de prea scump) și aleg MIJLOCUL — exact unde vrei tu să-l duci. Arată-l pe platoul de la 6.5: Bază 400 (ancoră de jos), Standard 700 (aici vrei să-l duci, coloana din mijloc evidențiată ✅), Premium 1.100 (ancoră de sus). Efectul Decoy: Premium e momeala — puțini îl iau, dar face Standard să pară o afacere. Cârlig: «Nu mai vinde o singură variantă. Dă 3 — clientul alege singur mijlocul, fără să-l împingi tu.»">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie 2 · Good-Better-Best + Decoy</div>
+          <h2 class="slide-title">Dă 3 opțiuni. <span class="hl">Majoritatea aleg mijlocul</span> — și asta vrei tu.</h2>
+          <p class="slide-subtitle">Oamenii evită extremele (frica de „zgârcit" și de „prea scump"). Așa ghidezi clientul spre prețul pe care chiar vrei să-l vinzi.</p>
+        </div>
+        <div class="gbb-grid">
+          <div class="gbb-card">
+            <div class="gbb-tier">🥉 Bază</div>
+            <div class="gbb-price">400<small>lei</small></div>
+            <div class="gbb-what">doar produsul / serviciul de bază</div>
+            <div class="gbb-role">ancoră „de jos" — pare puțin</div>
+          </div>
+          <div class="gbb-card best">
+            <div class="gbb-flag">✅ aici vrei să-l duci</div>
+            <div class="gbb-tier">🥈 Standard</div>
+            <div class="gbb-price">700<small>lei</small></div>
+            <div class="gbb-what">+ livrare + aranjare</div>
+            <div class="gbb-role">alegerea „corectă" — majoritatea o iau</div>
+          </div>
+          <div class="gbb-card">
+            <div class="gbb-tier">🥇 Premium</div>
+            <div class="gbb-price">1.100<small>lei</small></div>
+            <div class="gbb-what">+ extra + decor pe temă</div>
+            <div class="gbb-role">ancoră „de sus" — face Standard să pară corect</div>
+          </div>
+        </div>
+        <div class="decoy-box">
+          <span class="de-em">🪤</span>
+          <div class="de-t"><b>Efectul Decoy (momeala):</b> uneori adaugi o opțiune „inutilă" doar ca să facă alta să pară genială. „Premium 1.100" e momeala — puțini îl iau, dar face „Standard 700" să pară o afacere.</div>
+        </div>
+        <div class="slide-num">07 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.8 — TEORIE 3: cross / up / bundle -->
+    <section data-notes="Folosește analogia McDonald's — rămâne minte: «McDonald's nu trăiește din burger. Trăiește din cartofi și suc la asta? (cross-sell).» Apoi întreabă fiecare: «Tu ce CARTOFI ai?». Cele 3 pârghii ignorate: cross-sell (ceva complementar — ce altceva i-ar mai trebui?), up-sell (versiunea mai bună — ce variantă superioară pot oferi?), bundle (legi mai multe într-un pachet la preț mai bun — ce pot grupa?). Mesaj: nu căuta doar clienți NOI, vinde mai mult fiecărui client pe care-l ai deja.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Teorie 3 · cross / up / bundle</div>
+          <h2 class="slide-title">Vinde MAI MULT <span class="hl">fiecărui client pe care-l ai deja</span></h2>
+          <p class="slide-subtitle">Cele 3 pârghii de venit pe care le ignoră majoritatea școlilor — fiecare cu întrebarea care o declanșează.</p>
+        </div>
+        <div class="strat-grid">
+          <div class="strat-card cross">
+            <div class="strat-ico">➕</div>
+            <div class="strat-name">Cross-sell<small>ceva COMPLEMENTAR</small></div>
+            <div class="strat-q"><span class="sq-lbl">Întrebarea care-l declanșează</span>„Ce altceva i-ar mai trebui pe lângă?"</div>
+          </div>
+          <div class="strat-card up">
+            <div class="strat-ico">⬆️</div>
+            <div class="strat-name">Up-sell<small>versiunea mai BUNĂ</small></div>
+            <div class="strat-q"><span class="sq-lbl">Întrebarea care-l declanșează</span>„Ce variantă superioară pot oferi?"</div>
+          </div>
+          <div class="strat-card bundle">
+            <div class="strat-ico">📦</div>
+            <div class="strat-name">Bundle<small>mai multe într-un PACHET</small></div>
+            <div class="strat-q"><span class="sq-lbl">Întrebarea care-l declanșează</span>„Ce pot grupa ca să crească valoarea?"</div>
+          </div>
+        </div>
+        <div class="cw-note"><div class="quote-block warn"><strong>Cârlig:</strong> McDonald's nu trăiește din burger. Trăiește din „cartofi și suc la asta?" (cross-sell). <strong>Tu ce „cartofi" ai?</strong></div></div>
+        <div class="slide-num">08 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.9 — Exemple: cross/up/bundle pe profiluri -->
+    <section data-notes="«Arată, nu descrie» — cele 3 strategii, concret, pe profiluri pe care le recunosc (șofer auto, cofetar, atelier auto, frizer, salon didactic, masă, bucătar, catering, reparație). Firul roșu: clientul cel mai bun nu e individul — e FIRMA (B2B). O companie plătește pentru rezultat, nu pentru «un curs». Citește 1-2 din fiecare categorie cu voce. Exemple noi (auto, salon, catering B2B), nu se repetă cu alte module.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Exemple · „arată, nu descrie"</div>
+          <h2 class="slide-title">Cele 3 strategii, <span class="hl">concret pe profiluri</span></h2>
+          <p class="slide-subtitle">Recunoaște-ți profilul și fură <b>structura</b>, nu cuvintele.</p>
+        </div>
+        <div class="code-grid">
+          <div class="code-block cross">
+            <div class="code-tag"><span class="ct-em">➕</span><span class="ct-name">Cross-sell<br>complementar</span></div>
+            <div class="code-lines">
+              <div class="code-line"><span class="from">Curs de șofer auto</span><span class="arr">→</span><span class="to">+ curs de prim ajutor / mecanică de bază</span></div>
+              <div class="code-line"><span class="from">Curs de cofetar</span><span class="arr">→</span><span class="to">+ curs scurt „cum îți vinzi produsele online"</span></div>
+              <div class="code-line"><span class="from">Reparație auto (atelier)</span><span class="arr">→</span><span class="to">+ schimb de ulei / verificare gratuită data viitoare</span></div>
+            </div>
+          </div>
+          <div class="code-block up">
+            <div class="code-tag"><span class="ct-em">⬆️</span><span class="ct-name">Up-sell<br>versiunea bună</span></div>
+            <div class="code-lines">
+              <div class="code-line"><span class="from">„Curs de bază frizer"</span><span class="arr">→</span><span class="to">„frizer + cosmetică + practică în salon partener"</span></div>
+              <div class="code-line"><span class="from">„Tunsoare în salonul didactic"</span><span class="arr">→</span><span class="to">„pachet îngrijire completă (tuns + barbă + styling)"</span></div>
+              <div class="code-line"><span class="from">„1 masă la comandă"</span><span class="arr">→</span><span class="to">„set masă + 4 scaune asortate"</span></div>
+            </div>
+          </div>
+          <div class="code-block bundle">
+            <div class="code-tag"><span class="ct-em">📦</span><span class="ct-name">Bundle<br>pachet la preț bun</span></div>
+            <div class="code-lines">
+              <div class="code-line"><span class="from">„Curs de bucătar"</span><span class="arr">→</span><span class="to">„curs + practică la restaurant + diplomă + ajutor la angajare"</span></div>
+              <div class="code-line"><span class="from">„Un platou"</span><span class="arr">→</span><span class="to">„abonament lunar de catering pentru o cafenea"</span></div>
+              <div class="code-line"><span class="from">„1 reparație"</span><span class="arr">→</span><span class="to">„contract de mentenanță lunar pentru o firmă"</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="cw-note"><div class="quote-block"><strong>Firul roșu:</strong> în toate, clientul cel mai bun nu e individul — e <strong>firma (B2B)</strong>. O companie plătește pentru rezultat, nu pentru „un curs".</div></div>
+        <div class="slide-num">09 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.10 — Cadru: de la ofertă seacă la pachet -->
+    <section data-notes="Sinteza practică: nu vinde o bucată, vinde un pachet — crești valoarea fără să scazi prețul. 3 transformări concrete: curs de bucătar → curs+practică+diplomă+ajutor la angajare; un serviciu de salon → pachet îngrijire completă, abonament lunar; un loc de practică → parteneriat dual («îți pregătim 5 oameni pe rețetele tale»). 3 trucuri într-o frază: bundle (mai multe la un loc) + up-sell (versiune premium) + B2B (vinzi la firmă, plătește mai mult). Leagă de strategiile de la 6.8.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Cadru · de la ofertă seacă la pachet</div>
+          <h2 class="slide-title">Nu vinde o bucată. <span class="hl">Vinde un pachet.</span></h2>
+          <p class="slide-subtitle">Crești valoarea (și prețul corect) <b>fără să scazi nimic</b> — doar grupând inteligent ce ai deja.</p>
+        </div>
+        <table class="pack-table">
+          <thead>
+            <tr><th class="col-from" style="width:36%">În loc de…</th><th class="col-to" style="width:64%">Vinde…</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="from-cell">„curs de bucătar"</td><td class="to-cell"><span class="arr-mid">→</span>„curs + practică la restaurant + <b>diplomă + ajutor la angajare</b>"</td></tr>
+            <tr><td class="from-cell">„un serviciu de salon"</td><td class="to-cell"><span class="arr-mid">→</span>„pachet de îngrijire completă, <b>abonament lunar</b>"</td></tr>
+            <tr><td class="from-cell">„un loc de practică"</td><td class="to-cell"><span class="arr-mid">→</span>„parteneriat dual: <b>îți pregătim 5 oameni pe rețetele tale</b>"</td></tr>
+          </tbody>
+        </table>
+        <div class="cw-note"><div class="quote-block"><strong>3 trucuri într-o frază:</strong> bundle (mai multe la un loc) + up-sell (versiune premium) + <strong>B2B</strong> (vinzi la firmă — plătește mai mult).</div></div>
+        <div class="slide-num">10 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.11 — COMPLETEZI · preț + pachet -->
+    <section data-notes="COMPLETEZI — 10 min · prețul + pachetul meu, în Foaia de drum. Instrucțiune: alege UN curs/produs, pune-i un preț cu metoda 6.5 (cost+marjă), apoi fă-l Good-Better-Best (3 opțiuni). Marja minimă 30%. Treci pe la fiecare. Mulți se opresc la prețul de bază — împinge-i să facă cele 3 opțiuni și să bifeze măcar o strategie de creștere (cross/up/bundle). Ăsta e output-ul cheie al modulului în Foaia de drum.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Completezi · Foaia mea de drum 6</div>
+          <h2 class="slide-title">Prețul + pachetul meu <span style="font-size:24px;color:var(--muted);font-weight:600">— pe 3 opțiuni</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">🏷️</span>
+          <span class="ex-txt">Alege UN curs/produs. Pune-i preț <b>(metoda 6.5)</b>. Apoi fă-l <b>Good-Better-Best</b>.</span>
+          <span class="ex-time">⏱ 10 min</span>
+        </div>
+        <div class="price-sheet">
+          <div class="pf-block">
+            <div class="pf-row"><span class="pf-tag">CE VÂND</span><span class="pf-blank"></span>
+              <span class="pf-tag" style="background:var(--primary-ultra-light);color:var(--primary)">☐ cost+marjă&nbsp; ☐ prețul pieței&nbsp; ☐ voucher</span></div>
+            <div class="pf-row"><span>Costul real</span><span class="pf-blank short"></span><span>lei&nbsp; + marjă (min 30%)</span><span class="pf-blank short"></span><span>lei&nbsp; = preț de bază</span><span class="pf-blank short"></span><span>lei</span></div>
+          </div>
+          <div class="pf-block">
+            <div class="pf-lbl">Acum fă 3 opțiuni (Good-Better-Best)</div>
+            <div class="gbb-mini">
+              <div class="gbb-mini-card"><span class="gm-tier">🥉 Bază</span><span class="gm-blank"></span><span class="gm-blank"></span></div>
+              <div class="gbb-mini-card mid"><span class="gm-tier">🥈 Standard ✅ (aici îl duc)</span><span class="gm-blank"></span><span class="gm-blank"></span></div>
+              <div class="gbb-mini-card"><span class="gm-tier">🥇 Premium</span><span class="gm-blank"></span><span class="gm-blank"></span></div>
+            </div>
+          </div>
+          <div class="pf-block">
+            <div class="pf-lbl">O strategie de creștere pe care o aplic</div>
+            <div class="pf-strat">
+              <div class="pf-strat-item"><span class="pb"></span><div><b>cross-sell:</b> + ______</div></div>
+              <div class="pf-strat-item"><span class="pb"></span><div><b>up-sell:</b> ______</div></div>
+              <div class="pf-strat-item"><span class="pb"></span><div><b>bundle:</b> ______</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">11 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.12 — JOC 1: Construiește bundle-ul -->
+    <section data-notes="JOC 1 — 8 min · «Construiește bundle-ul» (grupe de 3-4). Mesaj: pus să adaugi valoare pe loc, vezi cât de ușor crește prețul corect. Pas cu pas: fiecare grup primește o ofertă seacă (un curs/produs simplu); în 5 min construiesc un BUNDLE — ce adaugă (cross-sell? up-sell? extra-valoare?) ca să justifice preț dublu; pun și 3 opțiuni Good-Better-Best; un voluntar „vinde" pachetul, restul votează „l-aș cumpăra pe cel din mijloc?" da/nu. Oferte seci (cartonașe): curs de zugrav, o tunsoare, o reparație de mobilă, un platou de prăjituri, o lecție de conducere. De ce funcționează: lucrul pe oferta ALTCUIVA scoate presiunea, apoi își văd propria ofertă cu alți ochi. Jocurile trezesc sala după-amiaza — nu-l face stând pe scaune.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Joc 1 · construiește bundle-ul</div>
+          <h2 class="slide-title">De la ofertă seacă la pachet <span class="hl">care valorează dublu</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">📦</span>
+          <span class="ex-txt">Pus să adaugi valoare pe loc, vezi cât de ușor crește <b>prețul corect</b>. <b>Grupe de 3–4.</b></span>
+          <span class="ex-time">⏱ 8 min</span>
+        </div>
+        <div class="rp-grid">
+          <div class="rp-steps">
+            <div class="rp-step"><div class="rp-num">1</div><div class="rp-text">Fiecare grup primește o <b>„ofertă seacă"</b> (un curs/produs simplu).</div></div>
+            <div class="rp-step"><div class="rp-num">2</div><div class="rp-text">În 5 minute construiți un <b>BUNDLE</b>: ce adăugați (cross/up/extra-valoare) ca să justifice <b>preț dublu</b>.</div></div>
+            <div class="rp-step"><div class="rp-num">3</div><div class="rp-text">Puneți și <b>3 opțiuni</b> Good-Better-Best.</div></div>
+            <div class="rp-step"><div class="rp-num">4</div><div class="rp-text">Un voluntar „vinde" pachetul. Restul votează: <b>„l-aș lua pe cel din mijloc?"</b> da/nu.</div></div>
+          </div>
+          <div class="rp-pane" style="background:var(--pastel-peach);border-color:#FED7AA">
+            <div class="rp-head"><span class="rp-emoji">🃏</span><div class="rp-title" style="color:#C2410C">Oferte seci<br>de transformat</div></div>
+            <div class="obj" style="border-left-color:#FB923C">„curs de zugrav"</div>
+            <div class="obj" style="border-left-color:#FB923C">„o tunsoare" · „o reparație de mobilă"</div>
+            <div class="obj" style="border-left-color:#FB923C">„un platou de prăjituri" · „o lecție de conducere"</div>
+            <div class="rp-debrief"><b>De ce funcționează:</b> lucrul pe oferta altcuiva scoate presiunea. Apoi își văd PROPRIA ofertă cu alți ochi.</div>
+          </div>
+        </div>
+        <div class="slide-num">12 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.13 — JOC 2: Cartonașul de preț — prinde greșeala -->
+    <section data-notes="JOC 2 — 6 min · «Cartonașul de preț» (grupe, cartonașe). Pas cu pas: fiecare grup primește 3 cartonașe CAZ (produs/serviciu + cost real dat); stabilesc ce preț (cost+marjă sau piață?) și cum îl fac pachet; capcana: unele au deja un preț „din burtă" scris — spun dacă e prea mic, prea mare sau corect, și DE CE. Cartonașe: tort eveniment (cost 220, preț 250 = marjă 13%, pierzi); curs cosmetică adulți 3 luni (concurența 4.500 — aliniezi sau diferențiezi cu pachet?); grilaj metalic (cost 800 — cât adaugi? ce up-sell?); pachet catering 80 porții (cost 1.000 — preț + variantă premium?); lecție individuală conducere (concurența 250/oră — poziționare?). De ce funcționează: pus să judece prețul ALTCUIVA, omul aplică regula fără frica de «dar dacă cer prea mult la al MEU?».">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Joc 2 · cartonașul de preț</div>
+          <h2 class="slide-title">Ghicește prețul corect — <span class="hl">și prinde greșeala</span></h2>
+        </div>
+        <div class="ex-banner">
+          <span class="ex-ico">🔎</span>
+          <span class="ex-txt">3 cartonașe CAZ / grup. Stabiliți: ce preț? cost+marjă sau piață? <b>Capcană:</b> unele au deja un preț din burtă — corect, prea mic sau prea mare?</span>
+          <span class="ex-time">⏱ 6 min</span>
+        </div>
+        <div class="case-grid">
+          <div class="case-card">
+            <div class="cc-head"><span class="cc-em">🎂</span><span class="cc-title">Tort eveniment</span></div>
+            <div class="cc-data">Cost real: <b>220 lei</b> · preț pus „din burtă": <b>250 lei</b></div>
+            <div class="cc-hint"><span class="arr">⚠</span> marjă de doar 13% — pierzi</div>
+          </div>
+          <div class="case-card">
+            <div class="cc-head"><span class="cc-em">💄</span><span class="cc-title">Curs cosmetică adulți, 3 luni</span></div>
+            <div class="cc-data">Concurența cere <b>4.500 lei</b></div>
+            <div class="cc-hint"><span class="arr">?</span> te aliniezi sau diferențiezi cu pachet?</div>
+          </div>
+          <div class="case-card">
+            <div class="cc-head"><span class="cc-em">🔩</span><span class="cc-title">Grilaj metalic la comandă</span></div>
+            <div class="cc-data">Cost materiale + muncă: <b>800 lei</b></div>
+            <div class="cc-hint"><span class="arr">?</span> cât adaugi? ce up-sell?</div>
+          </div>
+          <div class="case-card">
+            <div class="cc-head"><span class="cc-em">🍽️</span><span class="cc-title">Pachet catering, 80 porții</span></div>
+            <div class="cc-data">Cost: <b>1.000 lei</b></div>
+            <div class="cc-hint"><span class="arr">?</span> preț + variantă premium?</div>
+          </div>
+        </div>
+        <div class="cw-note" style="margin-top:14px"><div class="quote-block"><strong>+ Cartonaș 5:</strong> <span style="font-style:italic">🚗 Lecție individuală conducere — concurența: 250 lei/oră.</span> Poziționare ieftin / mediu / premium? <strong>De ce merge:</strong> judeci prețul altcuiva, fără frica de „dar la al MEU?".</div></div>
+        <div class="slide-num">13 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.14 — Prezinți + Retro -->
+    <section data-notes="Prezinți + retro — 6 min. 2-3 grupuri prezintă bundle-ul + cele 3 opțiuni; grupul votează cel mai tentant „mijloc". Apoi retrospectiva pe Foaia de drum: «Înainte vindeam o bucată seacă la ___ lei. Acum o vând ca pachet, pe 3 opțiuni, și-l duc pe client spre ___ lei. Strategia mea de creștere e ___ (cross/up/bundle).» Fixează că au plecat cu un preț pe 3 opțiuni + o strategie — output-ul modulului.">
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">★ Prezinți + retrospectivă</div>
+          <h2 class="slide-title">Pachetul + retrospectivă</h2>
+          <p class="slide-subtitle">Testăm bundle-urile live, votăm cel mai tentant „mijloc" — și fixăm prețul pe Foaia de drum.</p>
+        </div>
+        <div class="pr-grid">
+          <div class="pr-pane present">
+            <span class="pr-tag">🎤 Prezentări rapide</span>
+            <div class="pr-title">2–3 grupuri · bundle + 3 opțiuni</div>
+            <div class="pr-line"><span class="pb">→</span><div>Fiecare grup prezintă <b>bundle-ul + cele 3 opțiuni</b> Good-Better-Best.</div></div>
+            <div class="pr-line"><span class="pb">→</span><div>🗳️ Grupul votează: <b>cel mai tentant „mijloc"</b>.</div></div>
+            <div class="pr-line"><span class="pb">→</span><div>Discutăm <b>de ce</b> acel mijloc convinge: ancoră bună? valoare clară?</div></div>
+          </div>
+          <div class="pr-pane retro">
+            <span class="pr-tag">📝 Retrospectiva modulului</span>
+            <div class="pr-title">Scrii pe Foaia ta de drum</div>
+            <div class="retro-fill">
+              „Înainte vindeam o bucată seacă la <span class="blank"></span> lei.<br>
+              Acum o vând ca pachet, pe 3 opțiuni, și-l duc pe client spre <span class="blank"></span> lei.<br>
+              Strategia mea de creștere e <span class="blank" style="min-width:150px"></span> (cross/up/bundle)."
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">14 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.15 — REGULA 6 + CHECKLIST -->
+    <section data-notes="REGULA 6 de luat acasă, badge mare: «Prețul mic atrage clienți ieftini. Dă 3 opțiuni, ancorează, și vinde mai mult fiecărui client pe care-l ai.» Checklist-ul e instrumentul cu care își verifică singuri orice preț pe care îl pun: cost real, prețul pieței, marjă min 30%, 3 opțiuni (ghidează spre mijloc), o ancoră, o strategie de creștere, și că prețul spune VALOARE nu DISPERARE. Recapitulează scurt cele 3 grupe de instrumente.">
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Regula modulului · 6</div>
+          <h2 class="slide-title">Regula 6 + checklist <span class="hl">(prețul care aduce bani)</span></h2>
+        </div>
+        <div class="rule-grid">
+          <div class="rule-pane">
+            <div class="rule-badge"><span class="rb-dot"></span> REGULA 6</div>
+            <div class="rule-text">„Prețul mic atrage <span class="hl">clienți ieftini</span>. Dă 3 opțiuni, ancorează, și vinde mai mult <span class="hl">fiecărui client pe care-l ai</span>."</div>
+          </div>
+          <div class="check-pane">
+            <div class="check-head">✓ Checklist — pune un preț care aduce bani</div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Știu <b>costul real</b> (materiale + muncă)?</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Am verificat <b>prețul pieței</b>?</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Am adăugat <b>marjă (min 30%)</b>?</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Am <b>3 opțiuni</b> (Good-Better-Best) ca să ghidez spre mijloc?</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Am o <b>ancoră</b> (arăt întâi ceva scump)?</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Am o <b>strategie de creștere</b>: cross / up / bundle?</div></div>
+            <div class="check-item"><div class="check-box"></div><div class="check-txt">Prețul meu spune <b>„valoare"</b>, nu „disperare"?</div></div>
+          </div>
+        </div>
+        <div class="slide-num">15 / 16</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.16 — TRANZIȚIE -->
+    <section data-notes="Tranziție spre ultimul modul. Avem tot: ocean (M1), client, mesaj (M2), canal, produs (M4), video, preț (M6). Întrebarea care rămâne: ce faci LUNI? Urmează planul de 7 zile + un partener care te ține de cuvânt (accountability). Ține firul roșu: ai toate uneltele — acum le transformi în acțiune concretă.">
+      <div class="slide slide-transition">
+        <div class="cover-bg"></div><div class="cover-accent"></div>
+        <div style="position:relative;z-index:2;text-align:center;padding:0 90px;max-width:1020px;">
+          <div class="cover-kicker" style="margin-bottom:26px"><span class="dot"></span> Urmează · planul de 7 zile</div>
+          <div style="font-size:76px;margin-bottom:18px">🗓️</div>
+          <h2 style="font-size:44px;font-weight:800;color:#fff;line-height:1.12;letter-spacing:-0.02em;margin:0 0 18px;">Avem tot: ocean, client, mesaj, canal, produs, video, preț.<br>Acum: <span style="color:var(--primary-light)">ce faci LUNI?</span></h2>
+          <p style="font-size:20px;color:rgba(255,255,255,0.72);line-height:1.55;margin:0">Ultimul modul: <b style="color:#fff;font-weight:600">planul de 7 zile</b> + un partener care te ține de cuvânt.</p>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">16 / 16</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>

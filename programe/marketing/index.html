@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI for Marketing — Platforma sesiunii</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet" />
+<style>
+:root{--bg:#F8FAFC;--fg:#0F172A;--card:#fff;--border:#E2E8F0;--muted:#64748B;--primary:#2D52D4;--practice:#7C3AED;--pale:#EEF2FF;--radius:16px;--radius-sm:10px;--shadow-sm:0 1px 3px rgba(15,23,42,.05);--shadow-md:0 4px 16px rgba(15,23,42,.08);--shadow-lg:0 16px 40px -8px rgba(15,23,42,.14)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;line-height:1.5}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.top{border-bottom:1px solid var(--border);background:var(--card);position:sticky;top:0;z-index:10}
+.top-in{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px}
+.bm{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--practice));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff}
+.bn{font-size:14px;font-weight:800}.bs{font-size:11.5px;color:var(--muted)}
+.crumb{font-size:13px;color:var(--muted)}.crumb a:hover{color:var(--primary)}.crumb b{color:var(--fg)}
+.hero{padding:48px 0 24px}
+.kick{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary);background:var(--pale);padding:6px 14px;border-radius:9999px;margin-bottom:16px}
+.hero h1{font-size:38px;font-weight:800;letter-spacing:-.02em;line-height:1.12;margin-bottom:13px}.hero h1 .y{color:var(--practice)}
+.hero p{font-size:16px;color:var(--muted);max-width:720px;line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.chip{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;background:var(--card);border:1px solid var(--border);padding:8px 14px;border-radius:9999px;box-shadow:var(--shadow-sm)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:700;padding:13px 24px;border-radius:var(--radius-sm);border:1px solid transparent;transition:.15s}
+.btn-p{background:var(--primary);color:#fff;box-shadow:var(--shadow-md)}.btn-p:hover{background:#2344b8;transform:translateY(-1px)}
+.btn-g{background:var(--card);color:var(--fg);border-color:var(--border)}.btn-g:hover{border-color:var(--primary);color:var(--primary)}
+.sec{padding:10px 0 40px}
+.sec-t{display:flex;align-items:baseline;gap:12px;margin:22px 0 6px}.sec-t h2{font-size:22px;font-weight:800}.sec-t span{font-size:13px;color:var(--muted)}
+.sec-l{font-size:14.5px;color:var(--muted);margin-bottom:20px;max-width:720px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.hero h1{font-size:30px}}
+.card{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);transition:.16s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--practice));opacity:0;transition:.16s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#c7d2fe}.card:hover::before{opacity:1}.card:hover .go{color:var(--primary);gap:9px}
+.c-top{display:flex;align-items:center;gap:12px}
+.ico{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.num{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--muted);background:#F1F5F9;padding:4px 10px;border-radius:9999px}
+.c-title{font-size:16.5px;font-weight:800;line-height:1.25}
+.c-desc{font-size:13.5px;color:var(--muted);line-height:1.5;flex:1}
+.go{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--muted);transition:.16s}
+.i-mint{background:#DCFCE7;color:#16A34A}.i-lav{background:#EDE9FE;color:#7C3AED}.i-peach{background:#FFEDD5;color:#EA580C}.i-sky{background:#E0F2FE;color:#0284C7}.i-rose{background:#FCE7F3;color:#DB2777}.i-lemon{background:#FEF9C3;color:#CA8A04}.i-blue{background:#EEF2FF;color:#2D52D4}
+.foot{border-top:1px solid var(--border);padding:24px 0;margin-top:16px;color:var(--muted);font-size:13px;text-align:center}.foot b{color:var(--fg)}
+</style>
+</head>
+<body>
+<div class="top"><div class="top-in">
+  <div class="brand"><div class="bm">V</div><div><div class="bn">Vector Academy</div><div class="bs">AI for Marketing</div></div></div>
+  <div class="crumb"><a href="../">Programe</a> › <b>AI for Marketing</b></div>
+</div></div>
+<main class="wrap">
+  <section class="hero">
+    <div class="kick">📈 Platforma sesiunii</div>
+    <h1>AI Aplicat în Marketing<br>— de la idee la <span class="y">campanie</span></h1>
+    <p>Prezentarea completă și subiectele sesiunii: prompt engineering, ecosisteme AI, imagini &amp; video, Gems, agenți AI și automatizări. Apasă pe orice subiect și te duce direct la slide-ul lui.</p>
+    <div class="chips">
+      <div class="chip"><span>📊</span> 75 slide-uri</div>
+      <div class="chip"><span>🎨</span> Imagini &amp; video AI</div>
+      <div class="chip"><span>🤖</span> Agenți AI</div>
+      <div class="chip"><span>⚙️</span> Make.com</div>
+    </div>
+    <div class="cta">
+      <a href="slides.html" class="btn btn-p">↗ Deschide prezentarea completă</a>
+      <a href="slides.html#/5" class="btn btn-g">▸ Începe de la Modulul 1</a>
+    </div>
+  </section>
+  <section class="sec">
+    <div class="sec-t"><h2>Sari direct la un subiect</h2><span>fiecare card deschide prezentarea la slide-ul potrivit</span></div>
+    <p class="sec-l">Temele sesiunii. Click → te duce fix la modulul respectiv în deck.</p>
+    <div class="grid">
+      <a class="card" href="slides.html#/5"><div class="c-top"><div class="ico i-blue">🧠</div><span class="num">Modul 1</span></div><div class="c-title">Prompt Engineering</div><div class="c-desc">Anatomia promptului, zero/few-shot, multi-prompt, meta-prompting pentru marketing.</div><span class="go">Deschide →</span></a>
+      <a class="card" href="slides.html#/12"><div class="c-top"><div class="ico i-sky">🔵</div><span class="num">Modul 2</span></div><div class="c-title">Ecosistem Google</div><div class="c-desc">Gemini în Workspace, Deep Research, Canvas.</div><span class="go">Deschide →</span></a>
+      <a class="card" href="slides.html#/16"><div class="c-top"><div class="ico i-peach">📓</div><span class="num">Modul 2</span></div><div class="c-title">NotebookLM</div><div class="c-desc">Întrebi propriile surse de marketing, cu citat exact.</div><span class="go">Deschide →</span></a>
+      <a class="card" href="slides.html#/19"><div class="c-top"><div class="ico i-lav">💎</div><span class="num">Modul 3</span></div><div class="c-title">Gems — asistenți custom</div><div class="c-desc">Copywriting și asistenți de brand, configurați o dată.</div><span class="go">Deschide →</span></a>
+      <a class="card" href="slides.html#/21"><div class="c-top"><div class="ico i-rose">🎨</div><span class="num">Modul 9</span></div><div class="c-title">Imagini AI</div><div class="c-desc">Prompt pentru imagini, prompt negativ, tool-uri vizuale.</div><span class="go">Deschide →</span></a>
+      <a class="card" href="slides.html#/24"><div class="c-top"><div class="ico i-lemon">🎬</div><span class="num">Modul 10</span></div><div class="c-title">Video cu AI</div><div class="c-desc">Google Labs + Flow, recomandări pentru video.</div><span class="go">Deschide →</span></a>
+      <a class="card" href="slides.html#/26"><div class="c-top"><div class="ico i-rose">💜</div><span class="num">Modul 11</span></div><div class="c-title">Lovable</div><div class="c-desc">De la idee la landing page funcțional — fără cod.</div><span class="go">Deschide →</span></a>
+      <a class="card" href="slides.html#/28"><div class="c-top"><div class="ico i-peach">🟠</div><span class="num">Claude</span></div><div class="c-title">Claude — Cowork, Skills, Projects</div><div class="c-desc">Junior pe care-l formezi, Skills (.md, marketplace), Cowork, Projects de brand.</div><span class="go">Deschide →</span></a>
+      <a class="card" href="slides.html#/46"><div class="c-top"><div class="ico i-lav">🤖</div><span class="num">Agenți AI</span></div><div class="c-title">Agenți AI</div><div class="c-desc">Ce e un agent, bucla de tool-use, agent vs skill, un agent de marketing cap-coadă.</div><span class="go">Deschide →</span></a>
+      <a class="card" href="slides.html#/58"><div class="c-top"><div class="ico i-blue">🧩</div><span class="num">Arhitectură</span></div><div class="c-title">Tipare de agenți</div><div class="c-desc">Înlănțuire, routing, paralelizare, orchestrator — cum „gândește" un workflow.</div><span class="go">Deschide →</span></a>
+      <a class="card" href="slides.html#/64"><div class="c-top"><div class="ico i-sky">⚙️</div><span class="num">Modul 12</span></div><div class="c-title">Automatizări — Make.com</div><div class="c-desc">Automatizare vs AI, flux lead → CRM + email, template-uri.</div><span class="go">Deschide →</span></a>
+    </div>
+  </section>
+  <div class="foot"><b>Vector Academy</b> · AI for Marketing · Trainer: Vlah Dumitru — <b>vectoracademy.ro</b></div>
+</main>
+</body>
+</html>
