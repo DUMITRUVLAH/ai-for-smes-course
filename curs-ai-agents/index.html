@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Curs: AI Agents cu VS Code + Claude (2 ore) — Vector Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#F8FAFC;--fg:#0F172A;--card:#FFFFFF;--border:#E2E8F0;--muted-fg:#64748B;--muted:#F1F5F9;
+  --primary:#2D52D4;--primary-light:#5B7CF7;--primary-pale:#EEF2FF;--practice:#7C3AED;
+  --radius:16px;--radius-sm:10px;--radius-full:9999px;
+  --shadow-sm:0 1px 3px rgba(15,23,42,.05);--shadow-md:0 4px 16px rgba(15,23,42,.08);--shadow-lg:0 16px 40px -8px rgba(15,23,42,.14);
+  --mint-bg:#DCFCE7;--mint-fg:#16A34A;--lav-bg:#EDE9FE;--lav-fg:#7C3AED;--peach-bg:#FFEDD5;--peach-fg:#EA580C;
+  --sky-bg:#E0F2FE;--sky-fg:#0284C7;--rose-bg:#FCE7F3;--rose-fg:#DB2777;--lemon-bg:#FEF9C3;--lemon-fg:#CA8A04;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;line-height:1.5}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* top bar */
+.top{border-bottom:1px solid var(--border);background:var(--card);position:sticky;top:0;z-index:10}
+.top-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--practice));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff}
+.brand-name{font-size:14px;font-weight:800}
+.brand-sub{font-size:11.5px;color:var(--muted-fg)}
+.top-pill{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--practice);background:var(--lav-bg);padding:6px 13px;border-radius:var(--radius-full)}
+
+/* hero */
+.hero{padding:52px 0 30px}
+.hero-kicker{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--practice);background:var(--lav-bg);padding:6px 14px;border-radius:var(--radius-full);margin-bottom:18px}
+.hero h1{font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
+.hero h1 .y{color:var(--practice)}
+.hero p{font-size:17px;color:var(--muted-fg);max-width:720px;line-height:1.6}
+.stat-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.stat-chip{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;background:var(--card);border:1px solid var(--border);padding:8px 15px;border-radius:var(--radius-full);box-shadow:var(--shadow-sm)}
+
+/* primary CTA */
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:700;padding:13px 24px;border-radius:var(--radius-sm);transition:.15s;border:1px solid transparent}
+.btn-primary{background:var(--practice);color:#fff;box-shadow:var(--shadow-md)}
+.btn-primary:hover{background:#6D28D9;transform:translateY(-1px)}
+.btn-ghost{background:var(--card);color:var(--fg);border-color:var(--border)}
+.btn-ghost:hover{border-color:var(--practice);color:var(--practice)}
+
+/* section */
+.sec{padding:14px 0 40px}
+.sec-title{display:flex;align-items:baseline;gap:12px;margin:26px 0 6px}
+.sec-title h2{font-size:22px;font-weight:800;letter-spacing:-.01em}
+.sec-title span{font-size:13.5px;color:var(--muted-fg)}
+.sec-lead{font-size:14.5px;color:var(--muted-fg);margin-bottom:20px;max-width:720px}
+
+/* cards grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+.topic{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm)}
+.t-top{display:flex;align-items:center;gap:12px}
+.t-ico{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.t-num{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--muted-fg);background:var(--muted);padding:4px 10px;border-radius:var(--radius-full)}
+.t-title{font-size:16.5px;font-weight:800;line-height:1.25}
+.t-desc{font-size:13.5px;color:var(--muted-fg);line-height:1.5;flex:1}
+.ic-mint{background:var(--mint-bg);color:var(--mint-fg)}.ic-lav{background:var(--lav-bg);color:var(--lav-fg)}
+.ic-peach{background:var(--peach-bg);color:var(--peach-fg)}.ic-sky{background:var(--sky-bg);color:var(--sky-fg)}
+.ic-rose{background:var(--rose-bg);color:var(--rose-fg)}.ic-lemon{background:var(--lemon-bg);color:var(--lemon-fg)}
+.ic-blue{background:var(--primary-pale);color:var(--primary)}
+
+/* agenda */
+.agenda{display:flex;flex-direction:column;gap:0;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+.ag-row{display:flex;gap:18px;padding:18px 22px;border-bottom:1px solid var(--border);align-items:flex-start}
+.ag-row:last-child{border-bottom:none}
+.ag-time{flex-shrink:0;width:92px;font-size:13px;font-weight:800;color:var(--practice);background:var(--lav-bg);text-align:center;padding:5px 0;border-radius:var(--radius-full)}
+.ag-body b{font-size:15px;display:block;margin-bottom:3px}
+.ag-body p{font-size:13.5px;color:var(--muted-fg);line-height:1.5}
+
+/* audience list */
+.aud{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:700px){.aud{grid-template-columns:1fr}}
+.aud-item{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;font-size:14px;line-height:1.5}
+.aud-item .ok{color:var(--mint-fg);font-weight:800;flex-shrink:0}
+.aud-item span{color:var(--muted-fg)}
+.aud-item b{color:var(--fg)}
+
+/* band */
+.band{background:linear-gradient(135deg,#1E1033,#4C1D95 60%,#2D52D4);border-radius:var(--radius);padding:28px 30px;color:#fff;margin-top:14px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.band-txt{flex:1;min-width:260px}
+.band-txt h3{font-size:20px;font-weight:800;margin-bottom:6px}
+.band-txt p{font-size:14px;color:rgba(255,255,255,.75);line-height:1.55}
+.band .btn-primary{background:#fff;color:var(--practice)}
+.band .btn-primary:hover{background:#f3efff}
+
+/* footer */
+.foot{border-top:1px solid var(--border);padding:26px 0;margin-top:20px;color:var(--muted-fg);font-size:13px;text-align:center}
+.foot b{color:var(--fg)}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <div class="brand-mark">V</div>
+      <div><div class="brand-name">Vector Academy</div><div class="brand-sub">Curs hands-on · 2 ore</div></div>
+    </div>
+    <div class="top-pill">🚀 CURS NOU</div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-kicker">🤖 Curs hands-on · 2 ore</div>
+    <h1>AI Agents cu <span class="y">VS Code + Claude</span></h1>
+    <p>În 2 ore, fiecare participant pleacă cu un agent AI funcțional, construit de el, care lucrează singur pe un task real din munca lui: citește fișiere, folosește unelte, produce livrabile — nu doar răspunsuri în chat. Fără să fii programator.</p>
+    <div class="stat-row">
+      <div class="stat-chip"><span>⏱️</span> 2 ore, hands-on</div>
+      <div class="stat-chip"><span>💻</span> VS Code + Claude</div>
+      <div class="stat-chip"><span>🛠️</span> Pleci cu agentul tău funcțional</div>
+      <div class="stat-chip"><span>👥</span> Pentru echipe și angajați</div>
+    </div>
+    <div class="cta-row">
+      <a href="mailto:vlahdumitru@gmail.com?subject=%C3%8Enscriere%20curs%3A%20AI%20Agents%20cu%20VS%20Code%20%2B%20Claude%20(2%20ore)&body=Bun%C4%83%20Dumitru%2C%0A%0AVreau%20s%C4%83%20%C3%AEnscriu%20echipa%20la%20cursul%20AI%20Agents%20cu%20VS%20Code%20%2B%20Claude.%0A%0ACompania%3A%20%0ANum%C4%83r%20de%20participan%C8%9Bi%3A%20%0APerioada%20preferat%C4%83%3A%20" class="btn btn-primary">✉️ Înscrie echipa ta</a>
+      <a href="https://calendly.com/vlahdumitru/trainings-angaja-i" target="_blank" rel="noopener" class="btn btn-ghost">📅 Sau programează o discuție</a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><h2>Ce înveți în 2 ore</h2><span>de la primul prompt la un agent care lucrează singur</span></div>
+    <div class="grid">
+
+      <div class="topic">
+        <div class="t-top"><div class="t-ico ic-lav">🤖</div><span class="t-num">1</span></div>
+        <div class="t-title">Ce e un agent AI — fără cod</div>
+        <div class="t-desc">Diferența dintre chat și agent: bucla de tool-use, cum „gândește" și cum decide singur ce unealtă folosește.</div>
+      </div>
+
+      <div class="topic">
+        <div class="t-top"><div class="t-ico ic-blue">💻</div><span class="t-num">2</span></div>
+        <div class="t-title">VS Code + Claude — setup</div>
+        <div class="t-desc">Instalezi și configurezi mediul de lucru: VS Code, extensia Claude, primul folder de proiect. Totul pe laptopul tău.</div>
+      </div>
+
+      <div class="topic">
+        <div class="t-top"><div class="t-ico ic-peach">📜</div><span class="t-num">3</span></div>
+        <div class="t-title">CLAUDE.md — legea agentului</div>
+        <div class="t-desc">Fișierul de instrucțiuni care transformă un chat generic într-un coleg care știe regulile, contextul și stilul tău.</div>
+      </div>
+
+      <div class="topic">
+        <div class="t-top"><div class="t-ico ic-mint">🧩</div><span class="t-num">4</span></div>
+        <div class="t-title">Skills &amp; agenți specializați</div>
+        <div class="t-desc">Abilități reutilizabile în fișiere .md, agenți din marketplace, când folosești un skill vs. un agent întreg.</div>
+      </div>
+
+      <div class="topic">
+        <div class="t-top"><div class="t-ico ic-sky">🔌</div><span class="t-num">5</span></div>
+        <div class="t-title">Conectare la datele tale — MCP</div>
+        <div class="t-desc">Agentul citește Google Drive, Gmail, fișierele locale — și produce rapoarte din mai multe surse deodată.</div>
+      </div>
+
+      <div class="topic">
+        <div class="t-top"><div class="t-ico ic-rose">🛠️</div><span class="t-num">6</span></div>
+        <div class="t-title">Construiești agentul TĂU</div>
+        <div class="t-desc">Hands-on pe un task real din munca ta: alegi problema, construiești agentul, îl vezi lucrând cap-coadă.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><h2>Agenda celor 2 ore</h2></div>
+    <div class="agenda">
+      <div class="ag-row"><div class="ag-time">0:00–0:20</div><div class="ag-body"><b>Ce e un agent și de ce contează</b><p>Chat vs. agent, bucla de tool-use, exemple reale de agenți care lucrează singuri în companii.</p></div></div>
+      <div class="ag-row"><div class="ag-time">0:20–0:40</div><div class="ag-body"><b>Setup: VS Code + Claude</b><p>Instalare, configurare, primul folder de proiect și primul dialog cu agentul pe fișierele tale.</p></div></div>
+      <div class="ag-row"><div class="ag-time">0:40–1:10</div><div class="ag-body"><b>CLAUDE.md, skills și instrucțiuni</b><p>Scrii „legea agentului" pentru task-ul tău: reguli, context, format de livrabil. Adaugi un skill gata făcut.</p></div></div>
+      <div class="ag-row"><div class="ag-time">1:10–1:50</div><div class="ag-body"><b>Hands-on: agentul tău, pe task-ul tău</b><p>Fiecare participant construiește un agent pe o problemă reală din munca lui — cu suport 1-la-1 de la trainer.</p></div></div>
+      <div class="ag-row"><div class="ag-time">1:50–2:00</div><div class="ag-body"><b>Demo-uri + pașii următori</b><p>Fiecare arată ce a construit; ce automatizezi săptămâna viitoare și cum scalezi în echipă.</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><h2>Pentru cine e</h2></div>
+    <div class="aud">
+      <div class="aud-item"><span class="ok">✓</span><span><b>Angajați și echipe non-tehnice</b> — finanțe, HR, marketing, operațiuni — care vor să automatizeze task-uri repetitive.</span></div>
+      <div class="aud-item"><span class="ok">✓</span><span><b>Manageri</b> care vor să vadă concret ce pot face agenții AI înainte să investească în ei.</span></div>
+      <div class="aud-item"><span class="ok">✓</span><span><b>Oameni care au folosit deja ChatGPT/Claude în browser</b> și vor pasul următor: AI care lucrează, nu doar răspunde.</span></div>
+      <div class="aud-item"><span class="ok">✓</span><span><b>Fără cunoștințe de programare</b> — tot ce construim e ghidat pas cu pas, în limbaj natural.</span></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="band">
+      <div class="band-txt">
+        <h3>🚀 Rezervă cursul pentru echipa ta</h3>
+        <p>Scrie-mi câți participanți sunteți și perioada preferată — revin cu propunerea de calendar. Sau programează direct o discuție de 30 de minute.</p>
+      </div>
+      <a href="mailto:vlahdumitru@gmail.com?subject=%C3%8Enscriere%20curs%3A%20AI%20Agents%20cu%20VS%20Code%20%2B%20Claude%20(2%20ore)" class="btn btn-primary">✉️ vlahdumitru@gmail.com</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <b>Vector Academy</b> · Curs AI Agents cu VS Code + Claude · Trainer: Vlah Dumitru — <b>vectoracademy.ro</b>
+  </div>
+</main>
+</body>
+</html>
