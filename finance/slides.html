@@ -523,6 +523,121 @@
     .autoai-table tr:last-child td { border-bottom: none; }
     .autoai-table tr:nth-child(even) td { background: var(--bg); }
   </style>
+  <style>
+  /* === Claude & Agenți — CSS portat din AI for Marketing === */
+.info-band {background:var(--primary-ultra-light);border:1px solid #A5B4FC;border-radius:var(--radius);padding:15px 20px;display:flex;gap:16px;align-items:center;}
+.info-band .ib-icon {font-size:28px;flex-shrink:0;}
+.info-band .ib-text {font-size:14.5px;color:var(--foreground);line-height:1.5;}
+.info-band .ib-text b {font-weight:700;}
+.example-band {background:var(--pastel-lavender);border:1px solid #C4B5FD;border-radius:var(--radius);padding:15px 20px;}
+.example-band .eb-title {font-size:13px;font-weight:700;color:var(--primary);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.example-band .eb-body {font-size:14.5px;color:var(--foreground);line-height:1.5;}
+.card-num {width:30px;height:30px;border-radius:8px;background:var(--primary);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.card.mint .card-num {background:#16A34A;}
+.card.lavender .card-num {background:#7C3AED;}
+.card.sky .card-num {background:#0284C7;}
+.card.peach .card-num {background:#EA580C;}
+.card.rose .card-num {background:#DB2777;}
+.routing {display:flex;align-items:center;gap:0;flex:none;}
+.rt-in {background:#0F172A;color:#fff;border-radius:var(--radius);padding:20px 22px;text-align:center;flex-shrink:0;width:190px;}
+.rt-in .ri-t {font-size:16px;font-weight:800;}
+.rt-in .ri-s {font-size:12px;color:rgba(255,255,255,.6);margin-top:4px;}
+.rt-fan {width:54px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--primary);font-size:24px;font-weight:800;gap:34px;}
+.rt-branches {display:flex;flex-direction:column;gap:12px;flex:1;}
+.rt-branch {display:flex;align-items:center;gap:12px;border-radius:var(--radius);padding:13px 18px;border:1px solid;}
+.rt-branch.a {background:#FEF2F2;border-color:#FECACA;}
+.rt-branch.b {background:#F0FDF4;border-color:#86EFAC;}
+.rt-branch.c {background:#EFF6FF;border-color:#BFDBFE;}
+.rt-branch .rb-cond {font-size:15px;font-weight:800;flex:1;}
+.rt-branch.a .rb-cond {color:#B91C1C;}
+.rt-branch.b .rb-cond {color:#15803D;}
+.rt-branch.c .rb-cond {color:#1D4ED8;}
+.rt-branch .rb-arrow {color:var(--muted);font-weight:800;}
+.rt-branch .rb-dest {font-size:13px;font-weight:700;color:var(--foreground);background:#fff;border-radius:7px;padding:5px 11px;}
+.fork {display:flex;align-items:center;gap:0;flex:none;}
+.fk-src {width:150px;flex-shrink:0;background:var(--primary-ultra-light);border:1px solid #A5B4FC;border-radius:var(--radius);padding:18px;text-align:center;font-size:15px;font-weight:800;color:var(--primary);}
+.fk-fan {width:44px;flex-shrink:0;text-align:center;color:var(--primary);font-size:24px;font-weight:800;}
+.fk-workers {display:flex;flex-direction:column;gap:10px;flex:1;}
+.fk-w {background:#fff;border:1px solid var(--border);border-top:3px solid var(--primary-light);border-radius:10px;padding:11px 16px;font-size:14px;font-weight:700;box-shadow:var(--shadow);}
+.fk-join {width:44px;flex-shrink:0;text-align:center;color:#16A34A;font-size:24px;font-weight:800;}
+.fk-out {width:130px;flex-shrink:0;background:var(--pastel-mint);border:1px solid #86EFAC;border-radius:var(--radius);padding:18px;text-align:center;font-size:14px;font-weight:800;color:#15803D;}
+.orch {display:flex;flex-direction:column;flex:none;gap:0;align-items:center;}
+.orch-top {background:#0F172A;color:#fff;border-radius:var(--radius);padding:18px 28px;text-align:center;max-width:580px;}
+.orch-top .ot-t {font-size:19px;font-weight:800;}
+.orch-top .ot-s {font-size:14px;color:rgba(255,255,255,.7);margin-top:4px;}
+.orch-connector {width:2px;height:20px;background:var(--primary);}
+.orch-fan {font-size:13px;color:var(--muted);font-weight:700;margin-bottom:10px;letter-spacing:.04em;}
+.orch-workers {display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:100%;}
+.worker {background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:15px;display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--primary-light);}
+.worker .w-num {font-size:11px;font-weight:800;color:var(--primary);letter-spacing:.05em;}
+.worker .w-t {font-size:15px;font-weight:800;color:var(--foreground);}
+.worker .w-d {font-size:12.5px;color:var(--muted);line-height:1.4;}
+.dict {display:grid;grid-template-columns:.92fr 1.08fr;gap:30px;flex:1;align-items:center;}
+.dict-left {display:flex;flex-direction:column;gap:16px;}
+.dict-word {display:flex;align-items:center;gap:14px;}
+.dict-word .dw-logo {width:54px;height:54px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.dict-word .dw-emoji {font-size:42px;}
+.dict-word h3 {font-size:34px;font-weight:800;margin:0;letter-spacing:-.02em;}
+.dict-word .dw-sub {font-size:14px;color:var(--muted);margin:2px 0 0;}
+.dict-analogy {font-size:21px;line-height:1.4;color:var(--foreground);font-weight:500;}
+.dict-analogy b {color:var(--primary);font-weight:800;}
+.dict-why {background:var(--primary-ultra-light);border:1px solid #C7D2FE;border-radius:var(--radius);padding:14px 17px;font-size:14.5px;color:var(--foreground);line-height:1.5;}
+.dict-why .lbl {display:block;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--primary);margin-bottom:5px;}
+.dict-visual {display:flex;align-items:center;justify-content:center;min-height:0;height:100%;}
+.mdcompare {display:grid;grid-template-columns:1fr 1fr;gap:0;width:100%;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+.md-src,.md-prev {padding:18px;min-height:230px;}
+.md-src {background:#0B1120;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;line-height:1.7;color:#CBD5E1;border-right:1px solid var(--border);}
+.md-src .h {color:#5B7CF7;}
+.md-src .b {color:#fff;font-weight:700;}
+.md-src .li {color:#94A3B8;}
+.md-prev {background:#fff;}
+.md-prev h4 {font-size:18px;font-weight:800;margin:0 0 10px;}
+.md-prev p {font-size:13px;color:var(--foreground);margin:0 0 9px;line-height:1.5;}
+.md-prev ul {margin:0;padding-left:18px;}
+.md-prev li {font-size:13px;color:var(--foreground);line-height:1.6;}
+.md-tablabel {font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#94A3B8;margin-bottom:9px;display:block;}
+.why-band {background: #0F172A; border-radius: var(--radius); padding: 16px 22px; display: flex; gap: 16px; align-items: center; margin-top: 14px;}
+.why-band .wb-icon {font-size: 28px; flex-shrink: 0;}
+.why-band .wb-text {font-size: 15px; color: #fff; line-height: 1.5;}
+.why-band .wb-text b {color: var(--primary-light);}
+.why-band .wb-text .lbl {display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: var(--primary-light); margin-right: 8px;}
+.flow-rail {display: flex; align-items: stretch; gap: 0; flex: none;}
+.frnode {flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 14px; display: flex; flex-direction: column; gap: 8px; position: relative;}
+.frnode .frn-num {width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center;}
+.frnode .frn-ic {font-size: 26px;}
+.frnode .frn-t {font-size: 15px; font-weight: 800; color: var(--foreground); line-height: 1.2;}
+.frnode .frn-d {font-size: 12.5px; color: var(--muted); line-height: 1.45;}
+.frarrow {display: flex; align-items: center; justify-content: center; width: 42px; flex-shrink: 0; font-size: 28px; color: var(--primary); font-weight: 800;}
+.evflow {display: flex; align-items: stretch; gap: 0; flex: none;}
+.evstep {flex: 1; border-radius: var(--radius); padding: 20px 18px; display: flex; flex-direction: column; gap: 8px; position: relative;}
+.evstep.gen {background: var(--primary-ultra-light); border: 1px solid #A5B4FC;}
+.evstep.crit {background: var(--pastel-peach); border: 1px solid #FED7AA;}
+.evstep.dec {background: #F0FDF4; border: 1px solid #86EFAC;}
+.evstep-badge {width: 38px; height: 38px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center;}
+.evstep-ic {font-size: 30px;}
+.evstep-t {font-size: 18px; font-weight: 800; color: var(--foreground);}
+.evstep-d {font-size: 13.5px; color: var(--muted); line-height: 1.5;}
+.evstep-d b {color: var(--foreground);}
+.evconn {width: 46px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;}
+.evconn-arrow {font-size: 30px; color: var(--primary); font-weight: 800;}
+.evback-rail {display: flex; align-items: center; gap: 12px; background: #FFF7ED; border: 1px dashed #FB923C; border-radius: var(--radius); padding: 12px 18px; margin-top: 14px;}
+.evback-rail .evback-lbl {font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #C2410C; flex-shrink: 0;}
+.evback-rail .evback-arrow {font-size: 14px; font-weight: 700; color: #9A3412; line-height: 1.4;}
+.logo-strip {display: flex; align-items: center; gap: 22px; flex-wrap: wrap; justify-content: center; padding: 6px 0;}
+.logo-strip img {height: 30px; width: auto; opacity: 0.92;}
+.logo-strip .lg-sm img {height: 24px;}
+  </style>
+  <style>
+  /* === Multi-prompt cascadă (wfall) — portat din AI for Marketing === */
+  .wfall {display:flex;flex-direction:column;gap:0;flex:1;justify-content:center;padding:4px 0;}
+  .wf-step {display:flex;align-items:center;gap:14px;background:var(--bg);border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:var(--radius-sm);padding:13px 18px;box-shadow:var(--shadow);}
+  .wf-step .wf-n {width:30px;height:30px;border-radius:8px;background:var(--primary);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;}
+  .wf-step .wf-t {font-size:15px;font-weight:700;color:var(--foreground);line-height:1.3;flex:1;}
+  .wf-step .wf-t b {color:var(--primary);}
+  .wf-out {background:var(--primary-ultra-light);border:1px dashed #A5B4FC;border-radius:7px;padding:5px 11px;font-size:12px;color:var(--primary);font-weight:700;white-space:nowrap;flex-shrink:0;}
+  .wf-conn {display:flex;align-items:center;gap:8px;color:var(--muted);font-weight:700;font-size:12px;padding:4px 0;}
+  .wf-conn .wf-arrow {font-size:18px;color:var(--primary);}
+  </style>
 </head>
 <body>
 <div class="reveal">
@@ -546,7 +661,7 @@
             <span class="cover-chip">Lovable</span>
           </div>
         </div>
-        <div class="slide-num" style="color:rgba(255,255,255,0.35)">01 / 59</div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">1 / 84</div>
       </div>
     </section>
 
@@ -570,12 +685,12 @@
             <div class="about-photo-deco1"></div>
             <div class="about-photo-deco2"></div>
             <div class="about-photo-card">
-              <img src="assets/dima-summit.jpg" alt="Dima" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <img src="deck-assets/dima-summit.jpg" alt="Dima" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
               <div class="about-photo-slot" style="display:none"><span class="ph-icon">📷</span><span>Poza ta aici</span><span class="ph-path">dima-summit.jpg</span></div>
             </div>
           </div>
         </div>
-        <div class="slide-num">02 / 59</div>
+        <div class="slide-num">2 / 84</div>
       </div>
     </section>
 
@@ -589,7 +704,7 @@
           <span class="fallback" style="display:none">🧭</span>
         </div>
         <div class="trans-arrow">↘</div>
-        <div class="slide-num">03 / 59</div>
+        <div class="slide-num">3 / 84</div>
       </div>
     </section>
 
@@ -612,7 +727,7 @@
             </div>
           </div>
         </div>
-        <div class="slide-num">04 / 59</div>
+        <div class="slide-num">4 / 84</div>
       </div>
     </section>
 
@@ -633,7 +748,7 @@
           <li class="agenda-item"><span class="agenda-num">10</span><span class="agenda-label">Securitate, GDPR &amp; prețuri</span></li>
           <li class="agenda-item"><span class="agenda-num">11</span><span class="agenda-label">Lifehacks + Închidere</span></li>
         </ul>
-        <div class="slide-num">05 / 59</div>
+        <div class="slide-num">5 / 84</div>
       </div>
     </section>
 
@@ -646,7 +761,7 @@
           <div class="incident-card"><div class="incident-top"><span class="incident-icon">⚖️</span><span class="incident-company">Un avocat din SUA</span><span class="incident-year">2023</span></div><p class="incident-desc">A cerut ChatGPT cazuri juridice pentru un proces. AI-ul a inventat <b>6 cazuri inexistente</b> cu citate plauzibile. Le-a depus în instanță — și a fost sancționat de judecător.</p><div class="incident-lesson"><b>Lecția:</b> AI-ul halucinează cu încredere. Verifică faptele și cifrele.</div></div>
           <div class="incident-card"><div class="incident-top"><span class="incident-icon">🎭</span><span class="incident-company">Apel video „cu CFO-ul"</span><span class="incident-year">2024</span></div><p class="incident-desc">Un angajat din finanțe din Hong Kong a intrat într-un apel video cu „CFO-ul" și colegii. Toți erau <b>deepfake AI</b>. A aprobat un transfer de 25M USD.</p><div class="incident-lesson"><b>Lecția:</b> verifică pe alt canal orice cerere de plată neobișnuită.</div></div>
         </div>
-        <div class="slide-num">06 / 59</div>
+        <div class="slide-num">6 / 84</div>
       </div>
     </section>
 
@@ -681,7 +796,7 @@
           </div>
         </div>
         <div class="eco-foot">Lucrezi în <b>Google?</b> → Gemini · pe <b>contracte, audit &amp; analiză financiară?</b> → Claude · vrei <b>integrări + scanare facturi?</b> → ChatGPT. Cel mai bun obicei: ai conturi la 2-3 și alegi după sarcină.</div>
-        <div class="slide-num">07 / 59</div>
+        <div class="slide-num">7 / 84</div>
       </div>
     </section>
 
@@ -705,7 +820,7 @@
             <div class="split-result"><b>Rezultat:</b> analiză gata de pus în nota către client.</div>
           </div>
         </div>
-        <div class="slide-num">08 / 59</div>
+        <div class="slide-num">8 / 84</div>
       </div>
     </section>
 
@@ -730,7 +845,7 @@
             <div class="ex-line ex4"><div class="ex-tag">Restricții</div><div class="ex-seg">Fără concluzii fără cifre; marchează clar ce trebuie verificat la sursă.</div></div>
           </div>
         </div>
-        <div class="slide-num">09 / 59</div>
+        <div class="slide-num">9 / 84</div>
       </div>
     </section>
 
@@ -752,7 +867,7 @@
             <div class="zf-example"><span class="lbl">Semnalul că trebuie few-shot</span>AI-ul produce text bun, dar <b>nu în formatul, tonul sau structura</b> pe care o vrei tu (ex: clasificarea cheltuielilor pe categoriile tale).</div>
           </div>
         </div>
-        <div class="slide-num">10 / 59</div>
+        <div class="slide-num">10 / 84</div>
       </div>
     </section>
 
@@ -776,7 +891,7 @@
             </div>
           </div>
         </div>
-        <div class="slide-num">11 / 59</div>
+        <div class="slide-num">11 / 84</div>
       </div>
     </section>
 
@@ -791,7 +906,7 @@
           <div class="mstep-row"><div class="mstep-num">4</div><div class="mstep-text"><b>Livrează:</b> „Scrie un rezumat de o pagină pentru client, în limbaj non-tehnic."</div></div>
         </div>
         <div style="margin-top:14px"><div class="quote-block"><strong>De ce funcționează:</strong> AI-ul greșește mai puțin pe pași mici și verificabili decât pe o cerere uriașă. Tu vezi și corectezi la fiecare pas — exact ca într-o revizuire reală.</div></div>
-        <div class="slide-num">12 / 59</div>
+        <div class="slide-num">12 / 84</div>
       </div>
     </section>
 
@@ -814,7 +929,7 @@
             <div class="meta-when">💡 <b>Când îl folosești:</b> sarcini noi (un nou tip de raport, o notă către un client dificil) sau pe care le repeți des și vrei un prompt „de bibliotecă".</div>
           </div>
         </div>
-        <div class="slide-num">13 / 59</div>
+        <div class="slide-num">13 / 84</div>
       </div>
     </section>
 
@@ -823,7 +938,7 @@
       <div class="slide practice">
         <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică · Slido</div><h2 class="slide-title">Scrie un prompt în formă liberă</h2><p class="slide-subtitle">Fără reguli impuse — scrie cum ai scrie în mod normal. Îl rafinăm împreună.</p></div>
         <div class="slido-center">
-          <div class="slido-qr"><img src="scriere-prompt-finance.png" alt="QR Slido — scriere prompt" style="width:100%;height:100%;object-fit:contain;border-radius:var(--radius-sm)" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=&quot;qr-icon&quot;>▦</span><span>QR Slido</span>'"/></div>
+          <div class="slido-qr"><img src="deck-assets/scriere-prompt-finance.png" alt="QR Slido — scriere prompt" style="width:100%;height:100%;object-fit:contain;border-radius:var(--radius-sm)" onerror="this.style.display='none';this.parentElement.innerHTML='<span class=&quot;qr-icon&quot;>▦</span><span>QR Slido</span>'"/></div>
           <div class="slido-q">
             <div class="slido-q-item"><span class="q-dot" style="background:#7C3AED"></span>Scrie un prompt pentru un task real de azi</div>
             <div class="slido-q-item small"><span class="q-dot" style="background:#16A34A"></span>Orice rol: contabil, auditor, analist financiar, consultant, manager</div>
@@ -831,7 +946,7 @@
           </div>
         </div>
         <div style="margin-top:8px"><div class="quote-block"><strong>💡 Exemple simple de pornire (finance):</strong> „Rezumă obligațiile de plată din acest contract în 5 puncte." · „Clasifică aceste cheltuieli pe categorii." · „Explică-mi ce înseamnă acest cont din balanță." — apoi le rafinăm împreună cu context, sarcină, format.</div></div>
-        <div class="slide-num">14 / 59</div>
+        <div class="slide-num">14 / 84</div>
       </div>
     </section>
 
@@ -852,7 +967,7 @@
             <tr><td class="row-label">📊 Canvas</td><td>Prezentări și documente generate din prompt</td><td>Rapoarte client, oferte, pitch-uri</td></tr>
           </tbody>
         </table>
-        <div class="slide-num">15 / 59</div>
+        <div class="slide-num">15 / 84</div>
       </div>
     </section>
 
@@ -874,9 +989,9 @@
             <div class="practice-prompt"><span class="lbl">Comenzi practice</span>„Rezumă-mi emailurile de azi de la clienți" · „Ce termene am în calendar săptămâna asta?" · „Adaugă ședință de închidere mâine la 9:00"</div>
             <div class="practice-prompt" style="border-color:#7C3AED;margin-top:0"><span class="lbl" style="color:#7C3AED">Personalizare — legat de ce facem</span>Setezi instrucțiuni permanente: „Lucrez în contabilitate/audit, clienții mei sunt IMM-uri din RO/MD. Răspunde în română, cu cifre exacte, marchează ce trebuie verificat la sursă." — Settings → Personalization.</div>
           </div>
-          <div class="practice-shot"><img src="assets/gemini-workspace-apps.png" alt="Gemini Workspace" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">🔵</span>Connected Apps<span class="pth">gemini-workspace-apps.png</span></div></div>
+          <div class="practice-shot"><img src="deck-assets/gemini-workspace-apps.png" alt="Gemini Workspace" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">🔵</span>Connected Apps<span class="pth">gemini-workspace-apps.png</span></div></div>
         </div>
-        <div class="slide-num">16 / 59</div>
+        <div class="slide-num">16 / 84</div>
       </div>
     </section>
 
@@ -896,7 +1011,7 @@
           <div class="nb-case"><div class="nb-case-title">🔭 Benchmark sector</div><div class="nb-case-desc">Marje, costuri, indicatori medii pe industrie</div></div>
         </div>
         <div style="margin-top:14px"><div class="quote-block"><strong>Disponibil în:</strong> Gemini, ChatGPT și Perplexity — același concept, alegeri diferite per ecosistem.</div></div>
-        <div class="slide-num">17 / 59</div>
+        <div class="slide-num">17 / 84</div>
       </div>
     </section>
 
@@ -905,7 +1020,7 @@
       <div class="slide">
         <div class="slide-header"><div class="slide-tag">Modul 2 · NotebookLM</div><h2 class="slide-title" style="display:flex;align-items:center;gap:12px"><span class="logo"><svg width="28" height="28" viewBox="0 0 500 500"><circle cx="246.93" cy="249.67" r="240"/><path fill="#fff" d="M246.94,117.25c-83.4,0-151,67.04-151,149.77v71.7h27.83v-7.15c0-33.55,27.41-60.75,61.23-60.75s61.23,27.21,61.23,60.75v7.15h27.83v-7.15c0-48.8-39.89-88.33-89.07-88.33-19.15,0-36.89,5.99-51.42,16.21,15.2-29.97,46.51-50.53,82.65-50.53,51.06,0,92.46,41.07,92.46,91.71v38.1h27.84v-38.1c0-65.89-53.86-119.32-120.3-119.32-29.87,0-57.2,10.8-78.24,28.69,20.66-38.73,61.68-65.13,108.95-65.13,68.03,0,123.17,54.69,123.17,122.16v71.7h27.83v-71.7c0-82.72-67.6-149.77-151-149.77Z"/></svg></span>NotebookLM — bibliotecă de documente inteligentă</h2><p class="slide-subtitle">Răspunde <b>doar din sursele tale</b>, cu citate verificabile — de încredere pentru contracte și legislație</p></div>
         <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:24px;flex:1">
-          <div class="practice-shot"><img src="assets/notebooklm-asistent-fiscal.png" alt="NotebookLM — Asistent Fiscal" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📓</span>NotebookLM — Asistent Fiscal<span class="pth">assets/notebooklm-asistent-fiscal.png</span></div></div>
+          <div class="practice-shot"><img src="deck-assets/notebooklm-asistent-fiscal.png" alt="NotebookLM — Asistent Fiscal" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📓</span>NotebookLM — Asistent Fiscal<span class="pth">assets/notebooklm-asistent-fiscal.png</span></div></div>
           <div style="display:flex;flex-direction:column;gap:14px;justify-content:center">
             <div class="quote-block" style="font-size:15px"><strong>Diferența cheie:</strong> 📂 răspunde DOAR din sursele tale · 🔗 citate la pagina exactă · 🚫 zero halucinație inventată.</div>
             <div style="font-size:15px;color:var(--foreground);line-height:1.5"><b>Imaginează-ți:</b> ai un dosar cu 50 de documente — contracte, facturi, extrase, corespondență. Încarci totul — și extragi direct informația de care ai nevoie, fără să cauți manual prin fiecare fișier.</div>
@@ -917,7 +1032,7 @@
           <div class="nb-case"><div class="nb-case-title">📊 Set de contracte</div><div class="nb-case-desc">„Care expiră în Q3? Care au penalități?"</div></div>
           <div class="nb-case"><div class="nb-case-title">🎙️ Audio / Video</div><div class="nb-case-desc">Documentele devin sinteză audio în română</div></div>
         </div>
-        <div class="slide-num">18 / 59</div>
+        <div class="slide-num">18 / 84</div>
       </div>
     </section>
 
@@ -937,9 +1052,9 @@
             <div class="practice-app"><b>Cazul Nordica:</b> am încărcat <b>Analiza Financiară Integrată Nordica Tech 2023–2025</b> ca sursă live (un Google Sheet) — și „discut" cu cifrele în loc să recitesc tot fișierul.</div>
             <div class="practice-prompt" style="border-color:#7C3AED"><span class="lbl" style="color:#7C3AED">De ce e avantajos</span>NotebookLM <b>răspunde mereu DOAR din sursele tale</b> — nu inventează. Fiecare răspuns vine cu citat care trimite la rândul/pagina exactă. De încredere pentru audit, fiscalitate și contracte.</div>
           </div>
-          <div class="practice-shot cover"><img src="assets/notebooklm-nordica.png" alt="NotebookLM — Nordica Tech" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📓</span>NotebookLM — Nordica Tech<span class="pth">assets/notebooklm-nordica.png</span></div></div>
+          <div class="practice-shot cover"><img src="deck-assets/notebooklm-nordica.png" alt="NotebookLM — Nordica Tech" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📓</span>NotebookLM — Nordica Tech<span class="pth">assets/notebooklm-nordica.png</span></div></div>
         </div>
-        <div class="slide-num">19 / 59</div>
+        <div class="slide-num">19 / 84</div>
       </div>
     </section>
 
@@ -957,9 +1072,42 @@
             </div>
             <div class="practice-app"><b>Google Grant:</b> varianta non-profit/educațională îți dă acces extins — merită verificat ce versiune ți se aplică.</div>
           </div>
-          <div class="practice-shot cover"><img src="assets/notebooklm-cashflow-prezentare.png" alt="NotebookLM — analiză cashflow ca prezentare" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📊</span>Analiză cashflow — prezentare<span class="pth">assets/notebooklm-cashflow-prezentare.png</span></div></div>
+          <div class="practice-shot cover"><img src="deck-assets/notebooklm-cashflow-prezentare.png" alt="NotebookLM — analiză cashflow ca prezentare" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📊</span>Analiză cashflow — prezentare<span class="pth">assets/notebooklm-cashflow-prezentare.png</span></div></div>
         </div>
-        <div class="slide-num">20 / 59</div>
+        <div class="slide-num">20 / 84</div>
+      </div>
+    </section>
+
+    <!-- 20b NotebookLM — verificare registru din Google Sheet -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header">
+          <div class="slide-tag practice-tag">🛠️ Practică · NotebookLM + Google Sheets</div>
+          <h2 class="slide-title" style="display:flex;align-items:center;gap:12px">
+            <span class="logo"><svg width="26" height="26" viewBox="0 0 500 500"><circle cx="246.93" cy="249.67" r="240"/><path fill="#fff" d="M246.94,117.25c-83.4,0-151,67.04-151,149.77v71.7h27.83v-7.15c0-33.55,27.41-60.75,61.23-60.75s61.23,27.21,61.23,60.75v7.15h27.83v-7.15c0-48.8-39.89-88.33-89.07-88.33-19.15,0-36.89,5.99-51.42,16.21,15.2-29.97,46.51-50.53,82.65-50.53,51.06,0,92.46,41.07,92.46,91.71v38.1h27.84v-38.1c0-65.89-53.86-119.32-120.3-119.32-29.87,0-57.2,10.8-78.24,28.69,20.66-38.73,61.68-65.13,108.95-65.13,68.03,0,123.17,54.69,123.17,122.16v71.7h27.83v-71.7c0-82.72-67.6-149.77-151-149.77Z"/></svg></span>
+            <span class="logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="#0F9D58" aria-label="Google Sheets"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></svg></span>
+            Verifică un registru întreg — pas cu pas
+          </h2>
+          <p class="slide-subtitle">Toate facturile consolidate într-un <b>Google Sheet</b> = o sursă → NotebookLM îl verifică rând cu rând, cu citate</p>
+        </div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="nb-flow" style="margin-bottom:4px">
+              <div class="nb-node in" style="padding:16px 12px"><span class="nb-node-icon">🧾</span><span class="nb-node-title">Facturile tale</span><span class="nb-node-desc">consolidate într-un Sheet</span></div>
+              <div class="nb-node proc" style="padding:16px 12px"><span class="nb-node-icon">📓</span><span class="nb-node-title">NotebookLM</span><span class="nb-node-desc">Sheet-ul = sursă</span></div>
+              <div class="nb-node out" style="padding:16px 12px"><span class="nb-node-icon">✅</span><span class="nb-node-title">Raport erori</span><span class="nb-node-desc">rând + problemă + citat</span></div>
+            </div>
+            <div class="practice-steps">
+              <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Toate facturile → <b>un singur Google Sheet</b> (nr, dată, client, bază, TVA, total)</div></div>
+              <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">notebooklm.google.com → adaugi Sheet-ul ca <b>sursă</b></div></div>
+              <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Ceri verificarea <b>pas cu pas</b> → fiecare problemă vine cu <b>citat</b> la rând</div></div>
+            </div>
+            <div class="practice-prompt" style="border-color:#7C3AED"><span class="lbl" style="color:#7C3AED">Prompt de verificare pas cu pas</span>„Parcurge tabelul rând cu rând și verifică: (1) numere de factură <b>duplicate</b>, (2) <b>goluri</b> în numerotare, (3) TVA ≠ 20% / 8% / 0% din bază, (4) total ≠ bază + TVA. Listează <b>doar rândurile problematice</b>: rând / problemă / citat. Fără cele corecte."</div>
+            <div class="practice-app"><b>De ce Sheet, nu 50 de fișiere:</b> consolidat = o singură sursă, ușor de actualizat, iar NotebookLM „vede" tot registrul deodată și citează rândul exact.</div>
+          </div>
+          <div class="practice-shot cover"><img src="deck-assets/notebooklm-nordica.png" alt="NotebookLM verifică un Google Sheet" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📓</span>NotebookLM + Google Sheet<span class="pth">assets/notebooklm-nordica.png</span></div></div>
+        </div>
+        <div class="slide-num">20b / 84</div>
       </div>
     </section>
 
@@ -978,9 +1126,9 @@
             <div class="practice-prompt"><span class="lbl">Exemplu prompt</span>„Creează o prezentare de 6 slide-uri pentru raportul anual către un client. Pe baza concluziilor atașate: situația financiară, 3 riscuri, 3 recomandări. Ton profesional, un slide cu evoluția cifrei de afaceri."</div>
             <div class="practice-app"><b>Business:</b> rapoarte client, oferte, prezentări interne — în minute.</div>
           </div>
-          <div class="practice-shot cover"><img src="assets/gemini-canvas-1.png" alt="Gemini Canvas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📊</span>Gemini Canvas<span class="pth">gemini-canvas-1.png</span></div></div>
+          <div class="practice-shot cover"><img src="deck-assets/gemini-canvas-1.png" alt="Gemini Canvas" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📊</span>Gemini Canvas<span class="pth">gemini-canvas-1.png</span></div></div>
         </div>
-        <div class="slide-num">21 / 59</div>
+        <div class="slide-num">21 / 84</div>
       </div>
     </section>
 
@@ -997,7 +1145,7 @@
           <div class="gem-card"><div class="gem-icon-wrap" style="background:#FDF4FF">🔁</div><div><p class="gem-title">Double-check <span style="font-weight:500;color:var(--muted);font-size:12px">· control</span></p><p class="gem-desc">Întâi <b>analizează ce variabile sunt</b> în document → apoi le compară între ele și semnalează inconsecvențele.</p></div></div>
         </div>
         <div style="margin-top:14px"><div class="quote-block"><strong>Diferența față de un prompt:</strong> Gem-ul știe rolul, regulile și contextul tău — nu mai explici de fiecare dată. Google oferă și Gems gata făcute.</div></div>
-        <div class="slide-num">22 / 59</div>
+        <div class="slide-num">22 / 84</div>
       </div>
     </section>
 
@@ -1015,9 +1163,56 @@
             </div>
             <div class="practice-prompt"><span class="lbl">Exemplu — Gem „Analist cashflow"</span>„Ești analist financiar într-o firmă de contabilitate care deservește IMM-uri. Primești un Excel cu încasări și plăți lunare. Identifici: lunile cu deficit, burn rate-ul mediu, concentrarea pe un singur client/furnizor și 3 alerte de lichiditate. Răspuns în română, cu cifre, + un tabel sumar. Marchează clar ce trebuie verificat cu clientul."</div>
           </div>
-          <div class="practice-shot"><img src="assets/gem-analist-financiar.png" alt="Gem Analist Financiar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">💎</span>Gem · Analist Financiar<span class="pth">assets/gem-analist-financiar.png</span></div></div>
+          <div class="practice-shot"><img src="deck-assets/gem-analist-financiar.png" alt="Gem Analist Financiar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">💎</span>Gem · Analist Financiar<span class="pth">assets/gem-analist-financiar.png</span></div></div>
         </div>
-        <div class="slide-num">23 / 59</div>
+        <div class="slide-num">23 / 84</div>
+      </div>
+    </section>
+
+    <!-- 23b Gem — extragere invoice + reconciliere -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Modul 3 · Gems</div><h2 class="slide-title">Gem „Extragere + reconciliere facturi"</h2><p class="slide-subtitle">Îi dai teancul de facturi/e-facturi → scoate datele în tabel și le <b>potrivește</b> cu extrasul sau registrul. Tu doar confirmi.</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:10px;justify-content:center;min-height:0">
+            <div class="cards-grid" style="grid-template-columns:1fr;gap:9px;flex:0">
+              <div class="gem-card"><div class="gem-icon-wrap" style="background:#EBF5FF">🧾</div><div><p class="gem-title">1. Extrage</p><p class="gem-desc">Din fiecare factură → furnizor, nr, dată, bază, <b>TVA</b>, total → un rând în tabel.</p></div></div>
+              <div class="gem-card"><div class="gem-icon-wrap" style="background:#F0FDF4">🔗</div><div><p class="gem-title">2. Reconciliază</p><p class="gem-desc">Compară cu <b>extrasul / registrul</b> → ✅ potrivit, ⚠️ diferență, ❌ fără corespondent.</p></div></div>
+              <div class="gem-card"><div class="gem-icon-wrap" style="background:#FDF4FF">📋</div><div><p class="gem-title">3. Livrează</p><p class="gem-desc">Tabel final + listă „de verificat manual". Tu confirmi, nu cauți.</p></div></div>
+            </div>
+            <div class="quote-block" style="font-size:13px"><strong>Când e e-factura:</strong> XML-ul are câmpurile curate (furnizor, TVA, total) — extragerea e exactă, reconcilierea „la virgulă".</div>
+          </div>
+          <div class="practice-shot cover" style="background:#fff"><img src="deck-assets/image copy 6.png" alt="Gem „Extragere Invoice-uri" în Gemini" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">💎</span>Gem „Extragere Invoice-uri" (Gemini)<span class="pth">assets/image copy 6.png</span></div></div>
+        </div>
+        <div class="slide-num">23b / 84</div>
+      </div>
+    </section>
+
+    <!-- 24b Gems — generează PDF-uri reale -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Modul 3 · Gems</div><h2 class="slide-title">Un Gem nu-ți dă doar text — îți generează PDF-ul gata făcut</h2><p class="slide-subtitle">În instrucțiuni îi ceri să ruleze un mic script (Python + ReportLab) → încarci datele și primești <b>documentul final în PDF</b>, în formatul firmei.</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+            <div class="cards-grid" style="grid-template-columns:1fr;gap:11px;flex:0">
+              <div class="card sky" style="flex-direction:row;align-items:center;gap:14px;text-align:left">
+                <span class="card-icon" style="margin:0">📝</span>
+                <div><p class="card-title" style="margin:0 0 3px">Instrucțiuni cu regulile tale fixe</p><p class="card-body">Rechizitele companiei, structura actului, regulile de paginare — le scrii <b>o singură dată</b> în Gem.</p></div>
+              </div>
+              <div class="card mint" style="flex-direction:row;align-items:center;gap:14px;text-align:left">
+                <span class="card-icon" style="margin:0">📄</span>
+                <div><p class="card-title" style="margin:0 0 3px">Încarci un document → iese un PDF</p><p class="card-body">Dai o factură / detalii client → Gem-ul generează <b>INSTANT</b> Actul de Primire-Predare în PDF, gata de semnat.</p></div>
+              </div>
+              <div class="card peach" style="flex-direction:row;align-items:center;gap:14px;text-align:left">
+                <span class="card-icon" style="margin:0">🎯</span>
+                <div><p class="card-title" style="margin:0 0 3px">Mereu la fel, fără greșeli de format</p><p class="card-body">Nu mai copiezi în Word, nu mai ajustezi manual — <b>același layout de fiecare dată</b>, cu cifrele completate corect.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="practice-shot cover"><img src="deck-assets/image copy 4.png" alt="Gem care generează PDF cu Python/ReportLab" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📄</span>Gem „act primire v2"<br>generează PDF (Python · ReportLab)<span class="pth">Instrucțiuni → PDF</span></div></div>
+        </div>
+        <div class="why-band"><span class="wb-icon">💡</span><span class="wb-text"><span class="lbl">De reținut</span>Instrumentul prestabilit <b>Canvas</b> îi permite Gem-ului să ruleze cod și să-ți dea un fișier real. Așa treci de la „AI care scrie text" la „AI care <b>livrează documentul</b>".</span></div>
+        <div class="slide-num">24 / 84</div>
       </div>
     </section>
 
@@ -1045,7 +1240,7 @@
             <tr><td class="row-label">Ideal pentru</td><td>Fluxuri conectate la alte tool-uri</td><td>Tendere, granturi, dosare mari, legi</td></tr>
           </tbody>
         </table>
-        <div class="slide-num">24 / 59</div>
+        <div class="slide-num">25 / 84</div>
       </div>
     </section>
 
@@ -1069,11 +1264,138 @@
             <div class="practice-app"><b>Exemplu — mici producători:</b> „Project Tender 2026" — ghidul finanțării + dosarul fermei. Întrebi: „Suntem eligibili pentru măsura X?" + analiză comparativă <b>ghid vs. cerere</b>, apoi Claude completează un document nou pe baza Project-ului.</div>
           </div>
           <div style="display:flex;flex-direction:column;gap:12px">
-            <div class="practice-shot" style="flex:1"><img src="assets/projects-eligibilitate.png" alt="Claude Projects — eligibilitate" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📁</span>Claude Projects — eligibilitate grant<span class="pth">assets/projects-eligibilitate.png</span></div></div>
+            <div class="practice-shot" style="flex:1"><img src="deck-assets/projects-eligibilitate.png" alt="Claude Projects — eligibilitate" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📁</span>Claude Projects — eligibilitate grant<span class="pth">assets/projects-eligibilitate.png</span></div></div>
             <div class="practice-shot" style="flex:1"><div class="shot-fallback"><span class="ic">🗂️</span>ChatGPT Projects<span class="pth">instrucțiuni + fișiere</span></div></div>
           </div>
         </div>
-        <div class="slide-num">25 / 59</div>
+        <div class="slide-num">26 / 84</div>
+      </div>
+    </section>
+
+    <!-- ============ PREGĂTIRE: DATE LOCALE + e-FACTURA + TOOL VECTOR ============ -->
+
+    <!-- 26a Ollama — LLM local pentru anonimizare -->
+    <section>
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Pregătire · Date sensibile</div>
+          <h2 class="slide-title" style="display:flex;align-items:center;gap:12px">
+            <svg viewBox="0 0 646 854" style="height:38px;width:auto" aria-label="Ollama">
+              <path d="M140.42 0c-14.02 0-26.5 5.6-36.6 14.8-10.06 9.16-17.5 21.5-22.9 35.5-8.3 21.6-12.4 47.9-12.7 76.1-16.6 11.9-30.6 27.3-40.9 45.4C11.7 205.3 0 245.9 0 289.6c0 22.7 3.2 44.2 8.9 64.1C3.2 372.2 0 391.9 0 412.6c0 46.7 16 89.6 42.7 123.5-10.5 22.9-16.4 48.4-16.4 75.2 0 45.3 16.7 86.7 44.2 118.4-3.7 12.6-5.7 25.9-5.7 39.7 0 26.5 7.3 51.3 20 72.5H101c-8.9-20.9-13.8-43.9-13.8-68 0-14.9 1.9-29.4 5.4-43.2l4-15.7-11-12.2c-23.3-25.9-37.5-60.1-37.5-97.5 0-22.4 5.1-43.6 14.2-62.6l7.5-15.6-11.3-13c-24.4-28-39.2-64.6-39.2-104.7 0-16.9 2.6-33.1 7.5-48.3l3.4-10.7-3.4-10.7c-4.9-15.2-7.5-31.4-7.5-48.3 0-35.9 11.8-68.9 31.6-95.4l6.4-8.6-.5-10.7c-.1-2.4-.2-4.8-.2-7.2 0-25.5 3.9-48.4 10.7-66 3.4-8.8 7.4-15.4 11.3-19 3.9-3.5 6.9-4.4 9.4-4.4 2.9 0 6.7 1.2 11.5 5.8 4.9 4.7 9.9 12.3 14.2 22.6 4.9 11.6 8.5 26 10.4 42.4l2.4 20.5 19.4-6.9c17.8-6.4 37.5-9.9 58.3-9.9s40.5 3.6 58.3 9.9l19.4 6.9 2.4-20.5c1.9-16.4 5.5-30.8 10.4-42.4 4.3-10.3 9.3-17.9 14.2-22.6 4.8-4.6 8.6-5.8 11.5-5.8 2.5 0 5.5.9 9.4 4.4 3.9 3.6 7.9 10.2 11.3 19 6.8 17.6 10.7 40.5 10.7 66 0 2.4-.1 4.8-.2 7.2l-.5 10.7 6.4 8.6c19.8 26.5 31.6 59.5 31.6 95.4 0 16.9-2.6 33.1-7.5 48.3l-3.4 10.7 3.4 10.7c4.9 15.2 7.5 31.4 7.5 48.3 0 40.1-14.8 76.7-39.2 104.7l-11.3 13 7.5 15.6c9.1 19 14.2 40.2 14.2 62.6 0 37.4-14.2 71.6-37.5 97.5l-11 12.2 4 15.7c3.5 13.8 5.4 28.3 5.4 43.2 0 24.1-4.9 47.1-13.8 68h34.2c12.7-21.2 20-46 20-72.5 0-13.8-2-27.1-5.7-39.7 27.5-31.7 44.2-73.1 44.2-118.4 0-26.8-5.9-52.3-16.4-75.2 26.7-33.9 42.7-76.8 42.7-123.5 0-20.7-3.2-40.4-8.9-58.9 5.7-19.9 8.9-41.4 8.9-64.1 0-43.7-11.7-84.3-27.3-117.8-10.3-18.1-24.3-33.5-40.9-45.4-.3-28.2-4.4-54.5-12.7-76.1-5.4-14-12.84-26.34-22.9-35.5C331.5 5.6 319.02 0 305 0c-14.32 0-26.9 5.86-37 15.2-4.06 3.76-7.72 8.16-11 13.02-3.28-4.86-6.94-9.26-11-13.02C235.9 5.86 223.32 0 209 0h-68.58ZM222.7 373.9c-38.7 0-70 22.6-70 50.5 0 27.9 31.3 50.5 70 50.5s70-22.6 70-50.5c0-27.9-31.3-50.5-70-50.5Zm-53.6 130.9c-9.8 6.2-16.2 15.6-16.2 26.2 0 20.6 24 37.3 53.6 37.3h32.4c29.6 0 53.6-16.7 53.6-37.3 0-10.6-6.4-20-16.2-26.2-8.9 9.2-22.7 15.2-38.4 15.2h-30.4c-15.7 0-29.5-6-38.4-15.2h-11.6l1.6.0Z"/>
+            </svg>
+            Ollama — un LLM care rulează pe calculatorul tău, offline
+          </h2>
+          <p class="slide-subtitle">Îl instalezi ca pe orice program. Datele <b>nu părăsesc calculatorul</b> — perfect ca să anonimizezi un CSV <b>înainte</b> să-l trimiți în Claude sau alt AI din cloud.</p>
+        </div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:10px;justify-content:center;min-height:0">
+            <div class="cards-grid" style="grid-template-columns:1fr;gap:9px;flex:0">
+              <div class="card mint" style="flex-direction:row;align-items:center;gap:14px;text-align:left;padding:15px 18px">
+                <span class="card-icon" style="margin:0">🔒</span>
+                <div><p class="card-title" style="margin:0 0 3px">Rulează 100% local, offline</p><p class="card-body">Modelul stă pe laptop-ul tău. Poți lucra fără internet — datele financiare <b>nu ajung niciodată pe serverele nimănui</b>.</p></div>
+              </div>
+              <div class="card sky" style="flex-direction:row;align-items:center;gap:14px;text-align:left;padding:15px 18px">
+                <span class="card-icon" style="margin:0">🖥️</span>
+                <div><p class="card-title" style="margin:0 0 3px">Folosește resursele calculatorului</p><p class="card-body">Consumă <b>procesorul, memoria RAM și placa video</b> ale computerului tău. Cu cât PC-ul e mai puternic, cu atât răspunde mai repede.</p></div>
+              </div>
+              <div class="card peach" style="flex-direction:row;align-items:center;gap:14px;text-align:left;padding:15px 18px">
+                <span class="card-icon" style="margin:0">🆓</span>
+                <div><p class="card-title" style="margin:0 0 3px">Gratuit, fără abonament</p><p class="card-body">ollama.com → descarci → alegi un model (Llama, Mistral, Gemma). Zero cost, zero DPA de semnat — datele oricum nu pleacă.</p></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:12px">
+            <div class="example-band">
+              <div class="eb-title">🎭 Cazul de aur: anonimizezi CSV-ul înainte de cloud</div>
+              <div class="eb-body">Ai un fișier cu nume de clienți, IDNP, sume. <b>Ollama local</b> îl citește și înlocuiește datele sensibile (Client A, Client B…) — <b>fără să atingă internetul</b>. Abia CSV-ul curățat îl trimiți în Claude / Gemini pentru analiză.</div>
+            </div>
+            <div class="flow-rail">
+              <div class="frnode"><div class="frn-num">1</div><span class="frn-ic">📄</span><div class="frn-t">CSV cu date reale</div><div class="frn-d">nume, IDNP, sume</div></div>
+              <div class="frarrow">→</div>
+              <div class="frnode" style="border-color:var(--primary);background:var(--primary-ultra-light)"><div class="frn-num">2</div><span class="frn-ic">🦙</span><div class="frn-t">Ollama · LOCAL</div><div class="frn-d">anonimizează pe PC-ul tău, offline</div></div>
+              <div class="frarrow">→</div>
+              <div class="frnode" style="border-color:#86EFAC;background:var(--pastel-mint)"><div class="frn-num">3</div><span class="frn-ic">☁️</span><div class="frn-t">Cloud AI</div><div class="frn-d">analiză pe date anonimizate</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="why-band"><span class="wb-icon">⚖️</span><span class="wb-text"><span class="lbl">De ce contează în finanțe</span>Cel mai puternic AI e în cloud — dar pe datele clienților n-ai voie să-l lași orbește. <b>Ollama e „sasul": curăță datele local</b>, apoi folosești liniștit cloud-ul. Compromisul dispare.</span></div>
+        <div class="slide-num">27 / 84</div>
+      </div>
+    </section>
+
+    <!-- 26b API e-Factura — integrare oficială -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Integrare · SIA e-Factura</div><h2 class="slide-title">e-Factura are un API oficial — programele se pot conecta direct</h2><p class="slide-subtitle">Statul publică un „<b>Ghid de integrare semi automatizat</b>": orice program poate trimite și primi facturi automat, fără să intri manual pe portal.</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:9px;justify-content:center;min-height:0">
+            <div class="cards-grid" style="grid-template-columns:1fr;gap:9px;flex:0">
+              <div class="card sky" style="flex-direction:row;align-items:center;gap:14px;text-align:left;padding:14px 18px">
+                <span class="card-icon" style="margin:0">🔌</span>
+                <div><p class="card-title" style="margin:0 0 3px">Un API = o „priză" spre e-Factura</p><p class="card-body">Programul tău se conectează la SIA e-Factura și <b>schimbă date direct</b> — nu mai copiezi manual factură cu factură.</p></div>
+              </div>
+              <div class="card mint" style="flex-direction:row;align-items:center;gap:14px;text-align:left;padding:14px 18px">
+                <span class="card-icon" style="margin:0">📤</span>
+                <div><p class="card-title" style="margin:0 0 3px">Trimite &amp; primește automat</p><p class="card-body">Emiți facturi, le descarci în format <b>XML</b>, verifici statusul — totul din alt program, prin API.</p></div>
+              </div>
+              <div class="card peach" style="flex-direction:row;align-items:center;gap:14px;text-align:left;padding:14px 18px">
+                <span class="card-icon" style="margin:0">📘</span>
+                <div><p class="card-title" style="margin:0 0 3px">Documentat oficial</p><p class="card-body">Serviciul Fiscal publică ghidul de integrare — deci nu e „hack", e <b>modul prevăzut</b> de a automatiza.</p></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;min-height:0"><div class="practice-shot" style="background:#fff;padding:10px;max-height:440px;width:auto"><img src="deck-assets/image.png" alt="Ghid de integrare API SIA e-Factura" style="width:auto;max-height:420px;object-fit:contain" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📘</span>Ghid integrare API<br>SIA „e-Factura"<span class="pth">Serviciul Fiscal, 2025</span></div></div></div>
+        </div>
+        <div class="why-band" style="margin-top:8px;padding:10px 14px"><span class="wb-icon">💡</span><span class="wb-text"><span class="lbl">De reținut</span>Dacă e-Factura are API, un program (sau un agent AI) poate face <b>singur</b> munca de portal: emite, descarcă XML, urmărește.</span></div>
+        <div class="slide-num">28 / 84</div>
+      </div>
+    </section>
+
+    <!-- 26c API user — utilizatorul care semnează -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Integrare · Utilizator API</div><h2 class="slide-title">În e-Factura îți creezi un „utilizator API" care semnează facturile</h2><p class="slide-subtitle">Direct din contul companiei: <b>Utilizatorii companiei → Creează un utilizator API</b>. El e cel care va semna facturile emise automat.</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+            <div class="practice-steps">
+              <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">Intri în <b>MySettings → Utilizatorii companiei</b></div></div>
+              <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Apeși <b>„Creează un utilizator API"</b></div></div>
+              <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Acest utilizator primește dreptul să <b>semneze facturile</b> emise prin program</div></div>
+              <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Programul (sau agentul) folosește acest cont → <b>emite &amp; semnează singur</b>, fără click manual</div></div>
+            </div>
+            <div class="info-band"><div class="ib-icon">🔑</div><div class="ib-text"><b>De ce e important:</b> semnătura e pasul care „oficializează" factura. Cu un utilizator API, chiar și acel pas se face automat — omul doar verifică, nu semnează manual sute de facturi.</div></div>
+          </div>
+          <div class="practice-shot cover"><img src="deck-assets/image copy.png" alt="Creează un utilizator API în e-Factura" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">👤</span>e-Factura →<br>Creează un utilizator API<span class="pth">Utilizatorii companiei</span></div></div>
+        </div>
+        <div class="slide-num">29 / 84</div>
+      </div>
+    </section>
+
+    <!-- 26d Tool Vector — showcase -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Exemplu real · Vector</div><h2 class="slide-title">La Vector am construit un tool care face toată bucla singur</h2><p class="slide-subtitle">Citește extrasul bancar → face matching → creează conturi de plată → trimite e-Facturi → descarcă XML. Un exemplu concret de automatizare peste API-ul e-Factura.</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+            <div class="cards-grid" style="grid-template-columns:1fr;gap:10px;flex:0">
+              <div class="card sky" style="flex-direction:row;align-items:center;gap:14px;text-align:left">
+                <span class="card-icon" style="margin:0">🔎</span>
+                <div><p class="card-title" style="margin:0 0 3px">Review + matching tranzacții</p><p class="card-body">Încarci tranzacțiile → „<b>Run matching</b>" le potrivește automat cu documentele; vezi ce e raportabil și ce nu.</p></div>
+              </div>
+              <div class="card mint" style="flex-direction:row;align-items:center;gap:14px;text-align:left">
+                <span class="card-icon" style="margin:0">🧾</span>
+                <div><p class="card-title" style="margin:0 0 3px">Conturi de plată &amp; e-Factura</p><p class="card-body">Creează conturile de plată și, cu un click, „<b>Trimite la e-Factura</b>" — direct prin API-ul oficial.</p></div>
+              </div>
+              <div class="card peach" style="flex-direction:row;align-items:center;gap:14px;text-align:left">
+                <span class="card-icon" style="margin:0">📥</span>
+                <div><p class="card-title" style="margin:0 0 3px">Descarcă XML</p><p class="card-body">Fișierele XML (formatul oficial) se descarcă automat — gata pentru contabilitate, fără muncă manuală.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="practice-shot" style="background:#fff;padding:8px"><img src="deck-assets/image copy 3.png" alt="Tool Vector — Review tranzacții" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">🖥️</span>Tool Vector — Review tranzacții<br>Run matching · Trimite la e-Factura · Descarcă XML<span class="pth">exemplu intern</span></div></div>
+        </div>
+        <div class="why-band"><span class="wb-icon">🚀</span><span class="wb-text"><span class="lbl">Ideea de dus acasă</span>Nu e magie — e <b>API-ul e-Factura + un utilizator API + puțin cod</b>. Exact genul de tool pe care îl poți cere sau construi (vezi modulul Lovable). Munca repetitivă de facturare devine un buton.</span></div>
+        <div class="slide-num">30 / 84</div>
       </div>
     </section>
 
@@ -1091,7 +1413,7 @@
           <div class="card"><span class="card-icon">📚</span><p class="card-title">Documente lungi</p><p class="card-body">Contracte, tendere, dosare audit — cel mai puțin halucinații.</p></div>
           <div class="card"><span class="card-icon">🛡️</span><p class="card-title">Claude for Work</p><p class="card-body">Versiunea de org: DPA, date în siguranță, Projects &amp; Skills partajate.</p></div>
         </div>
-        <div class="slide-num">26 / 59</div>
+        <div class="slide-num">31 / 84</div>
       </div>
     </section>
 
@@ -1110,10 +1432,10 @@
               <div class="pstep"><div class="pstep-num">🔗</div><div class="pstep-text"><b>Instalare:</b> Microsoft AppSource → „Claude for Excel" → Add. Excel desktop &amp; web.</div></div>
             </div>
           </div>
-          <div class="practice-shot cover"><img src="assets/claude-excel.png" alt="Claude în Excel — Analiză financiară Nordica" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📊</span>Claude în Excel<span class="pth">assets/claude-excel.png</span></div></div>
+          <div class="practice-shot cover"><img src="deck-assets/claude-excel.png" alt="Claude în Excel — Analiză financiară Nordica" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📊</span>Claude în Excel<span class="pth">assets/claude-excel.png</span></div></div>
         </div>
         <div class="vs-highlight" style="margin-top:14px">Unghiuri: Contabil → facturi depășite · Auditor → solduri neobișnuite · Analist → marje &amp; variații an/an</div>
-        <div class="slide-num">27 / 59</div>
+        <div class="slide-num">32 / 84</div>
       </div>
     </section>
 
@@ -1138,7 +1460,7 @@
           </div>
         </div>
         <div class="quote-block"><strong>Disponibil în Claude for Work</strong> (~$25/utilizator/lună) — DPA inclus, datele nu sunt folosite pentru training.</div>
-        <div class="slide-num">28 / 59</div>
+        <div class="slide-num">33 / 84</div>
       </div>
     </section>
 
@@ -1152,11 +1474,57 @@
           <div class="card lavender"><span class="card-icon">📧</span><p class="card-title">Gmail + Excel — cereri concediu <span style="font-size:11px;color:var(--muted);font-weight:500">Cowork</span></p><p class="card-body">Preia cererea de concediu din Gmail → o înregistrează automat în tabelul de concedii din Excel.</p></div>
           <div class="card peach"><span class="card-icon">📊</span><p class="card-title">Rapoarte combinate <span style="font-size:11px;color:var(--muted);font-weight:500">Cowork</span></p><p class="card-body">Date din Gmail + Excel + documente → raport consolidat, în format standard.</p></div>
         </div>
-        <div class="slide-num">29 / 59</div>
+        <div class="slide-num">34 / 84</div>
       </div>
     </section>
 
     <!-- ============ MODUL 7 — SKILLS ============ -->
+
+    <!-- Skills lead-in: Claude junior -->
+    <section>
+  <div class="slide">
+    <div class="slide-header"><div class="slide-tag">Modul · Claude</div><h2 class="slide-title">Claude e ca un junior pe care-l formezi</h2><p class="slide-subtitle">Un absolvent care tocmai a venit la lucru: isteț, știe câte ceva — dar îl înveți tu <b>meseria ta</b>.</p></div>
+    <div style="display:flex;align-items:center;gap:20px;flex:1;justify-content:center">
+      <div class="card" style="flex:1;max-width:300px;align-items:center;text-align:center;gap:10px;justify-content:center">
+        <div style="font-size:60px;line-height:1">🧑‍🎓</div>
+        <p class="card-title" style="margin:0">Junior, prima zi</p>
+        <p class="card-body">Absolvent isteț. Știe bazele contabilității și ale finanțelor — dar <b>generic</b>, fără contextul firmei tale.</p>
+        <span style="font-size:12px;font-weight:700;background:#fff;border:1px solid var(--border);color:var(--muted);border-radius:100px;padding:5px 12px">Bazele contabilității</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--primary);flex:0 0 auto">
+        <div style="font-size:34px;line-height:1">→</div>
+        <div style="font-weight:800;font-size:13px;max-width:120px;text-align:center">îi adaugi competențe</div>
+      </div>
+      <div class="card mint" style="flex:1;max-width:340px;align-items:center;text-align:center;gap:9px;justify-content:center">
+        <div style="font-size:60px;line-height:1">🦸</div>
+        <p class="card-title" style="margin:0">După ce-l formezi</p>
+        <p class="card-body">Acum livrează ca un <b>specialist al firmei tale</b>.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+          <span style="font-size:11.5px;font-weight:700;background:#fff;border:1px solid #86EFAC;color:#15803D;border-radius:100px;padding:4px 11px">Tonul firmei</span>
+          <span style="font-size:11.5px;font-weight:700;background:#fff;border:1px solid #86EFAC;color:#15803D;border-radius:100px;padding:4px 11px">Procesele de contabilitate</span>
+          <span style="font-size:11.5px;font-weight:700;background:#fff;border:1px solid #86EFAC;color:#15803D;border-radius:100px;padding:4px 11px">Planul de conturi / categoriile tale</span>
+          <span style="font-size:11.5px;font-weight:700;background:#fff;border:1px solid #86EFAC;color:#15803D;border-radius:100px;padding:4px 11px">Exemple reale</span>
+        </div>
+      </div>
+    </div>
+    <div class="why-band"><span class="wb-icon">💡</span><span class="wb-text"><span class="lbl">De ce contează</span>Claude e fix la fel: deștept din start, dar <b>fără skill-uri, context și exemple de la tine</b> rămâne un junior generic. Tu îl transformi în specialistul <b>tău</b>.</span></div>
+    <div class="slide-num">35 / 84</div>
+  </div>
+</section>
+
+    <!-- Skills lead-in: Ce sunt skills -->
+    <section>
+  <div class="slide">
+    <div class="slide-header"><div class="slide-tag">Claude · Skills</div><h2 class="slide-title">Ce sunt, de fapt, skills?</h2><p class="slide-subtitle">O <b>competență</b> pe care i-o dai lui Claude — o dată — și o folosește singur de fiecare dată.</p></div>
+    <div class="cards-grid cards-3">
+      <div class="card sky"><span class="card-icon">📄</span><p class="card-title">O rețetă salvată</p><p class="card-body">Un fișier cu instrucțiuni: <b>cum</b> faci un lucru, pas cu pas, în formatul tău.</p></div>
+      <div class="card lavender"><span class="card-icon">🪄</span><p class="card-title">Se cheamă singur</p><p class="card-body">Când taskul se potrivește, Claude <b>încarcă skill-ul automat</b> — nu-i spui tu de fiecare dată.</p></div>
+      <div class="card mint"><span class="card-icon">🎯</span><p class="card-title">Mereu la fel</p><p class="card-body">Același rezultat, în formatul firmei tale, <b>de fiecare dată</b> — fără să reexplici.</p></div>
+    </div>
+    <div class="why-band"><span class="wb-icon">🎓</span><span class="wb-text"><span class="lbl">Ține minte analogia</span>Un skill = o <b>competență pe care o adaugi juniorului</b>. Îl înveți o dată „așa facem noi o notă de cheltuieli / un raport de TVA" → o știe pe veci.</span></div>
+    <div class="slide-num">36 / 84</div>
+  </div>
+</section>
 
     <!-- 33 Skills concept -->
     <section>
@@ -1175,11 +1543,114 @@
               <div class="gem-card"><div class="gem-icon-wrap" style="background:#FEF3C7">📊</div><div><p class="gem-title">Skill „Analiză financiară"</p><p class="gem-desc">Skill gata pregătit (ex. <b>financial-analyst</b>) → analiză standardizată din situațiile financiare.</p></div></div>
             </div>
           </div>
-          <div class="practice-shot cover"><img src="assets/act-primire-predare.png" alt="Act de primire-predare generat de Claude" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📝</span>Act de primire-predare<span class="pth">assets/act-primire-predare.png</span></div></div>
+          <div class="practice-shot cover"><img src="deck-assets/act-primire-predare.png" alt="Act de primire-predare generat de Claude" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📝</span>Act de primire-predare<span class="pth">assets/act-primire-predare.png</span></div></div>
         </div>
-        <div class="slide-num">30 / 59</div>
+        <div class="slide-num">37 / 84</div>
       </div>
     </section>
+
+    <!-- 37b Skill de reconciliere — Cowork face Excelul, apoi verifici -->
+    <section>
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Modul 7 · Skill de reconciliere</div>
+          <h2 class="slide-title" style="display:flex;align-items:center;gap:12px">
+            <span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#C96442"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span>
+            <span class="logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="#217346" aria-label="Excel"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2zM6 4h7v4h5v12H6V4zm1.7 6.5h1.9l1.1 2 1.1-2h1.9L13 13.5 15 17h-1.9l-1.4-2.4L10.3 17H8.4l2-3.5-2.7-3z"/></svg></span>
+            Skill de reconciliere — Claude face Excelul, tu verifici
+          </h2>
+          <p class="slide-subtitle">Skill-ul îi spune lui Claude <b>exact ce câmpuri</b> să scoată și <b>cum</b> să potrivească. Cowork îl rulează în masă. La final <b>verifici că s-a extras corect</b>.</p>
+        </div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:13px;justify-content:center">
+            <div class="nb-flow" style="margin-bottom:4px">
+              <div class="nb-node in" style="padding:15px 10px"><span class="nb-node-icon">🧾</span><span class="nb-node-title">Facturi + extras</span><span class="nb-node-desc">teancul lunii</span></div>
+              <div class="nb-node proc" style="padding:15px 10px"><span class="nb-node-icon">⚙️</span><span class="nb-node-title">Skill + Cowork</span><span class="nb-node-desc">extrage + potrivește</span></div>
+              <div class="nb-node out" style="padding:15px 10px"><span class="nb-node-icon">📊</span><span class="nb-node-title">Excel reconciliat</span><span class="nb-node-desc">gata de verificat</span></div>
+            </div>
+            <div class="practice-steps">
+              <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text"><b>Skill-ul (SKILL.md):</b> „scoate furnizor, nr, dată, bază, TVA, total; potrivește după sumă+dată; status per rând"</div></div>
+              <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text"><b>Cowork rulează</b> pe tot teancul → construiește Excelul singur</div></div>
+              <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text"><b>Verifici extragerea:</b> ceri „arată-mi 5 rânduri lângă factura-sursă" + verificări automate</div></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+            <div class="practice-prompt"><span class="lbl">Prompt de verificare (după ce Excelul e gata)</span>„Înainte să închei: (1) numără câte facturi am dat vs. câte rânduri ai scris — trebuie egale. (2) Verifică pe fiecare rând: total = bază + TVA. (3) Arată-mi 5 rânduri la întâmplare <b>alături de factura-sursă</b>, ca să confirm. (4) Listează separat orice rând unde n-ai fost sigur ce ai citit."</div>
+            <div class="why-band" style="margin:0"><span class="wb-icon">🔍</span><span class="wb-text"><span class="lbl">De ce pasul de verificare e obligatoriu</span>AI-ul extrage rapid, dar poate citi greșit o cifră ștearsă. <b>Nu semnezi „pe încredere":</b> îi ceri să-și <b>numere</b> rândurile și să-ți arate <b>sursa lângă rezultat</b> — 30 de secunde care prind eroarea.</span></div>
+          </div>
+        </div>
+        <div class="slide-num">37b / 84</div>
+      </div>
+    </section>
+
+    <!-- Skills — fișier .md -->
+    <section>
+  <div class="slide">
+    <div class="slide-header"><div class="slide-tag">Claude · Skills</div><h2 class="slide-title">Fișier .md (Markdown) — în el „trăiesc" skill-urile</h2><p class="slide-subtitle">Text simplu, ușor de citit pentru AI. <b>Un skill = un fișier .md</b> — de asta îl iei, editezi și partajezi ușor.</p></div>
+    <div class="dict">
+      <div class="dict-left">
+        <div class="dict-word">
+          <span class="dw-emoji">📄</span>
+          <div><h3>Fișier .md</h3><p class="dw-sub">Markdown — text simplu, structurat</p></div>
+        </div>
+        <p class="dict-analogy">Text cu titluri, liste și bold. Îl scrii ușor, iar AI-ul îl <b>citește perfect</b>. E formatul în care sunt scrise și <b>skill-urile</b>.</p>
+        <div class="dict-why"><span class="lbl">De ce-ți pasă</span>Un skill descărcat = un fișier <b>SKILL.md</b>. Îl deschizi, vezi exact ce face, îl ajustezi pe firma ta. Fără cutie neagră.</div>
+      </div>
+      <div class="dict-visual">
+        <div class="mdcompare">
+          <div class="md-src">
+            <span class="md-tablabel">Ce scrii (SKILL.md)</span>
+            <div class="h"># Notă de cheltuieli</div>
+            <div>&nbsp;</div>
+            <div class="li">Total: **suma cu TVA**</div>
+            <div>&nbsp;</div>
+            <div class="h">## Câmpuri</div>
+            <div class="li">- furnizor &amp; sumă</div>
+            <div class="li">- categorie cheltuială</div>
+            <div class="li">- TVA</div>
+          </div>
+          <div class="md-prev">
+            <span class="md-tablabel">Cum arată</span>
+            <h4>Notă de cheltuieli</h4>
+            <p>Total: <b>suma cu TVA</b></p>
+            <p style="font-weight:800;font-size:15px;margin-bottom:5px">Câmpuri</p>
+            <ul><li>furnizor &amp; sumă</li><li>categorie cheltuială</li><li>TVA</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">38 / 84</div>
+  </div>
+</section>
+
+    <!-- Skills — marketplace -->
+    <section>
+  <div class="slide">
+    <div class="slide-header"><div class="slide-tag">Claude · Skills</div><h2 class="slide-title">Skill-uri gata făcute — le iei dintr-un marketplace</h2><p class="slide-subtitle">Un <b>skill</b> = un fișier <b>.md</b> (SKILL.md) cu instrucțiuni. Nu-l scrii de la zero — îl iei gata făcut, în două feluri.</p></div>
+    <div class="practice-layout">
+      <div style="display:flex;flex-direction:column;gap:13px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;flex:none">
+          <div class="card sky" style="justify-content:flex-start;gap:7px">
+            <span class="card-icon">⚡</span>
+            <p class="card-title" style="margin:0">Cu Claude Code — din GitHub</p>
+            <p class="card-body">Îl tragi direct din repo: <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#fff;color:var(--primary);padding:1px 6px;border-radius:5px">/plugin marketplace add</span> → <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#fff;color:var(--primary);padding:1px 6px;border-radius:5px">/plugin install</span>. Apare instant.</p>
+          </div>
+          <div class="card mint" style="justify-content:flex-start;gap:7px">
+            <span class="card-icon">📄</span>
+            <p class="card-title" style="margin:0">Manual — descarci .md-ul</p>
+            <p class="card-body">Descarci <b>SKILL.md</b> (sau ZIP) și-l pui în folderul <span style="font-family:ui-monospace,Menlo,monospace;font-size:12px;background:#fff;color:#15803D;padding:1px 6px;border-radius:5px">~/.claude/skills/</span>. Gata.</p>
+          </div>
+        </div>
+        <div class="info-band">
+          <div class="ib-icon">🛒</div>
+          <div class="ib-text"><b>Marketplace-uri populare:</b> <b>Anthropic Skills</b> &amp; <b>AgentSkills.io</b> (oficiale, standardul SKILL.md) · <b>SkillsMP</b> · ClaudeSkills.info · Agensi · LobeHub <span style="color:var(--muted)">— zeci de mii de skill-uri, de la analiză financiară la note de cheltuieli și rapoarte de TVA.</span></div>
+        </div>
+      </div>
+      <div class="practice-shot cover"><img src="deck-assets/skills-marketplace.png" alt="Skills Marketplace" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">🛒</span>Marketplace de skill-uri<br>(GitHub repo · Download)<span class="pth">skillsmp.com</span></div></div>
+    </div>
+    <div class="slide-num">39 / 84</div>
+  </div>
+</section>
 
     <!-- 34 Skills practică -->
     <section>
@@ -1195,7 +1666,7 @@
           </div>
           <div class="practice-app"><b>Rezultat:</b> un document care arată ca al firmei, generat în minute. Skill-uri publice gata făcute găsești pe GitHub (ex. financial-analyst).</div>
         </div>
-        <div class="slide-num">31 / 59</div>
+        <div class="slide-num">40 / 84</div>
       </div>
     </section>
 
@@ -1221,7 +1692,7 @@
             <div style="font-size:14px;color:var(--muted);text-align:center;max-width:340px">Factura ajunge pe email → API-ul transmite datele → Sheets primește rândul. Fără intervenție umană.</div>
           </div>
         </div>
-        <div class="slide-num">32 / 59</div>
+        <div class="slide-num">41 / 84</div>
       </div>
     </section>
 
@@ -1249,7 +1720,7 @@
             </div>
           </div>
         </div>
-        <div class="slide-num">33 / 59</div>
+        <div class="slide-num">42 / 84</div>
       </div>
     </section>
 
@@ -1279,7 +1750,7 @@
             </div>
           </div>
         </div>
-        <div class="slide-num">34 / 59</div>
+        <div class="slide-num">43 / 84</div>
       </div>
     </section>
 
@@ -1304,7 +1775,35 @@
             <div style="font-size:13px;color:var(--muted);align-self:flex-start;margin-top:4px">↩︎ Te poți întoarce la orice versiune din trecut.</div>
           </div>
         </div>
-        <div class="slide-num">35 / 59</div>
+        <div class="slide-num">44 / 84</div>
+      </div>
+    </section>
+
+    <!-- 38b MCP pentru 1C — exemplu concret -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Modul 8 · MCP × 1C</div><h2 class="slide-title">Există deja conectori MCP pentru 1C — AI-ul vede configurația</h2><p class="slide-subtitle">Pe GitHub sunt <b>repo-uri gata făcute</b> care conectează AI-ul direct la <b>1C:Enterprise</b>. Restul e treaba <b>integratorului vostru</b> — nu porniți de la zero.</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+            <div class="cards-grid" style="grid-template-columns:1fr;gap:11px;flex:0">
+              <div class="card sky" style="flex-direction:row;align-items:center;gap:14px;text-align:left">
+                <span class="card-icon" style="margin:0">🔌</span>
+                <div><p class="card-title" style="margin:0 0 3px">Conector MCP pentru 1C, public</p><p class="card-body">Ex. <b>mcp-1c</b>: „un server MCP pentru 1C:Enterprise — AI-ul <b>vede configurația</b> și lucrează cu ea." Open-source, pe GitHub.</p></div>
+              </div>
+              <div class="card mint" style="flex-direction:row;align-items:center;gap:14px;text-align:left">
+                <span class="card-icon" style="margin:0">🧾</span>
+                <div><p class="card-title" style="margin:0 0 3px">Ce înseamnă pentru voi</p><p class="card-body">AI-ul poate citi date din 1C, genera cod/rapoarte și răspunde la întrebări despre baza voastră — <b>fără export-import manual</b>.</p></div>
+              </div>
+              <div class="card peach" style="flex-direction:row;align-items:center;gap:14px;text-align:left">
+                <span class="card-icon" style="margin:0">👷</span>
+                <div><p class="card-title" style="margin:0 0 3px">Depinde de integratorul vostru</p><p class="card-body">Nu-l instalați voi. Îi dați link-ul la repo integratorului 1C → el îl conectează la baza voastră, în siguranță.</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="practice-shot cover"><img src="deck-assets/image copy 5.png" alt="Repo GitHub mcp-1c — conector MCP pentru 1C" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">🐙</span>github.com/feenlace/mcp-1c<br>MCP server pentru 1C:Enterprise<span class="pth">exemplu public, open-source</span></div></div>
+        </div>
+        <div class="why-band"><span class="wb-icon">🧩</span><span class="wb-text"><span class="lbl">Ideea de dus acasă</span>Pentru aplicațiile mari (1C, dar și altele) <b>cineva a construit deja conectorul</b>. Voi nu trebuie să scrieți cod — trebuie doar să știți că <b>se poate</b> și să-i cereți integratorului să-l lege.</span></div>
+        <div class="slide-num">45 / 84</div>
       </div>
     </section>
 
@@ -1332,7 +1831,41 @@
           <div class="mcp-chip"><span class="mcp-dot" style="background:#217346"></span>Excel / Sheets</div>
           <div class="mcp-chip"><span class="mcp-dot" style="background:#1DB954"></span>+ sute de alte conectori</div>
         </div>
-        <div class="slide-num">36 / 59</div>
+        <div class="slide-num">46 / 84</div>
+      </div>
+    </section>
+
+    <!-- 39b MCP prin link — cum adaugi un conector -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Modul 8 · MCP</div><h2 class="slide-title">Cum adaugi un conector: iei un <b>link</b> și-l lipești în Claude</h2><p class="slide-subtitle">Nu programezi nimic. Un conector MCP e, practic, <b>un link (URL)</b>. Îl copiezi de la furnizor (ex. Meta) și-l adaugi în Setări → Connectors.</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:13px;justify-content:center">
+            <div class="nb-flow" style="margin-bottom:2px">
+              <div class="nb-node in" style="padding:14px 10px"><span class="nb-node-icon">🔗</span><span class="nb-node-title">Copiezi link-ul</span><span class="nb-node-desc">de la furnizor (Meta, Trello…)</span></div>
+              <div class="nb-node proc" style="padding:14px 10px"><span class="nb-node-icon">➕</span><span class="nb-node-title">Add connector</span><span class="nb-node-desc">Setări → Connectors → lipești</span></div>
+              <div class="nb-node out" style="padding:14px 10px"><span class="nb-node-icon">✅</span><span class="nb-node-title">Autorizezi o dată</span><span class="nb-node-desc">Claude poate acționa acolo</span></div>
+            </div>
+            <div class="practice-steps">
+              <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">La furnizor (ex. <b>Meta / Facebook Ads</b>) → găsești <b>link-ul serverului MCP</b> (un URL de forma <code style="font-size:13px;background:#EEF2FF;padding:1px 6px;border-radius:5px">https://mcp.…</code>)</div></div>
+              <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">În Claude: <b>Settings → Connectors → Add custom connector</b> → lipești link-ul</div></div>
+              <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Te loghezi o dată (autorizezi accesul) → gata, apare în lista de tool-uri</div></div>
+              <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">De acum îi ceri direct: „arată-mi cheltuiala pe campanii luna asta"</div></div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+            <div class="mcp-logos">
+              <div class="mcp-chip"><span class="mcp-dot" style="background:#0866FF"></span>Meta / Facebook Ads</div>
+              <div class="mcp-chip"><span class="mcp-dot" style="background:#0052CC"></span>Trello</div>
+              <div class="mcp-chip"><span class="mcp-dot" style="background:#4A154B"></span>Slack</div>
+              <div class="mcp-chip"><span class="mcp-dot" style="background:#EA4335"></span>Gmail</div>
+              <div class="mcp-chip"><span class="mcp-dot" style="background:#0F9D58"></span>Drive / Sheets</div>
+            </div>
+            <div class="info-band"><div class="ib-icon">💡</div><div class="ib-text"><b>De reținut:</b> „conector MCP = un link". Cine face aplicația (Meta, Trello, banca ta) publică link-ul; tu doar îl lipești și autorizezi. Fără cod, fără instalare.</div></div>
+            <div class="quote-block warn" style="font-size:13.5px"><strong>Atenție:</strong> adaugă doar conectori din surse <b>de încredere</b> — un link MCP dă acces la datele contului. Verifică furnizorul înainte.</div>
+          </div>
+        </div>
+        <div class="slide-num">46b / 84</div>
       </div>
     </section>
 
@@ -1350,10 +1883,10 @@
             <div class="practice-prompt" style="border-color:#7C3AED"><span class="lbl" style="color:#7C3AED">Demo — Portalul Instanțelor de Judecată</span>„Caută dacă <b>Apă-Canal</b> are ședințe de judecată, am nevoie de un tabel." → Claude a parcurs portalul (6.970 rezultate) și a livrat tabelul. <b>De ce e avantajos:</b> verifici litigiile unui client/partener în secunde, nu în ore de căutare manuală.</div>
             <div class="practice-app"><b>Și pe Jysk.md:</b> extragi denumiri + prețuri într-un tabel — util pentru benchmark de costuri.</div>
           </div>
-          <div class="practice-shot cover"><img src="assets/chrome-portal-instante.png" alt="Claude Chrome — Portalul Instanțelor" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">⚖️</span>Claude × Portalul Instanțelor<span class="pth">assets/chrome-portal-instante.png</span></div></div>
+          <div class="practice-shot cover"><img src="deck-assets/chrome-portal-instante.png" alt="Claude Chrome — Portalul Instanțelor" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">⚖️</span>Claude × Portalul Instanțelor<span class="pth">assets/chrome-portal-instante.png</span></div></div>
         </div>
         <div style="margin-top:10px"><div class="quote-block warn"><strong>Atenție:</strong> extensia e în <b>Claude Pro/Max</b> și e marcată <b>HIGH RISK</b> (acționează pe internet) — o vedem ca demo, fără date sensibile.</div></div>
-        <div class="slide-num">37 / 59</div>
+        <div class="slide-num">47 / 84</div>
       </div>
     </section>
 
@@ -1368,7 +1901,7 @@
           <div class="card peach"><span class="card-icon">🌍</span><p class="card-title">Documente multilingve</p><p class="card-body">Contracte în EN/DE/RU → traducere + extragere obligații în același prompt.</p></div>
         </div>
         <div style="margin-top:14px"><div class="quote-block warn"><strong>Activare:</strong> claude.ai → Settings → Connectors → Google Drive → Autorizează.</div></div>
-        <div class="slide-num">38 / 59</div>
+        <div class="slide-num">48 / 84</div>
       </div>
     </section>
 
@@ -1390,11 +1923,11 @@
             </div>
           </div>
           <div style="display:flex;flex-direction:column;gap:10px">
-            <div class="practice-shot cover" style="flex:1"><img src="assets/claude-connectors-customize.png" alt="Customize Claude — Connectors" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">🔌</span>Customize Claude → Connectors<span class="pth">pasul 1</span></div></div>
-            <div class="practice-shot cover" style="flex:1"><img src="assets/mcp-gmail-directory.png" alt="Connectors Directory — Gmail" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📧</span>Directory → Gmail → Connect<span class="pth">pașii 2–3</span></div></div>
+            <div class="practice-shot cover" style="flex:1"><img src="deck-assets/claude-connectors-customize.png" alt="Customize Claude — Connectors" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">🔌</span>Customize Claude → Connectors<span class="pth">pasul 1</span></div></div>
+            <div class="practice-shot cover" style="flex:1"><img src="deck-assets/mcp-gmail-directory.png" alt="Connectors Directory — Gmail" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📧</span>Directory → Gmail → Connect<span class="pth">pașii 2–3</span></div></div>
           </div>
         </div>
-        <div class="slide-num">39 / 59</div>
+        <div class="slide-num">49 / 84</div>
       </div>
     </section>
 
@@ -1416,7 +1949,363 @@
           <div class="llm-step"><div class="llm-step-num">4</div><span class="llm-step-icon">✅</span><div class="llm-step-title">Tu doar confirmi</div><div class="llm-step-desc">verifici rezultatul, nu faci munca manuală</div></div>
         </div>
         <div style="margin-top:14px"><div class="quote-block"><strong>De ce e avantajos:</strong> un singur task — „înregistrează cererile de concediu din Gmail în Excel" — se face singur, cap-coadă. <b>Automatizezi rutina, te concentrezi pe finanțe.</b></div></div>
-        <div class="slide-num">40 / 59</div>
+        <div class="slide-num">50 / 84</div>
+      </div>
+    </section>
+
+    <!-- ============ AGENȚI AI ============ -->
+
+    <!-- Agent · Ce este un agent -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Modul · Agenți AI</div><h2 class="slide-title">Ce este un agent — fără cod</h2><p class="slide-subtitle">Un agent = îi dai un <b>obiectiv</b>, nu o comandă. El alege pașii, folosește unelte, verifică și livrează.</p></div>
+        <div class="cowork-adv">
+          <div class="cowork-col classic">
+            <span class="cowork-col-label">💬 Chatbot</span>
+            <div class="cowork-row"><span>❓</span><span>Răspunde la o întrebare, un pas</span></div>
+            <div class="cowork-row"><span>👤</span><span>Tu execuți tot ce-ți spune</span></div>
+            <div class="cowork-row"><span>🚫</span><span>Nu atinge uneltele tale</span></div>
+          </div>
+          <div class="cowork-col auto">
+            <span class="cowork-col-label">🤖 Agent</span>
+            <div class="cowork-row"><span>🎯</span><span>Primește un obiectiv, duce taskul cap-coadă</span></div>
+            <div class="cowork-row"><span>🔧</span><span>Folosește unelte: Drive, Gmail, Sheets, web</span></div>
+            <div class="cowork-row"><span>✅</span><span>Verifică singur și revine dacă nu iese</span></div>
+          </div>
+        </div>
+        <div class="why-band"><span class="wb-icon">🧩</span><span class="wb-text"><span class="lbl">De reținut</span>Claude <b>Cowork</b> și ChatGPT cu apps <b>sunt deja</b> agenți — bucla rulează singură în spate, fără să programezi nimic. Ex.: „fă raportul lunar de cheltuieli" — și-l duce singur cap-coadă.</span></div>
+        <div class="slide-num">51 / 84</div>
+      </div>
+    </section>
+
+    <!-- Agent · Bucla de tool-use -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Modul · Agenți AI</div><h2 class="slide-title">Bucla de tool-use — cum „gândește" un agent</h2><p class="slide-subtitle">Același ciclu, repetat până taskul e gata. Asta e tot „secretul" din spatele unui agent.</p></div>
+        <div class="flow-rail" style="margin:auto 0">
+          <div class="frnode"><div class="frn-num">1</div><span class="frn-ic">🎯</span><div class="frn-t">Obiectiv</div><div class="frn-d">„Fă raportul de TVA / închiderea de lună."</div></div><div class="frarrow">→</div>
+          <div class="frnode"><div class="frn-num">2</div><span class="frn-ic">🗺️</span><div class="frn-t">Plan</div><div class="frn-d">Împarte taskul în pași.</div></div><div class="frarrow">→</div>
+          <div class="frnode"><div class="frn-num">3</div><span class="frn-ic">🔧</span><div class="frn-t">Folosește o unealtă</div><div class="frn-d">Drive / Gmail / Sheets / web.</div></div><div class="frarrow">→</div>
+          <div class="frnode"><div class="frn-num">4</div><span class="frn-ic">👀</span><div class="frn-t">Observă rezultatul</div><div class="frn-d">Vede ce a ieșit.</div></div><div class="frarrow">↺</div>
+          <div class="frnode"><div class="frn-num">5</div><span class="frn-ic">✅</span><div class="frn-t">Decide / livrează</div><div class="frn-d">Gata — sau mai face un pas.</div></div>
+        </div>
+        <div class="why-band"><span class="wb-icon">⚙️</span><span class="wb-text"><span class="lbl">Legătura cu MCP</span>Uneltele pe care le poate apela bucla = exact conectorii <b>MCP</b> de care vorbim în modulul precedent.</span></div>
+        <div class="slide-num">52 / 84</div>
+      </div>
+    </section>
+
+    <!-- Agent vs Skill -->
+    <section>
+  <div class="slide">
+    <div class="slide-header"><div class="slide-tag">Modul · Agenți AI</div><h2 class="slide-title">Agent vs Skill — ce e diferența</h2><p class="slide-subtitle">Amândouă te ajută, dar fac lucruri diferite. De fapt, <b>se combină</b>.</p></div>
+    <div class="vs-table">
+      <div class="vs-col">
+        <div class="vs-head" style="background:var(--pastel-sky);color:#0369A1"><span style="font-size:22px">📄</span> Skill</div>
+        <div class="vs-row"><span class="ic">📌</span>O <b>instrucțiune salvată</b> — un fișier .md</div>
+        <div class="vs-row"><span class="ic">😴</span><b>Pasiv:</b> se încarcă singur când taskul se potrivește</div>
+        <div class="vs-row"><span class="ic">🧭</span>Spune <b>CUM</b> să faci un lucru (un format, un proces)</div>
+        <div class="vs-row"><span class="ic">💡</span><b>Ex:</b> skill „notă de cheltuieli" → mereu aceeași structură</div>
+      </div>
+      <div class="vs-col right">
+        <div class="vs-head" style="background:var(--pastel-lavender);color:#6D28D9"><span style="font-size:22px">🤖</span> Agent</div>
+        <div class="vs-row"><span class="ic">🎯</span>Un <b>executant cu obiectiv</b> — primește o țintă</div>
+        <div class="vs-row"><span class="ic">⚡</span><b>Activ:</b> alege singur pașii, folosește unelte, în buclă</div>
+        <div class="vs-row"><span class="ic">🏁</span><b>DUCE</b> taskul cap-coadă, nu doar dă un format</div>
+        <div class="vs-row"><span class="ic">💡</span><b>Ex:</b> agent „raport lunar de cheltuieli" → adună, calculează, scrie</div>
+      </div>
+    </div>
+    <div class="why-band"><span class="wb-icon">🧩</span><span class="wb-text"><span class="lbl">Cum se leagă</span><b>Skill = rețeta · Agent = bucătarul.</b> Agentul <b>folosește skill-uri</b> ca să-și facă treaba — îi dau formatul, el le pune în practică.</span></div>
+    <div class="slide-num">53 / 84</div>
+  </div>
+</section>
+
+    <!-- Agent · Workflow -->
+    <section>
+  <div class="slide">
+    <div class="slide-header"><div class="slide-tag">Modul · Agenți AI</div><h2 class="slide-title">Workflow — harta pe care o urmează agentul</h2><p class="slide-subtitle">Un workflow e <b>roadmap-ul agentului</b>: pașii de la obiectiv la rezultat. Tu îi desenezi drumul.</p></div>
+    <div class="flow-rail" style="margin:auto 0">
+      <div class="frnode"><div class="frn-num">1</div><span class="frn-ic">🎯</span><div class="frn-t">Obiectiv</div><div class="frn-d">Ce vrei să livreze.</div></div><div class="frarrow">→</div>
+      <div class="frnode"><div class="frn-num">2</div><span class="frn-ic">🪜</span><div class="frn-t">Pași</div><div class="frn-d">Împarte în sub-sarcini.</div></div><div class="frarrow">→</div>
+      <div class="frnode"><div class="frn-num">3</div><span class="frn-ic">🔧</span><div class="frn-t">Unelte</div><div class="frn-d">Ce aplicații folosește.</div></div><div class="frarrow">→</div>
+      <div class="frnode"><div class="frn-num">4</div><span class="frn-ic">🔁</span><div class="frn-t">Verifică</div><div class="frn-d">Corectează din mers.</div></div><div class="frarrow">→</div>
+      <div class="frnode"><div class="frn-num">5</div><span class="frn-ic">🏁</span><div class="frn-t">Rezultat</div><div class="frn-d">Livrarea finală.</div></div>
+    </div>
+    <div class="why-band" style="margin-top:18px"><span class="wb-icon">🗺️</span><span class="wb-text"><span class="lbl">Drumul are forme diferite</span>În funcție de task, roadmap-ul se schimbă. Următoarele <b>4 tipare</b> sunt formele drumului: <b>Înlănțuire · Routing · Paralelizare · Orchestrator</b>.</span></div>
+    <div class="slide-num">54 / 84</div>
+  </div>
+</section>
+
+    <!-- Tipar 1 · Înlănțuire -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Arhitectură · Tipar 1</div><h2 class="slide-title">Înlănțuire (Chaining) — pași ficși, mereu în aceeași ordine</h2><p class="slide-subtitle">Ieșirea unui pas = intrarea următorului. Predictibil — verifici rezultatul la fiecare pas.</p></div>
+        <div class="example-band" style="margin-bottom:16px">
+          <div class="eb-title">📝 Exemplu: dintr-un teanc de facturi → un registru de cheltuieli categorizate</div>
+          <div class="eb-body">De fiecare dată parcurgi exact aceiași 4 pași, în aceeași ordine.</div>
+        </div>
+        <div class="flow-rail" style="margin-bottom:18px">
+          <div class="frnode"><div class="frn-num">1</div><div class="frn-ic">📄</div><div class="frn-t">Citește facturile</div><div class="frn-d">Facturile primite / scanate.</div></div>
+          <div class="frarrow">→</div>
+          <div class="frnode"><div class="frn-num">2</div><div class="frn-ic">🔑</div><div class="frn-t">Extrage câmpurile</div><div class="frn-d">Furnizor, sumă, TVA — pe scurt.</div></div>
+          <div class="frarrow">→</div>
+          <div class="frnode"><div class="frn-num">3</div><div class="frn-ic">🏷️</div><div class="frn-t">Categorisește</div><div class="frn-d">Pe planul de conturi / categoriile tale.</div></div>
+          <div class="frarrow">→</div>
+          <div class="frnode"><div class="frn-num">4</div><div class="frn-ic">📊</div><div class="frn-t">Scrie în registru</div><div class="frn-d">Rândurile în Sheets/Excel, gata de verificat.</div></div>
+        </div>
+        <div class="why-band" style="margin-top:auto">
+          <span class="wb-icon">✅</span>
+          <span class="wb-text"><span class="lbl">Când îl folosești</span>Când pașii sunt <b>mereu aceiași, în aceeași ordine</b>. E predictibil și poți verifica la fiecare pas, nu doar la final.</span>
+        </div>
+        <div class="slide-num">55 / 84</div>
+      </div>
+    </section>
+
+    <!-- Tipar 2 · Direcționare -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Arhitectură · Tipar 2</div><h2 class="slide-title">Direcționare (Routing) — clasifici, apoi trimiți pe calea potrivită</h2><p class="slide-subtitle">Un singur tip de input intră → ajunge la procesul potrivit pentru el.</p></div>
+        <div class="routing" style="margin-bottom:18px">
+          <div class="rt-in"><div class="ri-t">📨 Cerere pe email</div><div class="ri-s">intră în inbox</div></div>
+          <div class="rt-fan">→<br>→<br>→</div>
+          <div class="rt-branches">
+            <div class="rt-branch a"><span class="rb-cond">🔴 Factură de la furnizor?</span><span class="rb-arrow">→</span><span class="rb-dest">Contabilitate · înregistrare cheltuială</span></div>
+            <div class="rt-branch b"><span class="rb-cond">🟢 Cerere internă (decont/avans)?</span><span class="rb-arrow">→</span><span class="rb-dest">Decontare · verificare</span></div>
+            <div class="rt-branch c"><span class="rb-cond">🔵 Extras / plată bancară?</span><span class="rb-arrow">→</span><span class="rb-dest">Reconciliere · potrivire</span></div>
+          </div>
+        </div>
+        <div class="why-band" style="margin-top:auto">
+          <span class="wb-icon">🔀</span>
+          <span class="wb-text"><span class="lbl">Când îl folosești</span>Când tipuri diferite de cereri au nevoie de <b>tratamente complet diferite</b>. Nu le forțezi pe toate prin același răspuns — fiecare merge unde trebuie.</span>
+        </div>
+        <div class="slide-num">56 / 84</div>
+      </div>
+    </section>
+
+    <!-- Tipar 3 · Paralelizare -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Arhitectură · Tipar 3</div><h2 class="slide-title">Paralelizare — mai multe lucruri deodată</h2><p class="slide-subtitle">Spargi un task în bucăți care nu depind una de alta și le rulezi simultan.</p></div>
+        <div class="fork" style="margin-bottom:14px">
+          <div class="fk-src">📅 Închidere de lună</div>
+          <div class="fk-fan">⇉</div>
+          <div class="fk-workers">
+            <div class="fk-w">🏦 Reconciliere bancă <span style="font-weight:500;color:var(--muted)">— potrivește extrasul</span></div>
+            <div class="fk-w">🧾 Raport TVA <span style="font-weight:500;color:var(--muted)">— TVA de plată / de recuperat</span></div>
+            <div class="fk-w">💰 Situație plăți/încasări <span style="font-weight:500;color:var(--muted)">— cine a plătit, cine nu</span></div>
+            <div class="fk-w">📊 Cheltuieli pe categorii <span style="font-weight:500;color:var(--muted)">— pe planul de conturi</span></div>
+          </div>
+          <div class="fk-join">⇉</div>
+          <div class="fk-out">✅ Totul gata</div>
+        </div>
+        <div class="example-band" style="margin-bottom:14px">
+          <div class="eb-title">🗳️ Cealaltă formă — Voting</div>
+          <div class="eb-body">Același task rulat de mai multe ori → <b>alegi cea mai bună variantă</b>. Ex: „Generează 5 variante de sumar financiar pentru management" → alegi 1.</div>
+        </div>
+        <div class="why-band" style="margin-top:auto">
+          <span class="wb-icon">⚡</span>
+          <span class="wb-text"><span class="lbl">Când îl folosești</span><b>Viteză</b> (lucruri independente, făcute deodată) sau <b>cea mai bună variantă</b> din mai multe încercări.</span>
+        </div>
+        <div class="slide-num">57 / 84</div>
+      </div>
+    </section>
+
+    <!-- Tipar 4 · Orchestrator -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Arhitectură · Tipar 4</div><h2 class="slide-title">Orchestrator — un dispecer împarte, executanții fac</h2><p class="slide-subtitle">Când <b>nu știi dinainte</b> câte sub-sarcini sunt — dispecerul decide la fața locului.</p></div>
+        <div class="orch" style="margin-bottom:14px">
+          <div class="orch-top">
+            <div class="ot-t">🎯 Orchestrator (dispecer)</div>
+            <div class="ot-s">„Pregătește pachetul de raportare de sfârșit de lună" → împarte &amp; deleagă</div>
+          </div>
+          <div class="orch-connector"></div>
+          <div class="orch-fan">↓ deleagă către ↓</div>
+          <div class="orch-workers">
+            <div class="worker"><div class="w-num">WORKER 1</div><div class="w-t">Facturi de intrare</div><div class="w-d">Colectează &amp; categorisește cheltuielile</div></div>
+            <div class="worker"><div class="w-num">WORKER 2</div><div class="w-t">Facturi de ieșire</div><div class="w-d">Vânzări emise + status încasare</div></div>
+            <div class="worker"><div class="w-num">WORKER 3</div><div class="w-t">Reconciliere bancară</div><div class="w-d">Potrivește extrasul cu registrul</div></div>
+            <div class="worker"><div class="w-num">WORKER 4</div><div class="w-t">Raport TVA</div><div class="w-d">TVA de plată vs. de recuperat</div></div>
+          </div>
+        </div>
+        <div class="why-band" style="margin-top:auto">
+          <span class="wb-icon">🧩</span>
+          <span class="wb-text"><span class="lbl">Chain vs. Orchestrator</span><b>Chain</b> = pași știuți dinainte, în ordine. <b>Orchestrator</b> = împărțire <b>dinamică</b> — dispecerul decide câți executanți și ce fac, în funcție de brief.</span>
+        </div>
+        <div class="slide-num">58 / 84</div>
+      </div>
+    </section>
+
+    <!-- Agent financiar cap-coadă -->
+    <section>
+  <div class="slide">
+    <div class="slide-header"><div class="slide-tag">Modul · Agenți AI</div><h2 class="slide-title">Un agent financiar, cap-coadă</h2><p class="slide-subtitle">Exemplu: <b>agentul de raportare lunară</b> — adună datele, calculează, scrie raportul. Tu doar aprobi.</p></div>
+    <div class="logo-strip" style="margin-bottom:6px">
+      <span class="lbl"><span style="font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-right:6px">Atinge:</span></span>
+      <svg viewBox="0 0 24 24" fill="#0F9D58" style="height:30px;width:auto" aria-label="Google Sheets"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></svg>
+      <span style="font-size:28px">📧</span>
+      <span style="font-size:28px">📁</span>
+      <span style="font-size:28px">📅</span>
+    </div>
+    <div class="llm-steps five" style="margin-top:10px">
+      <div class="llm-step"><div class="llm-step-num">1</div><span class="llm-step-icon"><svg viewBox="0 0 24 24" fill="#0F9D58" style="width:30px;height:30px"><path d="M11.318 12.545H7.91v-1.909h3.41v1.91zM14.728 0v6h6l-6-6zm1.363 10.636h-3.41v1.91h3.41v-1.91zm0 3.273h-3.41v1.91h3.41v-1.91zM20.727 6.5v15.864c0 .904-.732 1.636-1.636 1.636H4.909a1.636 1.636 0 0 1-1.636-1.636V1.636C3.273.732 4.005 0 4.909 0h9.318v6.5h6.5zm-3.273 2.773H6.545v7.909h10.91v-7.91zm-6.136 4.636H7.91v1.91h3.41v-1.91z"/></svg></span><div class="llm-step-title">Adună datele</div><div class="llm-step-desc">din Sheets + Gmail + Calendar</div></div>
+      <div class="llm-step"><div class="llm-step-num">2</div><span class="llm-step-icon">📊</span><div class="llm-step-title">Calculează</div><div class="llm-step-desc">cheltuieli pe categorii, sold, variație vs. luna trecută</div></div>
+      <div class="llm-step"><div class="llm-step-num">3</div><span class="llm-step-icon">🤖</span><div class="llm-step-title">Scrie analiza</div><div class="llm-step-desc">ce a mers, ce nu, 3 recomandări</div></div>
+      <div class="llm-step"><div class="llm-step-num">4</div><span class="llm-step-icon">📄</span><div class="llm-step-title">Generează raportul</div><div class="llm-step-desc">Doc/Slides în formatul tău, salvat pe Drive</div></div>
+      <div class="llm-step"><div class="llm-step-num">5</div><span class="llm-step-icon">✅</span><div class="llm-step-title">Tu aprobi</div><div class="llm-step-desc">verifici și trimiți</div></div>
+    </div>
+    <div class="why-band"><span class="wb-icon">🛡️</span><span class="wb-text"><span class="lbl">Regula de aur</span>Agentul <b>propune</b>, tu <b>aprobi</b> — mai ales la plăți și încasări. Nu-l lași să trimită plăți singur.</span></div>
+    <div class="slide-num">59 / 84</div>
+  </div>
+</section>
+
+    <!-- Exercițiu · Agent financiar vizual -->
+    <section>
+  <div class="slide practice">
+    <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Exercițiu · Desenează-ți agentul</div><h2 class="slide-title">Cum arată un agent financiar — vizual</h2><p class="slide-subtitle">Un obiectiv → mai multe acțiuni, în paralel. Exemplu: <b>a intrat o factură nouă</b>.</p></div>
+    <div class="fork" style="margin-bottom:16px">
+      <div class="fk-src">🧾 Factură<br>nouă primită</div>
+      <div class="fk-fan">⇉</div>
+      <div class="fk-workers">
+        <div class="fk-w"><span style="margin-right:7px">📄</span>Extrasă în registru (<b>Sheets</b>)</div>
+        <div class="fk-w"><span style="margin-right:7px">🏷️</span>Categorisită (<b>plan de conturi</b>)</div>
+        <div class="fk-w"><span style="margin-right:7px">🧾</span>TVA calculat</div>
+        <div class="fk-w"><span style="margin-right:7px">📊</span>Sold actualizat (<b>Sheets</b>)</div>
+      </div>
+      <div class="fk-join">⇉</div>
+      <div class="fk-out">✅ Totul pregătit</div>
+    </div>
+    <div class="why-band"><span class="wb-icon">✍️</span><span class="wb-text"><span class="lbl">Acum tu, pe hârtie</span>Alege un task repetitiv financiar → desenează-ți agentul la fel: <b>obiectivul</b> în centru, apoi ce face <b>în paralel</b> și unde <b>tu aprobi</b>.</span></div>
+    <div class="slide-num">60 / 84</div>
+  </div>
+</section>
+
+    <!-- CLAUDE.md · legea agentului -->
+    <section>
+  <div class="slide">
+    <div class="slide-header"><div class="slide-tag">Implementare · Punctul de control</div><h2 class="slide-title"><span style="font-family:ui-monospace,Menlo,monospace;font-size:30px">CLAUDE.md</span> — legea agentului</h2><p class="slide-subtitle">Nu doar tonul firmei. <b>Reguli clare</b> pe care agentul le respectă și le <b>învață</b>: după orice feedback, le adaugă la cunoștințe.</p></div>
+    <div class="orch" style="margin-bottom:14px">
+      <div class="orch-top">
+        <div class="ot-t">📜 CLAUDE.md</div>
+        <div class="ot-s">regulile + cunoștințele agentului — <b>punctul de control</b></div>
+      </div>
+      <div class="orch-connector"></div>
+      <div class="orch-fan">↓ coordonează ↓</div>
+      <div class="orch-workers">
+        <div class="worker"><div class="w-num">REGULI</div><div class="w-t">📏 Ce face / ce NU</div><div class="w-d">Reguli de categorisire, ton, do &amp; don't</div></div>
+        <div class="worker"><div class="w-num">ÎNVAȚĂ</div><div class="w-t">🧠 Din feedback</div><div class="w-d">După orice corectură → o adaugă la cunoștințe</div></div>
+        <div class="worker"><div class="w-num">ORCHESTRARE</div><div class="w-t">🔗 Succesiunea agenților</div><div class="w-d">Cine lucrează, după cine, cu ce</div></div>
+        <div class="worker"><div class="w-num">CONTEXT</div><div class="w-t">⚙️ Plan de conturi &amp; info</div><div class="w-d">Le ține pe toate laolaltă, într-un loc</div></div>
+      </div>
+    </div>
+    <div class="info-band"><div class="ib-icon">📈</div><div class="ib-text"><b>Crește cu tine:</b> după orice feedback → îl scrii în CLAUDE.md → agentul îl <b>știe data viitoare</b>. E memoria, regulile și dispecerul, într-un singur fișier.</div></div>
+    <div class="slide-num">61 / 84</div>
+  </div>
+</section>
+
+    <!-- Practică · Agent generator→critic -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică · Agent generator→critic</div><h2 class="slide-title">Bucla care-ți îmbunătățește raportul singură</h2><p class="slide-subtitle">Pe raportul tău real: 5 variante de sumar → critică → versiunea finală, fără să rescrii tu de 5 ori.</p></div>
+        <div class="evflow">
+          <div class="evstep gen"><div class="evstep-badge">1</div><span class="evstep-ic">✍️</span><div class="evstep-t">Generator</div><div class="evstep-d">„Scrie <b>5 variante</b> de sumar executiv al raportului lunar."</div></div>
+          <div class="evconn"><span class="evconn-arrow">→</span></div>
+          <div class="evstep crit"><div class="evstep-badge">2</div><span class="evstep-ic">🔍</span><div class="evstep-t">Critic</div><div class="evstep-d">„Notează fiecare variantă: <b>claritate, cifre corecte, ton, acționabilitate</b> (1–10)."</div></div>
+          <div class="evconn"><span class="evconn-arrow">→</span></div>
+          <div class="evstep dec"><div class="evstep-badge">3</div><span class="evstep-ic">✅</span><div class="evstep-t">Decizie</div><div class="evstep-d">„Păstrează doar ce trece de <b>8/10</b> și dă-mi versiunea finală."</div></div>
+        </div>
+        <div class="evback-rail"><span class="evback-lbl">↩︎ Bucla</span><span class="evback-arrow">Dacă nicio variantă nu trece 8/10 → înapoi la Generator cu feedbackul Criticului. Repetă până iese.</span></div>
+        <div class="slide-num">62 / 84</div>
+      </div>
+    </section>
+
+    <!-- Igienă de context -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Implementare · Igienă de context</div><h2 class="slide-title">Igienă de context — 3 reguli ca AI-ul să nu se „încețoșeze"</h2><p class="slide-subtitle">Context plin = model mai lent, mai „prost" și limite consumate mai repede.</p></div>
+        <div class="cards-grid cards-3" style="flex:none;margin-bottom:16px">
+          <div class="card primary-light" style="justify-content:flex-start">
+            <div class="card-num">1</div>
+            <p class="card-title">O sarcină = un dialog</p>
+            <p class="card-body">Nu îngrămădi tot în același chat. Brieful de raportare într-unul, execuția în altul.</p>
+          </div>
+          <div class="card mint" style="justify-content:flex-start">
+            <div class="card-num">2</div>
+            <p class="card-title">Stai sub ~50% context</p>
+            <p class="card-body">Peste prag → deschide un dialog nou. Răspunsurile rămân ascuțite.</p>
+          </div>
+          <div class="card sky" style="justify-content:flex-start">
+            <div class="card-num">3</div>
+            <p class="card-title">Proiect mare → dialog nou</p>
+            <p class="card-body">Dai fișierul de context la start: „ai CLAUDE.md — pornește lucrul".</p>
+          </div>
+        </div>
+        <div class="info-band" style="margin-top:auto">
+          <div class="ib-icon">💾</div>
+          <div class="ib-text"><b>De ce merge:</b> CLAUDE.md e memoria persistentă. Dialoguri scurte, focalizate, cu un fișier care ține totul minte — în loc de un chat lung de zeci de mesaje.</div>
+        </div>
+        <div class="slide-num">63 / 84</div>
+      </div>
+    </section>
+
+    <!-- Cu context, AI-ul decide ca un coleg -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Organizare · De ce merită</div><h2 class="slide-title">Cu context, AI-ul decide ca un coleg — nu întreabă ca un străin</h2><p class="slide-subtitle">Când știe firma, planul de conturi și regulile de categorisire, nu mai ceri totul de la zero.</p></div>
+        <div class="cowork-adv">
+          <div class="cowork-col classic">
+            <span class="cowork-col-label">🙋 Fără context — stagiar nou</span>
+            <div class="cowork-row"><span>❓</span><span>Întreabă cine ești la fiecare task</span></div>
+            <div class="cowork-row"><span>🎭</span><span>Categorisire generică — nimerește pe lângă planul tău de conturi</span></div>
+            <div class="cowork-row"><span>🔁</span><span>Tu re-explici contextul de fiecare dată</span></div>
+            <div class="cowork-row"><span>🧍</span><span>Tu iei toate deciziile mici</span></div>
+          </div>
+          <div class="cowork-col auto">
+            <span class="cowork-col-label">🤝 Cu context — coleg care te știe</span>
+            <div class="cowork-row"><span>🎯</span><span>Știe firma, planul de conturi și regulile de categorisire</span></div>
+            <div class="cowork-row"><span>🗣️</span><span>Scrie direct pe tonul firmei</span></div>
+            <div class="cowork-row"><span>⚡</span><span>Pornește din primul mesaj, fără brief lung</span></div>
+            <div class="cowork-row"><span>✅</span><span>Propune și decide — tu doar aprobi</span></div>
+          </div>
+        </div>
+        <div class="why-band"><span class="wb-icon">🧭</span><span class="wb-text"><span class="lbl">Asta e diferența</span>Contextul organizat transformă AI-ul dintr-un instrument pe care-l ghidezi pas cu pas, într-un <b>coleg care știe unde să caute</b> și ce să facă.</span></div>
+        <div class="slide-num">64 / 84</div>
+      </div>
+    </section>
+
+    <!-- Schedule — Claude care lucrează singur la oră fixă -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Agenți · Schedule</div><h2 class="slide-title">Schedule — Claude lucrează singur, la oră fixă</h2><p class="slide-subtitle">Îi setezi o dată o sarcină recurentă (zilnic, săptămânal) → o execută <b>singur</b>, pe baza <b>knowledge-ului tău</b> (Project + Skills), și-ți lasă rezultatul gata.</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+            <div class="cards-grid" style="grid-template-columns:1fr;gap:11px;flex:0">
+              <div class="card sky" style="flex-direction:row;align-items:center;gap:14px;text-align:left">
+                <span class="card-icon" style="margin:0">📧</span>
+                <div><p class="card-title" style="margin:0 0 3px">Drafturi de răspuns, în fiecare dimineață</p><p class="card-body">„În fiecare zi la 8:00, citește emailurile noi de la clienți și <b>pregătește-mi drafturi de răspuns</b> pe baza procedurilor și a răspunsurilor noastre standard." Tu doar revizuiești și trimiți.</p></div>
+              </div>
+              <div class="card mint" style="flex-direction:row;align-items:center;gap:14px;text-align:left">
+                <span class="card-icon" style="margin:0">📊</span>
+                <div><p class="card-title" style="margin:0 0 3px">Raport recurent, fără să-l ceri</p><p class="card-body">„În fiecare vineri la 17:00, adună cheltuielile săptămânii pe categorii și <b>scrie sumarul</b> în formatul firmei." Îl găsești gata luni dimineață.</p></div>
+              </div>
+              <div class="card peach" style="flex-direction:row;align-items:center;gap:14px;text-align:left">
+                <span class="card-icon" style="margin:0">🗂️</span>
+                <div><p class="card-title" style="margin:0 0 3px">Curățenie în documente, în fiecare dimineață</p><p class="card-body">„În fiecare zi la 7:30, ia documentele noi din Drive, <b>redenumește-le după regulă</b> (furnizor_dată_tip) și <b>pune-le în folderul corect</b> pe lună și client." Vii la lucru cu totul sortat.</p></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:center;gap:14px">
+            <div class="flow-rail">
+              <div class="frnode"><div class="frn-num">⏰</div><span class="frn-ic">📅</span><div class="frn-t">Ora stabilită</div><div class="frn-d">zilnic 8:00 / vineri 17:00</div></div>
+              <div class="frarrow">→</div>
+              <div class="frnode" style="border-color:var(--primary);background:var(--primary-ultra-light)"><div class="frn-num">🧠</div><span class="frn-ic">📁</span><div class="frn-t">Pe knowledge-ul tău</div><div class="frn-d">Project + Skills = contextul firmei</div></div>
+              <div class="frarrow">→</div>
+              <div class="frnode" style="border-color:#86EFAC;background:var(--pastel-mint)"><div class="frn-num">✅</div><span class="frn-ic">📝</span><div class="frn-t">Draft / raport gata</div><div class="frn-d">tu revizuiești &amp; trimiți</div></div>
+            </div>
+            <div class="info-band"><div class="ib-icon">🔗</div><div class="ib-text"><b>De ce e puternic:</b> Schedule + Project + Skills lucrează împreună — <b>ora</b> declanșează, <b>Project-ul</b> dă contextul, <b>Skill-ul</b> dă formatul. Munca repetitivă se face fără ca tu să pornești ceva.</div></div>
+          </div>
+        </div>
+        <div class="why-band"><span class="wb-icon">🛡️</span><span class="wb-text"><span class="lbl">Regula de aur</span>Claude <b>pregătește</b>, tu <b>aprobi</b>. Mai ales la răspunsuri către clienți sau cifre — draftul e făcut, dar ultimul click rămâne al tău.</span></div>
+        <div class="slide-num">65 / 84</div>
       </div>
     </section>
 
@@ -1431,7 +2320,7 @@
           <div class="card lavender"><span class="card-icon">📄</span><p class="card-title">Generator de documente standard</p><p class="card-body">Auto-generare de documente repetitive — <b>cereri de concediu</b>, adeverințe, formulare — completate din câteva câmpuri.</p></div>
           <div class="card sky"><span class="card-icon">✅</span><p class="card-title">Checklist onboarding client</p><p class="card-body">Clientul bifează documentele aduse. Tu vezi statusul în timp real.</p></div>
         </div>
-        <div class="slide-num">41 / 59</div>
+        <div class="slide-num">66 / 84</div>
       </div>
     </section>
 
@@ -1451,9 +2340,9 @@
             <div class="practice-prompt"><span class="lbl">Exemplu prompt</span>„Construiește un <b>generator de factură fiscală</b>: completez emitent, beneficiar, descriere, cantitate, preț și TVA → aplicația calculează subtotal, TVA și total de plată și scoate factura gata de printat (MDL)."</div>
             <div class="practice-app"><b>De ce e avantajos:</b> documentele standard (factură, act, adeverință) se completează din câteva câmpuri — automatizezi rutina, scapi de greșeli la cifre și TVA.</div>
           </div>
-          <div class="practice-shot cover"><img src="assets/lovable-factura.png" alt="Lovable — Factură fiscală generată" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">🧾</span>Factură fiscală generată<span class="pth">assets/lovable-factura.png</span></div></div>
+          <div class="practice-shot cover"><img src="deck-assets/lovable-factura.png" alt="Lovable — Factură fiscală generată" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">🧾</span>Factură fiscală generată<span class="pth">assets/lovable-factura.png</span></div></div>
         </div>
-        <div class="slide-num">42 / 59</div>
+        <div class="slide-num">67 / 84</div>
       </div>
     </section>
 
@@ -1473,7 +2362,38 @@
           </tbody>
         </table>
         <div style="margin-top:14px"><div class="quote-block"><strong>Regula:</strong> dacă poți descrie procesul în pași exacți care nu se schimbă → <b>automatizare</b>. Dacă necesită judecată → AI.</div></div>
-        <div class="slide-num">43 / 59</div>
+        <div class="slide-num">68 / 84</div>
+      </div>
+    </section>
+
+    <!-- 46b Make.com vs n8n -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Modul 10 · Automatizări</div><h2 class="slide-title">Make.com vs. n8n — care instrument, când</h2><p class="slide-subtitle">Ambele fac același lucru — leagă aplicații și rulează fluxuri singure. Diferența e <b>cine le găzduiește și unde ajung datele</b>.</p></div>
+        <div class="cards-grid" style="grid-template-columns:1fr 1fr;gap:16px;flex:0;margin-bottom:12px">
+          <div class="card lavender" style="gap:6px;padding:16px 20px">
+            <p class="card-title" style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:7px;background:#6D5EF7;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:13px">M</span>Make.com <span style="font-size:11px;color:var(--muted);font-weight:600">· cloud, vizual</span></p>
+            <p class="card-body">Tragi module pe o pânză, le legi vizual. <b>Rulează în cloud-ul lor</b> — nu instalezi nimic. Cel mai ușor de pornit.</p>
+            <p class="card-body" style="margin-top:2px">✅ <b>Rapid de învățat</b> · sute de template-uri · plan gratuit (~150 facturi/lună)</p>
+            <p class="card-body">⚠️ Datele trec prin serverele Make · costul crește cu volumul mare</p>
+          </div>
+          <div class="card peach" style="gap:6px;padding:16px 20px">
+            <p class="card-title" style="display:flex;align-items:center;gap:9px"><span style="width:26px;height:26px;border-radius:7px;background:#EA4B71;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:12px">n8</span>n8n <span style="font-size:11px;color:var(--muted);font-weight:600">· self-hosted, open-source</span></p>
+            <p class="card-body">Aceeași idee vizuală, dar <b>îl poți instala pe serverul tău</b>. Gratuit și open-source dacă îl găzduiești singur.</p>
+            <p class="card-body" style="margin-top:2px">✅ <b>Datele rămân la tine</b> (GDPR) · volum nelimitat fără cost per-operație · flexibil</p>
+            <p class="card-body">⚠️ Necesită un pic de setup tehnic (server) · curbă de învățare mai abruptă</p>
+          </div>
+        </div>
+        <table class="autoai-table">
+          <thead><tr><th class="h1">Alegi…</th><th class="h2">Make.com</th><th class="h3">n8n</th></tr></thead>
+          <tbody>
+            <tr><td class="row-label" style="font-weight:700">Când</td><td>Vrei să pornești azi, fără IT</td><td>Datele nu au voie să iasă din firmă / volum mare</td></tr>
+            <tr><td class="row-label" style="font-weight:700">Date sensibile</td><td>Trec prin cloud-ul Make</td><td>Rămân pe serverul tău</td></tr>
+            <tr><td class="row-label" style="font-weight:700">Cost la scară</td><td>Crește cu nr. de operații</td><td>Fix (costul serverului), indiferent de volum</td></tr>
+          </tbody>
+        </table>
+        <div class="why-band" style="margin-top:8px;padding:10px 14px"><span class="wb-icon">🎯</span><span class="wb-text"><span class="lbl">Recomandarea pentru contabilitate</span>Începe cu <b>Make.com</b> ca să înveți logica fluxurilor. Când ajungi la <b>volume mari</b> sau <b>date de client care nu pot pleca în cloud</b> → treci pe <b>n8n self-hosted</b>.</span></div>
+        <div class="slide-num">68b / 84</div>
       </div>
     </section>
 
@@ -1489,7 +2409,7 @@
           <div class="llm-step"><div class="llm-step-num">5</div><span class="llm-step-icon">📗</span><div class="llm-step-title">Sheets · Add Row</div><div class="llm-step-desc">adaugă rândul în registru</div></div>
         </div>
         <div style="margin-top:18px"><div class="quote-block warn"><strong>⚠️ Greșeala #1:</strong> „Include file data" e pe <b>No</b> by default. Dacă uiți să-l activezi la pasul 2, AI-ul primește un fișier gol.</div></div>
-        <div class="slide-num">44 / 59</div>
+        <div class="slide-num">69 / 84</div>
       </div>
     </section>
 
@@ -1502,7 +2422,7 @@
           <div class="card mint"><span class="card-icon">⚙️</span><p class="card-title">Cum funcționează integrarea</p><p class="card-body">Emailul ajunge → Make.com îl preia → AI extrage datele → Sheets primește rândul → Drive primește fișierul. Tot automat, tot fără intervenție.</p></div>
         </div>
         <div style="margin-top:14px"><div class="quote-block"><strong>Unde găsești:</strong> make.com/templates → caută „Gmail Google Sheets" sau „invoice extraction". Plan gratuit: 1.000 operații/lună ≈ 150 facturi. Cost OpenAI ≈ $0.01/factură.</div></div>
-        <div class="slide-num">45 / 59</div>
+        <div class="slide-num">70 / 84</div>
       </div>
     </section>
 
@@ -1520,7 +2440,7 @@
           </div>
           <div class="practice-app"><b>Plan gratuit:</b> 1.000 op/lună ≈ 150 facturi. Cost OpenAI ≈ $0.01/factură.</div>
         </div>
-        <div class="slide-num">46 / 59</div>
+        <div class="slide-num">71 / 84</div>
       </div>
     </section>
 
@@ -1543,7 +2463,7 @@
             </tbody>
           </table>
         </div>
-        <div class="slide-num">47 / 59</div>
+        <div class="slide-num">72 / 84</div>
       </div>
     </section>
 
@@ -1560,7 +2480,7 @@
           </tbody>
         </table>
         <div style="margin-top:14px"><div class="quote-block"><strong>Cel mai simplu legal:</strong> dacă firma e deja pe <b>Google Workspace plătit</b>, Gemini e acoperit — DPA-ul vine automat.</div></div>
-        <div class="slide-num">48 / 59</div>
+        <div class="slide-num">73 / 84</div>
       </div>
     </section>
 
@@ -1573,7 +2493,7 @@
           <div class="card sky"><span class="card-icon">🔑</span><p class="card-title">2 · Pseudonimizare</p><p class="card-body">Cod intern per client (<b>CLI-2026-047</b>) — lucrezi cu codul; cheia rămâne la tine, în afara AI.</p></div>
           <div class="card peach"><span class="card-icon">🛡️</span><p class="card-title">3 · Google Workspace</p><p class="card-body">Cont plătit → Gemini e legal: DPA automat, datele <b>nu sunt folosite pentru antrenament</b>.</p></div>
         </div>
-        <div class="slide-num">49 / 59</div>
+        <div class="slide-num">74 / 84</div>
       </div>
     </section>
 
@@ -1598,7 +2518,7 @@
           </div>
         </div>
         <div style="margin-top:12px"><div class="quote-block"><strong>Concluzia:</strong> dacă o singură zi eliberată îți permite să preiei un client în plus sau să închizi o lună mai repede — investiția e recuperată în prima lună. Merită chiar și din bani personali, dacă firma nu acoperă.</div></div>
-        <div class="slide-num">50 / 59</div>
+        <div class="slide-num">75 / 84</div>
       </div>
     </section>
 
@@ -1618,11 +2538,11 @@
             <div class="practice-prompt" style="border-color:#7C3AED"><span class="lbl" style="color:#7C3AED">De ce e avantajos</span>Dacă ești deja pe M365, nu cumperi un sistem HR separat — și scapi de munca manuală de pontaj și acte. <b>Automatizezi rutina, te concentrezi pe finanțe.</b></div>
           </div>
           <div style="display:flex;flex-direction:column;gap:12px">
-            <div class="practice-shot cover" style="flex:1"><img src="assets/hr365-pontaj.png" alt="HR365 — Pontaj lunar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📋</span>HR365 — Pontaj lunar<span class="pth">assets/hr365-pontaj.png</span></div></div>
-            <div class="practice-shot cover" style="flex:1"><img src="assets/hr365-concedii.png" alt="HR365 — Ordine de concediu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📄</span>HR365 — Ordine de concediu<span class="pth">assets/hr365-concedii.png</span></div></div>
+            <div class="practice-shot cover" style="flex:1"><img src="deck-assets/hr365-pontaj.png" alt="HR365 — Pontaj lunar" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📋</span>HR365 — Pontaj lunar<span class="pth">assets/hr365-pontaj.png</span></div></div>
+            <div class="practice-shot cover" style="flex:1"><img src="deck-assets/hr365-concedii.png" alt="HR365 — Ordine de concediu" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📄</span>HR365 — Ordine de concediu<span class="pth">assets/hr365-concedii.png</span></div></div>
           </div>
         </div>
-        <div class="slide-num">51 / 59</div>
+        <div class="slide-num">76 / 84</div>
       </div>
     </section>
 
@@ -1640,9 +2560,9 @@
             </div>
             <div class="practice-prompt" style="border-color:#7C3AED"><span class="lbl" style="color:#7C3AED">De ce e avantajos</span>Pregătit de control (ITM) <b>fără dosare manuale</b>, conform HG 95/2009. Se leagă natural cu HR365 dacă ești pe Microsoft 365.</div>
           </div>
-          <div class="practice-shot cover"><img src="assets/ssm-digital.png" alt="SSM Digital — Instructaje" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">🦺</span>SSM Digital<span class="pth">assets/ssm-digital.png</span></div></div>
+          <div class="practice-shot cover"><img src="deck-assets/ssm-digital.png" alt="SSM Digital — Instructaje" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">🦺</span>SSM Digital<span class="pth">assets/ssm-digital.png</span></div></div>
         </div>
-        <div class="slide-num">52 / 59</div>
+        <div class="slide-num">77 / 84</div>
       </div>
     </section>
 
@@ -1670,7 +2590,7 @@
           </div>
         </div>
         <div style="margin-top:14px"><div class="quote-block"><strong>Mesaj cheie:</strong> schimbările mici și consecvente bat adoptarea haotică a tuturor tool-urilor deodată.</div></div>
-        <div class="slide-num">53 / 59</div>
+        <div class="slide-num">78 / 84</div>
       </div>
     </section>
 
@@ -1692,7 +2612,7 @@
             <div class="check-item"><span class="chk">✅</span>Pleci cu soluția aplicabilă, nu cu un exemplu pregătit</div>
           </div>
         </div>
-        <div class="slide-num">54 / 59</div>
+        <div class="slide-num">79 / 84</div>
       </div>
     </section>
 
@@ -1706,7 +2626,7 @@
           <div class="card lavender"><span class="card-icon">⚙️</span><p class="card-title">Automatizare</p><p class="card-body">Cowork · Lovable · Make.com — fluxuri care se execută singure.</p></div>
         </div>
         <div style="margin-top:14px"><div class="quote-block"><strong>Și peste tot:</strong> GDPR — anonimizezi, folosești conturi cu DPA (Workspace plătit = cel mai simplu).</div></div>
-        <div class="slide-num">55 / 59</div>
+        <div class="slide-num">80 / 84</div>
       </div>
     </section>
 
@@ -1719,7 +2639,7 @@
           <div class="stmt-row"><div class="stmt-number">~150</div><div class="stmt-body"><div class="stmt-text">facturi procesate automat lunar cu un singur scenariu Make.com, pe plan gratuit</div><div class="stmt-source">Exemplul de azi</div></div></div>
           <div class="stmt-row"><div class="stmt-number">91%</div><div class="stmt-body"><div class="stmt-text">dintre companii folosesc AI în cel puțin o capacitate în 2026 (vs. 78% în 2024)</div><div class="stmt-source">State of AI in Business, 2026</div></div></div>
         </div>
-        <div class="slide-num">56 / 59</div>
+        <div class="slide-num">81 / 84</div>
       </div>
     </section>
 
@@ -1747,7 +2667,7 @@
             </div>
           </div>
         </div>
-        <div class="slide-num">57 / 59</div>
+        <div class="slide-num">82 / 84</div>
       </div>
     </section>
 
@@ -1778,7 +2698,7 @@
             </div>
           </div>
         </div>
-        <div class="slide-num">58 / 59</div>
+        <div class="slide-num">83 / 84</div>
       </div>
     </section>
 
@@ -1796,7 +2716,7 @@
             <span class="cover-chip">+373 760 37 475</span>
           </div>
         </div>
-        <div class="slide-num" style="color:rgba(255,255,255,0.35)">59 / 59</div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">84 / 84</div>
       </div>
     </section>
 

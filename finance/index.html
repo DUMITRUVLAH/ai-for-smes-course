@@ -3,312 +3,257 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>AI for Finance — Platforma sesiunii</title>
+<title>AI in Finance — Platforma sesiunii</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet" />
 <style>
 :root{
-  --bg:hsl(220,20%,97%);--fg:hsl(222,47%,11%);--card:hsl(0,0%,100%);
-  --border:hsl(220,13%,91%);--muted-fg:hsl(220,9%,46%);--muted:hsl(220,14%,96%);
-  --primary:hsl(160,84%,32%);--primary-fg:hsl(0,0%,100%);--primary-pale:hsl(160,55%,95%);
-  --claude-pale:hsl(16,70%,96%);
-  --success:hsl(142,71%,45%);
-  --radius:14px;--radius-sm:9px;--radius-full:9999px;
-  --shadow-sm:0 1px 3px hsl(222 47% 11% / .04);
-  --shadow-md:0 4px 12px hsl(222 47% 11% / .07);
-  --shadow-lg:0 12px 24px hsl(222 47% 11% / .09);
-  --sidebar-w:220px;
-  --lavender-bg:hsl(250,80%,95%);--lavender-fg:hsl(250,70%,50%);
-  --mint-bg:hsl(158,60%,90%);--mint-fg:hsl(158,55%,35%);
-  --peach-bg:hsl(20,100%,93%);--peach-fg:hsl(20,85%,45%);
-  --sky-bg:hsl(200,78%,91%);--sky-fg:hsl(200,70%,38%);
-  --rose-bg:hsl(340,78%,93%);--rose-fg:hsl(340,65%,45%);
-  --lemon-bg:hsl(50,90%,91%);--lemon-fg:hsl(40,80%,35%);
+  --bg:#F8FAFC;--fg:#0F172A;--card:#FFFFFF;--border:#E2E8F0;--muted-fg:#64748B;--muted:#F1F5F9;
+  --primary:#2D52D4;--primary-light:#5B7CF7;--primary-pale:#EEF2FF;--practice:#7C3AED;
+  --radius:16px;--radius-sm:10px;--radius-full:9999px;
+  --shadow-sm:0 1px 3px rgba(15,23,42,.05);--shadow-md:0 4px 16px rgba(15,23,42,.08);--shadow-lg:0 16px 40px -8px rgba(15,23,42,.14);
+  --mint-bg:#DCFCE7;--mint-fg:#16A34A;--lav-bg:#EDE9FE;--lav-fg:#7C3AED;--peach-bg:#FFEDD5;--peach-fg:#EA580C;
+  --sky-bg:#E0F2FE;--sky-fg:#0284C7;--rose-bg:#FCE7F3;--rose-fg:#DB2777;--lemon-bg:#FEF9C3;--lemon-fg:#CA8A04;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:16px}
-body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;-webkit-font-smoothing:antialiased}
-.shell{display:flex;min-height:100vh}
+body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;line-height:1.5}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
-/* ── SIDEBAR ── */
-.sidebar{width:var(--sidebar-w);position:fixed;top:0;left:0;bottom:0;background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;overflow-y:auto}
-.sidebar-brand{padding:16px 14px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px}
-.brand-mark{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--primary),hsl(190,80%,40%));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff;flex-shrink:0}
-.brand-name{font-size:13px;font-weight:700;color:var(--fg)}
-.brand-sub{font-size:11px;color:var(--muted-fg)}
-.sidebar-nav{padding:10px 10px 6px;flex:1}
-.nav-section-label{font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted-fg);padding:6px 8px 4px}
-.nav-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--radius-sm);cursor:pointer;margin-bottom:2px;transition:.13s}
-.nav-item:hover{background:var(--muted)}
-.nav-item.active{background:var(--primary-pale);color:var(--primary);font-weight:600}
-.nav-icon{width:30px;height:30px;border-radius:8px;background:var(--muted);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
-.nav-item.active .nav-icon{background:var(--primary-pale)}
-.nav-label{font-size:13px;font-weight:600;line-height:1.2;flex:1}
-.nav-meta{font-size:11px;color:var(--muted-fg);font-weight:500;margin-top:2px}
-.nav-item.active .nav-meta{color:hsl(160,60%,42%)}
-.sub-nav{padding:2px 0 6px 16px}
-.sub-item{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted-fg);padding:6px 10px;border-radius:var(--radius-sm);cursor:pointer;transition:.12s}
-.sub-item:hover{color:var(--fg);background:var(--muted)}
-.sub-item.active{color:var(--primary);font-weight:600}
-.sub-dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.5}
-.sidebar-footer{padding:12px 12px 16px;border-top:1px solid var(--border)}
-.prog-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted-fg);margin-bottom:6px}
-.prog-track{height:4px;background:var(--muted);border-radius:var(--radius-full);overflow:hidden}
-.prog-fill{height:100%;width:100%;background:linear-gradient(90deg,var(--primary),hsl(190,80%,40%));border-radius:var(--radius-full)}
+/* top bar */
+.top{border-bottom:1px solid var(--border);background:var(--card);position:sticky;top:0;z-index:10}
+.top-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--practice));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff}
+.brand-name{font-size:14px;font-weight:800}
+.brand-sub{font-size:11.5px;color:var(--muted-fg)}
+.top-pill{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--primary);background:var(--primary-pale);padding:6px 13px;border-radius:var(--radius-full)}
+.top-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--primary);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
-/* ── MAIN ── */
-.main{margin-left:var(--sidebar-w);flex:1;min-height:100vh;background:var(--bg)}
-.topbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:hsla(220,20%,97%,.85);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
-.breadcrumb{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted-fg)}
-.breadcrumb b{color:var(--fg);font-weight:600}
-.topbar-pill{display:flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;letter-spacing:.03em;color:var(--success);background:hsl(142,60%,95%);padding:6px 12px;border-radius:999px}
-.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--success)}
-.page{max-width:760px;margin:0 auto;padding:36px 28px 80px}
-.page-hero{margin-bottom:28px}
-.hero-kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--primary);margin-bottom:16px}
-.kicker-n{width:22px;height:22px;border-radius:7px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800}
-.page-hero h1{font-size:32px;font-weight:800;letter-spacing:-.02em;line-height:1.12;margin-bottom:12px}
-.page-hero p{font-size:14.5px;color:var(--muted-fg);line-height:1.6;max-width:540px}
-.stat-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
-.stat-chip{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--fg);background:var(--card);border:1px solid var(--border);padding:8px 13px;border-radius:999px;box-shadow:var(--shadow-sm)}
-.stat-chip span{font-size:14px}
-.section-block{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;box-shadow:var(--shadow-sm);transition:.16s}
-.section-block:hover{box-shadow:var(--shadow-md)}
-.section-head{display:flex;align-items:center;gap:13px;padding:16px 18px;cursor:pointer;transition:.13s}
-.section-head:hover{background:hsl(220,20%,98%)}
-.section-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.section-icon.lavender{background:var(--lavender-bg)}
-.section-icon.mint{background:var(--mint-bg)}
-.section-icon.peach{background:var(--peach-bg)}
-.section-icon.sky{background:var(--sky-bg)}
-.section-icon.lemon{background:var(--lemon-bg)}
-.section-text{flex:1}
-.section-text h3{font-size:14px;font-weight:700;line-height:1.2}
-.section-text p{font-size:12px;color:var(--muted-fg);margin-top:2px}
-.section-time{font-size:11px;color:var(--muted-fg);margin-right:6px}
-.section-chevron{font-size:11px;color:var(--muted-fg);transition:transform .2s}
-.section-chevron.open{transform:rotate(180deg)}
-.section-body{padding:18px}
-.section-body.hidden{display:none}
-.pres-banner{display:flex;align-items:center;justify-content:space-between;gap:16px;background:linear-gradient(135deg,var(--primary-pale),hsl(190,70%,95%));border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:16px}
-.pres-banner-text h4{font-size:15px;font-weight:700;color:var(--fg);margin-bottom:4px}
-.pres-banner-text p{font-size:13px;color:var(--muted-fg);line-height:1.5}
-.pres-big-icon{font-size:42px;opacity:.35;flex-shrink:0}
-.btn-row{display:flex;gap:8px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;padding:11px 18px;border-radius:var(--radius-sm);border:1px solid transparent;text-decoration:none;cursor:pointer;transition:.14s}
-.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary)}
-.btn-primary:hover{background:hsl(160,84%,26%);transform:translateY(-1px);box-shadow:var(--shadow-md)}
-.btn-outline{background:var(--card);color:var(--fg);border-color:var(--border)}
-.btn-outline:hover{border-color:hsl(220,13%,78%);background:var(--muted)}
-.mat-list{display:flex;flex-direction:column;gap:10px}
-.mat-item{display:flex;align-items:center;gap:13px;padding:14px 16px;border:1px solid var(--border);border-radius:var(--radius-sm);text-decoration:none;color:var(--fg);transition:.14s;background:var(--card)}
-.mat-item:hover{border-color:hsl(160,45%,70%);background:var(--primary-pale);transform:translateY(-1px)}
-.mat-ico{width:36px;height:36px;border-radius:9px;background:var(--muted);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
-.mat-txt{flex:1}
-.mat-txt h4{font-size:13.5px;font-weight:700}
-.mat-txt p{font-size:12px;color:var(--muted-fg);margin-top:1px}
-.mat-arrow{font-size:14px;color:var(--muted-fg)}
-.callout{display:flex;flex-direction:column;gap:4px;font-size:13px;line-height:1.55;color:var(--fg);background:var(--primary-pale);border:1px solid hsl(160,45%,85%);border-radius:var(--radius-sm);padding:14px 16px;margin-top:16px}
-.callout-title{font-weight:700;font-size:12.5px}
+/* hero */
+.hero{padding:52px 0 30px}
+.hero-kicker{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary);background:var(--primary-pale);padding:6px 14px;border-radius:var(--radius-full);margin-bottom:18px}
+.hero h1{font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
+.hero h1 .y{color:var(--practice)}
+.hero p{font-size:17px;color:var(--muted-fg);max-width:720px;line-height:1.6}
+.stat-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.stat-chip{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;background:var(--card);border:1px solid var(--border);padding:8px 15px;border-radius:var(--radius-full);box-shadow:var(--shadow-sm)}
 
-.hamburger{display:none}
-@media(max-width:768px){
-  .sidebar{transform:translateX(-100%);transition:transform .2s}
-  .sidebar.open{transform:translateX(0)}
-  .main{margin-left:0}
-  .hamburger{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;border:1px solid var(--border);background:var(--card);cursor:pointer;font-size:16px}
-  .page-hero h1{font-size:26px}
-}
+/* primary CTA */
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:700;padding:13px 24px;border-radius:var(--radius-sm);transition:.15s;border:1px solid transparent}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:var(--shadow-md)}
+.btn-primary:hover{background:#2344b8;transform:translateY(-1px)}
+.btn-ghost{background:var(--card);color:var(--fg);border-color:var(--border)}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+
+/* section */
+.sec{padding:14px 0 40px}
+.sec-title{display:flex;align-items:baseline;gap:12px;margin:26px 0 6px}
+.sec-title h2{font-size:22px;font-weight:800;letter-spacing:-.01em}
+.sec-title span{font-size:13.5px;color:var(--muted-fg)}
+.sec-lead{font-size:14.5px;color:var(--muted-fg);margin-bottom:20px;max-width:720px}
+
+/* topics grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+.topic{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);transition:.16s;position:relative;overflow:hidden}
+.topic::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--practice));opacity:0;transition:.16s}
+.topic:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#c7d2fe}
+.topic:hover::before{opacity:1}
+.topic:hover .go{color:var(--primary);gap:9px}
+.t-top{display:flex;align-items:center;gap:12px}
+.t-ico{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.t-num{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--muted-fg);background:var(--muted);padding:4px 10px;border-radius:var(--radius-full)}
+.t-title{font-size:16.5px;font-weight:800;line-height:1.25}
+.t-desc{font-size:13.5px;color:var(--muted-fg);line-height:1.5;flex:1}
+.go{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--muted-fg);transition:.16s}
+.ic-mint{background:var(--mint-bg);color:var(--mint-fg)}.ic-lav{background:var(--lav-bg);color:var(--lav-fg)}
+.ic-peach{background:var(--peach-bg);color:var(--peach-fg)}.ic-sky{background:var(--sky-bg);color:var(--sky-fg)}
+.ic-rose{background:var(--rose-bg);color:var(--rose-fg)}.ic-lemon{background:var(--lemon-bg);color:var(--lemon-fg)}
+.ic-blue{background:var(--primary-pale);color:var(--primary)}
+
+/* gems band */
+.band{background:linear-gradient(135deg,#0B1120,#1E3A8A 60%,#3B2F8F);border-radius:var(--radius);padding:28px 30px;color:#fff;margin-top:14px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.band-txt{flex:1;min-width:260px}
+.band-txt h3{font-size:20px;font-weight:800;margin-bottom:6px}
+.band-txt p{font-size:14px;color:rgba(255,255,255,.75);line-height:1.55}
+.band .btn-primary{background:#fff;color:var(--primary)}
+.band .btn-primary:hover{background:#eef2ff}
+.band-course{background:linear-gradient(135deg,#1E1033,#4C1D95 60%,#2D52D4)}
+.band-course .btn-primary{color:var(--practice)}
+
+/* footer */
+.foot{border-top:1px solid var(--border);padding:26px 0;margin-top:20px;color:var(--muted-fg);font-size:13px;text-align:center}
+.foot b{color:var(--fg)}
 </style>
 </head>
 <body>
-<div class="shell">
-
-  <!-- ════ SIDEBAR ════ -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand">
-      <div class="brand-mark">AIF</div>
-      <div>
-        <div class="brand-name">AI for Finance</div>
-        <div class="brand-sub">Platforma sesiunii</div>
-      </div>
+<div class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <div class="brand-mark">V</div>
+      <div><div class="brand-name">Vector Academy</div><div class="brand-sub">AI in Finance / Contabilitate</div></div>
     </div>
-
-    <nav class="sidebar-nav">
-      <span class="nav-section-label">Program</span>
-
-      <div class="nav-item active" id="nav1">
-        <div class="nav-icon">💰</div>
-        <div class="nav-label">
-          Sesiunea Finance
-          <div class="nav-meta">AI aplicat în finanțe</div>
-        </div>
-      </div>
-      <div class="sub-nav" id="sub1">
-        <div class="sub-item active" onclick="scrollToSec('prezentare',this)"><span class="sub-dot"></span>Prezentare</div>
-        <div class="sub-item" onclick="scrollToSec('tehnologii',this)"><span class="sub-dot"></span>Tehnologii</div>
-        <div class="sub-item" onclick="scrollToSec('gems',this)"><span class="sub-dot"></span>Gems</div>
-        <div class="sub-item" onclick="scrollToSec('materiale',this)"><span class="sub-dot"></span>Materiale</div>
-      </div>
-
-      <span class="nav-section-label" style="margin-top:8px">Module</span>
-
-      <a href="claude.html" class="nav-item" id="nav2" style="text-decoration:none;color:inherit">
-        <div class="nav-icon" style="background:var(--claude-pale)"><img src="../assets/logos/claude.svg" alt="Claude" style="width:17px;height:17px"></div>
-        <div class="nav-label">
-          Claude
-          <div class="nav-meta">Tot ce poți face</div>
-        </div>
-      </a>
-      <div class="sub-nav">
-        <a href="claude.html#moduri" class="sub-item" style="text-decoration:none"><span class="sub-dot"></span>Chat · Cowork · Code</a>
-        <a href="claude.html#skills" class="sub-item" style="text-decoration:none"><span class="sub-dot"></span>Skills</a>
-        <a href="claude.html#projects" class="sub-item" style="text-decoration:none"><span class="sub-dot"></span>Projects</a>
-        <a href="claude.html#mcp" class="sub-item" style="text-decoration:none"><span class="sub-dot"></span>Conectori (MCP)</a>
-      </div>
-    </nav>
-
-    <div class="sidebar-footer">
-      <a href="tehnologii.html" style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--fg);text-decoration:none;padding:8px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);margin-bottom:8px">🛠️ Lista de tehnologii</a>
-      <a href="https://t.me/+E9aPhptp_2QxZDdk" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:#fff;background:hsl(202,85%,50%);text-decoration:none;padding:8px 10px;border-radius:var(--radius-sm);margin-bottom:12px">📣 Canalul de Telegram</a>
-      <div class="prog-label"><span>Program</span><span>v1</span></div>
-      <div class="prog-track"><div class="prog-fill"></div></div>
-    </div>
-  </aside>
-
-  <!-- ════ MAIN ════ -->
-  <main class="main">
-    <div class="topbar">
-      <div style="display:flex;align-items:center;gap:12px">
-        <button class="hamburger" onclick="toggleSidebar()">☰</button>
-        <div class="breadcrumb">AI for Finance <span style="color:var(--border)">›</span> <b>Sesiunea Finance</b></div>
-      </div>
-      <div class="topbar-pill"><span class="pill-dot"></span>SESIUNE ACTIVĂ</div>
-    </div>
-
-    <div class="page" id="lesson-1">
-      <div class="page-hero">
-        <div class="hero-kicker"><div class="kicker-n">1</div>Sesiunea Finance</div>
-        <h1>AI Aplicat în Finanțe<br>— de la prompt la flux complet</h1>
-        <p>Prezentarea completă și materialele practice ale sesiunii: prompt engineering, ecosistem Google &amp; Claude, Gems, Projects, Claude în Excel, Skills, MCP, automatizări și securitatea datelor financiare.</p>
-      </div>
-
-      <div class="stat-row">
-        <div class="stat-chip"><span>📊</span> 50 slide-uri</div>
-        <div class="stat-chip"><span>🛠️</span> Hands-on</div>
-        <div class="stat-chip"><span>🤖</span> Claude · Gemini · MCP</div>
-        <div class="stat-chip"><span>🔒</span> Securitate date</div>
-      </div>
-
-      <!-- ── PREZENTARE ── -->
-      <div class="section-block" id="prezentare">
-        <div class="section-head" onclick="toggleSec('b-prezentare',this)">
-          <div class="section-icon mint">📊</div>
-          <div class="section-text">
-            <h3>Prezentarea sesiunii</h3>
-            <p>Deck-ul complet AI for Finance — toate modulele</p>
-          </div>
-          <span class="section-time">~3h</span>
-          <span class="section-chevron open">▼</span>
-        </div>
-        <div class="section-body" id="b-prezentare">
-          <div class="pres-banner">
-            <div class="pres-banner-text">
-              <h4>Sesiunea Finance — Slides (v1)</h4>
-              <p>Prompt engineering → ecosisteme AI → Gems &amp; Projects →<br>Claude în Excel → Skills &amp; MCP → automatizări &amp; securitate.</p>
-            </div>
-            <div class="pres-big-icon">🎞️</div>
-          </div>
-          <div class="btn-row">
-            <a href="slides.html" class="btn btn-primary">↗ Deschide prezentarea</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── TEHNOLOGII ── -->
-      <div class="section-block" id="tehnologii">
-        <div class="section-head" onclick="toggleSec('b-tehnologii',this)">
-          <div class="section-icon sky">🛠️</div>
-          <div class="section-text">
-            <h3>Tehnologii &amp; tool-uri</h3>
-            <p>Ce face fiecare instrument și când îl alegi în finanțe</p>
-          </div>
-          <span class="section-time">referință</span>
-          <span class="section-chevron open">▼</span>
-        </div>
-        <div class="section-body" id="b-tehnologii">
-          <p style="font-size:13.5px;color:var(--muted-fg);line-height:1.6;margin-bottom:14px">Toate instrumentele din sesiune, grupate pe flux: asistenți AI, <b style="color:var(--fg)">Claude (Chat · Cowork · Code)</b>, documente &amp; Excel, Google Workspace &amp; Gems, conectori &amp; automatizare. Fiecare cu „la ce e bun".</p>
-          <a href="tehnologii.html" class="btn btn-primary">↗ Deschide lista de tehnologii</a>
-        </div>
-      </div>
-
-      <!-- ── GEMS ── -->
-      <div class="section-block" id="gems">
-        <div class="section-head" onclick="toggleSec('b-gems',this)">
-          <div class="section-icon lavender">🤖</div>
-          <div class="section-text">
-            <h3>4 Gems gata de creat</h3>
-            <p>Asistenți custom pentru muncă juridică și financiară</p>
-          </div>
-          <span class="section-time">hands-on</span>
-          <span class="section-chevron open">▼</span>
-        </div>
-        <div class="section-body" id="b-gems">
-          <p style="font-size:13.5px;color:var(--muted-fg);line-height:1.6;margin-bottom:14px">Patru asistenți custom (Gems) gata de creat în Gemini, cu prompturile complete: <b style="color:var(--fg)">verificator de contracte</b>, <b style="color:var(--fg)">extractor de rechizite bancare</b>, <b style="color:var(--fg)">analist cashflow</b> și <b style="color:var(--fg)">audit de consistență documente</b>. Fiecare are buton de copiere directă.</p>
-          <a href="materiale/gems-prompts.html" class="btn btn-primary">↗ Deschide cele 4 Gems</a>
-        </div>
-      </div>
-
-      <!-- ── MATERIALE ── -->
-      <div class="section-block" id="materiale">
-        <div class="section-head" onclick="toggleSec('b-materiale',this)">
-          <div class="section-icon peach">📦</div>
-          <div class="section-text">
-            <h3>Materiale practice</h3>
-            <p>Tot ce folosești în partea hands-on</p>
-          </div>
-          <span class="section-time">~15 min</span>
-          <span class="section-chevron open">▼</span>
-        </div>
-        <div class="section-body" id="b-materiale">
-          <div class="mat-list">
-            <a href="materiale/gems-prompts.html" class="mat-item">
-              <div class="mat-ico">🤖</div>
-              <div class="mat-txt">
-                <h4>Prompturi Gems — juridic, bancar, cashflow, audit</h4>
-                <p>Cele 4 instrucțiuni complete, cu copy-paste direct în Gemini.</p>
-              </div>
-              <div class="mat-arrow">↗</div>
-            </a>
-          </div>
-          <div class="callout">
-            <span class="callout-title">💡 Cum folosești materialele</span>
-            Le parcurgi în paralel cu modulele de pe slide-uri. Prompturile Gems corespund modulului despre asistenți custom — le creezi live în sesiune și le testezi cu un document real.
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </main>
+    <div class="top-pill"><span class="dot"></span>SESIUNE ACTIVĂ</div>
+  </div>
 </div>
 
-<script>
-function toggleSec(id, hdr){
-  const body=document.getElementById(id);
-  const chev=hdr.querySelector('.section-chevron');
-  const hidden=body.classList.toggle('hidden');
-  chev.classList.toggle('open',!hidden);
-}
-function scrollToSec(id,el){
-  const t=document.getElementById(id);
-  if(t)window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-70,behavior:'smooth'});
-  document.querySelectorAll('.sub-item').forEach(s=>s.classList.remove('active'));
-  el.classList.add('active');
-  if(window.innerWidth<=768)closeSidebar();
-}
-function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open')}
-function closeSidebar(){document.getElementById('sidebar').classList.remove('open')}
-</script>
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-kicker">🎯 Platforma sesiunii</div>
+    <h1>AI Aplicat în Finanțe<br>— de la răspunsuri la <span class="y">livrabile</span></h1>
+    <p>Prezentarea completă și subiectele sesiunii: prompt engineering, ecosistem Google &amp; Claude, NotebookLM, Gems, Projects, e-Factura API, MCP, agenți AI, Lovable, automatizări și securitatea datelor financiare. Apasă pe orice subiect și te duce direct la slide-ul lui.</p>
+    <div class="stat-row">
+      <div class="stat-chip"><span>📊</span> 89 slide-uri</div>
+      <div class="stat-chip"><span>🛠️</span> Hands-on</div>
+      <div class="stat-chip"><span>🤖</span> Claude · Gemini · NotebookLM</div>
+      <div class="stat-chip"><span>🧾</span> e-Factura &amp; GDPR</div>
+    </div>
+    <div class="cta-row">
+      <a href="slides.html" class="btn btn-primary">↗ Deschide prezentarea completă</a>
+      <a href="slides.html#/7" class="btn btn-ghost">▸ Începe de la Modulul 1</a>
+      <a href="materiale/gems-prompts.html" class="btn btn-ghost">📎 Prompturi Gems</a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><h2>Sari direct la un subiect</h2><span>fiecare card deschide prezentarea la slide-ul potrivit</span></div>
+    <p class="sec-lead">Cele 15 teme ale sesiunii. Click → te duce fix la modulul respectiv în deck.</p>
+    <div class="grid">
+
+      <a class="topic" href="slides.html#/7">
+        <div class="t-top"><div class="t-ico ic-blue">🧠</div><span class="t-num">Modul 1</span></div>
+        <div class="t-title">Prompt Engineering</div>
+        <div class="t-desc">Anatomia promptului, zero-shot, few-shot, multi-prompt în cascadă, meta-prompting.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/14">
+        <div class="t-top"><div class="t-ico ic-sky">🔵</div><span class="t-num">Modul 2</span></div>
+        <div class="t-title">Ecosistem Google</div>
+        <div class="t-desc">Gemini în Workspace, Deep Research — ore de research în minute.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/17">
+        <div class="t-top"><div class="t-ico ic-peach">📓</div><span class="t-num">Modul 2</span></div>
+        <div class="t-title">NotebookLM</div>
+        <div class="t-desc">Bibliotecă de documente inteligentă, verificarea unui registru întreg pas cu pas, prezentări din surse.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/22">
+        <div class="t-top"><div class="t-ico ic-lav">💎</div><span class="t-num">Modul 3</span></div>
+        <div class="t-title">Gems — asistenți custom</div>
+        <div class="t-desc">Asistentul tău configurat o dată: Gem „Extragere + reconciliere facturi" care îți generează și PDF-ul gata făcut.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/26">
+        <div class="t-top"><div class="t-ico ic-mint">📁</div><span class="t-num">Modul 4</span></div>
+        <div class="t-title">Projects</div>
+        <div class="t-desc">Un dosar permanent cu context — eligibilitate, documente și istoric într-un singur loc.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/28">
+        <div class="t-top"><div class="t-ico ic-lemon">💻</div><span class="t-num">Bonus</span></div>
+        <div class="t-title">Ollama — AI offline</div>
+        <div class="t-desc">Un LLM care rulează local, pe calculatorul tău — pentru date sensibile care nu pleacă nicăieri.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/29">
+        <div class="t-top"><div class="t-ico ic-blue">🧾</div><span class="t-num">e-Factura</span></div>
+        <div class="t-title">e-Factura API</div>
+        <div class="t-desc">API-ul oficial SFS, utilizatorul API care semnează facturile și tool-ul Vector care face toată bucla singur.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/32">
+        <div class="t-top"><div class="t-ico ic-peach">🟠</div><span class="t-num">Claude</span></div>
+        <div class="t-title">Claude — Excel, Cowork, Skills</div>
+        <div class="t-desc">Analiză financiară fără formule, Cowork, skill de reconciliere și documente reale generate, nu doar text.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/43">
+        <div class="t-top"><div class="t-ico ic-blue">🔌</div><span class="t-num">Claude</span></div>
+        <div class="t-title">MCP &amp; conectare</div>
+        <div class="t-desc">API vs MCP, conectori pentru 1C, extensia Chrome, Google Drive, Gmail — și fluxul Gmail → Claude → Excel.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/54">
+        <div class="t-top"><div class="t-ico ic-lav">🤖</div><span class="t-num">Agenți AI</span></div>
+        <div class="t-title">Agenți AI</div>
+        <div class="t-desc">Bucla de tool-use, chaining, routing, paralelizare, orchestrator — un agent financiar cap-coadă, CLAUDE.md.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/69">
+        <div class="t-top"><div class="t-ico ic-rose">💜</div><span class="t-num">Modul 9</span></div>
+        <div class="t-title">Lovable — aplicații fără cod</div>
+        <div class="t-desc">De la idee la aplicație funcțională: generator de factură fiscală și mini-aplicații pentru echipă.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/71">
+        <div class="t-top"><div class="t-ico ic-sky">⚙️</div><span class="t-num">Modul 10</span></div>
+        <div class="t-title">Automatizări — Make &amp; n8n</div>
+        <div class="t-desc">Automatizare vs AI, fluxul „Email cu factură → Google Sheets", template-uri gata făcute.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/76">
+        <div class="t-top"><div class="t-ico ic-rose">🔒</div><span class="t-num">Modul 11</span></div>
+        <div class="t-title">Securitate &amp; GDPR</div>
+        <div class="t-desc">Ce NU introduci în AI, cont gratuit vs plătit (DPA), cum lucrezi eficient fără să expui date, costul real.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/80">
+        <div class="t-top"><div class="t-ico ic-mint">🧰</div><span class="t-num">Lifehacks</span></div>
+        <div class="t-title">Lifehacks</div>
+        <div class="t-desc">HR365 (pontaj &amp; ordine automate) și SSM Digital (securitatea muncii, fără hârtii).</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/83">
+        <div class="t-top"><div class="t-ico ic-lemon">🎯</div><span class="t-num">Final</span></div>
+        <div class="t-title">Bring Your Own Problem</div>
+        <div class="t-desc">Alege UN task din munca ta și construiește soluția în sesiune — plus ce duci acasă azi.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="band">
+      <div class="band-txt">
+        <h3>💎 Gem „Extragere + reconciliere facturi"</h3>
+        <p>Asistent custom cu promptul complet: extrage datele din facturi, le reconciliază cu extrasul și îți generează PDF-ul gata făcut — nu doar text.</p>
+      </div>
+      <a href="slides.html#/22" class="btn btn-primary">↗ Vezi Gems pentru finanțe</a>
+    </div>
+
+    <div class="band band-course">
+      <div class="band-txt">
+        <h3>🚀 Curs nou: AI Agents cu VS Code + Claude — 2 ore</h3>
+        <p>Hands-on pentru echipa ta: construiești agenți AI reali în VS Code cu Claude — de la primul prompt la un agent care lucrează singur pe task-urile tale. Rezervă o sesiune.</p>
+      </div>
+      <a href="https://calendly.com/vlahdumitru/trainings-angaja-i" target="_blank" rel="noopener" class="btn btn-primary">📅 Programează pe Calendly</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <b>Vector Academy</b> · AI in Finance / Contabilitate · Trainer: Vlah Dumitru — <b>vectoracademy.ro</b>
+  </div>
+</main>
 </body>
 </html>
