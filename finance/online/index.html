@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI in Finance — Lecția 1 (Online)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#F8FAFC;--fg:#0F172A;--card:#FFFFFF;--border:#E2E8F0;--muted-fg:#64748B;--muted:#F1F5F9;
+  --primary:#2D52D4;--primary-light:#5B7CF7;--primary-pale:#EEF2FF;--practice:#7C3AED;
+  --radius:16px;--radius-sm:10px;--radius-full:9999px;
+  --shadow-sm:0 1px 3px rgba(15,23,42,.05);--shadow-md:0 4px 16px rgba(15,23,42,.08);--shadow-lg:0 16px 40px -8px rgba(15,23,42,.14);
+  --mint-bg:#DCFCE7;--mint-fg:#16A34A;--lav-bg:#EDE9FE;--lav-fg:#7C3AED;--peach-bg:#FFEDD5;--peach-fg:#EA580C;
+  --sky-bg:#E0F2FE;--sky-fg:#0284C7;--rose-bg:#FCE7F3;--rose-fg:#DB2777;--lemon-bg:#FEF9C3;--lemon-fg:#CA8A04;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Onest',system-ui,sans-serif;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;line-height:1.5}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* top bar */
+.top{border-bottom:1px solid var(--border);background:var(--card);position:sticky;top:0;z-index:10}
+.top-inner{max-width:1080px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--primary),var(--practice));display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff}
+.brand-name{font-size:14px;font-weight:800}
+.brand-sub{font-size:11.5px;color:var(--muted-fg)}
+.top-pill{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:var(--primary);background:var(--primary-pale);padding:6px 13px;border-radius:var(--radius-full)}
+.top-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--primary);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* hero */
+.hero{padding:52px 0 30px}
+.hero-kicker{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--primary);background:var(--primary-pale);padding:6px 14px;border-radius:var(--radius-full);margin-bottom:18px}
+.hero h1{font-size:40px;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:14px}
+.hero h1 .y{color:var(--practice)}
+.hero p{font-size:17px;color:var(--muted-fg);max-width:720px;line-height:1.6}
+.stat-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.stat-chip{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;background:var(--card);border:1px solid var(--border);padding:8px 15px;border-radius:var(--radius-full);box-shadow:var(--shadow-sm)}
+
+/* primary CTA */
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:700;padding:13px 24px;border-radius:var(--radius-sm);transition:.15s;border:1px solid transparent}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:var(--shadow-md)}
+.btn-primary:hover{background:#2344b8;transform:translateY(-1px)}
+.btn-ghost{background:var(--card);color:var(--fg);border-color:var(--border)}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+
+/* section */
+.sec{padding:14px 0 40px}
+.sec-title{display:flex;align-items:baseline;gap:12px;margin:26px 0 6px}
+.sec-title h2{font-size:22px;font-weight:800;letter-spacing:-.01em}
+.sec-title span{font-size:13.5px;color:var(--muted-fg)}
+.sec-lead{font-size:14.5px;color:var(--muted-fg);margin-bottom:20px;max-width:720px}
+
+/* topics grid */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}.hero h1{font-size:32px}}
+.topic{display:flex;flex-direction:column;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-sm);transition:.16s;position:relative;overflow:hidden}
+.topic::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary),var(--practice));opacity:0;transition:.16s}
+.topic:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#c7d2fe}
+.topic:hover::before{opacity:1}
+.topic:hover .go{color:var(--primary);gap:9px}
+.t-top{display:flex;align-items:center;gap:12px}
+.t-ico{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.t-num{margin-left:auto;font-size:11.5px;font-weight:700;color:var(--muted-fg);background:var(--muted);padding:4px 10px;border-radius:var(--radius-full)}
+.t-title{font-size:16.5px;font-weight:800;line-height:1.25}
+.t-desc{font-size:13.5px;color:var(--muted-fg);line-height:1.5;flex:1}
+.go{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--muted-fg);transition:.16s}
+.ic-mint{background:var(--mint-bg);color:var(--mint-fg)}.ic-lav{background:var(--lav-bg);color:var(--lav-fg)}
+.ic-peach{background:var(--peach-bg);color:var(--peach-fg)}.ic-sky{background:var(--sky-bg);color:var(--sky-fg)}
+.ic-rose{background:var(--rose-bg);color:var(--rose-fg)}.ic-lemon{background:var(--lemon-bg);color:var(--lemon-fg)}
+.ic-blue{background:var(--primary-pale);color:var(--primary)}
+
+/* next lesson band */
+.band{background:linear-gradient(135deg,#0B1120,#1E3A8A 60%,#3B2F8F);border-radius:var(--radius);padding:28px 30px;color:#fff;margin-top:14px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.band-txt{flex:1;min-width:260px}
+.band-txt h3{font-size:20px;font-weight:800;margin-bottom:6px}
+.band-txt p{font-size:14px;color:rgba(255,255,255,.75);line-height:1.55}
+.band .btn-primary{background:#fff;color:var(--primary)}
+.band .btn-primary:hover{background:#eef2ff}
+.band-locked{background:linear-gradient(135deg,#1E1033,#4C1D95 60%,#2D52D4);opacity:.75}
+.band-locked .btn-ghost{background:rgba(255,255,255,.08);color:#fff;border-color:rgba(255,255,255,.25)}
+
+/* footer */
+.foot{border-top:1px solid var(--border);padding:26px 0;margin-top:20px;color:var(--muted-fg);font-size:13px;text-align:center}
+.foot b{color:var(--fg)}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <div class="brand-mark">V</div>
+      <div><div class="brand-name">Vector Academy</div><div class="brand-sub">AI in Finance / Contabilitate — Online</div></div>
+    </div>
+    <div class="top-pill"><span class="dot"></span>LECȚIA 1 / 3</div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="hero-kicker">🎯 Curs online · Lecția 1</div>
+    <h1>AI Aplicat în Finanțe<br>— <span class="y">Lecția 1</span>: de la prompt la primul livrabil</h1>
+    <p>Prima din cele 3 lecții live online. Acoperă prompt engineering, securitatea datelor, AI local (Ollama), ecosistemul Google (Workspace, Deep Research, NotebookLM), Gems, Projects și integrarea cu API-ul e-Factura. Claude și agenții AI vin în Lecția 2. Apasă pe orice subiect și te duce direct la slide-ul lui.</p>
+    <div class="stat-row">
+      <div class="stat-chip"><span>📊</span> 56 slide-uri</div>
+      <div class="stat-chip"><span>🛠️</span> Hands-on</div>
+      <div class="stat-chip"><span>🔵</span> Gemini · NotebookLM · Gems</div>
+      <div class="stat-chip"><span>🧾</span> e-Factura API</div>
+    </div>
+    <div class="cta-row">
+      <a href="slides.html" class="btn btn-primary">↗ Deschide prezentarea completă</a>
+      <a href="slides.html#/13" class="btn btn-ghost">▸ Începe de la Modulul 1</a>
+      <a href="../materiale/gems-prompts.html" class="btn btn-ghost">📎 Prompturi Gems</a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-title"><h2>Sari direct la un subiect</h2><span>fiecare card deschide prezentarea la slide-ul potrivit</span></div>
+    <p class="sec-lead">Temele Lecției 1. Click → te duce fix la modulul respectiv în deck.</p>
+    <div class="grid">
+
+      <a class="topic" href="slides.html#/13">
+        <div class="t-top"><div class="t-ico ic-blue">🧠</div><span class="t-num">Modul 1</span></div>
+        <div class="t-title">Prompt Engineering</div>
+        <div class="t-desc">Anatomia promptului, zero-shot, few-shot, multi-prompt în cascadă, meta-prompting.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/19">
+        <div class="t-top"><div class="t-ico ic-lav">🧩</div><span class="t-num">Modul 1</span></div>
+        <div class="t-title">Context &amp; memorie</div>
+        <div class="t-desc">Context window, ce ține minte AI-ul de la o conversație la alta, de ce compactarea îl face să „uite".</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/23">
+        <div class="t-top"><div class="t-ico ic-lemon">💰</div><span class="t-num">Modul 1</span></div>
+        <div class="t-title">Costuri reale</div>
+        <div class="t-desc">AI-ul costă bani reali — cum lucrezi eficient ca să nu lovești o limită la mijlocul lucrului.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/26">
+        <div class="t-top"><div class="t-ico ic-rose">🔒</div><span class="t-num">Modul 1</span></div>
+        <div class="t-title">Securitate &amp; date</div>
+        <div class="t-desc">Companii cu operare în Europa, regula de aur, anonimizarea datelor înainte să le dai la AI, DPA.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/32">
+        <div class="t-top"><div class="t-ico ic-peach">💻</div><span class="t-num">Bonus</span></div>
+        <div class="t-title">Ollama — AI offline</div>
+        <div class="t-desc">Un LLM care rulează local, pe calculatorul tău — anonimizezi înainte să trimiți datele în cloud.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/36">
+        <div class="t-top"><div class="t-ico ic-sky">🔵</div><span class="t-num">Modul 2</span></div>
+        <div class="t-title">Ecosistem Google</div>
+        <div class="t-desc">Gemini în Google Workspace, conturi conectate, Deep Research — ore de research în minute.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/39">
+        <div class="t-top"><div class="t-ico ic-peach">📓</div><span class="t-num">Modul 2</span></div>
+        <div class="t-title">NotebookLM</div>
+        <div class="t-desc">Bibliotecă de documente inteligentă, verificarea unui registru întreg pas cu pas, reconcilieri din mai multe surse.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/48">
+        <div class="t-top"><div class="t-ico ic-lav">💎</div><span class="t-num">Modul 3</span></div>
+        <div class="t-title">Gems — asistenți custom</div>
+        <div class="t-desc">Asistentul tău configurat o dată: Gem „Extragere + reconciliere facturi" care îți generează și PDF-ul gata făcut.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/52">
+        <div class="t-top"><div class="t-ico ic-mint">📁</div><span class="t-num">Modul 4</span></div>
+        <div class="t-title">Projects</div>
+        <div class="t-desc">Un dosar permanent cu context — eligibilitate, documente și istoric într-un singur loc.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+      <a class="topic" href="slides.html#/54">
+        <div class="t-top"><div class="t-ico ic-blue">🧾</div><span class="t-num">Integrare</span></div>
+        <div class="t-title">e-Factura API</div>
+        <div class="t-desc">API-ul oficial, utilizatorul API care semnează facturile și tool-ul Vector care face toată bucla singur.</div>
+        <span class="go">Deschide →</span>
+      </a>
+
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="band">
+      <div class="band-txt">
+        <h3>💎 Gem „Extragere + reconciliere facturi"</h3>
+        <p>Asistent custom cu promptul complet: extrage datele din facturi, le reconciliază cu extrasul și îți generează PDF-ul gata făcut — nu doar text.</p>
+      </div>
+      <a href="slides.html#/48" class="btn btn-primary">↗ Vezi Gems pentru finanțe</a>
+    </div>
+
+    <div class="band band-locked">
+      <div class="band-txt">
+        <h3>🔒 Lecția 2 — Claude: Excel, date și proiecte</h3>
+        <p>Claude direct în Excel, Claude Projects, Cowork, Skills, MCP și agenți AI financiari. Vine după Lecția 1.</p>
+      </div>
+      <a href="#" class="btn btn-ghost" style="pointer-events:none">În curând</a>
+    </div>
+
+    <div class="band">
+      <div class="band-txt">
+        <h3>📅 Sesiune individuală cu trainerul</h3>
+        <p>Vrei să lucrăm 1-la-1 pe cazul tău — un flux, un Gem, un agent pentru munca ta? Programează direct o sesiune individuală.</p>
+      </div>
+      <a href="https://calendly.com/vlahdumitru/trainings-angaja-i" target="_blank" rel="noopener" class="btn btn-primary">📅 Programează pe Calendly</a>
+    </div>
+  </section>
+
+  <div class="foot">
+    <b>Vector Academy</b> · AI in Finance — Lecția 1 (Online) · Trainer: Vlah Dumitru — <b>vectoracademy.ro</b>
+  </div>
+</main>
+</body>
+</html>
