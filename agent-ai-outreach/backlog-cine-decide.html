@@ -1,0 +1,77 @@
+<!--
+  BACKLOG — slide scos din index.html pe 30 iul 2026.
+  Motiv: Dima a cerut să fie pus deoparte ("dacă ceva, voi reveni la el"), nu era șters definitiv.
+
+  Ca să-l repui în deck:
+  1. Copiază blocul <section>...</section> de mai jos înapoi în index.html, la poziția dorită.
+  2. Copiază blocul <style> de mai jos înapoi în <style> din index.html (secțiunea DECISION).
+  3. Renumerotează comentariile "<!-- N LABEL -->" și contoarele "NN / total" din tot fișierul.
+-->
+
+<style>
+  /* ============ DECISION (Cine decide următorul pas?) ============ */
+  .decision-layout { display: grid; grid-template-columns: 250px 1fr; gap: 22px; flex: 1; min-height: 0; }
+  .decision-key { padding: 26px; background: linear-gradient(160deg, #0F172A 0%, #1E3A8A 100%); color: #fff; border-radius: var(--radius); display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+  .decision-key h3 { font-size: 25px; line-height: 1.15; }
+  .decision-key p { color: rgba(255,255,255,.75); font-size: 15px; line-height: 1.5; }
+  .decision-key .key-line { width: 48px; height: 4px; background: var(--primary-light); border-radius: 100px; }
+  .decision-key .key-small { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--primary-light); }
+  .decision-key .key-q { color: #fff; font-size: 17px; font-weight: 600; line-height: 1.4; }
+  .decision-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; min-height: 0; }
+  .decision-card { padding: 20px 18px; border-radius: var(--radius); border: 1px solid var(--border); border-top: 4px solid var(--practice); background: #fff; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 9px; min-height: 0; overflow: hidden; }
+  .decision-card:nth-child(2) { border-top-color: #0EA5E9; }
+  .decision-card:nth-child(3) { border-top-color: var(--success); }
+  .decision-card:nth-child(4) { border-top-color: var(--warning); }
+  .decision-card svg { width: 26px; height: 26px; color: var(--practice); }
+  .decision-card:nth-child(2) svg { color: #0284C7; }
+  .decision-card:nth-child(3) svg { color: #16A34A; }
+  .decision-card:nth-child(4) svg { color: #D97706; }
+  .decision-card h3 { font-size: 20px; }
+  .decision-card p { color: var(--muted); font-size: 14px; line-height: 1.45; }
+  .decision-answer { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border); }
+  .decision-answer span { display: block; font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+  .decision-answer strong { display: block; margin-top: 5px; min-height: 36px; color: var(--primary); font-size: 14px; font-weight: 800; line-height: 1.25; }
+</style>
+
+<!-- CINE DECIDE -->
+<section>
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Responsabilitate</div>
+      <h2 class="slide-title">Cine decide următorul pas?</h2>
+      <p class="slide-subtitle">Aici apare diferența dintre „folosim mai mulți agenți” și „avem un sistem care știe ce urmează”.</p>
+    </div>
+    <div class="decision-layout">
+      <div class="decision-key">
+        <h3>Decizia este cheia.</h3>
+        <p>Nu numărul de tool-uri. Nu faptul că „AI-ul face ceva”. Ci cine deține ordinea pașilor.</p>
+        <div class="key-line"></div>
+        <span class="key-small">întrebarea de diagnostic</span>
+        <p class="key-q">„Dacă acest pas se termină acum, cine pornește următorul?”</p>
+      </div>
+      <div class="decision-grid">
+        <div class="decision-card">
+          <i data-lucide="bot"></i><h3>Subagent</h3>
+          <p>Un worker pe care agentul principal îl pornește pentru o sarcină.</p>
+          <div class="decision-answer"><span>următorul pas</span><strong>Agentul principal, pas cu pas</strong></div>
+        </div>
+        <div class="decision-card">
+          <i data-lucide="book-open-check"></i><h3>Skill</h3>
+          <p>Instrucțiuni și reguli pe care un agent le urmează când are nevoie de o competență.</p>
+          <div class="decision-answer"><span>următorul pas</span><strong>Agentul, ghidat de prompt + skill</strong></div>
+        </div>
+        <div class="decision-card">
+          <i data-lucide="users-round"></i><h3>Agent team</h3>
+          <p>Mai multe sesiuni coordonate de un lead care le distribuie și verifică.</p>
+          <div class="decision-answer"><span>următorul pas</span><strong>Lead agentul, pas cu pas</strong></div>
+        </div>
+        <div class="decision-card">
+          <i data-lucide="workflow"></i><h3>Workflow</h3>
+          <p>Un script sau runtime cu pași și reguli definite dinainte.</p>
+          <div class="decision-answer"><span>următorul pas</span><strong>Scriptul / runtime-ul</strong></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide-num">— / —</div>
+  </div>
+</section>

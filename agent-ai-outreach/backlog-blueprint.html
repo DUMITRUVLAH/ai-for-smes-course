@@ -1,0 +1,63 @@
+<!--
+  BACKLOG — slide scos din index.html pe 30 iul 2026.
+  Motiv: devenise redundant după ce s-au adăugat slide-urile separator de etapă
+  (Stage Harvest / Write / QA / Send / Monitor) — acelea narează deja pipeline-ul
+  pas cu pas, iar acest slide încerca să arate totul pe un singur ecran.
+
+  Ca să-l repui în deck:
+  1. Copiază blocul <section>...</section> de mai jos înapoi în index.html, la poziția dorită
+     (era plasat imediat înainte de "Stage Harvest" / slide-ul Harvesting).
+  2. Copiază blocul <style> de mai jos înapoi în <style> din index.html (secțiunea BLUEPRINT).
+  3. Renumerotează comentariile "<!-- N LABEL -->" și contoarele "NN / total" din tot fișierul.
+-->
+
+<style>
+  /* ============ BLUEPRINT (campanie cap-la-cap) ============ */
+  .campaign-blueprint { display: grid; grid-template-columns: 1fr 1.06fr 1fr; gap: 18px; flex: 1; min-height: 0; align-items: center; }
+  .blueprint-stack { display: grid; gap: 10px; }
+  .blueprint-node { padding: 13px 15px; display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: center; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); box-shadow: var(--shadow); }
+  .blueprint-node svg { width: 20px; height: 20px; color: var(--primary); }
+  .blueprint-node strong { display: block; font-size: 15px; font-weight: 800; }
+  .blueprint-node span { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; line-height: 1.3; }
+  .blueprint-core { padding: 20px; color: #fff; background: linear-gradient(160deg, #0F172A 0%, #1E3A8A 100%); border-radius: var(--radius); }
+  .blueprint-core h3 { font-size: 21px; }
+  .blueprint-core p { margin-top: 6px; color: rgba(255,255,255,.75); font-size: 13px; line-height: 1.4; }
+  .approval-gates { display: grid; gap: 7px; margin-top: 14px; }
+  .approval-gate { display: grid; grid-template-columns: 18px 1fr; gap: 10px; align-items: center; padding: 9px 11px; color: #E2E8F0; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: var(--radius-sm); }
+  .approval-gate svg { width: 17px; height: 17px; color: #86EFAC; }
+  .approval-gate span { font-size: 12px; line-height: 1.35; }
+  .approval-gate b { color: #fff; font-weight: 700; }
+</style>
+
+<!-- BLUEPRINT -->
+<section>
+  <div class="slide">
+    <div class="slide-header">
+      <div class="slide-tag">Blueprint cap-la-cap</div>
+      <h2 class="slide-title">O campanie bună e un sistem, nu o listă de emailuri.</h2>
+      <p class="slide-subtitle">Sursele și contextul intră; agentul orchestrează; omul aprobă; evenimentele schimbă următorul pas.</p>
+    </div>
+    <div class="campaign-blueprint">
+      <div class="blueprint-stack">
+        <div class="blueprint-node"><i data-lucide="globe-2"></i><div><strong>Surse publice</strong><span>website, organigramă, anunțuri</span></div></div>
+        <div class="blueprint-node"><i data-lucide="folder-open"></i><div><strong>Context ofertă</strong><span>Power BI, ton, exemple, reguli</span></div></div>
+        <div class="blueprint-node"><i data-lucide="table-properties"></i><div><strong>Registru contacte</strong><span>contact, URL, rol, status</span></div></div>
+      </div>
+      <div class="blueprint-core">
+        <h3>Agent + orchestrator</h3>
+        <p>alege următorul task, distribuie workerii și ține starea campaniei</p>
+        <div class="approval-gates">
+          <div class="approval-gate"><i data-lucide="badge-check"></i><span><b>Poarta 1:</b> sursa este suficient de clară?</span></div>
+          <div class="approval-gate"><i data-lucide="user-round-check"></i><span><b>Poarta 2:</b> draftul poate trece spre send?</span></div>
+          <div class="approval-gate"><i data-lucide="octagon-alert"></i><span><b>Poarta 3:</b> bounce / opt-out cere stop?</span></div>
+        </div>
+      </div>
+      <div class="blueprint-stack">
+        <div class="blueprint-node"><i data-lucide="pen-line"></i><div><strong>Draft individual</strong><span>argument specific, fără invenții</span></div></div>
+        <div class="blueprint-node"><i data-lucide="send"></i><div><strong>Resend</strong><span>batch-uri și evenimente de livrare</span></div></div>
+        <div class="blueprint-node"><i data-lucide="activity"></i><div><strong>Log + următoarea decizie</strong><span>sent, bounced, răspuns, follow-up</span></div></div>
+      </div>
+    </div>
+    <div class="slide-num">— / —</div>
+  </div>
+</section>
