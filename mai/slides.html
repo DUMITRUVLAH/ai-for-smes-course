@@ -1,0 +1,2114 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI la MAI — 3 subiecte în 30 de minute</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/theme/white.min.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #2D52D4; --primary-light: #5B7CF7; --primary-ultra-light: #EEF2FF;
+      --foreground: #0F172A; --muted: #64748B; --border: #E2E8F0; --card: #FFFFFF; --bg: #F8FAFC;
+      --success: #22C55E; --destructive: #EF4444; --warning: #F59E0B;
+      --pastel-mint: #DCFCE7; --pastel-lavender: #EDE9FE; --pastel-peach: #FFEDD5;
+      --pastel-sky: #E0F2FE; --pastel-rose: #FCE7F3;
+      --radius: 14px; --radius-sm: 8px; --shadow: 0 4px 24px -4px rgba(15,23,42,0.08);
+      --practice: #7C3AED;
+    }
+    .reveal { font-family: 'Onest', system-ui, sans-serif !important; font-size: 28px; color: var(--foreground); }
+    .reveal .slides { text-align: left; }
+    .reveal section { padding: 0; height: 100%; box-sizing: border-box; }
+    .reveal h1, .reveal h2, .reveal h3 { font-family: 'Onest', system-ui, sans-serif; text-transform: none; text-shadow: none; }
+    .reveal .progress { color: var(--primary); height: 3px; }
+    .reveal .controls { color: var(--primary); }
+
+    .slide { width: 100%; height: 100%; padding: 56px 68px; box-sizing: border-box; display: flex; flex-direction: column; background: #fff; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--primary) 0%, #7C3AED 100%); }
+    .slide.practice::before { background: linear-gradient(90deg, #7C3AED 0%, #DB2777 100%); }
+
+    .slide-header { margin-bottom: 28px; }
+    .slide-tag { display: inline-block; background: var(--primary-ultra-light); color: var(--primary); font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 13px; border-radius: 100px; margin-bottom: 12px; }
+    .slide-tag.practice-tag { background: #F3E8FF; color: var(--practice); }
+    .slide-title { font-size: 38px !important; font-weight: 800 !important; line-height: 1.14 !important; color: var(--foreground) !important; margin: 0 0 8px !important; letter-spacing: -0.015em; }
+    .slide-subtitle { font-size: 17px; color: var(--muted); font-weight: 400; margin: 0; line-height: 1.5; max-width: 920px; }
+    .slide-subtitle b { color: var(--foreground); font-weight: 600; }
+    .slide-num { position: absolute; bottom: 20px; right: 34px; font-size: 12px; color: var(--muted); font-weight: 500; letter-spacing: 0.04em; }
+
+    .logo { display: inline-block; vertical-align: middle; } .logo svg { display: block; }
+    .logo img { display: block; height: 26px; width: auto; }
+
+    /* COVER */
+    .slide-cover { background: var(--foreground); color: #fff; justify-content: center; }
+    .slide-cover::before { display: none; }
+    .cover-bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0B1120 0%, #1E3A8A 58%, #3B2F8F 100%); }
+    .cover-accent { position: absolute; top: -140px; right: -120px; width: 520px; height: 520px; border-radius: 50%; background: radial-gradient(circle, rgba(93,112,247,0.40) 0%, transparent 70%); }
+    .cover-accent2 { position: absolute; bottom: -100px; left: -90px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle, rgba(124,58,237,0.30) 0%, transparent 70%); }
+    .cover-content { position: relative; z-index: 2; }
+    .cover-kicker { display: inline-flex; align-items: center; gap: 9px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 100px; padding: 7px 18px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.82); margin-bottom: 34px; }
+    .cover-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .slide-cover h1 { font-size: 58px; font-weight: 800; line-height: 1.05; color: #fff; margin: 0 0 22px; letter-spacing: -0.025em; }
+    .slide-cover .subtitle { font-size: 23px; font-weight: 400; color: rgba(255,255,255,0.7); margin: 0 0 50px; max-width: 660px; line-height: 1.5; }
+    .cover-logos { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+    .cover-logos .lbl { font-size: 13px; color: rgba(255,255,255,0.45); margin-right: 4px; }
+    .cover-logos .logo svg { fill: rgba(255,255,255,0.85); }
+    .cover-chip { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); border-radius: 100px; padding: 6px 15px; }
+
+    /* VS-TABLE */
+    .vs-table { display: grid; grid-template-columns: 1fr 1fr; flex: 1; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .vs-col { display: flex; flex-direction: column; }
+    .vs-col.right { background: var(--bg); border-left: 1px solid var(--border); }
+    .vs-head { padding: 16px 26px; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .vs-head.neg { background: #FEF2F2; color: #B91C1C; } .vs-head.pos { background: #F0FDF4; color: #15803D; }
+    .vs-head.ai { background: var(--primary-ultra-light); color: var(--primary); } .vs-head.human { background: #FFF7ED; color: #C2410C; }
+    .vs-row { padding: 15px 26px; font-size: 18px; color: var(--foreground); border-top: 1px solid var(--border); line-height: 1.4; display: flex; align-items: center; gap: 12px; flex: 1; }
+    .vs-row .ic { font-size: 19px; flex-shrink: 0; }
+    .vs-highlight { margin-top: 16px; text-align: center; font-size: 19px; font-weight: 700; color: var(--primary); background: var(--primary-ultra-light); border-radius: var(--radius); padding: 14px; }
+
+    /* TABLE */
+    .slide-table { width: 100%; border-collapse: collapse; font-size: 16px; flex: 1; }
+    .slide-table th { padding: 13px 16px; text-align: left; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: #fff; border: none; background: var(--primary); }
+    .slide-table th.empty { background: var(--bg); color: var(--muted); }
+    .slide-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--foreground); vertical-align: middle; line-height: 1.4; }
+    .slide-table tr:last-child td { border-bottom: none; }
+    .slide-table tr:nth-child(even) td { background: var(--bg); }
+    .slide-table .row-label { font-weight: 700; white-space: nowrap; }
+
+    /* LLM steps / flow */
+    .llm-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; flex: 1; align-items: stretch; }
+    .llm-steps.five { grid-template-columns: repeat(5, 1fr); }
+    .llm-step { padding: 24px 18px; display: flex; flex-direction: column; gap: 10px; position: relative; }
+    .llm-step::after { content: '→'; position: absolute; right: -10px; top: 44px; font-size: 22px; color: var(--primary); font-weight: 700; z-index: 2; }
+    .llm-step:last-child::after { display: none; }
+    .llm-step-num { width: 38px; height: 38px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .llm-step-icon { font-size: 30px; }
+    .llm-step-title { font-size: 16px; font-weight: 700; color: var(--foreground); }
+    .llm-step-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+    .llm-step-desc b { color: var(--foreground); }
+
+    /* phone mockup */
+    .phone-mock { background: #1F2937; border-radius: 18px; padding: 14px; width: 100%; box-shadow: var(--shadow); }
+    .phone-bubble { background: #2563EB; color: #fff; border-radius: 16px 16px 4px 16px; padding: 10px 14px; font-size: 14px; margin-bottom: 12px; width: fit-content; margin-left: auto; }
+    .phone-suggest { display: flex; gap: 6px; }
+    .phone-chip { flex: 1; text-align: center; background: #374151; color: #fff; border-radius: 8px; padding: 8px 6px; font-size: 13px; font-weight: 600; }
+    .phone-chip.hot { background: var(--primary-light); }
+    .mech-step { display: flex; align-items: center; gap: 16px; }
+    .mech-num { width: 38px; height: 38px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 17px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .mech-text { font-size: 18px; color: var(--foreground); line-height: 1.4; } .mech-text b { font-weight: 800; color: var(--primary); }
+
+    /* SECURITY */
+    .sec-layout { display: flex; gap: 26px; flex: 1; align-items: stretch; }
+    .sec-icon-pane { width: 220px; flex-shrink: 0; border-radius: var(--radius); background: linear-gradient(160deg, #0F172A 0%, #1E3A8A 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; color: #fff; text-align: center; padding: 28px; }
+    .sec-icon-pane .shield { font-size: 76px; line-height: 1; }
+    .sec-icon-pane .sec-rule { font-size: 17px; font-weight: 700; line-height: 1.4; }
+    .sec-icon-pane .sec-rule span { color: var(--primary-light); }
+    .sec-table { flex: 1; border-collapse: separate; border-spacing: 0; font-size: 16px; }
+    .sec-table th { padding: 12px 20px; font-size: 14px; font-weight: 700; letter-spacing: 0.04em; color: #fff; }
+    .sec-table th.no { background: #DC2626; border-radius: var(--radius-sm) 0 0 0; } .sec-table th.yes { background: #16A34A; border-radius: 0 var(--radius-sm) 0 0; }
+    .sec-table td { padding: 11px 20px; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .sec-table .no-cell { background: #FEF2F2; color: #7F1D1D; font-weight: 600; } .sec-table .yes-cell { background: #F0FDF4; color: #14532D; }
+    .sec-table tr:last-child td { border-bottom: none; }
+
+    /* INCIDENTS */
+    .incident-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .incident-card { border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--border); background: #fff; box-shadow: var(--shadow); }
+    .incident-top { display: flex; align-items: center; gap: 12px; }
+    .incident-icon { font-size: 30px; } .incident-company { font-size: 18px; font-weight: 800; color: var(--foreground); }
+    .incident-year { font-size: 12px; font-weight: 700; color: #DC2626; background: #FEE2E2; padding: 3px 9px; border-radius: 100px; }
+    .incident-desc { font-size: 14px; color: var(--foreground); line-height: 1.55; }
+    .incident-lesson { margin-top: auto; font-size: 13px; color: var(--muted); line-height: 1.45; padding-top: 12px; border-top: 1px solid var(--border); }
+    .incident-lesson b { color: var(--destructive); }
+
+    /* VOCAB */
+    .vocab-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .vocab-card { border-radius: var(--radius); padding: 30px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; }
+    .vocab-term { font-size: 26px; font-weight: 800; color: var(--primary); }
+    .vocab-def { font-size: 18px; color: var(--foreground); font-weight: 500; line-height: 1.45; }
+    .vocab-ex { font-size: 15px; font-style: italic; color: var(--muted); line-height: 1.45; }
+    .vocab-why { font-size: 15px; color: var(--foreground); line-height: 1.45; border-top: 1px solid var(--border); padding-top: 12px; }
+    .vocab-why b { color: var(--primary); }
+    .vocab-ico { width: 54px; height: 54px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 30px; background: rgba(255,255,255,0.65); }
+    .vocab-tip { font-size: 14px; color: var(--foreground); background: rgba(255,255,255,0.6); border-radius: 8px; padding: 10px 13px; line-height: 1.45; margin-top: auto; }
+    .vocab-tip b { color: var(--primary); }
+
+    /* SPLIT */
+    .split-screen { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .split-pane { border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 14px; }
+    .split-pane.bad { background: #FEF2F2; border: 1px solid #FECACA; } .split-pane.good { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .split-label { font-size: 15px; font-weight: 700; letter-spacing: 0.04em; } .split-label.bad { color: #DC2626; } .split-label.good { color: #16A34A; }
+    .split-prompt { font-size: 17px; font-style: italic; color: var(--foreground); background: rgba(255,255,255,0.75); border-radius: var(--radius-sm); padding: 18px 20px; line-height: 1.55; border-left: 4px solid; flex: 1; }
+    .split-prompt.big { font-size: 26px; font-weight: 600; font-style: normal; display: flex; align-items: center; }
+    .split-pane.bad .split-prompt { border-color: #FCA5A5; } .split-pane.good .split-prompt { border-color: #86EFAC; }
+    .split-prompt b { font-style: normal; font-weight: 800; color: var(--primary); }
+    .split-result { font-size: 15px; font-weight: 600; padding: 11px 16px; border-radius: var(--radius-sm); line-height: 1.4; }
+    .split-pane.bad .split-result { background: #FEE2E2; color: #B91C1C; } .split-pane.good .split-result { background: #DCFCE7; color: #15803D; }
+    .qbar { display: flex; align-items: center; gap: 10px; } .qbar-track { flex: 1; height: 8px; border-radius: 100px; background: rgba(0,0,0,0.07); overflow: hidden; } .qbar-fill { height: 100%; border-radius: 100px; } .qbar-label { font-size: 13px; font-weight: 700; }
+
+    /* PROMPT anatomy */
+    .prompt-anatomy { display: flex; gap: 22px; flex: 1; align-items: stretch; }
+    .anatomy-blocks { display: flex; flex-direction: column; gap: 10px; width: 260px; flex-shrink: 0; }
+    .anatomy-block { border-radius: var(--radius-sm); padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+    .anatomy-block .num { width: 26px; height: 26px; border-radius: 50%; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: #fff; }
+    .anatomy-block .anatomy-label { font-size: 16px; font-weight: 700; color: var(--foreground); }
+    .ab0 { background: #EDE9FE; } .ab0 .num { background: #7C3AED; } .ab1 { background: var(--pastel-sky); } .ab1 .num { background: #0284C7; }
+    .ab2 { background: var(--pastel-mint); } .ab2 .num { background: #16A34A; } .ab3 { background: var(--pastel-peach); } .ab3 .num { background: #EA580C; }
+    .ab4 { background: var(--pastel-rose); } .ab4 .num { background: #DB2777; }
+    .anatomy-example { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; }
+    .anatomy-ex-title { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+    .ex-line { display: flex; align-items: flex-start; gap: 14px; padding: 8px 0; }
+    .ex-line .ex-tag { width: 110px; flex-shrink: 0; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; padding-top: 3px; }
+    .ex-line .ex-seg { font-size: 16px; line-height: 1.45; color: var(--foreground); }
+    .ex0 .ex-tag { color: #7C3AED; } .ex1 .ex-tag { color: #0284C7; } .ex2 .ex-tag { color: #16A34A; } .ex3 .ex-tag { color: #EA580C; } .ex4 .ex-tag { color: #DB2777; }
+
+    /* Anatomy struck (Rol auto) */
+    .anatomy-block.struck { opacity: 0.5; }
+    .anatomy-block.struck .anatomy-label { text-decoration: line-through; text-decoration-color: var(--destructive); text-decoration-thickness: 2px; }
+    .anatomy-note { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; font-weight: 500; color: #7F1D1D; background: #FEF2F2; border: 1px solid #FECACA; border-radius: var(--radius-sm); padding: 11px 14px; margin-top: 12px; line-height: 1.4; }
+    .anatomy-note b { font-weight: 800; color: var(--destructive); }
+
+    /* CARDS */
+    .cards-grid { display: grid; gap: 18px; flex: 1; align-content: stretch; } .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 9px; justify-content: center; min-height: 0; overflow: hidden; }
+    .card.mint { background: var(--pastel-mint); border-color: #86EFAC; } .card.lavender { background: var(--pastel-lavender); border-color: #C4B5FD; } .card.sky { background: var(--pastel-sky); border-color: #BAE6FD; } .card.peach { background: var(--pastel-peach); border-color: #FED7AA; }
+    .card-icon { font-size: 32px; } .card-title { font-size: 18px; font-weight: 800; color: var(--foreground); margin: 0; } .card-body { font-size: 15px; color: var(--muted); line-height: 1.55; margin: 0; }
+    .card-body b { color: var(--foreground); }
+    .cards-compact { gap: 14px; } .cards-compact .card { padding: 20px 22px; gap: 7px; justify-content: flex-start; }
+    .cards-compact .card-icon { font-size: 28px; } .cards-compact .card-title { font-size: 16px; } .cards-compact .card-body { font-size: 14px; line-height: 1.5; }
+
+    /* AFTER COURSE — grouped sections */
+    .aftercourse-groups { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex: 1; }
+    .aftercourse-group { border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 14px; border: 1px solid; }
+    .aftercourse-group.blue { background: var(--pastel-sky); border-color: #7DD3FC; }
+    .aftercourse-group.green { background: var(--pastel-mint); border-color: #86EFAC; }
+    .aftercourse-group-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+    .aftercourse-group.blue .aftercourse-group-label { color: #0369A1; }
+    .aftercourse-group.green .aftercourse-group-label { color: #16A34A; }
+    .aftercourse-item { background: #fff; border-radius: var(--radius-sm); padding: 16px 18px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 2px 8px rgba(15,23,42,0.05); }
+    .aftercourse-item-icon { font-size: 24px; flex-shrink: 0; }
+    .aftercourse-item-body .ai-title { font-size: 15px; font-weight: 800; color: var(--foreground); margin: 0 0 3px; }
+    .aftercourse-item-body .ai-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
+    .aftercourse-item-body .ai-desc b { color: var(--foreground); }
+
+    /* ECOSYSTEM */
+    .eco-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .eco-col { border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--border); }
+    .eco-col.chatgpt { background: #ECFDF5; border-color: #6EE7B7; } .eco-col.gemini { background: #EFF6FF; border-color: #93C5FD; } .eco-col.claude { background: #FFF7ED; border-color: #FDBA74; }
+    .eco-head { display: flex; align-items: center; gap: 10px; font-size: 19px; font-weight: 800; color: var(--foreground); }
+    .eco-list { display: flex; flex-direction: column; gap: 9px; }
+    .eco-item { font-size: 14px; color: var(--foreground); line-height: 1.4; display: flex; gap: 8px; }
+    .eco-item .b { font-weight: 700; }
+    .eco-item .dot { flex-shrink: 0; }
+    .eco-foot { margin-top: 16px; font-size: 16px; font-weight: 600; color: var(--foreground); background: var(--primary-ultra-light); border-radius: var(--radius); padding: 14px 18px; line-height: 1.5; }
+    .eco-foot b { color: var(--primary); }
+
+    /* GEM grid */
+    .gem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; flex: 1; }
+    .gem-card { border-radius: var(--radius); padding: 20px; display: flex; align-items: flex-start; gap: 14px; background: #fff; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(15,23,42,0.05); }
+    .gem-icon-wrap { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+    .gem-title { font-size: 16px; font-weight: 800; color: var(--foreground); margin: 0 0 4px; } .gem-desc { font-size: 13px; color: var(--muted); line-height: 1.5; margin: 0; }
+    .gem-badge { display: inline-block; font-size: 10px; font-weight: 700; color: var(--practice); background: #F3E8FF; padding: 2px 7px; border-radius: 100px; margin-left: 6px; vertical-align: middle; }
+
+    /* FEW-SHOT */
+    .fs-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 26px; flex: 1; align-items: stretch; }
+    .fs-left { display: flex; flex-direction: column; gap: 12px; }
+    .fs-card { border-radius: var(--radius); padding: 18px; border: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
+    .fs-card-title { font-size: 16px; font-weight: 800; color: var(--foreground); }
+    .fs-card-desc { font-size: 14px; color: var(--muted); line-height: 1.45; }
+    .fs-card-desc b { color: var(--foreground); }
+    .fs-example { background: var(--bg); border-left: 4px solid var(--primary); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 22px; font-size: 16px; color: var(--foreground); line-height: 1.55; display: flex; flex-direction: column; justify-content: center; }
+    .fs-example .lbl { font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary); display: block; margin-bottom: 12px; }
+    .fs-example .ex-model { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 9px 13px; margin: 4px 0; font-size: 14px; }
+    .fs-example .ex-ask { font-weight: 700; margin-top: 12px; }
+
+    /* META-PROMPTING */
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; align-items: stretch; }
+    .meta-pane { border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--border); }
+    .meta-pane.you { background: var(--bg); }
+    .meta-pane.ai { background: var(--pastel-lavender); border-color: #C4B5FD; }
+    .meta-step { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px; }
+    .meta-step.you { color: var(--muted); } .meta-step.ai { color: var(--practice); }
+    .meta-step .pill { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; color: #fff; }
+    .meta-step.you .pill { background: var(--muted); } .meta-step.ai .pill { background: var(--practice); }
+    .meta-bubble { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 18px; font-size: 16px; line-height: 1.5; color: var(--foreground); }
+    .meta-bubble.dim { font-style: italic; color: var(--muted); }
+    .meta-bubble b { font-weight: 800; color: var(--primary); }
+    .meta-result { margin-top: auto; font-size: 14px; padding: 11px 15px; border-radius: var(--radius-sm); line-height: 1.4; font-weight: 600; }
+    .meta-pane.you .meta-result { background: #FEE2E2; color: #B91C1C; }
+    .meta-pane.ai .meta-result { background: #DCFCE7; color: #15803D; }
+    .meta-magic { margin-top: 14px; background: var(--foreground); color: #fff; border-radius: var(--radius-sm); padding: 14px 20px; font-size: 16px; line-height: 1.5; }
+    .meta-magic .lbl { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--primary-light); display: block; margin-bottom: 6px; }
+    .meta-magic b { color: #fff; font-weight: 800; }
+
+    /* GOOGLE WORKSPACE chips + Gems examples */
+    .gw-apps { display: flex; flex-wrap: wrap; gap: 8px; }
+    .gw-chip { display: flex; align-items: center; gap: 7px; background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 6px 13px 6px 9px; font-size: 14px; font-weight: 600; color: var(--foreground); }
+    .gw-chip .gw-dot { width: 16px; height: 16px; border-radius: 4px; flex-shrink: 0; }
+    .gems-examples { display: flex; flex-direction: column; gap: 8px; }
+    .gem-ex { display: flex; align-items: center; gap: 11px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 9px 13px; }
+    .gem-ex .av { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .gem-ex .gx-name { font-size: 14px; font-weight: 700; color: var(--foreground); }
+    .gem-ex .gx-desc { font-size: 12px; color: var(--muted); }
+
+    /* PRACTICE layout */
+    .practice-layout { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 28px; flex: 1; }
+    .practice-steps { display: flex; flex-direction: column; gap: 12px; }
+    .pstep { display: flex; align-items: flex-start; gap: 14px; }
+    .pstep-num { width: 30px; height: 30px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .pstep-text { font-size: 16px; color: var(--foreground); line-height: 1.45; padding-top: 3px; }
+    .pstep-text b { font-weight: 700; }
+    .practice-shot { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); background: var(--bg); display: flex; align-items: center; justify-content: center; }
+    .practice-shot img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .practice-shot.cover img { object-fit: cover; }
+    .practice-prompt { background: var(--bg); border-left: 4px solid var(--practice); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 16px; font-size: 15px; font-style: italic; color: var(--foreground); line-height: 1.5; margin-top: 4px; }
+    .practice-prompt .lbl { font-style: normal; font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--practice); display: block; margin-bottom: 5px; }
+    .practice-app { margin-top: auto; font-size: 13px; color: var(--muted); font-style: italic; }
+    .practice-app b { color: var(--foreground); font-style: normal; }
+    .shot-fallback { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; color: #94A3B8; font-size: 14px; font-weight: 600; text-align: center; padding: 24px; }
+    .shot-fallback .pth { font-family: monospace; font-size: 12px; background: #E2E8F0; color: #475569; padding: 4px 10px; border-radius: 6px; }
+    .shot-fallback .ic { font-size: 40px; }
+
+    /* NotebookLM flow / cases */
+    .nb-cases { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px; }
+    .nb-case { border-radius: var(--radius-sm); padding: 14px; background: var(--bg); border: 1px solid var(--border); }
+    .nb-case-title { font-size: 13px; font-weight: 700; color: var(--foreground); margin-bottom: 4px; } .nb-case-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .nb-flow { display: flex; align-items: stretch; gap: 0; }
+    .nb-node { flex: 1; border-radius: var(--radius); padding: 22px 18px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; }
+    .nb-node::after { content: '→'; position: absolute; right: -13px; top: 50%; transform: translateY(-50%); font-size: 24px; color: var(--primary); font-weight: 700; z-index: 2; }
+    .nb-node:last-child::after { display: none; }
+    .nb-node.in { background: var(--pastel-sky); border: 1px solid #BAE6FD; }
+    .nb-node.proc { background: var(--primary-ultra-light); border: 1px solid #C7D2FE; }
+    .nb-node.out { background: var(--pastel-mint); border: 1px solid #86EFAC; }
+    .nb-node-icon { font-size: 30px; }
+    .nb-node-title { font-size: 15px; font-weight: 800; color: var(--foreground); }
+    .nb-node-desc { font-size: 12px; color: var(--muted); line-height: 1.4; }
+
+    /* PROJECTS */
+    .proj-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex:1; }
+    .proj-pane { border-radius: var(--radius); padding: 24px; display: flex; flex-direction: column; gap: 10px; }
+    .proj-pane.without { background: #FEF2F2; border: 1px solid #FECACA; } .proj-pane.with { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .proj-pane-label { font-size: 15px; font-weight: 700; } .proj-pane.without .proj-pane-label { color: #DC2626; } .proj-pane.with .proj-pane-label { color: #16A34A; }
+    .proj-pane-text { font-size: 16px; color: var(--foreground); line-height: 1.5; } .proj-pane-text b { font-weight: 700; }
+
+    /* FATIGUE */
+    .fatigue-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 1; }
+    .fatigue-pane { border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 14px; }
+    .fatigue-pane.chaos { background: #FEF2F2; border: 1px solid #FECACA; } .fatigue-pane.focus { background: #F0FDF4; border: 1px solid #86EFAC; }
+    .fatigue-pane-label { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; } .fatigue-pane.chaos .fatigue-pane-label { color: #DC2626; } .fatigue-pane.focus .fatigue-pane-label { color: #16A34A; }
+    .fatigue-icons { display: flex; flex-wrap: wrap; gap: 9px; flex: 1; align-content: center; }
+    .fatigue-chip { background: rgba(220,38,38,0.1); border-radius: var(--radius-sm); padding: 7px 12px; font-size: 14px; font-weight: 500; color: #7F1D1D; }
+    .fatigue-quote { font-size: 14px; color: #7F1D1D; font-style: italic; line-height: 1.5; }
+    .fatigue-steps { display: flex; flex-direction: column; gap: 12px; flex: 1; justify-content: center; }
+    .fatigue-step { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; border-radius: var(--radius-sm); background: rgba(22,163,74,0.1); }
+    .fatigue-step-num { width: 26px; height: 26px; border-radius: 50%; background: #16A34A; color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .fatigue-step-text { font-size: 15px; color: #14532D; font-weight: 500; line-height: 1.4; } .fatigue-step-text b { font-weight: 800; }
+
+    /* EXERCISE */
+    .exercise-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 20px; }
+    .timer-pill { display: flex; align-items: center; gap: 8px; background: #FEF3C7; border: 1px solid #FDE68A; border-radius: 100px; padding: 9px 22px; font-size: 16px; font-weight: 700; color: #92400E; }
+    .exercise-template { background: var(--bg); border: 2px dashed var(--primary); border-radius: var(--radius); padding: 28px 36px; max-width: 800px; font-size: 20px; font-style: italic; color: var(--foreground); line-height: 1.7; }
+    .exercise-template .tpl-label { font-style: normal; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--primary); display: block; margin-bottom: 16px; }
+    .exercise-hl { display: inline-block; background: var(--primary); color: #fff; border-radius: 6px; padding: 3px 11px; font-style: normal; font-size: 17px; font-weight: 700; margin: 2px; }
+
+    /* WRAP */
+    .wrapup-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; flex: 1; }
+    .wrapup-pane { border-radius: var(--radius); padding: 26px; border: 1px solid var(--border); display: flex; flex-direction: column; }
+    .wrapup-pane.learned { background: var(--primary-ultra-light); border-color: #A5B4FC; } .wrapup-pane.hw { background: #F0FDF4; border-color: #86EFAC; }
+    .wrapup-pane-title { font-size: 15px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 14px; } .wrapup-pane.learned .wrapup-pane-title { color: var(--primary); } .wrapup-pane.hw .wrapup-pane-title { color: #16A34A; }
+    .check-list { display: flex; flex-direction: column; gap: 10px; }
+    .check-item { display: flex; align-items: flex-start; gap: 11px; font-size: 15px; color: var(--foreground); line-height: 1.45; font-weight: 500; }
+    .check-item .chk { font-size: 15px; flex-shrink: 0; margin-top: 1px; font-weight: 700; color: var(--primary); }
+
+    /* QUOTE */
+    .quote-block { border-left: 4px solid var(--primary); padding: 16px 20px; background: var(--primary-ultra-light); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 17px; font-style: italic; color: var(--foreground); line-height: 1.55; }
+    .quote-block strong { font-style: normal; color: var(--primary); }
+    .quote-block.warn { border-color: var(--warning); background: #FFFBEB; }
+    .quote-block.warn strong { color: #B45309; }
+
+    /* AGENDA */
+    .reveal .agenda-list { display: grid !important; grid-template-columns: 1fr 1fr; gap: 4px 40px; list-style: none; margin: 0; padding: 0; align-content: start; flex: 1; }
+    .reveal .agenda-item { display: flex; align-items: center; gap: 13px; padding: 7px 0; border-bottom: 1px solid var(--border); }
+    .agenda-num { width: 30px; height: 30px; border-radius: 50%; background: var(--primary-ultra-light); color: var(--primary); font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .agenda-label { font-size: 15px; font-weight: 500; color: var(--foreground); }
+    .agenda-badge { font-size: 9px; font-weight: 700; color: var(--practice); background: #F3E8FF; padding: 2px 7px; border-radius: 100px; margin-left: 8px; letter-spacing: 0.04em; }
+
+    /* ROADMAP — lecții live */
+    .lesson-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+    .lesson-card { border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--border); background: #fff; box-shadow: var(--shadow); }
+    .lesson-top { display: flex; align-items: center; gap: 10px; }
+    .lesson-num { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .lesson-date { font-size: 13px; font-weight: 700; color: var(--foreground); }
+    .lesson-live { margin-left: auto; display: inline-flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--destructive); background: #FEE2E2; padding: 3px 9px; border-radius: 100px; }
+    .lesson-live .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--destructive); }
+    .lesson-time { font-size: 13px; color: var(--muted); font-weight: 500; }
+    .lesson-title { font-size: 17px; font-weight: 800; color: var(--foreground); line-height: 1.3; margin: 0 0 2px; }
+    .lesson-topics { display: flex; flex-direction: column; gap: 8px; }
+    .lesson-topic { font-size: 13px; color: var(--muted); line-height: 1.45; padding-left: 14px; position: relative; }
+    .lesson-topic::before { content: "—"; position: absolute; left: 0; color: var(--primary); font-weight: 700; }
+    .lesson-topic b { color: var(--foreground); font-weight: 700; }
+
+    /* ABOUT ME */
+    .about-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 40px; flex: 1; align-items: center; }
+    .about-left { display: flex; flex-direction: column; gap: 22px; }
+    .about-bullets { display: flex; flex-direction: column; gap: 16px; }
+    .about-bullet { display: flex; align-items: center; gap: 16px; }
+    .about-arrow { width: 34px; height: 34px; border-radius: 50%; background: var(--primary-ultra-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; flex-shrink: 0; }
+    .about-bullet-text { font-size: 18px; color: var(--foreground); font-weight: 500; line-height: 1.35; }
+    .about-bullet-text b { font-weight: 800; color: var(--primary); }
+    .about-role-badge { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; background: var(--foreground); color: #fff; font-size: 14px; font-weight: 600; padding: 8px 18px; border-radius: 100px; margin-top: 4px; }
+    .about-role-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--primary-light); }
+    .about-photo-wrap { position: relative; display: flex; align-items: center; justify-content: center; }
+    .about-photo-deco1 { position: absolute; top: -18px; right: 6px; width: 130px; height: 130px; border-radius: 50%; background: #FACC15; z-index: 0; }
+    .about-photo-deco2 { position: absolute; bottom: -24px; left: -8px; width: 160px; height: 160px; border-radius: 28px; background: #7C3AED; opacity: 0.85; z-index: 0; transform: rotate(-8deg); }
+    .about-photo-card { position: relative; z-index: 1; width: 100%; max-width: 420px; aspect-ratio: 4 / 5; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); background: #1a1a1a; border: 1px solid var(--border); }
+    .about-photo-card img { width: 100%; height: 100%; object-fit: cover; object-position: 52% 18%; display: block; }
+    .about-photo-slot { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: #94A3B8; text-align: center; padding: 20px; }
+    .about-photo-slot .ph-icon { font-size: 48px; }
+    .about-photo-slot .ph-path { font-size: 12px; font-family: monospace; background: #E2E8F0; color: #475569; padding: 4px 10px; border-radius: 6px; }
+    .ph-path { font-size: 12px; font-family: monospace; background: #E2E8F0; color: #475569; padding: 4px 10px; border-radius: 6px; display: inline-block; }
+    .about-signature { position: absolute; top: 40px; right: 60px; font-size: 18px; font-weight: 700; color: var(--destructive); transform: rotate(-4deg); z-index: 3; }
+
+    /* PASIUNE AI — foto trio */
+    .photo-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; flex: 1; align-items: stretch; }
+    .photo-trio-card { display: flex; flex-direction: column; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); background: #fff; box-shadow: var(--shadow); }
+    .photo-trio-img { width: 100%; aspect-ratio: 4 / 3; overflow: hidden; background: #1a1a1a; }
+    .photo-trio-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-trio-cap { padding: 12px 16px; font-size: 14px; font-weight: 600; color: var(--foreground); line-height: 1.35; }
+
+    /* SLIDO */
+    .slido-center { flex: 1; display: flex; align-items: center; justify-content: center; gap: 56px; }
+    .slido-qr { width: 230px; height: 230px; border-radius: var(--radius); background: #fff; border: 2px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: var(--muted); }
+    .slido-qr .qr-icon { font-size: 64px; }
+    .slido-q { display: flex; flex-direction: column; gap: 18px; max-width: 480px; }
+    .slido-q-item { display: flex; align-items: center; gap: 14px; font-size: 20px; color: var(--foreground); font-weight: 500; }
+    .slido-q-item .q-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .slido-q-item.small { font-size: 17px; }
+
+    /* STATEMENT */
+    .stmt-list { display: flex; flex-direction: column; }
+    .stmt-row { padding: 22px 0; border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 28px; }
+    .stmt-row:last-child { border-bottom: none; }
+    .stmt-number { font-size: 56px; font-weight: 800; color: var(--primary); line-height: 1; letter-spacing: -0.02em; flex-shrink: 0; min-width: 220px; }
+    .stmt-body { display: flex; flex-direction: column; gap: 4px; }
+    .stmt-text { font-size: 22px; font-weight: 600; color: var(--foreground); line-height: 1.35; }
+    .stmt-source { font-size: 14px; color: var(--muted); }
+
+    /* brand chip */
+    .brand-chip { display: inline-flex; align-items: center; font-size: 13px; font-weight: 700; color: #fff; border-radius: 100px; padding: 4px 12px; }
+  </style>
+  <style>
+    /* ZERO-SHOT / FEW-SHOT split */
+    .zf-split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; flex: 1; }
+    .zf-pane { border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 14px; border: 1px solid var(--border); }
+    .zf-pane.zero { background: var(--bg); }
+    .zf-pane.few { background: var(--pastel-mint); border-color: #86EFAC; }
+    .zf-label { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .zf-pane.zero .zf-label { color: var(--muted); }
+    .zf-pane.few .zf-label { color: #16A34A; }
+    .zf-title { font-size: 22px; font-weight: 800; color: var(--foreground); }
+    .zf-desc { font-size: 15px; color: var(--foreground); line-height: 1.55; }
+    .zf-desc b { font-weight: 700; }
+    .zf-example { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px; font-size: 14px; line-height: 1.55; color: var(--foreground); }
+    .zf-example .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary); display: block; margin-bottom: 8px; }
+    .zf-model { background: var(--bg); border-radius: 6px; padding: 8px 11px; margin: 4px 0; font-size: 13px; border-left: 3px solid #86EFAC; }
+    .zf-ask { font-weight: 700; margin-top: 10px; font-size: 14px; }
+    /* FEW-SHOT — exemplu vizual cash-flow */
+    .fs-flow { display: flex; flex-direction: column; gap: 16px; flex: 1; justify-content: center; }
+    .fs-row { display: flex; align-items: stretch; gap: 12px; }
+    .fs-card { background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); box-shadow: 0 2px 8px rgba(15,23,42,0.05); overflow: hidden; flex: 1; }
+    .fs-card-head { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); background: var(--bg); padding: 6px 12px; border-bottom: 1px solid var(--border); }
+    .fs-table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
+    .fs-table td { padding: 4.5px 12px; border-bottom: 1px solid #F1F5F9; color: var(--foreground); }
+    .fs-table tr:last-child td { border-bottom: none; }
+    .fs-table td.amt { text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .fs-table td.amt.pos { color: #16A34A; } .fs-table td.amt.neg { color: var(--destructive); }
+    .fs-report { padding: 10px 14px; display: flex; flex-direction: column; gap: 5px; }
+    .fs-report-line { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; }
+    .fs-report-line .v { font-weight: 800; font-variant-numeric: tabular-nums; }
+    .fs-report-line .v.pos { color: #16A34A; } .fs-report-line .v.neg { color: var(--destructive); }
+    .fs-report-note { margin-top: 5px; font-size: 11px; color: var(--muted); line-height: 1.4; padding-top: 6px; border-top: 1px dashed var(--border); }
+    .fs-report-note b { color: var(--foreground); }
+    .fs-arrow-col { display: flex; align-items: center; justify-content: center; flex-shrink: 0; width: 40px; font-size: 20px; color: var(--primary); }
+    .fs-prompt-col { flex-shrink: 0; width: 148px; display: flex; align-items: center; }
+    .fs-prompt { background: var(--foreground); color: #fff; border-radius: var(--radius-sm); padding: 12px 14px; font-size: 12px; font-weight: 700; line-height: 1.4; }
+    .fs-ghost { flex: 1; border: 1.5px dashed #94A3B8; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 4px; color: #94A3B8; text-align: center; }
+    .fs-ghost .gi { font-size: 20px; }
+    .fs-ghost .gt { font-size: 12px; font-weight: 700; line-height: 1.3; }
+    /* Few-shot — compact ca să încapă complet pe ecran */
+    .fs-flow { gap: 12px; justify-content: flex-start; }
+    .fs-flow .aftercourse-group { padding: 12px 16px; gap: 8px; }
+    .fs-flow .aftercourse-group-label { font-size: 11px; }
+    .fs-flow .fs-card-head { padding: 4px 12px; }
+    .fs-flow .fs-table td { padding: 2px 12px; }
+    .fs-flow .fs-report { padding: 7px 13px; gap: 2px; }
+    .fs-flow .fs-report-note { margin-top: 3px; padding-top: 4px; line-height: 1.35; }
+    /* MULTI-STEP — waterfall */
+    .mstep-flow { position: relative; display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: center; }
+    .mstep-row { box-sizing: border-box; position: relative; display: flex; align-items: flex-start; gap: 16px; padding: 14px 18px; border-radius: var(--radius-sm); background: var(--bg); border: 1px solid var(--border); }
+    .mstep-row::before { content: ''; position: absolute; left: -24px; top: -18px; width: 2px; height: 24px; border-left: 2px dashed #CBD5E1; }
+    .mstep-row:first-child::before { display: none; }
+    .mstep-row:nth-child(1) { margin-left: 0; width: 100%; }
+    .mstep-row:nth-child(2) { margin-left: 48px; width: calc(100% - 48px); }
+    .mstep-row:nth-child(3) { margin-left: 96px; width: calc(100% - 96px); }
+    .mstep-row:nth-child(4) { margin-left: 144px; width: calc(100% - 144px); }
+    .mstep-num { width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .mstep-text { font-size: 16px; color: var(--foreground); line-height: 1.45; } .mstep-text b { font-weight: 700; color: var(--primary); }
+    .mstep-why { margin-top: 6px; font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 5px; }
+    .mstep-why b { color: var(--primary); font-weight: 700; }
+    .mstep-row.active { background: var(--primary-ultra-light); border-color: #A5B4FC; }
+
+    /* CONTEXT WINDOW chart */
+    .ctx-chart { display: flex; align-items: flex-end; gap: 16px; flex: 1; padding: 0 10px; }
+    .ctx-bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .ctx-bar-stage { height: 220px; width: 100%; display: flex; align-items: flex-end; justify-content: center; }
+    .ctx-bar-fill { width: 100%; box-sizing: border-box; border-radius: 6px 6px 0 0; background: var(--primary-ultra-light); border: 1px solid var(--border); display: flex; align-items: flex-start; justify-content: center; padding-top: 8px; font-size: 13px; font-weight: 800; color: var(--primary); }
+    .ctx-bar-fill.hi { background: var(--primary); color: #fff; border-color: var(--primary); box-shadow: 0 6px 20px -6px rgba(45,82,212,0.5); }
+    .ctx-bar-label { font-size: 13px; font-weight: 700; color: var(--foreground); text-align: center; }
+    .ctx-bar-desc { font-size: 11.5px; color: var(--muted); text-align: center; line-height: 1.35; }
+
+    /* COMPACTARE A — costul crește */
+    .cost-grow { display: flex; flex-direction: column; gap: 11px; flex: 1; justify-content: center; }
+    .cost-row { display: flex; align-items: center; gap: 12px; }
+    .cost-tag { flex-shrink: 0; width: 108px; font-size: 13px; font-weight: 700; color: var(--foreground); }
+    .cost-track { flex: 1; display: flex; align-items: stretch; height: 38px; gap: 3px; }
+    .cost-doc { flex-shrink: 0; width: 320px; border-radius: 6px; background: var(--foreground); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 7px; }
+    .cost-q { flex-shrink: 0; width: 36px; border-radius: 5px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; color: var(--primary); font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+    .cost-meter { flex-shrink: 0; margin-left: 4px; font-size: 15px; letter-spacing: 1px; white-space: nowrap; }
+
+    /* COMPACTARE B — fereastra / uitarea */
+    .win-viz { display: flex; align-items: stretch; height: 158px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .win-old { flex: 1.1; background: repeating-linear-gradient(135deg, #F1F5F9, #F1F5F9 10px, #E8EDF3 10px, #E8EDF3 20px); border-right: 3px dashed #94A3B8; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; padding: 14px; text-align: center; }
+    .win-frame { flex: 1.55; background: var(--primary-ultra-light); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 9px; padding: 14px; text-align: center; position: relative; }
+    .win-frame::before { content: ''; position: absolute; inset: 9px; border: 3px solid var(--primary); border-radius: 10px; pointer-events: none; }
+    .win-zt { font-size: 16px; font-weight: 800; }
+    .win-old .win-zt { color: #64748B; } .win-frame .win-zt { color: var(--primary); position: relative; }
+    .win-zs { font-size: 12.5px; line-height: 1.4; }
+    .win-old .win-zs { color: #94A3B8; } .win-frame .win-zs { color: var(--primary); opacity: .9; position: relative; }
+    .win-bubbles { display: flex; gap: 5px; position: relative; }
+    .win-b { width: 26px; height: 26px; border-radius: 6px; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+    .win-old .win-b { background: #E2E8F0; color: #94A3B8; } .win-frame .win-b { background: var(--primary); color: #fff; }
+    .win-caption { display: flex; justify-content: space-between; margin-top: 9px; font-size: 12.5px; font-weight: 700; }
+    .win-caption .l { color: #64748B; } .win-caption .r { color: var(--primary); }
+    .win-legend { font-size: 12.5px; color: var(--muted); margin-bottom: 10px; } .win-legend b { color: var(--foreground); }
+    /* memorie în timp — sawtooth */
+    .mem-graph { margin-top: 14px; }
+    .mem-graph-title { font-size: 12.5px; font-weight: 700; color: var(--muted); margin-bottom: 5px; }
+    .mem-graph-cap { font-size: 12.5px; color: var(--muted); line-height: 1.45; margin-top: 7px; } .mem-graph-cap b { color: var(--foreground); }
+
+    /* LIMITS & RECOMMENDATIONS */
+    .card.rose { background: var(--pastel-rose); border-color: #FBCFE8; }
+
+    /* EXCEL MOCK — anonimizare */
+    .anon-transform { display: flex; align-items: center; gap: 14px; flex: 1; }
+    .xls-wrap { display: flex; flex-direction: column; gap: 6px; }
+    .xls-name { font-size: 12.5px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
+    .xls { border: 1px solid #CBD5E1; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 10px rgba(15,23,42,0.07); }
+    .xls table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+    .xls td { border: 1px solid #E2E8F0; height: 27px; }
+    .xls .ch { background: #F1F5F9; color: #64748B; font-weight: 700; font-size: 10.5px; text-align: center; }
+    .xls .rn { background: #F1F5F9; color: #94A3B8; font-weight: 700; font-size: 10px; text-align: center; width: 24px; }
+    .xls .c { padding: 0 11px; color: var(--foreground); }
+    .xls .c.hd { font-weight: 700; background: #FAFBFC; }
+    .xls .c.n { text-align: right; font-variant-numeric: tabular-nums; }
+    .xls .c.red { background: #FEF2F2; color: #B91C1C; font-weight: 600; }
+    .xls .c.grn { background: #F0FDF4; color: #15803D; font-weight: 700; }
+    .anon-arrow { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 3px; color: var(--primary); }
+    .anon-arrow .aa-i { font-size: 26px; line-height: 1; }
+    .anon-arrow .aa-l { font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; }
+    .fx-bar { display: flex; align-items: stretch; border: 1px solid #CBD5E1; border-radius: 8px; overflow: hidden; }
+    .fx-badge { background: #F1F5F9; color: #94A3B8; font-weight: 700; font-style: italic; padding: 11px 15px; border-right: 1px solid #CBD5E1; display: flex; align-items: center; font-size: 15px; }
+    .fx-body { padding: 11px 15px; color: var(--foreground); flex: 1; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 15px; font-weight: 600; display: flex; align-items: center; flex-wrap: wrap; }
+    .fx-a1 { background: #DBEAFE; color: #1D4ED8; padding: 1px 7px; border-radius: 4px; }
+    .fx-a2 { background: #FEF3C7; color: #B45309; padding: 1px 7px; border-radius: 4px; }
+    .fx-a3 { background: #DCFCE7; color: #15803D; padding: 1px 7px; border-radius: 4px; }
+    .fx-legend { display: flex; gap: 18px; margin-top: 10px; flex-wrap: wrap; }
+    .fx-legend span { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+    .fx-legend b { color: var(--foreground); font-weight: 700; }
+    .fx-dot { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+    .fx-dot.a1 { background: #DBEAFE; border: 1px solid #93C5FD; } .fx-dot.a2 { background: #FEF3C7; border: 1px solid #FCD34D; } .fx-dot.a3 { background: #DCFCE7; border: 1px solid #86EFAC; }
+    .anon-steps { display: flex; flex-direction: column; gap: 8px; }
+    .anon-step { display: flex; align-items: flex-start; gap: 12px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; }
+    .anon-step.hl { background: var(--primary-ultra-light); border-color: #A5B4FC; }
+    .anon-step-n { width: 26px; height: 26px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .anon-step-t { font-size: 14px; color: var(--foreground); line-height: 1.4; padding-top: 2px; } .anon-step-t b { color: var(--primary); font-weight: 700; }
+
+    /* OLLAMA — metafora bicicletei */
+    .bike-split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex: 1; }
+    .bike-panel { border-radius: var(--radius); padding: 22px 26px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 11px; border: 1px solid; justify-content: center; }
+    .bike-panel.cloud { background: var(--pastel-sky); border-color: #7DD3FC; }
+    .bike-panel.local { background: var(--pastel-mint); border-color: #86EFAC; }
+    .bike-emoji { font-size: 64px; line-height: 1; }
+    .bike-label { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; padding: 4px 13px; border-radius: 100px; }
+    .bike-panel.cloud .bike-label { background: #0369A1; color: #fff; }
+    .bike-panel.local .bike-label { background: #15803D; color: #fff; }
+    .bike-title { font-size: 21px; font-weight: 800; color: var(--foreground); }
+    .bike-desc { font-size: 14.5px; color: var(--muted); line-height: 1.5; } .bike-desc b { color: var(--foreground); }
+
+    /* STAT TILES — limite NotebookLM */
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .stat-tile { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 16px; box-shadow: var(--shadow); text-align: center; display: flex; flex-direction: column; gap: 4px; }
+    .stat-tile.hero { background: var(--primary); border-color: var(--primary); }
+    .stat-num { font-size: 36px; font-weight: 800; color: var(--primary); line-height: 1; letter-spacing: -0.02em; }
+    .stat-tile.hero .stat-num { color: #fff; }
+    .stat-unit { font-size: 14px; font-weight: 800; color: var(--foreground); }
+    .stat-tile.hero .stat-unit { color: #fff; }
+    .stat-sub { font-size: 12px; color: var(--muted); line-height: 1.35; }
+    .stat-tile.hero .stat-sub { color: rgba(255,255,255,0.85); }
+    .sec-label { font-size: 12px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+
+    /* CONTEXT IS KING — analogie doctor */
+    .ctxk-eq { display: flex; flex-direction: column; gap: 14px; flex: 1; justify-content: center; }
+    .ctxk-row { display: flex; align-items: stretch; gap: 10px; }
+    .ctxk-cell { border-radius: var(--radius); border: 1px solid var(--border); padding: 15px 18px; display: flex; align-items: center; gap: 13px; }
+    .ctxk-cell.ok { background: var(--pastel-mint); border-color: #86EFAC; }
+    .ctxk-cell.miss { background: var(--pastel-rose); border-color: #FBCFE8; }
+    .ctxk-cell.bad { background: #FEF2F2; border-color: #FECACA; }
+    .ctxk-emoji { font-size: 30px; flex-shrink: 0; line-height: 1; }
+    .ctxk-t { font-size: 14.5px; line-height: 1.3; color: var(--foreground); } .ctxk-t b { font-weight: 800; }
+    .ctxk-t .s { font-size: 12px; color: var(--muted); display: block; margin-top: 2px; font-weight: 500; }
+    .ctxk-op { flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: #94A3B8; width: 22px; }
+
+    /* RECONCILIERE — perechi de surse */
+    .rec-pairs { display: flex; flex-direction: column; gap: 10px; }
+    .rec-pair { display: flex; align-items: center; gap: 8px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 14px; font-size: 13.5px; font-weight: 600; color: var(--foreground); }
+    .rec-pair .vs { color: var(--primary); font-weight: 800; margin: 0 3px; flex-shrink: 0; }
+    .xls .c.grn2 { background: #F0FDF4; color: #15803D; font-weight: 800; text-align: center; }
+    .xls .c.red2 { background: #FEF2F2; color: #B91C1C; font-weight: 800; text-align: center; }
+
+    /* BALANȚĂ — verificare & raport erori */
+    .bal-check { display: flex; align-items: flex-start; gap: 11px; }
+    .bal-check .bc-ic { flex-shrink: 0; width: 26px; height: 26px; border-radius: 7px; background: var(--primary-ultra-light); color: var(--primary); font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+    .bal-check .bc-t { font-size: 13.5px; line-height: 1.4; color: var(--foreground); padding-top: 2px; } .bal-check .bc-t b { font-weight: 800; }
+    .bal-item { display: flex; align-items: flex-start; gap: 9px; padding: 10px 13px; border-radius: var(--radius-sm); border: 1px solid; font-size: 12.5px; line-height: 1.4; }
+    .bal-item.warn { background: #FFFBEB; border-color: #FDE68A; color: #78350F; }
+    .bal-item.ok { background: #F0FDF4; border-color: #BBF7D0; color: #14532D; }
+    .bal-item .bi-ic { flex-shrink: 0; font-size: 15px; }
+    .bal-item b { font-weight: 800; }
+    .tool-chip { font-size: 12.5px; font-weight: 600; color: var(--foreground); background: var(--bg); border: 1px solid var(--border); border-radius: 100px; padding: 5px 13px; }
+    .slide-transition { padding: 0; overflow: hidden; background: #F2C94C; position: relative; justify-content: flex-start; }
+    .slide-transition::before { display: none; }
+    .trans-arc { position: absolute; left: 50%; top: 30%; transform: translateX(-50%); width: 150%; height: 150%; background: #EDEEF0; border-radius: 50%; }
+    .trans-title { position: relative; z-index: 2; text-align: center; font-size: 56px; font-weight: 800; color: var(--foreground); line-height: 1.08; letter-spacing: -0.02em; padding: 54px 80px 0; }
+    .trans-img { position: relative; z-index: 2; flex: 1; display: flex; align-items: center; justify-content: center; margin-top: 10px; }
+    .trans-img img { width: 300px; height: 300px; object-fit: contain; filter: drop-shadow(0 18px 30px rgba(0,0,0,0.18)); }
+    .trans-img .fallback { font-size: 200px; line-height: 1; filter: drop-shadow(0 18px 30px rgba(0,0,0,0.18)); }
+    .trans-arrow { position: absolute; bottom: 60px; right: 90px; z-index: 3; font-size: 40px; color: #BEF264; font-weight: 700; }
+    /* INTRO participanți — „HELLO my name is” */
+    .intro-layout { display: grid; grid-template-columns: 1.25fr 1fr; gap: 40px; flex: 1; align-items: center; }
+    .intro-list { display: flex; flex-direction: column; gap: 16px; }
+    .intro-item { display: flex; align-items: baseline; gap: 18px; }
+    .intro-n { font-size: 30px; font-weight: 800; color: var(--primary); line-height: 1; flex-shrink: 0; min-width: 38px; }
+    .intro-q { font-size: 26px; font-weight: 700; color: var(--foreground); line-height: 1.25; }
+    .intro-q .hl { color: var(--primary); }
+    .intro-badge-wrap { display: flex; align-items: center; justify-content: center; }
+    .name-tag { width: 320px; border-radius: 14px; overflow: hidden; box-shadow: 0 14px 40px -10px rgba(15,23,42,0.3); transform: rotate(-3deg); border: 3px solid #C0362B; }
+    .name-tag-top { background: #C0362B; color: #fff; padding: 16px 22px 12px; }
+    .name-tag-top .hello { font-size: 40px; font-weight: 800; letter-spacing: -0.02em; line-height: 0.9; }
+    .name-tag-top .sub { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; margin-top: 2px; }
+    .name-tag-body { background: #fff; height: 130px; display: flex; align-items: center; justify-content: center; }
+    .name-tag-body span { font-size: 15px; color: var(--muted); font-style: italic; }
+    /* META-PROMPTING full slide */
+    .meta-layout { display: grid; grid-template-columns: 1.05fr 1fr; gap: 28px; flex: 1; align-items: stretch; }
+    .meta-left { display: flex; flex-direction: column; gap: 18px; justify-content: center; }
+    .meta-magic { background: linear-gradient(160deg, #2D52D4, #7C3AED); border-radius: var(--radius); padding: 26px; color: #fff; }
+    .meta-magic-lbl { font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.9; }
+    .meta-bubble-lg { font-size: 21px; line-height: 1.55; margin-top: 14px; font-weight: 500; } .meta-bubble-lg b { font-weight: 800; }
+    .meta-result-lg { background: var(--pastel-mint); border: 1px solid #86EFAC; border-radius: var(--radius); padding: 18px 22px; font-size: 16px; color: #15803D; font-weight: 600; line-height: 1.5; }
+    .meta-right { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .meta-step-card { display: flex; align-items: flex-start; gap: 14px; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 15px 18px; }
+    .meta-step-card b { font-size: 16px; color: var(--foreground); } .meta-step-card span { font-size: 14px; color: var(--muted); line-height: 1.45; }
+    .meta-step-n { width: 30px; height: 30px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .meta-when { font-size: 14px; color: var(--foreground); background: var(--primary-ultra-light); border-radius: var(--radius-sm); padding: 13px 16px; line-height: 1.5; } .meta-when b { color: var(--primary); }
+    /* API/MCP vocab */
+    .api-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex: 1; }
+    .api-card { border-radius: var(--radius); padding: 26px; display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--border); }
+    .api-card.api { background: var(--pastel-sky); border-color: #BAE6FD; }
+    .api-card.mcp { background: var(--pastel-lavender); border-color: #C4B5FD; }
+    .api-card.github { background: var(--bg); }
+    .api-card.analogy { background: var(--pastel-peach); border-color: #FED7AA; }
+    .api-term { font-size: 28px; font-weight: 800; color: var(--primary); }
+    .api-def { font-size: 16px; font-weight: 600; color: var(--foreground); line-height: 1.4; }
+    .api-ex { font-size: 14px; color: var(--muted); line-height: 1.45; font-style: italic; }
+    /* CONCEPT slides (API/MCP/GitHub) */
+    .concept-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 34px; flex: 1; align-items: center; }
+    .concept-text { display: flex; flex-direction: column; gap: 16px; }
+    .concept-big { font-size: 44px; font-weight: 800; color: var(--primary); letter-spacing: -0.02em; line-height: 1; }
+    .concept-lead { font-size: 21px; font-weight: 700; color: var(--foreground); line-height: 1.35; }
+    .concept-body { font-size: 16px; color: var(--muted); line-height: 1.6; } .concept-body b { color: var(--foreground); }
+    .concept-pill { display: inline-flex; align-items: center; gap: 9px; align-self: flex-start; background: var(--bg); border: 1px solid var(--border); border-radius: 100px; padding: 8px 16px; font-size: 14px; font-weight: 600; color: var(--foreground); }
+    .concept-visual { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; min-height: 360px; }
+    /* API diagram: two apps + bridge */
+    .api-diagram { display: flex; align-items: center; gap: 0; width: 100%; justify-content: center; }
+    .api-node { width: 120px; height: 120px; border-radius: var(--radius); background: #fff; border: 2px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; box-shadow: var(--shadow); flex-shrink: 0; }
+    .api-node .ico { font-size: 38px; } .api-node .nm { font-size: 14px; font-weight: 700; color: var(--foreground); }
+    .api-bridge { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; position: relative; }
+    .api-bridge .line { width: 100%; height: 3px; background: linear-gradient(90deg, var(--primary), #7C3AED); position: relative; }
+    .api-bridge .tag { font-size: 12px; font-weight: 700; color: var(--primary); background: var(--primary-ultra-light); padding: 4px 12px; border-radius: 100px; }
+    .api-bridge .pkt { font-size: 11px; color: var(--muted); }
+    /* MCP hub diagram */
+    .mcp-hub { position: relative; width: 100%; display: flex; flex-direction: column; align-items: center; gap: 0; }
+    .mcp-center { width: 130px; height: 130px; border-radius: 50%; background: linear-gradient(160deg, #2D52D4, #7C3AED); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; box-shadow: 0 8px 30px -6px rgba(45,82,212,0.5); z-index: 2; }
+    .mcp-center .t { font-size: 20px; font-weight: 800; } .mcp-center .s { font-size: 11px; opacity: 0.85; }
+    .mcp-spokes { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 22px; position: relative; }
+    .mcp-spokes::before { content: ''; position: absolute; top: -22px; left: 50%; width: 2px; height: 22px; background: var(--border); }
+    .mcp-spoke { display: flex; flex-direction: column; align-items: center; gap: 6px; background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 12px 14px; min-width: 78px; box-shadow: var(--shadow); }
+    .mcp-spoke .ico { font-size: 26px; } .mcp-spoke .nm { font-size: 12px; font-weight: 600; color: var(--foreground); }
+    /* GitHub version timeline */
+    .gh-timeline { display: flex; flex-direction: column; gap: 0; width: 100%; }
+    .gh-commit { display: flex; align-items: flex-start; gap: 16px; position: relative; padding-bottom: 20px; }
+    .gh-commit:last-child { padding-bottom: 0; }
+    .gh-commit::before { content: ''; position: absolute; left: 13px; top: 28px; bottom: -4px; width: 2px; background: var(--border); }
+    .gh-commit:last-child::before { display: none; }
+    .gh-dot { width: 28px; height: 28px; border-radius: 50%; background: #fff; border: 3px solid var(--primary); flex-shrink: 0; z-index: 2; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+    .gh-commit.head .gh-dot { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .gh-meta { display: flex; flex-direction: column; gap: 2px; padding-top: 2px; }
+    .gh-msg { font-size: 15px; font-weight: 700; color: var(--foreground); }
+    .gh-hash { font-size: 12px; color: var(--muted); font-family: monospace; }
+    .gh-commit.head .gh-msg { color: var(--primary); }
+    /* Plug / adapter analogy */
+    .plug-grid { display: flex; gap: 20px; width: 100%; }
+    .plug-card { flex: 1; border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; border: 1px solid var(--border); }
+    .plug-card.bad { background: #FEF2F2; border-color: #FECACA; } .plug-card.good { background: #F0FDF4; border-color: #86EFAC; }
+    .plug-emoji { font-size: 52px; line-height: 1; }
+    .plug-row { display: flex; gap: 8px; font-size: 26px; }
+    .plug-card .lbl { font-size: 14px; font-weight: 700; } .plug-card.bad .lbl { color: #DC2626; } .plug-card.good .lbl { color: #16A34A; }
+    .plug-card .txt { font-size: 13px; color: var(--foreground); line-height: 1.45; }
+    /* MCP logos strip */
+    .mcp-logos { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+    .mcp-chip { display: flex; align-items: center; gap: 7px; background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 6px 14px 6px 10px; font-size: 13px; font-weight: 600; color: var(--foreground); }
+    .mcp-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    /* COWORK 2 slides */
+    .cowork-adv { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; flex: 1; }
+    .cowork-col { border-radius: var(--radius); padding: 22px; display: flex; flex-direction: column; gap: 12px; border: 1px solid var(--border); }
+    .cowork-col.classic { background: #FEF2F2; border-color: #FECACA; }
+    .cowork-col.auto { background: #F0FDF4; border-color: #86EFAC; }
+    .cowork-col-label { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .cowork-col.classic .cowork-col-label { color: #DC2626; }
+    .cowork-col.auto .cowork-col-label { color: #16A34A; }
+    .cowork-row { font-size: 15px; color: var(--foreground); line-height: 1.45; padding: 9px 0; border-bottom: 1px solid rgba(0,0,0,0.06); display: flex; gap: 10px; }
+    .cowork-row:last-child { border-bottom: none; }
+    /* ROI calc */
+    .roi-split { display: grid; grid-template-columns: 1.15fr 1fr; gap: 26px; flex: 1; align-items: stretch; }
+    .roi-calc { display: flex; flex-direction: column; gap: 0; flex: 1; }
+    .roi-row { display: flex; align-items: center; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--border); }
+    .roi-row:last-child { border-bottom: none; }
+    .roi-icon { font-size: 26px; width: 40px; flex-shrink: 0; text-align: center; }
+    .roi-label { font-size: 15px; color: var(--muted); min-width: 160px; }
+    .roi-value { font-size: 20px; font-weight: 800; color: var(--primary); }
+    .roi-note { font-size: 13px; color: var(--muted); margin-left: auto; }
+    /* SALARY pane */
+    .salary-pane { border-radius: var(--radius); padding: 24px 26px; background: var(--primary-ultra-light); border: 1px solid #C7D2FE; display: flex; flex-direction: column; gap: 0; }
+    .salary-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--primary); margin-bottom: 8px; }
+    .salary-row { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; padding: 11px 0; border-bottom: 1px solid rgba(45,82,212,0.12); }
+    .salary-lbl { font-size: 15px; color: var(--foreground); line-height: 1.35; }
+    .salary-val { font-size: 18px; font-weight: 800; color: var(--foreground); white-space: nowrap; }
+    .salary-row.total .salary-lbl { font-weight: 700; } .salary-row.total .salary-val { color: var(--primary); }
+    .salary-row.hi { background: var(--primary); margin: 8px -14px 0; padding: 13px 14px; border-radius: var(--radius-sm); border: none; }
+    .salary-row.hi .salary-lbl, .salary-row.hi .salary-val { color: #fff; } .salary-row.hi .salary-val { font-size: 24px; }
+    .salary-foot { font-size: 14px; color: var(--muted); line-height: 1.5; margin-top: 12px; } .salary-foot b { color: var(--primary); }
+    /* GMAIL MCP demo */
+    .gmail-flow { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .gmail-step { display: flex; align-items: flex-start; gap: 14px; padding: 14px 18px; border-radius: var(--radius-sm); background: var(--bg); border: 1px solid var(--border); }
+    .gmail-step-icon { font-size: 24px; flex-shrink: 0; width: 34px; text-align: center; }
+    .gmail-step-text { font-size: 16px; color: var(--foreground); line-height: 1.45; } .gmail-step-text b { color: var(--primary); font-weight: 700; }
+    /* Tools auto vs ai */
+    .autoai-table { width: 100%; border-collapse: collapse; font-size: 15px; flex: 1; }
+    .autoai-table th { padding: 13px 18px; font-weight: 700; font-size: 13px; letter-spacing: 0.04em; color: #fff; border: none; }
+    .autoai-table th.h1 { background: #7C3AED; border-radius: var(--radius-sm) 0 0 0; }
+    .autoai-table th.h2 { background: var(--primary); }
+    .autoai-table th.h3 { background: #16A34A; border-radius: 0 var(--radius-sm) 0 0; }
+    .autoai-table td { padding: 12px 18px; border-bottom: 1px solid var(--border); color: var(--foreground); vertical-align: top; line-height: 1.4; }
+    .autoai-table tr:last-child td { border-bottom: none; }
+    .autoai-table tr:nth-child(even) td { background: var(--bg); }
+  </style>
+  <style>
+  /* === Claude & Agenți — CSS portat din AI for Marketing === */
+.info-band {background:var(--primary-ultra-light);border:1px solid #A5B4FC;border-radius:var(--radius);padding:15px 20px;display:flex;gap:16px;align-items:center;}
+.info-band .ib-icon {font-size:28px;flex-shrink:0;}
+.info-band .ib-text {font-size:14.5px;color:var(--foreground);line-height:1.5;}
+.info-band .ib-text b {font-weight:700;}
+.example-band {background:var(--pastel-lavender);border:1px solid #C4B5FD;border-radius:var(--radius);padding:15px 20px;}
+.example-band .eb-title {font-size:13px;font-weight:700;color:var(--primary);margin-bottom:6px;display:flex;align-items:center;gap:8px;}
+.example-band .eb-body {font-size:14.5px;color:var(--foreground);line-height:1.5;}
+.card-num {width:30px;height:30px;border-radius:8px;background:var(--primary);color:#fff;font-size:15px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.card.mint .card-num {background:#16A34A;}
+.card.lavender .card-num {background:#7C3AED;}
+.card.sky .card-num {background:#0284C7;}
+.card.peach .card-num {background:#EA580C;}
+.card.rose .card-num {background:#DB2777;}
+.routing {display:flex;align-items:center;gap:0;flex:none;}
+.rt-in {background:#0F172A;color:#fff;border-radius:var(--radius);padding:20px 22px;text-align:center;flex-shrink:0;width:190px;}
+.rt-in .ri-t {font-size:16px;font-weight:800;}
+.rt-in .ri-s {font-size:12px;color:rgba(255,255,255,.6);margin-top:4px;}
+.rt-fan {width:54px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--primary);font-size:24px;font-weight:800;gap:34px;}
+.rt-branches {display:flex;flex-direction:column;gap:12px;flex:1;}
+.rt-branch {display:flex;align-items:center;gap:12px;border-radius:var(--radius);padding:13px 18px;border:1px solid;}
+.rt-branch.a {background:#FEF2F2;border-color:#FECACA;}
+.rt-branch.b {background:#F0FDF4;border-color:#86EFAC;}
+.rt-branch.c {background:#EFF6FF;border-color:#BFDBFE;}
+.rt-branch .rb-cond {font-size:15px;font-weight:800;flex:1;}
+.rt-branch.a .rb-cond {color:#B91C1C;}
+.rt-branch.b .rb-cond {color:#15803D;}
+.rt-branch.c .rb-cond {color:#1D4ED8;}
+.rt-branch .rb-arrow {color:var(--muted);font-weight:800;}
+.rt-branch .rb-dest {font-size:13px;font-weight:700;color:var(--foreground);background:#fff;border-radius:7px;padding:5px 11px;}
+.fork {display:flex;align-items:center;gap:0;flex:none;}
+.fk-src {width:150px;flex-shrink:0;background:var(--primary-ultra-light);border:1px solid #A5B4FC;border-radius:var(--radius);padding:18px;text-align:center;font-size:15px;font-weight:800;color:var(--primary);}
+.fk-fan {width:44px;flex-shrink:0;text-align:center;color:var(--primary);font-size:24px;font-weight:800;}
+.fk-workers {display:flex;flex-direction:column;gap:10px;flex:1;}
+.fk-w {background:#fff;border:1px solid var(--border);border-top:3px solid var(--primary-light);border-radius:10px;padding:11px 16px;font-size:14px;font-weight:700;box-shadow:var(--shadow);}
+.fk-join {width:44px;flex-shrink:0;text-align:center;color:#16A34A;font-size:24px;font-weight:800;}
+.fk-out {width:130px;flex-shrink:0;background:var(--pastel-mint);border:1px solid #86EFAC;border-radius:var(--radius);padding:18px;text-align:center;font-size:14px;font-weight:800;color:#15803D;}
+.orch {display:flex;flex-direction:column;flex:none;gap:0;align-items:center;}
+.orch-top {background:#0F172A;color:#fff;border-radius:var(--radius);padding:18px 28px;text-align:center;max-width:580px;}
+.orch-top .ot-t {font-size:19px;font-weight:800;}
+.orch-top .ot-s {font-size:14px;color:rgba(255,255,255,.7);margin-top:4px;}
+.orch-connector {width:2px;height:20px;background:var(--primary);}
+.orch-fan {font-size:13px;color:var(--muted);font-weight:700;margin-bottom:10px;letter-spacing:.04em;}
+.orch-workers {display:grid;grid-template-columns:repeat(4,1fr);gap:14px;width:100%;}
+.worker {background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:15px;display:flex;flex-direction:column;gap:6px;border-top:3px solid var(--primary-light);}
+.worker .w-num {font-size:11px;font-weight:800;color:var(--primary);letter-spacing:.05em;}
+.worker .w-t {font-size:15px;font-weight:800;color:var(--foreground);}
+.worker .w-d {font-size:12.5px;color:var(--muted);line-height:1.4;}
+.dict {display:grid;grid-template-columns:.92fr 1.08fr;gap:30px;flex:1;align-items:center;}
+.dict-left {display:flex;flex-direction:column;gap:16px;}
+.dict-word {display:flex;align-items:center;gap:14px;}
+.dict-word .dw-logo {width:54px;height:54px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.dict-word .dw-emoji {font-size:42px;}
+.dict-word h3 {font-size:34px;font-weight:800;margin:0;letter-spacing:-.02em;}
+.dict-word .dw-sub {font-size:14px;color:var(--muted);margin:2px 0 0;}
+.dict-analogy {font-size:21px;line-height:1.4;color:var(--foreground);font-weight:500;}
+.dict-analogy b {color:var(--primary);font-weight:800;}
+.dict-why {background:var(--primary-ultra-light);border:1px solid #C7D2FE;border-radius:var(--radius);padding:14px 17px;font-size:14.5px;color:var(--foreground);line-height:1.5;}
+.dict-why .lbl {display:block;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--primary);margin-bottom:5px;}
+.dict-visual {display:flex;align-items:center;justify-content:center;min-height:0;height:100%;}
+.mdcompare {display:grid;grid-template-columns:1fr 1fr;gap:0;width:100%;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+.md-src,.md-prev {padding:18px;min-height:230px;}
+.md-src {background:#0B1120;font-family:ui-monospace,Menlo,monospace;font-size:12.5px;line-height:1.7;color:#CBD5E1;border-right:1px solid var(--border);}
+.md-src .h {color:#5B7CF7;}
+.md-src .b {color:#fff;font-weight:700;}
+.md-src .li {color:#94A3B8;}
+.md-prev {background:#fff;}
+.md-prev h4 {font-size:18px;font-weight:800;margin:0 0 10px;}
+.md-prev p {font-size:13px;color:var(--foreground);margin:0 0 9px;line-height:1.5;}
+.md-prev ul {margin:0;padding-left:18px;}
+.md-prev li {font-size:13px;color:var(--foreground);line-height:1.6;}
+.md-tablabel {font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#94A3B8;margin-bottom:9px;display:block;}
+.why-band {background: var(--primary-ultra-light); border: 1px solid #C7D2FE; border-radius: var(--radius); padding: 15px 20px; display: flex; gap: 15px; align-items: center; margin-top: 14px;}
+.why-band .wb-icon {font-size: 28px; flex-shrink: 0;}
+.why-band .wb-text {font-size: 14.5px; color: var(--foreground); line-height: 1.5;}
+.why-band .wb-text b {color: var(--primary); font-weight: 800;}
+.why-band .wb-text .lbl {display: inline-block; font-size: 11px; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: var(--primary); margin-right: 8px;}
+.flow-rail {display: flex; align-items: stretch; gap: 0; flex: none;}
+.frnode {flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 14px; display: flex; flex-direction: column; gap: 8px; position: relative;}
+.frnode .frn-num {width: 32px; height: 32px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center;}
+.frnode .frn-ic {font-size: 26px;}
+.frnode .frn-t {font-size: 15px; font-weight: 800; color: var(--foreground); line-height: 1.2;}
+.frnode .frn-d {font-size: 12.5px; color: var(--muted); line-height: 1.45;}
+.frarrow {display: flex; align-items: center; justify-content: center; width: 42px; flex-shrink: 0; font-size: 28px; color: var(--primary); font-weight: 800;}
+.evflow {display: flex; align-items: stretch; gap: 0; flex: none;}
+.evstep {flex: 1; border-radius: var(--radius); padding: 20px 18px; display: flex; flex-direction: column; gap: 8px; position: relative;}
+.evstep.gen {background: var(--primary-ultra-light); border: 1px solid #A5B4FC;}
+.evstep.crit {background: var(--pastel-peach); border: 1px solid #FED7AA;}
+.evstep.dec {background: #F0FDF4; border: 1px solid #86EFAC;}
+.evstep-badge {width: 38px; height: 38px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 18px; font-weight: 800; display: flex; align-items: center; justify-content: center;}
+.evstep-ic {font-size: 30px;}
+.evstep-t {font-size: 18px; font-weight: 800; color: var(--foreground);}
+.evstep-d {font-size: 13.5px; color: var(--muted); line-height: 1.5;}
+.evstep-d b {color: var(--foreground);}
+.evconn {width: 46px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;}
+.evconn-arrow {font-size: 30px; color: var(--primary); font-weight: 800;}
+.evback-rail {display: flex; align-items: center; gap: 12px; background: #FFF7ED; border: 1px dashed #FB923C; border-radius: var(--radius); padding: 12px 18px; margin-top: 14px;}
+.evback-rail .evback-lbl {font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #C2410C; flex-shrink: 0;}
+.evback-rail .evback-arrow {font-size: 14px; font-weight: 700; color: #9A3412; line-height: 1.4;}
+.logo-strip {display: flex; align-items: center; gap: 22px; flex-wrap: wrap; justify-content: center; padding: 6px 0;}
+.logo-strip img {height: 30px; width: auto; opacity: 0.92;}
+.logo-strip .lg-sm img {height: 24px;}
+  </style>
+  <style>
+  /* === Multi-prompt cascadă (wfall) — portat din AI for Marketing === */
+  .wfall {display:flex;flex-direction:column;gap:0;flex:1;justify-content:center;padding:4px 0;}
+  .wf-step {display:flex;align-items:center;gap:14px;background:var(--bg);border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:var(--radius-sm);padding:13px 18px;box-shadow:var(--shadow);}
+  .wf-step .wf-n {width:30px;height:30px;border-radius:8px;background:var(--primary);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px;}
+  .wf-step .wf-t {font-size:15px;font-weight:700;color:var(--foreground);line-height:1.3;flex:1;}
+  .wf-step .wf-t b {color:var(--primary);}
+  .wf-out {background:var(--primary-ultra-light);border:1px dashed #A5B4FC;border-radius:7px;padding:5px 11px;font-size:12px;color:var(--primary);font-weight:700;white-space:nowrap;flex-shrink:0;}
+  .wf-conn {display:flex;align-items:center;gap:8px;color:var(--muted);font-weight:700;font-size:12px;padding:4px 0;}
+  .wf-conn .wf-arrow {font-size:18px;color:var(--primary);}
+
+    /* ===== COMPETITIVE MATRIX (Care AI e cel mai bun) ===== */
+    .cmx { display: flex; flex-direction: column; gap: 4px; min-height: 0; }
+    .cmx-row { display: grid; grid-template-columns: 1.02fr 1fr 1fr 1fr; gap: 6px; align-items: stretch; }
+    .cmx-hcell { display: flex; align-items: center; justify-content: center; gap: 7px; font-size: 14.5px; font-weight: 800; color: var(--foreground); padding: 7px 8px; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+    .cmx-hcell.chatgpt { background: #ECFDF5; border-color: #6EE7B7; }
+    .cmx-hcell.gemini  { background: #EFF6FF; border-color: #93C5FD; }
+    .cmx-hcell.claude  { background: #FFF7ED; border-color: #FDBA74; }
+    .cmx-hcell.dim { background: var(--foreground); color: #fff; border-color: var(--foreground); justify-content: flex-start; font-size: 13px; letter-spacing: 0.03em; text-transform: uppercase; }
+    .cmx-dim { display: flex; align-items: center; gap: 7px; padding: 6px 10px; border-radius: var(--radius-sm); background: var(--bg); border: 1px solid var(--border); font-size: 12.5px; font-weight: 700; color: var(--foreground); line-height: 1.2; }
+    .cmx-dim .ico { font-size: 15px; flex-shrink: 0; }
+    .cmx-dim .sub { display: block; font-size: 10px; font-weight: 600; color: var(--muted); text-transform: none; letter-spacing: 0; }
+    .cmx-cell { display: flex; align-items: flex-start; gap: 5px; padding: 6px 9px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: #fff; font-size: 11.5px; line-height: 1.3; color: var(--foreground); }
+    .cmx-cell .v { font-size: 13px; flex-shrink: 0; line-height: 1.25; }
+    .cmx-cell b { font-weight: 700; }
+    .cmx-cell.yes { background: #F0FDF4; border-color: #BBF7D0; }
+    .cmx-cell.mid { background: #FFFBEB; border-color: #FDE68A; }
+    .cmx-cell.no  { background: #FEF2F2; border-color: #FECACA; color: #7F1D1D; }
+    .cmx-cell.no b { color: #991B1B; }
+    .cmx-cell .new { display: inline-block; background: var(--primary); color: #fff; font-size: 8.5px; font-weight: 800; letter-spacing: 0.06em; padding: 1px 5px; border-radius: 100px; vertical-align: 1px; margin-right: 3px; }
+    .cmx-foot { margin-top: auto; padding-top: 7px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 8px; }
+    .cmx-foot-box { font-size: 11.5px; line-height: 1.4; padding: 8px 12px; border-radius: var(--radius-sm); background: var(--primary-ultra-light); color: var(--foreground); }
+    .cmx-foot-box b { color: var(--primary); }
+    .cmx-foot-box.warn { background: #FFFBEB; border: 1px solid #FDE68A; }
+    .cmx-foot-box.warn b { color: #B45309; }
+
+    /* ===== EXERCITIU SKILLS — 3 faze ===== */
+    .exs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+    .exs-card { border-radius: var(--radius); border: 1px solid var(--border); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+    .exs-card.p1 { background: #FFF7ED; border-color: #FDBA74; }
+    .exs-card.p2 { background: #EFF6FF; border-color: #93C5FD; }
+    .exs-card.p3 { background: #F3E8FF; border-color: #D8B4FE; }
+    .exs-top { display: flex; align-items: center; gap: 10px; }
+    .exs-num { width: 28px; height: 28px; border-radius: 50%; background: var(--practice); color: #fff; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .exs-time { margin-left: auto; font-size: 10.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); background: #fff; border: 1px solid var(--border); border-radius: 100px; padding: 3px 9px; }
+    .exs-title { font-size: 17px; font-weight: 800; line-height: 1.25; color: var(--foreground); }
+    .exs-body { font-size: 13.5px; line-height: 1.45; color: var(--foreground); }
+    .exs-hint { margin-top: auto; font-size: 12px; line-height: 1.42; color: var(--muted); background: rgba(255,255,255,0.72); border-radius: var(--radius-sm); padding: 9px 11px; }
+    .exs-hint b { color: var(--foreground); }
+
+    /* ===== GRILA DE TRIAJ ===== */
+    .trg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; flex: 1; }
+    .trg-col { border-radius: var(--radius); border: 1px solid var(--border); padding: 18px 20px; display: flex; flex-direction: column; gap: 10px; }
+    .trg-col.ok { background: #F0FDF4; border-color: #86EFAC; }
+    .trg-col.mid { background: #FFFBEB; border-color: #FDE68A; }
+    .trg-col.no { background: #FEF2F2; border-color: #FECACA; }
+    .trg-head { font-size: 17px; font-weight: 800; display: flex; align-items: center; gap: 8px; color: var(--foreground); }
+    .trg-sub { font-size: 12.5px; color: var(--muted); line-height: 1.4; margin-top: -5px; }
+    .trg-item { font-size: 13.5px; line-height: 1.4; display: flex; gap: 8px; color: var(--foreground); }
+    .trg-item .d { flex-shrink: 0; }
+    .trg-item b { font-weight: 700; }
+
+    /* ===== multi-prompt: doua note pe un rand ===== */
+    .mp-foot { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+    .mp-foot .quote-block { font-size: 14px; padding: 11px 14px; line-height: 1.45; }
+  </style>
+  <style>
+  /* ===== MAI — componente noi ===== */
+
+  /* --- Have I Been Pwned mock --- */
+  .hibp { border-radius: 10px; overflow: hidden; border: 1px solid #CBD5E1; box-shadow: var(--shadow); background: #fff; }
+  .hibp-top { background: #2A3B4C; color: #fff; padding: 9px 16px; font-size: 12.5px; font-weight: 800; letter-spacing: .02em; display: flex; align-items: center; gap: 8px; }
+  .hibp-top .u { opacity: .55; font-weight: 600; font-family: ui-monospace, Menlo, monospace; font-size: 11px; }
+  .hibp-hit { background: #C0392B; color: #fff; padding: 16px 20px; }
+  .hibp-hit .t { font-size: 25px; font-weight: 800; line-height: 1.1; }
+  .hibp-hit .s { font-size: 12.5px; opacity: .92; margin-top: 5px; line-height: 1.4; }
+  .hibp-list { padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; background: #fff; }
+  .hibp-b { display: flex; gap: 11px; align-items: flex-start; border: 1px solid var(--border); border-radius: 8px; padding: 9px 12px; background: var(--bg); }
+  .hibp-b .lg { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: #fff; flex-shrink: 0; }
+  .hibp-b .nm { font-size: 13px; font-weight: 800; color: var(--foreground); }
+  .hibp-b .dt { font-size: 10.5px; color: var(--muted); margin-top: 1px; }
+  .hibp-b .cmp { font-size: 11.5px; color: #B91C1C; font-weight: 600; margin-top: 4px; line-height: 1.35; }
+
+  /* --- lanțul parolei refolosite --- */
+  .pwchain { display: flex; align-items: stretch; gap: 0; }
+  .pwn { flex: 1; border-radius: var(--radius); border: 1px solid var(--border); padding: 16px 12px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 7px; position: relative; background: #fff; }
+  .pwn::after { content: '→'; position: absolute; right: -11px; top: 50%; transform: translateY(-50%); font-size: 22px; color: #DC2626; font-weight: 800; z-index: 3; }
+  .pwn:last-child::after { display: none; }
+  .pwn.leak { background: #FFFBEB; border-color: #FDE68A; }
+  .pwn.hit { background: #FEF2F2; border-color: #FCA5A5; }
+  .pwn .pw-ic { font-size: 30px; line-height: 1; }
+  .pwn .pw-t { font-size: 14px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+  .pwn .pw-d { font-size: 11.5px; color: var(--muted); line-height: 1.4; }
+  .pwkey { display: inline-block; font-family: ui-monospace, Menlo, monospace; font-size: 11.5px; font-weight: 700; background: #0F172A; color: #FBBF24; border-radius: 5px; padding: 3px 8px; letter-spacing: .02em; }
+
+  /* --- Outlook mock --- */
+  .otlk { border-radius: 9px; overflow: hidden; border: 1px solid #CBD5E1; box-shadow: var(--shadow); background: #fff; display: flex; flex-direction: column; min-height: 0; }
+  .otlk-bar { background: #0F6CBD; color: #fff; padding: 7px 13px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .otlk-bar .app { font-size: 12px; font-weight: 800; letter-spacing: .01em; display: flex; align-items: center; gap: 6px; }
+  .otlk-bar .srch { flex: 1; background: rgba(255,255,255,.18); border-radius: 4px; padding: 3px 9px; font-size: 10.5px; color: rgba(255,255,255,.72); }
+  .otlk-bar .av { width: 21px; height: 21px; border-radius: 50%; background: rgba(255,255,255,.28); font-size: 9.5px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .otlk-body { display: flex; min-height: 0; flex: 1; }
+  .otlk-list { width: 172px; flex-shrink: 0; border-right: 1px solid #E4E8EC; background: #FAFBFC; }
+  .otlk-fold { padding: 7px 11px; font-size: 9.5px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: #64748B; border-bottom: 1px solid #E4E8EC; background: #F1F4F7; }
+  .otlk-fold.spam { color: #B45309; background: #FEF3C7; }
+  .otlk-item { padding: 8px 11px; border-bottom: 1px solid #EDF0F3; border-left: 3px solid transparent; }
+  .otlk-item.sel { background: #E8F1FB; border-left-color: #0F6CBD; }
+  .otlk-item .f { font-size: 11.5px; font-weight: 800; color: #0F172A; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .otlk-item .s { font-size: 10.5px; color: #334155; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
+  .otlk-item .p { font-size: 10px; color: #94A3B8; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
+  .otlk-item.dim .f, .otlk-item.dim .s { color: #94A3B8; font-weight: 600; }
+  .otlk-read { flex: 1; padding: 12px 16px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .otlk-subject { font-size: 15px; font-weight: 800; color: #0F172A; line-height: 1.25; }
+  .otlk-sender { display: flex; align-items: center; gap: 9px; padding-bottom: 9px; border-bottom: 1px solid #EDF0F3; }
+  .otlk-av { width: 31px; height: 31px; border-radius: 50%; background: #0F6CBD; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 800; flex-shrink: 0; }
+  .otlk-av.grey { background: #94A3B8; }
+  .otlk-name { font-size: 12.5px; font-weight: 800; color: #0F172A; }
+  .otlk-mail { font-size: 11px; color: #64748B; font-family: ui-monospace, Menlo, monospace; margin-top: 1px; }
+  .otlk-mail .bad { background: #FEE2E2; color: #B91C1C; font-weight: 800; padding: 1px 5px; border-radius: 3px; }
+  .otlk-when { margin-left: auto; font-size: 10.5px; color: #94A3B8; white-space: nowrap; }
+  .otlk-text { font-size: 12px; line-height: 1.58; color: #1E293B; }
+  .otlk-text p { margin: 0 0 6px; }
+  .otlk-text b { font-weight: 700; color: #0F172A; }
+  .otlk-btn { align-self: flex-start; background: #0F6CBD; color: #fff; border-radius: 5px; padding: 7px 17px; font-size: 11.5px; font-weight: 800; margin-top: 2px; }
+  .otlk-btn.grey { background: #64748B; }
+  .otlk-link { color: #0F6CBD; text-decoration: underline; font-weight: 600; }
+  .otlk-sig { font-size: 10.5px; color: #64748B; line-height: 1.45; border-top: 1px solid #EDF0F3; padding-top: 6px; margin-top: auto; }
+
+  /* red-flag markers */
+  .rf { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; border-radius: 50%; background: #DC2626; color: #fff; font-size: 10px; font-weight: 800; vertical-align: middle; margin: 0 3px; flex-shrink: 0; }
+  .rf-list { display: flex; flex-direction: column; gap: 8px; }
+  .rf-row { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.42; color: var(--foreground); }
+  .rf-row .n { flex-shrink: 0; width: 19px; height: 19px; border-radius: 50%; background: #DC2626; color: #fff; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .rf-row b { font-weight: 800; }
+  .rf-row code { font-family: ui-monospace, Menlo, monospace; font-size: 12px; background: #FEE2E2; color: #B91C1C; padding: 1px 5px; border-radius: 4px; font-weight: 700; }
+
+  /* --- nic.md registry mock --- */
+  .nicmd-slot img { width: 100%; display: block; border-radius: 8px; border: 1px solid #CBD5E1; box-shadow: var(--shadow); }
+  .nicmd { border: 1px solid #CBD5E1; border-radius: 8px; overflow: hidden; box-shadow: var(--shadow); background: #fff; }
+  .nicmd-strip { height: 5px; background: #4A6CF7; }
+  .nicmd-top { background: #F4F6F8; padding: 7px 13px; display: flex; align-items: center; gap: 11px; border-bottom: 1px solid #E2E8F0; }
+  .nicmd-logo { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+  .nicmd-dot { width: 24px; height: 24px; border-radius: 50%; background: #2C5C8F; color: #fff; font-size: 8px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .nicmd-logo .nm { font-size: 12px; font-weight: 800; color: #2C5C8F; letter-spacing: -.01em; }
+  .nicmd-nav { display: flex; gap: 11px; font-size: 8px; font-weight: 800; color: #55606E; letter-spacing: .04em; margin-left: auto; }
+  .nicmd-hero { background: linear-gradient(120deg, #4C5578 0%, #5D6790 60%, #6E7AA8 100%); color: #fff; padding: 11px 16px; font-size: 15px; font-weight: 700; }
+  .nicmd-body { padding: 15px 16px 16px; }
+  .nicmd-yes { font-size: 19px; font-weight: 700; color: #1A202C; line-height: 1.3; }
+  .nicmd-yes .dom { color: #2B7BD6; font-weight: 800; }
+  .nicmd-sub { font-size: 10px; color: #55606E; margin-top: 7px; line-height: 1.45; }
+  .nicmd-btns { display: flex; gap: 11px; margin-top: 12px; }
+  .nicmd-btn { flex: 1; border: 1px solid #6BA9E8; border-radius: 6px; padding: 8px; text-align: center; font-size: 10px; font-weight: 800; color: #2B7BD6; text-transform: uppercase; letter-spacing: .03em; }
+  .dom-compare { display: flex; align-items: center; gap: 14px; justify-content: center; }
+  .dom-box { border-radius: var(--radius); padding: 13px 20px; border: 1px solid; text-align: center; }
+  .dom-box.real { background: #F0FDF4; border-color: #86EFAC; }
+  .dom-box.fake { background: #FEF2F2; border-color: #FCA5A5; }
+  .dom-box .lb { font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 5px; }
+  .dom-box.real .lb { color: #15803D; } .dom-box.fake .lb { color: #B91C1C; }
+  .dom-box .dm { font-size: 23px; font-weight: 800; font-family: ui-monospace, Menlo, monospace; color: var(--foreground); letter-spacing: -.02em; }
+  .dom-box .dm .mark { background: #FEF08A; border-radius: 3px; padding: 0 3px; }
+  .dom-box .dm .gone { color: #DC2626; text-decoration: line-through; }
+
+  /* --- multiplicare phishing --- */
+  .mult { display: flex; align-items: stretch; gap: 0; }
+  .mult-src { width: 175px; flex-shrink: 0; background: #0F172A; color: #fff; border-radius: var(--radius); padding: 18px 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; text-align: center; }
+  .mult-src .ic { font-size: 30px; }
+  .mult-src .t { font-size: 14px; font-weight: 800; }
+  .mult-src .s { font-size: 11.5px; color: rgba(255,255,255,.62); line-height: 1.4; }
+  .mult-fan { width: 46px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 800; color: var(--primary); }
+  .mult-out { flex: 1; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .mult-card { background: var(--bg); border: 1px solid var(--border); border-top: 3px solid var(--primary-light); border-radius: 9px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px; }
+  .mult-card .to { font-size: 11px; font-weight: 800; color: var(--foreground); }
+  .mult-card .hook { font-size: 10.5px; color: var(--muted); line-height: 1.35; }
+  .mult-more { background: var(--primary-ultra-light); border-color: #C7D2FE; border-top-color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: var(--primary); }
+
+  /* --- rule strip (4 reguli) --- */
+  .rules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .rule { border-radius: var(--radius); border: 1px solid var(--border); background: #fff; padding: 17px 16px; display: flex; flex-direction: column; gap: 7px; box-shadow: var(--shadow); }
+  .rule .rn { width: 27px; height: 27px; border-radius: 8px; background: var(--primary); color: #fff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .rule .rt { font-size: 14.5px; font-weight: 800; color: var(--foreground); line-height: 1.25; }
+  .rule .rd { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+  .rule .rd b { color: var(--foreground); }
+
+  /* --- condiții skill --- */
+  .cond3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .cond { border-radius: var(--radius); border: 1px solid #C7D2FE; background: var(--primary-ultra-light); padding: 18px; display: flex; flex-direction: column; gap: 8px; }
+  .cond .ci { font-size: 30px; line-height: 1; }
+  .cond .ct { font-size: 16px; font-weight: 800; color: var(--primary); }
+  .cond .cd { font-size: 13px; color: var(--foreground); line-height: 1.5; }
+  .cond .cd b { font-weight: 700; }
+
+  /* --- înainte / după --- */
+  .ba { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .ba-pane { border-radius: var(--radius); padding: 18px 20px; border: 1px solid; display: flex; flex-direction: column; gap: 9px; }
+  .ba-pane.before { background: #FEF2F2; border-color: #FECACA; }
+  .ba-pane.after { background: #F0FDF4; border-color: #86EFAC; }
+  .ba-lbl { font-size: 11.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .ba-pane.before .ba-lbl { color: #DC2626; } .ba-pane.after .ba-lbl { color: #16A34A; }
+  .ba-time { font-size: 30px; font-weight: 800; color: var(--foreground); letter-spacing: -.02em; }
+  .ba-row { font-size: 13px; color: var(--foreground); line-height: 1.45; display: flex; gap: 8px; }
+  .ba-row .d { flex-shrink: 0; }
+
+  /* --- recap final --- */
+  .recap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; flex: 1; }
+  .recap-col { border-radius: var(--radius); border: 1px solid var(--border); padding: 24px 22px; display: flex; flex-direction: column; gap: 11px; box-shadow: var(--shadow); }
+  .recap-col.a { background: #FEF2F2; border-color: #FECACA; }
+  .recap-col.b { background: var(--pastel-sky); border-color: #BAE6FD; }
+  .recap-col.c { background: var(--pastel-peach); border-color: #FED7AA; }
+  .recap-n { font-size: 12px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+  .recap-t { font-size: 22px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+  .recap-d { font-size: 14px; color: var(--foreground); line-height: 1.55; }
+  .recap-d b { font-weight: 800; color: var(--primary); }
+  .recap-do { margin-top: auto; font-size: 12.5px; font-weight: 700; color: var(--foreground); background: rgba(255,255,255,.75); border-radius: 8px; padding: 10px 13px; line-height: 1.4; }
+
+  /* --- de ce Claude --- */
+  .cl-hero { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 26px; flex: 1; align-items: stretch; }
+  .cl-badge { border-radius: var(--radius); background: linear-gradient(165deg, #FFF7ED 0%, #FFEDD5 100%); border: 1px solid #FDBA74; padding: 26px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 15px; text-align: center; }
+  .cl-badge .cl-mark { width: 74px; height: 74px; border-radius: 20px; background: #fff; border: 1px solid #FDBA74; display: flex; align-items: center; justify-content: center; box-shadow: var(--shadow); }
+  .cl-badge .cl-name { font-size: 26px; font-weight: 800; color: var(--foreground); letter-spacing: -.02em; }
+  .cl-badge .cl-claim { font-size: 15px; color: #7C2D12; line-height: 1.5; font-weight: 500; }
+  .cl-badge .cl-claim b { font-weight: 800; color: #9A3412; }
+  .cl-files { display: flex; flex-wrap: wrap; gap: 7px; justify-content: center; }
+  .cl-file { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; font-weight: 800; background: #fff; border: 1px solid #FDBA74; color: #C2410C; border-radius: 100px; padding: 5px 12px; }
+  .cl-list { display: flex; flex-direction: column; gap: 9px; justify-content: center; }
+  .cl-row { display: flex; gap: 13px; align-items: flex-start; background: var(--bg); border: 1px solid var(--border); border-left: 3px solid #C96442; border-radius: var(--radius-sm); padding: 11px 15px; }
+  .cl-ic { font-size: 23px; flex-shrink: 0; line-height: 1.25; }
+  .cl-t { font-size: 15.5px; font-weight: 800; color: var(--foreground); margin-bottom: 2px; }
+  .cl-d { font-size: 13px; color: var(--muted); line-height: 1.48; }
+  .cl-d b { color: var(--foreground); font-weight: 700; }
+
+  /* --- agenda aerisită --- */
+  .agenda3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; flex: 1; align-content: center; }
+  .ag3 { border-radius: var(--radius); border: 1px solid; padding: 40px 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center; }
+  .ag3.a { background: #FEF2F2; border-color: #FECACA; }
+  .ag3.b { background: var(--pastel-sky); border-color: #BAE6FD; }
+  .ag3.c { background: var(--pastel-peach); border-color: #FED7AA; }
+  .ag3-n { width: 42px; height: 42px; border-radius: 50%; background: #fff; border: 1px solid rgba(15,23,42,.12); color: var(--foreground); font-size: 19px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+  .ag3-ic { font-size: 46px; line-height: 1; }
+  .ag3-t { font-size: 23px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+  .ag3-time { font-size: 13.5px; font-weight: 700; color: var(--muted); background: rgba(255,255,255,.75); border-radius: 100px; padding: 5px 15px; }
+
+  /* --- slide-întrebare --- */
+  .qbig { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; text-align: center; }
+  .qbig .hand { font-size: 62px; line-height: 1; }
+  .qbig .q { font-size: 50px; font-weight: 800; color: var(--foreground); line-height: 1.16; max-width: 980px; letter-spacing: -.022em; }
+  .qbig .q em { font-style: normal; color: var(--primary); }
+  .qbig .q .red { color: var(--destructive); }
+  .qbig .sub { font-size: 19px; color: var(--muted); max-width: 720px; line-height: 1.5; }
+  .qbig .sub b { color: var(--foreground); font-weight: 700; }
+
+  /* --- rezultate de căutare (incident ChatGPT share) --- */
+  .srch { border: 1px solid #CBD5E1; border-radius: 9px; overflow: hidden; box-shadow: var(--shadow); background: #fff; }
+  .srch-bar { padding: 10px 14px; border-bottom: 1px solid #E2E8F0; display: flex; align-items: center; gap: 10px; background: #FAFBFC; }
+  .srch-duck { width: 24px; height: 24px; border-radius: 50%; background: #DE5833; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .srch-q { flex: 1; border: 1px solid #CBD5E1; border-radius: 8px; padding: 6px 12px; font-family: ui-monospace, Menlo, monospace; font-size: 12.5px; color: #0F172A; font-weight: 700; background: #fff; }
+  .srch-res { padding: 13px 16px; display: flex; flex-direction: column; gap: 13px; }
+  .srch-item { display: flex; flex-direction: column; gap: 2px; }
+  .srch-src { font-size: 10.5px; color: #64748B; font-family: ui-monospace, Menlo, monospace; }
+  .srch-title { font-size: 14.5px; color: #6D28D9; font-weight: 700; line-height: 1.3; }
+  .srch-snip { font-size: 11.5px; color: #475569; line-height: 1.45; }
+
+  /* --- QR final --- */
+  .qr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; flex: 1; align-content: center; max-width: 900px; margin: 0 auto; width: 100%; }
+  .qr-card { border-radius: var(--radius); border: 1px solid var(--border); background: #fff; box-shadow: var(--shadow); padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 11px; }
+  .qr-head { display: flex; align-items: center; gap: 10px; }
+  .qr-name { font-size: 19px; font-weight: 800; color: var(--foreground); }
+  .qr-img { width: 192px; height: 192px; border-radius: 12px; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border); }
+  .qr-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .qr-fallback { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: var(--bg); color: #94A3B8; font-size: 13px; font-weight: 700; text-align: center; padding: 18px; }
+  .qr-fallback .ic { font-size: 38px; }
+  .qr-fallback .pth { font-family: ui-monospace, Menlo, monospace; font-size: 11px; background: #E2E8F0; color: #475569; padding: 4px 9px; border-radius: 6px; }
+  .qr-desc { font-size: 14px; color: var(--muted); text-align: center; line-height: 1.45; }
+  .qr-desc b { color: var(--foreground); }
+  .qr-url { font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: var(--primary); background: var(--primary-ultra-light); border-radius: 6px; padding: 5px 12px; margin-top: auto; }
+  </style>
+</head>
+<body>
+<div class="reveal">
+  <div class="slides">
+
+    <!-- 01 COVER -->
+    <section>
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Ministerul Afacerilor Interne · sesiune de 30 de minute</div>
+          <h1>AI, pe scurt:<br>3 lucruri care contează</h1>
+          <p class="subtitle">Securitate · NotebookLM ca asistent pe legislație · Claude Skills. Fără teorie — doar ce puteți folosi de mâine.</p>
+          <div class="cover-logos">
+            <span class="lbl">Lucrăm cu:</span>
+            <span class="cover-chip">🛡️ Securitate</span>
+            <span class="cover-chip">📓 NotebookLM</span>
+            <span class="cover-chip">⚙️ Claude Skills</span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">1 / 34</div>
+      </div>
+    </section>
+
+    <!-- 02 DESPRE MINE -->
+    <section>
+      <div class="slide">
+        <div class="about-signature">Not expert, but learning</div>
+        <div class="slide-header"><div class="slide-tag">Despre mine</div><h2 class="slide-title">Învățăm împreună</h2></div>
+        <div class="about-grid">
+          <div class="about-left">
+            <div class="about-bullets">
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text"><b>8 ani</b> experiență în Marketing Digital</div></div>
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text">Studii economice licență &amp; master, <b>UBB Cluj-Napoca</b></div></div>
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text">Peste <b>600 de persoane</b> instruite la cursurile mele de AI &amp; Marketing</div></div>
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text"><b>6 ani</b> experiență în educație · predau la nivel <b>universitar</b>, la ASEM</div></div>
+              <div class="about-bullet"><div class="about-arrow">→</div><div class="about-bullet-text">Am livrat traininguri de AI pentru <b>instituții publice</b> — funcționari, ANOFM, autorități locale</div></div>
+            </div>
+            <div class="about-role-badge"><span class="dot"></span>Founder · Vector Academy</div>
+          </div>
+          <div class="about-photo-wrap">
+            <div class="about-photo-deco1"></div>
+            <div class="about-photo-deco2"></div>
+            <div class="about-photo-card">
+              <img src="deck-assets/dima-summit.jpg" alt="Dima" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="about-photo-slot" style="display:none"><span class="ph-icon">📷</span><span>Poza ta aici</span><span class="ph-path">dima-summit.jpg</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">2 / 34</div>
+      </div>
+    </section>
+
+    <!-- 03 AGENDA -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Agenda</div><h2 class="slide-title">Trei subiecte, 30 de minute</h2></div>
+        <div class="agenda3">
+          <div class="ag3 a"><span class="ag3-n">1</span><span class="ag3-ic">🛡️</span><span class="ag3-t">Securitatea<br>în AI</span><span class="ag3-time">~12 min</span></div>
+          <div class="ag3 b"><span class="ag3-n">2</span><span class="ag3-ic">📓</span><span class="ag3-t">NotebookLM<br>pe legislație</span><span class="ag3-time">~8 min</span></div>
+          <div class="ag3 c"><span class="ag3-n">3</span><span class="ag3-ic">⚙️</span><span class="ag3-t">Claude<br>Skills</span><span class="ag3-time">~8 min</span></div>
+        </div>
+        <div class="slide-num">3 / 34</div>
+      </div>
+    </section>
+
+    <!-- ============ BLOC 1 — SECURITATE ============ -->
+
+    <!-- 04 De ce începem cu securitatea -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Bloc 1 · Securitate</div></div>
+        <div class="qbig">
+          <div class="hand">✋</div>
+          <div class="q">Câți dintre voi aveți <em>aceeași parolă</em><br>pe mai multe platforme?</div>
+          <div class="sub">Sincer. Nu notează nimeni nimic. <b>De aici pornește tot ce urmează.</b></div>
+        </div>
+        <div class="slide-num">4 / 34</div>
+      </div>
+    </section>
+
+    <!-- 05 Aceeași parolă peste tot -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Contul tău</div><h2 class="slide-title">Aceeași parolă peste tot = o singură cheie la toate ușile</h2><p class="slide-subtitle">Nu contează cât de complicată e parola. Contează <b>de câte ori ai folosit-o</b> — și dacă una dintre uși e adresa de serviciu.</p></div>
+        <div class="pwchain" style="flex:1;align-items:center">
+          <div class="pwn">
+            <span class="pw-ic">🛍️</span>
+            <span class="pw-t">Un magazin online</span>
+            <span class="pw-d">Ți-ai făcut cont acum 6 ani. Nici nu mai ții minte.</span>
+            <span class="pwkey">Parola123!</span>
+          </div>
+          <div class="pwn leak">
+            <span class="pw-ic">💥</span>
+            <span class="pw-t">Magazinul e spart</span>
+            <span class="pw-d">Baza de date ajunge public. Nu e vina ta — și nici nu te anunță nimeni.</span>
+            <span class="pwkey">email + Parola123!</span>
+          </div>
+          <div class="pwn leak">
+            <span class="pw-ic">🤖</span>
+            <span class="pw-t">Robotul încearcă aceeași parolă peste tot</span>
+            <span class="pw-d">Automat, pe mii de servicii — inclusiv pe <b>adresa ta de serviciu</b>, care se ghicește ușor din nume.</span>
+            <span class="pwkey">încearcă peste tot</span>
+          </div>
+          <div class="pwn hit">
+            <span class="pw-ic">🏛️</span>
+            <span class="pw-t">Intră în e-mailul instituțional</span>
+            <span class="pw-d">Ți-au spart <b>contul personal</b>. Dar prada e <b>contul de serviciu</b> — pentru că ai pus aceeași parolă.</span>
+            <span class="pwkey" style="background:#B91C1C;color:#fff">acces la instituție</span>
+          </div>
+        </div>
+        <div class="why-band"><span class="wb-icon">🔓</span><span class="wb-text"><span class="lbl">Ideea</span>Breșa nu se întâmplă la instituție. Se întâmplă <b>la un magazin online</b>, acum șase ani — iar instituția plătește pentru că parola a fost refolosită.</span></div>
+        <div class="slide-num">5 / 34</div>
+      </div>
+    </section>
+
+    <!-- 06 Have I Been Pwned — captura mea -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Contul tău</div><h2 class="slide-title">Verifică în 10 secunde: <span style="font-family:ui-monospace,Menlo,monospace;font-size:32px">haveibeenpwned.com</span></h2><p class="slide-subtitle">Îți scrii adresa de e-mail și îți spune în ce scurgeri de date a apărut. Eu am verificat-o pe a mea — iată rezultatul.</p></div>
+        <div style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:24px;flex:1;min-height:0">
+          <div class="nicmd-slot" style="display:flex;align-items:center">
+            <img src="deck-assets/haveibeenpwned-dima.png" alt="Have I Been Pwned — rezultatul pentru adresa mea" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+            <div class="hibp" style="display:none;width:100%">
+              <div class="hibp-top">🔎 have i been pwned? <span class="u">vlahdumitru@…</span></div>
+              <div class="hibp-hit">
+                <div class="t">Oh no — pwned!</div>
+                <div class="s">Adresa a apărut în mai multe scurgeri de date cunoscute.</div>
+              </div>
+              <div class="hibp-list">
+                <div class="hibp-b" style="border-color:#FCA5A5;background:#FEF2F2">
+                  <div class="lg" style="background:#EE5C24">N</div>
+                  <div><div class="nm">Nitro <span style="font-size:10px;font-weight:700;color:#B91C1C;background:#FEE2E2;padding:2px 7px;border-radius:100px;margin-left:5px">Sept 2020</span></div><div class="dt">Serviciul Nitro PDF — peste <b>70 de milioane</b> de adrese expuse</div><div class="cmp">Compromise: adrese e-mail · nume · parole (hash) · <b>titlurile documentelor convertite</b></div></div>
+                </div>
+                <div class="hibp-b">
+                  <div class="lg" style="background:#1877F2">f</div>
+                  <div><div class="nm">Rețea socială</div><div class="dt">breșă raportată public</div><div class="cmp">Compromise: e-mail, nume, număr de telefon</div></div>
+                </div>
+                <div class="hibp-b">
+                  <div class="lg" style="background:#475569">▦</div>
+                  <div><div class="nm">Colecție agregată de parole</div><div class="dt">breșă raportată public</div><div class="cmp">Compromise: e-mail + parolă</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;justify-content:center">
+            <div class="quote-block warn" style="font-size:16px"><strong>Nu e o rușine.</strong> Aproape toți suntem acolo. Rușinea e să afli și să nu schimbi nimic.</div>
+            <div style="font-size:15px;color:var(--foreground);line-height:1.55">Uitați-vă la <b>Nitro</b> — un simplu convertor de PDF-uri. N-au ieșit doar parolele: au ieșit și <b>titlurile documentelor pe care le-au convertit oamenii</b>.</div>
+            <div style="font-size:15px;color:var(--foreground);line-height:1.55">Gândiți-vă ce ar însemna asta dacă cineva ar converti acolo un document de serviciu.</div>
+            <div class="info-band"><div class="ib-icon">👉</div><div class="ib-text"><b>Faceți-o acum, în sală:</b> deschideți <b>haveibeenpwned.com</b>, scrieți adresa personală. Nu se salvează nimic, nu se trimite nimic.</div></div>
+          </div>
+        </div>
+        <div class="slide-num">6 / 34</div>
+      </div>
+    </section>
+
+    <!-- 07 Întrebarea -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Contul tău</div></div>
+        <div class="qbig">
+          <div class="q">Da, și <span class="red">cui îi trebuie</span><br>datele mele???</div>
+          <div class="sub">E întrebarea corectă. Doar că răspunsul nu e cel la care vă gândiți.</div>
+        </div>
+        <div class="slide-num">7 / 34</div>
+      </div>
+    </section>
+
+    <!-- 08 Imaginat vs real -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Contul tău</div><h2 class="slide-title">Nu vă caută <b>un om</b>. Vă găsește un program.</h2></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:26px;flex:1;align-content:center">
+          <div class="split-pane bad" style="padding:30px;gap:16px;justify-content:center">
+            <span class="split-label bad">CUM NE IMAGINĂM</span>
+            <div style="font-size:23px;font-weight:600;color:var(--foreground);line-height:1.4">Un hacker stă și caută, manual, dacă printre milioanele de rânduri e și numele meu.</div>
+            <div class="split-result" style="font-size:16px">Nu se întâmplă. N-are timp și n-are de ce.</div>
+          </div>
+          <div class="split-pane good" style="padding:30px;gap:16px;justify-content:center">
+            <span class="split-label good">CE SE ÎNTÂMPLĂ DE FAPT</span>
+            <div style="font-size:23px;font-weight:600;color:var(--foreground);line-height:1.4">Baza scursă e publică. <b style="color:var(--primary)">Algoritmi automați o scanează toată</b> și marchează ce e valoros.</div>
+            <div class="split-result" style="background:#FEE2E2;color:#B91C1C;font-size:16px">Nu vă caută pe voi. Vă <b>găsesc</b> printre ceilalți.</div>
+          </div>
+        </div>
+        <div class="slide-num">8 / 34</div>
+      </div>
+    </section>
+
+    <!-- 09 Ce caută algoritmii -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Contul tău</div><h2 class="slide-title">Ce caută automat, într-o bază scursă</h2></div>
+        <div class="rules" style="flex:1;align-items:stretch">
+          <div class="rule" style="border-top:3px solid #DC2626;justify-content:center"><div class="rn" style="background:#DC2626">@</div><div class="rt">Adrese instituționale</div><div class="rd">Un e-mail de serviciu valorează mult mai mult decât unul personal — <b>e o ușă spre o instituție</b>.</div></div>
+          <div class="rule" style="border-top:3px solid #DC2626;justify-content:center"><div class="rn" style="background:#DC2626">🔑</div><div class="rt">Perechi e-mail + parolă</div><div class="rd">Aceeași parolă se încearcă automat pe sute de servicii. Se numește <b>credential stuffing</b>.</div></div>
+          <div class="rule" style="border-top:3px solid #DC2626;justify-content:center"><div class="rn" style="background:#DC2626">👤</div><div class="rt">Funcție și angajator</div><div class="rd">Ca să știe <b>pe cine merită</b> să atace personalizat. Un ofițer valorează mai mult decât un cont anonim.</div></div>
+          <div class="rule" style="border-top:3px solid #DC2626;justify-content:center"><div class="rn" style="background:#DC2626">📞</div><div class="rt">Telefon și relații</div><div class="rd">Cine cu cine lucrează — <b>materia primă</b> pentru un mesaj credibil de la „un coleg”.</div></div>
+        </div>
+        <div class="slide-num">9 / 34</div>
+      </div>
+    </section>
+
+    <!-- 10 Incident real — conversațiile din ChatGPT pe Google -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Datele</div><h2 class="slide-title">Nici măcar n-ai nevoie de un hacker</h2><p class="slide-subtitle">Incident real: conversațiile pe care oamenii le-au dat „Share” din ChatGPT au ajuns <b>indexate în motoarele de căutare</b>. Publice. Căutabile de oricine.</p></div>
+        <div style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:24px;flex:1;min-height:0">
+          <div class="nicmd-slot" style="display:flex;align-items:center">
+            <img src="deck-assets/chatgpt-share-google.png" alt="Conversații ChatGPT indexate în motoarele de căutare" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+            <div class="srch" style="display:none;width:100%">
+              <div class="srch-bar"><span class="srch-duck">🦆</span><span class="srch-q">site:https://chatgpt.com/share</span></div>
+              <div class="srch-res">
+                <div class="srch-item"><div class="srch-src">chatgpt.com › share › 68728d58-0350-8002-b871…</div><div class="srch-title">ChatGPT — Why ChatGPT Is Cool</div><div class="srch-snip">Great question—thanks for the compliment! Here's why a lot of people find ChatGPT so cool…</div></div>
+                <div class="srch-item"><div class="srch-src">chatgpt.com › share › 6849af0d-d748-8009-b167…</div><div class="srch-title">Unconstitutional Religious Instruction</div><div class="srch-snip">„All Americans should have a firm reliance on the Protection of Divine Providence"…</div></div>
+                <div class="srch-item"><div class="srch-src">chatgpt.com › share › 6885b6a7-521c-8006-b64a…</div><div class="srch-title">ChatGPT — 食塩水と水の電気分解</div><div class="srch-snip">①前提：「ジュース」は 混合物 ジュースには次のような成分が含まれます…</div></div>
+                <div class="srch-item"><div class="srch-src">chatgpt.com › share › 68833b84-9f98-800b-801b…</div><div class="srch-title">ChatGPT — Bài hát gia đình mầm non</div><div class="srch-snip">Gia đình là tổ ấm Như chim non ríu rít Có bà kể chuyện hay…</div></div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;justify-content:center">
+            <div class="rf-list">
+              <div class="rf-row"><span class="n">1</span><span>Oamenii au apăsat <b>„Share”</b> ca să trimită un link unui coleg — un gest banal.</span></div>
+              <div class="rf-row"><span class="n">2</span><span>Linkul devenea <b>public</b>, iar motoarele de căutare l-au indexat ca pe orice pagină.</span></div>
+              <div class="rf-row"><span class="n">3</span><span>Rezultat: mii de conversații — cu <b>date personale, documente și cifre</b> — găsibile cu o singură căutare.</span></div>
+            </div>
+            <div class="quote-block warn" style="font-size:15px"><strong>Ce reținem:</strong> nu trebuie să vă spargă nimeni contul. E de-ajuns <b>un buton apăsat greșit</b> — iar ce ați scris acolo nu mai iese niciodată din internet.</div>
+          </div>
+        </div>
+        <div class="slide-num">10 / 34</div>
+      </div>
+    </section>
+
+    <!-- 09 Regula de aur -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Datele</div><h2 class="slide-title">Regula de aur</h2></div>
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;text-align:center">
+          <div style="font-size:44px;font-weight:800;color:var(--foreground);max-width:860px;line-height:1.25">Nu pune în AI ce <span style="color:var(--destructive)">nu vrei să pierzi</span>.</div>
+          <div style="font-size:18px;color:var(--muted);max-width:660px;line-height:1.5">Odată ce ai spus un secret cuiva — chiar și unui AI — nu mai e, tehnic, un secret.</div>
+        </div>
+        <div class="slide-num">11 / 34</div>
+      </div>
+    </section>
+
+    <!-- 10 Ce NU introduci -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Datele</div><h2 class="slide-title">Ce NU introduci în AI — și cu ce îl înlocuiești</h2><p class="slide-subtitle">Critic la voi: lucrați zilnic cu date cu caracter personal, sub <b>Legea nr. 133/2011</b> privind protecția datelor cu caracter personal.</p></div>
+        <div class="sec-layout">
+          <div class="sec-icon-pane">
+            <div class="shield">🛡️</div>
+            <div class="sec-rule">Regula simplă:<br><span>dacă identifică o persoană,<br>nu iese din calculator</span></div>
+          </div>
+          <table class="sec-table">
+            <tr><th class="no">❌ NU introduci niciodată</th><th class="yes">✅ Introduci în schimb</th></tr>
+            <tr><td class="no-cell">Nume, prenume, IDNP, serie act de identitate</td><td class="yes-cell">„Persoana A”, „Caz 001” — coduri din legenda ta</td></tr>
+            <tr><td class="no-cell">Adrese exacte, numere de telefon</td><td class="yes-cell">„Sector A”, „mediu urban”, „raionul X”</td></tr>
+            <tr><td class="no-cell">Date din dosare penale sau contravenționale în lucru</td><td class="yes-cell">Descrierea generică a speței, fără elemente identificatoare</td></tr>
+            <tr><td class="no-cell">Date operative, de intervenție sau clasificate</td><td class="yes-cell">Nimic. Aici nu există variantă anonimizată — nu se folosește AI public.</td></tr>
+            <tr><td class="no-cell">Documente scanate, așa cum sunt (cu antet și semnături)</td><td class="yes-cell">Textul curățat, sau documentul cu câmpurile personale înlocuite</td></tr>
+          </table>
+        </div>
+        <div class="slide-num">12 / 34</div>
+      </div>
+    </section>
+
+    <!-- 11 Anonimizare cu legendă — exemplul violenței în familie -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Datele</div><h2 class="slide-title">Anonimizarea cu legendă — exemplu real</h2><p class="slide-subtitle">Trebuie un raport pe <b>violența în familie</b>, semestrul I 2026. Aveți un Excel cu toate cazurile. Îl anonimizați <b>pe calculatorul vostru</b> — și abia apoi îl dați la AI.</p></div>
+        <div class="anon-transform">
+          <div class="xls-wrap" style="flex:1.15">
+            <div class="xls-name" style="color:#B91C1C">🔒 Fișierul real — <span style="font-weight:500">NU-l trimiteți așa</span></div>
+            <div class="xls"><table>
+              <tr><td class="rn"></td><td class="ch">A</td><td class="ch">B</td><td class="ch">C</td><td class="ch">D</td></tr>
+              <tr><td class="rn">1</td><td class="c hd">Victimă</td><td class="c hd">IDNP</td><td class="c hd">Localitate</td><td class="c hd n">Ordin restr.</td></tr>
+              <tr><td class="rn">2</td><td class="c red">Rusu Maria</td><td class="c red">200401…</td><td class="c">Ciocana</td><td class="c n">DA</td></tr>
+              <tr><td class="rn">3</td><td class="c red">Ciobanu Ana</td><td class="c red">198712…</td><td class="c">Botanica</td><td class="c n">NU</td></tr>
+              <tr><td class="rn">4</td><td class="c red">Munteanu Vera</td><td class="c red">199503…</td><td class="c">Ialoveni</td><td class="c n">DA</td></tr>
+              <tr><td class="rn">5</td><td class="c red">Grosu Elena</td><td class="c red">200210…</td><td class="c">Ciocana</td><td class="c n">DA</td></tr>
+            </table></div>
+          </div>
+          <div class="anon-arrow"><span class="aa-i">→</span><span class="aa-l">local, în Excel</span></div>
+          <div class="xls-wrap" style="flex:1">
+            <div class="xls-name" style="color:#15803D">✅ Ce trimiteți la AI — <span style="font-weight:500">aceleași cifre, fără oameni</span></div>
+            <div class="xls"><table>
+              <tr><td class="rn"></td><td class="ch">A</td><td class="ch">B</td><td class="ch">C</td></tr>
+              <tr><td class="rn">1</td><td class="c hd">Caz</td><td class="c hd">Zonă</td><td class="c hd n">Ordin restr.</td></tr>
+              <tr><td class="rn">2</td><td class="c grn">Caz 001</td><td class="c">Zona 1</td><td class="c n">DA</td></tr>
+              <tr><td class="rn">3</td><td class="c grn">Caz 002</td><td class="c">Zona 2</td><td class="c n">NU</td></tr>
+              <tr><td class="rn">4</td><td class="c grn">Caz 003</td><td class="c">Zona 3</td><td class="c n">DA</td></tr>
+              <tr><td class="rn">5</td><td class="c grn">Caz 004</td><td class="c">Zona 1</td><td class="c n">DA</td></tr>
+            </table></div>
+          </div>
+        </div>
+        <div class="why-band" style="margin-top:16px"><span class="wb-icon">🎭</span><span class="wb-text"><span class="lbl">De ce merge</span>AI-ul face tot ce vă trebuie pentru raport — <b>tendințe, distribuții pe zone, corelații, grafice, textul analitic</b> — pe „Caz 001, Caz 002”. Cifrele sunt reale. Identitatea victimei nu iese niciodată din calculatorul vostru.</span></div>
+        <div class="slide-num">13 / 34</div>
+      </div>
+    </section>
+
+    <!-- 12 Legenda + ordinea operațiunilor -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Datele</div><h2 class="slide-title">Legenda rămâne la voi — și o folosiți în ambele direcții</h2><p class="slide-subtitle">Un singur tabel de corespondență face schimbul: <b>nume → cod</b> când trimiteți, <b>cod → nume</b> când primiți rezultatul înapoi.</p></div>
+        <div style="display:grid;grid-template-columns:0.8fr 1.2fr;gap:26px;flex:1;align-items:start">
+          <div class="xls-wrap">
+            <div class="xls-name" style="color:var(--primary)">🔑 Legenda (tabelul de corespondență)</div>
+            <div class="xls"><table>
+              <tr><td class="rn"></td><td class="ch">A</td><td class="ch">B</td></tr>
+              <tr><td class="rn">1</td><td class="c hd">Nume real</td><td class="c hd">Cod</td></tr>
+              <tr><td class="rn">2</td><td class="c red">Rusu Maria</td><td class="c grn">Caz 001</td></tr>
+              <tr><td class="rn">3</td><td class="c red">Ciobanu Ana</td><td class="c grn">Caz 002</td></tr>
+              <tr><td class="rn">4</td><td class="c red">Munteanu Vera</td><td class="c grn">Caz 003</td></tr>
+              <tr><td class="rn">5</td><td class="c red">Grosu Elena</td><td class="c grn">Caz 004</td></tr>
+            </table></div>
+            <div style="font-size:12px;color:var(--muted);line-height:1.4;margin-top:4px">Într-o filă separată, pe calculatorul de serviciu. <b style="color:var(--destructive)">Legenda NU se trimite niciodată</b> la AI. E cheia.</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div>
+              <div class="fx-bar"><span class="fx-badge">fx</span><span class="fx-body">=XLOOKUP(<span class="fx-a1">Nume</span>;&nbsp;<span class="fx-a2">Nume_real</span>;&nbsp;<span class="fx-a3">Cod</span>)</span></div>
+              <div class="fx-legend"><span><span class="fx-dot a1"></span><b>ce cauți</b> — numele din tabel</span><span><span class="fx-dot a2"></span><b>unde cauți</b> — coloana cu nume</span><span><span class="fx-dot a3"></span><b>ce returnezi</b> — codul</span></div>
+            </div>
+            <div class="anon-steps">
+              <div class="anon-step"><div class="anon-step-n">1</div><div class="anon-step-t">Faceți legenda: <b>Nume real ↔ Cod</b>, într-o filă separată</div></div>
+              <div class="anon-step"><div class="anon-step-n">2</div><div class="anon-step-t">Cu <b>XLOOKUP</b>, înlocuiți numele cu coduri în tabelul de lucru</div></div>
+              <div class="anon-step"><div class="anon-step-n">3</div><div class="anon-step-t">Ștergeți coloanele care nu vă trebuie deloc: <b>IDNP, adresă, telefon</b></div></div>
+              <div class="anon-step"><div class="anon-step-n">4</div><div class="anon-step-t">Abia acum trimiteți la AI: <b>doar coduri + cifre</b> → primiți analiza pe coduri</div></div>
+              <div class="anon-step hl"><div class="anon-step-n">5</div><div class="anon-step-t">Cu XLOOKUP <b>invers</b> (Cod → Nume), mapați rezultatul înapoi — <b>local, la voi</b></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">14 / 34</div>
+      </div>
+    </section>
+
+    <!-- 13 Phishing atunci — prințul -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Phishing</div><h2 class="slide-title">Vă amintiți prințul care voia să vă lase 2,4 milioane?</h2><p class="slide-subtitle">Zece ani am râs de el. Și pe bună dreptate — era <b>proiectat</b> să fie prost scris.</p></div>
+        <div style="display:grid;grid-template-columns:1.25fr 0.75fr;gap:24px;flex:1;min-height:0">
+          <div class="otlk">
+            <div class="otlk-bar"><span class="app">✉️ Outlook</span><span class="srch">Căutare</span><span class="av">DV</span></div>
+            <div class="otlk-body">
+              <div class="otlk-list">
+                <div class="otlk-fold spam">⚠️ Junk Email</div>
+                <div class="otlk-item sel"><div class="f">PRINCE A. OKONKWO</div><div class="s">URGENT BUSINESS PROPOSAL</div><div class="p">Dear beloved friend, I am…</div></div>
+                <div class="otlk-item dim"><div class="f">LOTTERY DEPT.</div><div class="s">YOU HAVE WON $500,000</div><div class="p">Congratulation winner!!!</div></div>
+                <div class="otlk-item dim"><div class="f">Dr. Kwame B.</div><div class="s">CONFIDENTIAL TRANSFER</div><div class="p">I write to you in confidence…</div></div>
+              </div>
+              <div class="otlk-read">
+                <div class="otlk-subject">URGENT BUSINESS PROPOSAL — 2,400,000 USD</div>
+                <div class="otlk-sender">
+                  <div class="otlk-av grey">PO</div>
+                  <div><div class="otlk-name">PRINCE ADEBAYO OKONKWO</div><div class="otlk-mail">prince.okonkwo247@<span class="bad">freemail-xyz.info</span></div></div>
+                  <div class="otlk-when">acum 9 ani</div>
+                </div>
+                <div class="otlk-text">
+                  <p>DEAR BELOVED FRIEND,</p>
+                  <p>I am PRINCE ADEBAYO, son of late king. I have <b>USD 2,400,000</b> in bank account and I need trustworthy person for transfer. You was recommended to me by God.</p>
+                  <p>Please send me your bank details and copy of passport for immediate transfer. 30% will be your compensation.</p>
+                  <p>God bless you abundantly!!!</p>
+                </div>
+                <div class="otlk-sig">PRINCE A. OKONKWO<br>Barrister &amp; Royal Family Representative</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:13px;justify-content:center">
+            <div class="quote-block warn" style="font-size:15px"><strong>De ce era așa de prost scris?</strong> Intenționat. Cine se prinde de la prima frază că e o țeapă <b>se autoelimină</b>. Rămâneau doar cei care mușcau sigur — mai puțină muncă pentru escroc.</div>
+            <div class="rf-list">
+              <div class="rf-row"><span class="n">✕</span><span>Scris în engleză stricată, cu MAJUSCULE</span></div>
+              <div class="rf-row"><span class="n">✕</span><span>Nu știa cum te cheamă — „dear beloved friend”</span></div>
+              <div class="rf-row"><span class="n">✕</span><span>Adresă de expeditor evident falsă</span></div>
+              <div class="rf-row"><span class="n">✕</span><span>Aceeași scrisoare, trimisă la 100.000 de oameni</span></div>
+            </div>
+            <div class="info-band"><div class="ib-icon">🕰️</div><div class="ib-text"><b>Asta a murit.</b> Nu pentru că am devenit noi mai deștepți — ci pentru că escrocii au primit un instrument mult mai bun.</div></div>
+          </div>
+        </div>
+        <div class="slide-num">15 / 34</div>
+      </div>
+    </section>
+
+    <!-- Phishing acum — cursul obligatoriu eGov -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Phishing</div><h2 class="slide-title">Așa arată azi. Nu mai râdeți.</h2><p class="slide-subtitle">Același atac, dar scris de AI: <b>în română corectă, cu un motiv perfect plauzibil</b> — și cu o presiune de timp care pare administrativă.</p></div>
+        <div style="display:grid;grid-template-columns:1.3fr 0.7fr;gap:22px;flex:1;min-height:0">
+          <div class="otlk">
+            <div class="otlk-bar"><span class="app">✉️ Outlook</span><span class="srch">Căutare</span><span class="av">DV</span></div>
+            <div class="otlk-body">
+              <div class="otlk-list">
+                <div class="otlk-fold">📥 Inbox &nbsp;·&nbsp; 3</div>
+                <div class="otlk-item sel"><div class="f">Agenția de Guvernare El…</div><div class="s">Curs obligatoriu — termen 20 aug.</div><div class="p">Stimate domnule, în cadrul…</div></div>
+                <div class="otlk-item dim"><div class="f">Secretariat</div><div class="s">Ordinea de zi — ședința de vineri</div><div class="p">Bună ziua, atașat regăsiți…</div></div>
+                <div class="otlk-item dim"><div class="f">Serviciul Tehnologii Info.</div><div class="s">Mentenanță planificată</div><div class="p">Vă informăm că sâmbătă…</div></div>
+              </div>
+              <div class="otlk-read">
+                <div class="otlk-subject">Curs obligatoriu: Prevenirea hărțuirii la locul de muncă — termen <span style="color:#B91C1C">20 august</span> <span class="rf">3</span></div>
+                <div class="otlk-sender">
+                  <div class="otlk-av">AG</div>
+                  <div><div class="otlk-name">Agenția de Guvernare Electronică</div><div class="otlk-mail">instruire@<span class="bad">egov-md.md</span> <span class="rf">1</span></div></div>
+                  <div class="otlk-when">azi, 09:14</div>
+                </div>
+                <div class="otlk-text">
+                  <p>Stimate domnule <b>Vlah</b>,</p>
+                  <p>În cadrul <b>clusterului de negociere</b> pentru aderarea la UE, <b>50% dintre angajații Poliției</b> trebuie să parcurgă cursul „Prevenirea hărțuirii la locul de muncă” până la <b>20 august</b>. <span class="rf">2</span></p>
+                  <p>Cursul este găzduit pe noua platformă de instruire elaborată de <b>Agenția de Guvernare Electronică</b> și durează aproximativ <b>20 de minute</b>. <span class="rf">4</span></p>
+                  <p>Vă rugăm să îl parcurgeți <b>azi sau cel târziu mâine până la ora 12:00</b> — raportăm situația pe subdiviziuni. <span class="rf">3</span></p>
+                  <p><span class="otlk-link">https://instruire.egov-md.md/curs/hartuire</span> <span class="rf">5</span></p>
+                </div>
+                <div class="otlk-btn">Accesează cursul</div>
+                <div class="otlk-sig">Cu respect,<br>Direcția Instruire · Agenția de Guvernare Electronică</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px;justify-content:center">
+            <div class="sec-label" style="margin:0">Cele 5 semnale</div>
+            <div class="rf-list">
+              <div class="rf-row"><span class="n">1</span><span><b>Domeniul.</b> <code>egov-md.md</code> în loc de <code>egov.md</code>. O cratimă.</span></div>
+              <div class="rf-row"><span class="n">2</span><span><b>Motiv real, verificabil.</b> Integrarea UE chiar există. De-asta nu vă trece prin cap că e fals.</span></div>
+              <div class="rf-row"><span class="n">3</span><span><b>Presiune de timp.</b> „Până mâine la 12” nu e o cerință administrativă — e metoda de a vă lua timpul de gândire.</span></div>
+              <div class="rf-row"><span class="n">4</span><span><b>Cerere minoră.</b> „20 de minute” pare inofensiv — dar vă logați cu contul de serviciu.</span></div>
+              <div class="rf-row"><span class="n">5</span><span><b>Linkul.</b> Duce pe o pagină de login identică cu cea reală. Puneți cursorul pe el <b>înainte</b> de click.</span></div>
+            </div>
+            <div class="quote-block" style="font-size:14px;padding:12px 15px"><strong>Ce s-a schimbat:</strong> nu mai e „prințul din Africa”. E <b>o obligație de serviciu pe care chiar o aveți</b>.</div>
+          </div>
+        </div>
+        <div class="slide-num">16 / 34</div>
+      </div>
+    </section>
+
+    <!-- 15 Domeniile libere — nic.md -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Phishing</div><h2 class="slide-title">Am verificat pe <span style="font-family:ui-monospace,Menlo,monospace;font-size:32px">nic.md</span>. Sunt libere.</h2><p class="slide-subtitle">Nu e o ipoteză de laborator. Domeniile de mai jos se pot înregistra <b>azi</b>, de oricine, în câteva minute.</p></div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;flex:1;min-height:0;align-content:center">
+          <div class="nicmd-slot">
+            <img src="deck-assets/nicmd-maigov.png" alt="nic.md — maigov.md disponibil" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+            <div class="nicmd">
+              <div class="nicmd-strip"></div>
+              <div class="nicmd-top"><span class="nicmd-logo"><span class="nicmd-dot">.MD</span><span class="nm">ccTLD Registry</span></span><span class="nicmd-nav">WHOIS · SUPORT</span></div>
+              <div class="nicmd-hero">Înregistrare domeniu nou</div>
+              <div class="nicmd-body">
+                <div class="nicmd-yes">DA! <span class="dom">maigov.md</span> este disponibil pentru inregistrare. Începe acum!</div>
+                <div class="nicmd-btns"><div class="nicmd-btn">Autentificare</div><div class="nicmd-btn">Creează cont</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="nicmd-slot">
+            <img src="deck-assets/nicmd-mtenders.png" alt="nic.md — mtenders.md disponibil" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+            <div class="nicmd">
+              <div class="nicmd-strip"></div>
+              <div class="nicmd-top"><span class="nicmd-logo"><span class="nicmd-dot">.MD</span><span class="nm">ccTLD Registry</span></span><span class="nicmd-nav">WHOIS · SUPORT</span></div>
+              <div class="nicmd-hero">Înregistrare domeniu nou</div>
+              <div class="nicmd-body">
+                <div class="nicmd-yes">DA! <span class="dom">mtenders.md</span> este disponibil pentru inregistrare. Începe acum!</div>
+                <div class="nicmd-btns"><div class="nicmd-btn">Autentificare</div><div class="nicmd-btn">Creează cont</div></div>
+              </div>
+            </div>
+          </div>
+          <div class="nicmd-slot">
+            <img src="deck-assets/nicmd-customsgov.png" alt="nic.md — customsgov.md disponibil" onerror="this.style.display='none';this.nextElementSibling.style.display='block';" />
+            <div class="nicmd">
+              <div class="nicmd-strip"></div>
+              <div class="nicmd-top"><span class="nicmd-logo"><span class="nicmd-dot">.MD</span><span class="nm">ccTLD Registry</span></span><span class="nicmd-nav">WHOIS · SUPORT</span></div>
+              <div class="nicmd-hero">Înregistrare domeniu nou</div>
+              <div class="nicmd-body">
+                <div class="nicmd-yes">DA! <span class="dom">customsgov.md</span> este disponibil pentru inregistrare. Începe acum!</div>
+                <div class="nicmd-btns"><div class="nicmd-btn">Autentificare</div><div class="nicmd-btn">Creează cont</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dom-compare" style="margin-top:16px">
+          <div class="dom-box real"><div class="lb">✅ Adevărat</div><div class="dm">mai<span class="mark">.</span>gov.md</div></div>
+          <div style="font-size:26px;font-weight:800;color:var(--muted)">vs</div>
+          <div class="dom-box fake"><div class="lb">❌ Fals — și liber</div><div class="dm">maigov.md</div></div>
+          <div style="font-size:14px;color:var(--foreground);max-width:340px;line-height:1.45"><b>Un singur punct</b> lipsă. Atât vede ochiul obosit, la 9 dimineața, într-o listă de 40 de e-mailuri.</div>
+        </div>
+        <div class="slide-num">17 / 34</div>
+      </div>
+    </section>
+
+    <!-- 16 Exemplul IGSU — mtenders.md -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Phishing</div><h2 class="slide-title">Ce s-a schimbat de fapt: <b>costul</b></h2><p class="slide-subtitle">Un e-mail scris personal pentru o persoană anume lua o oră. Acum ia trei secunde — și se face de <b>200 de ori la rând</b>, fiecare altfel.</p></div>
+        <div style="display:grid;grid-template-columns:1.25fr 0.75fr;gap:22px;flex:1;min-height:0">
+          <div class="otlk">
+            <div class="otlk-bar"><span class="app">✉️ Outlook</span><span class="srch">Căutare</span><span class="av">DV</span></div>
+            <div class="otlk-body">
+              <div class="otlk-list">
+                <div class="otlk-fold">📥 Inbox &nbsp;·&nbsp; 2</div>
+                <div class="otlk-item sel"><div class="f">Cebotari Ion · dir. adj.</div><div class="s">Necesarul de achiziții 2027</div><div class="p">Stimate domnule, după exercițiul…</div></div>
+                <div class="otlk-item dim"><div class="f">Secretariat</div><div class="s">Ordinea de zi — ședința de vineri</div><div class="p">Bună ziua, atașat regăsiți…</div></div>
+              </div>
+              <div class="otlk-read">
+                <div class="otlk-subject">Necesarul de achiziții 2027 — termen vineri</div>
+                <div class="otlk-sender">
+                  <div class="otlk-av">CI</div>
+                  <div><div class="otlk-name">Cebotari Ion — director adjunct, IGSU</div><div class="otlk-mail">i.cebotari@<span class="bad">igsu-md.md</span></div></div>
+                  <div class="otlk-when">azi, 08:41</div>
+                </div>
+                <div class="otlk-text">
+                  <p>Stimate domnule <b>Vlah</b>,</p>
+                  <p>După <b>exercițiul de teren din 5 august</b> și raportul prezentat de subdiviziunea dumneavoastră, consolidăm necesarul de achiziții pentru <b>2027</b> pe fiecare subdiviziune.</p>
+                  <p>Vă rog să introduceți necesarul direct pe platformă, secțiunea <b>„Planificare 2027”</b>, până <b>vineri</b>. Autentificarea se face cu contul de serviciu.</p>
+                  <p><span class="otlk-link">https://mtenders.md/planificare-2027</span></p>
+                </div>
+                <div class="otlk-btn">Deschide platforma</div>
+                <div class="otlk-sig">Cu respect,<br>Cebotari Ion · director adjunct · IGSU</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;justify-content:center">
+            <div class="sec-label" style="margin:0">Din ce a construit AI-ul acest e-mail</div>
+            <div class="rf-list">
+              <div class="rf-row"><span class="n" style="background:#64748B">🌐</span><span>Numele directorului adjunct și structura subdiviziunilor — <b>de pe site-ul instituției</b></span></div>
+              <div class="rf-row"><span class="n" style="background:#64748B">📰</span><span>Exercițiul din 5 august — <b>dintr-un comunicat de presă</b>, cu dată și localitate</span></div>
+              <div class="rf-row"><span class="n" style="background:#64748B">@</span><span>Formatul adreselor de e-mail — <b>ghicit din două exemple publice</b></span></div>
+            </div>
+            <div class="quote-block warn" style="font-size:14px;padding:12px 15px"><strong>Și platforma?</strong> Sistemul real de achiziții publice se numește <b>MTender</b>. Domeniul <b>mtenders.md</b> — cu „s” — <b>e liber</b>. L-ați văzut pe slide-ul anterior.</div>
+            <div class="info-band" style="padding:12px 16px"><div class="ib-icon">⏱️</div><div class="ib-text" style="font-size:13.5px"><b>200 de variante în 10 minute</b> — fiecare cu evenimentul real al direcției destinatarului. Asta e tot ce s-a schimbat.</div></div>
+          </div>
+        </div>
+        <div class="slide-num">18 / 34</div>
+      </div>
+    </section>
+
+    <!-- 17 Apărarea — idei generale -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Phishing</div><h2 class="slide-title">Apărarea nu s-a schimbat</h2><p class="slide-subtitle">Nu mai puteți judeca după „pare scris de un om serios”. Judecați după <b>ce vi se cere</b> și <b>de unde vine</b>.</p></div>
+        <div class="rules" style="flex:1;align-items:center">
+          <div class="rule" style="border-top:3px solid var(--primary);justify-content:center;align-items:center;text-align:center;padding:30px 20px;gap:14px"><div class="rn" style="margin:0 auto">1</div><div class="rt" style="font-size:19px">Citiți domeniul,<br>literă cu literă</div></div>
+          <div class="rule" style="border-top:3px solid var(--primary);justify-content:center;align-items:center;text-align:center;padding:30px 20px;gap:14px"><div class="rn" style="margin:0 auto">2</div><div class="rt" style="font-size:19px">Verificați<br>pe alt canal</div></div>
+          <div class="rule" style="border-top:3px solid var(--primary);justify-content:center;align-items:center;text-align:center;padding:30px 20px;gap:14px"><div class="rn" style="margin:0 auto">3</div><div class="rt" style="font-size:19px">Urgența<br>e o tehnică</div></div>
+          <div class="rule" style="border-top:3px solid var(--primary);justify-content:center;align-items:center;text-align:center;padding:30px 20px;gap:14px"><div class="rn" style="margin:0 auto">4</div><div class="rt" style="font-size:19px">Raportați,<br>nu doar ștergeți</div></div>
+        </div>
+        <div class="why-band"><span class="wb-icon">🛡️</span><span class="wb-text"><span class="lbl">Regula de aur, versiunea phishing</span>Nicio instituție, niciodată, nu vă cere <b>parola</b> pe e-mail. Nici RU, nici IT, nici conducerea, nici AGE.</span></div>
+        <div class="slide-num">19 / 34</div>
+      </div>
+    </section>
+
+    <!-- 18 Problema -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Bloc 2 · NotebookLM</div><h2 class="slide-title">Problema pe care o are toată lumea din sală</h2><p class="slide-subtitle">Nu e că nu știți legea. E că răspunsul exact e la <b>pagina 214 din al treilea document</b> — și l-ați citit acum opt luni.</p></div>
+        <div class="cards-grid cards-3" style="flex:1">
+          <div class="card" style="background:#FEF2F2;border-color:#FECACA">
+            <span class="card-icon">📚</span>
+            <p class="card-title">Prea multe surse</p>
+            <p class="card-body">Legi, hotărâri de Guvern, ordine ale ministrului, regulamente interne, instrucțiuni, proceduri. Fiecare cu propriile modificări.</p>
+          </div>
+          <div class="card" style="background:#FEF2F2;border-color:#FECACA">
+            <span class="card-icon">🔄</span>
+            <p class="card-title">Se schimbă</p>
+            <p class="card-body">Ce știați anul trecut poate fi deja modificat. Iar versiunea din memorie e cea mai periculoasă.</p>
+          </div>
+          <div class="card" style="background:#FEF2F2;border-color:#FECACA">
+            <span class="card-icon">⏱️</span>
+            <p class="card-title">Verificarea ia timp</p>
+            <p class="card-body">Știți răspunsul, dar trebuie <b>trimiterea exactă</b>. Și aia se caută manual, 20 de minute, de fiecare dată.</p>
+          </div>
+        </div>
+        <div class="why-band"><span class="wb-icon">🚫</span><span class="wb-text"><span class="lbl">Și de ce ChatGPT nu e răspunsul aici</span>Un AI obișnuit vă răspunde <b>din memorie</b> — și poate inventa un articol care sună perfect și nu există. Pentru legislație, asta e inacceptabil. Vă trebuie altceva.</span></div>
+        <div class="slide-num">20 / 34</div>
+      </div>
+    </section>
+
+    <!-- 19 NotebookLM concept -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Bloc 2 · NotebookLM</div><h2 class="slide-title" style="display:flex;align-items:center;gap:12px"><span class="logo"><svg width="28" height="28" viewBox="0 0 500 500"><circle cx="246.93" cy="249.67" r="240"/><path fill="#fff" d="M246.94,117.25c-83.4,0-151,67.04-151,149.77v71.7h27.83v-7.15c0-33.55,27.41-60.75,61.23-60.75s61.23,27.21,61.23,60.75v7.15h27.83v-7.15c0-48.8-39.89-88.33-89.07-88.33-19.15,0-36.89,5.99-51.42,16.21,15.2-29.97,46.51-50.53,82.65-50.53,51.06,0,92.46,41.07,92.46,91.71v38.1h27.84v-38.1c0-65.89-53.86-119.32-120.3-119.32-29.87,0-57.2,10.8-78.24,28.69,20.66-38.73,61.68-65.13,108.95-65.13,68.03,0,123.17,54.69,123.17,122.16v71.7h27.83v-71.7c0-82.72-67.6-149.77-151-149.77Z"/></svg></span>NotebookLM — răspunsuri din lege, nu din imaginație</h2><p class="slide-subtitle">Îi dați voi sursele. Răspunde <b>doar din ele</b>, și pune <b>citatul</b> lângă fiecare afirmație. Ce nu e în surse — nu inventează.</p></div>
+        <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:24px;flex:1;min-height:0">
+          <div class="practice-shot"><img src="deck-assets/notebooklm-asistent-fiscal.png" alt="NotebookLM — asistent pe legislație" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📓</span>NotebookLM — asistent pe legislația voastră<span class="pth">notebooklm.google.com</span></div></div>
+          <div style="display:flex;flex-direction:column;gap:14px;justify-content:center">
+            <div class="quote-block" style="font-size:15px"><strong>Diferența cheie:</strong> 📂 răspunde DOAR din sursele voastre · 🔗 citat la articolul exact · 🚫 nu completează golurile din imaginație.</div>
+            <div style="font-size:15px;color:var(--foreground);line-height:1.55"><b>Imaginați-vă:</b> încărcați o dată Codul contravențional, legea de organizare, regulamentele interne și ordinele relevante. Apoi întrebați în română, ca un om: <i>„Care e termenul de examinare și pe ce articol?”</i> — și primiți răspunsul cu link direct la articolul din document.</div>
+            <div class="info-band"><div class="ib-icon">🖱️</div><div class="ib-text">Click pe citat → <b>se deschide documentul la locul exact</b>. Nu credeți AI-ul pe cuvânt — verificați într-o secundă.</div></div>
+          </div>
+        </div>
+        <div class="nb-cases" style="margin-top:14px">
+          <div class="nb-case"><div class="nb-case-title">⚖️ Bibliotecă de acte normative</div><div class="nb-case-desc">Răspuns cu trimitere la articolul exact</div></div>
+          <div class="nb-case"><div class="nb-case-title">📋 Proceduri interne</div><div class="nb-case-desc">„Cum se procedează în cazul X?” — din regulamentul vostru</div></div>
+          <div class="nb-case"><div class="nb-case-title">🗂️ Un dosar mare</div><div class="nb-case-desc">Zeci de documente — întrebi punctual, nu recitești tot</div></div>
+          <div class="nb-case"><div class="nb-case-title">🎙️ Sinteză audio</div><div class="nb-case-desc">Documentele devin un rezumat audio, în română</div></div>
+        </div>
+        <div class="slide-num">21 / 34</div>
+      </div>
+    </section>
+
+    <!-- 20 Limite plan gratuit -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Bloc 2 · NotebookLM</div><h2 class="slide-title">Cât încape și cât costă</h2><p class="slide-subtitle">Înainte de orice întrebare despre buget: <b>planul gratuit acoperă tot ce v-am arătat</b>. Limitele sunt generoase.</p></div>
+        <div class="sec-label">Plan gratuit · limite</div>
+        <div class="stat-row">
+          <div class="stat-tile"><div class="stat-num">50</div><div class="stat-unit">surse / notebook</div><div class="stat-sub">până la 50 de documente într-un dosar</div></div>
+          <div class="stat-tile hero"><div class="stat-num">500.000</div><div class="stat-unit">cuvinte / sursă</div><div class="stat-sub">≈ 1.500 de pagini per document</div></div>
+          <div class="stat-tile"><div class="stat-num">50</div><div class="stat-unit">întrebări / zi</div><div class="stat-sub">chat cu documentele voastre</div></div>
+          <div class="stat-tile"><div class="stat-num">100</div><div class="stat-unit">notebook-uri</div><div class="stat-sub">dosare separate, în total</div></div>
+        </div>
+        <div class="sec-label" style="margin-top:18px">De ce e potrivit anume pentru voi</div>
+        <div class="cards-grid cards-compact" style="grid-template-columns:repeat(3,1fr)">
+          <div class="card mint">
+            <div class="card-icon">💰</div>
+            <p class="card-title">Costă 0 lei</p>
+            <p class="card-body">Gratuit, complet. Nu se plătește per întrebare sau per document — nu depinde de o achiziție publică.</p>
+          </div>
+          <div class="card sky">
+            <div class="card-icon">📂</div>
+            <p class="card-title">Doar din sursele voastre</p>
+            <p class="card-body">Nu inventează. Răspunde <b>exclusiv din ce i-ați dat</b>, cu citat la pagina exactă.</p>
+          </div>
+          <div class="card peach">
+            <div class="card-icon">🇷🇴</div>
+            <p class="card-title">Merge în română</p>
+            <p class="card-body">Acte în română, întrebări în română, răspuns în română. Inclusiv sinteza audio.</p>
+          </div>
+        </div>
+        <div class="slide-num">22 / 34</div>
+      </div>
+    </section>
+
+    <!-- 21 Practică -->
+    <section>
+      <div class="slide practice">
+        <div class="slide-header"><div class="slide-tag practice-tag">🛠️ Practică · NotebookLM</div><h2 class="slide-title">Cinci pași — și aveți asistentul pe legislație</h2><p class="slide-subtitle">Se face o singură dată. Pe urmă îl folosiți zilnic, ca pe un motor de căutare care înțelege întrebări normale.</p></div>
+        <div class="practice-layout">
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="practice-steps">
+              <div class="pstep"><div class="pstep-num">1</div><div class="pstep-text">notebooklm.google.com → <b>New Notebook</b></div></div>
+              <div class="pstep"><div class="pstep-num">2</div><div class="pstep-text">Încărcați actele reale: <b>lege, regulament, ordin, procedură internă</b></div></div>
+              <div class="pstep"><div class="pstep-num">3</div><div class="pstep-text">Puneți 3 întrebări în chat, în română → urmăriți <b>citatele</b></div></div>
+              <div class="pstep"><div class="pstep-num">4</div><div class="pstep-text">Click pe citat → se deschide documentul la <b>articolul exact</b></div></div>
+              <div class="pstep"><div class="pstep-num">5</div><div class="pstep-text">Generați un <b>Briefing Doc</b> — sinteza surselor, într-o pagină</div></div>
+            </div>
+            <div class="practice-prompt" style="border-color:#7C3AED;font-size:14px;padding:12px 15px"><span class="lbl" style="color:#7C3AED">Întrebări de pornire, pe actele voastre</span>„Care este termenul legal de examinare și pe ce articol se bazează?” · „Compară procedura din ordinul nou cu cea din regulamentul vechi — ce s-a schimbat?”</div>
+            <div class="practice-app" style="font-size:12.5px"><b>Un pont:</b> un notebook <b>per domeniu</b>, nu unul cu tot — sursele curate dau răspunsuri mai precise.</div>
+          </div>
+          <div class="practice-shot cover"><img src="deck-assets/notebooklm-3panel.gif" alt="NotebookLM — surse, chat, studio" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📓</span>NotebookLM — surse · chat · citate<span class="pth">notebooklm.google.com</span></div></div>
+        </div>
+        <div class="slide-num">23 / 34</div>
+      </div>
+    </section>
+
+    <!-- 22 Patru moduri de folosire -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Bloc 2 · NotebookLM</div><h2 class="slide-title">Patru moduri concrete în care îl folosiți</h2><p class="slide-subtitle">Nu e un tool de „explorat”. Sunt patru sarcini pe care le aveți oricum de făcut — doar că mai repede.</p></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;align-content:center">
+          <div class="pstep" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px"><div class="pstep-num">⚖️</div><div class="pstep-text"><b>Asistent pe legislație:</b> încărcați o dată actele normative → „discutați” cu ele. Fiecare răspuns vine cu <b>articolul-sursă</b>, gata de pus în document.</div></div>
+          <div class="pstep" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px"><div class="pstep-num">🔎</div><div class="pstep-text"><b>Un dosar cu zeci de documente:</b> încărcați tot dosarul → întrebați punctual, răspunsul arată <b>în care document</b> și la ce pagină e informația.</div></div>
+          <div class="pstep" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px"><div class="pstep-num">✅</div><div class="pstep-text"><b>Checklist de completitudine:</b> „Conform regulamentului, ce acte trebuie să conțină dosarul — și <b>care lipsesc</b> din ce ți-am dat?”</div></div>
+          <div class="pstep" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px"><div class="pstep-num">📊</div><div class="pstep-text"><b>Sinteză pentru ședință:</b> din 15 documente scoate o notă informativă de o pagină — sau o <b>sinteză audio</b> de ascultat în mașină.</div></div>
+        </div>
+        <div class="why-band" style="margin-top:16px"><span class="wb-icon">🎯</span><span class="wb-text"><span class="lbl">Câștigul real</span>Nu că vă răspunde AI-ul. Ci că <b>răspunsul vine cu trimiterea la sursă</b> — deci îl puteți verifica în 5 secunde și îl puteți pune într-un document oficial.</span></div>
+        <div class="slide-num">24 / 34</div>
+      </div>
+    </section>
+
+    <!-- 23 Ce încărcați și ce nu -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Bloc 2 · NotebookLM</div><h2 class="slide-title">Dar atenție — se aplică tot ce am spus la securitate</h2><p class="slide-subtitle">NotebookLM e un serviciu Google, în cloud. Faptul că e util nu-l face potrivit pentru orice document.</p></div>
+        <div class="split-screen">
+          <div class="split-pane good">
+            <span class="split-label good">✅ ÎNCĂRCAȚI LINIȘTIT</span>
+            <div style="display:flex;flex-direction:column;gap:9px;flex:1;justify-content:center">
+              <div class="vs-row" style="border:none;padding:7px 0;font-size:16px"><span class="ic">📜</span>Legi, hotărâri, ordine — <b>oricum sunt publice</b></div>
+              <div class="vs-row" style="border:none;padding:7px 0;font-size:16px"><span class="ic">📋</span>Regulamente și proceduri interne neclasificate</div>
+              <div class="vs-row" style="border:none;padding:7px 0;font-size:16px"><span class="ic">📖</span>Ghiduri, metodologii, instrucțiuni de lucru</div>
+              <div class="vs-row" style="border:none;padding:7px 0;font-size:16px"><span class="ic">📊</span>Rapoarte deja publicate sau date agregate</div>
+            </div>
+            <div class="split-result">Beneficiu maxim, risc zero.</div>
+          </div>
+          <div class="split-pane bad">
+            <span class="split-label bad">❌ NU ÎNCĂRCAȚI NICIODATĂ</span>
+            <div style="display:flex;flex-direction:column;gap:9px;flex:1;justify-content:center">
+              <div class="vs-row" style="border:none;padding:7px 0;font-size:16px"><span class="ic">🚫</span>Dosare cu date de identitate ale cetățenilor</div>
+              <div class="vs-row" style="border:none;padding:7px 0;font-size:16px"><span class="ic">🚫</span>Informații operative sau de intervenție</div>
+              <div class="vs-row" style="border:none;padding:7px 0;font-size:16px"><span class="ic">🚫</span>Orice document clasificat sau cu regim special</div>
+              <div class="vs-row" style="border:none;padding:7px 0;font-size:16px"><span class="ic">🚫</span>Petiții scanate, așa cum sunt — cu nume și adrese</div>
+            </div>
+            <div class="split-result">Aici nu există „doar de test”.</div>
+          </div>
+        </div>
+        <div class="why-band"><span class="wb-icon">🎭</span><span class="wb-text"><span class="lbl">Puntea spre primul bloc</span>Dacă tot vreți să lucrați cu un dosar real — <b>îl anonimizați întâi</b>, cu legenda de acum 10 minute. Codurile intră în AI, numele rămân la voi.</span></div>
+        <div class="slide-num">25 / 34</div>
+      </div>
+    </section>
+
+    <!-- ============ BLOC 3 — CLAUDE SKILLS ============ -->
+
+    <!-- 24 De ce Claude -->
+    <section>
+      <div class="slide">
+        <div class="slide-header">
+          <div class="slide-tag">Bloc 3 · Claude</div>
+          <h2 class="slide-title" style="display:flex;align-items:center;gap:12px">
+            <span class="logo"><svg width="30" height="30" viewBox="0 0 24 24" style="fill:#C96442"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></span>
+            De ce Claude, când vorbim de documente
+          </h2>
+          <p class="slide-subtitle">Nu e o preferință de gust. E singurul care <b>termină lucrarea</b> — și ți-o dă ca fișier, nu ca text în browser.</p>
+        </div>
+        <div class="cl-hero">
+          <div class="cl-badge">
+            <div class="cl-mark"><svg width="42" height="42" viewBox="0 0 24 24" style="fill:#C96442"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg></div>
+            <div class="cl-name">Claude</div>
+            <div class="cl-claim">Ceilalți îți <b>răspund</b>.<br>Claude îți <b>livrează fișierul</b>.</div>
+            <div class="cl-files">
+              <span class="cl-file">.docx</span>
+              <span class="cl-file">.xlsx</span>
+              <span class="cl-file">.pdf</span>
+              <span class="cl-file">.pptx</span>
+            </div>
+            <div style="background:#fff;border:1px solid #FDBA74;border-radius:var(--radius-sm);padding:11px 14px;font-size:13px;color:#7C2D12;line-height:1.45"><b style="color:#9A3412">Versiunea gratuită</b> vă ajunge pentru <b>circa un raport pe zi</b> — o analiză serioasă pe un Excel greoi.</div>
+          </div>
+          <div class="cl-list">
+            <div class="cl-row">
+              <span class="cl-ic">📄</span>
+              <div><div class="cl-t">Scoate documentul, nu descrierea documentului</div><div class="cl-d">Un <b>fișier Word gata de deschis</b>: antet, rubrici, numerotare, formule de final. Nu copiezi din chat și nu reformatezi o oră.</div></div>
+            </div>
+            <div class="cl-row">
+              <span class="cl-ic">📊</span>
+              <div><div class="cl-t">Construiește Excelul, nu-ți explică cum să-l faci</div><div class="cl-d">Coloane, formule, mai multe file, formatare condiționată. Îi dai <b>teancul de documente</b> — îți dă tabelul completat, rând cu rând.</div></div>
+            </div>
+            <div class="cl-row">
+              <span class="cl-ic">⏳</span>
+              <div><div class="cl-t">Lucrează îndelung, pe aceeași sarcină</div><div class="cl-d">Nu se oprește după un răspuns: <b>parcurge zeci de fișiere</b>, își verifică munca și revine cu corecțiile — fără să-l împingi la fiecare pas.</div></div>
+            </div>
+            <div class="cl-row">
+              <span class="cl-ic">🧠</span>
+              <div><div class="cl-t">Nu pierde firul la pagina 80</div><div class="cl-d">Cel mai bun pe <b>documente lungi</b> — un regulament de 200 de pagini, un dosar întreg. Ține tot în lucru, nu doar ultimele pagini.</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="why-band"><span class="wb-icon">🎯</span><span class="wb-text"><span class="lbl">Și cel mai important</span>Dacă îi dai un model, îl <b>urmează exact</b> — nu „interpretează creativ” un act oficial. De-asta merge atât de bine cu <b>skills</b>.</span></div>
+        <div class="slide-num">26 / 34</div>
+      </div>
+    </section>
+
+    <!-- 25 Claude e un junior -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Bloc 3 · Claude Skills</div><h2 class="slide-title">Gândiți-vă la AI ca la un absolvent, în prima zi</h2><p class="slide-subtitle">Vine de la academie. Deștept, a învățat legea, scrie corect. Dar <b>nu știe cum se face la voi</b> — și îi arătați voi.</p></div>
+        <div style="display:flex;align-items:center;gap:20px;flex:1;justify-content:center">
+          <div class="card" style="flex:1;max-width:320px;align-items:center;text-align:center;gap:10px;justify-content:center">
+            <div style="font-size:60px;line-height:1">🧑‍🎓</div>
+            <p class="card-title" style="margin:0">Absolvent, prima zi</p>
+            <p class="card-body">A învățat teoria: legislația, procedurile generale, cum se scrie un act. Dar <b>generic</b>, ca la manual.</p>
+            <span style="font-size:12px;font-weight:700;background:#fff;border:1px solid var(--border);color:var(--muted);border-radius:100px;padding:5px 12px">Cunoștințe teoretice</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--primary);flex:0 0 auto">
+            <div style="font-size:34px;line-height:1">→</div>
+            <div style="font-weight:800;font-size:13px;max-width:130px;text-align:center">îi arătați cum se face la voi</div>
+          </div>
+          <div class="card mint" style="flex:1;max-width:360px;align-items:center;text-align:center;gap:9px;justify-content:center">
+            <div style="font-size:60px;line-height:1">🦸</div>
+            <p class="card-title" style="margin:0">După ce-l formați</p>
+            <p class="card-body">Acum lucrează ca un <b>om din subdiviziunea voastră</b>, nu ca un manual.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;justify-content:center">
+              <span style="font-size:11.5px;font-weight:700;background:#fff;border:1px solid #86EFAC;color:#15803D;border-radius:100px;padding:4px 11px">Formatul actelor voastre</span>
+              <span style="font-size:11.5px;font-weight:700;background:#fff;border:1px solid #86EFAC;color:#15803D;border-radius:100px;padding:4px 11px">Formulele instituționale</span>
+              <span style="font-size:11.5px;font-weight:700;background:#fff;border:1px solid #86EFAC;color:#15803D;border-radius:100px;padding:4px 11px">Procedura internă</span>
+              <span style="font-size:11.5px;font-weight:700;background:#fff;border:1px solid #86EFAC;color:#15803D;border-radius:100px;padding:4px 11px">Exemple reale</span>
+            </div>
+          </div>
+        </div>
+        <div class="why-band"><span class="wb-icon">💡</span><span class="wb-text"><span class="lbl">Diferența</span>Juniorul învață în 6 luni și pleacă în concediu. Pe AI îl înveți <b>o dată</b>, într-un fișier — și știe pe veci, la fel, la ora 2 noaptea. Fișierul ăla se numește <b>skill</b>.</span></div>
+        <div class="slide-num">27 / 34</div>
+      </div>
+    </section>
+
+    <!-- 25 Ce sunt skills -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Bloc 3 · Claude Skills</div><h2 class="slide-title">Ce sunt, de fapt, skills?</h2><p class="slide-subtitle">O <b>competență</b> pe care i-o dați lui Claude — o singură dată — și o folosește singur, de fiecare dată.</p></div>
+        <div class="cards-grid cards-3">
+          <div class="card sky"><span class="card-icon">📄</span><p class="card-title">O rețetă scrisă</p><p class="card-body">Un fișier text cu instrucțiuni: <b>cum</b> se face lucrul ăla la voi, pas cu pas, în ce format, cu ce formule.</p></div>
+          <div class="card lavender"><span class="card-icon">🪄</span><p class="card-title">Se cheamă singur</p><p class="card-body">Când vine o sarcină care se potrivește, Claude <b>își încarcă singur skill-ul</b> — nu trebuie să-i reamintiți nimic.</p></div>
+          <div class="card mint"><span class="card-icon">🎯</span><p class="card-title">Mereu la fel</p><p class="card-body">Același format, aceleași formule, aceeași structură — <b>de fiecare dată</b>. Fără „depinde cine l-a scris”.</p></div>
+        </div>
+        <div class="why-band"><span class="wb-icon">🎓</span><span class="wb-text"><span class="lbl">Analogia de reținut</span>Un skill = <b>o competență adăugată juniorului</b>. Îl învățați o dată „așa scriem noi un răspuns la petiție” → o știe pentru totdeauna, și o aplică identic la a 300-a petiție ca la prima.</span></div>
+        <div class="slide-num">28 / 34</div>
+      </div>
+    </section>
+
+    <!-- 26 Când merită un skill -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Bloc 3 · Claude Skills</div><h2 class="slide-title">Când merită un skill? Trei condiții.</h2><p class="slide-subtitle">Dacă lucrarea le bifează pe toate trei — e candidat perfect. Dacă lipsește una, nu vă chinuiți.</p></div>
+        <div class="cond3">
+          <div class="cond">
+            <span class="ci">🔁</span>
+            <span class="ct">1 · Se repetă</span>
+            <span class="cd">O faceți <b>săptămânal sau mai des</b>. Dacă o faceți o dată pe an, timpul de construit skill-ul nu se amortizează.</span>
+          </div>
+          <div class="cond">
+            <span class="ci">📐</span>
+            <span class="ct">2 · Are o rețetă în spate</span>
+            <span class="cd">Există o <b>procedură</b>: se iau datele astea, se verifică asta, se scrie în ordinea asta. Dacă puteți explica pașii unui coleg nou — există rețetă.</span>
+          </div>
+          <div class="cond">
+            <span class="ci">📄</span>
+            <span class="ct">3 · Rezultatul are formă fixă</span>
+            <span class="cd">Documentul iese <b>mereu la fel</b>: aceeași structură, aceleași rubrici, aceleași formule de început și de sfârșit.</span>
+          </div>
+        </div>
+        <div class="sec-label" style="margin-top:20px">Triaj rapid — pe exemple din activitatea voastră</div>
+        <div class="trg-grid" style="flex:none">
+          <div class="trg-col ok">
+            <div class="trg-head">✅ Da — skill curat</div>
+            <div class="trg-sub">Repetitiv + rețetă + format fix</div>
+            <div class="trg-item"><span class="d">→</span><span>Draft de <b>răspuns la petiție</b> tipică</span></div>
+            <div class="trg-item"><span class="d">→</span><span><b>Notă informativă</b> săptămânală din mai multe rapoarte</span></div>
+            <div class="trg-item"><span class="d">→</span><span>Extragerea datelor din <b>procese-verbale</b> într-un tabel</span></div>
+          </div>
+          <div class="trg-col mid">
+            <div class="trg-head">🟡 Poate — cu verificare strictă</div>
+            <div class="trg-sub">Format fix, dar cere judecată profesională</div>
+            <div class="trg-item"><span class="d">→</span><span>Sinteza unui dosar voluminos</span></div>
+            <div class="trg-item"><span class="d">→</span><span>Comparația a două redacții ale unui act</span></div>
+            <div class="trg-item"><span class="d">→</span><span>Prima variantă a unei note de fundamentare</span></div>
+          </div>
+          <div class="trg-col no">
+            <div class="trg-head">❌ Nu — nu e treabă de skill</div>
+            <div class="trg-sub">Fiecare caz e diferit sau miza e prea mare</div>
+            <div class="trg-item"><span class="d">→</span><span><b>Calificarea juridică</b> a unei fapte</span></div>
+            <div class="trg-item"><span class="d">→</span><span>Decizii care afectează drepturile unei persoane</span></div>
+            <div class="trg-item"><span class="d">→</span><span>Orice se semnează <b>fără să fie citit</b> de un om</span></div>
+          </div>
+        </div>
+        <div class="slide-num">29 / 34</div>
+      </div>
+    </section>
+
+    <!-- 27 Exemplu: skill răspuns la petiție -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Bloc 3 · Exemplu concret</div><h2 class="slide-title">Skill „Draft de răspuns la petiție”</h2><p class="slide-subtitle">Cel mai repetitiv document din instituție. Nu ca să scape cineva de responsabilitate — ci ca <b>omul să înceapă de la 70%</b>, nu de la pagina goală.</p></div>
+        <div class="nb-flow" style="margin-bottom:14px">
+          <div class="nb-node in" style="padding:16px 14px"><span class="nb-node-icon">📨</span><span class="nb-node-title">Petiția</span><span class="nb-node-desc">textul, fără date personale</span></div>
+          <div class="nb-node proc" style="padding:16px 14px"><span class="nb-node-icon">⚙️</span><span class="nb-node-title">Skill-ul vostru</span><span class="nb-node-desc">structura + formulele + temeiurile</span></div>
+          <div class="nb-node out" style="padding:16px 14px"><span class="nb-node-icon">📄</span><span class="nb-node-title">Draft .docx</span><span class="nb-node-desc">în formatul instituției</span></div>
+          <div class="nb-node" style="background:#FEF3C7;border:1px solid #FCD34D;padding:16px 14px"><span class="nb-node-icon">✍️</span><span class="nb-node-title">Juristul verifică</span><span class="nb-node-desc">corectează, aprobă, semnează</span></div>
+        </div>
+        <div class="ba" style="flex:1;align-content:center">
+          <div class="ba-pane before" style="padding:16px 20px;gap:7px">
+            <span class="ba-lbl">❌ Cum e acum</span>
+            <span class="ba-time" style="font-size:26px">~40 min</span>
+            <div class="ba-row"><span class="d">→</span><span>Cauți un răspuns similar din arhivă și îl copiezi</span></div>
+            <div class="ba-row"><span class="d">→</span><span>Rescrii formulele de adresare și antetul, manual</span></div>
+            <div class="ba-row"><span class="d">→</span><span>Cauți temeiul legal și-l verifici în alt document</span></div>
+            <div class="ba-row"><span class="d">→</span><span>Fiecare coleg îl scrie <b>puțin altfel</b> — inconsecvent</span></div>
+          </div>
+          <div class="ba-pane after" style="padding:16px 20px;gap:7px">
+            <span class="ba-lbl">✅ Cu skill</span>
+            <span class="ba-time" style="font-size:26px">~8 min</span>
+            <div class="ba-row"><span class="d">→</span><span>Dai textul petiției → primești draftul complet, în format</span></div>
+            <div class="ba-row"><span class="d">→</span><span>Structura, formulele și calea de atac — <b>deja acolo</b></span></div>
+            <div class="ba-row"><span class="d">→</span><span>Temeiul legal propus, cu articolul indicat — <b>tu îl confirmi</b></span></div>
+            <div class="ba-row"><span class="d">→</span><span>Toți colegii scot <b>același format</b>, indiferent cine lucrează</span></div>
+          </div>
+        </div>
+        <div class="why-band"><span class="wb-icon">⚠️</span><span class="wb-text"><span class="lbl">Limita, spusă clar</span>Skill-ul face <b>draftul</b>, nu decizia. Temeiul se verifică de om, semnătura e a omului. Ce câștigați sunt <b>cele 32 de minute de tastat</b> — nu judecata profesională.</span></div>
+        <div class="slide-num">30 / 34</div>
+      </div>
+    </section>
+
+    <!-- 28 Ce scrie în SKILL.md -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Bloc 3 · Claude Skills</div><h2 class="slide-title">Cum arată un skill pe dinăuntru — e doar text</h2><p class="slide-subtitle">Un skill = <b>un fișier text</b> (SKILL.md). Îl deschideți, vedeți exact ce face, îl corectați. Fără cutie neagră, fără programator.</p></div>
+        <div class="dict">
+          <div class="dict-left">
+            <div class="dict-word">
+              <span class="dw-emoji">📄</span>
+              <div><h3>SKILL.md</h3><p class="dw-sub">Text simplu, structurat — îl scrieți în română</p></div>
+            </div>
+            <p class="dict-analogy">Practic e <b>fișa de post a juniorului</b>, scrisă o dată: ce face, în ce ordine, în ce format, și ce nu are voie să facă.</p>
+            <div class="dict-why"><span class="lbl">Cine îl scrie</span>Îl scrie <b>omul care face lucrarea de 5 ani</b> — nu IT-ul. Voi cunoașteți procedura; AI-ul doar o execută. Iar dacă nu știți de unde să începeți, îi cereți lui Claude să vă intervieveze despre cum lucrați și să scrie el prima variantă.</div>
+          </div>
+          <div class="dict-visual">
+            <div class="mdcompare">
+              <div class="md-src">
+                <span class="md-tablabel">Ce scrieți (SKILL.md)</span>
+                <div class="h"># Răspuns la petiție</div>
+                <div>&nbsp;</div>
+                <div class="h">## Structura obligatorie</div>
+                <div class="li">1. Antet instituție + nr. ieșire</div>
+                <div class="li">2. Formula de adresare</div>
+                <div class="li">3. Obiectul petiției, pe scurt</div>
+                <div class="li">4. Temeiul legal invocat</div>
+                <div class="li">5. Soluția / răspunsul</div>
+                <div class="li">6. Calea de atac</div>
+                <div>&nbsp;</div>
+                <div class="h">## Reguli</div>
+                <div class="li">- ton oficial, fără abrevieri</div>
+                <div class="li">- **marchează** temeiul legal</div>
+                <div class="li">&nbsp;&nbsp;ca „DE VERIFICAT”</div>
+                <div class="li">- nu inventa articole</div>
+              </div>
+              <div class="md-prev">
+                <span class="md-tablabel">Ce iese</span>
+                <h4>Răspuns la petiția nr. …</h4>
+                <p>Structura completă, în formatul instituției, cu formulele standard deja puse la locul lor.</p>
+                <p style="font-weight:800;font-size:15px;margin-bottom:5px">De fiecare dată</p>
+                <ul><li>aceleași rubrici, în aceeași ordine</li><li>același ton oficial</li><li>temeiul legal marcat pentru verificare</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-num">31 / 34</div>
+      </div>
+    </section>
+
+    <!-- RECAP -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Închidere</div><h2 class="slide-title">Trei lucruri de dus acasă</h2></div>
+        <div class="recap">
+          <div class="recap-col a" style="align-items:center;text-align:center;justify-content:center;gap:16px">
+            <div style="font-size:52px;line-height:1">🛡️</div>
+            <div class="recap-t" style="font-size:24px">Riscul vechi,<br>la preț nou</div>
+            <div class="recap-d" style="font-size:15px">AI n-a inventat phishing-ul. L-a făcut <b>de 100 de ori mai ieftin</b>.</div>
+            <div class="recap-do" style="margin-top:0">👉 Azi: haveibeenpwned.com + 2 pași pe mailul de serviciu</div>
+          </div>
+          <div class="recap-col b" style="align-items:center;text-align:center;justify-content:center;gap:16px">
+            <div style="font-size:52px;line-height:1">📓</div>
+            <div class="recap-t" style="font-size:24px">Răspuns cu citat,<br>nu din memorie</div>
+            <div class="recap-d" style="font-size:15px">Pentru lege, doar AI-ul care arată <b>exact unde scrie</b>.</div>
+            <div class="recap-do" style="margin-top:0">👉 Săptămâna asta: un notebook cu 5 acte</div>
+          </div>
+          <div class="recap-col c" style="align-items:center;text-align:center;justify-content:center;gap:16px">
+            <div style="font-size:52px;line-height:1">⚙️</div>
+            <div class="recap-t" style="font-size:24px">Explici o dată,<br>folosești mereu</div>
+            <div class="recap-d" style="font-size:15px"><b>AI-ul face draftul, omul semnează.</b></div>
+            <div class="recap-do" style="margin-top:0">👉 Luna asta: UN document repetitiv → primul skill</div>
+          </div>
+        </div>
+        <div class="slide-num">32 / 34</div>
+      </div>
+    </section>
+
+    <!-- 32 MULȚUMESC -->
+    <section>
+      <div class="slide slide-cover">
+        <div class="cover-bg"></div><div class="cover-accent"></div><div class="cover-accent2"></div>
+        <div class="cover-content">
+          <div class="cover-kicker"><span class="dot"></span> Mulțumesc!</div>
+          <h1>Întrebări?</h1>
+          <p class="subtitle">Un obicei de securitate, un notebook cu legile voastre, un skill pentru documentul care vă mănâncă cel mai mult timp.</p>
+          <div class="cover-logos">
+            <span class="cover-chip">vectoracademy.ro</span>
+            <span class="cover-chip">vlahdumitru@vectoracademy.ro</span>
+            <span class="cover-chip">+373 760 37 475</span>
+          </div>
+        </div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">33 / 34</div>
+      </div>
+    </section>
+
+    <!-- 34 QR — Telegram + LinkedIn -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Rămânem în legătură</div><h2 class="slide-title">Scanați acum — durează 5 secunde</h2><p class="slide-subtitle">În canal pun tool-urile noi, prompturi gata făcute și lucrurile care chiar merită atenție. Pe LinkedIn — analize mai lungi.</p></div>
+        <div class="qr-grid">
+          <div class="qr-card">
+            <div class="qr-head">
+              <span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#229ED9"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></span>
+              <span class="qr-name">Telegram</span>
+            </div>
+            <div class="qr-img">
+              <img src="deck-assets/qr-telegram.svg" alt="QR canal Telegram" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="qr-fallback" style="display:none"><span class="ic">📣</span>QR Telegram<span class="pth">deck-assets/qr-telegram.svg</span></div>
+            </div>
+            <div class="qr-desc">Canalul <b>„AI AI AI"</b><br>Tool-uri noi, prompturi, ce merită testat</div>
+            <div class="qr-url">t.me/+E9aPhptp_2QxZDdk</div>
+          </div>
+          <div class="qr-card">
+            <div class="qr-head">
+              <span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></span>
+              <span class="qr-name">LinkedIn</span>
+            </div>
+            <div class="qr-img">
+              <img src="deck-assets/qr-linkedin.svg" alt="QR LinkedIn" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="qr-fallback" style="display:none"><span class="ic">💼</span>QR LinkedIn<span class="pth">deck-assets/qr-linkedin.svg</span></div>
+            </div>
+            <div class="qr-desc">Profilul meu — <b>Vlah Dumitru</b><br>Analize mai lungi despre AI în instituții</div>
+            <div class="qr-url">linkedin.com/in/…</div>
+          </div>
+        </div>
+        <div class="why-band"><span class="wb-icon">📬</span><span class="wb-text"><span class="lbl">Sau direct</span><b>vlahdumitru@vectoracademy.ro</b> · <b>+373 760 37 475</b> · vectoracademy.ro</span></div>
+        <div class="slide-num">34 / 34</div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({ hash: true, controls: true, progress: true, center: false, transition: 'fade', transitionSpeed: 'fast', width: 1280, height: 720, margin: 0, minScale: 0.2, maxScale: 2.0 });
+</script>
+</body>
+</html>
