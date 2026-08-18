@@ -1091,6 +1091,62 @@
   .srch-title { font-size: 14.5px; color: #6D28D9; font-weight: 700; line-height: 1.3; }
   .srch-snip { font-size: 11.5px; color: #475569; line-height: 1.45; }
 
+  /* --- news broadcast (mama secret) --- */
+  .news-wrap { flex: 1; display: flex; align-items: center; justify-content: center; min-height: 0; }
+  .news-tv { width: 100%; max-width: 720px; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 50px -12px rgba(15,23,42,.4); border: 3px solid #0F172A; background: #0B1220; }
+  .news-tv img { width: 100%; display: block; max-height: 460px; object-fit: cover; }
+  .news-feed { position: relative; background: linear-gradient(120deg, #0A2A6B 0%, #103F97 55%, #1E5AC0 100%); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; }
+  .news-feed .anchor { font-size: 96px; line-height: 1; filter: drop-shadow(0 8px 20px rgba(0,0,0,.35)); }
+  .news-live { position: absolute; top: 16px; left: 16px; display: flex; align-items: center; gap: 8px; background: #DC2626; color: #fff; font-size: 14px; font-weight: 800; letter-spacing: .08em; padding: 6px 14px; border-radius: 5px; }
+  .news-live .blink { width: 9px; height: 9px; border-radius: 50%; background: #fff; }
+  .news-lower { position: absolute; left: 0; right: 0; bottom: 0; }
+  .news-head { background: #DC2626; color: #fff; font-size: 19px; font-weight: 800; padding: 11px 22px; letter-spacing: .01em; }
+  .news-tick { background: #0F172A; color: #fff; font-size: 14px; font-weight: 600; padding: 9px 22px; display: flex; align-items: center; gap: 12px; }
+  .news-tick .tag { background: #DC2626; color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .06em; padding: 3px 9px; border-radius: 4px; flex-shrink: 0; }
+  .news-cap { text-align: center; font-size: 16px; color: var(--muted); margin-top: 16px; line-height: 1.5; }
+  .news-cap b { color: var(--foreground); }
+
+  /* --- mtender clonă --- */
+  .clone-grid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 22px; flex: 1; min-height: 0; }
+  .clone-shot { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); position: relative; display: flex; align-items: flex-start; justify-content: center; background: #fff; min-height: 0; max-height: 100%; }
+  .clone-shot img { width: 100%; display: block; }
+  .clone-badge { position: absolute; top: 12px; right: 12px; background: #DC2626; color: #fff; font-size: 12px; font-weight: 800; letter-spacing: .04em; padding: 6px 13px; border-radius: 100px; box-shadow: 0 4px 12px rgba(0,0,0,.25); z-index: 2; }
+  .clone-side { display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+  .clone-time { background: linear-gradient(160deg, #0F172A, #1E3A8A); color: #fff; border-radius: var(--radius); padding: 13px 18px; text-align: center; }
+  .clone-time .n { font-size: 34px; font-weight: 800; line-height: 1; letter-spacing: -.02em; }
+  .clone-time .l { font-size: 12px; color: rgba(255,255,255,.75); margin-top: 5px; }
+  .steal-list { display: flex; flex-direction: column; gap: 7px; }
+  .steal-row { display: flex; gap: 10px; align-items: flex-start; background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: var(--radius-sm); padding: 9px 12px; }
+  .steal-row .n { flex-shrink: 0; width: 22px; height: 22px; border-radius: 6px; background: #DC2626; color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .steal-row .tx { font-size: 12px; line-height: 1.4; color: var(--foreground); } .steal-row .tx b { font-weight: 800; }
+
+  /* --- NotebookLM cum lucrează (UI-friendly) --- */
+  .nblm { display: grid; grid-template-columns: 0.62fr 1.38fr; gap: 24px; flex: 1; min-height: 0; }
+  .nblm-panels { display: grid; grid-template-rows: 1fr 1fr 1fr; gap: 12px; }
+  .nbp { border-radius: var(--radius); border: 1px solid var(--border); padding: 15px 17px; display: flex; align-items: center; gap: 14px; background: var(--bg); }
+  .nbp .ic { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; color: #fff; }
+  .nbp.src .ic { background: #0284C7; } .nbp.ask .ic { background: #7C3AED; } .nbp.cite .ic { background: #16A34A; }
+  .nbp .tt { font-size: 17px; font-weight: 800; color: var(--foreground); }
+  .nbp .dd { font-size: 13px; color: var(--muted); line-height: 1.4; margin-top: 2px; }
+  .nbp .step { margin-left: auto; font-size: 26px; font-weight: 800; color: var(--border); }
+
+  /* --- 4 moduri clean --- */
+  .modes { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; flex: 1; }
+  .mode { border-radius: var(--radius); border: 1px solid var(--border); padding: 26px 28px; display: flex; align-items: center; gap: 20px; box-shadow: var(--shadow); }
+  .mode .mi { font-size: 46px; line-height: 1; flex-shrink: 0; }
+  .mode .mt { font-size: 23px; font-weight: 800; color: var(--foreground); line-height: 1.2; }
+  .mode.a { background: var(--pastel-sky); border-color: #BAE6FD; }
+  .mode.b { background: var(--pastel-mint); border-color: #86EFAC; }
+  .mode.c { background: var(--pastel-peach); border-color: #FED7AA; }
+  .mode.d { background: var(--pastel-lavender); border-color: #C4B5FD; }
+
+  /* --- few-shot docs pentru skills --- */
+  .fsd-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 26px; flex: 1; align-content: center; }
+  .fsd { display: flex; align-items: center; gap: 12px; background: var(--bg); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: var(--radius-sm); padding: 11px 15px; }
+  .fsd .ic { font-size: 20px; flex-shrink: 0; }
+  .fsd .tx { font-size: 14.5px; font-weight: 700; color: var(--foreground); line-height: 1.3; }
+  .fsd .tx span { display: block; font-size: 12px; font-weight: 500; color: var(--muted); }
+
   /* --- QR final --- */
   .qr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; flex: 1; align-content: center; max-width: 900px; margin: 0 auto; width: 100%; }
   .qr-card { border-radius: var(--radius); border: 1px solid var(--border); background: #fff; box-shadow: var(--shadow); padding: 20px; display: flex; flex-direction: column; align-items: center; gap: 11px; }
@@ -1125,7 +1181,7 @@
             <span class="cover-chip">⚙️ Claude Skills</span>
           </div>
         </div>
-        <div class="slide-num" style="color:rgba(255,255,255,0.35)">1 / 34</div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">1 / 36</div>
       </div>
     </section>
 
@@ -1154,7 +1210,7 @@
             </div>
           </div>
         </div>
-        <div class="slide-num">2 / 34</div>
+        <div class="slide-num">2 / 36</div>
       </div>
     </section>
 
@@ -1167,7 +1223,7 @@
           <div class="ag3 b"><span class="ag3-n">2</span><span class="ag3-ic">📓</span><span class="ag3-t">NotebookLM<br>pe legislație</span><span class="ag3-time">~8 min</span></div>
           <div class="ag3 c"><span class="ag3-n">3</span><span class="ag3-ic">⚙️</span><span class="ag3-t">Claude<br>Skills</span><span class="ag3-time">~8 min</span></div>
         </div>
-        <div class="slide-num">3 / 34</div>
+        <div class="slide-num">3 / 36</div>
       </div>
     </section>
 
@@ -1182,7 +1238,7 @@
           <div class="q">Câți dintre voi aveți <em>aceeași parolă</em><br>pe mai multe platforme?</div>
           <div class="sub">Sincer. Nu notează nimeni nimic. <b>De aici pornește tot ce urmează.</b></div>
         </div>
-        <div class="slide-num">4 / 34</div>
+        <div class="slide-num">4 / 36</div>
       </div>
     </section>
 
@@ -1217,7 +1273,7 @@
           </div>
         </div>
         <div class="why-band"><span class="wb-icon">🔓</span><span class="wb-text"><span class="lbl">Ideea</span>Breșa nu se întâmplă la instituție. Se întâmplă <b>la un magazin online</b>, acum șase ani — iar instituția plătește pentru că parola a fost refolosită.</span></div>
-        <div class="slide-num">5 / 34</div>
+        <div class="slide-num">5 / 36</div>
       </div>
     </section>
 
@@ -1257,7 +1313,7 @@
             <div class="info-band"><div class="ib-icon">👉</div><div class="ib-text"><b>Faceți-o acum, în sală:</b> deschideți <b>haveibeenpwned.com</b>, scrieți adresa personală. Nu se salvează nimic, nu se trimite nimic.</div></div>
           </div>
         </div>
-        <div class="slide-num">6 / 34</div>
+        <div class="slide-num">6 / 36</div>
       </div>
     </section>
 
@@ -1269,7 +1325,7 @@
           <div class="q">Da, și <span class="red">cui îi trebuie</span><br>datele mele???</div>
           <div class="sub">E întrebarea corectă. Doar că răspunsul nu e cel la care vă gândiți.</div>
         </div>
-        <div class="slide-num">7 / 34</div>
+        <div class="slide-num">7 / 36</div>
       </div>
     </section>
 
@@ -1289,7 +1345,7 @@
             <div class="split-result" style="background:#FEE2E2;color:#B91C1C;font-size:16px">Nu vă caută pe voi. Vă <b>găsesc</b> printre ceilalți.</div>
           </div>
         </div>
-        <div class="slide-num">8 / 34</div>
+        <div class="slide-num">8 / 36</div>
       </div>
     </section>
 
@@ -1298,12 +1354,12 @@
       <div class="slide">
         <div class="slide-header"><div class="slide-tag">Securitate · Contul tău</div><h2 class="slide-title">Ce caută automat, într-o bază scursă</h2></div>
         <div class="rules" style="flex:1;align-items:stretch">
-          <div class="rule" style="border-top:3px solid #DC2626;justify-content:center"><div class="rn" style="background:#DC2626">@</div><div class="rt">Adrese instituționale</div><div class="rd">Un e-mail de serviciu valorează mult mai mult decât unul personal — <b>e o ușă spre o instituție</b>.</div></div>
-          <div class="rule" style="border-top:3px solid #DC2626;justify-content:center"><div class="rn" style="background:#DC2626">🔑</div><div class="rt">Perechi e-mail + parolă</div><div class="rd">Aceeași parolă se încearcă automat pe sute de servicii. Se numește <b>credential stuffing</b>.</div></div>
-          <div class="rule" style="border-top:3px solid #DC2626;justify-content:center"><div class="rn" style="background:#DC2626">👤</div><div class="rt">Funcție și angajator</div><div class="rd">Ca să știe <b>pe cine merită</b> să atace personalizat. Un ofițer valorează mai mult decât un cont anonim.</div></div>
-          <div class="rule" style="border-top:3px solid #DC2626;justify-content:center"><div class="rn" style="background:#DC2626">📞</div><div class="rt">Telefon și relații</div><div class="rd">Cine cu cine lucrează — <b>materia primă</b> pentru un mesaj credibil de la „un coleg”.</div></div>
+          <div class="rule" style="border-top:3px solid #DC2626;justify-content:center;padding:24px 22px;gap:12px"><div class="rn" style="background:#DC2626;width:34px;height:34px;font-size:16px">@</div><div class="rt" style="font-size:22px;line-height:1.2">Adrese instituționale</div><div class="rd" style="font-size:15px">E-mailul de serviciu valorează mult mai mult decât unul personal — <b>e o ușă spre instituție</b>.</div></div>
+          <div class="rule" style="border-top:3px solid #DC2626;justify-content:center;padding:24px 22px;gap:12px"><div class="rn" style="background:#DC2626;width:34px;height:34px;font-size:16px">🔑</div><div class="rt" style="font-size:22px;line-height:1.2">Perechi e-mail + parolă</div><div class="rd" style="font-size:15px">Aceeași parolă se încearcă automat pe sute de servicii — <b>credential stuffing</b>.</div></div>
+          <div class="rule" style="border-top:3px solid #DC2626;justify-content:center;padding:24px 22px;gap:12px"><div class="rn" style="background:#DC2626;width:34px;height:34px;font-size:16px">👤</div><div class="rt" style="font-size:22px;line-height:1.2">Funcție și angajator</div><div class="rd" style="font-size:15px">Ca să știe <b>pe cine merită</b> să atace personalizat. Un ofițer &gt; un cont anonim.</div></div>
+          <div class="rule" style="border-top:3px solid #DC2626;justify-content:center;padding:24px 22px;gap:12px"><div class="rn" style="background:#DC2626;width:34px;height:34px;font-size:16px">📞</div><div class="rt" style="font-size:22px;line-height:1.2">Telefon și relații</div><div class="rd" style="font-size:15px">Cine cu cine lucrează — <b>materia primă</b> pentru un mesaj credibil „de la un coleg”.</div></div>
         </div>
-        <div class="slide-num">9 / 34</div>
+        <div class="slide-num">9 / 36</div>
       </div>
     </section>
 
@@ -1333,7 +1389,42 @@
             <div class="quote-block warn" style="font-size:15px"><strong>Ce reținem:</strong> nu trebuie să vă spargă nimeni contul. E de-ajuns <b>un buton apăsat greșit</b> — iar ce ați scris acolo nu mai iese niciodată din internet.</div>
           </div>
         </div>
-        <div class="slide-num">10 / 34</div>
+        <div class="slide-num">10 / 36</div>
+      </div>
+    </section>
+
+    <!-- Mama 1 — încrederea -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Datele</div></div>
+        <div class="qbig">
+          <div class="hand">✋</div>
+          <div class="q">Ridicați mâna cei care<br>au <em>încredere în mama</em>.</div>
+          <div class="sub">Aproape toți. E normal — mama e omul în care avem cea mai mare încredere.</div>
+        </div>
+        <div class="slide-num">11 / 36</div>
+      </div>
+    </section>
+
+    <!-- Mama 2 — secretul -->
+    <section>
+      <div class="slide">
+        <div class="slide-header"><div class="slide-tag">Securitate · Datele</div><h2 class="slide-title">Și totuși…</h2></div>
+        <div class="news-wrap">
+          <div class="news-tv">
+            <img src="deck-assets/mama-secret.jpg" alt="Secretul ajuns la știri" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="news-feed" style="display:none">
+              <div class="news-live"><span class="blink"></span>LIVE</div>
+              <div class="anchor">📺</div>
+              <div class="news-lower">
+                <div class="news-head">ULTIMA ORĂ · Secretul lui Dima, aflat de tot orașul</div>
+                <div class="news-tick"><span class="tag">BREAKING</span>Sursă: mama · „doar surorii, și ei i-am zis să nu spună nimănui" · deja pe trei grupuri</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="news-cap">Tot mama — <b>când am rugat-o să țină un secret.</b> &nbsp;Nu din rea-voință. Pur și simplu, un secret spus <b>nu mai e secret</b>.</div>
+        <div class="slide-num">12 / 36</div>
       </div>
     </section>
 
@@ -1345,7 +1436,7 @@
           <div style="font-size:44px;font-weight:800;color:var(--foreground);max-width:860px;line-height:1.25">Nu pune în AI ce <span style="color:var(--destructive)">nu vrei să pierzi</span>.</div>
           <div style="font-size:18px;color:var(--muted);max-width:660px;line-height:1.5">Odată ce ai spus un secret cuiva — chiar și unui AI — nu mai e, tehnic, un secret.</div>
         </div>
-        <div class="slide-num">11 / 34</div>
+        <div class="slide-num">13 / 36</div>
       </div>
     </section>
 
@@ -1367,7 +1458,7 @@
             <tr><td class="no-cell">Documente scanate, așa cum sunt (cu antet și semnături)</td><td class="yes-cell">Textul curățat, sau documentul cu câmpurile personale înlocuite</td></tr>
           </table>
         </div>
-        <div class="slide-num">12 / 34</div>
+        <div class="slide-num">14 / 36</div>
       </div>
     </section>
 
@@ -1401,7 +1492,7 @@
           </div>
         </div>
         <div class="why-band" style="margin-top:16px"><span class="wb-icon">🎭</span><span class="wb-text"><span class="lbl">De ce merge</span>AI-ul face tot ce vă trebuie pentru raport — <b>tendințe, distribuții pe zone, corelații, grafice, textul analitic</b> — pe „Caz 001, Caz 002”. Cifrele sunt reale. Identitatea victimei nu iese niciodată din calculatorul vostru.</span></div>
-        <div class="slide-num">13 / 34</div>
+        <div class="slide-num">15 / 36</div>
       </div>
     </section>
 
@@ -1436,7 +1527,7 @@
             </div>
           </div>
         </div>
-        <div class="slide-num">14 / 34</div>
+        <div class="slide-num">16 / 36</div>
       </div>
     </section>
 
@@ -1482,14 +1573,14 @@
             <div class="info-band"><div class="ib-icon">🕰️</div><div class="ib-text"><b>Asta a murit.</b> Nu pentru că am devenit noi mai deștepți — ci pentru că escrocii au primit un instrument mult mai bun.</div></div>
           </div>
         </div>
-        <div class="slide-num">15 / 34</div>
+        <div class="slide-num">17 / 36</div>
       </div>
     </section>
 
     <!-- Phishing acum — cursul obligatoriu eGov -->
     <section>
       <div class="slide">
-        <div class="slide-header"><div class="slide-tag">Securitate · Phishing</div><h2 class="slide-title">Așa arată azi. Nu mai râdeți.</h2><p class="slide-subtitle">Același atac, dar scris de AI: <b>în română corectă, cu un motiv perfect plauzibil</b> — și cu o presiune de timp care pare administrativă.</p></div>
+        <div class="slide-header"><div class="slide-tag">Securitate · Phishing</div><h2 class="slide-title">Așa arată azi.</h2><p class="slide-subtitle">Același atac, dar scris de AI: <b>în română corectă, cu un motiv perfect plauzibil</b> — și cu o presiune de timp care pare administrativă.</p></div>
         <div style="display:grid;grid-template-columns:1.3fr 0.7fr;gap:22px;flex:1;min-height:0">
           <div class="otlk">
             <div class="otlk-bar"><span class="app">✉️ Outlook</span><span class="srch">Căutare</span><span class="av">DV</span></div>
@@ -1531,7 +1622,7 @@
             <div class="quote-block" style="font-size:14px;padding:12px 15px"><strong>Ce s-a schimbat:</strong> nu mai e „prințul din Africa”. E <b>o obligație de serviciu pe care chiar o aveți</b>.</div>
           </div>
         </div>
-        <div class="slide-num">16 / 34</div>
+        <div class="slide-num">18 / 36</div>
       </div>
     </section>
 
@@ -1583,7 +1674,7 @@
           <div class="dom-box fake"><div class="lb">❌ Fals — și liber</div><div class="dm">maigov.md</div></div>
           <div style="font-size:14px;color:var(--foreground);max-width:340px;line-height:1.45"><b>Un singur punct</b> lipsă. Atât vede ochiul obosit, la 9 dimineața, într-o listă de 40 de e-mailuri.</div>
         </div>
-        <div class="slide-num">17 / 34</div>
+        <div class="slide-num">19 / 36</div>
       </div>
     </section>
 
@@ -1629,22 +1720,32 @@
             <div class="info-band" style="padding:12px 16px"><div class="ib-icon">⏱️</div><div class="ib-text" style="font-size:13.5px"><b>200 de variante în 10 minute</b> — fiecare cu evenimentul real al direcției destinatarului. Asta e tot ce s-a schimbat.</div></div>
           </div>
         </div>
-        <div class="slide-num">18 / 34</div>
+        <div class="slide-num">20 / 36</div>
       </div>
     </section>
 
-    <!-- 17 Apărarea — idei generale -->
+    <!-- 17 mtender clonă -->
     <section>
       <div class="slide">
-        <div class="slide-header"><div class="slide-tag">Securitate · Phishing</div><h2 class="slide-title">Apărarea nu s-a schimbat</h2><p class="slide-subtitle">Nu mai puteți judeca după „pare scris de un om serios”. Judecați după <b>ce vi se cere</b> și <b>de unde vine</b>.</p></div>
-        <div class="rules" style="flex:1;align-items:center">
-          <div class="rule" style="border-top:3px solid var(--primary);justify-content:center;align-items:center;text-align:center;padding:30px 20px;gap:14px"><div class="rn" style="margin:0 auto">1</div><div class="rt" style="font-size:19px">Citiți domeniul,<br>literă cu literă</div></div>
-          <div class="rule" style="border-top:3px solid var(--primary);justify-content:center;align-items:center;text-align:center;padding:30px 20px;gap:14px"><div class="rn" style="margin:0 auto">2</div><div class="rt" style="font-size:19px">Verificați<br>pe alt canal</div></div>
-          <div class="rule" style="border-top:3px solid var(--primary);justify-content:center;align-items:center;text-align:center;padding:30px 20px;gap:14px"><div class="rn" style="margin:0 auto">3</div><div class="rt" style="font-size:19px">Urgența<br>e o tehnică</div></div>
-          <div class="rule" style="border-top:3px solid var(--primary);justify-content:center;align-items:center;text-align:center;padding:30px 20px;gap:14px"><div class="rn" style="margin:0 auto">4</div><div class="rt" style="font-size:19px">Raportați,<br>nu doar ștergeți</div></div>
+        <div class="slide-header"><div class="slide-tag">Securitate · Phishing</div><h2 class="slide-title">Am clonat pagina în <b>6 minute</b></h2><p class="slide-subtitle">Ca să vedeți cât de ușor e: am copiat interfața platformei de achiziții — <b>fix în fix</b>. Un cetățean n-are cum să-și dea seama.</p></div>
+        <div class="clone-grid">
+          <div class="clone-shot">
+            <span class="clone-badge">⚠️ COPIE — nu e site-ul real</span>
+            <img src="deck-assets/mtender-copy-slice.png" alt="Copie a platformei MTender" onerror="this.style.display='none';this.parentElement.innerHTML='&lt;div style=&quot;padding:60px;color:#94A3B8;font-weight:700;text-align:center&quot;&gt;🖥️ Clonă MTender&lt;br&gt;deck-assets/mtender-copy-slice.png&lt;/div&gt;'" />
+          </div>
+          <div class="clone-side">
+            <div class="clone-time"><div class="n">6 min</div><div class="l">de la zero la o copie funcțională</div></div>
+            <div class="sec-label" style="margin:2px 0 0">Cum se fură datele</div>
+            <div class="steal-list">
+              <div class="steal-row"><span class="n">1</span><span class="tx">Trimit linkul fals: <b>„autentifică-te ca să vezi anunțul”</b></span></div>
+              <div class="steal-row"><span class="n">2</span><span class="tx">Pagina arată identic → introduci <b>userul și parola de serviciu</b></span></div>
+              <div class="steal-row"><span class="n">3</span><span class="tx">Datele ajung <b>direct la atacator</b>, nu la sistem</span></div>
+              <div class="steal-row"><span class="n">4</span><span class="tx">Te redirecționează pe site-ul <b>real</b> — nici nu bănuiești</span></div>
+            </div>
+          </div>
         </div>
-        <div class="why-band"><span class="wb-icon">🛡️</span><span class="wb-text"><span class="lbl">Regula de aur, versiunea phishing</span>Nicio instituție, niciodată, nu vă cere <b>parola</b> pe e-mail. Nici RU, nici IT, nici conducerea, nici AGE.</span></div>
-        <div class="slide-num">19 / 34</div>
+        <div class="why-band"><span class="wb-icon">🛡️</span><span class="wb-text"><span class="lbl">De-asta contează adresa</span>Design-ul se copiază în minute. Ce <b>nu</b> se falsifică e <b>domeniul din bara de adrese</b> — singura dovadă că ești pe site-ul real.</span></div>
+        <div class="slide-num">21 / 36</div>
       </div>
     </section>
 
@@ -1670,29 +1771,24 @@
           </div>
         </div>
         <div class="why-band"><span class="wb-icon">🚫</span><span class="wb-text"><span class="lbl">Și de ce ChatGPT nu e răspunsul aici</span>Un AI obișnuit vă răspunde <b>din memorie</b> — și poate inventa un articol care sună perfect și nu există. Pentru legislație, asta e inacceptabil. Vă trebuie altceva.</span></div>
-        <div class="slide-num">20 / 34</div>
+        <div class="slide-num">22 / 36</div>
       </div>
     </section>
 
     <!-- 19 NotebookLM concept -->
     <section>
       <div class="slide">
-        <div class="slide-header"><div class="slide-tag">Bloc 2 · NotebookLM</div><h2 class="slide-title" style="display:flex;align-items:center;gap:12px"><span class="logo"><svg width="28" height="28" viewBox="0 0 500 500"><circle cx="246.93" cy="249.67" r="240"/><path fill="#fff" d="M246.94,117.25c-83.4,0-151,67.04-151,149.77v71.7h27.83v-7.15c0-33.55,27.41-60.75,61.23-60.75s61.23,27.21,61.23,60.75v7.15h27.83v-7.15c0-48.8-39.89-88.33-89.07-88.33-19.15,0-36.89,5.99-51.42,16.21,15.2-29.97,46.51-50.53,82.65-50.53,51.06,0,92.46,41.07,92.46,91.71v38.1h27.84v-38.1c0-65.89-53.86-119.32-120.3-119.32-29.87,0-57.2,10.8-78.24,28.69,20.66-38.73,61.68-65.13,108.95-65.13,68.03,0,123.17,54.69,123.17,122.16v71.7h27.83v-71.7c0-82.72-67.6-149.77-151-149.77Z"/></svg></span>NotebookLM — răspunsuri din lege, nu din imaginație</h2><p class="slide-subtitle">Îi dați voi sursele. Răspunde <b>doar din ele</b>, și pune <b>citatul</b> lângă fiecare afirmație. Ce nu e în surse — nu inventează.</p></div>
-        <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:24px;flex:1;min-height:0">
-          <div class="practice-shot"><img src="deck-assets/notebooklm-asistent-fiscal.png" alt="NotebookLM — asistent pe legislație" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📓</span>NotebookLM — asistent pe legislația voastră<span class="pth">notebooklm.google.com</span></div></div>
-          <div style="display:flex;flex-direction:column;gap:14px;justify-content:center">
-            <div class="quote-block" style="font-size:15px"><strong>Diferența cheie:</strong> 📂 răspunde DOAR din sursele voastre · 🔗 citat la articolul exact · 🚫 nu completează golurile din imaginație.</div>
-            <div style="font-size:15px;color:var(--foreground);line-height:1.55"><b>Imaginați-vă:</b> încărcați o dată Codul contravențional, legea de organizare, regulamentele interne și ordinele relevante. Apoi întrebați în română, ca un om: <i>„Care e termenul de examinare și pe ce articol?”</i> — și primiți răspunsul cu link direct la articolul din document.</div>
-            <div class="info-band"><div class="ib-icon">🖱️</div><div class="ib-text">Click pe citat → <b>se deschide documentul la locul exact</b>. Nu credeți AI-ul pe cuvânt — verificați într-o secundă.</div></div>
+        <div class="slide-header"><div class="slide-tag">Bloc 2 · NotebookLM</div><h2 class="slide-title" style="display:flex;align-items:center;gap:12px"><span class="logo"><svg width="28" height="28" viewBox="0 0 500 500"><circle cx="246.93" cy="249.67" r="240"/><path fill="#fff" d="M246.94,117.25c-83.4,0-151,67.04-151,149.77v71.7h27.83v-7.15c0-33.55,27.41-60.75,61.23-60.75s61.23,27.21,61.23,60.75v7.15h27.83v-7.15c0-48.8-39.89-88.33-89.07-88.33-19.15,0-36.89,5.99-51.42,16.21,15.2-29.97,46.51-50.53,82.65-50.53,51.06,0,92.46,41.07,92.46,91.71v38.1h27.84v-38.1c0-65.89-53.86-119.32-120.3-119.32-29.87,0-57.2,10.8-78.24,28.69,20.66-38.73,61.68-65.13,108.95-65.13,68.03,0,123.17,54.69,123.17,122.16v71.7h27.83v-71.7c0-82.72-67.6-149.77-151-149.77Z"/></svg></span>NotebookLM — răspunde din lege, nu din memorie</h2></div>
+        <div class="nblm">
+          <div class="nblm-panels">
+            <div class="nbp src"><div class="ic">📥</div><div><div class="tt">Îi dai sursele tale</div><div class="dd">legi, regulamente, ordine, dosare</div></div><span class="step">1</span></div>
+            <div class="nbp ask"><div class="ic">💬</div><div><div class="tt">Întrebi în română</div><div class="dd">ca un om, nu ca un motor de căutare</div></div><span class="step">2</span></div>
+            <div class="nbp cite"><div class="ic">🔗</div><div><div class="tt">Răspunde cu citatul</div><div class="dd">click → articolul exact din document</div></div><span class="step">3</span></div>
           </div>
+          <div class="practice-shot" style="min-height:0"><img src="deck-assets/notebooklm-asistent-fiscal.png" alt="NotebookLM — asistent pe legislație" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📓</span>NotebookLM — asistent pe legislația voastră<span class="pth">notebooklm.google.com</span></div></div>
         </div>
-        <div class="nb-cases" style="margin-top:14px">
-          <div class="nb-case"><div class="nb-case-title">⚖️ Bibliotecă de acte normative</div><div class="nb-case-desc">Răspuns cu trimitere la articolul exact</div></div>
-          <div class="nb-case"><div class="nb-case-title">📋 Proceduri interne</div><div class="nb-case-desc">„Cum se procedează în cazul X?” — din regulamentul vostru</div></div>
-          <div class="nb-case"><div class="nb-case-title">🗂️ Un dosar mare</div><div class="nb-case-desc">Zeci de documente — întrebi punctual, nu recitești tot</div></div>
-          <div class="nb-case"><div class="nb-case-title">🎙️ Sinteză audio</div><div class="nb-case-desc">Documentele devin un rezumat audio, în română</div></div>
-        </div>
-        <div class="slide-num">21 / 34</div>
+        <div class="why-band"><span class="wb-icon">🚫</span><span class="wb-text"><span class="lbl">Diferența față de ChatGPT</span>Nu inventează. Răspunde <b>doar din ce i-ai dat</b> — iar dacă răspunsul nu e în surse, spune că nu știe. Singura variantă acceptabilă când e vorba de lege.</span></div>
+        <div class="slide-num">23 / 36</div>
       </div>
     </section>
 
@@ -1725,7 +1821,7 @@
             <p class="card-body">Acte în română, întrebări în română, răspuns în română. Inclusiv sinteza audio.</p>
           </div>
         </div>
-        <div class="slide-num">22 / 34</div>
+        <div class="slide-num">24 / 36</div>
       </div>
     </section>
 
@@ -1747,22 +1843,22 @@
           </div>
           <div class="practice-shot cover"><img src="deck-assets/notebooklm-3panel.gif" alt="NotebookLM — surse, chat, studio" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"/><div class="shot-fallback" style="display:none"><span class="ic">📓</span>NotebookLM — surse · chat · citate<span class="pth">notebooklm.google.com</span></div></div>
         </div>
-        <div class="slide-num">23 / 34</div>
+        <div class="slide-num">25 / 36</div>
       </div>
     </section>
 
     <!-- 22 Patru moduri de folosire -->
     <section>
       <div class="slide">
-        <div class="slide-header"><div class="slide-tag">Bloc 2 · NotebookLM</div><h2 class="slide-title">Patru moduri concrete în care îl folosiți</h2><p class="slide-subtitle">Nu e un tool de „explorat”. Sunt patru sarcini pe care le aveți oricum de făcut — doar că mai repede.</p></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;flex:1;align-content:center">
-          <div class="pstep" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px"><div class="pstep-num">⚖️</div><div class="pstep-text"><b>Asistent pe legislație:</b> încărcați o dată actele normative → „discutați” cu ele. Fiecare răspuns vine cu <b>articolul-sursă</b>, gata de pus în document.</div></div>
-          <div class="pstep" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px"><div class="pstep-num">🔎</div><div class="pstep-text"><b>Un dosar cu zeci de documente:</b> încărcați tot dosarul → întrebați punctual, răspunsul arată <b>în care document</b> și la ce pagină e informația.</div></div>
-          <div class="pstep" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px"><div class="pstep-num">✅</div><div class="pstep-text"><b>Checklist de completitudine:</b> „Conform regulamentului, ce acte trebuie să conțină dosarul — și <b>care lipsesc</b> din ce ți-am dat?”</div></div>
-          <div class="pstep" style="background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px"><div class="pstep-num">📊</div><div class="pstep-text"><b>Sinteză pentru ședință:</b> din 15 documente scoate o notă informativă de o pagină — sau o <b>sinteză audio</b> de ascultat în mașină.</div></div>
+        <div class="slide-header"><div class="slide-tag">Bloc 2 · NotebookLM</div><h2 class="slide-title">Patru moduri concrete de folosire</h2></div>
+        <div class="modes">
+          <div class="mode a"><span class="mi">⚖️</span><span class="mt">Asistent<br>pe legislație</span></div>
+          <div class="mode b"><span class="mi">🔎</span><span class="mt">Un dosar cu<br>zeci de documente</span></div>
+          <div class="mode c"><span class="mi">✅</span><span class="mt">Checklist de<br>completitudine</span></div>
+          <div class="mode d"><span class="mi">📊</span><span class="mt">Sinteză<br>pentru ședință</span></div>
         </div>
-        <div class="why-band" style="margin-top:16px"><span class="wb-icon">🎯</span><span class="wb-text"><span class="lbl">Câștigul real</span>Nu că vă răspunde AI-ul. Ci că <b>răspunsul vine cu trimiterea la sursă</b> — deci îl puteți verifica în 5 secunde și îl puteți pune într-un document oficial.</span></div>
-        <div class="slide-num">24 / 34</div>
+        <div class="why-band"><span class="wb-icon">🎯</span><span class="wb-text"><span class="lbl">Câștigul real</span>Nu doar că vă răspunde — ci că <b>răspunsul vine cu trimiterea la sursă</b>. Îl verificați în 5 secunde și îl puneți într-un document oficial.</span></div>
+        <div class="slide-num">26 / 36</div>
       </div>
     </section>
 
@@ -1793,7 +1889,7 @@
           </div>
         </div>
         <div class="why-band"><span class="wb-icon">🎭</span><span class="wb-text"><span class="lbl">Puntea spre primul bloc</span>Dacă tot vreți să lucrați cu un dosar real — <b>îl anonimizați întâi</b>, cu legenda de acum 10 minute. Codurile intră în AI, numele rămân la voi.</span></div>
-        <div class="slide-num">25 / 34</div>
+        <div class="slide-num">27 / 36</div>
       </div>
     </section>
 
@@ -1843,7 +1939,7 @@
           </div>
         </div>
         <div class="why-band"><span class="wb-icon">🎯</span><span class="wb-text"><span class="lbl">Și cel mai important</span>Dacă îi dai un model, îl <b>urmează exact</b> — nu „interpretează creativ” un act oficial. De-asta merge atât de bine cu <b>skills</b>.</span></div>
-        <div class="slide-num">26 / 34</div>
+        <div class="slide-num">28 / 36</div>
       </div>
     </section>
 
@@ -1875,7 +1971,7 @@
           </div>
         </div>
         <div class="why-band"><span class="wb-icon">💡</span><span class="wb-text"><span class="lbl">Diferența</span>Juniorul învață în 6 luni și pleacă în concediu. Pe AI îl înveți <b>o dată</b>, într-un fișier — și știe pe veci, la fel, la ora 2 noaptea. Fișierul ăla se numește <b>skill</b>.</span></div>
-        <div class="slide-num">27 / 34</div>
+        <div class="slide-num">29 / 36</div>
       </div>
     </section>
 
@@ -1889,7 +1985,7 @@
           <div class="card mint"><span class="card-icon">🎯</span><p class="card-title">Mereu la fel</p><p class="card-body">Același format, aceleași formule, aceeași structură — <b>de fiecare dată</b>. Fără „depinde cine l-a scris”.</p></div>
         </div>
         <div class="why-band"><span class="wb-icon">🎓</span><span class="wb-text"><span class="lbl">Analogia de reținut</span>Un skill = <b>o competență adăugată juniorului</b>. Îl învățați o dată „așa scriem noi un răspuns la petiție” → o știe pentru totdeauna, și o aplică identic la a 300-a petiție ca la prima.</span></div>
-        <div class="slide-num">28 / 34</div>
+        <div class="slide-num">30 / 36</div>
       </div>
     </section>
 
@@ -1938,7 +2034,7 @@
             <div class="trg-item"><span class="d">→</span><span>Orice se semnează <b>fără să fie citit</b> de un om</span></div>
           </div>
         </div>
-        <div class="slide-num">29 / 34</div>
+        <div class="slide-num">31 / 36</div>
       </div>
     </section>
 
@@ -1971,54 +2067,28 @@
           </div>
         </div>
         <div class="why-band"><span class="wb-icon">⚠️</span><span class="wb-text"><span class="lbl">Limita, spusă clar</span>Skill-ul face <b>draftul</b>, nu decizia. Temeiul se verifică de om, semnătura e a omului. Ce câștigați sunt <b>cele 32 de minute de tastat</b> — nu judecata profesională.</span></div>
-        <div class="slide-num">30 / 34</div>
+        <div class="slide-num">32 / 36</div>
       </div>
     </section>
 
-    <!-- 28 Ce scrie în SKILL.md -->
+    <!-- 28 Few-shot: 10 documente -->
     <section>
       <div class="slide">
-        <div class="slide-header"><div class="slide-tag">Bloc 3 · Claude Skills</div><h2 class="slide-title">Cum arată un skill pe dinăuntru — e doar text</h2><p class="slide-subtitle">Un skill = <b>un fișier text</b> (SKILL.md). Îl deschideți, vedeți exact ce face, îl corectați. Fără cutie neagră, fără programator.</p></div>
-        <div class="dict">
-          <div class="dict-left">
-            <div class="dict-word">
-              <span class="dw-emoji">📄</span>
-              <div><h3>SKILL.md</h3><p class="dw-sub">Text simplu, structurat — îl scrieți în română</p></div>
-            </div>
-            <p class="dict-analogy">Practic e <b>fișa de post a juniorului</b>, scrisă o dată: ce face, în ce ordine, în ce format, și ce nu are voie să facă.</p>
-            <div class="dict-why"><span class="lbl">Cine îl scrie</span>Îl scrie <b>omul care face lucrarea de 5 ani</b> — nu IT-ul. Voi cunoașteți procedura; AI-ul doar o execută. Iar dacă nu știți de unde să începeți, îi cereți lui Claude să vă intervieveze despre cum lucrați și să scrie el prima variantă.</div>
-          </div>
-          <div class="dict-visual">
-            <div class="mdcompare">
-              <div class="md-src">
-                <span class="md-tablabel">Ce scrieți (SKILL.md)</span>
-                <div class="h"># Răspuns la petiție</div>
-                <div>&nbsp;</div>
-                <div class="h">## Structura obligatorie</div>
-                <div class="li">1. Antet instituție + nr. ieșire</div>
-                <div class="li">2. Formula de adresare</div>
-                <div class="li">3. Obiectul petiției, pe scurt</div>
-                <div class="li">4. Temeiul legal invocat</div>
-                <div class="li">5. Soluția / răspunsul</div>
-                <div class="li">6. Calea de atac</div>
-                <div>&nbsp;</div>
-                <div class="h">## Reguli</div>
-                <div class="li">- ton oficial, fără abrevieri</div>
-                <div class="li">- **marchează** temeiul legal</div>
-                <div class="li">&nbsp;&nbsp;ca „DE VERIFICAT”</div>
-                <div class="li">- nu inventa articole</div>
-              </div>
-              <div class="md-prev">
-                <span class="md-tablabel">Ce iese</span>
-                <h4>Răspuns la petiția nr. …</h4>
-                <p>Structura completă, în formatul instituției, cu formulele standard deja puse la locul lor.</p>
-                <p style="font-weight:800;font-size:15px;margin-bottom:5px">De fiecare dată</p>
-                <ul><li>aceleași rubrici, în aceeași ordine</li><li>același ton oficial</li><li>temeiul legal marcat pentru verificare</li></ul>
-              </div>
-            </div>
-          </div>
+        <div class="slide-header"><div class="slide-tag">Bloc 3 · Claude Skills</div><h2 class="slide-title">Îl înveți din exemple — apoi o face singur</h2><p class="slide-subtitle">Îi dai <b>3–5 documente de-ale voastre, deja făcute</b> („uite cum arată corect”). Din ele învață <b>competența</b> și o repetă identic. Iată ce se pretează:</p></div>
+        <div class="fsd-grid">
+          <div class="fsd"><span class="ic">✉️</span><span class="tx">Răspuns la petiție<span>după modelele voastre aprobate</span></span></div>
+          <div class="fsd"><span class="ic">📝</span><span class="tx">Notă informativă / de fundamentare<span>din mai multe rapoarte</span></span></div>
+          <div class="fsd"><span class="ic">📋</span><span class="tx">Proces-verbal → tabel structurat<span>extrage câmpurile fixe</span></span></div>
+          <div class="fsd"><span class="ic">📃</span><span class="tx">Adeverințe și certificate<span>completate din datele cazului</span></span></div>
+          <div class="fsd"><span class="ic">⚖️</span><span class="tx">Referat cu temei legal propus<span>tu confirmi articolul</span></span></div>
+          <div class="fsd"><span class="ic">📨</span><span class="tx">Răspuns la cerere de acces la informație<span>formatul standard</span></span></div>
+          <div class="fsd"><span class="ic">📊</span><span class="tx">Raport lunar de activitate<span>din datele subdiviziunii</span></span></div>
+          <div class="fsd"><span class="ic">🗂️</span><span class="tx">Sinteza unui dosar voluminos<span>o pagină, structurată</span></span></div>
+          <div class="fsd"><span class="ic">📑</span><span class="tx">Ordine de zi și minute de ședință<span>din notițe brute</span></span></div>
+          <div class="fsd"><span class="ic">🔤</span><span class="tx">Extragere date din formulare scanate<span>nume, dată, sumă → Excel</span></span></div>
         </div>
-        <div class="slide-num">31 / 34</div>
+        <div class="why-band"><span class="wb-icon">🎓</span><span class="wb-text"><span class="lbl">Se numește few-shot</span>Nu-i explici teoria — îi arăți <b>rezultate din trecut</b> („așa am făcut noi, așa vreau și de acum”). AI învață tiparul din exemple și îl aplică la cazul nou.</span></div>
+        <div class="slide-num">33 / 36</div>
       </div>
     </section>
 
@@ -2046,7 +2116,7 @@
             <div class="recap-do" style="margin-top:0">👉 Luna asta: UN document repetitiv → primul skill</div>
           </div>
         </div>
-        <div class="slide-num">32 / 34</div>
+        <div class="slide-num">34 / 36</div>
       </div>
     </section>
 
@@ -2064,42 +2134,33 @@
             <span class="cover-chip">+373 760 37 475</span>
           </div>
         </div>
-        <div class="slide-num" style="color:rgba(255,255,255,0.35)">33 / 34</div>
+        <div class="slide-num" style="color:rgba(255,255,255,0.35)">35 / 36</div>
       </div>
     </section>
 
-    <!-- 34 QR — Telegram + LinkedIn -->
+    <!-- 34 QR — Telegram + LinkedIn + prezentare -->
     <section>
       <div class="slide">
-        <div class="slide-header"><div class="slide-tag">Rămânem în legătură</div><h2 class="slide-title">Scanați acum — durează 5 secunde</h2><p class="slide-subtitle">În canal pun tool-urile noi, prompturi gata făcute și lucrurile care chiar merită atenție. Pe LinkedIn — analize mai lungi.</p></div>
-        <div class="qr-grid">
+        <div class="slide-header"><div class="slide-tag">Rămânem în legătură</div><h2 class="slide-title">Scanați acum — durează 5 secunde</h2></div>
+        <div class="qr-grid" style="grid-template-columns:1fr 1fr 1fr;max-width:1080px">
           <div class="qr-card">
-            <div class="qr-head">
-              <span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#229ED9"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></span>
-              <span class="qr-name">Telegram</span>
-            </div>
-            <div class="qr-img">
-              <img src="deck-assets/qr-telegram.svg" alt="QR canal Telegram" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-              <div class="qr-fallback" style="display:none"><span class="ic">📣</span>QR Telegram<span class="pth">deck-assets/qr-telegram.svg</span></div>
-            </div>
+            <div class="qr-head"><span class="logo"><svg width="24" height="24" viewBox="0 0 24 24" style="fill:#229ED9"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></span><span class="qr-name">Telegram</span></div>
+            <div class="qr-img"><img src="deck-assets/qr-telegram.svg" alt="QR canal Telegram" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" /><div class="qr-fallback" style="display:none"><span class="ic">📣</span>QR Telegram<span class="pth">qr-telegram.svg</span></div></div>
             <div class="qr-desc">Canalul <b>„AI AI AI"</b><br>Tool-uri noi, prompturi, ce merită testat</div>
-            <div class="qr-url">t.me/+E9aPhptp_2QxZDdk</div>
           </div>
           <div class="qr-card">
-            <div class="qr-head">
-              <span class="logo"><svg width="26" height="26" viewBox="0 0 24 24" style="fill:#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></span>
-              <span class="qr-name">LinkedIn</span>
-            </div>
-            <div class="qr-img">
-              <img src="deck-assets/qr-linkedin.svg" alt="QR LinkedIn" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-              <div class="qr-fallback" style="display:none"><span class="ic">💼</span>QR LinkedIn<span class="pth">deck-assets/qr-linkedin.svg</span></div>
-            </div>
-            <div class="qr-desc">Profilul meu — <b>Vlah Dumitru</b><br>Analize mai lungi despre AI în instituții</div>
-            <div class="qr-url">linkedin.com/in/…</div>
+            <div class="qr-head"><span class="logo"><svg width="24" height="24" viewBox="0 0 24 24" style="fill:#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg></span><span class="qr-name">LinkedIn</span></div>
+            <div class="qr-img"><img src="deck-assets/qr-linkedin.png" alt="QR LinkedIn" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" /><div class="qr-fallback" style="display:none"><span class="ic">💼</span>QR LinkedIn<span class="pth">qr-linkedin.png</span></div></div>
+            <div class="qr-desc">Profilul meu — <b>Vlah Dumitru</b><br>Analize mai lungi despre AI</div>
+          </div>
+          <div class="qr-card">
+            <div class="qr-head"><span style="font-size:22px">📊</span><span class="qr-name">Prezentarea asta</span></div>
+            <div class="qr-img"><img src="deck-assets/qr-prezentare.png" alt="QR prezentare" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" /><div class="qr-fallback" style="display:none"><span class="ic">📊</span>QR prezentare<span class="pth">qr-prezentare.png</span></div></div>
+            <div class="qr-desc">Toate slide-urile<br><b>o deschideți când vreți</b></div>
           </div>
         </div>
         <div class="why-band"><span class="wb-icon">📬</span><span class="wb-text"><span class="lbl">Sau direct</span><b>vlahdumitru@vectoracademy.ro</b> · <b>+373 760 37 475</b> · vectoracademy.ro</span></div>
-        <div class="slide-num">34 / 34</div>
+        <div class="slide-num">36 / 36</div>
       </div>
     </section>
 
